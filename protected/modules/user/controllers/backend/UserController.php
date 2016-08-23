@@ -19,7 +19,7 @@ class UserController extends \app\modules\main\components\controllers\BackendCon
 			],
 			'update' => [
 				'class' => 'app\modules\main\components\actions\UpdateAction',
-				'model' => '\app\modules\user\models\User',
+				'model' => '\app\modules\user\	models\User',
 				'scenario' => 'update',
 			],
 			'delete' => [
@@ -38,7 +38,6 @@ class UserController extends \app\modules\main\components\controllers\BackendCon
 					'pageSize' => Yii::$app->setting->getValue('main', 'pager_size'),
 				],
 			]);
-
 		return $this->render('manager', ['dataProvider' => $dataProvider]);
 	}
 	
