@@ -7,15 +7,12 @@ use app\modules\news\models\News;
 $this->breadcrumbs = [
 	['label' => 'Новости'],
 ];
-
-$this->toolbar = [
-    ['label' => '<i class="glyphicon glyphicon-plus"></i> '.Yii::t('main', 'button add'), 'url' => ['create']],
-];
 ?>
 
 <?php echo GridView::widget([
 	'dataProvider' => $dataProvider,
 	'filterModel' => $searchModel,
+	'buttons' => ['create'],
 	'columns' => [
 		'title',
 		[

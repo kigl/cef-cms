@@ -1,5 +1,5 @@
 <?php
-use yii\widgets\ActiveForm;
+use app\modules\main\widgets\activeForm\ActiveForm;
 use app\modules\user\models\User;
 ?>
 

@@ -5,7 +5,6 @@ $this->breadcrumbs = [
 ];
 
 $this->toolbar = [
-	['label' => '<button form="form" class="btn btn-success btn-sm">'. Yii::t('main', 'button save') . '</button>'],
 	['label' => 'Изменить пароль', 'url' => ['password', 'id' => $model->id]],
 ];
 ?>

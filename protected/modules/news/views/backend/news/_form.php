@@ -1,11 +1,11 @@
 <?php
 use Yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
 use yii\jui\DatePicker;
 use yii\bootstrap\Collapse;
 use vova07\imperavi\Widget;
 use app\modules\news\models\News;
+use app\modules\main\widgets\activeForm\ActiveForm;
 ?>
 
 <?php $form = ActiveForm::begin([

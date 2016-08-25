@@ -90,13 +90,7 @@ $config = [
 				],
 			],
 		],
-		'db' =>  [
-			'class' => 'yii\db\Connection',
-			'dsn' => 'mysql:host=localhost;dbname=main2',
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-		],
+		'db' =>  require (__DIR__ . '/db.php'),
 
 		'urlManager' => [
 			'enablePrettyUrl' => true,

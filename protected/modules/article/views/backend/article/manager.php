@@ -9,10 +9,6 @@ use app\modules\main\widgets\grid\GridView;
 
 $this->title = Yii::t('main', 'Article');
 $this->breadcrumbs = ['label' => 'Статьи'];
-
-$this->toolbar = [
-    ['label' => '<i class="glyphicon glyphicon-plus"></i> '.Yii::t('main', 'button add'), 'url' => ['create']],
-];
 ?>
 
 <div class="page-index">
@@ -20,6 +16,7 @@ $this->toolbar = [
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
+        'buttons' => ['create'],
         'columns' => [
             'title',
 						[

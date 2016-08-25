@@ -7,14 +7,12 @@ use yii\widgets\Pjax;
 $this->breadcrumbs = [
 	['label' => 'Модули']
 ];
-$this->toolbar = [
-	['label' => '<i class="glyphicon glyphicon-plus"></i> '. Yii::t('main', 'button add'), 'url' => ['create']],
-];
 ?>
 
 <?php Pjax::begin();?>
 	<?php echo GridView::widget([
 							'dataProvider' => $dataProvider,
+							'buttons' => ['create'],
 							'columns' => [
 								'id',
 								'name',

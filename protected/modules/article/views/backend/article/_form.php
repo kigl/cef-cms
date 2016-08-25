@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
+use app\modules\main\widgets\activeForm\ActiveForm;
 use vova07\imperavi\Widget;
 
 /* @var $this yii\web\View */
@@ -41,9 +41,6 @@ use vova07\imperavi\Widget;
 
               <?= $form->field($model, 'meta_description')->textarea(['rows' => 6]) ?>
           </div>
-      </div>
-      <div class="panel-footer">
-      	<?php echo Html::submitButton(Yii::t('main', 'button save'), ['class' => 'btn btn-success btn-sm'])?>
       </div>
       <?php ActiveForm::end(); ?>
     </div>
