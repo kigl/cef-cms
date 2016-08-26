@@ -9,8 +9,6 @@ $this->breadcrumbs = [
 
 
 ?>
-<div class="page-create well well-sm">
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-</div>
+<?= $this->render('_form', [
+    'model' => $model,
+]) ?>

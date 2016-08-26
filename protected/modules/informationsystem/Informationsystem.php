@@ -5,6 +5,6 @@ namespace app\modules\informationsystem;
 /**
  * informationsystem module definition class
  */
-class Informationsystem extends \app\modules\main\components\Module
+class Informationsystem extends \app\modules\main\Main
 {
 }

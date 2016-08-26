@@ -5,9 +5,9 @@ namespace app\modules\main\components\behaviors;
 use Yii;
 use yii\db\ActiveRecord;
 
-class AuthorId extends \yii\base\Behavior
+class UserId extends \yii\base\Behavior
 {	
-	public $attribute = 'author';
+	public $attribute = 'user_id';
 	
 	public function events()
 	{

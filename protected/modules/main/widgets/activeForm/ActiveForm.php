@@ -11,6 +11,8 @@ class ActiveForm extends \yii\widgets\ActiveForm
 {
 	public $buttonSave = true;
 	
+	public $options = ['class' => 'well well-sm'];
+	
     public function run()
     {
         if (!empty($this->_fields)) {
@@ -29,9 +31,10 @@ class ActiveForm extends \yii\widgets\ActiveForm
         }
         
         if ($this->buttonSave) {
-        	echo "<div class='panel-footer'>";
-					echo Html::submitButton(Yii::t('main', 'button save'), ['class' => 'btn btn-success btn-sm']);
-					echo "</div>";
+        	$options = ['class' => 'panel-footer'];
+					$buttonSave = Html::submitButton(Yii::t('main', 'button save'), ['class' => 'btn btn-success btn-sm']);
+					
+					echo Html::tag('div', $buttonSave, $options);
 				}
         
         echo Html::endForm();

@@ -20,7 +20,7 @@ use Yii;
  * @property integer $create_time
  * @property integer $update_time
  */
-class Informatonsystem extends \yii\db\ActiveRecord
+class Informationsystem extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -64,4 +64,19 @@ class Informatonsystem extends \yii\db\ActiveRecord
             'update_time' => Yii::t('main', 'Update Time'),
         ];
     }
+    
+    public function behaviors()
+    {
+			return [
+				[
+					'class' => 'app\modules\main\components\behaviors\UserId',
+					'attribute' => 'user_id',
+				],
+				[
+					'class' => 'yii\behaviors\TimeStampBehavior',
+					'createdAtAttribute' => 'create_time',
+					'updatedAtAttribute' => 'update_time',
+				],
+			];
+		}
 }

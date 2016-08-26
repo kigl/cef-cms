@@ -2,6 +2,7 @@
 
 namespace app\modules\main\widgets\grid;
 
+use Yii;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
@@ -10,19 +11,35 @@ use yii\widgets\LinkPager;
 class GridView extends \yii\grid\GridView
 {
 	
+	public $layout = "{buttons}\n{summary}\n{items}\n{pager}";
+	
 	public $buttons = [];
 	
-	public function init()
-	{	
-		$this->options = ['class' => 'panel panel-default grid-view'];
-		$this->tableOptions = ['class' => 'table table-bordered table-condensed table-striped'];
-		$this->summaryOptions = ['class' => 'summary text-right panel-heading'];
-		$this->pager = [
-			'options' => ['class' => 'pagination'],
-		];
-		
-		parent::init();
-	}
+	public $summaryOptions = ['class' => 'summary pull-right'];
+	
+	public $options = ['class' => 'grid-view'];
+	
+	public $tableOptions = ['class' => 'table table-bordered table-condensed table-striped'];
+	
+	public $pager = ['options' => ['class' => 'pagination pull-right']];
+  
+  public function renderSection($name)
+  {
+      switch ($name) {
+      		case '{buttons}':
+      				return $this->renderCastomButtons();
+          case '{summary}':
+              return $this->renderSummary();
+          case '{items}':
+              return $this->renderItems();
+          case '{pager}':
+              return $this->renderPager();
+          case '{sorter}':
+              return $this->renderSorter();
+          default:
+              return false;
+      }
+  }
 	
 	public function initColumns()
 	{
@@ -38,60 +55,36 @@ class GridView extends \yii\grid\GridView
 			}
 		}
 	}
-	
-    public function renderItems()
-    {
-        $caption = $this->renderCaption();
-        $columnGroup = $this->renderColumnGroup();
-        $castomButton = $this->renderCastomButtons();
-        $tableHeader = $this->showHeader ? $this->renderTableHeader() : false;
-        $tableBody = $this->renderTableBody();
-        $tableFooter = $this->showFooter ? $this->renderTableFooter() : false;
-        $content = array_filter([
-            $caption,
-            $columnGroup,
-						$castomButton,
-            $tableHeader,
-            $tableFooter,
-            $tableBody,
-        ]);
-        return Html::tag('table', implode("\n", $content), $this->tableOptions);
-    }
     
-    public function renderCastomButtons()
-    {
-    	$result = '';
-    	if (count($this->buttons) > 0) {
-	    	$result.= "<div class='text-right' style='padding: 5px'>";
-	    	
-	    	foreach ($this->buttons as $button) {
-					switch ($button) {
-						case 'create':
-							$result.= Html::a('<i class="glyphicon glyphicon-plus"></i>', Url::to(['create']), ['class' => 'btn btn-success btn-sm']);
-							break;
-					}
+  public function renderCastomButtons()
+  {
+  	$tag = 'div';
+  	$options = ['class' => 'pull-left'];
+  	$result = '';
+  	
+  	if (count($this->buttons) > 0) {   	
+    	foreach ($this->buttons as $name => $button) {
+				switch ($name) {
+					case 'create':
+						$result.= $this->getCreateButton();
+						break;
 				}
-				
-				$result.= "</div>";
 			}
-    	
-			return $result;
+		}
+  	
+		return Html::tag($tag, $result, $options);
+	}
+	
+	protected function getCreateButton()
+	{
+		$action = Url::to(['create']);
+		$text = '<i class="glyphicon glyphicon-plus"></i>';
+		$options = ['class' => 'btn btn-success btn-sm'];
+		
+		if (isset($this->buttons['create']['action'])) {
+			return Html::a($text, $this->buttons['create']['action'], $options); 
 		}
 		
-		public function renderPager()
-    {
-	    $pagination = $this->dataProvider->getPagination();
-	    if ($pagination === false || $this->dataProvider->getCount() <= 0) {
-	        return '';
-	    }
-	    /* @var $class LinkPager */
-	    $pager = $this->pager;
-	    $class = ArrayHelper::remove($pager, 'class', LinkPager::className());
-	    $pager['pagination'] = $pagination;
-	    $pager['view'] = $this->getView();
-	    
-	    $result = "<div class='panel-footer'>" . $class::widget($pager) . "</div>";
-	    
-	    return $result;
-    }
+		return Html::a($text, Url::to(['create']), $options);
+	}
 }
