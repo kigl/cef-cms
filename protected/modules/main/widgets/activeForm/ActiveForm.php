@@ -11,7 +11,13 @@ class ActiveForm extends \yii\widgets\ActiveForm
 {
 	public $buttonSave = true;
 	
+	public $enableClientValidation = false;
+	
+	public $fieldConfig = ['template' => "{label}\n{input}"];
+	
 	public $options = ['class' => 'well well-sm'];
+	
+	public $errorSummaryCssClass = 'error-simmary alert alert-danger';
 	
     public function run()
     {

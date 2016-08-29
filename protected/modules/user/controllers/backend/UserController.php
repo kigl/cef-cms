@@ -19,7 +19,7 @@ class UserController extends \app\modules\main\components\controllers\BackendCon
 			],
 			'update' => [
 				'class' => 'app\modules\main\components\actions\UpdateAction',
-				'model' => '\app\modules\user\	models\User',
+				'model' => '\app\modules\user\models\User',
 				'scenario' => 'update',
 			],
 			'delete' => [

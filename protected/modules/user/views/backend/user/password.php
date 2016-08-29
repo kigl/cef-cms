@@ -20,8 +20,8 @@ $this->toolbar = [
 				<?php echo Html::passwordInput('User[password]', '', ['class' => 'form-control']);?>
 			</div>
 			<div class="form-group">
-				<?php echo Html::activeLabel($model, 'passwordConfirm');?>
-				<?php echo Html::passwordInput('User[passwordConfirm]', '', ['class' => 'form-control']);?>
+				<?php echo Html::activeLabel($model, 'password_repeat');?>
+				<?php echo Html::passwordInput('User[password_repeat]', '', ['class' => 'form-control']);?>
 			</div>
 			<?php echo Html::endForm();?>
 		</div>

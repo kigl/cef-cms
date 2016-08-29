@@ -29,7 +29,7 @@ class imageUpload extends \app\modules\main\components\behaviors\FileUpload
 			// присваеваем имя файла для записи в DB
 			$this->setDbAttribute($this->getOldAttribute());
 		}
-		
+		// если $deleteKey активный, то удвляем файл
 		if (Yii::$app->request->Post($this->deleteKey)) {
 			$this->deleteOldFile();
 			$this->setDbAttribute(null);

@@ -25,7 +25,6 @@ class News extends \app\modules\main\components\ActiveRecord
 		const STATUS_BLOCK = 0;
 		const STATUS_DRAFT = 2;
 	
-		public $imageFile;
     /**
      * @inheritdoc
      */

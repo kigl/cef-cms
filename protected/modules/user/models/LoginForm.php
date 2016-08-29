@@ -3,6 +3,7 @@
 namespace app\modules\user\models;
 
 use Yii;
+use yii\base\Model;
 use yii\web\HttpException;
 use app\modules\user\models\User;
 
@@ -21,7 +22,7 @@ use app\modules\user\models\User;
 * @property integer $create_time
 * @property string $ip
 */
-class LoginForm extends \yii\base\Model
+class LoginForm extends Model
 {
     private $_user;
 
@@ -63,23 +64,11 @@ class LoginForm extends \yii\base\Model
     public function login()
     {
         if ($this->validate() and $this->checkUser()) {
-            Yii::$app->user->login($this->getUser());
+            Yii::$app->user->login($this->_user);
             return true;
         }
         
         return false;
-    }
-
-    public function getUser()
-    {
-        if ($this->_user == null) {
-            $this->_user = User::find()
-            ->where(['login' => $this->login])
-            ->orWhere(['email' => $this->login])
-            ->one();
-        }
-
-        return $this->_user;
     }
 
     public function checkUser()
@@ -91,9 +80,16 @@ class LoginForm extends \yii\base\Model
             throw new HttpException(403);
         }
     }
+    
+    public function getUser()
+    {
+        if ($this->_user == null) {
+            $this->_user = User::find()
+            ->where(['login' => $this->login])
+            ->orWhere(['email' => $this->login])
+            ->one();
+        }
+
+        return $this->_user;
+    }
 }
-
-
-
-
-

@@ -22,7 +22,7 @@ use yii\web\HttpException;
 */
 class User extends \app\modules\main\components\ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $passwordConfirm;
+    public $password_repeat;
 
     const STATUS_BLOCK = 0;
     const STATUS_ACTIVE = 1;
@@ -43,19 +43,16 @@ class User extends \app\modules\main\components\ActiveRecord implements \yii\web
     public function rules()
     {
         return [
-            [['login', 'email', 'password', 'passwordConfirm'], 'required', 'on' => 'insert'],
+            [['login', 'email', 'password', 'password_repeat'], 'required', 'on' => 'insert'],
 
             [['login', 'email'], 'required', 'on' => 'update'],
 
-            [['password', 'passwordConfirm'], 'required', 'on' => 'passwordEdit'],
+            [['password', 'password_repeat'], 'required', 'on' => 'passwordEdit'],
 
             [['surname', 'name', 'lastname'], 'string', 'max' => 255],
-            ['passwordConfirm', 'validatePasswordConfirm'],
+            ['password', 'compare'],
             ['email', 'email'],
             [['status'], 'integer'],
-            // [['login', 'email', 'ip'], 'string', 'max' => 50],
-            //[['surname', 'name', 'lastname'], 'string', 'max' => 100],
-            //[['password'], 'string', 'max' => 255],
         ];
     }
 
@@ -76,28 +73,22 @@ class User extends \app\modules\main\components\ActiveRecord implements \yii\web
             'status' => Yii::t('main', 'Status'),
             'create_time' => Yii::t('main', 'Create Time'),
             'ip' => Yii::t('main', 'Ip'),
+            'password_repeat' => Yii::t('main', 'password_repeat'),
         ];
-    }
-
-    public function validatePasswordConfirm($attribute)
-    {
-        if ($this->password != $this->passwordConfirm) {
-            $this->addError($attribute, 'Пароль не совподает');
-        }
     }
 
     public function behaviors()
     {
         return [
-            'fillingTime' => [
-                'class' => 'app\modules\main\components\behaviors\FillingTime',
-                'create' => 'create_time',
-            ],
+        		[
+        			'class' => 'yii\behaviors\TimeStampBehavior',
+        			'createdAtAttribute' => 'create_time',
+        		],
             'userIp' => [
                 'class' => 'app\modules\user\components\behaviors\UserIp',
                 'attribute' => 'ip',
             ],
-            'HashPassword' => [
+            'hashPassword' => [
                 'class' => 'app\modules\main\components\behaviors\HashPassword',
                 'attribute' => 'password',
             ],
@@ -132,19 +123,10 @@ class User extends \app\modules\main\components\ActiveRecord implements \yii\web
     /*
     * Аутентификация пользователя
     */
-    public function generateAuthKey()
-    {
-        $this->auth_key = Yii::$app->security->generateRandomString();
-    }
 
     public static function findIdentity($id)
     {
         return static::findOne($id);
-    }
-
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        return static::findOne(['access_token' => $token]);
     }
 
     public function getId()
@@ -152,14 +134,24 @@ class User extends \app\modules\main\components\ActiveRecord implements \yii\web
         return $this->id;
     }
 
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        //return static::findOne(['access_token' => $token]);
+    }
+		
+    public function generateAuthKey()
+    {
+       //$this->auth_key = Yii::$app->security->generateRandomString();
+    }
+		
     public function getAuthKey()
     {
-        return $this->auth_key;
+        //return $this->auth_key;
     }
 
     public function validateAuthKey($authKey)
     {
-        return $this->auth_key === $authKey;
+        //return $this->auth_key === $authKey;
     }
 }
 

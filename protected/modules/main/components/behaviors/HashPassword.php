@@ -12,8 +12,8 @@ class HashPassword extends \yii\base\Behavior
 	public function events()
 	{
 		return [
-			ActiveRecord::EVENT_BEFORE_INSERT => 'GeneratePassword',
-			ActiveRecord::EVENT_BEFORE_UPDATE => 'GeneratePassword',
+			ActiveRecord::EVENT_BEFORE_INSERT => 'generatePassword',
+			ActiveRecord::EVENT_BEFORE_UPDATE => 'generatePassword',
 		];
 	}
 	

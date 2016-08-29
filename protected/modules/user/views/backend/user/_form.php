@@ -26,7 +26,7 @@ use app\modules\user\models\User;
 		<?php echo $form->field($model, 'email');?>
 		<?php if ($model->scenario == 'insert') :?>
 			<?php echo $form->field($model, 'password')->passwordInput();?>
-			<?php echo $form->field($model, 'passwordConfirm')->passwordInput();?>
+			<?php echo $form->field($model, 'password_repeat')->passwordInput();?>
 		<?php endif;?>
 	</div>
 	<div class="tab-pane" id="profile">

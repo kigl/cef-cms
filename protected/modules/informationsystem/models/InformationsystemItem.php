@@ -8,8 +8,9 @@ use Yii;
  * This is the model class for table "mn_informationsystem_item".
  *
  * @property integer $id
+ * @property integer $parent_id
  * @property integer $informationsystem_id
- * @property integer $informationsystem_group_id
+ * @property integer $item_type
  * @property string $name
  * @property string $description
  * @property string $content
@@ -20,10 +21,12 @@ use Yii;
  * @property integer $date
  * @property integer $date_start
  * @property integer $date_end
+ * @property string $seo_title
+ * @property string $seo_description
  * @property integer $create_time
  * @property integer $update_time
  */
-class InformatonsystemItem extends \yii\db\ActiveRecord
+class InformationsystemItem extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -39,11 +42,11 @@ class InformatonsystemItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['informationsystem_id', 'informationsystem_group_id', 'status', 'sort', 'user_id', 'date', 'date_start', 'date_end', 'create_time', 'update_time'], 'integer'],
+            [['parent_id', 'informationsystem_id', 'item_type', 'status', 'sort', 'user_id', 'date', 'date_start', 'date_end', 'create_time', 'update_time'], 'integer'],
             [['name'], 'required'],
             [['content'], 'string'],
-            [['name', 'image'], 'string', 'max' => 255],
-            [['description'], 'string', 'max' => 300],
+            [['name', 'image', 'seo_title'], 'string', 'max' => 255],
+            [['description', 'seo_description'], 'string', 'max' => 300],
         ];
     }
 
@@ -54,8 +57,9 @@ class InformatonsystemItem extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('main', 'ID'),
+            'parent_id' => Yii::t('main', 'Parent ID'),
             'informationsystem_id' => Yii::t('main', 'Informationsystem ID'),
-            'informationsystem_group_id' => Yii::t('main', 'Informationsystem Group ID'),
+            'item_type' => Yii::t('main', 'Item Type'),
             'name' => Yii::t('main', 'Name'),
             'description' => Yii::t('main', 'Description'),
             'content' => Yii::t('main', 'Content'),
@@ -66,6 +70,8 @@ class InformatonsystemItem extends \yii\db\ActiveRecord
             'date' => Yii::t('main', 'Date'),
             'date_start' => Yii::t('main', 'Date Start'),
             'date_end' => Yii::t('main', 'Date End'),
+            'seo_title' => Yii::t('main', 'Seo Title'),
+            'seo_description' => Yii::t('main', 'Seo Description'),
             'create_time' => Yii::t('main', 'Create Time'),
             'update_time' => Yii::t('main', 'Update Time'),
         ];

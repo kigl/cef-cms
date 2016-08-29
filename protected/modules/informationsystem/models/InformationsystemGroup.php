@@ -19,7 +19,7 @@ use Yii;
  * @property integer $create_time
  * @property integer $update_time
  */
-class InformatonsystemGroup extends \yii\db\ActiveRecord
+class InformationsystemGroup extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -22,6 +22,11 @@ use Yii;
  */
 class Informationsystem extends \yii\db\ActiveRecord
 {
+		
+		const STATUS_BLOCK = 0;
+		const STATUS_ACTIVE = 1;
+		const STATUS_DRAFT = 2;
+	
     /**
      * @inheritdoc
      */
@@ -39,8 +44,9 @@ class Informationsystem extends \yii\db\ActiveRecord
             [['name', 'description'], 'required'],
             [['content'], 'string'],
             [['status', 'sort', 'user_id', 'create_time', 'update_time'], 'integer'],
-            [['name', 'image', 'seo_title', 'seo_description'], 'string', 'max' => 255],
+            [['name', 'seo_title', 'seo_description'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 300],
+            ['image', 'file'],
         ];
     }
 
@@ -77,6 +83,32 @@ class Informationsystem extends \yii\db\ActiveRecord
 					'createdAtAttribute' => 'create_time',
 					'updatedAtAttribute' => 'update_time',
 				],
+				'imageUpload' => [
+					'class' => 'app\modules\main\components\behaviors\ImageUpload',
+					'attribute' => 'image',
+					'resize' => [
+						'width' => 200,
+						'height' => 200,
+					],
+					'path' => Yii::$app->controller->module->getModuleImagesPath(),
+					'pathUrl' => Yii::$app->controller->module->getModuleImagesPathUrl(),
+				],
 			];
+		}
+		
+		public function getStatusList()
+		{
+			return [
+				self::STATUS_BLOCK => Yii::t('main', 'informationsystem status block'),
+				self::STATUS_ACTIVE => Yii::t('main', 'informationsystem status active'),
+				self::STATUS_DRAFT => Yii::t('main', 'informationsystem status drafy'),
+			];
+		}
+		
+		public function getStatus($number)
+		{
+			$status = $this->getStatusLIst();
+			
+			return $status[$number];
 		}
 }
