@@ -6,7 +6,6 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
 use app\modules\main\models\Setting;
-use app\modules\main\models\Module;
 
 class SettingController extends \app\modules\main\components\controllers\BackendController
 {
@@ -33,7 +32,7 @@ class SettingController extends \app\modules\main\components\controllers\Backend
 		$dataProvider = new ActiveDataProvider([
 				'query' => Setting::find(),
 				'pagination' => [
-					'pageSize' => Yii::$app->setting->getValue('main', 'pager_size'),
+					'pageSize' => $this->module->itemsOnPage,
 				],
 			]);
 

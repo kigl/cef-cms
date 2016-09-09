@@ -45,11 +45,11 @@ class User extends \app\modules\main\components\ActiveRecord implements \yii\web
         return [
             [['login', 'email', 'password', 'password_repeat'], 'required', 'on' => 'insert'],
 
+						['login', 'match', 'pattern' => '/^[a-z]+$/', 'message' => 'Символы от a-z'],
+
             [['login', 'email'], 'required', 'on' => 'update'],
 
-            [['password', 'password_repeat'], 'required', 'on' => 'passwordEdit'],
-
-            [['surname', 'name', 'lastname'], 'string', 'max' => 255],
+            [['surname', 'name', 'lastname', 'password', 'password_repeat'], 'string', 'max' => 255],
             ['password', 'compare'],
             ['email', 'email'],
             [['status'], 'integer'],
@@ -72,6 +72,7 @@ class User extends \app\modules\main\components\ActiveRecord implements \yii\web
             'password' => Yii::t('main', 'Password'),
             'status' => Yii::t('main', 'Status'),
             'create_time' => Yii::t('main', 'Create Time'),
+            'update_time' => Yii::t('main', 'Update time'),
             'ip' => Yii::t('main', 'Ip'),
             'password_repeat' => Yii::t('main', 'password_repeat'),
         ];
@@ -83,15 +84,16 @@ class User extends \app\modules\main\components\ActiveRecord implements \yii\web
         		[
         			'class' => 'yii\behaviors\TimeStampBehavior',
         			'createdAtAttribute' => 'create_time',
+        			'updatedAtAttribute' => 'update_time',
         		],
             'userIp' => [
-                'class' => 'app\modules\user\components\behaviors\UserIp',
+                'class' => 'app\modules\main\components\behaviors\UserIp',
                 'attribute' => 'ip',
             ],
-            'hashPassword' => [
+            /*'hashPassword' => [
                 'class' => 'app\modules\main\components\behaviors\HashPassword',
                 'attribute' => 'password',
-            ],
+            ],*/
         ];
     }
 
@@ -116,7 +118,13 @@ class User extends \app\modules\main\components\ActiveRecord implements \yii\web
         if ($this->isNewRecord) {
             $this->status = self::STATUS_ACTIVE;
         }
-
+				
+				if ($this->password == '') {
+					$this->password = $this->getOldAttribute('password');
+				} else {
+					$this->password = Yii::$app->security->generatePasswordHash($this->password);
+				}
+				
         return parent::beforeSave($insert);
     }
 

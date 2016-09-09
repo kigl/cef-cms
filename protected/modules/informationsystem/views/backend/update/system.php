@@ -1,8 +1,5 @@
 <?php
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\bootstrap\Modal;
-use app\modules\main\widgets\activeForm\ActiveForm;
+use app\modules\main\widgets\ActiveForm;
 use vova07\imperavi\Widget;
 ?>
 
@@ -42,9 +39,11 @@ use vova07\imperavi\Widget;
 			],
 	]);?>
 	
-	<?php echo $form->field($model, 'seo_title');?>
+	<?= $form->field($model, 'items_per_page');?>
 	
-	<?php echo $form->field($model, 'seo_description');?>
+	<?php echo $form->field($model, 'meta_title');?>
+	
+	<?php echo $form->field($model, 'meta_description');?>
 
 	
 <?php ActiveForm::end();?>

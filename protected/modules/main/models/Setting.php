@@ -52,6 +52,7 @@ class Setting extends \app\modules\main\components\ActiveRecord
             'name' => Yii::t('main', 'Name'),
             'label' => Yii::t('main', 'Label'),
             'value' => Yii::t('main', 'Value'),
+            'create_time' => Yii::t('main', 'Cretate time'),
             'update_time' => Yii::t('main', 'Update Time'),
             'user_id' => Yii::t('main', 'User ID'),
             'type_id' => Yii::t('main', 'Type ID'),
@@ -61,10 +62,11 @@ class Setting extends \app\modules\main\components\ActiveRecord
     public function behaviors()
     {
         return [
-            'fillingTime' => [
-                'class' => 'app\modules\main\components\behaviors\FillingTime',
-                'update' => 'update_time',
-            ],
+						[
+							'class' => 'yii\behaviors\TimestampBehavior',
+							'createdAtAttribute' => 'create_time',
+							'updatedAtAttribute' => 'update_time',
+						]
         ];
     }
 

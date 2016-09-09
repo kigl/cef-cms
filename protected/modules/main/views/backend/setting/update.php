@@ -1,10 +1,1 @@
-<?php 
-$this->breadcrumbs = [
-	['label' => 'Настройки', 'url' => ['manager']],
-	['label' => 'Редактирование'],
-];
-?>
-
-<div class="well well-sm">
-	<?php echo $this->render('_form', ['model' => $model]);?>
-</div>
+<?php echo $this->render('_form', ['model' => $model]);?>

@@ -4,10 +4,11 @@ namespace app\modules\informationsystem\controllers\backend;
 
 use Yii;
 use app\modules\informationsystem\models\InformationsystemItem as Item;
-use app\modules\informationsystem\models\InformationsystemGroup as Group;
 
 class CreateController extends \app\modules\main\components\controllers\BackendController
 {
+	public $defaultAction = 'system';	
+	
 	public function actions()
 	{
 		return [
@@ -20,35 +21,29 @@ class CreateController extends \app\modules\main\components\controllers\BackendC
 		];
 	}
 	
-	public function actionItem($informationsystem_id, $type)
+	public function actionItem($informationsystem_id, $group_id = 0)
 	{
 		$model = new Item;
 		
-		if ($model->load(Yii::$app->request->post()) and $model->save()) {
-			return $this->redirect([
-				'backend/manager/item',
-				'informationsystem_id' => $informationsystem_id,
-			]);
-		}
-		
-		if ($type == 'item') {
-			return $this->render('item', ['model' => $model]);
-		} elseif ($type == 'group') {
-			return $this->render('group', ['model' => $model]);
-		}
-	}
-	
-	public function actionGroup($informationsystem_id, $group_id)
-	{
-		$model = new Group;
-		if ($model->load(Yii::$app->request->post()) and $model->save()) {
-			return $this->redirect([
-					'backend/manager/group',
+		if ($model->load(Yii::$app->request->post())) {
+			$model->informationsystem_id = $informationsystem_id;
+			$model->parent_id = $group_id;
+			
+			if ($model->save()) {
+				Yii::$app->session->setFlash('success', Yii::t('main', 'Created element'));
+				
+				return $this->redirect([
+					'backend/manager/item',
 					'informationsystem_id' => $informationsystem_id,
-					'group_id' => $model->id,
-			]);
+					'group_id' => $group_id,
+				]);
+			}
 		}
 		
-		return $this->render('group', ['model' => $model]);
+		return $this->render('item', [
+				'model' => $model,
+				'breadcrumbs' => Item::buildBreadcrumbs($group_id, $informationsystem_id),
+				]);
+
 	}
 }

@@ -3,12 +3,6 @@ use app\modules\main\widgets\grid\GridView;
 use yii\widgets\Pjax;
 ?>
 
-<?php 
-$this->breadcrumbs = [
-	['label' => 'Настройки']
-];
-?>
-
 <?php Pjax::begin();?>
 	<?php echo GridView::widget([
 							'dataProvider' => $dataProvider,

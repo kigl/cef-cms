@@ -1,7 +1,7 @@
 <?php
 return [
 	'module' => [
-		['label' => 'Новости', 'url' => ['/news/backend/news/manager']],
+		//['label' => 'Новости', 'url' => ['/news/backend/news/manager']],
 	],
 ];
 ?>

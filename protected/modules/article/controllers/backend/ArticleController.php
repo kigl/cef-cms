@@ -29,17 +29,6 @@ class ArticleController extends \app\modules\main\components\controllers\Backend
                 'class' => 'app\modules\main\components\actions\DeleteAction',
                 'model' => 'app\modules\article\models\Article',
             ],
-	          'images-get' => [
-	            'class' => 'vova07\imperavi\actions\GetAction',
-	            'url' => Yii::$app->controller->module->getModuleImagesPathUrl(),
-	            'path' => Yii::$app->controller->module->getModuleImagesPath(),
-	            'type' => GetAction::TYPE_IMAGES,
-	        	],
-		        'image-upload' => [
-	            'class' => 'vova07\imperavi\actions\UploadAction',
-	            'url' => Yii::$app->controller->module->getModuleImagesPathUrl(),
-	            'path' => Yii::$app->controller->module->getModuleImagesPath(),
-	        	],
         ];
     }
 

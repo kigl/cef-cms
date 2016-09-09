@@ -1,5 +1,5 @@
 <?php
-use app\modules\main\widgets\activeForm\ActiveForm;
+use app\modules\main\widgets\ActiveForm;
 ?>
 
 <div class="row">

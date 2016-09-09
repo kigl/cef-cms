@@ -16,7 +16,7 @@ class m160825_114706_create_mn_informationsystem_item_table extends Migration
             'id' => $this->primaryKey(),
             'parent_id' => $this->integer(),
             'item_type' => $this->integer(),
-            'informationsystem_id' => $this->integer(),
+            'informationsystem_id' => $this->string(50),
             'name' => $this->string()->notNull(),
             'description'  => $this->string(300), 
             'content' => $this->text(),
@@ -27,11 +27,14 @@ class m160825_114706_create_mn_informationsystem_item_table extends Migration
             'date' => $this->integer(),
             'date_start' => $this->integer(),
             'date_end' => $this->integer(),
-            'seo_title' => $this->string(),
-            'seo_description' => $this->string(300),
+            'alias' => $this->string(),
+            'meta_title' => $this->string(),
+            'meta_description' => $this->string(300),
             'create_time' => $this->integer(),
             'update_time' => $this->integer(),
         ]);
+        
+        $this->createIndex('parent_id', 'mn_informationsystem_item', 'parent_id');
     }
 
     /**

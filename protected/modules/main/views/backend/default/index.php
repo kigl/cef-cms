@@ -1,5 +1,5 @@
 <?php 
-$this->breadcrumbs = ['main'];
+$this->params['breadcrumbs'] = ['main'];
 ?>
 <div class="Main-default-index">
     <h1><?= $this->context->action->uniqueId ?></h1>

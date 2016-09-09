@@ -2,19 +2,21 @@
 return [
 	'modules' => [
 		'user' => [
-			'class' => 'app\modules\user\User',
-			'modules' => [
-				'rbac' => [
-					'class' => 'app\modules\user\modules\rbac\Rbac',
-					],
-			],
+			'class' => 'app\modules\user\Module',
 		],
 	],
 	
 	'components' => [
+		'i18n' => [
+			'translations' => [
+				'user*' => [
+					'class'   => 'yii\i18n\PhpMessageSource',
+					'basePath'=> '@app/modules/user/messages',
+				],			
+			],
+		],
 		'urlManager' => [
 			'rules' => [
-				'login' => '/user/frontend/user/login', 
 			],
 		],
 	],

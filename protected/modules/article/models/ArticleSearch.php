@@ -52,9 +52,6 @@ class ArticleSearch  extends Article
             		'id' => SORT_DESC,
             	],
             ],
-            'pagination' => [
-                'pageSize' => Yii::$app->setting->getValue('main', 'pager_size'),
-            ],
         ]);
 
         $this->load($params);

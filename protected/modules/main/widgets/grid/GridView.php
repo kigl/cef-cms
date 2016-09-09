@@ -19,7 +19,7 @@ class GridView extends \yii\grid\GridView
 	
 	public $options = ['class' => 'grid-view'];
 	
-	public $tableOptions = ['class' => 'table table-bordered table-condensed table-striped'];
+	public $tableOptions = ['class' => 'table table-condensed table-striped grid-table'];
 	
 	public $pager = ['options' => ['class' => 'pagination pull-right']];
   

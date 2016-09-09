@@ -2,6 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use app\modules\main\widgets\grid\GridView;
+
 ?>
 
 <?php echo GridView::widget([
@@ -16,7 +17,10 @@ use app\modules\main\widgets\grid\GridView;
 				'attribute' => 'name',
 				'format' => 'raw',
 				'value' => function ($data) {
-					return Html::a(Html::encode($data->name), Url::to(['backend/manager/item', 'informationsystem_id' => $data->id]));
+					return Html::a(Html::encode($data->name), Url::to([
+							'backend/manager/item',
+							'informationsystem_id' => $data->id,
+					]));
 				}
 			],
 			[

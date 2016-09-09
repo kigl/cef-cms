@@ -5,6 +5,6 @@ namespace app\modules\article;
 /**
  * article module definition class
  */
-class Article extends \app\modules\main\Main
+class Article extends \yii\base\Module
 {
 }

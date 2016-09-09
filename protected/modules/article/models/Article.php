@@ -16,7 +16,7 @@ use app\modules\user\models\User;
  * @property string $meta_title
  * @property string $meta_description
  */
-class Article extends \app\modules\main\components\ActiveRecord
+class Article extends \yii\db\ActiveRecord
 {
 	
 	    /**
@@ -74,10 +74,6 @@ class Article extends \app\modules\main\components\ActiveRecord
                 'text' => 'title',
                 'url' => 'url',
             ],
-            [
-            	'class' => 'app\modules\main\components\behaviors\AuthorId',
-            	'attribute' => 'author_id',
-            ]
         ];
     }
 }

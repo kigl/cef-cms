@@ -3,11 +3,6 @@ $config = [
 	'id' => 'basic',
 	'basePath' => dirname(dirname(__FILE__)),
 	'bootstrap' => ['log', 'setting'],
-	'modules' => [
-		'main' => [
-			'class' => 'app\modules\main\Main',
-		],
-	],
 	
 	'defaultRoute' => 'site/index',
 
@@ -16,18 +11,20 @@ $config = [
 	'components' => [
 		'i18n'=>array(
 			'translations' => array(
-				'*' => array(
+				'main*' => array(
 					'class'   => 'yii\i18n\PhpMessageSource',
 					'basePath'=> '@app/modules/main/messages',
-					'fileMap'   => array(
+					/*'fileMap'   => array(
 						'main'=> 'main.php',
-					),
-				)
+					),*/
+				),		
 			),
 		),
 		
 		'formatter' => [
-			'dateFormat' => 'dd-MM-yyyy',
+      'defaultTimeZone' => 'UTC',
+			'dateFormat' => 'medium',
+			'defaultTimeZone' => 'Europe/Moscow',
 		],
 
 		'request' => [
@@ -43,6 +40,7 @@ $config = [
 		'class' => 'yii\caching\FileCache',
 		],*/
 
+		/*
 		'view' => [
 			'class' => 'app\modules\main\components\View',
 			'theme' => [
@@ -53,6 +51,7 @@ $config = [
 				'baseUrl' => '@web/protected/themes/basic',
 			],
 		],
+		*/
 
 		'assetManager' => [
 			'basePath' => '@webroot/public/assets',
@@ -63,7 +62,7 @@ $config = [
 		'user' => [
 			'identityClass' => 'app\modules\user\models\User',
 			'enableAutoLogin' => false,
-			'loginUrl' => ['/user/frontend/user/login'],
+			'loginUrl' => ['/user/default/login'],
 		],
 
 		'authManager' => [
@@ -90,12 +89,15 @@ $config = [
 				],
 			],
 		],
+		
 		'db' =>  require (__DIR__ . '/db.php'),
 
 		'urlManager' => [
 			'enablePrettyUrl' => true,
+			'enableStrictParsing' => false,
 			'showScriptName' => false,
 			'rules' => [
+			'/' => 'site/index',
 			],
 		],
 

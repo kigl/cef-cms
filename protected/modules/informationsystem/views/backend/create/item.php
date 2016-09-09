@@ -1,26 +1,30 @@
 <?php
-use yii\helpers\Html;
-use yii\helpers\Url;
-use app\modules\main\widgets\activeForm\ActiveForm;
+use yii\jui\DatePicker;
+use app\modules\main\widgets\ActiveForm;
 use vova07\imperavi\Widget;
+
+$this->params['breadcrumbs'] = $breadcrumbs;
 ?>
 
 <?php $form = ActiveForm::begin();?>
 
 <?= $form->errorSummary($model);?>
 
-<?= $form->field($model, 'informationsystem_id')->hiddenInput()->label(false);?>
-
-<?= $form->field($model, 'informationsystem_group_id');?>
-
-<?= $form->field($model, 'name');?>
+<div class="row">
+	<div class="col-md-4">
+		<?= $form->field($model, 'item_type')->radioList($model->getTypeList());?>
+	</div>
+	<div class="col-md-8">
+		<?= $form->field($model, 'name');?>
+	</div>
+</div>
 
 <div class="row">
 	<div class="col-md-4">
-		<?= $form->field($model, 'image');?>
+		<?= $form->field($model, 'image')->fileInput();?>
 	</div>
 	<div class="col-md-4">
-		<?= $form->field($model, 'status');?>
+		<?= $form->field($model, 'status')->dropDownList($model->getStatusList());?>
 	</div>
 	<div class="col-md-4">
 		<?= $form->field($model, 'sort');?>
@@ -29,13 +33,13 @@ use vova07\imperavi\Widget;
 
 <div class="row">
 	<div class="col-md-4">
-		<?= $form->field($model, 'date');?>
+		<?= $form->field($model, 'date')->widget(DatePicker::className(), ['options' => ['class' => 'form-control']]);?>
 	</div>
 	<div class="col-md-4">
-		<?= $form->field($model, 'date_start');?>
+		<?= $form->field($model, 'date_start')->widget(DatePicker::className(), ['options' => ['class' => 'form-control']]);?>
 	</div>
 	<div class="col-md-4">
-		<?= $form->field($model, 'date_end');?>
+		<?= $form->field($model, 'date_end')->widget(DatePicker::className(), ['options' => ['class' => 'form-control']]);?>
 	</div>
 </div>
 
@@ -48,8 +52,10 @@ use vova07\imperavi\Widget;
 		],
 ]);?>
 
-<?= $form->field($model, 'seo_title');?>
+<?= $form->field($model, 'alias');?>
 
-<?= $form->field($model, 'seo_description');?>
+<?= $form->field($model, 'meta_title');?>
+
+<?= $form->field($model, 'meta_description');?>
 
 <?php ActiveForm::end();?>

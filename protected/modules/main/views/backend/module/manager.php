@@ -4,7 +4,7 @@ use yii\widgets\Pjax;
 ?>
 
 <?php 
-$this->breadcrumbs = [
+$this->params['breadcrumbs'] = [
 	['label' => 'Модули']
 ];
 ?>

@@ -45,9 +45,13 @@ class imageUpload extends \app\modules\main\components\behaviors\FileUpload
 	{
 		$this->saveTempFile();
 		// работаем с файлом
-		$image = (new Imagine)->open($this->getTempFilePath())
-    		->resize(new Box($this->resize['width'], $this->resize['height'])) // меняем размер
-				->save($this->getPath() . DS . $this->tempFile);		
+		$image = (new Imagine)->open($this->getTempFilePath());
+		
+		if ($this->resize) {
+			$image->resize(new Box($this->resize['width'], $this->resize['height'])); // меняем размер
+		}
+		
+		$image->save($this->getPath() . DS . $this->tempFile);		
 		// удаляем темп файл
 		$this->deleteTempFile();
 	}

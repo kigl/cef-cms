@@ -1,17 +1,6 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-
-$this->breadcrumbs = [
-	['label' => 'Настройки', 'url' => ['manager']],
-	['label' => 'Настройки модуля'],
-];
-
-$this->pageHeader = 'Настройки модуля: ' . $module->name;
-
-$this->toolbar = [
-	['label' => '<button form="form" class="btn btn-success btn-sm">'.Yii::t('main', 'button save').'</button>'],
-];
 ?>
 <div class="well well-sm">
 	<div class="row">

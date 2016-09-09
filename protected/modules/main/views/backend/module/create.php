@@ -1,5 +1,5 @@
 <?php 
-$this->breadcrumbs = [
+$this->params['breadcrumbs'] = [
 	['label' => 'Модули', 'url' => ['manager']],
 	['label' => 'Создание'],
 ];

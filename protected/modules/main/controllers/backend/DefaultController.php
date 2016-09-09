@@ -2,6 +2,7 @@
 
 namespace app\modules\main\controllers\backend;
 
+use yii\base\Module;
 
 /**
  * Default controller for the `Main` module

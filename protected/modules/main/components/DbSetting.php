@@ -2,6 +2,7 @@
 namespace app\modules\main\components;
 
 use Yii;
+use yii\web\HttpException;
 
 class DbSetting extends \yii\base\Object
 {
@@ -42,7 +43,7 @@ class DbSetting extends \yii\base\Object
 		}
 
 		if ($result === null) {
-			throw new CHttpException('404', Yii::t('main', 'not param name'));
+			throw new HttpException('404', Yii::t('main', 'not param name'));
 		}
 
 		return $result;

@@ -22,6 +22,8 @@ class UpdateAction extends \app\modules\main\components\Action
 		$model->scenario = $this->scenario;
 
 		if ($model->load(Yii::$app->request->post()) and $model->save()) {
+			Yii::$app->session->setFlash('success', Yii::t('main', 'Updated element'));
+			
 			return $this->controller->redirect($this->redirect);
 		} else {
 			return $this->controller->render($this->view, ['model' => $model]);

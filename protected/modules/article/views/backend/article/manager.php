@@ -7,14 +7,12 @@ use app\modules\main\widgets\grid\GridView;
 /* @var $searchModel app\modules\page\models\PageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('main', 'Article');
-$this->breadcrumbs = ['label' => 'Статьи'];
 ?>
 
 <div class="page-index">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <?= GridView::widget([
-        'dataProvider' => $dataProvider,
+        'dataProvider' => $searchModel,
         //'filterModel' => $searchModel,
         'buttons' => ['create'],
         'columns' => [
