@@ -3,6 +3,7 @@
 namespace app\modules\main\components\actions;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 class CreateAction extends \app\modules\main\components\Action
 {

@@ -8,10 +8,6 @@ use app\modules\informationsystem\models\InformationsystemItem as Item;
 
 $this->params['breadcrumbs'] = $breadcrumbs;
 ?>
-<?= Html::beginForm(Url::to(['item']), 'get');?>
-<?= Html::input('text', 'search');?>
-<?= Html::endForm();?>
-
 
 <?php echo GridView::widget([
 	'filterModel' => $searchModel,

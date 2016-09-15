@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bd1cbc42ee8b6a1a317275f177fb269c",
-    "content-hash": "6d654de60ee6180aba95edcfb6a7518a",
+    "hash": "bdd3a7879f01486fc48a4d91ca465495",
+    "content-hash": "15c395e9ac599a465b21a32183d46d12",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -57,6 +57,40 @@
             ]
         },
         {
+            "name": "bower-asset/caret",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/accursoft/caret.git",
+                "reference": "8cd0910544f4267d91ca527117ae459832978411"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/accursoft/caret/zipball/8cd0910544f4267d91ca527117ae459832978411",
+                "reference": "8cd0910544f4267d91ca527117ae459832978411",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.3"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "jquery.caret.js",
+                "bower-asset-ignore": [
+                    "bower_components",
+                    "node_modules",
+                    "test.html"
+                ]
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Manipulate the caret's position in a text box or content-editable element.",
+            "keywords": [
+                "caret"
+            ]
+        },
+        {
             "name": "bower-asset/jquery",
             "version": "2.2.4",
             "source": {
@@ -85,6 +119,43 @@
                 "javascript",
                 "jquery",
                 "library"
+            ]
+        },
+        {
+            "name": "bower-asset/jquery-tag-editor",
+            "version": "1.0.20",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Pixabay/jQuery-tagEditor.git",
+                "reference": "dec0ce153c41d857a8fa33acc4ee6f7e46ad275f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Pixabay/jQuery-tagEditor/zipball/dec0ce153c41d857a8fa33acc4ee6f7e46ad275f",
+                "reference": "dec0ce153c41d857a8fa33acc4ee6f7e46ad275f",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/caret": "*",
+                "bower-asset/jquery": ">=1.7"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-ignore": [
+                    "bower.json",
+                    "demo.html",
+                    "readme.md",
+                    "tag-editor.jquery.json"
+                ]
+            },
+            "description": "A powerful and lightweight tag editor plugin for jQuery.",
+            "keywords": [
+                "drag and drop",
+                "edit",
+                "editable",
+                "editor",
+                "keywords",
+                "tags"
             ]
         },
         {
@@ -375,6 +446,54 @@
                 "image processing"
             ],
             "time": "2013-07-10 17:25:36"
+        },
+        {
+            "name": "sjaakp/yii2-taggable",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sjaakp/yii2-taggable.git",
+                "reference": "cae0ed37e23515f45cd5569ad3d4886c6c73a966"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sjaakp/yii2-taggable/zipball/cae0ed37e23515f45cd5569ad3d4886c6c73a966",
+                "reference": "cae0ed37e23515f45cd5569ad3d4886c6c73a966",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-tag-editor": "*",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-jui": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "sjaakp\\taggable\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sjaak Priester",
+                    "email": "sjaak@sjaakpriester.nl",
+                    "homepage": "http://sjaakpriester.nl"
+                }
+            ],
+            "description": "Manage tags of ActiveRecord in Yii2.",
+            "keywords": [
+                "Behavior",
+                "extension",
+                "tag",
+                "tags",
+                "widget",
+                "yii",
+                "yii2"
+            ],
+            "time": "2015-10-16 14:51:37"
         },
         {
             "name": "swiftmailer/swiftmailer",

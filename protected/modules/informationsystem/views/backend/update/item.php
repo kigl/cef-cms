@@ -1,10 +1,12 @@
 <?php
 use yii\jui\DatePicker;
 use yii\bootstrap\Modal;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use app\modules\main\widgets\ActiveForm;
 use app\modules\informationsystem\models\Informationsystem as System;
 use vova07\imperavi\Widget;
+use app\modules\informationsystem\widgets\tagEditor\TagEditor;
 
 $this->params['breadcrumbs'] = $breadcrumbs;
 ?>
@@ -64,6 +66,8 @@ $this->params['breadcrumbs'] = $breadcrumbs;
 			'minHeight' => 400,
 		],
 ]);?>
+
+<?= $form->field($model, 'editorTag')->widget(TagEditor::className(), []);?>
 
 <?= $form->field($model, 'alias');?>
 

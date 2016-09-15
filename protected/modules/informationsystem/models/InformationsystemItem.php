@@ -4,6 +4,9 @@ namespace app\modules\informationsystem\models;
 
 use Yii;
 use yii\web\HttpException;
+use yii\helpers\ArrayHelper;
+use app\modules\informationsystem\models\Tag;
+use app\modules\informationsystem\models\TagRelations;
 use app\modules\informationsystem\models\Informationsystem as System;
 
 /**
@@ -37,6 +40,8 @@ class InformationsystemItem extends \yii\db\ActiveRecord
 		const STATUS_BLOCK = 0;
 		const STATUS_ACTIVE = 1;
 		const STATUS_DRAFT = 2;
+		
+		protected $_tags;
 	
     /**
      * @inheritdoc
@@ -59,6 +64,8 @@ class InformationsystemItem extends \yii\db\ActiveRecord
             [['name', 'alias', 'meta_title'], 'string', 'max' => 255],
             [['description', 'meta_description'], 'string', 'max' => 300],
             ['image', 'file'],
+            
+            ['editorTag', 'safe'],
         ];
     }
 
@@ -73,6 +80,7 @@ class InformationsystemItem extends \yii\db\ActiveRecord
             'item_type' => Yii::t('main', 'Item Type'),
             'informationsystem_id' => Yii::t('main', 'Informationsystem ID'),
             'name' => Yii::t('main', 'Name'),
+            'tag_list' => Yii::t('main', 'Tags'),
             'description' => Yii::t('main', 'Description'),
             'content' => Yii::t('main', 'Content'),
             'image' => Yii::t('main', 'Image'),
@@ -93,6 +101,15 @@ class InformationsystemItem extends \yii\db\ActiveRecord
     public function getSystem()
     {
 			return $this->hasOne(System::className(), ['id' => 'informationsystem_id']);
+		}
+		
+		public function getTags()
+		{
+			return Tag::find()
+							->leftJoin(TagRelations::tableName().' r', 'id = r.tag_id')
+							->where('r.item_id = :id', [':id' => $this->id])
+							->asArray()
+							->all();
 		}
     
     public function behaviors()
@@ -119,12 +136,95 @@ class InformationsystemItem extends \yii\db\ActiveRecord
 		
 		public function beforeSave($insert)
 		{	
-			
 			$this->date = $this->getTimeStamp($this->date);
 			$this->date_start = $this->getTimeStamp($this->date_start);
 			$this->date_end = $this->getTimeStamp($this->date_end);
 			
 			return parent::beforeSave($insert);
+		}
+		
+		public function afterSave($insert, $changedAttributes)
+		{
+			parent::afterSave($insert, $changedAttributes);
+			
+			/**
+			* Запускаем выполнение действий над тегами
+			*/
+			$this->tagExecute();
+		}
+		
+		public function setEditorTag($tags)
+		{
+			$this->_tags = $tags;
+		}
+		
+		public function getEditorTag()
+		{			
+			return implode(',', ArrayHelper::getColumn($this->getTags(), 'name'));
+		}
+		
+		/**
+		* Выполняет создние, вставку и удаление связей тегов
+		* 
+		*/
+		protected function tagExecute()
+		{
+			/**
+			* старые теги элемента
+			* @var array
+			*/
+			$oldTags = ArrayHelper::index($this->getTags(), 'name');
+			/**
+			* полученные теги элемента
+			* @var array
+			*/
+			$newTags = empty($this->_tags) ? [] : explode(',', $this->_tags);
+			$newTagsModel = []; // новый список тегов
+			
+			foreach ($newTags as $newTag) {
+				if (isset($oldTags[$newTag])) { // если в старых тегах есть полученные теги
+					$newTagsModel[$newTag] = $oldTags[$newTag]; 
+					} else {
+						$nt = Tag::findOne(['name' => $newTag]); // поиск тегов
+						if (!$nt) { // если тег не найден, то создаем его
+							$nt = new Tag;
+							$nt->setAttributes(['name' => $newTag, 'informationsystem_id' => $this->informationsystem_id]);
+							$nt->save();
+						}
+					
+					$newTagsModel[$newTag]= $nt; 
+				}
+			}
+			
+			/**
+			* Маасив для удаления
+			* @var array
+			*/
+			$removeTag = ArrayHelper::getColumn(array_diff_key($oldTags, $newTagsModel), 'id');
+			/**
+			* Маасив для создание связей
+			* @var array
+			*/
+			$addTag = ArrayHelper::getColumn(array_diff_key($newTagsModel, $oldTags), 'id');			
+			
+			if (count($removeTag)) {
+				/**
+				* Удаляем связи 
+				*/
+				Yii::$app->db->createCommand()->delete(TagRelations::tableName(), ['tag_id' => $removeTag])
+						->execute();
+			}
+			
+			if (count($addTag)) {
+				foreach ($addTag as $nt) {
+					$result[] = [$this->id, $nt]; 
+				}
+				/**
+				* Добавляем связи
+				*/
+				Yii::$app->db->createCommand()->batchInsert(TagRelations::tableName(), ['item_id', 'tag_id'], $result)
+						->execute();	
+			}
 		}
 		
 		private function getTimeStamp($date)
@@ -138,24 +238,22 @@ class InformationsystemItem extends \yii\db\ActiveRecord
 		public function getStatusList()
 		{
 			return [
-				self::STATUS_BLOCK => Yii::t('main', 'status block'),
-				self::STATUS_ACTIVE => Yii::t('main', 'status active'),
-				self::STATUS_DRAFT => Yii::t('main', 'status draft'),
+				self::STATUS_BLOCK => Yii::t('main', 'Status block'),
+				self::STATUS_ACTIVE => Yii::t('main', 'Status active'),
+				self::STATUS_DRAFT => Yii::t('main', 'Status draft'),
 			];
 		}
 		
 		public function getStatus($number)
 		{
-			$status = $this->getStatusList();
-			
-			return $status[$number];
+			return ArrayHelper::getValue($this->getStatusList(), $number);
 		}
     
     public function getTypeList()
     {
 			return [
-				self::TYPE_GROUP => Yii::t('main', 'informationsystem item type group'),
-				self::TYPE_ITEM => Yii::t('main', 'informationsystem item type item'),
+				self::TYPE_GROUP => Yii::t('main', 'Informationsystem item type group'),
+				self::TYPE_ITEM => Yii::t('main', 'Informationsystem item type item'),
 			];
 		}
 		
