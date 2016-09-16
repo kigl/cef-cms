@@ -18,11 +18,18 @@ class m160902_063342_mn_user extends Migration
 				'email' => $this->string(50),
 				'password' => $this->string(),
 				'auth_key' => $this->string(300),
-				'status' => $this->integer(),
+				'status' => $this->integer()->defaultValue(0),
 				'create_time' => $this->integer(),
 				'update_time' => $this->integer(),
 				'ip' => $this->string(50),
 			]);
+			
+			$this->batchInsert($this->tableName,
+			 	['id', 'role', 'login', 'surname', 'name', 'lastname', 'email', 'password'],
+			 	[
+			 		['1', '', 'admin', '', '', '', '', Yii::$app->security->generatePasswordHash('admin')],
+			 	]
+			 	);
     }
 
     public function down()

@@ -2,10 +2,32 @@
 
 namespace app\modules\main\components\controllers;
 
+use yii\filters\AccessControl;
 
 abstract class BackendController extends \yii\web\Controller
 {
 	public $layout = '@app/modules/main/views/backend/layouts/index';
 	
   public $defaultAction = 'manager';
+  
+  public function init()
+  {
+		parent::init();
+		//var_dump(\Yii::$app->user->id);
+	}
+  
+  public function behaviors()
+  {
+		return [
+			'accessControl' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'allow' => true,
+						'roles' => ['admin'],
+					],
+				],
+			],
+		];
+	}
 }

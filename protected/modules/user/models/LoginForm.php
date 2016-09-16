@@ -63,7 +63,7 @@ class LoginForm extends Model
 
     public function login()
     {
-        if ($this->validate() and $this->checkUser()) {
+        if ($this->validate() and $this->checkUser(false)) {
             Yii::$app->user->login($this->_user);
             return true;
         }
@@ -71,14 +71,18 @@ class LoginForm extends Model
         return false;
     }
 
-    public function checkUser()
+    public function checkUser($bool = true)
     {
+    	if ($bool) {
         if ($this->_user->status == User::STATUS_ACTIVE) {
             return true;
         }
         else {
             throw new HttpException(403);
         }
+      }
+      
+      return true;
     }
     
     public function getUser()

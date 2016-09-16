@@ -11,7 +11,7 @@ class Module extends \app\modules\main\components\Module
 {
 	public $defaultBackendRoute = 'backend/manager';
 	
-	public $itemsOnPage = 10;
+	public $itemsPerPage = 10;
 	
 	public function getName()
 	{

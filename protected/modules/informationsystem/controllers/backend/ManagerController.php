@@ -17,7 +17,7 @@ class ManagerController extends \app\modules\main\components\controllers\Backend
 		$dataProvider = new ActiveDataProvider([
 			'query' => System::find(),
 			'pagination' => [
-				'pageSize' => $this->module->itemsOnPage,
+				'pageSize' => $this->module->itemsPerPage,
 			],
 		]);
 		
