@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
 use app\modules\informationsystem\models\Tag;
 use app\modules\informationsystem\models\TagRelations;
 use app\modules\informationsystem\models\Informationsystem as System;
+use app\modules\informationsystem\components\TagBehavior;
 
 /**
  * This is the model class for table "mn_informationsystem_item".
@@ -102,15 +103,6 @@ class InformationsystemItem extends \yii\db\ActiveRecord
     {
 			return $this->hasOne(System::className(), ['id' => 'informationsystem_id']);
 		}
-		
-		public function getTags()
-		{
-			return Tag::find()
-							->leftJoin(TagRelations::tableName().' r', 'id = r.tag_id')
-							->where('r.item_id = :id', [':id' => $this->id])
-							->asArray()
-							->all();
-		}
     
     public function behaviors()
     {
@@ -131,6 +123,9 @@ class InformationsystemItem extends \yii\db\ActiveRecord
 					'text' => 'name',
 					'url' => 'alias',
 				],
+				[
+					'class' => TagBehavior::className(),
+				],
 			];
 		}
 		
@@ -143,89 +138,6 @@ class InformationsystemItem extends \yii\db\ActiveRecord
 			return parent::beforeSave($insert);
 		}
 		
-		public function afterSave($insert, $changedAttributes)
-		{
-			parent::afterSave($insert, $changedAttributes);
-			
-			/**
-			* Запускаем выполнение действий над тегами
-			*/
-			$this->tagExecute();
-		}
-		
-		public function setEditorTag($tags)
-		{
-			$this->_tags = $tags;
-		}
-		
-		public function getEditorTag()
-		{			
-			return implode(',', ArrayHelper::getColumn($this->getTags(), 'name'));
-		}
-		
-		/**
-		* Выполняет создние, вставку и удаление связей тегов
-		* 
-		*/
-		protected function tagExecute()
-		{
-			/**
-			* старые теги элемента
-			* @var array
-			*/
-			$oldTags = ArrayHelper::index($this->getTags(), 'name');
-			/**
-			* полученные теги элемента
-			* @var array
-			*/
-			$newTags = empty($this->_tags) ? [] : explode(',', $this->_tags);
-			$newTagsModel = []; // новый список тегов
-			
-			foreach ($newTags as $newTag) {
-				if (isset($oldTags[$newTag])) { // если в старых тегах есть полученные теги
-					$newTagsModel[$newTag] = $oldTags[$newTag]; 
-					} else {
-						$nt = Tag::findOne(['name' => $newTag]); // поиск тегов
-						if (!$nt) { // если тег не найден, то создаем его
-							$nt = new Tag;
-							$nt->setAttributes(['name' => $newTag, 'informationsystem_id' => $this->informationsystem_id]);
-							$nt->save();
-						}
-					
-					$newTagsModel[$newTag]= $nt; 
-				}
-			}
-			
-			/**
-			* Маасив для удаления
-			* @var array
-			*/
-			$removeTag = ArrayHelper::getColumn(array_diff_key($oldTags, $newTagsModel), 'id');
-			/**
-			* Маасив для создание связей
-			* @var array
-			*/
-			$addTag = ArrayHelper::getColumn(array_diff_key($newTagsModel, $oldTags), 'id');			
-			
-			if (count($removeTag)) {
-				/**
-				* Удаляем связи 
-				*/
-				Yii::$app->db->createCommand()->delete(TagRelations::tableName(), ['tag_id' => $removeTag])
-						->execute();
-			}
-			
-			if (count($addTag)) {
-				foreach ($addTag as $nt) {
-					$result[] = [$this->id, $nt]; 
-				}
-				/**
-				* Добавляем связи
-				*/
-				Yii::$app->db->createCommand()->batchInsert(TagRelations::tableName(), ['item_id', 'tag_id'], $result)
-						->execute();	
-			}
-		}
 		
 		private function getTimeStamp($date)
 		{
