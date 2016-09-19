@@ -1,12 +1,12 @@
 <?php
 $config = [
-	'id' => 'basic',
+	'id' => 'main2',
 	'basePath' => dirname(dirname(__FILE__)),
 	'bootstrap' => ['log', 'setting'],
 	
 	'defaultRoute' => 'site/index',
 
-	'language' => 'ru',
+	'language' => 'ru-RU',
 
 	'components' => [
 		'i18n'=>array(
@@ -29,7 +29,7 @@ $config = [
 
 		'request' => [
 			// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-			'cookieValidationKey' => 'main',
+			'cookieValidationKey' => 'main2',
 		],
 
 		'setting' => [

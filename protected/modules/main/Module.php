@@ -9,17 +9,7 @@ use Yii;
  */
 class Module extends \app\modules\main\components\Module
 {
-	public $itemsOnPage = 10;
-	
-	public function getName()
-	{
-		return Yii::t($this->id, 'Module name');
-	}
-	
-	public function getDescription()
-	{
-		return Yii::t($this->id, 'Module description');
-	}
+	public $itemsPerPage = 10;
 	
 	public static function getAllModules()
 	{

@@ -1,6 +1,6 @@
 <?php
 return [
 	'module' => [
-		['label' => 'Информационные системы', 'url' => ['/informationsystem/backend/manager/system']],
+		['label' => Yii::t('informationsystem', 'Module name'), 'url' => ['/informationsystem/backend/manager/system']],
 	],
 ];

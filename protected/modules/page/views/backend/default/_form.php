@@ -6,6 +6,8 @@ use vova07\imperavi\Widget as Imperavi;
 
 <?php $form = ActiveForm::begin();?>
 
+<?= $form->errorSummary($model);?>
+
 <?= $form->field($model, 'name');?>
 
 <?= $form->field($model, 'content')

@@ -7,6 +7,12 @@ use app\modules\informationsystem\models\InformationsystemSystem as System;
 use app\modules\informationsystem\models\InformationsystemItem as Item;
 
 $this->params['breadcrumbs'] = $breadcrumbs;
+$this->params['toolbar'] = [
+	[
+		'label' => '<i class="glyphicon glyphicon-tags"></i> ' . Yii::t($this->context->module->id, 'Tag toolbar'),
+		'url' =>  ['backend/manager/tag', 'informationsystem_id' => $informationsystem_id],
+	]
+];
 ?>
 
 <?php echo GridView::widget([

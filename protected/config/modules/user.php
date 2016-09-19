@@ -9,7 +9,7 @@ return [
 	'components' => [
 		'i18n' => [
 			'translations' => [
-				'user*' => [
+				'user' => [
 					'class'   => 'yii\i18n\PhpMessageSource',
 					'basePath'=> '@app/modules/user/messages',
 				],			

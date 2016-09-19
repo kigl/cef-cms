@@ -4,6 +4,7 @@ namespace app\modules\informationsystem\controllers\backend;
 
 use Yii;
 use app\modules\informationsystem\models\InformationsystemItem as Item;
+use app\modules\informationsystem\models\Tag;
 
 class CreateController extends \app\modules\main\components\controllers\BackendController
 {
@@ -25,25 +26,41 @@ class CreateController extends \app\modules\main\components\controllers\BackendC
 	{
 		$model = new Item;
 		
-		if ($model->load(Yii::$app->request->post())) {
-			$model->informationsystem_id = $informationsystem_id;
-			$model->parent_id = $group_id;
+		if ($model->load(Yii::$app->request->post()) and $model->save()) {
+			Yii::$app->session->setFlash('success', Yii::t('main', 'Created element'));
 			
-			if ($model->save()) {
-				Yii::$app->session->setFlash('success', Yii::t('main', 'Created element'));
-				
-				return $this->redirect([
-					'backend/manager/item',
-					'informationsystem_id' => $informationsystem_id,
-					'group_id' => $group_id,
-				]);
-			}
+			return $this->redirect([
+				'backend/manager/item',
+				'informationsystem_id' => $informationsystem_id,
+				'group_id' => $group_id,
+			]);
 		}
 		
 		return $this->render('item', [
 				'model' => $model,
 				'breadcrumbs' => Item::buildBreadcrumbs($group_id, $informationsystem_id),
+				'informationsystem_id' => $informationsystem_id,
+				'group_id' => $group_id,
 				]);
-
+	}
+	
+	public function actionTag($informationsystem_id)
+	{
+		$model = new Tag;
+		
+		if ($model->load(Yii::$app->request->post()) and $model->save()) {
+			Yii::$app->session->setFlash('success', Yii::t('main', 'Created element'));
+			
+			return $this->redirect([
+							'backend/manager/tag',
+							'informationsystem_id' => $informationsystem_id,
+						]);				
+		}
+		
+		return $this->render('tag', [
+						'model' => $model,
+						'informationsytem_id' => $informationsystem_id, 	
+						'breadcrumbs' => Item::buildBreadcrumbs(null, $informationsystem_id),
+					]);
 	}
 }

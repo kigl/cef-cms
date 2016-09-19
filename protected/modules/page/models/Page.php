@@ -33,6 +33,7 @@ class Page extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+        		[['name'], 'required'],
             [['content', 'alias'], 'string'],
             [['create_time', 'update_time'], 'integer'],
             [['name', 'meta_title', 'meta_description'], 'string', 'max' => 255],

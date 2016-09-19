@@ -28,11 +28,11 @@ class SettingController extends \app\modules\main\components\controllers\Backend
 	}
 
 	public function actionManager()
-	{
+	{	
 		$dataProvider = new ActiveDataProvider([
 				'query' => Setting::find(),
 				'pagination' => [
-					'pageSize' => $this->module->itemsOnPage,
+					'pageSize' => $this->module->itemsPerPage,
 				],
 			]);
 

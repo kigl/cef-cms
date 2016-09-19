@@ -1,11 +1,9 @@
 <?php
 
-namespace app\modules\user;
-
-use Yii;
+namespace app\modules\shop;
 
 /**
- * user module definition class
+ * shop module definition class
  */
 class Module extends \app\modules\main\components\Module
 {

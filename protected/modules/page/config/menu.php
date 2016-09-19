@@ -1,6 +1,6 @@
 <?php
 return [
 	'module' => [
-		['label' => 'Статичные страницы', 'url' => ['/page/backend/default/manager']],
+		['label' => Yii::t('page', 'Module name'), 'url' => ['/page/backend/default/manager']],
 	],
 ];

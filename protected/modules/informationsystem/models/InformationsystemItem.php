@@ -59,7 +59,7 @@ class InformationsystemItem extends \yii\db\ActiveRecord
     {
         return [
             [['parent_id', 'item_type', 'status', 'sort', 'user_id', 'create_time', 'update_time'], 'integer'],
-            [['name', 'item_type'], 'required'],
+            [['name', 'item_type',], 'required'],
             [['content'], 'string'],
             [['informationsystem_id', 'date', 'date_start', 'date_end'], 'string', 'max' => 50],
             [['name', 'alias', 'meta_title'], 'string', 'max' => 255],
@@ -185,7 +185,7 @@ class InformationsystemItem extends \yii\db\ActiveRecord
 		* 
 		* @return array | false
 		*/
-		public static function buildBreadcrumbs($id, $informationsystem_id)
+		public static function buildBreadcrumbs($id = null, $informationsystem_id)
 		{
 			$modelSystem = System::getSystem($informationsystem_id);
 
@@ -194,7 +194,7 @@ class InformationsystemItem extends \yii\db\ActiveRecord
 				'url' => ['backend/manager/item', 'informationsystem_id' => $informationsystem_id],
 			];
 			
-			if ($breadcrumbs = self::recursive($id)) {
+			if ($id !== null and $breadcrumbs = self::recursive($id)) {
 				$c = count($breadcrumbs) - 1;
 				$breadcrumbs[$c]['span'] = 1;
 				

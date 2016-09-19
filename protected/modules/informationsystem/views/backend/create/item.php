@@ -10,6 +10,9 @@ $this->params['breadcrumbs'] = $breadcrumbs;
 
 <?= $form->errorSummary($model);?>
 
+<?= $form->field($model, 'informationsystem_id')->hiddenInput(['value' => $informationsystem_id])->label(false);?>
+<?= $form->field($model, 'parent_id')->hiddenInput(['value' => $group_id])->label(false);?>
+
 <div class="row">
 	<div class="col-md-4">
 		<?= $form->field($model, 'item_type')->radioList($model->getTypeList());?>

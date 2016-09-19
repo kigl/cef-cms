@@ -2,14 +2,21 @@
 namespace app\modules\main\components;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 abstract class Module extends \yii\base\Module
 {	
 	public $defaultBackendRoute = 'backend/default';
 
-	abstract public function getName();
+	public function getName()
+	{
+		return Yii::t($this->id, 'Module name');
+	}
 
-	abstract public function getDescription();
+	public function getDescription()
+	{
+		return Yii::t($this->id, 'Module description');
+	}
 	
 	public function getProtectedPathUrl()
 	{
