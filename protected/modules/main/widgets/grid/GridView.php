@@ -81,6 +81,10 @@ class GridView extends \yii\grid\GridView
 		$text = '<i class="glyphicon glyphicon-plus"></i>';
 		$options = ['class' => 'btn btn-success btn-sm'];
 		
+		if (isset($this->buttons['create']['options'])) {
+			$options = ArrayHelper::merge($this->buttons['create']['options'], $options);
+		}
+		
 		if (isset($this->buttons['create']['action'])) {
 			return Html::a($text, $this->buttons['create']['action'], $options); 
 		}

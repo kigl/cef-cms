@@ -78,6 +78,11 @@ class Informationsystem extends \yii\db\ActiveRecord
     {
 			return [
 				[
+					'class' => 'yii\behaviors\TimestampBehavior',
+					'createdAtAttribute' => 'create_time',
+					'updatedAtAttribute' => 'update_time',
+				],
+				[
 					'class' => 'app\modules\main\components\behaviors\ImageUpload',
 					'attribute' => 'image',
 					'path' => Yii::$app->controller->module->getImagesPath(),

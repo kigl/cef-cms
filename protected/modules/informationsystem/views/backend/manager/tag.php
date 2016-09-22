@@ -7,7 +7,6 @@ use app\modules\main\widgets\grid\GridView;
 $this->params['breadcrumbs'] = ArrayHelper::merge($breadcrumbs, [
 	['label' => Yii::t($this->context->module->id, 'Tags')]
 ]);
-
 ?>
 
 <?= GridView::widget([

@@ -7,6 +7,7 @@ use yii\data\ActiveDataProvider;
 use app\modules\informationsystem\models\Informationsystem as System;
 use app\modules\informationsystem\models\InformationsystemItem as Item;
 use app\modules\informationsystem\models\InformationsystemItemSearch as ItemSearch;
+use app\modules\informationsystem\models\Tag;
 use app\modules\informationsystem\models\TagSearch;
 
 class ManagerController extends \app\modules\main\components\controllers\BackendController
@@ -29,7 +30,7 @@ class ManagerController extends \app\modules\main\components\controllers\Backend
 	{				
 		$searchModel = new ItemSearch();
 		$dataProvider = $searchModel->search($informationsystem_id, $group_id, Yii::$app->request->queryParams);
-		
+	
 		return $this->render('item', [
 						'searchModel' => $searchModel,
 						'dataProvider' => $dataProvider, 
@@ -39,7 +40,13 @@ class ManagerController extends \app\modules\main\components\controllers\Backend
 	}
 	
   public function actionTag($informationsystem_id)
-  {
+  {  	
+  	$modelTag = new Tag;
+  	
+  	if ($modelTag->load(Yii::$app->request->post()) and $modelTag->save()) {
+			$modelTag = new Tag;
+		}
+  
 		$model = new TagSearch;
 		$system = System::getSystem($informationsystem_id);
 		
@@ -51,6 +58,7 @@ class ManagerController extends \app\modules\main\components\controllers\Backend
 						'system' => $system,
 						'informationsystem_id' => $informationsystem_id,
 						'breadcrumbs' => Item::buildBreadcrumbs(null, $informationsystem_id),
+						'modelTag' => $modelTag,
 					]);
 	}
 }

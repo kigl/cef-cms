@@ -36,9 +36,9 @@ $config = [
 			'class' => 'app\modules\main\components\DbSetting',
 		],
 
-		/*'cache' => [
+		'cache' => [
 		'class' => 'yii\caching\FileCache',
-		],*/
+		],
 
 		/*
 		'view' => [

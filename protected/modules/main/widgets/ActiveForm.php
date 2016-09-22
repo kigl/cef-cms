@@ -25,6 +25,7 @@ class ActiveForm extends \yii\widgets\ActiveForm
             throw new InvalidCallException('Each beginField() should have a matching endField() call.');
         }
         $content = ob_get_clean();
+        
         echo Html::beginForm($this->action, $this->method, $this->options);
         echo $content;
         if ($this->enableClientScript) {

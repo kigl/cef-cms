@@ -29,6 +29,7 @@ class Tag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+        		['name', 'required'],
             [['informationsystem_id'], 'string', 'max' => 50],
             [['name'], 'string', 'max' => 255],
         ];

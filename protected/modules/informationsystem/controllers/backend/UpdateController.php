@@ -26,7 +26,9 @@ class UpdateController extends \app\modules\main\components\controllers\BackendC
 	{
 		$model = Item::findOne($id);
 		
-		if ($model->load(Yii::$app->request->post()) and $model->save()) {			
+		if ($model->load(Yii::$app->request->post()) and $model->save()) {	
+			Yii::$app->session->setFlash('success', Yii::t('main', 'Updated element'));
+				
 			return $this->redirect([
 				'backend/manager/item',
 				'informationsystem_id' => $model->informationsystem_id,
