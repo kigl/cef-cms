@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\main\widgets\adminPanel;
+namespace app\modules\main\widgets\adminMenuLeft;
 
 use Yii;
 
-class AdminPanel extends \yii\base\Widget
+class Widget extends \yii\base\Widget
 {
 	public function run()
 	{

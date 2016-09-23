@@ -12,6 +12,17 @@ use app\modules\informationsystem\models\TagSearch;
 
 class ManagerController extends \app\modules\main\components\controllers\BackendController
 {
+	public function actions()
+	{
+		return [
+			'view' => [
+				'class' => 'app\modules\main\components\actions\ViewAction',
+				'model' => Item::className(),
+				'view' => 'view',
+			],
+		];
+	}
+	
 	public $defaultAction = 'system';
 	
 	public function actionSystem()
@@ -30,6 +41,13 @@ class ManagerController extends \app\modules\main\components\controllers\Backend
 	{				
 		$searchModel = new ItemSearch();
 		$dataProvider = $searchModel->search($informationsystem_id, $group_id, Yii::$app->request->queryParams);
+	
+    $delete_id = Yii::$app->request->post('delete_id');
+    if (Yii::$app->request->isAjax) {
+        $result = Item::findOne($delete_id)->delete();
+        echo \yii\helpers\Html::encode($result);
+        Yii::$app->end();
+    }
 	
 		return $this->render('item', [
 						'searchModel' => $searchModel,

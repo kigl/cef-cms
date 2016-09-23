@@ -16,6 +16,6 @@ use yii\widgets\Pjax;
 	<?php echo $form->errorSummary($model, ['class' => 'alert alert-danger']);?>
 	<?php echo $form->field($model, 'login');?>
 	<?php echo $form->field($model, 'password')->passwordInput();?>
-	<?php echo Html::submitButton('login')?>
+	<?php echo Html::submitButton('login', ['calss' => 'sendForm'])?>
 	<?php $form->end();?>
 <?php Pjax::end();?>

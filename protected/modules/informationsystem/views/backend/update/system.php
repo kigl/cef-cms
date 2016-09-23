@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 use app\modules\main\widgets\ActiveForm;
 use vova07\imperavi\Widget;
 ?>
@@ -15,9 +16,7 @@ use vova07\imperavi\Widget;
 							<input type="checkbox" name="deleteFile"/>
 						</label>
 					</div>
-					<?php Modal::begin(['toggleButton' => ['label' => $model->image]])?>
-						<?php echo Html::img($model->getFileUrl());?>
-					<?php Modal::end();?>
+				<?= Html::a($model->image, $model->getFileUrl(), ['target' => '_blanck']);?>
 				</div>
 			<?php endif;?>
 			<?php echo $form->field($model, 'image')->fileInput();?>

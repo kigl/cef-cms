@@ -1,27 +1,22 @@
 <?php
 use yii\bootstrap\NavBar;
 use yii\bootstrap\Nav;
-use app\modules\main\widgets\adminPanel\Asset;
+?>
 
-Asset::register($this);
-
+<?php 
 NavBar::begin([
-		'options' => ['class' => 'navbar navbar-default'],
+		'options' => ['class' => 'navbar navbar-inverse bg-theme'],
+    'innerContainerOptions' => ['class' => 'container-fluid'],
 	]);
-	
-echo Nav::widget([
-	'options' => ['class' => 'navbar-nav'],
-	'encodeLabels' => false,
-	'items' => [
-		['label' => '<i class="glyphicon glyphicon-file"></i> Модули', 'items' => $module,],
-	],
-]);
 
 echo Nav::widget([
 		'options' => ['class' => 'navbar-nav'],
 		'encodeLabels' => false,
 		'items' => [
-			['label' => '<i class="glyphicon glyphicon-cog"></i> Системные', 'items' => $system],
+			['label' => '<i class="glyphicon glyphicon-cog"></i> Системные', 'items' => [
+					['label' => 'Менеджер настроек', 'url' => ['/main/backend/setting/manager']],
+				],
+			],
 		],
 	]);
 	

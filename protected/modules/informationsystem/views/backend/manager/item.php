@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
+use yii\widgets\ListView;
 use app\modules\main\widgets\grid\GridView;
 use app\modules\informationsystem\models\InformationsystemSystem as System;
 use app\modules\informationsystem\models\InformationsystemItem as Item;
@@ -35,8 +36,8 @@ $this->params['toolbar'] = [
 			'headerOptions' => ['style' => 'width: 25px'],
 			'value' => function ($data) {
 				return $data->item_type == Item::TYPE_GROUP ? 
-					Html::tag('i', '', ['class' => 'glyphicon glyphicon-folder-open']) :
-					Html::tag('i', '', ['class' => 'glyphicon glyphicon-list-alt']);
+					Html::tag('i', '', ['class' => 'fa fa-folder']) :
+					Html::tag('i', '', ['class' => 'fa fa-file-text-o']);
 			}
 		],
 		[
@@ -54,10 +55,12 @@ $this->params['toolbar'] = [
 		],
 		'id',
 		[
-			'headerOptions' => ['style' => 'width: 50px'],
+			'headerOptions' => ['style' => 'width: 70px'],
 			'class' => 'yii\grid\ActionColumn',
-			'template' => '{update}  {delete}',
 			'buttons' => [
+				'view' => function ($url, $model, $key) {
+					return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', ['view', 'id' => $model->id], ['class' => 'view-item', 'data-target' => '#w1']);
+				},
 				'update' => function ($url, $model, $key) {
 					return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
 							'backend/update/item',

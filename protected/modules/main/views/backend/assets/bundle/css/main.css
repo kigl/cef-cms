@@ -1,0 +1,51 @@
+.bg-theme {
+	background: #545454;
+}
+
+.wrapper {
+	max-width: 1500px;
+}
+
+.content, .breadcrumb {
+	background: #fff;
+}
+
+.content {
+	padding: 15px;
+	min-height: 600px;
+}
+
+.breadcrumb {
+	padding: 0;
+}
+
+.top .navbar{
+	margin: 0;
+	border: 0;
+}
+
+.top .navbar-inverse .navbar-nav > li > a {
+	color: #fff !important;
+}
+
+.top .navbar .navbar-collapse,  .top .navbar .container-fluid{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.admin.left-menu a{
+	color: #fff !important;
+}
+
+.left-menu .nav-pills > li.active > a, .left-menu .nav > li > a:hover, .left-menu .nav > li > a:focus {
+	background-color: transparent !important;
+}
+
+.grid-table .form-control{
+	height: 28px !important;
+	border-radius: 0 !important;
+}
+
+.page-header {
+	margin: 20px 0 20px !important;
+}

@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\widgets\LinkPager;
+use yii\bootstrap\Modal;
 
 class GridView extends \yii\grid\GridView
 {
@@ -22,6 +23,27 @@ class GridView extends \yii\grid\GridView
 	public $tableOptions = ['class' => 'table table-condensed table-striped grid-table'];
 	
 	public $pager = ['options' => ['class' => 'pagination pull-right']];
+	
+	public function run()
+	{
+		$view = $this->getView();
+		
+		$view->registerJs("
+			$('.view-item').click(function() {
+					$('.modal').modal('show')
+			    var url = $(this).attr('href');
+			    var modal = $('.modal-body');
+			    $.get(url, function(data) {
+			        modal.html(data);
+			    });
+			    return false;
+			});
+		");
+		
+		echo Modal::widget(['size' => Modal::SIZE_LARGE]);
+		
+		parent::run();
+	}
   
   public function renderSection($name)
   {
@@ -79,7 +101,7 @@ class GridView extends \yii\grid\GridView
 	{
 		$action = Url::to(['create']);
 		$text = '<i class="glyphicon glyphicon-plus"></i>';
-		$options = ['class' => 'btn btn-success btn-sm'];
+		$options = ['class' => 'btn btn-success btn-xs'];
 		
 		if (isset($this->buttons['create']['options'])) {
 			$options = ArrayHelper::merge($this->buttons['create']['options'], $options);

@@ -11,7 +11,7 @@ class ActiveForm extends \yii\widgets\ActiveForm
 {
 	public $buttonSave = true;
 	
-	public $enableClientValidation = false;
+	public $enableClientValidation = true;
 	
 	public $fieldConfig = ['template' => "{label}\n{input}"];
 	
