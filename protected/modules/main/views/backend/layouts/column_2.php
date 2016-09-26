@@ -7,10 +7,11 @@ use app\modules\main\widgets\adminMenuTop\Widget as MenuTop;
 ?>
 <?php $this->beginContent('@app/modules/main/views/backend/layouts/index.php');?>
 <div class="row">
-	<div class="col-md-3">
+	<div class="col-md-2 sidebar padding-left-5">
+		<div style="height: 100px; border: 1px solid black">Avatar</div>
 		<?php echo MenuLeft::widget();?>
 	</div>
-	<div class="col-md-9">
+	<div class="col-md-10 blackboard no-padding">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="row">
