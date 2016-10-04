@@ -1,5 +1,5 @@
 <?php
-use app\modules\main\widgets\ActiveForm;
+use app\modules\main\widgets\backend\ActiveForm;
 use app\modules\main\Module;
 ?>
 

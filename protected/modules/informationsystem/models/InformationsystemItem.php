@@ -9,6 +9,7 @@ use app\modules\informationsystem\models\Tag;
 use app\modules\informationsystem\models\TagRelations;
 use app\modules\informationsystem\models\Informationsystem as System;
 use app\modules\informationsystem\components\TagBehavior;
+use app\modules\user\models\User;
 
 /**
  * This is the model class for table "mn_informationsystem_item".
@@ -21,6 +22,7 @@ use app\modules\informationsystem\components\TagBehavior;
  * @property string $description
  * @property string $content
  * @property string $image
+ * @property string $file
  * @property integer $status
  * @property integer $sort
  * @property integer $user_id
@@ -61,10 +63,12 @@ class InformationsystemItem extends \yii\db\ActiveRecord
             [['parent_id', 'item_type', 'status', 'sort', 'user_id', 'create_time', 'update_time'], 'integer'],
             [['name', 'item_type',], 'required'],
             [['content'], 'string'],
-            [['informationsystem_id', 'date', 'date_start', 'date_end'], 'string', 'max' => 50],
-            [['name', 'alias', 'meta_title'], 'string', 'max' => 255],
-            [['description', 'meta_description'], 'string', 'max' => 300],
-            ['image', 'file'],
+            [['informationsystem_id'], 'string', 'max' => 50],
+            [['name'], 'string', 'max' => 255],
+            [['description'], 'string', 'max' => 300],
+            ['image', 'file', 'extensions' => ['jpg', 'png']],
+            ['video', 'file', 'extensions' => ['mp4']],
+            ['file', 'file'], // video
             
             ['editorTag', 'safe'],
         ];
@@ -103,25 +107,40 @@ class InformationsystemItem extends \yii\db\ActiveRecord
     {
 			return $this->hasOne(System::className(), ['id' => 'informationsystem_id']);
 		}
+		
+		public function getAuthor()
+		{
+			return $this->hasOne(User::className(), ['id' => 'user_id']);
+		}
     
     public function behaviors()
     {
 			return [
-				[
+				'imageUpload' => [
 					'class' => 'app\modules\main\components\behaviors\ImageUpload',
 					'attribute' => 'image',
+					'deleteKey' => 'deleteImage',
 					'path' => Yii::$app->controller->module->getImagesPath(),
 					'pathUrl' => Yii::$app->controller->module->getImagesPathUrl(),
+				],
+				'videoUpload' => [
+					'class' => 'app\modules\main\components\behaviors\FileUpload',
+					'attribute' => 'video',
+					'deleteKey' => 'deleteVideo',
+					'path' => Yii::$app->controller->module->getPublicPath() . DS . 'video',
+					'pathUrl' => Yii::$app->controller->module->getPublicPathUrl() . '/video',
+				],
+				'fileUpload' => [
+					'class' => 'app\modules\main\components\behaviors\FileUpload',
+					'attribute' => 'file',
+					'deleteKey' => 'deleteFile',
+					'path' => Yii::$app->controller->module->getPublicPath() . DS . 'files',
+					'pathUrl' => Yii::$app->controller->module->getPublicPathUrl() . '/files',
 				],
 				[
 					'class' => 'yii\behaviors\TimeStampBehavior',
 					'createdAtAttribute' => 'create_time',
 					'updatedAtAttribute' => 'update_time',
-				],
-				[
-					'class' => 'app\modules\main\components\behaviors\UrlFillTranslitText',
-					'text' => 'name',
-					'url' => 'alias',
 				],
 				[
 					'class' => TagBehavior::className(),
@@ -130,21 +149,12 @@ class InformationsystemItem extends \yii\db\ActiveRecord
 		}
 		
 		public function beforeSave($insert)
-		{	
-			$this->date = $this->getTimeStamp($this->date);
-			$this->date_start = $this->getTimeStamp($this->date_start);
-			$this->date_end = $this->getTimeStamp($this->date_end);
-			
-			return parent::beforeSave($insert);
-		}
-		
-		
-		private function getTimeStamp($date)
 		{
-			if ($date != '') {
-				return Yii::$app->formatter->asTimeStamp($date);
+			if (parent::beforeSave($insert)) {
+				if ($this->isNewRecord) $this->user_id = Yii::$app->user->getId();
+				
+				return true;
 			}
-			return null;
 		}
 		
 		public function getStatusList()

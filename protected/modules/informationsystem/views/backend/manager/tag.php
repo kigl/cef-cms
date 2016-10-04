@@ -2,7 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use app\modules\main\widgets\grid\GridView;
+use app\modules\main\widgets\backend\grid\GridView;
 
 $this->params['breadcrumbs'] = ArrayHelper::merge($breadcrumbs, [
 	['label' => Yii::t($this->context->module->id, 'Tags')]

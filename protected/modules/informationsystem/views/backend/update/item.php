@@ -3,10 +3,11 @@ use yii\jui\DatePicker;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
 use yii\helpers\Html;
-use app\modules\main\widgets\ActiveForm;
-use app\modules\informationsystem\models\Informationsystem as System;
 use vova07\imperavi\Widget;
-use app\modules\informationsystem\widgets\tagEditor\TagEditor;
+use app\modules\main\widgets\backend\ActiveForm;
+use app\modules\informationsystem\widgets\backend\fileShowDelete\Widget as FileShowDelete;
+use app\modules\informationsystem\widgets\backend\tagEditor\TagEditor;
+use app\modules\informationsystem\models\Informationsystem as System;
 
 $this->params['breadcrumbs'] = $breadcrumbs;
 ?>
@@ -25,36 +26,41 @@ $this->params['breadcrumbs'] = $breadcrumbs;
 </div>
 
 <div class="row">
-	<div class="col-md-4">
-		<?php if ($model->imageExist()) :?>
-			<div class="img-thumbnail">
-				<div>
-					<label class="pull-right">Удалить
-						<input type="checkbox" name="deleteFile"/>
-					</label>
-				</div>
-				<?= Html::a($model->image, $model->getFileUrl(), ['target' => '_blanck']);?>
-			</div>
-		<?php endif;?>
-		<?php echo $form->field($model, 'image')->fileInput();?>
-	</div>
-	<div class="col-md-4">
+	<div class="col-md-6">
 		<?= $form->field($model, 'status')->dropDownList($model->getStatusList());?>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-6">
 		<?= $form->field($model, 'sort');?>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-md-4">
-		<?= $form->field($model, 'date')->widget(DatePicker::className(), ['options' => ['class' => 'form-control']]);?>
+		<?= FileShowDelete::widget([
+				'model' => $model,
+				'formInstance' => $form,
+				'deleteKey' => 'deleteImage',
+				'behaviorName' => 'imageUpload',
+				]);
+		?>
 	</div>
 	<div class="col-md-4">
-		<?= $form->field($model, 'date_start')->widget(DatePicker::className(), ['options' => ['class' => 'form-control']]);?>
+		<?= FileShowDelete::widget([
+				'model' => $model,
+				'formInstance' => $form,
+				'deleteKey' => 'deleteVideo',
+				'behaviorName' => 'videoUpload',
+				]);
+		?>
 	</div>
 	<div class="col-md-4">
-		<?= $form->field($model, 'date_end')->widget(DatePicker::className(), ['options' => ['class' => 'form-control']]);?>
+		<?= FileShowDelete::widget([
+				'model' => $model,
+				'formInstance' => $form,
+				'deleteKey' => 'deleteFile',
+				'behaviorName' => 'fileUpload',
+				]);
+		?>
 	</div>
 </div>
 
@@ -68,11 +74,5 @@ $this->params['breadcrumbs'] = $breadcrumbs;
 ]);?>
 
 <?= $form->field($model, 'editorTag')->widget(TagEditor::className(), []);?>
-
-<?= $form->field($model, 'alias');?>
-
-<?= $form->field($model, 'meta_title');?>
-
-<?= $form->field($model, 'meta_description');?>
 
 <?php ActiveForm::end();?>

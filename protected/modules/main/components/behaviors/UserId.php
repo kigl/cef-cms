@@ -13,6 +13,7 @@ class UserId extends \yii\base\Behavior
 	{
 		return [
 			ActiveRecord::EVENT_BEFORE_INSERT => 'recordUserId',
+			ActiveRecord::EVENT_BEFORE_UPDATE => 'recordUserId',
 		];	
 	}
 	

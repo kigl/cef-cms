@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\ArrayHelper;
-use app\modules\main\widgets\ActiveForm;
+use app\modules\main\widgets\backend\ActiveForm;
 
 $this->params['breadcrumbs'] = $breadcrumbs;
 ?>

@@ -1,9 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\Pjax;
-use yii\widgets\ListView;
-use app\modules\main\widgets\grid\GridView;
+use app\modules\main\widgets\backend\grid\GridView;
 use app\modules\informationsystem\models\InformationsystemSystem as System;
 use app\modules\informationsystem\models\InformationsystemItem as Item;
 
@@ -59,7 +57,7 @@ $this->params['toolbar'] = [
 			'class' => 'yii\grid\ActionColumn',
 			'buttons' => [
 				'view' => function ($url, $model, $key) {
-					return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', ['view', 'id' => $model->id], ['class' => 'view-item', 'data-target' => '#w1']);
+					return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', ['view', 'id' => $model->id], ['class' => 'view-item']);
 				},
 				'update' => function ($url, $model, $key) {
 					return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [

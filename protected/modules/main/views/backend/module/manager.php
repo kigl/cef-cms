@@ -1,5 +1,5 @@
 <?php 
-use app\modules\main\widgets\grid\GridView;
+use app\modules\main\widgets\backend\grid\GridView;
 use yii\widgets\Pjax;
 ?>
 

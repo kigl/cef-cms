@@ -25,9 +25,9 @@ class m160902_063342_mn_user extends Migration
 			]);
 			
 			$this->batchInsert($this->tableName,
-			 	['id', 'role', 'login', 'surname', 'name', 'lastname', 'email', 'password'],
+			 	['id', 'role', 'login', 'surname', 'name', 'lastname', 'email', 'password', 'auth_key', 'status'],
 			 	[
-			 		['1', '', 'admin', '', '', '', '', Yii::$app->security->generatePasswordHash('admin')],
+			 		['1', '', 'admin', '', '', '', '', Yii::$app->security->generatePasswordHash('admin'), '', '1'],
 			 	]
 			 	);
     }

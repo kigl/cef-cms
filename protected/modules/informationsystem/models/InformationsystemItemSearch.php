@@ -24,7 +24,7 @@ class InformationsystemItemSearch extends System
 
 		
 		$dataProvider = new ActiveDataProvider([
-			'query' => $query,
+			'query' => $query,		
 		]);
 		
 		$this->load($params);

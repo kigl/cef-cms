@@ -8,12 +8,12 @@ class Asset extends \yii\web\AssetBundle
 
 	public $css = [
 					'css/main.css',
-					'css/font-awesome.min.css'
 				];
 
 	public $depends = [
 		'yii\web\YiiAsset',
 		'yii\bootstrap\BootstrapAsset',
 		'yii\bootstrap\BootstrapPluginAsset',
+		'app\modules\main\components\fontAwesome\Asset',
 	];
 }

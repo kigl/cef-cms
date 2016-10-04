@@ -75,6 +75,11 @@ class FileUpload extends \yii\base\Behavior
 		} elseif (!$this->owner->isNewRecord) { // если не заргужаем файл, то остовляем аттрибут без изменения
 			$this->owner->{$this->attribute} = $this->getOldAttribute();
  		}	
+ 		// если $deleteKey активный, то удвляем файл
+ 		if (Yii::$app->request->Post($this->deleteKey)) {
+			$this->deleteOldFile();
+			$this->setDbAttribute(null);
+		}
 	} 
 	
 	/**
@@ -143,9 +148,7 @@ class FileUpload extends \yii\base\Behavior
 	*/
 	public function setInstanceAttribute()
 	{	 
-		$instance = $this->getFileInstance();
-
-		if ($instance) {
+		if ($instance = $this->getFileInstance()) {
 			$this->owner->{$this->attribute} = $instance;
 		}
 	}	
@@ -167,7 +170,6 @@ class FileUpload extends \yii\base\Behavior
 	protected function getFileInstance()
 	{
 		$instance = UploadedFile::getInstance($this->owner, $this->attribute);
-		
 		if ($instance) {
 			return $instance;
 		}

@@ -1,9 +1,9 @@
 <?php 
 use yii\widgets\Menu;
-use app\modules\main\widgets\Breadcrumbs;
-use app\modules\main\widgets\Alert;
-use app\modules\main\widgets\adminMenuLeft\Widget as MenuLeft;
-use app\modules\main\widgets\adminMenuTop\Widget as MenuTop;
+use app\modules\main\widgets\backend\Breadcrumbs;
+use app\modules\main\widgets\backend\Alert;
+use app\modules\main\widgets\backend\adminMenuLeft\Widget as MenuLeft;
+use app\modules\main\widgets\backend\adminMenuTop\Widget as MenuTop;
 ?>
 <?php $this->beginContent('@app/modules/main/views/backend/layouts/index.php');?>
 <div class="row">

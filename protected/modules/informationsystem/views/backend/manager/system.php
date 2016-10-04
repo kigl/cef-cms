@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
-use app\modules\main\widgets\grid\GridView;
+use app\modules\main\widgets\backend\grid\GridView;
 
 ?>
 

@@ -1,7 +1,7 @@
 <?php
-use app\modules\main\widgets\ActiveForm;
+use app\modules\main\widgets\backend\ActiveForm;
 use vova07\imperavi\Widget;
-
+use app\modules\main\widgets\backend\imageUpload\Widget as ImageUpload;
 ?>
 
 <?php $form = ActiveForm::begin();?>
@@ -11,7 +11,7 @@ use vova07\imperavi\Widget;
 	
 	<div class="row">
 		<div class="col-md-6">
-			<?php echo $form->field($model, 'image')->fileInput();?>
+			<?= ImageUpload::widget(['model' => $model, 'formInstance' => $form, 'attribute' => 'image']);?>
 		</div>
 		
 		<div class="col-md-6">
@@ -31,10 +31,6 @@ use vova07\imperavi\Widget;
 	]);?>
 	
 	<?= $form->field($model, 'items_per_page');?>
-	
-	<?php echo $form->field($model, 'meta_title');?>
-	
-	<?php echo $form->field($model, 'meta_description');?>
 
 	
 <?php ActiveForm::end();?>

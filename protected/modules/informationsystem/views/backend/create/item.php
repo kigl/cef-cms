@@ -1,7 +1,8 @@
 <?php
 use yii\jui\DatePicker;
-use app\modules\main\widgets\ActiveForm;
+use app\modules\main\widgets\backend\ActiveForm;
 use vova07\imperavi\Widget;
+use app\modules\main\widgets\backend\imageUpload\Widget as ImageUpload;
 
 $this->params['breadcrumbs'] = $breadcrumbs;
 ?>
@@ -27,26 +28,24 @@ $this->params['breadcrumbs'] = $breadcrumbs;
 		<?= $form->field($model, 'image')->fileInput();?>
 	</div>
 	<div class="col-md-4">
-		<?= $form->field($model, 'status')->dropDownList($model->getStatusList());?>
+		<?= $form->field($model, 'video')->fileInput();?>
 	</div>
 	<div class="col-md-4">
-		<?= $form->field($model, 'sort');?>
+		<?= $form->field($model, 'file')->fileInput();?>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-md-4">
-		<?= $form->field($model, 'date')->widget(DatePicker::className(), ['options' => ['class' => 'form-control']]);?>
+	<div class="col-md-6">
+		<?= $form->field($model, 'status')->dropDownList($model->getStatusList());?>
 	</div>
-	<div class="col-md-4">
-		<?= $form->field($model, 'date_start')->widget(DatePicker::className(), ['options' => ['class' => 'form-control']]);?>
-	</div>
-	<div class="col-md-4">
-		<?= $form->field($model, 'date_end')->widget(DatePicker::className(), ['options' => ['class' => 'form-control']]);?>
+	<div class="col-md-6">
+		<?= $form->field($model, 'sort');?>
 	</div>
 </div>
 
-<?= $form->field($model, 'description');?>
+
+<?= $form->field($model, 'description')->textArea();?>
 
 <?= $form->field($model, 'content')->widget(Widget::className(), [
 		'settings' => [
@@ -54,11 +53,5 @@ $this->params['breadcrumbs'] = $breadcrumbs;
 			'minHeight' => 400,
 		],
 ]);?>
-
-<?= $form->field($model, 'alias');?>
-
-<?= $form->field($model, 'meta_title');?>
-
-<?= $form->field($model, 'meta_description');?>
 
 <?php ActiveForm::end();?>

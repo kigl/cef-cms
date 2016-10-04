@@ -44,7 +44,7 @@ class Informationsystem extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['status', 'sort', 'user_id', 'items_per_page', 'create_time', 'update_time'], 'integer'],
             [['id', 'template'], 'string', 'max' => 50],
-            [['name', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 300],
             ['image', 'file'],
             ['items_per_page', 'default', 'value' => 10],

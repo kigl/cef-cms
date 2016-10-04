@@ -1,7 +1,8 @@
 <?php
 use yii\helpers\Html;
-use app\modules\main\widgets\ActiveForm;
 use vova07\imperavi\Widget;
+use app\modules\main\widgets\backend\ActiveForm;
+use app\modules\main\widgets\backend\imageUpload\Widget as ImageUpload;
 ?>
 
 <?php $form = ActiveForm::begin();?>
@@ -9,17 +10,7 @@ use vova07\imperavi\Widget;
 	
 	<div class="row">
 		<div class="col-md-6">
-			<?php if ($model->imageExist()) :?>
-				<div class="img-thumbnail">
-					<div>
-						<label class="pull-right">Удалить
-							<input type="checkbox" name="deleteFile"/>
-						</label>
-					</div>
-				<?= Html::a($model->image, $model->getFileUrl(), ['target' => '_blanck']);?>
-				</div>
-			<?php endif;?>
-			<?php echo $form->field($model, 'image')->fileInput();?>
+			<?= ImageUpload::widget(['model' => $model, 'attribute' => 'image', 'formInstance' => $form]);?>
 		</div>
 		
 		<div class="col-md-6">
@@ -39,10 +30,5 @@ use vova07\imperavi\Widget;
 	]);?>
 	
 	<?= $form->field($model, 'items_per_page');?>
-	
-	<?php echo $form->field($model, 'meta_title');?>
-	
-	<?php echo $form->field($model, 'meta_description');?>
-
 	
 <?php ActiveForm::end();?>

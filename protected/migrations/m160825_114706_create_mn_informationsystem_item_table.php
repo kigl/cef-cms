@@ -21,6 +21,8 @@ class m160825_114706_create_mn_informationsystem_item_table extends Migration
             'description'  => $this->string(300), 
             'content' => $this->text(),
             'image' => $this->string(),
+            'video' => $this->string(),
+            'file' => $this->string(),
             'status' => $this->integer(),
             'sort' => $this->integer(),
             'user_id' => $this->integer(),

@@ -10,12 +10,6 @@ abstract class BackendController extends \yii\web\Controller
 	
   public $defaultAction = 'manager';
   
-  public function init()
-  {
-		parent::init();
-		//var_dump(\Yii::$app->user->id);
-	}
-  
   public function behaviors()
   {
 		return [

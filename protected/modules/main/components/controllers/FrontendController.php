@@ -7,7 +7,7 @@ use Yii;
 abstract class FrontendController extends \yii\web\Controller 
 {
 		
-	public $layout = '@app/modules/main/views/layouts/main';
+	public $layout = '@app/modules/main/views/layouts/column_2';
 		
 	public function getViewPath()
 	{
