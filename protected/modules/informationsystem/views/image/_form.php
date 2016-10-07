@@ -2,7 +2,7 @@
 use app\modules\main\widgets\backend\ActiveForm;
 use vova07\imperavi\Widget;
 use app\modules\informationsystem\models\InformationsystemItem as Item;
-use app\modules\informationsystem\widgets\backend\fileShowDelete\Widget as FileShow;
+use app\modules\informationsystem\widgets\backend\fileInForm\Widget as FileInForm;
 ?>
 
 <?php $form = ActiveForm::begin();?>
@@ -16,12 +16,12 @@ use app\modules\informationsystem\widgets\backend\fileShowDelete\Widget as FileS
 
 <?= $form->field($model, 'name');?>
 
-<?= FileShow::widget([
+<?= FileInForm::widget([
 			'model' => $model,
-			'formInstance' => $form,
 			'deleteKey' => 'deleteImage',
 			'behaviorName' => 'imageUpload',
 		]);
 ?>
+<?= $form->field($model, 'image')->fileInput();?>
 
 <?php ActiveForm::end();?>

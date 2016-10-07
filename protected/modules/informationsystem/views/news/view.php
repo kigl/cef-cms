@@ -5,7 +5,7 @@ $this->params['breadcrumbs'] = $breadcrumbs;
 
 $this->params['actionBar'] = [
 	[
-		'label' => '<i class="glyphicon glyphicon-pencil"></i> ' . Yii::t('main', 'Edit'),
+		'label' => '<i class="glyphicon glyphicon-pencil"></i>',
 		'url' => ['update', 'id' => $model->id],
 		'visible' => Yii::$app->user->can('updateOwnItem', ['model' => $model]),	
 	],

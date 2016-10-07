@@ -2,14 +2,13 @@
 use yii\widgets\Menu;
 use app\modules\main\widgets\backend\Breadcrumbs;
 use app\modules\main\widgets\backend\Alert;
-use app\modules\main\widgets\backend\adminMenuLeft\Widget as MenuLeft;
-use app\modules\main\widgets\backend\adminMenuTop\Widget as MenuTop;
+use app\modules\main\widgets\backend\menuSidebar\Widget as MenuSidebar;
+use app\modules\main\widgets\backend\menuTop\Widget as MenuTop;
 ?>
 <?php $this->beginContent('@app/modules/main/views/backend/layouts/index.php');?>
 <div class="row">
 	<div class="col-md-2 sidebar padding-left-5">
-		<div style="height: 100px; border: 1px solid black">Avatar</div>
-		<?php echo MenuLeft::widget();?>
+		<?= MenuSidebar::widget();?>
 	</div>
 	<div class="col-md-10 blackboard no-padding">
 		<div class="row">
@@ -17,7 +16,7 @@ use app\modules\main\widgets\backend\adminMenuTop\Widget as MenuTop;
 				<div class="row">
 					<div class="col-md-12">
 						<div class="top">
-							<?php echo MenuTop::widget();?>
+							<?= MenuTop::widget();?>
 						</div>
 					</div>
 				</div>

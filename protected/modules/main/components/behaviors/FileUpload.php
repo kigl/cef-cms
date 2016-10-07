@@ -66,7 +66,7 @@ class FileUpload extends \yii\base\Behavior
 					// если не новая запись
 					if (!$this->owner->isNewRecord) {
 						// удаляем старый файл
-						$this->deleteOldFile();
+						$this->deleteFile();
 					}
 					// присваеваем аттрибуту имя файла 			
 					$this->setDbAttribute($this->name);
@@ -77,7 +77,7 @@ class FileUpload extends \yii\base\Behavior
  		}	
  		// если $deleteKey активный, то удвляем файл
  		if (Yii::$app->request->Post($this->deleteKey)) {
-			$this->deleteOldFile();
+			$this->deleteFile();
 			$this->setDbAttribute(null);
 		}
 	} 
@@ -93,34 +93,7 @@ class FileUpload extends \yii\base\Behavior
 			@unlink($pathFile);
 		}
 	}
-	
-	/**
-	* Удаляет старый файл
-	* 
-	* @return
-	*/
-	protected function deleteOldFile()
-	{
-		if ($this->checkOldFile()) {
-			@unlink($this->getOldFilePath());
-		}
-	}
-	
-	/**
-	* Проверяет наличие файла
-	* 
-	* @return boolean
-	*/
-	protected function checkOldFile()
-	{
-		$pathFile = $this->getOldFilePath();
-
-		if (is_file($pathFile)) {
-			return true;
-		}
-		return false;
-	}
-	
+		
 	protected function saveTempFile()
 	{
 		$instance = $this->owner->{$this->attribute};

@@ -7,9 +7,8 @@ $this->params['breadcrumbs'] = $breadcrumbs;
 
 $this->params['actionBar'] = [
 	[
-		'label' => '<i class="glyphicon glyphicon-plus"></i> ' . Yii::t('main', 'Button create'),
+		'label' => '<i class="glyphicon glyphicon-plus"></i>',
 		'url' => ['image/create', 'group_id' => $group_id],
-		'visible' => !Yii::$app->user->isGuest,
 	],
 ];
 

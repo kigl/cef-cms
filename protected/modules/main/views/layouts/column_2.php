@@ -1,6 +1,7 @@
 <?php
 use yii\widgets\Menu;
 use yii\widgets\Breadcrumbs;
+use app\modules\main\widgets\backend\Alert;
 use app\modules\main\widgets\frontend\topNavBar\Widget as TopBar;
 ?>
 
@@ -21,6 +22,7 @@ use app\modules\main\widgets\frontend\topNavBar\Widget as TopBar;
 							['label' => '<i class="fa fa-video-camera"></i> Видео', 'url' => ['/informationsystem/video/manager']],
 							['label' => '<i class="fa fa-picture-o"></i> Изображения', 'url' => ['/informationsystem/image/manager']],
 							['label' => '<i class="fa fa-lightbulb-o"></i> Жалобы и предложения', 'url' => ['/informationsystem/offers/manager']],
+							['label' => '<i class="fa fa-weixin"></i> Форум', 'url' => ['/forum/default/index']],
 						],
 			]);?>
 		</div>
@@ -37,6 +39,7 @@ use app\modules\main\widgets\frontend\topNavBar\Widget as TopBar;
 			'links' => isset($this->params['breadcrumbs'])? $this->params['breadcrumbs'] : [],
       'activeItemTemplate' => "<li class=\"active\"><!--noindex-->{link}<!--/noindex--></li>",
 		]);?>
+		<?= Alert::widget();?>
 		<div>
 			<?php 
 				if (isset($this->params['actionBar'])) {

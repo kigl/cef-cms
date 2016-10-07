@@ -3,7 +3,7 @@ use yii\web\HttpException;
 
 $this->params['breadcrumbs'] = $breadcrumbs;
 
-if (!Yii::$app->user->can('updateOwnItem', ['model' => $model])) {
+if (!Yii::$app->user->can('updateItem', ['model' => $model])) {
 	throw new HttpException('403');
 }
 

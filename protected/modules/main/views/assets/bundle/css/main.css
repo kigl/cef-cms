@@ -4,7 +4,7 @@ html, body {
 	height: 100%;
 }
 
-body, .breadcrumb {
+body, .breadcrumb, .list-view .items:nth-of-type(2n) .bg-content {
 	background: #fbfbfb;
 }
 
@@ -27,9 +27,23 @@ body, .breadcrumb {
   z-index: 1;
 }
 
+.sidebar__menu.list-group .list-group-item:first-child {
+	border-top: 0;
+}
+
+.sidebar__menu.list-group .list-group-item:last-child {
+	border-bottom: 0;
+}
+
+.sidebar__menu.list-group .list-group-item {
+	border-left:0;
+	border-right: 0;
+}
+
 .sidebar__menu  a{
 	display: block;
 	line-height: 25px;
+	color: #444;
 }
 
 .logo {

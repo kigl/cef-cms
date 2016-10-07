@@ -5,4 +5,8 @@ return [
 
 	'Button create' => 'Добавить',
 	'Button save' => 'Сохранить',
+	
+	'Saved element' => 'Сохранено!',
+	'Created element' => 'Элемент создан!',
+	'Updated element' => 'Элемент обнавлен!',
 ];

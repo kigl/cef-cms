@@ -66,7 +66,7 @@ class InformationsystemItem extends \yii\db\ActiveRecord
             [['informationsystem_id'], 'string', 'max' => 50],
             [['name'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 300],
-            ['image', 'file', 'extensions' => ['jpg', 'png']],
+            ['image', 'file', 'extensions' => ['jpg', 'png', 'gif']],
             ['video', 'file', 'extensions' => ['mp4']],
             ['file', 'file'], // video
             
@@ -80,26 +80,26 @@ class InformationsystemItem extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('main', 'ID'),
-            'parent_id' => Yii::t('main', 'Parent ID'),
-            'item_type' => Yii::t('main', 'Item Type'),
-            'informationsystem_id' => Yii::t('main', 'Informationsystem ID'),
-            'name' => Yii::t('main', 'Name'),
-            'tag_list' => Yii::t('main', 'Tags'),
-            'description' => Yii::t('main', 'Description'),
-            'content' => Yii::t('main', 'Content'),
-            'image' => Yii::t('main', 'Image'),
-            'status' => Yii::t('main', 'Status'),
-            'sort' => Yii::t('main', 'Sort'),
-            'user_id' => Yii::t('main', 'User ID'),
-            'date' => Yii::t('main', 'Date'),
-            'date_start' => Yii::t('main', 'Date Start'),
-            'date_end' => Yii::t('main', 'Date End'),
-            'alias' => Yii::t('main', 'Alias'),
-            'meta_title' => Yii::t('main', 'Meta title'),
-            'meta_description' => Yii::t('main', 'Meta Description'),
-            'create_time' => Yii::t('main', 'Create Time'),
-            'update_time' => Yii::t('main', 'Update Time'),
+            'id' => Yii::t('informationsystem', 'ID'),
+            'parent_id' => Yii::t('informationsystem', 'Parent ID'),
+            'item_type' => Yii::t('informationsystem', 'Item Type'),
+            'informationsystem_id' => Yii::t('informationsystem', 'Informationsystem ID'),
+            'name' => Yii::t('informationsystem', 'Name'),
+            'tag_list' => Yii::t('informationsystem', 'Tags'),
+            'description' => Yii::t('informationsystem', 'Description'),
+            'content' => Yii::t('informationsystem', 'Content'),
+            'image' => Yii::t('informationsystem', 'Image'),
+            'status' => Yii::t('informationsystem', 'Status'),
+            'sort' => Yii::t('informationsystem', 'Sort'),
+            'user_id' => Yii::t('informationsystem', 'User id'),
+            'date' => Yii::t('informationsystem', 'Date'),
+            'date_start' => Yii::t('informationsystem', 'Date Start'),
+            'date_end' => Yii::t('informationsystem', 'Date End'),
+            'alias' => Yii::t('informationsystem', 'Alias'),
+            'meta_title' => Yii::t('informationsystem', 'Meta title'),
+            'meta_description' => Yii::t('informationsystem', 'Meta Description'),
+            'create_time' => Yii::t('informationsystem', 'Create time'),
+            'update_time' => Yii::t('informationsystem', 'Update time'),
         ];
     }
     
@@ -122,6 +122,10 @@ class InformationsystemItem extends \yii\db\ActiveRecord
 					'deleteKey' => 'deleteImage',
 					'path' => Yii::$app->controller->module->getImagesPath(),
 					'pathUrl' => Yii::$app->controller->module->getImagesPathUrl(),
+					'thumbnail' => [
+						'width' => 350,
+						'height' => 233,
+					],
 				],
 				'videoUpload' => [
 					'class' => 'app\modules\main\components\behaviors\FileUpload',

@@ -12,11 +12,10 @@ use yii\helpers\Url;
 				<h1><?= Html::encode($model->name);?></h1>
 					<ul class="list-inline small">
 						<li><b><?= Yii::t('informationsystem', 'Create time');?>: </b><?= Yii::$app->formatter->asDate($model->create_time);?></li>
-						<li><span><b><?= Yii::t('informationsystem', 'User id');?>: </b><?= $model->author->surname;?> <?= $model->author->name;?></span></li>
 					</ul>
 				<div>
 					<?php if (Yii::$app->user->can('updateOwnItem', ['model' => $model])) :?>
-						<a href="<?= Url::to(['update', 'id' => $model->id])?>" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i> <?= Yii::t('main', 'Edit')?></a>
+						<a href="<?= Url::to(['update', 'id' => $model->id])?>" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i> <?= Yii::t('informationsystem', 'Button edit')?></a>
 					<?php endif;?>
 				</div>
 				</div>

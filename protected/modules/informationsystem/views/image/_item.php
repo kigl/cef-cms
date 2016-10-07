@@ -30,7 +30,7 @@ use app\modules\informationsystem\models\InformationsystemItem as Item;
 					Элемент
 				</div>
 			</div>
-			<img src="<?= Url::to(['thumbnail', 'id' => $model->id]);?>"/>
+			<?= Html::img($model->getBehavior('imageUpload')->getThumbnailUrl());?>
 			<h4 class="informationsystem-item__name"><?= Html::encode($model->name);?></h4>
 			<div class="informationsystem-item-other">
 				<ul class="list-inline small no-margin">

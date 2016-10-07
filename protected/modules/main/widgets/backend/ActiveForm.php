@@ -5,6 +5,7 @@ namespace app\modules\main\widgets\backend;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveFormAsset;
 use yii\db\ActiveRecord;
 

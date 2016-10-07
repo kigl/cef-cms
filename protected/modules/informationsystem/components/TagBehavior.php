@@ -99,3 +99,5 @@ class TagBehavior extends \yii\base\Behavior
 		return implode(',', ArrayHelper::getColumn($this->getTags(), 'name'));
 	}
 }
+
+?>

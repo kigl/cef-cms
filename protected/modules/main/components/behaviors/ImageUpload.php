@@ -3,14 +3,18 @@
 namespace app\modules\main\components\behaviors;
 
 use Yii;
-use yii\db\ActiveRecord;
+use yii\web\UploadedFile;
+use yii\imagine\Image;
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
-use yii\web\UploadedFile;
 
 class imageUpload extends \app\modules\main\components\behaviors\FileUpload
 {
-	public $resize = [];
+	public $thumbnailPrefix = 'thumbnail_';
+	
+	public $thumbnail;
+	
+	private $_image;
 	
 	public function beforeSave()
 	{
@@ -21,7 +25,8 @@ class imageUpload extends \app\modules\main\components\behaviors\FileUpload
 			$this->saveFile();
 			if (!$this->owner->isNewRecord) {
 				// удаляем старый файл
-				$this->deleteOldFile();
+				$this->deleteFile();
+				$this->deleteThumbnail();
 			}
 			// присваеваем имя файла для записи в DB
 			$this->setDbAttribute($this->tempFile);
@@ -31,7 +36,8 @@ class imageUpload extends \app\modules\main\components\behaviors\FileUpload
 		}
 		// если $deleteKey активный, то удвляем файл
 		if (Yii::$app->request->Post($this->deleteKey)) {
-			$this->deleteOldFile();
+			$this->deleteFile();
+			$this->deleteThumbnail();
 			$this->setDbAttribute(null);
 		}
 	}
@@ -45,19 +51,85 @@ class imageUpload extends \app\modules\main\components\behaviors\FileUpload
 	{
 		$this->saveTempFile();
 		// работаем с файлом
-		$image = (new Imagine)->open($this->getTempFilePath());
-		
-		if ($this->resize) {
-			$image->resize(new Box($this->resize['width'], $this->resize['height'])); // меняем размер
+		$this->_image = (new Imagine)->open($this->getTempFilePath());
+			
+		// создает миниатюру
+		if (is_array($this->thumbnail)) {
+			$this->createThumbnail();
 		}
-		
-		$image->save($this->getPath() . DS . $this->tempFile);		
+	
+		$this->_image->save($this->getPath() . DS . $this->tempFile);		
 		// удаляем темп файл
 		$this->deleteTempFile();
 	}
 	
-	public function imageExist()
+	protected function createThumbnail()
 	{
-		return $this->fileExist();
+		Image::thumbnail($this->getTempFilePath(), $this->thumbnail['width'], $this->thumbnail['height'])
+			->save($this->getPath() . DS . $this->thumbnailPrefix . $this->tempFile);
+	}
+	
+	
+	public function getThumbnailName()
+	{
+		return $this->thumbnailPrefix . $this->getOldAttribute();
+	}
+	
+	public function getThumbnailUrl()
+	{
+		return $this->pathUrl . '/' . $this->getThumbnailName();
+	}
+	
+	public function getThumbnailFilePath()
+	{
+		return $this->path . DS . $this->getThumbnailName();
+	}
+	
+	public function thumbnailExist()
+	{
+		if (is_file($this->getThumbnailFilePath())) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public function deleteThumbnail()
+	{
+		$fileName = $this->thumbnailPrefix . $this->getOldAttribute();
+		@unlink($this->getPath() . DS . $fileName);
+	}
+	
+	protected function resize($width, $height)
+	{
+		$this->_image->resize(new Box($width, $height));
+		
+		return $this->_image;
+	}
+	
+	/**
+	 * Изменяет размер по ширине
+	 * @param  [int] $width
+	 */
+	public function resizeWidth($width)
+	{
+	  $ratio = $width / $this->_image->getSize()->getWidth();
+	  $height = $this->_image->getSize()->getHeight() * $ratio;
+	  $this->resize($width,$height);
+
+	  return $this->_image;
+	}
+
+	/**
+	 * Изменяет размер по высоте
+	 * @param  [int] $height [description]
+	 */
+	public function resizeHeight($height)
+	{
+	  $ratio = $height / $this->_image->getSize()->getHeight();
+    $width = $this->_size->getSize()->getWidth() * $ratio;
+    $this->resize($width,$height);
+
+    return $this->_image;
 	}
 }

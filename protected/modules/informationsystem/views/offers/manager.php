@@ -8,9 +8,9 @@ $this->params['breadcrumbs'] = $breadcrumbs;
 
 $this->params['actionBar'] = [
 	[
-		'label' => '<i class="glyphicon glyphicon-plus"></i> ' . Yii::t('main', 'Button create'),
+		'label' => '<i class="glyphicon glyphicon-plus"></i>',
 		'url' => ['offers/create', 'group_id' => $group_id],
-		'visible' => !Yii::$app->user->isGuest,
+		//'visible' => !Yii::$app->user->isGuest,
 	],
 ];
 ?>
@@ -43,12 +43,6 @@ $this->params['actionBar'] = [
 					},
 				],
 				'create_time:date',
-				[
-					'attribute' => 'user_id',
-					'value' => function ($data) {
-											return "{$data->author->surname} {$data->author->name}";
-					},
-				],
 				'id',
 				[
 					'class' => 'yii\grid\ActionColumn',
