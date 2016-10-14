@@ -7,22 +7,22 @@ use yii\data\ActiveDataProvider;
 use app\modules\page\models\Page;
 use vova07\imperavi\actions\GetAction;
 
-class DefaultController extends \app\modules\main\components\controllers\BackendController
+class DefaultController extends \app\modules\admin\components\controllers\BackendController
 {
 	
 	public function actions()
 	{
 		return [
 			'create' => [
-				'class' => 'app\modules\main\components\actions\CreateAction',
+				'class' => 'app\components\actions\Create',
 				'model' => '\app\modules\page\models\Page',
 			],
 			'update' => [
-				'class' => 'app\modules\main\components\actions\UpdateAction',
+				'class' => 'app\components\actions\Update',
 				'model' => '\app\modules\page\models\Page',
 			],
 			'delete' => [
-				'class' => 'app\modules\main\components\actions\DeleteAction',
+				'class' => 'app\components\actions\Delete',
 				'model' => '\app\modules\page\models\Page',
 			],
       'images-get' => [

@@ -14,11 +14,10 @@ class m160825_114706_create_mn_informationsystem_item_table extends Migration
     {
         $this->createTable('mn_informationsystem_item', [
             'id' => $this->primaryKey(),
-            'parent_id' => $this->integer(),
-            'item_type' => $this->integer(),
-            'informationsystem_id' => $this->string(50),
+            'group_id' => $this->integer(),
+            'informationsystem_id' => $this->integer(),
             'name' => $this->string()->notNull(),
-            'description'  => $this->string(300), 
+            'description' => $this->string(300),
             'content' => $this->text(),
             'image' => $this->string(),
             'video' => $this->string(),
@@ -26,17 +25,17 @@ class m160825_114706_create_mn_informationsystem_item_table extends Migration
             'status' => $this->integer(),
             'sort' => $this->integer(),
             'user_id' => $this->integer(),
-            'date' => $this->integer(),
-            'date_start' => $this->integer(),
-            'date_end' => $this->integer(),
+            'date' => $this->date(),
+            'date_start' => $this->date(),
+            'date_end' => $this->date(),
             'alias' => $this->string(),
             'meta_title' => $this->string(),
             'meta_description' => $this->string(300),
-            'create_time' => $this->integer(),
-            'update_time' => $this->integer(),
-        ]);
-        
-        $this->createIndex('parent_id', 'mn_informationsystem_item', 'parent_id');
+            'create_time' => $this->timestamp()->defaultValue(null),
+            'update_time' => $this->timestamp()->defaultValue(null),
+        ],
+        'ENGINE=myisam'
+        );
     }
 
     /**

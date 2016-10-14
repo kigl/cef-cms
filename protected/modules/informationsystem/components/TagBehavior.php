@@ -33,7 +33,7 @@ class TagBehavior extends \yii\base\Behavior
 		*/
 		$newTags = empty($this->_tags) ? [] : explode(',', $this->_tags);
 		$newTagsModel = []; // новый список тегов
-		
+
 		foreach ($newTags as $newTag) {
 			if (isset($oldTags[$newTag])) { // если в старых тегах есть полученные теги
 				$newTagsModel[$newTag] = $oldTags[$newTag]; 
@@ -48,7 +48,7 @@ class TagBehavior extends \yii\base\Behavior
 				$newTagsModel[$newTag]= $nt; 
 			}
 		}
-		
+
 		/**
 		* Маасив для удаления
 		* @var array

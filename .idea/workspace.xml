@@ -1,0 +1,1079 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6e07290f-06c4-4323-91cd-9aa29f041099" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/php.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/components/behaviors/ConvertDate.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/modules/admin/Module.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/modules/admin/widgets/ActiveForm.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/modules/admin/widgets/Alert.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/modules/admin/widgets/Breadcrumbs.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/modules/admin/widgets/grid/ButtonAction.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/modules/admin/widgets/grid/GridView.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/models/ItemSearch.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/create/group.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/group.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/update/group.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/config/modules/forum.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/config/modules/informationsystem.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/config/modules/main.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/config/modules/page.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/config/modules/shop.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/config/modules/user.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/FrontentControllerAbstract.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/ImageController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/NewsController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/OffersController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/VideoController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/ViewController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/messages/ru/informationsystem.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/models/InformationsystemItemSearch.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/public/images/7fca6d49e9a9d1b8c047840c12b585a7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/public/images/thumbnail_7fca6d49e9a9d1b8c047840c12b585a7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/image/_form.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/image/_item.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/image/create.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/image/manager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/image/update.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/image/view.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/news/_form.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/news/_item.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/news/create.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/news/manager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/news/update.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/news/view.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/offers/_form.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/offers/create.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/offers/manager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/offers/update.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/offers/view.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/video/_form.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/video/_item.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/video/create.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/video/manager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/video/update.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/video/view.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/Module.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/Action.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/ActiveRecord.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/ConfigManager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/DbSetting.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/Module.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/View.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/actions/CreateAction.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/actions/DeleteAction.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/actions/UpdateAction.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/actions/ViewAction.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/behaviors/FileUpload.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/behaviors/FillData.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/behaviors/ImageUpload.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/behaviors/Slug.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/behaviors/UserId.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/behaviors/UserIp.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/controllers/BackendController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/controllers/FrontendController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/fontAwesome/Asset.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/fontAwesome/bundle/css/font-awesome.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/fontAwesome/bundle/fonts/FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/fontAwesome/bundle/fonts/fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/fontAwesome/bundle/fonts/fontawesome-webfont.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/fontAwesome/bundle/fonts/fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/fontAwesome/bundle/fonts/fontawesome-webfont.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/components/fontAwesome/bundle/fonts/fontawesome-webfont.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/config/menu.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/controllers/backend/DefaultController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/controllers/backend/SettingController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/messages/ru/main.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/models/Module.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/models/Setting.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/assets/Asset.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/assets/bundle/css/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/assets/Asset.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/assets/bundle/css/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/default/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/layouts/column_2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/layouts/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/module/_form.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/module/create.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/module/manager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/module/update.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/setting/_form.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/setting/create.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/setting/manager.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/setting/module.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/backend/setting/update.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/layouts/column_2.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/views/layouts/main.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/backend/ActiveForm.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/backend/Alert.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/backend/Breadcrumbs.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/backend/grid/GridView.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/backend/imageInForm/Widget.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/backend/imageInForm/views/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/backend/menuSidebar/Widget.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/backend/menuSidebar/assets/Asset.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/backend/menuSidebar/assets/bundle/css/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/backend/menuSidebar/views/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/backend/menuTop/Widget.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/backend/menuTop/views/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/frontend/topNavBar/Widget.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/main/widgets/frontend/topNavBar/views/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/page/controllers/DefaultController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/page/messages/ru/page.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/user/controllers/DefaultController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/user/messages/ru/user.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/user/traits/User.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/user/views/default/login.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/protected/modules/user/views/default/registry.php" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/models/InformationsystemItem.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/models/Item.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/composer.json" afterPath="$PROJECT_DIR$/protected/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/composer.lock" afterPath="$PROJECT_DIR$/protected/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/config/web.php" afterPath="$PROJECT_DIR$/protected/config/web.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/migrations/m160825_111921_mn_informationsystem.php" afterPath="$PROJECT_DIR$/protected/migrations/m160825_111921_mn_informationsystem.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/migrations/m160825_114706_create_mn_informationsystem_item_table.php" afterPath="$PROJECT_DIR$/protected/migrations/m160825_114706_create_mn_informationsystem_item_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/migrations/m160914_041003_create_mn_informationsystem_item_tag_table.php" afterPath="$PROJECT_DIR$/protected/migrations/m160914_041003_create_mn_informationsystem_item_tag_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/Module.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/Module.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/components/TagBehavior.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/components/TagBehavior.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/config/menu.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/config/menu.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/CreateController.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/CreateController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/DeleteController.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/DeleteController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/ManagerController.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/ManagerController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/UpdateController.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/UpdateController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/models/Informationsystem.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/models/Informationsystem.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/models/Tag.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/models/Tag.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/create/item.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/create/item.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/create/system.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/create/system.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/create/tag.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/create/tag.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/item.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/item.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/system.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/system.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/tag.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/tag.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/update/item.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/update/item.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/update/system.php" afterPath="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/update/system.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/page/Module.php" afterPath="$PROJECT_DIR$/protected/modules/page/Module.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/page/config/menu.php" afterPath="$PROJECT_DIR$/protected/modules/page/config/menu.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/page/controllers/backend/DefaultController.php" afterPath="$PROJECT_DIR$/protected/modules/page/controllers/backend/DefaultController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/page/models/Page.php" afterPath="$PROJECT_DIR$/protected/modules/page/models/Page.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/page/views/backend/default/_form.php" afterPath="$PROJECT_DIR$/protected/modules/page/views/backend/default/_form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/page/views/backend/default/manager.php" afterPath="$PROJECT_DIR$/protected/modules/page/views/backend/default/manager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/shop/config/menu.php" afterPath="$PROJECT_DIR$/protected/modules/shop/config/menu.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/user/Module.php" afterPath="$PROJECT_DIR$/protected/modules/user/Module.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/user/config/menu.php" afterPath="$PROJECT_DIR$/protected/modules/user/config/menu.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/user/controllers/backend/DefaultController.php" afterPath="$PROJECT_DIR$/protected/modules/user/controllers/backend/DefaultController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/user/models/LoginForm.php" afterPath="$PROJECT_DIR$/protected/modules/user/models/LoginForm.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/user/models/User.php" afterPath="$PROJECT_DIR$/protected/modules/user/models/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/user/views/backend/default/_form.php" afterPath="$PROJECT_DIR$/protected/modules/user/views/backend/default/_form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/modules/user/views/backend/default/manager.php" afterPath="$PROJECT_DIR$/protected/modules/user/views/backend/default/manager.php" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="main2" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>guessColumns</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/models/InformationsystemItemSearch.php" />
+        <option value="$PROJECT_DIR$/protected/migrations/m161012_101545_create_mn_informationsystem_item_group_table.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/create/system.php" />
+        <option value="$PROJECT_DIR$/protected/migrations/m160914_041003_create_mn_informationsystem_item_tag_table.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/create/group.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/update/system.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/ViewController.php" />
+        <option value="$PROJECT_DIR$/protected/components/behaviors/file/ImageUpload.php" />
+        <option value="$PROJECT_DIR$/protected/messages/ru/app.php" />
+        <option value="$PROJECT_DIR$/protected/modules/admin/widgets/imageInForm/Widget.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/CreateController.php" />
+        <option value="$PROJECT_DIR$/protected/migrations/m160825_111921_mn_informationsystem.php" />
+        <option value="$PROJECT_DIR$/protected/migrations/m161012_101545_create_mn_informationsystem_group_table.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/models/Group.php" />
+        <option value="$PROJECT_DIR$/protected/migrations/m160825_114706_create_mn_informationsystem_item_table.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/update/group.php" />
+        <option value="$PROJECT_DIR$/protected/components/behaviors/ConvertDateTime.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/models/ItemSearch.php" />
+        <option value="//192.168.0.2/omtex/Обмен/Маркетинг_NEW/план работы/SEO - Голодаев К.А/10,2016/13.txt" />
+        <option value="$PROJECT_DIR$/protected/components/behaviors/ConvertDate.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/models/Informationsystem.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/update/item.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/messages/ru/module.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/models/Tag.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/ManagerController.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/tag.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/UpdateController.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/create/item.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/components/TagBehavior.php" />
+        <option value="C:/cuteFtp job/runtime/product_info.html" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/DeleteController.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/ProductController.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/product/index.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/models/Product.php" />
+        <option value="$PROJECT_DIR$/protected/config/web.php" />
+        <option value="$PROJECT_DIR$/protected/composer.json" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/item.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/group.php" />
+        <option value="$PROJECT_DIR$/protected/modules/admin/messages/ru/module.php" />
+        <option value="$PROJECT_DIR$/protected/modules/admin/widgets/ActiveForm.php" />
+        <option value="$PROJECT_DIR$/protected/modules/page/views/backend/default/manager.php" />
+        <option value="$PROJECT_DIR$/protected/modules/admin/widgets/grid/ButtonsAction.php" />
+        <option value="$PROJECT_DIR$/protected/modules/admin/widgets/grid/GridView.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/system.php" />
+        <option value="$PROJECT_DIR$/protected/components/behaviors/FillData.php" />
+        <option value="$PROJECT_DIR$/protected/modules/informationsystem/models/Item.php" />
+        <option value="$PROJECT_DIR$/protected/modules/user/Module.php" />
+        <option value="$PROJECT_DIR$/protected/modules/user/models/LoginForm.php" />
+        <option value="$PROJECT_DIR$/protected/modules/admin/widgets/grid/ButtonAction.php" />
+        <option value="$PROJECT_DIR$/protected/modules/user/views/backend/default/manager.php" />
+        <option value="$PROJECT_DIR$/protected/modules/admin/views/setting/manager.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true">
+    <include_path>
+      <path value="C:\OpenServer\domains\main2\protected\vendor" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1608" />
+    <option name="height" value="864" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers ProjectPane="false" />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource ProjectPane="false" />
+      <autoscrollFromSource />
+      <sortByType ProjectPane="true" />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="vendor">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="main2">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="setting" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/protected/vendor" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.uml" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e07290f-06c4-4323-91cd-9aa29f041099" name="Default" comment="" />
+      <created>1476161426596</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1476161426596</updated>
+      <workItem from="1476161453017" duration="291000" />
+      <workItem from="1476243581450" duration="10869000" />
+      <workItem from="1476262190732" duration="10753000" />
+      <workItem from="1476330528496" duration="28688000" />
+      <workItem from="1476416187940" duration="104000" />
+      <workItem from="1476416341178" duration="4765000" />
+      <workItem from="1476422668597" duration="12337000" />
+      <workItem from="1476445365803" duration="589000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="68396000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-4" y="-4" width="1608" height="864" extended-state="7" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27663672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="626" y="46" width="348" height="763" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32837838" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2740693" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="626" y="46" width="348" height="763" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32837838" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processed" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../dotplant2/application/web/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dotplant2/application/config/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2083">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/admin/config/module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/forum/config/module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/config/module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dotplant2/application/modules/shop/controllers/BackendProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7888">
+          <caret line="109" column="32" lean-forward="true" selection-start-line="109" selection-start-column="32" selection-end-line="109" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/models/ItemSearch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/DeleteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1181">
+          <caret line="81" column="28" lean-forward="false" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/ManagerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="688">
+          <caret line="69" column="21" lean-forward="false" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/CreateController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/models/Group.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\app\modules\informationsystem\Module">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\app\modules\informationsystem\Module</OriginalElement>
+          <nodes>
+            <node x="8.0" y="160.0">\yii\base\Component</node>
+            <node x="5.0" y="0.0">\yii\base\Configurable</node>
+            <node x="18.5" y="480.0">\app\modules\informationsystem\Module</node>
+            <node x="18.5" y="320.0">\yii\base\Module</node>
+            <node x="18.5" y="400.0">\app\components\Module</node>
+            <node x="0.0" y="240.0">\yii\di\ServiceLocator</node>
+            <node x="19.5" y="80.0">\yii\base\Object</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="\yii\base\Object" target="\yii\base\Configurable">
+              <point x="0.0" y="-15.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+            <edge source="\app\modules\informationsystem\Module" target="\app\components\Module">
+              <point x="0.0" y="-15.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+            <edge source="\yii\base\Module" target="\yii\di\ServiceLocator">
+              <point x="0.0" y="-15.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+            <edge source="\app\components\Module" target="\yii\base\Module">
+              <point x="0.0" y="-15.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+            <edge source="\yii\di\ServiceLocator" target="\yii\base\Component">
+              <point x="0.0" y="-15.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+            <edge source="\yii\base\Component" target="\yii\base\Object">
+              <point x="0.0" y="-15.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="-275.0" y="152.0" />
+          <SelectedNodes>
+            <node>\app\modules\informationsystem\Module</node>
+          </SelectedNodes>
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\app\modules\informationsystem\controllers\backend\ManagerController">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\app\modules\informationsystem\controllers\backend\ManagerController</OriginalElement>
+          <nodes>
+            <node x="" y="">\yii\base\Controller</node>
+            <node x="" y="">\app\modules\informationsystem\controllers\backend\ManagerController</node>
+            <node x="" y="">\yii\base\Component</node>
+            <node x="" y="">\app\modules\admin\components\controllers\BackendController</node>
+            <node x="" y="">\yii\base\Configurable</node>
+            <node x="" y="">\yii\web\Controller</node>
+            <node x="" y="">\yii\base\ViewContextInterface</node>
+            <node x="" y="">\yii\base\Object</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.7082474226804124" x="173.0" y="355.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\app\components\ConfigManager">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\app\components\ConfigManager</OriginalElement>
+          <nodes>
+            <node x="" y="">\app\components\ConfigManager</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="54.0" y="15.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\app\components\Module">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\app\components\Module</OriginalElement>
+          <nodes>
+            <node x="0.0" y="402.0">\yii\base\Component</node>
+            <node x="232.5" y="0.0">\yii\base\Configurable</node>
+            <node x="21.44277942159016" y="1246.8805955903408">\yii\base\Module</node>
+            <node x="165.5" y="1808.0">\app\components\Module</node>
+            <node x="150.0" y="988.0">\yii\di\ServiceLocator</node>
+            <node x="122.0" y="80.0">\yii\base\Object</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="\yii\base\Object" target="\yii\base\Configurable">
+              <point x="0.0" y="-136.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+            <edge source="\yii\base\Module" target="\yii\di\ServiceLocator">
+              <point x="0.0" y="-257.0" />
+              <point x="0.0" y="103.0" />
+            </edge>
+            <edge source="\app\components\Module" target="\yii\base\Module">
+              <point x="0.0" y="-92.0" />
+              <point x="0.0" y="257.0" />
+            </edge>
+            <edge source="\yii\di\ServiceLocator" target="\yii\base\Component">
+              <point x="0.0" y="-103.0" />
+              <point x="0.0" y="268.0" />
+            </edge>
+            <edge source="\yii\base\Component" target="\yii\base\Object">
+              <point x="0.0" y="-268.0" />
+              <point x="0.0" y="136.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0414512922465209" x="-35.0" y="1537.0" />
+          <SelectedNodes>
+            <node>\yii\base\Module</node>
+          </SelectedNodes>
+          <Categories>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\app\components\DbSetting">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\app\components\DbSetting</OriginalElement>
+          <nodes>
+            <node x="7.0" y="160.0">\app\components\DbSetting</node>
+            <node x="0.0" y="0.0">\yii\base\Configurable</node>
+            <node x="14.5" y="80.0">\yii\base\Object</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="\yii\base\Object" target="\yii\base\Configurable">
+              <point x="0.0" y="-15.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+            <edge source="\app\components\DbSetting" target="\yii\base\Object">
+              <point x="0.0" y="-15.0" />
+              <point x="0.0" y="15.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="48.0" y="95.0" />
+          <SelectedNodes>
+            <node>\app\components\DbSetting</node>
+          </SelectedNodes>
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/controllers/backend/ProductController.php" />
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/views/backend/product/index.php" />
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/models/Product.php" />
+    <entry file="file://$PROJECT_DIR$/protected/config/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/item.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/admin/messages/ru/module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/vendor/yiisoft/yii2/grid/GridView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/admin/widgets/ActiveForm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/page/views/backend/default/manager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="38" lean-forward="false" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/group.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/admin/widgets/grid/GridView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1926">
+          <caret line="114" column="5" lean-forward="false" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/views/backend/manager/system.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/components/behaviors/FillData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="59" lean-forward="false" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/models/Informationsystem.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/components/behaviors/UserId.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/informationsystem/models/Item.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2669">
+          <caret line="171" column="0" lean-forward="true" selection-start-line="171" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/vendor/yiisoft/yii2/helpers/BaseArrayHelper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/vendor/yiisoft/yii2/helpers/ArrayHelper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/vendor/yiisoft/yii2/web/Application.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/vendor/yiisoft/yii2/base/Application.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/vendor/yiisoft/yii2/base/Module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6239">
+          <caret line="372" column="20" lean-forward="false" selection-start-line="372" selection-start-column="20" selection-end-line="372" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/vendor/yiisoft/yii2/di/ServiceLocator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/vendor/yiisoft/yii2/base/Component.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1020">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/vendor/yiisoft/yii2/base/Object.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-306">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/vendor/yiisoft/yii2/base/Configurable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/components/Module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\app\modules\user\Module">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\app\modules\user\Module</OriginalElement>
+          <nodes>
+            <node x="" y="">\yii\base\Component</node>
+            <node x="" y="">\yii\base\Configurable</node>
+            <node x="" y="">\yii\base\Module</node>
+            <node x="" y="">\app\components\Module</node>
+            <node x="" y="">\yii\di\ServiceLocator</node>
+            <node x="" y="">\yii\base\Object</node>
+            <node x="" y="">\app\modules\user\Module</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="53.0" y="255.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/user/Module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/user/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1556">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/user/models/LoginForm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="76" column="49" lean-forward="false" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/user/controllers/frontend/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/admin/widgets/grid/ButtonAction.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315">
+          <caret line="43" column="26" lean-forward="false" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/user/views/backend/default/manager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="40" lean-forward="false" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/modules/admin/views/setting/manager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

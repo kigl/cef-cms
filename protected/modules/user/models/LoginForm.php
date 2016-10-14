@@ -8,20 +8,20 @@ use yii\web\HttpException;
 use app\modules\user\models\User;
 
 /**
-* This is the model class for table "mn_user".
-*
-* @property integer $id
-* @property integer $role
-* @property string $login
-* @property string $surname
-* @property string $name
-* @property string $lastname
-* @property string $email
-* @property string $password
-* @property integer $status
-* @property integer $create_time
-* @property string $ip
-*/
+ * This is the model class for table "mn_user".
+ *
+ * @property integer $id
+ * @property integer $role
+ * @property string $login
+ * @property string $surname
+ * @property string $name
+ * @property string $lastname
+ * @property string $email
+ * @property string $password
+ * @property integer $status
+ * @property integer $create_time
+ * @property string $ip
+ */
 class LoginForm extends Model
 {
     private $_user;
@@ -30,8 +30,8 @@ class LoginForm extends Model
     public $password;
 
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -43,16 +43,16 @@ class LoginForm extends Model
 
     public function validatePassword($attribute)
     {
-    	$user = $this->getUser();
-    	
-	    if (!$user or !Yii::$app->security->validatePassword($this->password, $user->password)) {
-	        $this->addError($attribute, 'Логин или пароль введены неверно!');
-	    }
+        $user = $this->getUser();
+
+        if (!$user or !Yii::$app->security->validatePassword($this->password, $user->password)) {
+            $this->addError($attribute, 'Логин или пароль введены неверно!');
+        }
     }
 
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [
@@ -67,31 +67,30 @@ class LoginForm extends Model
             Yii::$app->user->login($this->_user);
             return true;
         }
-        
+
         return false;
     }
 
-    public function checkUser($bool = true)
+    public function checkUser($status = true)
     {
-    	if ($bool) {
-        if ($this->_user->status == User::STATUS_ACTIVE) {
-            return true;
+        if ($status) {
+            if ($this->_user->status == User::STATUS_ACTIVE) {
+                return true;
+            } else {
+                throw new HttpException(403);
+            }
         }
-        else {
-            throw new HttpException(403);
-        }
-      }
-      
-      return true;
+
+        return true;
     }
-    
+
     public function getUser()
     {
         if ($this->_user == null) {
             $this->_user = User::find()
-            ->where(['login' => $this->login])
-            ->orWhere(['email' => $this->login])
-            ->one();
+                ->where(['login' => $this->login])
+                ->orWhere(['email' => $this->login])
+                ->one();
         }
 
         return $this->_user;

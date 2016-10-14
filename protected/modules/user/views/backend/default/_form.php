@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-use app\modules\main\widgets\backend\ActiveForm;
+use app\modules\admin\widgets\ActiveForm;
 use app\modules\user\models\User;
 ?>
 
@@ -9,12 +9,12 @@ use app\modules\user\models\User;
 <ul class="nav nav-tabs">
 	<li class="active">
 		<a href="#main" data-toggle="tab">
-			Основные данные
+			<?= Yii::t('user', 'Main data');?>
 		</a>
 	</li>
 	<li>
 		<a href="#profile" data-toggle="tab">
-			Профиль
+			<?= Yii::t('user', 'Profile');?>
 		</a>
 	</li>
 </ul>

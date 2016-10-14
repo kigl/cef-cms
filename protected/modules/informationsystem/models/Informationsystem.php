@@ -3,11 +3,13 @@
 namespace app\modules\informationsystem\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "mn_informationsystem".
  *
- * @property string $id
+ * @property integer $id
  * @property string $name
  * @property string $description
  * @property string $content
@@ -40,10 +42,10 @@ class Informationsystem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'name', 'description'], 'required'],
+            [['name'], 'required'],
             [['content'], 'string'],
             [['status', 'sort', 'user_id', 'items_per_page', 'create_time', 'update_time'], 'integer'],
-            [['id', 'template'], 'string', 'max' => 50],
+            [['template'], 'string', 'max' => 50],
             [['name'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 300],
             ['image', 'file'],
@@ -57,20 +59,19 @@ class Informationsystem extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('main', 'ID'),
-            'name' => Yii::t('main', 'Name'),
-            'description' => Yii::t('main', 'Description'),
-            'content' => Yii::t('main', 'Content'),
-            'image' => Yii::t('main', 'Image'),
-            'status' => Yii::t('main', 'Status'),
-            'sort' => Yii::t('main', 'Sort'),
-            'meta_title' => Yii::t('main', 'Seo Title'),
-            'meta_description' => Yii::t('main', 'Seo Description'),
-            'template' => Yii::t('main', 'Template'),
-            'user_id' => Yii::t('main', 'User ID'),
-            'items_on_page' => Yii::t('main', 'Items on page'),
-            'create_time' => Yii::t('main', 'Create Time'),
-            'update_time' => Yii::t('main', 'Update Time'),
+            'id' => Yii::t('informationsystem', 'ID'),
+            'name' => Yii::t('informationsystem', 'Name'),
+            'description' => Yii::t('informationsystem', 'Description'),
+            'content' => Yii::t('informationsystem', 'Content'),
+            'image' => Yii::t('informationsystem', 'Image'),
+            'status' => Yii::t('informationsystem', 'Status'),
+            'sort' => Yii::t('informationsystem', 'Sort'),
+            'meta_title' => Yii::t('app', 'Meta title'),
+            'meta_description' => Yii::t('app', 'Meta description'),
+            'user_id' => Yii::t('informationsystem', 'User id'),
+            'items_per_page' => Yii::t('informationsystem', 'Items per page'),
+            'create_time' => Yii::t('app', 'Create time'),
+            'update_time' => Yii::t('app', 'Update time'),
         ];
     }
     
@@ -79,11 +80,12 @@ class Informationsystem extends \yii\db\ActiveRecord
 			return [
 				[
 					'class' => 'yii\behaviors\TimestampBehavior',
+                    'value' => new Expression('NOW()'),
 					'createdAtAttribute' => 'create_time',
 					'updatedAtAttribute' => 'update_time',
 				],
 				[
-					'class' => 'app\modules\main\components\behaviors\ImageUpload',
+					'class' => 'app\components\behaviors\file\ImageUpload',
 					'attribute' => 'image',
 					'path' => Yii::$app->controller->module->getImagesPath(),
 					'pathUrl' => Yii::$app->controller->module->getImagesPathUrl(),
@@ -94,15 +96,14 @@ class Informationsystem extends \yii\db\ActiveRecord
     public function getStatusList()
     {
 			return [
-				self::STATUS_BLOCK => Yii::t('main', 'status block'),
-				self::STATUS_ACTIVE => Yii::t('main', 'status active'),
+				self::STATUS_BLOCK => Yii::t('informationsystem', 'Status block'),
+				self::STATUS_ACTIVE => Yii::t('informationsystem', 'Status active'),
 			];
 		}
 		
 		public function getStatus($id)
 		{
-			$status = $this->getStatusList();
-			return $status[$id];
+			return ArrayHelper::getValue($this->getStatusList(), $id);
 		}
 		
 		public static function getSystem($id, $type = 'object')

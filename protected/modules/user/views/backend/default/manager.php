@@ -1,12 +1,12 @@
 <?php
-use app\modules\main\widgets\backend\grid\GridView;
+use app\modules\admin\widgets\grid\GridView;
 use app\modules\user\models\User;
 ?>
 
 <?php
 echo GridView::widget([
 		'dataProvider' => $dataProvider,
-		'buttons' => ['create'],
+		'buttons' => ['create' => ['item']],
 		'columns' => [
 			'login',
 			[

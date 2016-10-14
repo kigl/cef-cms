@@ -3,7 +3,7 @@
 namespace app\modules\informationsystem\models;
 
 use Yii;
-use app\modules\informationsystem\models\InformationsystemItem as Item;
+use app\modules\informationsystem\models\Item;
 use app\modules\informationsystem\models\TagRelations;
 
 /**
@@ -29,8 +29,8 @@ class Tag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-        		['name', 'required'],
-            [['informationsystem_id'], 'string', 'max' => 50],
+            ['name', 'required'],
+            [['informationsystem_id'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -41,15 +41,15 @@ class Tag extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('main', 'ID'),
-            'name' => Yii::t('main', 'Name'),
-            'informationsystem_id' => Yii::t('main', 'Informationsystem id'),
+            'id' => Yii::t('informationsystem', 'Tag id'),
+            'name' => Yii::t('informationsystem', 'Tag name'),
+            'informationsystem_id' => Yii::t('informationsystem', 'id'),
         ];
     }
-    
+
     public function getItems()
     {
-			return $this->hasMany(Item::className(), ['id' => 'item_id'])
-								->viaTable(TagRelations::tableName(), ['tag_id' => 'id']);
-		}
+        return $this->hasMany(Item::className(), ['id' => 'item_id'])
+            ->viaTable(TagRelations::tableName(), ['tag_id' => 'id']);
+    }
 }

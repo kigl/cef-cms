@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bdd3a7879f01486fc48a4d91ca465495",
-    "content-hash": "15c395e9ac599a465b21a32183d46d12",
+    "hash": "612b1a1a05ceb56b843945567057f7e0",
+    "content-hash": "8054e9ff31b0ba0e422f77fedb1e0121",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -446,54 +446,6 @@
                 "image processing"
             ],
             "time": "2013-07-10 17:25:36"
-        },
-        {
-            "name": "sjaakp/yii2-taggable",
-            "version": "v1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sjaakp/yii2-taggable.git",
-                "reference": "cae0ed37e23515f45cd5569ad3d4886c6c73a966"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sjaakp/yii2-taggable/zipball/cae0ed37e23515f45cd5569ad3d4886c6c73a966",
-                "reference": "cae0ed37e23515f45cd5569ad3d4886c6c73a966",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/jquery-tag-editor": "*",
-                "yiisoft/yii2": "*",
-                "yiisoft/yii2-jui": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "sjaakp\\taggable\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sjaak Priester",
-                    "email": "sjaak@sjaakpriester.nl",
-                    "homepage": "http://sjaakpriester.nl"
-                }
-            ],
-            "description": "Manage tags of ActiveRecord in Yii2.",
-            "keywords": [
-                "Behavior",
-                "extension",
-                "tag",
-                "tags",
-                "widget",
-                "yii",
-                "yii2"
-            ],
-            "time": "2015-10-16 14:51:37"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1063,6 +1015,54 @@
             ],
             "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
             "time": "2016-04-07 12:29:16"
+        },
+        {
+            "name": "sjaakp/yii2-taggable",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sjaakp/yii2-taggable.git",
+                "reference": "cae0ed37e23515f45cd5569ad3d4886c6c73a966"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sjaakp/yii2-taggable/zipball/cae0ed37e23515f45cd5569ad3d4886c6c73a966",
+                "reference": "cae0ed37e23515f45cd5569ad3d4886c6c73a966",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-tag-editor": "*",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-jui": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "sjaakp\\taggable\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sjaak Priester",
+                    "email": "sjaak@sjaakpriester.nl",
+                    "homepage": "http://sjaakpriester.nl"
+                }
+            ],
+            "description": "Manage tags of ActiveRecord in Yii2.",
+            "keywords": [
+                "Behavior",
+                "extension",
+                "tag",
+                "tags",
+                "widget",
+                "yii",
+                "yii2"
+            ],
+            "time": "2015-10-16 14:51:37"
         },
         {
             "name": "yiisoft/yii2-codeception",

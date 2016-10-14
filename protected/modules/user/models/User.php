@@ -20,7 +20,7 @@ use yii\web\HttpException;
 * @property integer $create_time
 * @property string $ip
 */
-class User extends \app\modules\main\components\ActiveRecord implements \yii\web\IdentityInterface
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     public $password_repeat;
 
@@ -62,19 +62,19 @@ class User extends \app\modules\main\components\ActiveRecord implements \yii\web
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('main', 'ID'),
-            'role' => Yii::t('main', 'Role'),
-            'login' => Yii::t('main', 'Login'),
-            'surname' => Yii::t('main', 'Surname'),
-            'name' => Yii::t('main', 'Name'),
-            'lastname' => Yii::t('main', 'Lastname'),
-            'email' => Yii::t('main', 'Email'),
-            'password' => Yii::t('main', 'Password'),
-            'status' => Yii::t('main', 'Status'),
-            'create_time' => Yii::t('main', 'Create Time'),
-            'update_time' => Yii::t('main', 'Update time'),
-            'ip' => Yii::t('main', 'Ip'),
-            'password_repeat' => Yii::t('main', 'password_repeat'),
+            'id' => Yii::t('user', 'Id'),
+            'role' => Yii::t('user', 'Role'),
+            'login' => Yii::t('user', 'Login'),
+            'surname' => Yii::t('user', 'Surname'),
+            'name' => Yii::t('user', 'Name'),
+            'lastname' => Yii::t('user', 'Lastname'),
+            'email' => Yii::t('user', 'Email'),
+            'password' => Yii::t('user', 'Password'),
+            'status' => Yii::t('user', 'Status'),
+            'create_time' => Yii::t('app', 'Create Time'),
+            'update_time' => Yii::t('app', 'Update time'),
+            'ip' => Yii::t('user', 'Ip'),
+            'password_repeat' => Yii::t('user', 'Password repeat'),
         ];
     }
 
@@ -87,7 +87,7 @@ class User extends \app\modules\main\components\ActiveRecord implements \yii\web
         			'updatedAtAttribute' => 'update_time',
         		],
             'userIp' => [
-                'class' => 'app\modules\main\components\behaviors\UserIp',
+                'class' => 'app\components\behaviors\UserIp',
                 'attribute' => 'ip',
             ],
             /*'hashPassword' => [
@@ -100,9 +100,9 @@ class User extends \app\modules\main\components\ActiveRecord implements \yii\web
     public static function getStatusList()
     {
         return [
-            self::STATUS_BLOCK => Yii::t('main',  'user block'),
-            self::STATUS_ACTIVE => Yii::t('main', 'user active'),
-            self::STATUS_NOT_ACTIVE => Yii::t('main', 'user not active'),
+            self::STATUS_BLOCK => Yii::t('user',  'Status block'),
+            self::STATUS_ACTIVE => Yii::t('user', 'Status active'),
+            self::STATUS_NOT_ACTIVE => Yii::t('user', 'Status not active'),
         ];
     }
 

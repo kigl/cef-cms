@@ -7,7 +7,7 @@ class m160825_111921_mn_informationsystem extends Migration
     public function up()
     {
 			$this->createTable('mn_informationsystem', [
-				'id' => $this->string(50),
+				'id' => $this->primaryKey(),
 				'name' => $this->string()->notNull(),
 				'description' => $this->string(300)->notNull(),
 				'content' => $this->text(),
@@ -18,12 +18,10 @@ class m160825_111921_mn_informationsystem extends Migration
 				'user_id' => $this->integer(),
 				'meta_title' => $this->string(),
 				'meta_description' => $this->string(),
-        'items_per_page' => $this->integer(),
-				'create_time' => $this->integer(),
-				'update_time' => $this->integer(),
+                'items_per_page' => $this->integer(),
+				'create_time' => $this->timestamp()->defaultValue(null),
+				'update_time' => $this->timestamp()->defaultValue(null),
 			]);
-			
-			$this->addPrimaryKey('id', 'mn_informationsystem', 'id');
     }
 
     public function down()

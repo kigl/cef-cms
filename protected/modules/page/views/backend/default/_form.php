@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Url;
-use app\modules\main\widgets\backend\ActiveForm;
+use app\modules\admin\widgets\ActiveForm;
 use vova07\imperavi\Widget as Imperavi;
 ?>
 

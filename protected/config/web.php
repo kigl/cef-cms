@@ -1,120 +1,119 @@
 <?php
 $config = [
-	'id' => 'main2',
-	'basePath' => dirname(dirname(__FILE__)),
-	'bootstrap' => ['log', 'setting'],
-	
-	'defaultRoute' => 'site/index',
+    'id' => 'main2',
+    'basePath' => dirname(dirname(__FILE__)),
+    'bootstrap' => ['log', 'setting'],
 
-	'language' => 'ru-RU',
+    'defaultRoute' => 'site/index',
 
-	'components' => [
-		'i18n'=>array(
-			'translations' => array(
-				'main' => array(
-					'class'   => 'yii\i18n\PhpMessageSource',
-					'basePath'=> '@app/modules/main/messages',
-					/*'fileMap'   => array(
-						'main'=> 'main.php',
-					),*/
-				),		
-			),
-		),
-		
-		'formatter' => [
-      'defaultTimeZone' => 'UTC',
-			'dateFormat' => 'medium',
-			'defaultTimeZone' => 'Europe/Moscow',
-		],
+    'language' => 'ru-RU',
 
-		'request' => [
-			// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-			'cookieValidationKey' => 'main2',
-		],
+    'components' => [
+        'i18n' => array(
+            'translations' => array(
+                'app' => array(
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    'fileMap'   => array(
+                        'app'=> 'app.php',
+                    ),
+                ),
+            ),
+        ),
 
-		'setting' => [
-			'class' => 'app\modules\main\components\DbSetting',
-		],
+        'formatter' => [
+            'dateFormat' => 'medium',
+            'defaultTimeZone' => 'Europe/Moscow',
+        ],
 
-		'cache' => [
-		'class' => 'yii\caching\FileCache',
-		],
+        'request' => [
+            'enableCsrfValidation' => true,
+            'cookieValidationKey' => 'main2',
+        ],
 
-		/*
-		'view' => [
-			'class' => 'app\modules\main\components\View',
-			'theme' => [
-				'pathMap'  => [
-					'@app/views' => ['@app/themes/basic'],
-				],
-				'basePath' => '@app/themes/basic',
-				'baseUrl' => '@web/protected/themes/basic',
-			],
-		],
-		*/
+        'setting' => [
+            'class' => 'app\components\DbSetting',
+        ],
 
-		'assetManager' => [
-			'basePath' => '@webroot/public/assets',
-			'baseUrl' => '@web/public/assets',
-			'appendTimestamp' => false,
-		],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
 
-		'user' => [
-			'identityClass' => 'app\modules\user\models\User',
-			'enableAutoLogin' => false,
-			'loginUrl' => ['/user/default/login'],
-		],
+        /*
+        'view' => [
+            'class' => 'app\modules\main\components\View',
+            'theme' => [
+                'pathMap'  => [
+                    '@app/views' => ['@app/themes/basic'],
+                ],
+                'basePath' => '@app/themes/basic',
+                'baseUrl' => '@web/protected/themes/basic',
+            ],
+        ],
+        */
 
-		'authManager' => [
-			'class' => 'yii\rbac\DbManager',
-			'defaultRoles' => ['guest'],
-		],
+        'assetManager' => [
+            'basePath' => '@webroot/public/assets',
+            'baseUrl' => '@web/public/assets',
+            'appendTimestamp' => false,
+        ],
 
-		'errorHandler' => [
-			//'errorAction' => 'site/error',
-		],
-		'mailer' => [
-			'class' => 'yii\swiftmailer\Mailer',
-			// send all mails to a file by default. You have to set
-			// 'useFileTransport' to false and configure a transport
-			// for the mailer to send real emails.
-			'useFileTransport' => true,
-		],
-		'log' => [
-			'traceLevel' => YII_DEBUG ? 3 : 0,
-			'targets' => [
-				[
-					'class' => 'yii\log\FileTarget',
-					'levels' => ['error', 'warning'],
-				],
-			],
-		],
-		
-		'db' =>  require (__DIR__ . '/db.php'),
+        'user' => [
+            'identityClass' => 'app\modules\user\models\User',
+            'enableAutoLogin' => false,
+            'loginUrl' => ['/user/default/login'],
+        ],
 
-		'urlManager' => [
-			'enablePrettyUrl' => true,
-			'enableStrictParsing' => false,
-			'showScriptName' => false,
-			'rules' => [
-			'/' => 'site/index',
-			],
-		],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest'],
+        ],
 
-	],
+        'errorHandler' => [
+            //'errorAction' => 'site/error',
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => true,
+        ],
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning'],
+                ],
+            ],
+        ],
+
+        'db' => require(__DIR__ . '/db.php'),
+
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'enableStrictParsing' => false,
+            'showScriptName' => false,
+            'rules' => [
+                '/' => 'site/index',
+            ],
+        ],
+
+    ],
 ];
 
-if(YII_ENV_DEV){
-	// configuration adjustments for 'dev' environment
-	$config['bootstrap'][] = 'debug';
-	$config['modules']['debug'] = [
-		'class' => 'yii\debug\Module',
-	];
+if (YII_ENV_DEV) {
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = [
+        'class' => 'yii\debug\Module',
+    ];
 
-	$config['bootstrap'][] = 'gii';
-	$config['modules']['gii'] = [
-		'class' => 'yii\gii\Module',
-	];
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+    ];
 }
 
 return $config;

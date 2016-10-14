@@ -3,10 +3,11 @@
 namespace app\modules\informationsystem\controllers\backend;
 
 use Yii;
-use app\modules\informationsystem\models\InformationsystemItem as Item;
+use app\modules\informationsystem\models\Group;
+use app\modules\informationsystem\models\Item;
 use app\modules\informationsystem\models\Tag;
 
-class UpdateController extends \app\modules\main\components\controllers\BackendController
+class UpdateController extends \app\modules\admin\components\controllers\BackendController
 {
 	public $defaultAction = 'system';
 	
@@ -14,31 +15,51 @@ class UpdateController extends \app\modules\main\components\controllers\BackendC
 	{
 		return [
 			'system' => [
-				'class' => 'app\modules\main\components\actions\UpdateAction',
+				'class' => 'app\components\actions\Update',
 				'model' => '\app\modules\informationsystem\models\Informationsystem',
 				'view' => 'system',
-				'redirect' => ['backend/manager/system'],
+				'redirect' => ['manager/system'],
 			],
 		];
 	}
-	
-	public function actionItem($id)
+
+    public function actionGroup($id)
+    {
+        $model = Group::findOne($id);
+
+        if ($model->load(Yii::$app->request->post()) and $model->save()) {
+            Yii::$app->session->setFlash('success', Yii::t('app', 'Updated element'));
+
+            return $this->redirect([
+                'manager/group',
+                'parent_id' => $model->parent_id,
+                'informationsystem_id' => $model->informationsystem_id,
+            ]);
+        }
+
+        return $this->render('group', [
+            'model' => $model,
+            'breadcrumbs' => Group::buildBreadcrumbs($model->id, $model->informationsystem_id),
+        ]);
+    }
+
+    public function actionItem($id)
 	{
 		$model = Item::findOne($id);
 		
 		if ($model->load(Yii::$app->request->post()) and $model->save()) {	
-			Yii::$app->session->setFlash('success', Yii::t('main', 'Updated element'));
+			Yii::$app->session->setFlash('success', Yii::t('app', 'Updated element'));
 				
 			return $this->redirect([
-				'backend/manager/item',
+				'manager/group',
 				'informationsystem_id' => $model->informationsystem_id,
-				'group_id' => $model->parent_id,
+				'parent_id' => $model->group_id,
 			]);
 		}
 		
 		return $this->render('item', [
 				'model' => $model,
-				'breadcrumbs' => Item::buildBreadcrumbs($model->id, $model->informationsystem_id),
+				'breadcrumbs' => Group::buildBreadcrumbs($model->group_id, $model->informationsystem_id),
 			]);
 	}	
 	
@@ -47,10 +68,10 @@ class UpdateController extends \app\modules\main\components\controllers\BackendC
 		$model = Tag::findOne($id);
 		
 		if ($model->load(Yii::$app->request->post()) and $model->save()) {
-			Yii::$app->session->setFlash('success', Yii::t('main', 'Created element'));
+			Yii::$app->session->setFlash('success', Yii::t('app', 'Created element'));
 			
 			return $this->redirect([
-							'backend/manager/tag',
+							'manager/tag',
 							'informationsystem_id' => $model->informationsystem_id,
 						]);				
 		}
@@ -58,7 +79,7 @@ class UpdateController extends \app\modules\main\components\controllers\BackendC
 		return $this->render('tag', [
 						'model' => $model,
 						'informationsytem_id' => $model->informationsystem_id, 	
-						'breadcrumbs' => Item::buildBreadcrumbs(null, $model->informationsystem_id),
+						'breadcrumbs' => Group::buildBreadcrumbs(null, $model->informationsystem_id),
 					]);
 	}
 }

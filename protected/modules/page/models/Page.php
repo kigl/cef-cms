@@ -46,14 +46,14 @@ class Page extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('main', 'ID'),
-            'name' => Yii::t('main', 'Name'),
-            'content' => Yii::t('main', 'Content'),
-            'alias' => Yii::t('main', 'Alias'),
-            'meta_title' => Yii::t('main', 'Meta Title'),
-            'meta_description' => Yii::t('main', 'Meta Description'),
-            'create_time' => Yii::t('main', 'Create Time'),
-            'update_time' => Yii::t('main', 'Update Time'),
+            'id' => Yii::t('page', 'Id'),
+            'name' => Yii::t('page', 'Name'),
+            'content' => Yii::t('page', 'Content'),
+            'alias' => Yii::t('app', 'Alias'),
+            'meta_title' => Yii::t('app', 'Meta title'),
+            'meta_description' => Yii::t('app', 'Meta description'),
+            'create_time' => Yii::t('app', 'Create time'),
+            'update_time' => Yii::t('app', 'Update time'),
         ];
     }
     

@@ -21,11 +21,11 @@ defined('YII_ENV') or define('YII_ENV', 'dev');
 require(__DIR__ . '/protected/vendor/autoload.php');
 require(__DIR__ . '/protected/vendor/yiisoft/yii2/Yii.php');
 // менеджер конфигураций
-require(__DIR__ . '/protected/modules/main/components/ConfigManager.php');
+require(__DIR__ . '/protected/components/ConfigManager.php');
 
 // основная конфигурация
 $baseConfig = require(__DIR__ . '/protected/config/web.php');
 
-$config = (new ConfigManager($baseConfig))->getConfig();
+$config = (new \app\components\ConfigManager($baseConfig))->getConfig();
 
 (new yii\web\Application($config))->run();
