@@ -6,20 +6,20 @@ use Yii;
 use yii\web\HttpException;
 
 /**
-* This is the model class for table "mn_user".
-*
-* @property integer $id
-* @property integer $role
-* @property string $login
-* @property string $surname
-* @property string $name
-* @property string $lastname
-* @property string $email
-* @property string $password
-* @property integer $status
-* @property integer $create_time
-* @property string $ip
-*/
+ * This is the model class for table "mn_user".
+ *
+ * @property integer $id
+ * @property integer $role
+ * @property string $login
+ * @property string $surname
+ * @property string $name
+ * @property string $lastname
+ * @property string $email
+ * @property string $password
+ * @property integer $status
+ * @property integer $create_time
+ * @property string $ip
+ */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     public $password_repeat;
@@ -30,22 +30,22 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
 
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public static function tableName()
     {
         return 'mn_user';
     }
 
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
             [['login', 'email', 'password', 'password_repeat'], 'required', 'on' => 'insert'],
 
-						['login', 'match', 'pattern' => '/^[a-z]+$/', 'message' => 'Символы от a-z'],
+            ['login', 'match', 'pattern' => '/^[a-z]+$/', 'message' => 'Символы от a-z'],
 
             [['login', 'email'], 'required', 'on' => 'update'],
 
@@ -57,8 +57,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
 
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [
@@ -81,26 +81,22 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function behaviors()
     {
         return [
-        		[
-        			'class' => 'yii\behaviors\TimeStampBehavior',
-        			'createdAtAttribute' => 'create_time',
-        			'updatedAtAttribute' => 'update_time',
-        		],
+            [
+                'class' => 'yii\behaviors\TimeStampBehavior',
+                'createdAtAttribute' => 'create_time',
+                'updatedAtAttribute' => 'update_time',
+            ],
             'userIp' => [
                 'class' => 'app\components\behaviors\UserIp',
                 'attribute' => 'ip',
             ],
-            /*'hashPassword' => [
-                'class' => 'app\modules\main\components\behaviors\HashPassword',
-                'attribute' => 'password',
-            ],*/
         ];
     }
 
     public static function getStatusList()
     {
         return [
-            self::STATUS_BLOCK => Yii::t('user',  'Status block'),
+            self::STATUS_BLOCK => Yii::t('user', 'Status block'),
             self::STATUS_ACTIVE => Yii::t('user', 'Status active'),
             self::STATUS_NOT_ACTIVE => Yii::t('user', 'Status not active'),
         ];
@@ -118,13 +114,13 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         if ($this->isNewRecord) {
             $this->status = self::STATUS_ACTIVE;
         }
-				
-				if ($this->password == '') {
-					$this->password = $this->getOldAttribute('password');
-				} else {
-					$this->password = Yii::$app->security->generatePasswordHash($this->password);
-				}
-				
+
+        if ($this->password == '') {
+            $this->password = $this->getOldAttribute('password');
+        } else {
+            $this->password = Yii::$app->security->generatePasswordHash($this->password);
+        }
+
         return parent::beforeSave($insert);
     }
 
@@ -146,12 +142,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         //return static::findOne(['access_token' => $token]);
     }
-		
+
     public function generateAuthKey()
     {
-       //$this->auth_key = Yii::$app->security->generateRandomString();
+        //$this->auth_key = Yii::$app->security->generateRandomString();
     }
-		
+
     public function getAuthKey()
     {
         //return $this->auth_key;

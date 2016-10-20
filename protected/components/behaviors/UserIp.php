@@ -20,5 +20,3 @@ class UserIp extends \yii\base\Behavior
 		$this->owner->{$this->attribute} = $_SERVER['REMOTE_ADDR'];
 	}
 }
-
-?>

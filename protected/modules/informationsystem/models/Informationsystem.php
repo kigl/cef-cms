@@ -26,8 +26,9 @@ use yii\helpers\ArrayHelper;
  */
 class Informationsystem extends \yii\db\ActiveRecord
 {
-		const STATUS_BLOCK = 0;
-		const STATUS_ACTIVE = 1;
+    const STATUS_BLOCK = 0;
+    const STATUS_ACTIVE = 1;
+
     /**
      * @inheritdoc
      */
@@ -74,51 +75,51 @@ class Informationsystem extends \yii\db\ActiveRecord
             'update_time' => Yii::t('app', 'Update time'),
         ];
     }
-    
+
     public function behaviors()
     {
-			return [
-				[
-					'class' => 'yii\behaviors\TimestampBehavior',
-                    'value' => new Expression('NOW()'),
-					'createdAtAttribute' => 'create_time',
-					'updatedAtAttribute' => 'update_time',
-				],
-				[
-					'class' => 'app\components\behaviors\file\ImageUpload',
-					'attribute' => 'image',
-					'path' => Yii::$app->controller->module->getImagesPath(),
-					'pathUrl' => Yii::$app->controller->module->getImagesPathUrl(),
-				]
-			];
-		}
-    
+        return [
+            [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'value' => new Expression('NOW()'),
+                'createdAtAttribute' => 'create_time',
+                'updatedAtAttribute' => 'update_time',
+            ],
+            [
+                'class' => 'app\components\behaviors\file\ImageUpload',
+                'attribute' => 'image',
+                'path' => Yii::$app->controller->module->getPublicPath() . '/images',
+                'pathUrl' => Yii::$app->controller->module->getPublicPathUrl() . '/images',
+            ]
+        ];
+    }
+
     public function getStatusList()
     {
-			return [
-				self::STATUS_BLOCK => Yii::t('informationsystem', 'Status block'),
-				self::STATUS_ACTIVE => Yii::t('informationsystem', 'Status active'),
-			];
-		}
-		
-		public function getStatus($id)
-		{
-			return ArrayHelper::getValue($this->getStatusList(), $id);
-		}
-		
-		public static function getSystem($id, $type = 'object')
-		{
-			$model = self::find()->where('id = :id', [':id' => $id]);
-			
-			if ($type === 'array') {
-				$model->asArray();
-			}
-			
-			$result = $model->one();
-			
-			if ($result) {
-				return $result;
-			}
-			return false;
-		}
+        return [
+            self::STATUS_BLOCK => Yii::t('informationsystem', 'Status block'),
+            self::STATUS_ACTIVE => Yii::t('informationsystem', 'Status active'),
+        ];
+    }
+
+    public function getStatus($id)
+    {
+        return ArrayHelper::getValue($this->getStatusList(), $id);
+    }
+
+    public static function getSystem($id, $type = 'object')
+    {
+        $model = self::find()->where('id = :id', [':id' => $id]);
+
+        if ($type === 'array') {
+            $model->asArray();
+        }
+
+        $result = $model->one();
+
+        if ($result) {
+            return $result;
+        }
+        return false;
+    }
 }

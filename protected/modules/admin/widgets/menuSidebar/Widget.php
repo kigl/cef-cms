@@ -31,7 +31,7 @@ class Widget extends \yii\base\Widget
 		$result = [];
 		$fa = [];
 		foreach ($scanDir as $dir) {
-			$path = $dirModules . DS . str_replace(':modulePath', $dir, $modulesConfig);
+			$path = $dirModules . DIRECTORY_SEPARATOR . str_replace(':modulePath', $dir, $modulesConfig);
 			// проверяем наличие файла
 			if (is_file($path)) {
 				$fa = include $path;	

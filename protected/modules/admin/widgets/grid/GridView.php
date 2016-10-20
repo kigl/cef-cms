@@ -30,7 +30,7 @@ class GridView extends \yii\grid\GridView
     {
         switch ($name) {
             case '{view}' :
-                return $this->renderView();
+                return $this->renderViewModal();
             case '{buttons}':
                 return $this->renderButtons();
             case '{summary}':
@@ -52,7 +52,7 @@ class GridView extends \yii\grid\GridView
          * @todo
          */
         // добавляем колонку тип элемента
-        array_unshift($this->columns, $this->getItemTypeItemAttiribute());
+        array_unshift($this->columns, $this->getColumnTypeItemAttribute());
         // добавляем колонку id по умолчанию
         array_unshift($this->columns, [
             'attribute' => 'id',
@@ -66,7 +66,7 @@ class GridView extends \yii\grid\GridView
              * @todo
              */
             // добавляем колонку тип элемента
-            array_unshift($this->columnsGroup, $this->getItemTypeGroupAttribute());
+            array_unshift($this->columnsGroup, $this->getColumnTypeGroupAttribute());
             // добавляем колонку id по умолчанию
             array_unshift($this->columnsGroup, 'id');
 
@@ -88,12 +88,12 @@ class GridView extends \yii\grid\GridView
         }
     }
 
-    protected function renderView()
+    protected function renderViewModal()
     {
         $view = $this->getView();
 
         $view->registerJs("
-			$('.view-item').click(function() {
+			$('.view-modal-item').click(function() {
 					$('.modal').modal('show')
 			    var url = $(this).attr('href');
 			    var modal = $('.modal-body');
@@ -194,17 +194,7 @@ class GridView extends \yii\grid\GridView
         return Html::tag('tr', implode('', $cells), $options);
     }
 
-    protected function getItemTypeGroupAttribute()
-    {
-        return [
-            'format' => 'raw',
-            'value' => function ($data) {
-                return $this->renderIcon(self::TYPE_GROUP);
-            }
-        ];
-    }
-
-    protected function renderIcon($type)
+    protected function getIconColumnType($type)
     {
         switch ($type) {
             case self::TYPE_GROUP :
@@ -216,13 +206,23 @@ class GridView extends \yii\grid\GridView
         }
     }
 
-    protected function getItemTypeItemAttiribute()
+    protected function getColumnTypeItemAttribute()
     {
         return [
             'format' => 'raw',
             'headerOptions' => ['style' => 'width: 50px'],
             'value' => function ($data) {
-                return $this->renderIcon(self::TYPE_ITEM);
+                return $this->getIconColumnType(self::TYPE_ITEM);
+            }
+        ];
+    }
+
+    protected function getColumnTypeGroupAttribute()
+    {
+        return [
+            'format' => 'raw',
+            'value' => function ($data) {
+                return $this->getIconColumnType(self::TYPE_GROUP);
             }
         ];
     }

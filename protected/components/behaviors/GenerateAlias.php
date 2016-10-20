@@ -4,11 +4,11 @@ namespace app\components\behaviors;
 
 use yii\base\Model;
 
-class TranslitInUrl extends \yii\base\Behavior
+class GenerateAlias extends \yii\base\Behavior
 {
 	public $text;
 
-	public $url;
+	public $alias;
 
 	public function events()
 	{
@@ -19,8 +19,8 @@ class TranslitInUrl extends \yii\base\Behavior
 
 	public function run()
 	{
-		if ($this->owner->{$this->url} == '') {
-			$this->owner->{$this->url} = $this->translit($this->owner->{$this->text});
+		if ($this->owner->{$this->alias} == '') {
+			$this->owner->{$this->alias} = $this->translit($this->owner->{$this->text});
 		}
 	}
 

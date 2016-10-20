@@ -58,7 +58,7 @@ class ImageUpload extends \app\components\behaviors\file\FileUpload
 			$this->createThumbnail();
 		}
 	
-		$this->_image->save($this->getPath() . DS . $this->tempFile);		
+		$this->_image->save($this->getPath() . DIRECTORY_SEPARATOR . $this->tempFile);
 		// удаляем темп файл
 		$this->deleteTempFile();
 	}
@@ -73,7 +73,7 @@ class ImageUpload extends \app\components\behaviors\file\FileUpload
 	protected function createThumbnail()
 	{
 		Image::thumbnail($this->getTempFilePath(), $this->thumbnail['width'], $this->thumbnail['height'])
-			->save($this->getPath() . DS . $this->thumbnailPrefix . $this->tempFile);
+			->save($this->getPath() . DIRECTORY_SEPARATOR . $this->thumbnailPrefix . $this->tempFile);
 	}
 	
 	
@@ -89,7 +89,7 @@ class ImageUpload extends \app\components\behaviors\file\FileUpload
 	
 	public function getThumbnailFilePath()
 	{
-		return $this->path . DS . $this->getThumbnailName();
+		return $this->path . DIRECTORY_SEPARATOR . $this->getThumbnailName();
 	}
 	
 	public function thumbnailExist()
@@ -104,7 +104,7 @@ class ImageUpload extends \app\components\behaviors\file\FileUpload
 	public function deleteThumbnail()
 	{
 		$fileName = $this->thumbnailPrefix . $this->getOldAttribute();
-		@unlink($this->getPath() . DS . $fileName);
+		@unlink($this->getPath() . DIRECTORY_SEPARATOR . $fileName);
 	}
 	
 	protected function resize($width, $height)
@@ -116,7 +116,7 @@ class ImageUpload extends \app\components\behaviors\file\FileUpload
 	
 	/**
 	 * Изменяет размер по ширине
-	 * @param  [int] $width
+	 * @param  [interface] $width
 	 */
 	public function resizeWidth($width)
 	{
@@ -129,7 +129,7 @@ class ImageUpload extends \app\components\behaviors\file\FileUpload
 
 	/**
 	 * Изменяет размер по высоте
-	 * @param  [int] $height [description]
+	 * @param  [interface] $height [description]
 	 */
 	public function resizeHeight($height)
 	{

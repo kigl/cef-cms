@@ -13,7 +13,7 @@ class ActiveForm extends \yii\widgets\ActiveForm
 {
     public $fieldConfig = ['template' => "{label}\n{input}"];
 
-    public $options = ['class' => 'well well-sm'];
+    public $defaultOptions = ['class' => 'well well-sm'];
 
     public $errorSummaryCssClass = 'error-simmary alert alert-danger';
 
@@ -24,7 +24,7 @@ class ActiveForm extends \yii\widgets\ActiveForm
         }
         $content = ob_get_clean();
 
-        echo Html::beginForm($this->action, $this->method, $this->options);
+        echo Html::beginForm($this->action, $this->method, ArrayHelper::merge($this->defaultOptions, $this->options));
         echo $content;
         if ($this->enableClientScript) {
             $id = $this->options['id'];

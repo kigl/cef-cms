@@ -9,7 +9,7 @@ $this->params['breadcrumbs'] = $breadcrumbs;
 $this->params['breadcrumbs'][] = ['label' => $model->name];
 ?>
 
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
 <?= $form->errorSummary($model); ?>
 
@@ -47,31 +47,22 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
 
     <div class="row">
         <div class="col-md-4">
-            <?= FileInForm::widget([
-                'model' => $model,
+            <?= $form->field($model, 'image')->widget(FileInForm::className(), [
                 'deleteKey' => 'deleteImage',
-                'behaviorName' => 'imageUpload',
-            ]);
-            ?>
-            <?= $form->field($model, 'image')->fileInput(); ?>
+                'behaviorName' => 'imageUpload'
+            ]); ?>
         </div>
         <div class="col-md-4">
-            <?= FileInForm::widget([
-                'model' => $model,
+            <?= $form->field($model, 'video')->widget(FileInForm::className(), [
                 'deleteKey' => 'deleteVideo',
                 'behaviorName' => 'videoUpload',
-            ]);
-            ?>
-            <?= $form->field($model, 'video')->fileInput(); ?>
+            ]); ?>
         </div>
         <div class="col-md-4">
-            <?= FileInForm::widget([
-                'model' => $model,
+            <?= $form->field($model, 'file')->widget(FileInForm::className(), [
                 'deleteKey' => 'deleteFile',
                 'behaviorName' => 'fileUpload',
-            ]);
-            ?>
-            <?= $form->field($model, 'file')->fileInput(); ?>
+            ]); ?>
         </div>
     </div>
 

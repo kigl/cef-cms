@@ -2,13 +2,12 @@
 
 Yii::setAlias('@tests', dirname(__DIR__) . '/tests/codeception');
 
-$db = require(__DIR__ . '/db.php');
-
 $config = [
-    'id' => 'basic-console',
+    'id' => 'main2-console',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
+
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -21,13 +20,14 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
-  		'authManager' => [
-			'class' => 'yii\rbac\DbManager',
-			'defaultRoles' => ['guest'],
-		],
+        'db' => require(__DIR__ . '/db.php'),
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest'],
+        ],
     ],
     'params' => $params,
+
     /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.

@@ -2,25 +2,24 @@
 
 namespace app\components;
 
+/**
+ * Class ConfigManager
+ * @package app\components
+ */
 class ConfigManager
 {
+    const CONFIG_TYPE_WEB = 'web';
+    const CONFIG_TYPE_CONSOLE = 'console';
     /**
      * @var string
      */
     protected $_modulesPath = 'modules';
-
     /**
      * @var string
      */
-    protected $_configDirName = 'config';
-
+    protected $_dirName = 'config';
     /**
-     * @var string
-     */
-    protected $_configModuleName = 'module';
-
-    /**
-     * @var
+     * @var array
      */
     protected $_baseConfig;
 
@@ -29,14 +28,19 @@ class ConfigManager
         $this->_baseConfig = $baseConfig;
     }
 
+    public function getConfig($type)
+    {
+        return $this->mergeConfigs($type);
+    }
+
     /**
-     * Сливает в один массив конфигурации модулей
-     * @return [array] [конфигурации модулей]
+     * @param $type
+     * @return array
      */
-    public function getConfig()
+    protected function mergeConfigs($type)
     {
         $config = [];
-        foreach ($this->getConfigModules() as $file) {
+        foreach ($this->getAllConfig($type) as $file) {
             $array = require $file;
             if (is_array($array)) {
                 $config = array_merge_recursive($config, $array);
@@ -47,15 +51,16 @@ class ConfigManager
     }
 
     /**
+     * @param $type
      * @return array
      */
-    protected function getConfigModules()
+    protected function getAllConfig($type)
     {
-        $configFile = $this->_configModuleName . '.php';
+        $configFile = $this->getFileName($type);
 
         $result = [];
         foreach ($this->getAllModulesPath() as $path) {
-            $file = $path . DS . $configFile;
+            $file = $path . DIRECTORY_SEPARATOR . $configFile;
 
             if (is_file($file)) {
                 $result[] = $file;
@@ -66,11 +71,26 @@ class ConfigManager
     }
 
     /**
+     * @TODO
+     */
+    protected function getFileName($type)
+    {
+        switch ($type) {
+            case self::CONFIG_TYPE_WEB :
+                return 'module.php';
+                break;
+            case self::CONFIG_TYPE_CONSOLE :
+                return 'console.php';
+                break;
+        }
+    }
+
+    /**
      * @return string
      */
     protected function getModulesPath()
     {
-        return realpath(dirname(__DIR__) . DS . $this->_modulesPath);
+        return realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR . $this->_modulesPath);
     }
 
     /**
@@ -78,16 +98,37 @@ class ConfigManager
      */
     protected function getAllModulesPath()
     {
+        $unsetInScanPathModule = ['.', '..'];
+
         $scanPathModule = scandir($this->getModulesPath());
+        $scanPathModule = $this->unsetInArray($scanPathModule, $unsetInScanPathModule);
 
         $modules = [];
         foreach ($scanPathModule as $name) {
-            $path = $this->getModulesPath() . DS . $name . DS . $this->_configDirName;
+            $path = $this->getModulesPath() . DIRECTORY_SEPARATOR . $name . DIRECTORY_SEPARATOR . $this->_dirName;
             if (is_dir($path)) {
                 $modules[] = $path;
             }
         }
 
         return $modules;
+    }
+
+    /**
+     * @param $haystack
+     * @param array $unset
+     * @return array
+     */
+    protected function unsetInArray($haystack, array $unset)
+    {
+        $result = [];
+
+        foreach ($haystack as $value) {
+            if (!in_array($value, $unset)) {
+                $result[] = $value;
+            }
+        }
+
+        return $result;
     }
 }

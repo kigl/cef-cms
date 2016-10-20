@@ -60,7 +60,7 @@ class FileUpload extends \yii\base\Behavior
 			if (is_dir($this->getPath())) {
 				// присваеваем файл
 				$this->name = $this->getNameExtensionFile();
-				$pathFile = $this->getPath() . DS . $this->name; 
+				$pathFile = $this->getPath() . DIRECTORY_SEPARATOR . $this->name;
 				// сохраняем
 				if ($instance->saveAs($pathFile)) {
 					// если не новая запись
@@ -87,7 +87,7 @@ class FileUpload extends \yii\base\Behavior
 	*/
 	public function deleteFile()
 	{
-		$pathFile = $this->getPath() . DS . $this->getOldAttribute();
+		$pathFile = $this->getPath() . DIRECTORY_SEPARATOR . $this->getOldAttribute();
 
 		if (is_file($pathFile)) {
 			@unlink($pathFile);
@@ -100,7 +100,7 @@ class FileUpload extends \yii\base\Behavior
 		
 		if ($instance instanceof UploadedFile) {
 			$this->tempFile = $this->getNameExtensionFile();
-			$this->owner->{$this->attribute}->saveAs($this->getTempPath() . DS . $this->tempFile);
+			$this->owner->{$this->attribute}->saveAs($this->getTempPath() . DIRECTORY_SEPARATOR . $this->tempFile);
 		}
 	}
 	
@@ -113,7 +113,7 @@ class FileUpload extends \yii\base\Behavior
 	
 	protected function getTempFilePath()
 	{
-		return $this->getTempPath() . DS . $this->tempFile; 
+		return $this->getTempPath() . DIRECTORY_SEPARATOR . $this->tempFile;
 	}
 	
 		/**
@@ -151,7 +151,7 @@ class FileUpload extends \yii\base\Behavior
 	
 	protected function getOldFilePath()
 	{
-		return $this->getPath() . DS . $this->getOldAttribute();
+		return $this->getPath() . DIRECTORY_SEPARATOR . $this->getOldAttribute();
 	}
 	
 	protected function getOldAttribute()

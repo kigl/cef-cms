@@ -79,11 +79,8 @@ $this->params['toolbar'] = [
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',
+            'template' => '{update}{delete}',
             'buttons' => [
-                'view' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', ['view', 'id' => $model->id],
-                        ['class' => 'view-item']);
-                },
                 'update' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
                             'update/item',

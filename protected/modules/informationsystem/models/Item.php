@@ -32,7 +32,7 @@ use app\modules\user\models\User;
  * @property integer $create_time
  * @property integer $update_time
  */
-class Item extends \yii\db\ActiveRecord
+class Item extends \yii\db\ActiveRecord implements \app\modules\user\components\AuthorInterface
 {
     const STATUS_BLOCK = 0;
     const STATUS_ACTIVE = 1;
@@ -116,8 +116,8 @@ class Item extends \yii\db\ActiveRecord
                 'class' => 'app\components\behaviors\file\ImageUpload',
                 'attribute' => 'image',
                 'deleteKey' => 'deleteImage',
-                'path' => Yii::$app->controller->module->getImagesPath(),
-                'pathUrl' => Yii::$app->controller->module->getImagesPathUrl(),
+                'path' => Yii::$app->controller->module->getPublicPath() . '/images',
+                'pathUrl' => Yii::$app->controller->module->getPublicPathUrl() . '/images',
                 'thumbnail' => [
                     'width' => 350,
                     'height' => 233,
@@ -127,14 +127,14 @@ class Item extends \yii\db\ActiveRecord
                 'class' => 'app\components\behaviors\file\FileUpload',
                 'attribute' => 'video',
                 'deleteKey' => 'deleteVideo',
-                'path' => Yii::$app->controller->module->getPublicPath() . DS . 'video',
+                'path' => Yii::$app->controller->module->getPublicPath() . '/video',
                 'pathUrl' => Yii::$app->controller->module->getPublicPathUrl() . '/video',
             ],
             'fileUpload' => [
                 'class' => 'app\components\behaviors\file\FileUpload',
                 'attribute' => 'file',
                 'deleteKey' => 'deleteFile',
-                'path' => Yii::$app->controller->module->getPublicPath() . DS . 'files',
+                'path' => Yii::$app->controller->module->getPublicPath() . '/files',
                 'pathUrl' => Yii::$app->controller->module->getPublicPathUrl() . '/files',
             ],
             [

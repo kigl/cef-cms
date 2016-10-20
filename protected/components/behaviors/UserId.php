@@ -22,5 +22,3 @@ class UserId extends \yii\base\Behavior
 		$this->owner->{$this->attribute} = Yii::$app->user->getId();
 	}
 }
-
-?>

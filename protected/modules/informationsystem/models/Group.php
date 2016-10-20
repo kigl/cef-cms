@@ -42,7 +42,7 @@ class Group extends \yii\db\ActiveRecord
     {
         return [
             ['name', 'required'],
-            [['parent_id', 'informationsystem_id', 'sort', 'user_id', 'create_time', 'update_time'], 'integer'],
+            [['parent_id', 'informationsystem_id', 'sort', 'user_id'], 'integer'],
             [['content'], 'string'],
             [['name', 'alias', 'meta_title'], 'string', 'max' => 255],
             [['description', 'meta_description'], 'string', 'max' => 300],
@@ -79,14 +79,19 @@ class Group extends \yii\db\ActiveRecord
             [
                 'class' => 'app\components\behaviors\file\ImageUpload',
                 'attribute' => 'image',
-                'path' => Yii::$app->getModule('informationsystem')->getImagesPath(),
-                'pathUrl' => Yii::$app->getModule('informationsystem')->getImagesPathUrl(),
+                'path' => Yii::$app->getModule('informationsystem')->getPublicPath() . '/images',
+                'pathUrl' => Yii::$app->getModule('informationsystem')->getPublicPathUrl() . '/images',
             ],
             [
                 'class' => TimestampBehavior::className(),
                 'value' => new Expression('NOW()'),
                 'createdAtAttribute' => 'create_time',
                 'updatedAtAttribute' => 'update_time',
+            ],
+            [
+                'class' => 'app\components\behaviors\GenerateAlias',
+                'text' => 'name',
+                'alias' => 'alias',
             ]
         ];
     }
@@ -108,11 +113,11 @@ class Group extends \yii\db\ActiveRecord
 
         if ($id !== null and $breadcrumbs = self::recursive($id)) {
             $c = count($breadcrumbs) - 1;
-            $breadcrumbs[$c]['span'] = 1;
+            $breadcrumbs[$c]['last'] = 1;
 
             foreach ($breadcrumbs as $model)
             {
-                if (!isset($model['span'])) {
+                if (!isset($model['last'])) {
                     $result[] = [
                         'label' => $model['name'],
                         'url' => [
