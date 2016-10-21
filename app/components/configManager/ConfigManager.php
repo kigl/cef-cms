@@ -20,7 +20,9 @@ class ConfigManager
      * @var Config
      */
     protected $_config;
-
+    /**
+     * @var string
+     */
     public $modulesPath;
 
     /**

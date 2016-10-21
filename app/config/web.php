@@ -49,7 +49,7 @@ $config = [
                     '@app/views' => ['@app/themes/basic'],
                 ],
                 'basePath' => '@app/themes/basic',
-                'baseUrl' => '@web/protected/themes/basic',
+                'baseUrl' => '@web/app/themes/basic',
             ],
         ],
         */
