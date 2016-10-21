@@ -12,7 +12,6 @@ class m160825_111921_mn_informationsystem extends Migration
 				'description' => $this->string(300)->notNull(),
 				'content' => $this->text(),
 				'image' => $this->string(),
-				'status' => $this->integer(),
 				'sort' => $this->integer(),
 				'template' => $this->string(50),
 				'user_id' => $this->integer(),

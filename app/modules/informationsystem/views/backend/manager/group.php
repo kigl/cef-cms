@@ -79,7 +79,7 @@ $this->params['toolbar'] = [
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',
-            'template' => '{update}{delete}',
+            'template' => '{update} {delete}',
             'buttons' => [
                 'update' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [

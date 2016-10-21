@@ -1,6 +1,4 @@
 <?php
-Yii::setAlias('app', dirname(dirname(__FILE__)));
-
 $config = [
     'id' => 'main2',
     'basePath' => dirname(dirname(__FILE__)),
@@ -16,8 +14,8 @@ $config = [
                 'app' => array(
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@app/messages',
-                    'fileMap'   => array(
-                        'app'=> 'app.php',
+                    'fileMap' => array(
+                        'app' => 'app.php',
                     ),
                 ),
             ),
@@ -117,5 +115,7 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
     ];
 }
+
+Yii::setAlias('app', $config['basePath']);
 
 return $config;

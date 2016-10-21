@@ -25,12 +25,6 @@ use app\modules\admin\widgets\grid\GridView;
                 ]));
             }
         ],
-        [
-            'attribute' => 'status',
-            'value' => function ($model, $key, $index, $column) {
-                return $model->getStatus($model->status);
-            }
-        ],
         'create_time:date',
         [
             'headerOptions' => ['style' => 'width: 50px'],

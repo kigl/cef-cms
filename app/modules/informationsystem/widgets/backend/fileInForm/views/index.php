@@ -8,5 +8,6 @@ use yii\helpers\Html;
         <div><?= $model->getBehavior($behaviorName)->owner->{$model->getBehavior($behaviorName)->attribute}; ?></div>
     </div>
 <?php endif; ?>
+
 <?= Html::activeFileInput($model, $attribute);?>
 

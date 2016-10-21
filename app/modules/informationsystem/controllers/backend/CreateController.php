@@ -83,7 +83,7 @@ class CreateController extends \app\modules\admin\components\controllers\Backend
         return $this->render('tag', [
             'model' => $model,
             'informationsytem_id' => $informationsystem_id,
-            'breadcrumbs' => Item::buildBreadcrumbs(null, $informationsystem_id),
+            'breadcrumbs' => Group::buildBreadcrumbs(null, $informationsystem_id),
         ]);
     }
 }

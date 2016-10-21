@@ -4,6 +4,7 @@ namespace app\components\configManager;
 
 /**
  * Class ConfigManager
+ * Сливает конфигурации модулей и приложения
  * @package app\components
  */
 class ConfigManager

@@ -14,7 +14,6 @@ use yii\helpers\ArrayHelper;
  * @property string $description
  * @property string $content
  * @property string $image
- * @property integer $status
  * @property integer $sort
  * @property string $meta_title
  * @property string $meta_description
@@ -26,9 +25,6 @@ use yii\helpers\ArrayHelper;
  */
 class Informationsystem extends \yii\db\ActiveRecord
 {
-    const STATUS_BLOCK = 0;
-    const STATUS_ACTIVE = 1;
-
     /**
      * @inheritdoc
      */
@@ -45,7 +41,7 @@ class Informationsystem extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['content'], 'string'],
-            [['status', 'sort', 'user_id', 'items_per_page', 'create_time', 'update_time'], 'integer'],
+            [['sort', 'user_id', 'items_per_page', 'create_time', 'update_time'], 'integer'],
             [['template'], 'string', 'max' => 50],
             [['name'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 300],
@@ -65,7 +61,6 @@ class Informationsystem extends \yii\db\ActiveRecord
             'description' => Yii::t('informationsystem', 'Description'),
             'content' => Yii::t('informationsystem', 'Content'),
             'image' => Yii::t('informationsystem', 'Image'),
-            'status' => Yii::t('informationsystem', 'Status'),
             'sort' => Yii::t('informationsystem', 'Sort'),
             'meta_title' => Yii::t('app', 'Meta title'),
             'meta_description' => Yii::t('app', 'Meta description'),
@@ -92,19 +87,6 @@ class Informationsystem extends \yii\db\ActiveRecord
                 'pathUrl' => Yii::$app->controller->module->getPublicPathUrl() . '/images',
             ]
         ];
-    }
-
-    public function getStatusList()
-    {
-        return [
-            self::STATUS_BLOCK => Yii::t('informationsystem', 'Status block'),
-            self::STATUS_ACTIVE => Yii::t('informationsystem', 'Status active'),
-        ];
-    }
-
-    public function getStatus($id)
-    {
-        return ArrayHelper::getValue($this->getStatusList(), $id);
     }
 
     public static function getSystem($id, $type = 'object')

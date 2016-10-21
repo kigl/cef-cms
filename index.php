@@ -30,11 +30,6 @@ $baseConfig = require(__DIR__ . '/app/config/web.php');
 $config = Yii::createObject([
     'class' => ConfigManager::class,
     'modulesPath' => Yii::getAlias('@app' . '/modules'),
-],
-    [
-        $baseConfig,
-        new ConfigWeb,
-    ]
-);
+], [$baseConfig, new ConfigWeb]);
 
 (new yii\web\Application($config->getConfig()))->run();
