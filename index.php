@@ -1,6 +1,7 @@
 <?php
 
-use app\components\ConfigManager;
+use app\components\configManager\ConfigManager;
+use app\components\configManager\ConfigWeb;
 
 ini_set('display_errors', 1);
 ini_set('error_reporting', E_ALL); // E_ALL & ~E_NOTICE
@@ -21,12 +22,18 @@ defined('YII_ENV') or define('YII_ENV', 'dev');
 
 require(__DIR__ . '/protected/vendor/autoload.php');
 require(__DIR__ . '/protected/vendor/yiisoft/yii2/Yii.php');
-// менеджер конфигураций
-require(__DIR__ . '/protected/components/ConfigManager.php');
 
 // основная конфигурация
 $baseConfig = require(__DIR__ . '/protected/config/web.php');
 
-$config = new ConfigManager($baseConfig);
+$config = Yii::createObject([
+    'class' => ConfigManager::class,
+    'modulesPath' => Yii::getAlias('@app' . '/modules'),
+],
+    [
+        $baseConfig,
+        new ConfigWeb,
+    ]
+);
 
-(new yii\web\Application($config->getConfig(ConfigManager::CONFIG_TYPE_WEB)))->run();
+(new yii\web\Application($config->getConfig()))->run();

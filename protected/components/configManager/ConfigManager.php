@@ -1,6 +1,6 @@
 <?php
 
-namespace app\components;
+namespace app\components\configManager;
 
 /**
  * Class ConfigManager
@@ -8,12 +8,6 @@ namespace app\components;
  */
 class ConfigManager
 {
-    const CONFIG_TYPE_WEB = 'web';
-    const CONFIG_TYPE_CONSOLE = 'console';
-    /**
-     * @var string
-     */
-    protected $_modulesPath = 'modules';
     /**
      * @var string
      */
@@ -22,25 +16,39 @@ class ConfigManager
      * @var array
      */
     protected $_baseConfig;
+    /**
+     * @var Config
+     */
+    protected $_config;
 
-    public function __construct($baseConfig)
+    public $modulesPath;
+
+    /**
+     * ConfigManager constructor.
+     * @param array $baseConfig
+     * @param Config $config
+     */
+    public function __construct(array $baseConfig, Config $config)
     {
         $this->_baseConfig = $baseConfig;
-    }
-
-    public function getConfig($type)
-    {
-        return $this->mergeConfigs($type);
+        $this->_config = $config;
     }
 
     /**
-     * @param $type
      * @return array
      */
-    protected function mergeConfigs($type)
+    public function getConfig()
+    {
+        return $this->mergeConfigs();
+    }
+
+    /**
+     * @return array
+     */
+    protected function mergeConfigs()
     {
         $config = [];
-        foreach ($this->getAllConfig($type) as $file) {
+        foreach ($this->getAllConfig() as $file) {
             $array = require $file;
             if (is_array($array)) {
                 $config = array_merge_recursive($config, $array);
@@ -51,17 +59,15 @@ class ConfigManager
     }
 
     /**
-     * @param $type
      * @return array
      */
-    protected function getAllConfig($type)
+    protected function getAllConfig()
     {
-        $configFile = $this->getFileName($type);
+        $configFile = $this->_config->getFileName() . '.php';
 
         $result = [];
         foreach ($this->getAllModulesPath() as $path) {
             $file = $path . DIRECTORY_SEPARATOR . $configFile;
-
             if (is_file($file)) {
                 $result[] = $file;
             }
@@ -71,26 +77,11 @@ class ConfigManager
     }
 
     /**
-     * @TODO
-     */
-    protected function getFileName($type)
-    {
-        switch ($type) {
-            case self::CONFIG_TYPE_WEB :
-                return 'module.php';
-                break;
-            case self::CONFIG_TYPE_CONSOLE :
-                return 'console.php';
-                break;
-        }
-    }
-
-    /**
      * @return string
      */
     protected function getModulesPath()
     {
-        return realpath(dirname(__DIR__) . DIRECTORY_SEPARATOR . $this->_modulesPath);
+        return $this->modulesPath;
     }
 
     /**

@@ -1,4 +1,6 @@
 <?php
+Yii::setAlias('app', dirname(dirname(__FILE__)));
+
 $config = [
     'id' => 'main2',
     'basePath' => dirname(dirname(__FILE__)),
