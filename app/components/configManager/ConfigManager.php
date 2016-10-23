@@ -20,7 +20,7 @@ class ConfigManager
     /**
      * @var Config
      */
-    protected $_config;
+    protected $_configType;
     /**
      * @var string
      */
@@ -31,10 +31,10 @@ class ConfigManager
      * @param array $baseConfig
      * @param Config $config
      */
-    public function __construct(array $baseConfig, Config $config)
+    public function __construct(array $baseConfig, Config $configType)
     {
         $this->_baseConfig = $baseConfig;
-        $this->_config = $config;
+        $this->_configType = $configType;
     }
 
     /**
@@ -66,7 +66,7 @@ class ConfigManager
      */
     protected function getAllConfig()
     {
-        $configFile = $this->_config->getFileName() . '.php';
+        $configFile = $this->_configType->getFileName() . '.php';
 
         $result = [];
         foreach ($this->getAllModulesPath() as $path) {

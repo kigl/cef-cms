@@ -8,20 +8,19 @@
  * @license http://www.yiiframework.com/license/
  */
 
-use app\components\ConfigManager;
+use app\components\configManager\ConfigManager;
+use app\components\configManager\ConfigConsole;
 
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
 
 require(__DIR__ . '/app/vendor/autoload.php');
 require(__DIR__ . '/app/vendor/yiisoft/yii2/Yii.php');
-// менеджер конфигураций
-require(__DIR__ . '/app/components/ConfigManager.php');
 // основная конфигурация
 $baseConfig = require(__DIR__ . '/app/config/console.php');
 
-$config = new ConfigManager($baseConfig);
+$config = new ConfigManager($baseConfig, new ConfigConsole());
 
-$application = new yii\console\Application($config->getConfig(ConfigManager::CONFIG_TYPE_CONSOLE));
+$application = new yii\console\Application($config->getConfig());
 $exitCode = $application->run();
 exit($exitCode);

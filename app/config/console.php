@@ -45,4 +45,6 @@ if (YII_ENV_DEV) {
     ];
 }
 
+Yii::setAlias('app', $config['basePath']);
+
 return $config;
