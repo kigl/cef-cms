@@ -103,7 +103,6 @@ $config = [
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'film'],
                 '/' => 'site/index',
             ],
         ],

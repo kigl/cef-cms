@@ -1,10 +1,12 @@
 <?php
+use app\modules\informationsystem\Module;
+
 return [
 	'modules' => [
 		'admin' => [
 			'modules' => [
 				'informationsystem' => [
-					'class' => 'app\modules\informationsystem\Module',
+					'class' => Module::className(),
 					'controllerNamespace' => 'app\modules\informationsystem\controllers\backend',
 					'viewPath' => '@app/modules/informationsystem/views/backend',
 				],
@@ -12,7 +14,7 @@ return [
 		],
 		
 		'informationsystem' => [
-			'class' => 'app\modules\informationsystem\Module',
+			'class' => Module::className(),
 			'controllerNamespace' => 'app\modules\informationsystem\controllers\frontend',
 			'viewPath' => '@app/modules/informationsystem/views/frontend',
 		],
