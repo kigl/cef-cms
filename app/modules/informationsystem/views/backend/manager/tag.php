@@ -1,25 +1,52 @@
 <?php
+use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use app\modules\admin\widgets\grid\GridView;
 
-Class Form extends CFormModel
-{
-    public $email;
+$this->params['breadcrumbs'] = ArrayHelper::merge($breadcrumbs, [
+    ['label' => Yii::t($this->context->module->id, 'Tags')]
+]);
 
-    public $phone;
+?>
 
-    public function rules()
-    {
-        return array(
-            array(array('phone', 'email'), 'required'),
-            array('phone', 'length', 'max' => 50),
-            array('email', 'email', 'message' => 'Email не является действительным адресом'),
-        );
-    }
-
-    public function attributeLabels()
-    {
-        return array(
-            'email' => 'Email',
-            'phone' => 'Телефон',
-        );
-    }
-}
+<?= GridView::widget([
+    'buttons' => [
+        'create' => [
+            'item' => [
+                'url' => Url::to([
+                    'create/tag',
+                    'informationsystem_id' => $informationsystem_id,
+                ]),
+            ],
+        ],
+    ],
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+        'name',
+        'id',
+        [
+            'headerOptions' => ['style' => 'width: 50px'],
+            'class' => 'yii\grid\ActionColumn',
+            'template' => '{update}  {delete}',
+            'buttons' => [
+                'update' => function ($url, $model, $key) {
+                    return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
+                            'backend/update/tag',
+                            'id' => $model->id
+                        ]
+                    );
+                },
+                'delete' => function ($url, $model, $key) {
+                    return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
+                        'backend/delete/tag',
+                        'id' => $model->id
+                    ],
+                        ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'question on delete file')]
+                    );
+                }
+            ],
+        ]
+    ],
+]); ?>

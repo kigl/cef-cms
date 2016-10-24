@@ -6,17 +6,17 @@ use yii\helpers\Html;
 ?>
 <?php $this->beginPage()?>
 <!DOCTYPE html>
-<html>
+<html class="height-all">
 	<head>
 		<meta charset="<?= Yii::$app->charset;?>"/>
 		<title><?= Html::encode($this->title);?></title>
 		<?= Html::csrfMetaTags() ?>
 		<?php $this->head();?>
 	</head>
-	<body class="bg-theme">
+	<body class="height-all">
 	<?php $this->beginBody();?>
-		<div class="container-fluid wrapper">
-			<div>
+		<div class="container-fluid wrapper height-all">
+			<div class="height-all">
 				<?= $content;?>
 			</div>
 		</div>

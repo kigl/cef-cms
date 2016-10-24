@@ -5,8 +5,8 @@ use yii\bootstrap\Nav;
 
 <?php 
 NavBar::begin([
-		'options' => ['class' => 'navbar navbar-inverse bg-theme'],
-    'innerContainerOptions' => ['class' => 'container-fluid'],
+		'options' => ['class' => 'navbar navbar-inverse bg-theme no-border-radius'],
+        'innerContainerOptions' => ['class' => 'container-fluid'],
 	]);
 
 echo Nav::widget([

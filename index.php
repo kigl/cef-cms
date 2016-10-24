@@ -28,7 +28,7 @@ $baseConfig = require(__DIR__ . '/app/config/web.php');
 
 // менеджер конфигураций
 $config = Yii::createObject([
-    'class' => ConfigManager::class,
+    'class' => ConfigManager::className(),
     'modulesPath' => Yii::getAlias('@app' . '/modules'),
 ], [$baseConfig, new ConfigWeb]);
 

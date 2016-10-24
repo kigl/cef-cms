@@ -22,6 +22,7 @@ $config = [
         ),
 
         'formatter' => [
+            'locale' => 'ru-Ru',
             'dateFormat' => 'medium',
             'defaultTimeZone' => 'Europe/Moscow',
         ],
@@ -29,6 +30,12 @@ $config = [
         'request' => [
             'enableCsrfValidation' => true,
             'cookieValidationKey' => 'main2',
+
+            /*
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
+             */
         ],
 
         'setting' => [
@@ -96,6 +103,7 @@ $config = [
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'film'],
                 '/' => 'site/index',
             ],
         ],

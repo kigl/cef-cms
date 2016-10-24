@@ -6,8 +6,8 @@ use app\modules\admin\widgets\menuSidebar\Widget as MenuSidebar;
 use app\modules\admin\widgets\menuTop\Widget as MenuTop;
 ?>
 <?php $this->beginContent('@app/modules/admin/views/layouts/index.php');?>
-<div class="row">
-	<div class="col-md-2 sidebar padding-left-5">
+<div class="row height-all">
+	<div class="col-md-2 sidebar padding-left-5 height-all bg-theme">
 		<?= MenuSidebar::widget();?>
 	</div>
 	<div class="col-md-10 blackboard no-padding">

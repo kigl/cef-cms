@@ -7,7 +7,7 @@ namespace app\components\configManager;
  * Сливает конфигурации модулей и приложения
  * @package app\components
  */
-class ConfigManager
+class ConfigManager extends  \yii\base\Object
 {
     /**
      * @var string
@@ -31,10 +31,12 @@ class ConfigManager
      * @param array $baseConfig
      * @param Config $config
      */
-    public function __construct(array $baseConfig, Config $configType)
+    public function __construct(array $baseConfig, Config $configType, $config = [])
     {
         $this->_baseConfig = $baseConfig;
         $this->_configType = $configType;
+
+        parent::__construct($config);
     }
 
     /**
@@ -66,7 +68,7 @@ class ConfigManager
      */
     protected function getAllConfig()
     {
-        $configFile = $this->_configType->getFileName() . '.php';
+        $configFile = $this->_configType->getSampleFileNameConfig();
 
         $result = [];
         foreach ($this->getAllModulesPath() as $path) {

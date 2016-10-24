@@ -6,8 +6,8 @@ class ConfigWeb extends \app\components\configManager\Config
 {
     protected $_fileName = 'module';
 
-    public function getFileName()
+    public function getSampleFileNameConfig()
     {
-        return $this->_fileName;
+        return "{$this->_fileName}.php";
     }
 }

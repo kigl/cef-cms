@@ -12,7 +12,6 @@ use yii\widgets\Menu;
 
 \app\views\assets\Asset::register($this);
 ?>
-test
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">

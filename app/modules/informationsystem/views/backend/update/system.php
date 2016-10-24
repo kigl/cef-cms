@@ -12,13 +12,9 @@ use app\modules\admin\widgets\imageInForm\Widget as ImageInForm;
 <?php echo $form->field($model, 'name'); ?>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <?= ImageInForm::widget(['model' => $model, 'attribute' => 'image']); ?>
             <?= $form->field($model, 'image')->fileInput(); ?>
-        </div>
-
-        <div class="col-md-6">
-            <?php echo $form->field($model, 'status')->dropDownList($model->getStatusList()); ?>
         </div>
     </div>
 
