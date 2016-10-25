@@ -28,7 +28,6 @@ class UpdateController extends \app\modules\admin\components\controllers\Backend
         $model = Group::findOne($id);
 
         if ($model->load(Yii::$app->request->post()) and $model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Updated element'));
 
             return $this->redirect([
                 'manager/group',
@@ -47,8 +46,7 @@ class UpdateController extends \app\modules\admin\components\controllers\Backend
 	{
 		$model = Item::findOne($id);
 		
-		if ($model->load(Yii::$app->request->post()) and $model->save()) {	
-			Yii::$app->session->setFlash('success', Yii::t('app', 'Updated element'));
+		if ($model->load(Yii::$app->request->post()) and $model->save()) {
 				
 			return $this->redirect([
 				'manager/group',
@@ -68,7 +66,6 @@ class UpdateController extends \app\modules\admin\components\controllers\Backend
 		$model = Tag::findOne($id);
 		
 		if ($model->load(Yii::$app->request->post()) and $model->save()) {
-			Yii::$app->session->setFlash('success', Yii::t('app', 'Created element'));
 			
 			return $this->redirect([
 							'manager/tag',

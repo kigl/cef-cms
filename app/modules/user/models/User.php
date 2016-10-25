@@ -20,7 +20,7 @@ use yii\web\HttpException;
  * @property integer $create_time
  * @property string $ip
  */
-class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+class User extends \app\components\ActiveRecord  implements \yii\web\IdentityInterface
 {
     public $password_repeat;
 

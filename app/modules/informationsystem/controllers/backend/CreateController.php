@@ -28,7 +28,6 @@ class CreateController extends \app\modules\admin\components\controllers\Backend
         $model = new Group;
 
         if ($model->load(Yii::$app->request->post()) and $model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Created element'));
 
             return $this->redirect([
                 'manager/group',
@@ -50,7 +49,6 @@ class CreateController extends \app\modules\admin\components\controllers\Backend
         $model = new Item;
 
         if ($model->load(Yii::$app->request->post()) and $model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Created element'));
 
             return $this->redirect([
                 'manager/group',
@@ -72,7 +70,6 @@ class CreateController extends \app\modules\admin\components\controllers\Backend
         $model = new Tag;
 
         if ($model->load(Yii::$app->request->post()) and $model->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Created element'));
 
             return $this->redirect([
                 'manager/tag',

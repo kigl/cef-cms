@@ -10,7 +10,7 @@ use Yii;
  * @property integer $model_id
  * @property integer $tag_id
  */
-class TagRelations extends \yii\db\ActiveRecord
+class TagRelations extends \app\components\ActiveRecord
 {
     /**
      * @inheritdoc

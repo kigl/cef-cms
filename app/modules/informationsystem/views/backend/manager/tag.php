@@ -33,14 +33,14 @@ $this->params['breadcrumbs'] = ArrayHelper::merge($breadcrumbs, [
             'buttons' => [
                 'update' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
-                            'backend/update/tag',
+                            'update/tag',
                             'id' => $model->id
                         ]
                     );
                 },
                 'delete' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
-                        'backend/delete/tag',
+                        'delete/tag',
                         'id' => $model->id
                     ],
                         ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'question on delete file')]

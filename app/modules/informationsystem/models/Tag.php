@@ -13,7 +13,7 @@ use app\modules\informationsystem\models\TagRelations;
  * @property integer informationsystem_id
  * @property string $name
  */
-class Tag extends \yii\db\ActiveRecord
+class Tag extends \app\components\ActiveRecord
 {
     /**
      * @inheritdoc

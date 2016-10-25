@@ -32,7 +32,7 @@ use app\modules\user\models\User;
  * @property integer $create_time
  * @property integer $update_time
  */
-class Item extends \yii\db\ActiveRecord implements \app\modules\user\components\AuthorInterface
+class Item extends \app\components\ActiveRecord  implements \app\modules\user\components\AuthorInterface
 {
     const STATUS_BLOCK = 0;
     const STATUS_ACTIVE = 1;

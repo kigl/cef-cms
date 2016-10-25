@@ -17,7 +17,7 @@ use	yii\behaviors\SluggableBehavior as Slug;
  * @property integer $create_time
  * @property integer $update_time
  */
-class Page extends \yii\db\ActiveRecord
+class Page extends \app\components\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -13,7 +13,7 @@ class Delete extends Action
 	public function run()
 	{
 		$this->loadModel(Yii::$app->request->getQueryParam($this->getQuery))->delete();
-				Yii::$app->session->setFlash('success', Yii::t('app', 'Deleted element'));
+
 		return $this->controller->redirect($this->redirect);
 	}
 }

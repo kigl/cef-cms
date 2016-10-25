@@ -32,7 +32,6 @@ class DeleteController extends \app\modules\admin\components\controllers\Backend
             }
 
 			if ($modelSystem->delete()) {
-                Yii::$app->session->setFlash('success', Yii::t('app', 'Deleted element'));
 
                 return $this->redirect(['manager/system']);
             }
@@ -62,7 +61,6 @@ class DeleteController extends \app\modules\admin\components\controllers\Backend
             }
 
             if ($model->delete()) {
-                Yii::$app->session->setFlash('success', Yii::t('app', 'Deleted element'));
 
                 return $this->redirect([
                     'manager/group',
@@ -80,7 +78,6 @@ class DeleteController extends \app\modules\admin\components\controllers\Backend
 		$model = Item::findOne($id);
 		
         if ($model->delete()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'Deleted element'));
 
             return $this->redirect([
                 'manager/group',
