@@ -2,26 +2,27 @@
 
 use yii\db\Migration;
 
-class m161025_041849_shop_group extends Migration
+class m161025_155911_mn_shop_product extends Migration
 {
-    public $tableName = 'mn_shop_group';
+    public $tableName = 'mn_shop_product';
 
     public function up()
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'parent_id' => $this->integer(),
+            'group_id' => $this->integer(),
+            'code' => $this->string(),
             'name' => $this->string(),
             'description' => $this->string(),
             'content' => $this->text(),
-            'image' => $this->string(),
-            'image_small' => $this->string(),
-            'status' => $this->integer(),
-            'sort' => $this->integer(),
+            'depot' => $this->integer(),
+            'price' => $this->decimal(5, 2),
             'user_id' => $this->integer(),
             'create_time' => $this->timestamp()->defaultValue(null),
             'update_time' => $this->timestamp()->defaultValue(null),
         ]);
+        
+        $this->createIndex('name', $this->tableName, 'name');
     }
 
     public function down()
