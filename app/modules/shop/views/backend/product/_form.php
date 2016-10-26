@@ -1,7 +1,5 @@
-<?
-
+<?php
 use app\modules\admin\widgets\ActiveForm;
-
 ?>
 
 <?php $form = ActiveForm::begin();?>
@@ -9,9 +7,14 @@ use app\modules\admin\widgets\ActiveForm;
 <?= $form->errorSummary($model);?>
 
 <div class="row">
-    <div class="col-md-4"><?= $form->field($model, 'name')?></div>
-    <div class="col-md-4"><?= $form->field($model, 'status')->dropDownList($model->getStatusList())?></div>
-    <div class="col-md-4"><?= $form->field($model, 'sort')?></div>
+    <div class="col-md-12"><?= $form->field($model, 'name');?></div>
+</div>
+
+<div class="row">
+    <div class="col-md-2"><?= $form->field($model, 'code');?></div>
+    <div class="col-md-3"><?= $form->field($model, 'price');?></div>
+    <div class="col-md-3"><?= $form->field($model, 'depot');?></div>
+    <div class="col-md-4"><?= $form->field($model, 'status')->dropDownList($model->getListStatus());?></div>
 </div>
 
 <?= $form->field($model, 'description')->textarea();?>

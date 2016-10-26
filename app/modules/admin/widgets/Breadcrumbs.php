@@ -37,19 +37,18 @@ class Breadcrumbs extends \yii\widgets\Breadcrumbs
       }
       echo Html::tag($this->tag, implode('', $links), $this->options);
   }
-  
+
   protected function getModuleItem()
   {
   	$controller = Yii::$app->controller;
   	$module = $controller->module;
-  	$name = $module->getName();
-  	$url = $module->defaultBackendRoute . '/' . $controller->defaultAction;
-  	
-  	
+  	$url = $module->defaultBackendRoute;
+
+
   	if (in_array($module->id, $this->hidenModules)) {
-			return false;	
+			return false;
 		}
-		
+
 		return	 $this->renderItem([
 				'label' => $module->getName(),
 				'url' => [$url],

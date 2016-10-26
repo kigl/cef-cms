@@ -9,7 +9,7 @@ class m161025_160046_mn_shop_product_related extends Migration
     public function up()
     {
         $this->createTable($this->tableName, [
-            'priduct_id' => $this->integer(),
+            'product_id' => $this->integer(),
             'product_related_id' => $this->integer(),
         ]);
     }

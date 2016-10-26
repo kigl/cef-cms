@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m161025_041849_shop_group extends Migration
+class m161025_041849_mn_shop_group extends Migration
 {
     public $tableName = 'mn_shop_group';
 
@@ -19,6 +19,9 @@ class m161025_041849_shop_group extends Migration
             'status' => $this->integer(),
             'sort' => $this->integer(),
             'user_id' => $this->integer(),
+            'alias' => $this->string(),
+            'meta_title' => $this->string(),
+            'meta_description' => $this->string(),
             'create_time' => $this->timestamp()->defaultValue(null),
             'update_time' => $this->timestamp()->defaultValue(null),
         ]);

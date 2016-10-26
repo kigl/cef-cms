@@ -2,6 +2,7 @@
 return [
     'Button create item' => 'Добавить элемент',
     'Button create group' => 'Добавить группу',
+    'Breadcrumbs root' => 'Root',
 
 	'Module id' => 'Id модуля',
 	

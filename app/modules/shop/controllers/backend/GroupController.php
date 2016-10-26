@@ -5,6 +5,7 @@ namespace app\modules\shop\controllers\backend;
 use Yii;
 use app\modules\shop\models\GroupSearch;
 use app\modules\shop\models\Group;
+use app\modules\shop\models\ProductSearch;
 
 class GroupController extends \app\modules\admin\components\controllers\BackendController
 {
@@ -13,10 +14,13 @@ class GroupController extends \app\modules\admin\components\controllers\BackendC
     {
         $dataProviderSearch = new GroupSearch();
         $dataProviderGroup = $dataProviderSearch->search($parent_id, Yii::$app->request->getQueryParams());
+        $dataProviderProductSearch = new ProductSearch();
+        $dataProviderProduct = $dataProviderProductSearch->search($parent_id, Yii::$app->request->getQueryParams());
 
         return $this->render('manager', [
             'parent_id' => $parent_id,
             'dataProviderGroup' => $dataProviderGroup,
+            'dataProviderProduct' => $dataProviderProduct,
         ]);
     }
 

@@ -6,32 +6,31 @@ use Yii;
 use yii\helpers\ArrayHelper;
 
 /**
- * This is the model class for table "mn_shop_group".
+ * This is the model class for table "mn_shop_product".
  *
  * @property integer $id
  * @property integer $group_id
+ * @property string $code
  * @property string $name
  * @property string $description
  * @property string $content
- * @property string $image
- * @property string $image_small
- * @property integer $status
- * @property integer $sort
+ * @property integer $depot
+ * @property string $price
  * @property integer $user_id
  * @property string $create_time
  * @property string $update_time
  */
-class Group extends \app\components\ActiveRecord
+class Product extends \app\components\ActiveRecord
 {
-    const STATUS_BLOCK = 0;
     const STATUS_ACTIVE = 1;
+    const STATUS_BLOCK = 0;
 
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'mn_shop_group';
+        return 'mn_shop_product';
     }
 
     /**
@@ -40,10 +39,12 @@ class Group extends \app\components\ActiveRecord
     public function rules()
     {
         return [
-            [['parent_id', 'status', 'sort', 'user_id'], 'integer'],
+            [['name'], 'required'],
+            [['group_id', 'depot', 'status', 'user_id'], 'integer'],
             [['content'], 'string'],
+            [['price'], 'number'],
             [['create_time', 'update_time'], 'safe'],
-            [['name', 'description', 'image', 'image_small', 'alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+            [['code', 'name', 'description','alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],
         ];
     }
 
@@ -53,25 +54,25 @@ class Group extends \app\components\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('shop', 'ID'),
-            'parent_id' => Yii::t('shop', 'Parent id'),
+            'id' => Yii::t('shop', 'Id'),
+            'group_id' => Yii::t('shop', 'Group id'),
+            'code' => Yii::t('shop', 'Code'),
             'name' => Yii::t('shop', 'Name'),
             'description' => Yii::t('shop', 'Description'),
             'content' => Yii::t('shop', 'Content'),
-            'image' => Yii::t('shop', 'Image'),
-            'image_small' => Yii::t('shop', 'Image Small'),
+            'depot' => Yii::t('shop', 'Depot'),
+            'price' => Yii::t('shop', 'Price'),
             'status' => Yii::t('shop', 'Status'),
-            'sort' => Yii::t('shop', 'Sort'),
-            'user_id' => Yii::t('shop', 'User ID'),
+            'user_id' => Yii::t('shop', 'User id'),
             'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta title'),
             'meta_description' => Yii::t('app', 'Meta description'),
-            'create_time' => Yii::t('shop', 'Create Time'),
-            'update_time' => Yii::t('shop', 'Update Time'),
+            'create_time' => Yii::t('app', 'Create time'),
+            'update_time' => Yii::t('app', 'Update time'),
         ];
     }
 
-    public function getStatusList()
+    public function getListStatus()
     {
         return [
             self::STATUS_ACTIVE => Yii::t('shop', 'Status active'),
@@ -81,6 +82,6 @@ class Group extends \app\components\ActiveRecord
 
     public function getStatus($key)
     {
-        return ArrayHelper::getValue($this->getStatusList(), $key);
+        return ArrayHelper::getValue($this->getListStatus(), $key);
     }
 }

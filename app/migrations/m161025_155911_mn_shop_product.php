@@ -17,7 +17,11 @@ class m161025_155911_mn_shop_product extends Migration
             'content' => $this->text(),
             'depot' => $this->integer(),
             'price' => $this->decimal(5, 2),
+            'status' => $this->integer(),
             'user_id' => $this->integer(),
+            'alias' => $this->string(),
+            'meta_title' => $this->string(),
+            'meta_description' => $this->string(),
             'create_time' => $this->timestamp()->defaultValue(null),
             'update_time' => $this->timestamp()->defaultValue(null),
         ]);

@@ -2,10 +2,12 @@
 
 namespace app\modules\admin\widgets\grid;
 
+use app\modules\shop\models\Group;
 use Yii;
 use yii\helpers\Html;
 use yii\grid\DataColumn;
 use yii\bootstrap\Modal;
+use yii\widgets\Breadcrumbs;
 
 class GridView extends \yii\grid\GridView
 {
@@ -22,6 +24,26 @@ class GridView extends \yii\grid\GridView
 
     public $summaryOptions = ['class' => 'summary pull-right'];
 
+    /*
+    /**
+     * ...
+     *  [
+     *      'breadcrumbsGroup' => [
+     *          'parent_id' => $parent_id,
+     *          'modelClass' => Group::className(),
+     *          'urlOptions' => [
+     *              'route' => 'controller/action',
+     *              'queryParams' => [
+     *                  'query' => 'value'
+     *              ],
+     *      ],
+     * ]
+     * ..
+     * @var
+
+    public $breadcrumbsGroup;
+    */
+
     public $options = ['class' => 'grid-view'];
 
     public $tableOptions = ['class' => 'table table-condensed table-striped grid-table'];
@@ -35,6 +57,9 @@ class GridView extends \yii\grid\GridView
                 return $this->renderButtons();
             case '{summary}':
                 return $this->renderSummary();
+           /* case '{breadcrumbsGroup}' :
+                return $this->renderBreadcrumbsGroup();
+           */
             case '{items}':
                 return $this->renderItems();
             case '{pager}':
@@ -104,14 +129,59 @@ class GridView extends \yii\grid\GridView
 			});
 		");
 
-        echo Modal::widget(['size' => Modal::SIZE_LARGE]);
+        return Modal::widget(['size' => Modal::SIZE_LARGE]);
     }
 
+    /*
+    public function renderBreadcrumbsGroup()
+    {
+        $breadcrumbs = new BreadcrumbsGroup();
+
+        if (isset($this->breadcrumbsGroup)) {
+            return Breadcrumbs::widget([
+                'links' => $breadcrumbs->getGroup(
+                    $this->breadcrumbsGroup['parent_id'],
+                    $this->breadcrumbsGroup['urlOptions'],
+                    $this->breadcrumbsGroup['modelClass']
+                ),
+                'homeLink' => false,
+                'options' => ['class' => 'clear-both no-margin breadcrumb small'],
+            ]);
+        }
+
+        return null;
+    }
+    */
+
+    /**
+     * @return string
+     */
     public function renderButtons()
     {
         $button = new ButtonAction($this->buttons);
 
         return $button->renderButtons();
+    }
+
+    /**
+     * Renders the data models for the grid view.
+     */
+    public function renderItems()
+    {
+        $caption = $this->renderCaption();
+        $columnGroup = $this->renderColumnGroup();
+        $tableHeader = $this->showHeader ? $this->renderTableHeader() : false;
+        $tableBody = $this->renderTableBody();
+        $tableFooter = $this->showFooter ? $this->renderTableFooter() : false;
+        $content = array_filter([
+            $caption,
+            $columnGroup,
+            $tableHeader,
+            $tableFooter,
+            $tableBody,
+        ]);
+
+        return Html::tag('table', implode("\n", $content), $this->tableOptions);
     }
 
     /**
@@ -177,6 +247,12 @@ class GridView extends \yii\grid\GridView
         return "<tbody>\n" . implode("\n", array_merge($rowsGroup, $rows)) . "\n</tbody>";
     }
 
+    /**
+     * @param $model
+     * @param $key
+     * @param $index
+     * @return string
+     */
     public function renderTableRowGroups($model, $key, $index)
     {
         $cells = [];
@@ -194,6 +270,10 @@ class GridView extends \yii\grid\GridView
         return Html::tag('tr', implode('', $cells), $options);
     }
 
+    /**
+     * @param $type
+     * @return string
+     */
     protected function getIconColumnType($type)
     {
         switch ($type) {
@@ -206,6 +286,9 @@ class GridView extends \yii\grid\GridView
         }
     }
 
+    /**
+     * @return array
+     */
     protected function getColumnTypeItemAttribute()
     {
         return [

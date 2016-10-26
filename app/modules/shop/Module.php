@@ -7,4 +7,5 @@ namespace app\modules\shop;
  */
 class Module extends \app\components\Module
 {
+    public $defaultBackendRoute = 'group/manager';
 }
