@@ -89,4 +89,17 @@ class Product extends \app\components\ActiveRecord
     {
         return $this->hasMany(ProductProperty::className(), ['product_id' => 'id']);
     }
+
+    public function getInitProperty()
+    {
+        $productProperty = ProductProperty::find()->where(['product_id' => $this->id])->indexBy('property_id')->all();
+        $allProperty = Property::find()->indexBy('id')->all();
+
+        foreach (array_diff_key($allProperty, $productProperty) as $property) {
+            $productProperty[$property->id] = new ProductProperty();
+            $productProperty[$property->id]->property_id = $property->id;
+        }
+
+        return $productProperty;
+    }
 }

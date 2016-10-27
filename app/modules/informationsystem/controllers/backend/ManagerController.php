@@ -28,6 +28,10 @@ class ManagerController extends \app\modules\admin\components\controllers\Backen
 
     public function actionSystem()
     {
+        echo "<pre>";
+        print_r(System::find()->select(['name', 'id'])->indexBy('id')->column());
+        echo "</pre>";
+
         $dataProvider = new ActiveDataProvider([
             'query' => System::find(),
             'pagination' => [

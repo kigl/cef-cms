@@ -25,8 +25,8 @@ use app\modules\admin\widgets\ActiveForm;
     ],
 ]);?>
 
-<?php foreach ($property as $value): ?>
-    <?= $form->field($value, "[{$value->property->id}]value")->label($value->property->name);?>
+<?php foreach ($productProperty as $value): ?>
+    <?= $form->field($value, "[{$value->property_id}]value")->label($value->property->name);?>
 <?php endforeach;?>
 
 <?= $form->field($model, 'alias');?>

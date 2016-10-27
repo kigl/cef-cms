@@ -13,5 +13,5 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
 
 <?= $this->render('_form', [
     'model' => $model,
-    'property' => $property,
+    'productProperty' => $productProperty,
 ]);?>

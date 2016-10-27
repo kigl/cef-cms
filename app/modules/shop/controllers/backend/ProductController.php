@@ -7,50 +7,58 @@ use app\modules\shop\models\Product;
 use app\modules\shop\models\ProductProperty;
 use app\modules\shop\models\Property;
 use app\modules\admin\components\controllers\BackendController;
+use yii\base\Model;
 
 class ProductController extends BackendController
 {
     public function actionCreate($group_id)
     {
         $model = new Product();
+        $productProperty = $model->getInitProperty();
+        $post = Yii::$app->request->post();
 
-        if ($model->load(Yii::$app->request->post()) and $model->validate()) {
+        if ($model->load($post) and $model->validate() and Model::loadMultiple($productProperty, $post)) {
             $model->group_id = $group_id;
+            $model->save();
+            $this->processSaveProperty($productProperty, $model);
 
             return $this->redirect(['group/manager', 'parent_id' => $group_id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'productProperty' => $productProperty,
         ]);
     }
 
     public function actionUpdate($id)
     {
         $model = Product::findOne($id);
-        $property = $this->initProperty($model);
+        $productProperty = $model->getInitProperty();
+        $post = Yii::$app->request->post();
 
-        if ($model->load(Yii::$app->request->post()) and $model->save()) {
+        if ($model->load(Yii::$app->request->post()) and $model->save() and Model::loadMultiple($productProperty, $post)) {
+            $this->processSaveProperty($productProperty, $model);
 
             return $this->redirect(['group/manager', 'parent_id' => $model->group_id]);
         }
 
-
         return $this->render('update', [
             'model' => $model,
-            'property' => $property,
+            'productProperty' => $productProperty,
         ]);
     }
 
-    protected function initProperty(Product $model)
+    protected function processSaveProperty($propertys, Product $model)
     {
-        $productProperty = $model->getProductProperty()->with('property')->indexBy('property_id')->all();
-        $allProperty = Property::find()->indexBy('id')->all();
-
-        foreach (array_diff_key($allProperty, $productProperty) as $property) {
-            $productProperty[$property->id] = new ProductProperty(['property_id' => $property->id]);
+        foreach ($propertys as $property) {
+            $property->product_id = $model->id;
+            
+            if ($property->validate()) {
+                if(!empty($property->value)) {
+                    $property->save(false);
+                }
+            }
         }
-
-        return $productProperty;
     }
 }
