@@ -1,0 +1,46 @@
+group
+    id -ex_key
+    parent_id -ix -ex_key
+    name    -ix
+    description
+    content
+    image
+    image_small
+    status
+    sort
+    user_id -ix
+    alias -ix
+    meta_title
+    meta_description
+    create_time
+    update_time
+
+product
+    id
+    group_id -> group-id -ix ex_key
+    code -ix
+    name -x
+    description
+    content
+    depot
+    price
+    status
+    user_id
+    alias -ix
+    meta_title
+    meta_description
+    create_time
+    update_time
+
+property
+    id
+    name -ix
+
+product_property
+    product_id -> product-id -ex_key
+    property_id -> property-id -ex_key
+    value
+
+product_related
+    product_id -product-id -pk -ex_key
+    product_related_id product-id -pk -ex_key

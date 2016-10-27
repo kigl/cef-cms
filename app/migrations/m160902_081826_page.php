@@ -2,9 +2,9 @@
 
 use yii\db\Migration;
 
-class m160902_081826_mn_page extends Migration
+class m160902_081826_page extends Migration
 {
-	public $tableName = 'mn_page';
+	public $tableName = '{{%page}}';
 	
     public function up()
     {

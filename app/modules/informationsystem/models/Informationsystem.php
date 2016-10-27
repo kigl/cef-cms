@@ -30,7 +30,7 @@ class Informationsystem extends \app\components\ActiveRecord
      */
     public static function tableName()
     {
-        return 'mn_informationsystem';
+        return '{{%informationsystem}}';
     }
 
     /**

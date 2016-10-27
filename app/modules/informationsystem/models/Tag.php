@@ -20,7 +20,7 @@ class Tag extends \app\components\ActiveRecord
      */
     public static function tableName()
     {
-        return 'mn_informationsystem_item_tag';
+        return '{{%informationsystem_item_tag}}';
     }
 
     /**

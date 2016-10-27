@@ -26,7 +26,7 @@ class Setting extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'mn_setting';
+        return '{{%setting}}';
     }
 
     /**

@@ -5,14 +5,16 @@ use yii\db\Migration;
 /**
  * Handles the creation for table `mn_forum_topic`.
  */
-class m161004_054321_create_mn_forum_topic_table extends Migration
+class m161004_054321_forum_topic extends Migration
 {
+    protected $tableName = '{{%forum_topic}}';
+
     /**
      * @inheritdoc
      */
     public function up()
     {
-        $this->createTable('mn_forum_topic', [
+        $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
             'parent_id' => $this->integer()->defaultValue(0),
             'name' => $this->string(),
@@ -28,6 +30,6 @@ class m161004_054321_create_mn_forum_topic_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('mn_forum_topic');
+        $this->dropTable($this->tableName);
     }
 }

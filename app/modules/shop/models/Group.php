@@ -31,7 +31,7 @@ class Group extends \app\components\ActiveRecord
      */
     public static function tableName()
     {
-        return 'mn_shop_group';
+        return '{{%shop_group}}';
     }
 
     /**
@@ -40,6 +40,7 @@ class Group extends \app\components\ActiveRecord
     public function rules()
     {
         return [
+            ['name', 'required'],
             [['parent_id', 'status', 'sort', 'user_id'], 'integer'],
             [['content'], 'string'],
             [['create_time', 'update_time'], 'safe'],

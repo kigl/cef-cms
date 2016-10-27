@@ -17,7 +17,7 @@ class TagRelations extends \app\components\ActiveRecord
      */
     public static function tableName()
     {
-        return 'mn_informationsystem_item_tag_relation';
+        return '{{%informationsystem_item_tag_relation}}';
     }
 
     /**

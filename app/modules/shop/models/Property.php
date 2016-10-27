@@ -9,7 +9,6 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
- * @property string $description
  */
 class Property extends \app\components\ActiveRecord
 {
@@ -18,7 +17,7 @@ class Property extends \app\components\ActiveRecord
      */
     public static function tableName()
     {
-        return 'mn_shop_property';
+        return '{{%shop_property}}';
     }
 
     /**
@@ -28,7 +27,7 @@ class Property extends \app\components\ActiveRecord
     {
         return [
             ['name', 'required'],
-            [['name', 'description'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
         ];
     }
 
@@ -40,7 +39,6 @@ class Property extends \app\components\ActiveRecord
         return [
             'id' => Yii::t('shop', 'Id'),
             'name' => Yii::t('shop', 'Name'),
-            'description' => Yii::t('shop', 'Description'),
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace app\modules\user\commands;
 
 use Yii;
 
-class RbackController extends \yii\console\Controller
+class RbacController extends \yii\console\Controller
 {
     public function actionInit()
     {

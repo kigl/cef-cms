@@ -18,7 +18,7 @@ class ProductProperty extends \app\components\ActiveRecord
      */
     public static function tableName()
     {
-        return 'mn_shop_product_property';
+        return '{{%shop_product_property}}';
     }
 
     /**
@@ -42,5 +42,10 @@ class ProductProperty extends \app\components\ActiveRecord
             'property_id' => Yii::t('shop', 'Property id'),
             'value' => Yii::t('shop', 'Value'),
         ];
+    }
+
+    public function getProperty()
+    {
+        return $this->hasOne(Property::className(), ['id' => 'property_id']);
     }
 }

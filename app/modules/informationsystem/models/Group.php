@@ -32,7 +32,7 @@ class Group extends \app\components\ActiveRecord
      */
     public static function tableName()
     {
-        return 'mn_informationsystem_group';
+        return '{{%informationsystem_group}}';
     }
 
     /**

@@ -21,6 +21,12 @@ $baseConfig = require(__DIR__ . '/app/config/console.php');
 
 $config = new ConfigManager($baseConfig, new ConfigConsole());
 
+// менеджер конфигураций
+$config = Yii::createObject([
+    'class' => ConfigManager::className(),
+    'modulesPath' => Yii::getAlias('@app' . '/modules'),
+], [$baseConfig, new ConfigConsole()]);
+
 $application = new yii\console\Application($config->getConfig());
 $exitCode = $application->run();
 exit($exitCode);

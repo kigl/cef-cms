@@ -30,7 +30,7 @@ class Product extends \app\components\ActiveRecord
      */
     public static function tableName()
     {
-        return 'mn_shop_product';
+        return '{{%shop_product}}';
     }
 
     /**
@@ -83,5 +83,10 @@ class Product extends \app\components\ActiveRecord
     public function getStatus($key)
     {
         return ArrayHelper::getValue($this->getListStatus(), $key);
+    }
+
+    public function getProductProperty()
+    {
+        return $this->hasMany(ProductProperty::className(), ['product_id' => 'id']);
     }
 }

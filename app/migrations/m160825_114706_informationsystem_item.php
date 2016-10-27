@@ -3,25 +3,33 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation for table `mn_informationsystem_group`.
+ * Handles the creation for table `mn_informationsystem_item`.
  */
-class m161012_101545_create_mn_informationsystem_group_table extends Migration
+class m160825_114706_informationsystem_item extends Migration
 {
+    protected $tableName = '{{%informationsystem_item}}';
+
     /**
      * @inheritdoc
      */
     public function up()
     {
-        $this->createTable('mn_informationsystem_group', [
+        $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'parent_id' => $this->integer(),
+            'group_id' => $this->integer()->defaultValue(0),
             'informationsystem_id' => $this->integer(),
-            'name' => $this->string(),
+            'name' => $this->string()->notNull(),
             'description' => $this->string(300),
             'content' => $this->text(),
             'image' => $this->string(),
+            'video' => $this->string(),
+            'file' => $this->string(),
+            'status' => $this->integer()->defaultValue(1),
             'sort' => $this->integer(),
             'user_id' => $this->integer(),
+            'date' => $this->date(),
+            'date_start' => $this->date(),
+            'date_end' => $this->date(),
             'alias' => $this->string(),
             'meta_title' => $this->string(),
             'meta_description' => $this->string(300),
@@ -35,6 +43,6 @@ class m161012_101545_create_mn_informationsystem_group_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('mn_informationsystem_group');
+        $this->dropTable($this->tableName);
     }
 }

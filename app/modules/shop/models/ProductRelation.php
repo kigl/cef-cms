@@ -10,14 +10,14 @@ use Yii;
  * @property integer $product_id
  * @property integer $product_related_id
  */
-class ProductRelated extends \app\components\ActiveRecord
+class ProductRelation extends \app\components\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'mn_shop_product_related';
+        return '{{%shop_product_relation}}';
     }
 
     /**

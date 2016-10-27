@@ -2,11 +2,13 @@
 
 use yii\db\Migration;
 
-class m160825_111921_mn_informationsystem extends Migration
+class m160825_111921_informationsystem extends Migration
 {
+    public $tableName = '{{%informationsystem}}';
+
     public function up()
     {
-			$this->createTable('mn_informationsystem', [
+			$this->createTable($this->tableName, [
 				'id' => $this->primaryKey(),
 				'name' => $this->string()->notNull(),
 				'description' => $this->string(300)->notNull(),
@@ -17,15 +19,17 @@ class m160825_111921_mn_informationsystem extends Migration
 				'user_id' => $this->integer(),
 				'meta_title' => $this->string(),
 				'meta_description' => $this->string(),
-                'items_per_page' => $this->integer(),
+                'item_on_page' => $this->integer(),
 				'create_time' => $this->timestamp()->defaultValue(null),
 				'update_time' => $this->timestamp()->defaultValue(null),
 			]);
+
+			$this->createIndex('ix-informationsystem-name', $this->tableName, 'name');
     }
 
     public function down()
     {
-        $this->dropTable('mn_informationsystem');
+        $this->dropTable($this->tableName);
 
         return false;
     }

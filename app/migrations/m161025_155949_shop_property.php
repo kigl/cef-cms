@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m161025_155949_mn_shop_property extends Migration
+class m161025_155949_shop_property extends Migration
 {
     protected $tableName = 'mn_shop_property';
 
@@ -11,8 +11,9 @@ class m161025_155949_mn_shop_property extends Migration
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
             'name' => $this->string(),
-            'description' => $this->string(),
         ]);
+
+        $this->createIndex('ix-property-name', $this->tableName, 'name');
     }
 
     public function down()

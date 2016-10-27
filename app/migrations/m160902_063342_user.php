@@ -2,9 +2,9 @@
 
 use yii\db\Migration;
 
-class m160902_063342_mn_user extends Migration
+class m160902_063342_user extends Migration
 {
-	public $tableName = 'mn_user';
+	public $tableName = '{{%user}}';
 	
     public function up()
     {

@@ -2,17 +2,20 @@
 
 use yii\db\Migration;
 
-class m161025_160030_mn_shop_product_property extends Migration
+class m161025_160046_shop_product_relation extends Migration
 {
-    protected $tableName = 'mn_shop_product_property';
+    protected $tableName = '{{%shop_product_relation}}';
 
     public function up()
     {
         $this->createTable($this->tableName, [
             'product_id' => $this->integer(),
-            'property_id' => $this->integer(),
-            'value' => $this->string(),
+            'product_relation_id' => $this->integer(),
         ]);
+
+        $this->addPrimaryKey('pk-product_relation', $this->tableName, ['product_id', 'product_relation_id']);
+
+        $this->addForeignKey('fk-product_relation-product_id', $this->tableName, 'product_id', '{{%shop_product}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()

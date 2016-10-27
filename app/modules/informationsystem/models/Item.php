@@ -45,7 +45,7 @@ class Item extends \app\components\ActiveRecord  implements \app\modules\user\co
      */
     public static function tableName()
     {
-        return 'mn_informationsystem_item';
+        return '{{%informationsystem_item}}';
     }
 
     /**

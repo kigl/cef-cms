@@ -25,6 +25,10 @@ use app\modules\admin\widgets\ActiveForm;
     ],
 ]);?>
 
+<?php foreach ($property as $value): ?>
+    <?= $form->field($value, "[{$value->property->id}]value")->label($value->property->name);?>
+<?php endforeach;?>
+
 <?= $form->field($model, 'alias');?>
 
 <?= $form->field($model, 'meta_title');?>

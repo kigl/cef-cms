@@ -34,7 +34,7 @@ class User extends \app\components\ActiveRecord  implements \yii\web\IdentityInt
      */
     public static function tableName()
     {
-        return 'mn_user';
+        return '{{%user}}';
     }
 
     /**

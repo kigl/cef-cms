@@ -2,22 +2,22 @@
 
 use yii\db\Migration;
 
-class m161025_155911_mn_shop_product extends Migration
+class m161025_041849_shop_group extends Migration
 {
-    public $tableName = 'mn_shop_product';
+    public $tableName = '{{%shop_group}}';
 
     public function up()
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'group_id' => $this->integer(),
-            'code' => $this->string(),
-            'name' => $this->string(),
+            'parent_id' => $this->integer()->defaultValue(0),
+            'name' => $this->string()->notNull(),
             'description' => $this->string(),
             'content' => $this->text(),
-            'depot' => $this->integer(),
-            'price' => $this->decimal(5, 2),
-            'status' => $this->integer(),
+            'image' => $this->string(),
+            'image_small' => $this->string(),
+            'status' => $this->integer()->defaultValue(1),
+            'sort' => $this->integer(),
             'user_id' => $this->integer(),
             'alias' => $this->string(),
             'meta_title' => $this->string(),
@@ -25,8 +25,10 @@ class m161025_155911_mn_shop_product extends Migration
             'create_time' => $this->timestamp()->defaultValue(null),
             'update_time' => $this->timestamp()->defaultValue(null),
         ]);
-        
-        $this->createIndex('name', $this->tableName, 'name');
+
+        $this->createIndex('ix-shop_group-parent_id', $this->tableName, 'parent_id');
+        $this->createIndex('ix-shop_group-name', $this->tableName, 'name');
+        $this->createIndex('ix-shop_group-alias', $this->tableName, 'alias');
     }
 
     public function down()
