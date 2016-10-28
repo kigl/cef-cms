@@ -24,6 +24,7 @@ class Product extends \app\components\ActiveRecord
 {
     const STATUS_ACTIVE = 1;
     const STATUS_BLOCK = 0;
+    const STATUS_NOT_AVAIlABLE = 2;
 
     /**
      * @inheritdoc
@@ -44,7 +45,7 @@ class Product extends \app\components\ActiveRecord
             [['content'], 'string'],
             [['price'], 'number'],
             [['create_time', 'update_time'], 'safe'],
-            [['code', 'name', 'description','alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+            [['code', 'name', 'description', 'alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],
         ];
     }
 
@@ -72,27 +73,55 @@ class Product extends \app\components\ActiveRecord
         ];
     }
 
+    /**
+     * @return array
+     */
     public function getListStatus()
     {
         return [
             self::STATUS_ACTIVE => Yii::t('shop', 'Status active'),
             self::STATUS_BLOCK => Yii::t('shop', 'Status block'),
+            self::STATUS_NOT_AVAIlABLE => Yii::t('shop', 'Status not available'),
         ];
     }
 
+    /**
+     * @param $key
+     * @return mixed
+     */
     public function getStatus($key)
     {
         return ArrayHelper::getValue($this->getListStatus(), $key);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getProductProperty()
     {
         return $this->hasMany(ProductProperty::className(), ['product_id' => 'id']);
     }
 
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProductRelation()
+    {
+       return $this->hasMany(ProductRelation::className(), ['product_id' => 'id']);
+    }
+
+    public function getParentProductRelation()
+    {
+        return $this->hasOne(ProductRelation::className(), ['product_relation_id' => 'id']);
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[] ProductProperty
+     */
     public function getInitProperty()
     {
-        $productProperty = ProductProperty::find()->where(['product_id' => $this->id])->indexBy('property_id')->all();
+        $productProperty = $this->getProductProperty()->with('property')->indexBy('property_id')->all();
         $allProperty = Property::find()->indexBy('id')->all();
 
         foreach (array_diff_key($allProperty, $productProperty) as $property) {
@@ -101,5 +130,43 @@ class Product extends \app\components\ActiveRecord
         }
 
         return $productProperty;
+    }
+
+    public function getListProductInGroup()
+    {
+        return self::find()->where('group_id = :group', ['group' => $this->group_id])->select(['name', 'id'])->indexBy('id')->column();
+    }
+
+    /**
+     * @param ProductProperty array $properties
+     */
+    public function saveProperty($properties)
+    {
+        foreach ($properties as $property) {
+            $property->product_id = $this->id;
+
+            if (!empty($property->value) and $property->validate()) {
+                $property->save(false);
+            }
+        }
+    }
+
+    public function getInitProductRelation()
+    {
+        $productRelation = $this->getParentProductRelation()->one();
+
+        if (!isset($productRelation)) {
+            $productRelation = new ProductRelation();
+        }
+
+        return $productRelation;
+    }
+
+    public function saveProductRelation($productRelation)
+    {
+        if (!empty($productRelation->product_id)) {
+            $productRelation->product_relation_id = $this->id;
+            $productRelation->save();
+        }
     }
 }

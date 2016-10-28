@@ -3,7 +3,6 @@
 namespace app\modules\user\models;
 
 use Yii;
-use yii\web\HttpException;
 
 /**
  * This is the model class for table "mn_user".
@@ -93,6 +92,9 @@ class User extends \app\components\ActiveRecord  implements \yii\web\IdentityInt
         ];
     }
 
+    /**
+     * @return array
+     */
     public static function getStatusList()
     {
         return [
@@ -102,6 +104,10 @@ class User extends \app\components\ActiveRecord  implements \yii\web\IdentityInt
         ];
     }
 
+    /**
+     * @param $status
+     * @return mixed
+     */
     public static function getStatus($status)
     {
         $result = self::getStatusList();
@@ -122,6 +128,46 @@ class User extends \app\components\ActiveRecord  implements \yii\web\IdentityInt
         }
 
         return parent::beforeSave($insert);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFieldRelation()
+    {
+        return $this->hasMany(FieldRelation::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return array|\yii\db\ActiveRecord[]
+     */
+    public function getInitField()
+    {
+        $fieldRelation = $this->getFieldRelation()->with('field')->indexBy('field_id')->all();
+        $allField = Field::find()->indexBy('id')->all();
+
+        foreach (array_diff_key($allField, $fieldRelation) as $field) {
+            $fieldRelation[$field->id] = new FieldRelation();
+            $fieldRelation[$field->id]->field_id = $field->id;
+        }
+
+        return $fieldRelation;
+    }
+
+    /**
+     * @param $fields
+     */
+    public function saveField($fields)
+    {
+        foreach ($fields as $field) {
+            $field->user_id = $this->id;
+
+            if (!empty($field->value) and $field->validate()) {
+                $field->save(false);
+            } else {
+                $field->delete();
+            }
+        }
     }
 
     /*

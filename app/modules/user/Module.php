@@ -7,4 +7,5 @@ namespace app\modules\user;
  */
 class Module extends \app\components\Module
 {
+    public $defaultBackendRoute = 'default/manager';
 }

@@ -4,7 +4,7 @@ use app\components\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
 $this->params['breadcrumbs'] = Breadcrumbs::getLinksGroup(
-    $group_id,
+    $model->group_id,
     [
         'route' => 'group/manager',
     ],
@@ -13,5 +13,6 @@ $this->params['breadcrumbs'] = Breadcrumbs::getLinksGroup(
 
 <?= $this->render('_form', [
     'model' => $model,
-    'productProperty' => $productProperty
+    'productProperty' => $productProperty,
+    'productRelation' => $productRelation,
 ]);?>

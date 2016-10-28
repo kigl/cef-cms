@@ -44,3 +44,13 @@ product_property
 product_related
     product_id -product-id -pk -ex_key
     product_related_id product-id -pk -ex_key
+
+
+user_field
+    id
+    name
+
+user_field_relation
+    user_id -> user pk fk cascade cascade
+    field_id -> field pk fk cascade cascade
+    value

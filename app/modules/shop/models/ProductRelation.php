@@ -26,7 +26,7 @@ class ProductRelation extends \app\components\ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'product_related_id'], 'integer'],
+            [['product_id', 'product_relation_id'], 'integer'],
         ];
     }
 
@@ -40,4 +40,16 @@ class ProductRelation extends \app\components\ActiveRecord
             'product_related_id' => Yii::t('shop', 'Product related id'),
         ];
     }
+
+    public function getProducts()
+    {
+        return $this->hasMany(Product::className(), ['id' => 'product_relation_id']);
+    }
+
+    public function getParentProduct()
+    {
+        return $this->hasOne(Product::className(), ['id' => 'product_relation_id']);
+    }
+
+
 }

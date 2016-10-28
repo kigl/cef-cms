@@ -2,9 +2,11 @@
 
 namespace app\modules\user\controllers\backend;
 
+use app\modules\user\models\Field;
+use app\modules\user\models\FieldRelation;
 use Yii;
+use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\user\Module;
 use app\modules\user\models\User;
 
 class DefaultController extends \app\modules\admin\components\controllers\BackendController
@@ -13,16 +15,6 @@ class DefaultController extends \app\modules\admin\components\controllers\Backen
 	public function actions()
 	{
 		return [
-			'create' => [
-				'class' => 'app\components\actions\Create',
-				'model' => '\app\modules\user\models\User',
-				'scenario' => 'insert',
-			],
-			'update' => [
-				'class' => 'app\components\actions\Update',
-				'model' => '\app\modules\user\models\User',
-				'scenario' => 'update',
-			],
 			'delete' => [
 				'class' => 'app\components\actions\Delete',
 				'model' => '\app\modules\user\models\User',
@@ -38,4 +30,40 @@ class DefaultController extends \app\modules\admin\components\controllers\Backen
 			]);
 		return $this->render('manager', ['dataProvider' => $dataProvider]);
 	}
+
+	public function actionCreate()
+    {
+        $model = new User();
+        $fieldRelation = $model->getInitField();
+        $post = Yii::$app->request->post();
+
+        if ($model->load($post) and $model->save() and Model::loadMultiple($fieldRelation, $post)) {
+            $model->saveField($fieldRelation);
+
+            return $this->redirect(['default/manager']);
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+            'fieldRelation' => $fieldRelation,
+        ]);
+     }
+
+    public function actionUpdate($id)
+    {
+        $model = User::findOne($id);
+        $fieldRelation = $model->getInitField();
+        $post = Yii::$app->request->post();
+
+        if ($model->load($post) and $model->save() and Model::loadMultiple($fieldRelation, $post)) {
+            $model->saveField($fieldRelation);
+
+            return $this->redirect(['default/manager']);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+            'fieldRelation' => $fieldRelation,
+        ]);
+    }
 }

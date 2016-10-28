@@ -1,6 +1,10 @@
 <?php
 use app\modules\admin\widgets\grid\GridView;
 use app\modules\user\models\User;
+
+$this->params['toolbar'] = [
+    ['label' => '<i class="fa fa-minus"></i> ' . Yii::t('user', 'Toolbar field'), 'url' => ['field/manager']],
+];
 ?>
 
 <?php

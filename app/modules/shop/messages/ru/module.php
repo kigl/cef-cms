@@ -14,9 +14,12 @@ return [
     'Price' => 'Цена',
 
     'Status' => 'Статус',
-    'Status active' => 'Активный',
-    'Status block' => 'Заблокирован',
+    'Status active' => 'Доступен',
+    'Status block' => 'Не доступен',
+    'Status not available' => 'Нет в наличии',
     'Sort' => 'Сортировка',
 
     'Toolbar property' => 'Свойства товара',
+    'Tab main' => 'Общие',
+    'Tab property' => 'Свойства',
 ];
