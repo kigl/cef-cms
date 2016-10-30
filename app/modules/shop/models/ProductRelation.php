@@ -12,6 +12,8 @@ use Yii;
  */
 class ProductRelation extends \app\components\ActiveRecord
 {
+    protected static $_productRelation;
+
     /**
      * @inheritdoc
      */
@@ -27,6 +29,7 @@ class ProductRelation extends \app\components\ActiveRecord
     {
         return [
             [['product_id', 'product_relation_id'], 'integer'],
+            ['product_relation_id', 'compare', 'compareAttribute' => 'product_id', 'operator' => '!='],
         ];
     }
 
@@ -41,15 +44,38 @@ class ProductRelation extends \app\components\ActiveRecord
         ];
     }
 
-    public function getProducts()
+    public static function primaryKey()
     {
-        return $this->hasMany(Product::className(), ['id' => 'product_relation_id']);
+        return ['product_id', 'product_relation_id'];
     }
 
-    public function getParentProduct()
+    public function getProducts()
+    {
+        return $this->hasMany(Product::className(), ['id' => 'product_id']);
+    }
+
+    public function getProduct()
     {
         return $this->hasOne(Product::className(), ['id' => 'product_relation_id']);
     }
 
+    public static function InitProductRelation(Product $model)
+    {
+        self::$_productRelation = $model->getParentProductRelation()->one();
+
+        if (!isset(self::$_productRelation)) {
+            self::$_productRelation = new self();
+        }
+
+        return self::$_productRelation;
+    }
+
+    public static function saveProductRelation(Product $model)
+    {
+        if (!empty(self::$_productRelation->product_id)) {
+            self::$_productRelation->product_relation_id = $model->id;
+            self::$_productRelation->save();
+        }
+    }
 
 }

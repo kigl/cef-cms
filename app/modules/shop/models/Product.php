@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
  * @property string $name
  * @property string $description
  * @property string $content
- * @property integer $depot
+ * @property integer $sku
  * @property string $price
  * @property integer $user_id
  * @property string $create_time
@@ -25,6 +25,8 @@ class Product extends \app\components\ActiveRecord
     const STATUS_ACTIVE = 1;
     const STATUS_BLOCK = 0;
     const STATUS_NOT_AVAIlABLE = 2;
+
+    public $image;
 
     /**
      * @inheritdoc
@@ -41,11 +43,12 @@ class Product extends \app\components\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['group_id', 'depot', 'status', 'user_id'], 'integer'],
+            [['group_id', 'sku', 'status', 'user_id'], 'integer'],
             [['content'], 'string'],
             [['price'], 'number'],
             [['create_time', 'update_time'], 'safe'],
             [['code', 'name', 'description', 'alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+            ['image', 'image', 'maxFiles' => 5],
         ];
     }
 
@@ -61,7 +64,7 @@ class Product extends \app\components\ActiveRecord
             'name' => Yii::t('shop', 'Name'),
             'description' => Yii::t('shop', 'Description'),
             'content' => Yii::t('shop', 'Content'),
-            'depot' => Yii::t('shop', 'Depot'),
+            'sku' => Yii::t('shop', 'Depot'),
             'price' => Yii::t('shop', 'Price'),
             'status' => Yii::t('shop', 'Status'),
             'user_id' => Yii::t('shop', 'User id'),
@@ -106,67 +109,21 @@ class Product extends \app\components\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProductRelation()
+    public function getProductsRelation()
     {
        return $this->hasMany(ProductRelation::className(), ['product_id' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getParentProductRelation()
     {
         return $this->hasOne(ProductRelation::className(), ['product_relation_id' => 'id']);
     }
 
-    /**
-     * @return array|\yii\db\ActiveRecord[] ProductProperty
-     */
-    public function getInitProperty()
-    {
-        $productProperty = $this->getProductProperty()->with('property')->indexBy('property_id')->all();
-        $allProperty = Property::find()->indexBy('id')->all();
-
-        foreach (array_diff_key($allProperty, $productProperty) as $property) {
-            $productProperty[$property->id] = new ProductProperty();
-            $productProperty[$property->id]->property_id = $property->id;
-        }
-
-        return $productProperty;
-    }
-
     public function getListProductInGroup()
     {
         return self::find()->where('group_id = :group', ['group' => $this->group_id])->select(['name', 'id'])->indexBy('id')->column();
-    }
-
-    /**
-     * @param ProductProperty array $properties
-     */
-    public function saveProperty($properties)
-    {
-        foreach ($properties as $property) {
-            $property->product_id = $this->id;
-
-            if (!empty($property->value) and $property->validate()) {
-                $property->save(false);
-            }
-        }
-    }
-
-    public function getInitProductRelation()
-    {
-        $productRelation = $this->getParentProductRelation()->one();
-
-        if (!isset($productRelation)) {
-            $productRelation = new ProductRelation();
-        }
-
-        return $productRelation;
-    }
-
-    public function saveProductRelation($productRelation)
-    {
-        if (!empty($productRelation->product_id)) {
-            $productRelation->product_relation_id = $this->id;
-            $productRelation->save();
-        }
     }
 }

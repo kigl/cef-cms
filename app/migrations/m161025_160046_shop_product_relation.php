@@ -16,6 +16,7 @@ class m161025_160046_shop_product_relation extends Migration
         $this->addPrimaryKey('pk-product_relation', $this->tableName, ['product_id', 'product_relation_id']);
 
         $this->addForeignKey('fk-product_relation-product_id', $this->tableName, 'product_id', '{{%shop_product}}', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('fk-product_relation-product_relation_id', $this->tableName, 'product_relation_id', '{{%shop_product}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()

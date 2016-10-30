@@ -13,6 +13,7 @@ use Yii;
  */
 class ProductProperty extends \app\components\ActiveRecord
 {
+    protected static $_properties;
     /**
      * @inheritdoc
      */
@@ -47,5 +48,38 @@ class ProductProperty extends \app\components\ActiveRecord
     public function getProperty()
     {
         return $this->hasOne(Property::className(), ['id' => 'property_id']);
+    }
+
+    /**
+     * @param Product $model
+     * @return mixed
+     */
+    public static function initProperty(Product $model)
+    {
+        static::$_properties = $model->getProductProperty()->with('property')->indexBy('property_id')->all();
+        $allProperty = Property::find()->indexBy('id')->all();
+
+        foreach (array_diff_key($allProperty, static::$_properties) as $property) {
+            static::$_properties[$property->id] = new self;
+            static::$_properties[$property->id]->property_id = $property->id;
+        }
+
+        return static::$_properties;
+    }
+
+    /**
+     * @param Product $model
+     */
+    public static function saveProperty(Product $model)
+    {
+        foreach (static::$_properties as $property) {
+            $property->product_id = $model->id;
+
+            if (isset($property->value) and $property->validate()) {
+                $property->save(false);
+            } else {
+                // $property->delete();
+            }
+        }
     }
 }

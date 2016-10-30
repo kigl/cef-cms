@@ -9,9 +9,13 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property integer $type
  */
 class Property extends \app\components\ActiveRecord
 {
+    const TYPE_STRING = 1;
+    const TYPE_BOOLEAN = 2;
+
     /**
      * @inheritdoc
      */
@@ -28,6 +32,7 @@ class Property extends \app\components\ActiveRecord
         return [
             ['name', 'required'],
             [['name'], 'string', 'max' => 255],
+            ['type', 'integer'],
         ];
     }
 
@@ -39,6 +44,15 @@ class Property extends \app\components\ActiveRecord
         return [
             'id' => Yii::t('shop', 'Id'),
             'name' => Yii::t('shop', 'Name'),
+            'type' => Yii::t('shop', 'Property type'),
+        ];
+    }
+
+    public function getListType()
+    {
+        return [
+            self::TYPE_STRING => Yii::t('shop', 'Property type string'),
+            self::TYPE_BOOLEAN => Yii::t('shop', 'Property type boolean'),
         ];
     }
 }

@@ -2,19 +2,23 @@
 
 use yii\db\Migration;
 
-class m161025_155949_shop_property extends Migration
+class m161030_134743_shop_product_image extends Migration
 {
-    protected $tableName = 'mn_shop_property';
+
+    protected $tableName = '{{%shop_product_image}}';
 
     public function up()
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
+            'product_id' => $this->integer(),
             'name' => $this->string(),
-            'type' => $this->integer(),
+            'status' => $this->integer(),
+            'alt' => $this->string(),
+            'create_time' => $this->timestamp(),
         ]);
 
-        $this->createIndex('ix-property-name', $this->tableName, 'name');
+        $this->createIndex('ix-product_image-product_id', $this->tableName, 'product_id');
     }
 
     public function down()

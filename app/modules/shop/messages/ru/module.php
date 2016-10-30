@@ -12,6 +12,10 @@ return [
     'Code' => 'Артикул',
 
     'Price' => 'Цена',
+	'Product relation' => 'Связать с товаром',
+	'Property type string' => 'Строка',
+	'Property type boolean' => 'Boolean',
+	'Property type' => 'Тип свойства',
 
     'Status' => 'Статус',
     'Status active' => 'Доступен',

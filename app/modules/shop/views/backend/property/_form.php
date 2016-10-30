@@ -8,4 +8,6 @@ use app\modules\admin\widgets\ActiveForm;
 
 <?= $form->field($model, 'name');?>
 
+<?= $form->field($model, 'type')->dropDownList($model->getListType());?>
+
 <?php ActiveForm::end();?>
