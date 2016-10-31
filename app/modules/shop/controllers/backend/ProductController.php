@@ -2,14 +2,14 @@
 
 namespace app\modules\shop\controllers\backend;
 
+
+use Yii;
+use yii\base\Model;
 use app\modules\shop\models\Image;
 use app\modules\shop\models\ProductProperty;
 use app\modules\shop\models\ProductRelation;
-use Yii;
-use yii\base\Model;
 use app\modules\shop\models\Product;
 use app\modules\admin\components\controllers\BackendController;
-use yii\web\UploadedFile;
 
 class ProductController extends BackendController
 {
@@ -18,21 +18,29 @@ class ProductController extends BackendController
         $model = new Product();
         $model->group_id = (int)$group_id;
         $post = Yii::$app->request->post();
-        $productProperty = $model->getInitProperty();
-        $productRelation = $model->getInitProductRelation();
+        $property = ProductProperty::initProperty($model);
+        $relation = ProductRelation::initRelation($model);
+        $images = Image::initImages($model);
 
-        if ($model->load($post) and $model->validate() and Model::loadMultiple($productProperty, $post) and $productRelation->load($post)) {
+        if ($model->load($post) and $model->validate()) {
+            Model::loadMultiple($property, $post);
+            Model::loadMultiple($images, $post);
+            $relation->load($post);
+
             $model->save();
-            $model->saveProperty($productProperty);
-            $model->saveProductRelation($productRelation);
+            Image::upload($model, 'imageUpload');
+            Image::process();
+            ProductProperty::saveProperty($model);
+            ProductRelation::saveRelation($model);
 
-            return $this->redirect(['group/manager', 'parent_id' => $group_id]);
+            return $this->redirect(['group/manager', 'parent_id' => $model->group_id]);
         }
 
-        return $this->render('create', [
+        return $this->render('update', [
             'model' => $model,
-            'productProperty' => $productProperty,
-            'productRelation' => $productRelation,
+            'property' => $property,
+            'relation' => $relation,
+            'images' => $images,
         ]);
     }
 
@@ -40,25 +48,29 @@ class ProductController extends BackendController
     {
         $model = Product::findOne($id);
         $post = Yii::$app->request->post();
-        $productProperty = ProductProperty::initProperty($model);
-        $productRelation = ProductRelation::initProductRelation($model);
+        $property = ProductProperty::initProperty($model);
+        $relation = ProductRelation::initRelation($model);
+        $images = Image::initImages($model);
 
         if ($model->load($post) and $model->validate()) {
-            Model::loadMultiple($productProperty, $post);
-            $productRelation->load($post);
+            Model::loadMultiple($property, $post);
+            Model::loadMultiple($images, $post);
+            $relation->load($post);
 
             $model->save();
-            Image::uploadImages($model, 'image');
+            Image::upload($model, 'imageUpload');
+            Image::process();
             ProductProperty::saveProperty($model);
-            ProductRelation::saveProductRelation($model);
+            ProductRelation::saveRelation($model);
 
             return $this->redirect(['group/manager', 'parent_id' => $model->group_id]);
         }
 
         return $this->render('update', [
             'model' => $model,
-            'productProperty' => $productProperty,
-            'productRelation' => $productRelation,
+            'property' => $property,
+            'relation' => $relation,
+            'images' => $images,
         ]);
     }
 }

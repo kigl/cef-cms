@@ -26,7 +26,7 @@ class Product extends \app\components\ActiveRecord
     const STATUS_BLOCK = 0;
     const STATUS_NOT_AVAIlABLE = 2;
 
-    public $image;
+    public $imageUpload;
 
     /**
      * @inheritdoc
@@ -48,7 +48,7 @@ class Product extends \app\components\ActiveRecord
             [['price'], 'number'],
             [['create_time', 'update_time'], 'safe'],
             [['code', 'name', 'description', 'alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],
-            ['image', 'image', 'maxFiles' => 5],
+            ['imageUpload', 'image', 'maxFiles' => 5],
         ];
     }
 
@@ -73,6 +73,7 @@ class Product extends \app\components\ActiveRecord
             'meta_description' => Yii::t('app', 'Meta description'),
             'create_time' => Yii::t('app', 'Create time'),
             'update_time' => Yii::t('app', 'Update time'),
+            'imageUpload' => Yii::t('shop', 'Image upload'),
         ];
     }
 
@@ -120,6 +121,11 @@ class Product extends \app\components\ActiveRecord
     public function getParentProductRelation()
     {
         return $this->hasOne(ProductRelation::className(), ['product_relation_id' => 'id']);
+    }
+
+    public function getImages()
+    {
+        return $this->hasMany(Image::className(), ['product_id' => 'id']);
     }
 
     public function getListProductInGroup()

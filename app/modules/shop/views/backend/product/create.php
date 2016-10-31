@@ -13,6 +13,7 @@ $this->params['breadcrumbs'] = Breadcrumbs::getLinksGroup(
 
 <?= $this->render('_form', [
     'model' => $model,
-    'productProperty' => $productProperty,
-    'productRelation' => $productRelation,
+    'property' => $property,
+    'relation' => $relation,
+    'images' => $images,
 ]);?>

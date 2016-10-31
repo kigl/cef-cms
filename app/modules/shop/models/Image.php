@@ -17,6 +17,11 @@ use yii\web\UploadedFile;
  */
 class Image extends \yii\db\ActiveRecord
 {
+    const STATUS_MAIN = 1;
+
+    public $deleteKey;
+    protected static $_images;
+
     /**
      * @inheritdoc
      */
@@ -31,7 +36,7 @@ class Image extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'status'], 'integer'],
+            [['product_id', 'status', 'deleteKey'], 'integer'],
             [['create_time'], 'safe'],
             [['name', 'alt'], 'string', 'max' => 255],
         ];
@@ -47,6 +52,7 @@ class Image extends \yii\db\ActiveRecord
             'product_id' => Yii::t('shop', 'Product id'),
             'name' => Yii::t('shop', 'Name'),
             'status' => Yii::t('shop', 'Status'),
+            'deleteKey' => Yii::t('shop', 'Delete key'),
             'alt' => Yii::t('shop', 'Alt'),
             'create_time' => Yii::t('app', 'Create time'),
         ];
@@ -64,7 +70,7 @@ class Image extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function uploadImages(Product $model, $attribute)
+    public static function upload(Product $model, $attribute)
     {
         $uploadedImages = UploadedFile::getInstances($model, $attribute);
 
@@ -73,6 +79,29 @@ class Image extends \yii\db\ActiveRecord
             $image->product_id = $model->id;
             $image->name = $upload;
             $image->save(false);
+        }
+    }
+
+    public static function initImages(Product $model)
+    {
+        self::$_images = $model->getImages()->indexBy('id')->all();
+
+        return self::$_images;
+    }
+
+    public static function process()
+    {
+        $imageStatus = Yii::$app->request->post('imageStatus');
+
+        if (is_array(self::$_images)) {
+            foreach (self::$_images as $image) {
+                if (!empty($image->deleteKey)) {
+                    $image->delete();
+                } else {
+                    $image->status = ($imageStatus == $image->id)? 1 : null;
+                    $image->save();
+                }
+            }
         }
     }
 }

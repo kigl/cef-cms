@@ -59,7 +59,7 @@ class ProductRelation extends \app\components\ActiveRecord
         return $this->hasOne(Product::className(), ['id' => 'product_relation_id']);
     }
 
-    public static function InitProductRelation(Product $model)
+    public static function initRelation(Product $model)
     {
         self::$_productRelation = $model->getParentProductRelation()->one();
 
@@ -70,7 +70,7 @@ class ProductRelation extends \app\components\ActiveRecord
         return self::$_productRelation;
     }
 
-    public static function saveProductRelation(Product $model)
+    public static function saveRelation(Product $model)
     {
         if (!empty(self::$_productRelation->product_id)) {
             self::$_productRelation->product_relation_id = $model->id;
