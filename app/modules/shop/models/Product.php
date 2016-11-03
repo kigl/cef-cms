@@ -123,6 +123,11 @@ class Product extends \app\components\ActiveRecord
         return $this->hasOne(ProductRelation::className(), ['product_relation_id' => 'id']);
     }
 
+    public function getProperty()
+    {
+
+    }
+
     public function getImages()
     {
         return $this->hasMany(Image::className(), ['product_id' => 'id']);

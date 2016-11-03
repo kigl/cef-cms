@@ -74,10 +74,15 @@ class Image extends \yii\db\ActiveRecord
     {
         $uploadedImages = UploadedFile::getInstances($model, $attribute);
 
+        $c = 0;
         foreach ($uploadedImages as $upload) {
+            $c++;
             $image = new Image();
             $image->product_id = $model->id;
             $image->name = $upload;
+            if (!self::$_images and $c == 1) {
+                $image->status = self::STATUS_MAIN;
+            }
             $image->save(false);
         }
     }

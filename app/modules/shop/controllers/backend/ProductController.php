@@ -13,6 +13,10 @@ use app\modules\admin\components\controllers\BackendController;
 
 class ProductController extends BackendController
 {
+    protected $image;
+    protected $property;
+    protected $relation;
+
     public function actionCreate($group_id)
     {
         $model = new Product();
@@ -21,17 +25,21 @@ class ProductController extends BackendController
         $property = ProductProperty::initProperty($model);
         $relation = ProductRelation::initRelation($model);
         $images = Image::initImages($model);
+        // подгатовка
 
         if ($model->load($post) and $model->validate()) {
             Model::loadMultiple($property, $post);
             Model::loadMultiple($images, $post);
             $relation->load($post);
+            // загрузка
 
+            // сохранение
             $model->save();
             Image::upload($model, 'imageUpload');
             Image::process();
             ProductProperty::saveProperty($model);
             ProductRelation::saveRelation($model);
+
 
             return $this->redirect(['group/manager', 'parent_id' => $model->group_id]);
         }
@@ -48,6 +56,7 @@ class ProductController extends BackendController
     {
         $model = Product::findOne($id);
         $post = Yii::$app->request->post();
+        // инициализация
         $property = ProductProperty::initProperty($model);
         $relation = ProductRelation::initRelation($model);
         $images = Image::initImages($model);
