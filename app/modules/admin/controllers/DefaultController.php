@@ -2,12 +2,12 @@
 
 namespace app\modules\admin\controllers;
 
-use yii\base\Module;
+use app\modules\admin\components\BackendController;
 
 /**
  * Default controller for the `Main` module
  */
-class DefaultController extends \app\modules\admin\components\controllers\BackendController
+class DefaultController extends BackendController
 {
     /**
      * Renders the index view for the module

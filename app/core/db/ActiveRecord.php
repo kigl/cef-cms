@@ -1,6 +1,6 @@
 <?php
 
-namespace app\components;
+namespace app\core\db;
 
 use Yii;
 

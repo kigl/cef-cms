@@ -25,7 +25,7 @@ use yii\db\Expression;
  * @property integer $create_time
  * @property integer $update_time
  */
-class Group extends \app\components\ActiveRecord
+class Group extends \app\core\db\ActiveRecord
 {
     /**
      * @inheritdoc

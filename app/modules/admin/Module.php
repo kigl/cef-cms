@@ -4,7 +4,7 @@ namespace app\modules\admin;
 
 use Yii;
 
-class Module extends \app\components\Module
+class Module extends \app\core\module\Module
 {
 	public $itemsPerPage = 10;
 	

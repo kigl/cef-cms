@@ -3,14 +3,14 @@
 namespace app\modules\informationsystem\controllers\backend;
 
 
-use Yii;
+use app\modules\admin\components\BackendController;
 use app\modules\informationsystem\models\Informationsystem as System;
 use app\modules\informationsystem\models\Group;
 use app\modules\informationsystem\models\Item;
 use app\modules\informationsystem\models\Tag;
 use app\modules\informationsystem\models\TagRelations;
 
-class DeleteController extends \app\modules\admin\components\controllers\BackendController
+class DeleteController extends BackendController
 {
 
 	public function actionSystem($id)

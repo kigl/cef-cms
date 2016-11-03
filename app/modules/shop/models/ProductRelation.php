@@ -3,6 +3,7 @@
 namespace app\modules\shop\models;
 
 use Yii;
+use app\core\db\ActiveRecord;
 
 /**
  * This is the model class for table "mn_shop_product_related".
@@ -10,7 +11,7 @@ use Yii;
  * @property integer $product_id
  * @property integer $product_related_id
  */
-class ProductRelation extends \app\components\ActiveRecord
+class ProductRelation extends ActiveRecord
 {
     protected static $_productRelation;
 

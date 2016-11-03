@@ -3,6 +3,7 @@
 namespace app\modules\shop\models;
 
 use Yii;
+use app\core\db\ActiveRecord;
 
 /**
  * This is the model class for table "mn_shop_property".
@@ -11,7 +12,7 @@ use Yii;
  * @property string $name
  * @property integer $type
  */
-class Property extends \app\components\ActiveRecord
+class Property extends ActiveRecord
 {
     const TYPE_STRING = 1;
     const TYPE_BOOLEAN = 2;

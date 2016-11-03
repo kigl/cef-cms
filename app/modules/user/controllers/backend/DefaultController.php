@@ -2,14 +2,13 @@
 
 namespace app\modules\user\controllers\backend;
 
-use app\modules\user\models\Field;
-use app\modules\user\models\FieldRelation;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use app\modules\admin\components\BackendController;
 use app\modules\user\models\User;
 
-class DefaultController extends \app\modules\admin\components\controllers\BackendController
+class DefaultController extends BackendController
 {
 
 	public function actions()

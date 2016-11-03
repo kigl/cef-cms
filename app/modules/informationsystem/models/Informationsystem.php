@@ -23,7 +23,7 @@ use yii\helpers\ArrayHelper;
  * @property integer $create_time
  * @property integer $update_time
  */
-class Informationsystem extends \app\components\ActiveRecord
+class Informationsystem extends \app\core\db\ActiveRecord
 {
     /**
      * @inheritdoc

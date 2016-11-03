@@ -14,7 +14,7 @@ use Yii;
  * @property UserField $field
  * @property User $user
  */
-class FieldRelation extends \yii\db\ActiveRecord
+class FieldRelation extends \app\core\db\ActiveRecord
 {
     /**
      * @inheritdoc

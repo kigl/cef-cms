@@ -3,11 +3,12 @@
 namespace app\modules\informationsystem\controllers\backend;
 
 use Yii;
+use app\modules\admin\components\BackendController;
 use app\modules\informationsystem\models\Group;
 use app\modules\informationsystem\models\Item;
 use app\modules\informationsystem\models\Tag;
 
-class CreateController extends \app\modules\admin\components\controllers\BackendController
+class CreateController extends BackendController
 {
     public $defaultAction = 'system';
 

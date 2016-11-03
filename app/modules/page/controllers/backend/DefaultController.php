@@ -4,10 +4,11 @@ namespace app\modules\page\controllers\backend;
 
 use Yii;
 use yii\data\ActiveDataProvider;
+use app\modules\admin\components\BackendController;
 use app\modules\page\models\Page;
 use vova07\imperavi\actions\GetAction;
 
-class DefaultController extends \app\modules\admin\components\controllers\BackendController
+class DefaultController extends BackendController
 {
 
     public function actions()

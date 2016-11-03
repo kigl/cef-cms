@@ -3,11 +3,12 @@
 namespace app\modules\shop\controllers\backend;
 
 use Yii;
+use app\modules\admin\components\BackendController;
 use app\modules\shop\models\GroupSearch;
 use app\modules\shop\models\Group;
 use app\modules\shop\models\ProductSearch;
 
-class GroupController extends \app\modules\admin\components\controllers\BackendController
+class GroupController extends BackendController
 {
 
     public function actionManager($parent_id = 0)

@@ -19,7 +19,7 @@ use Yii;
  * @property integer $create_time
  * @property string $ip
  */
-class User extends \app\components\ActiveRecord  implements \yii\web\IdentityInterface
+class User extends \app\core\db\ActiveRecord  implements \yii\web\IdentityInterface
 {
     public $password_repeat;
 

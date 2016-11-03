@@ -6,8 +6,9 @@ use Yii;
 use app\modules\informationsystem\models\Group;
 use app\modules\informationsystem\models\Item;
 use app\modules\informationsystem\models\Tag;
+use app\core\controller\backend\BackendController;
 
-class UpdateController extends \app\modules\admin\components\controllers\BackendController
+class UpdateController extends BackendController
 {
 	public $defaultAction = 'system';
 	

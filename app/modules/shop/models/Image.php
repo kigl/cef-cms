@@ -3,7 +3,7 @@
 namespace app\modules\shop\models;
 
 use Yii;
-use yii\web\UploadedFile;
+use app\core\db\ActiveRecord;
 
 /**
  * This is the model class for table "mn_shop_product_image".
@@ -15,12 +15,12 @@ use yii\web\UploadedFile;
  * @property string $alt
  * @property string $create_time
  */
-class Image extends \yii\db\ActiveRecord
+class Image extends ActiveRecord
 {
     const STATUS_MAIN = 1;
+    const POST_STATUS_NAME = 'imageStatus';
 
     public $deleteKey;
-    protected static $_images;
 
     /**
      * @inheritdoc
@@ -68,45 +68,5 @@ class Image extends \yii\db\ActiveRecord
                 'pathUrl' => Yii::$app->getModule('shop')->getPublicPathUrl() . '/images',
             ],
         ];
-    }
-
-    public static function upload(Product $model, $attribute)
-    {
-        $uploadedImages = UploadedFile::getInstances($model, $attribute);
-
-        $c = 0;
-        foreach ($uploadedImages as $upload) {
-            $c++;
-            $image = new Image();
-            $image->product_id = $model->id;
-            $image->name = $upload;
-            if (!self::$_images and $c == 1) {
-                $image->status = self::STATUS_MAIN;
-            }
-            $image->save(false);
-        }
-    }
-
-    public static function initImages(Product $model)
-    {
-        self::$_images = $model->getImages()->indexBy('id')->all();
-
-        return self::$_images;
-    }
-
-    public static function process()
-    {
-        $imageStatus = Yii::$app->request->post('imageStatus');
-
-        if (is_array(self::$_images)) {
-            foreach (self::$_images as $image) {
-                if (!empty($image->deleteKey)) {
-                    $image->delete();
-                } else {
-                    $image->status = ($imageStatus == $image->id)? 1 : null;
-                    $image->save();
-                }
-            }
-        }
     }
 }

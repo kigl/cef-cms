@@ -7,7 +7,7 @@ actor: Tester
 #    white_list:
 #        include:
 #            - ../models/*
-#            - ../controllers/*
+#            - ../controller/*
 #            - ../commands/*
 #            - ../mail/*
 #    blacklist:

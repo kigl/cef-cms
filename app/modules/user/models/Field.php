@@ -3,6 +3,7 @@
 namespace app\modules\user\models;
 
 use Yii;
+use app\core\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%user_field}}".
@@ -13,7 +14,7 @@ use Yii;
  * @property UserFieldRelation[] $userFieldRelations
  * @property User[] $users
  */
-class Field extends \yii\db\ActiveRecord
+class Field extends ActiveRecord
 {
     /**
      * @inheritdoc

@@ -4,6 +4,7 @@ namespace app\modules\shop\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use app\core\db\ActiveRecord;
 
 /**
  * This is the model class for table "mn_shop_group".
@@ -21,7 +22,7 @@ use yii\helpers\ArrayHelper;
  * @property string $create_time
  * @property string $update_time
  */
-class Group extends \app\components\ActiveRecord
+class Group extends ActiveRecord
 {
     const STATUS_BLOCK = 0;
     const STATUS_ACTIVE = 1;

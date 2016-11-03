@@ -1,8 +1,7 @@
 <?php
 
-namespace app\modules\admin\components\controllers;
+namespace app\modules\admin\components;
 
-use yii\db\ActiveRecord;
 use yii\filters\AccessControl;
 
 abstract class BackendController extends \yii\web\Controller

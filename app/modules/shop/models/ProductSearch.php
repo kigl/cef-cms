@@ -3,7 +3,6 @@
 namespace app\modules\shop\models;
 
 use yii\data\ActiveDataProvider;
-use app\modules\shop\models\Product;
 
 class ProductSearch extends Product
 {

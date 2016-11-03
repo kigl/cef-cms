@@ -10,7 +10,7 @@ namespace app\modules\user\controllers\backend;
 
 
 use yii\data\ActiveDataProvider;
-use app\modules\admin\components\controllers\BackendController;
+use app\modules\admin\components\BackendController;
 use app\components\actions\Update;
 use app\components\actions\Create;
 use app\components\actions\Delete;
