@@ -1,7 +1,7 @@
 <?php
 
-use app\components\configManager\ConfigManager;
-use app\components\configManager\ConfigWeb;
+use app\core\components\configManager\ConfigManager;
+use app\core\components\configManager\ConfigWeb;
 
 ini_set('display_errors', 1);
 ini_set('error_reporting', E_ALL); // E_ALL & ~E_NOTICE
@@ -24,7 +24,7 @@ require(__DIR__ . '/app/vendor/autoload.php');
 require(__DIR__ . '/app/vendor/yiisoft/yii2/Yii.php');
 
 // основная конфигурация
-$baseConfig = require(__DIR__ . '/app/config/web.php');
+$baseConfig = require(__DIR__ . '/app/core/config/web.php');
 
 // менеджер конфигураций
 $config = Yii::createObject([

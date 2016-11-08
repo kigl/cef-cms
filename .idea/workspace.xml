@@ -1,0 +1,1115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/modules/shop/views/backend/product/_form.php" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6e07290f-06c4-4323-91cd-9aa29f041099" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/components/fontAwesome/Asset.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/components/fontAwesome/Asset.php" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/.bowerrc" afterPath="$PROJECT_DIR$/core/.bowerrc" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/.gitignore" afterPath="$PROJECT_DIR$/core/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/.htaccess" afterPath="$PROJECT_DIR$/.htaccess" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/DbSetting.php" afterPath="$PROJECT_DIR$/core/components/DbSetting.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/actions/Action.php" afterPath="$PROJECT_DIR$/core/components/actions/Action.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/actions/Create.php" afterPath="$PROJECT_DIR$/core/components/actions/Create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/actions/Delete.php" afterPath="$PROJECT_DIR$/core/components/actions/Delete.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/actions/Update.php" afterPath="$PROJECT_DIR$/core/components/actions/Update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/actions/View.php" afterPath="$PROJECT_DIR$/core/components/actions/View.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/behaviors/ConvertDate.php" afterPath="$PROJECT_DIR$/core/components/behaviors/ConvertDate.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/behaviors/FillData.php" afterPath="$PROJECT_DIR$/core/components/behaviors/FillData.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/behaviors/GenerateAlias.php" afterPath="$PROJECT_DIR$/core/components/behaviors/GenerateAlias.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/behaviors/UserId.php" afterPath="$PROJECT_DIR$/core/components/behaviors/UserId.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/behaviors/UserIp.php" afterPath="$PROJECT_DIR$/core/components/behaviors/UserIp.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/behaviors/file/FileUpload.php" afterPath="$PROJECT_DIR$/core/components/behaviors/file/FileUpload.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/behaviors/file/ImageUpload.php" afterPath="$PROJECT_DIR$/core/components/behaviors/file/ImageUpload.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/configManager/Config.php" afterPath="$PROJECT_DIR$/core/components/configManager/Config.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/configManager/ConfigConsole.php" afterPath="$PROJECT_DIR$/core/components/configManager/ConfigConsole.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/configManager/ConfigManager.php" afterPath="$PROJECT_DIR$/core/components/configManager/ConfigManager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/configManager/ConfigWeb.php" afterPath="$PROJECT_DIR$/core/components/configManager/ConfigWeb.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/fontAwesome/bundle/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/core/components/fontAwesome/bundle/css/font-awesome.min.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/fontAwesome/bundle/fonts/FontAwesome.otf" afterPath="$PROJECT_DIR$/core/components/fontAwesome/bundle/fonts/FontAwesome.otf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/fontAwesome/bundle/fonts/fontawesome-webfont.eot" afterPath="$PROJECT_DIR$/core/components/fontAwesome/bundle/fonts/fontawesome-webfont.eot" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/fontAwesome/bundle/fonts/fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/core/components/fontAwesome/bundle/fonts/fontawesome-webfont.svg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/fontAwesome/bundle/fonts/fontawesome-webfont.ttf" afterPath="$PROJECT_DIR$/core/components/fontAwesome/bundle/fonts/fontawesome-webfont.ttf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/fontAwesome/bundle/fonts/fontawesome-webfont.woff" afterPath="$PROJECT_DIR$/core/components/fontAwesome/bundle/fonts/fontawesome-webfont.woff" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/fontAwesome/bundle/fonts/fontawesome-webfont.woff2" afterPath="$PROJECT_DIR$/core/components/fontAwesome/bundle/fonts/fontawesome-webfont.woff2" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/helpers/Breadcrumbs.php" afterPath="$PROJECT_DIR$/core/components/helpers/Breadcrumbs.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/composer.json" afterPath="$PROJECT_DIR$/core/composer.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/composer.phar" afterPath="$PROJECT_DIR$/composer.phar" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/config/console.php" afterPath="$PROJECT_DIR$/core/config/console.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/config/db.php" afterPath="$PROJECT_DIR$/core/config/db.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/config/runtime/debug/57904c944e283.data" afterPath="$PROJECT_DIR$/core/config/runtime/debug/57904c944e283.data" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/config/runtime/debug/index.data" afterPath="$PROJECT_DIR$/core/config/runtime/debug/index.data" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/config/runtime/logs/app.log" afterPath="$PROJECT_DIR$/core/config/runtime/logs/app.log" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/config/web.php" afterPath="$PROJECT_DIR$/core/config/web.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/controllers/SiteController.php" afterPath="$PROJECT_DIR$/controllers/SiteController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/core/db/ActiveRecord.php" afterPath="$PROJECT_DIR$/core/db/ActiveRecord.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/core/module/Module.php" afterPath="$PROJECT_DIR$/core/module/Module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/core/module/ModuleInterface.php" afterPath="$PROJECT_DIR$/core/module/ModuleInterface.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/core/service/ModelServiceInterface.php" afterPath="$PROJECT_DIR$/core/service/ModelServiceInterface.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/mail/layouts/html.php" afterPath="$PROJECT_DIR$/mail/layouts/html.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/messages/ru/app.php" afterPath="$PROJECT_DIR$/core/messages/ru/app.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m160825_111921_informationsystem.php" afterPath="$PROJECT_DIR$/migrations/m160825_111921_informationsystem.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m160825_114706_informationsystem_item.php" afterPath="$PROJECT_DIR$/migrations/m160825_114706_informationsystem_item.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m160902_063342_user.php" afterPath="$PROJECT_DIR$/migrations/m160902_063342_user.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m160902_081826_page.php" afterPath="$PROJECT_DIR$/migrations/m160902_081826_page.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m160914_041003_informationsystem_item_tag.php" afterPath="$PROJECT_DIR$/migrations/m160914_041003_informationsystem_item_tag.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m160914_041235_informationsystem_item_tag_relation.php" afterPath="$PROJECT_DIR$/migrations/m160914_041235_informationsystem_item_tag_relation.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m160916_033829_setting.php" afterPath="$PROJECT_DIR$/migrations/m160916_033829_setting.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m161004_054321_forum_topic.php" afterPath="$PROJECT_DIR$/migrations/m161004_054321_forum_topic.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m161004_054435_forum_post.php" afterPath="$PROJECT_DIR$/migrations/m161004_054435_forum_post.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m161012_101545_informationsystem_group.php" afterPath="$PROJECT_DIR$/migrations/m161012_101545_informationsystem_group.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m161025_041849_shop_group.php" afterPath="$PROJECT_DIR$/migrations/m161025_041849_shop_group.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m161025_155911_shop_product.php" afterPath="$PROJECT_DIR$/migrations/m161025_155911_shop_product.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m161025_155949_shop_property.php" afterPath="$PROJECT_DIR$/migrations/m161025_155949_shop_property.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m161025_160030_shop_product_property.php" afterPath="$PROJECT_DIR$/migrations/m161025_160030_shop_product_property.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m161025_160046_shop_product_relation.php" afterPath="$PROJECT_DIR$/migrations/m161025_160046_shop_product_relation.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m161028_041210_user_field.php" afterPath="$PROJECT_DIR$/migrations/m161028_041210_user_field.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m161028_041229_user_field_relation.php" afterPath="$PROJECT_DIR$/migrations/m161028_041229_user_field_relation.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/migrations/m161030_134743_shop_product_image.php" afterPath="$PROJECT_DIR$/migrations/m161030_134743_shop_product_image.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/Module.php" afterPath="$PROJECT_DIR$/modules/admin/Module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/components/BackendController.php" afterPath="$PROJECT_DIR$/modules/admin/components/BackendController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/config/module.php" afterPath="$PROJECT_DIR$/modules/admin/config/module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/controllers/DefaultController.php" afterPath="$PROJECT_DIR$/modules/admin/controllers/DefaultController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/controllers/SettingController.php" afterPath="$PROJECT_DIR$/modules/admin/controllers/SettingController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/messages/ru/module.php" afterPath="$PROJECT_DIR$/modules/admin/messages/ru/module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/models/Module.php" afterPath="$PROJECT_DIR$/modules/admin/models/Module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/models/Setting.php" afterPath="$PROJECT_DIR$/modules/admin/models/Setting.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/assets/Asset.php" afterPath="$PROJECT_DIR$/modules/admin/views/assets/Asset.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/assets/bundle/css/main.css" afterPath="$PROJECT_DIR$/modules/admin/views/assets/bundle/css/main.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/default/index.php" afterPath="$PROJECT_DIR$/modules/admin/views/default/index.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/layouts/column_2.php" afterPath="$PROJECT_DIR$/modules/admin/views/layouts/column_2.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/layouts/index.php" afterPath="$PROJECT_DIR$/modules/admin/views/layouts/index.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/module/_form.php" afterPath="$PROJECT_DIR$/modules/admin/views/module/_form.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/module/create.php" afterPath="$PROJECT_DIR$/modules/admin/views/module/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/module/manager.php" afterPath="$PROJECT_DIR$/modules/admin/views/module/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/module/update.php" afterPath="$PROJECT_DIR$/modules/admin/views/module/update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/setting/_form.php" afterPath="$PROJECT_DIR$/modules/admin/views/setting/_form.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/setting/create.php" afterPath="$PROJECT_DIR$/modules/admin/views/setting/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/setting/manager.php" afterPath="$PROJECT_DIR$/modules/admin/views/setting/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/setting/module.php" afterPath="$PROJECT_DIR$/modules/admin/views/setting/module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/views/setting/update.php" afterPath="$PROJECT_DIR$/modules/admin/views/setting/update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/ActiveForm.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/ActiveForm.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/Alert.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/Alert.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/Breadcrumbs.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/Breadcrumbs.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/grid/BreadcrumbsGroup.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/grid/BreadcrumbsGroup.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/grid/ButtonAction.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/grid/ButtonAction.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/grid/GridView.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/grid/GridView.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/imageInForm/Widget.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/imageInForm/Widget.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/imageInForm/views/index.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/imageInForm/views/index.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/menuSidebar/Widget.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/menuSidebar/Widget.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/menuSidebar/assets/Asset.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/menuSidebar/assets/Asset.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/menuSidebar/assets/bundle/css/main.css" afterPath="$PROJECT_DIR$/modules/admin/widgets/menuSidebar/assets/bundle/css/main.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/menuSidebar/views/index.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/menuSidebar/views/index.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/menuTop/Widget.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/menuTop/Widget.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/admin/widgets/menuTop/views/index.php" afterPath="$PROJECT_DIR$/modules/admin/widgets/menuTop/views/index.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/Module.php" afterPath="$PROJECT_DIR$/modules/forum/Module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/config/menu.php" afterPath="$PROJECT_DIR$/modules/forum/config/menu.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/config/module.php" afterPath="$PROJECT_DIR$/modules/forum/config/module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/controllers/DefaultController.php" afterPath="$PROJECT_DIR$/modules/forum/controllers/DefaultController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/controllers/FrontendControllerAbstract.php" afterPath="$PROJECT_DIR$/modules/forum/controllers/FrontendControllerAbstract.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/controllers/PostController.php" afterPath="$PROJECT_DIR$/modules/forum/controllers/PostController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/controllers/TopicController.php" afterPath="$PROJECT_DIR$/modules/forum/controllers/TopicController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/controllers/backend/PostController.php" afterPath="$PROJECT_DIR$/modules/forum/controllers/backend/PostController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/controllers/backend/TopicController.php" afterPath="$PROJECT_DIR$/modules/forum/controllers/backend/TopicController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/messages/ru/forum.php" afterPath="$PROJECT_DIR$/modules/forum/messages/ru/forum.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/models/Post.php" afterPath="$PROJECT_DIR$/modules/forum/models/Post.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/models/Topic.php" afterPath="$PROJECT_DIR$/modules/forum/models/Topic.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/views/backend/topic/create.php" afterPath="$PROJECT_DIR$/modules/forum/views/backend/topic/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/views/backend/topic/manager.php" afterPath="$PROJECT_DIR$/modules/forum/views/backend/topic/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/views/default/index.php" afterPath="$PROJECT_DIR$/modules/forum/views/default/index.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/views/post/create.php" afterPath="$PROJECT_DIR$/modules/forum/views/post/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/views/post/update.php" afterPath="$PROJECT_DIR$/modules/forum/views/post/update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/views/topic/_post.php" afterPath="$PROJECT_DIR$/modules/forum/views/topic/_post.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/views/topic/create.php" afterPath="$PROJECT_DIR$/modules/forum/views/topic/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/views/topic/manager.php" afterPath="$PROJECT_DIR$/modules/forum/views/topic/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/views/topic/view.php" afterPath="$PROJECT_DIR$/modules/forum/views/topic/view.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/widgets/frontend/dashboard/Widget.php" afterPath="$PROJECT_DIR$/modules/forum/widgets/frontend/dashboard/Widget.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/widgets/frontend/dashboard/views/index.php" afterPath="$PROJECT_DIR$/modules/forum/widgets/frontend/dashboard/views/index.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/widgets/frontend/fastAnswer/Widget.php" afterPath="$PROJECT_DIR$/modules/forum/widgets/frontend/fastAnswer/Widget.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/forum/widgets/frontend/fastAnswer/views/index.php" afterPath="$PROJECT_DIR$/modules/forum/widgets/frontend/fastAnswer/views/index.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/Module.php" afterPath="$PROJECT_DIR$/modules/informationsystem/Module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/components/TagBehavior.php" afterPath="$PROJECT_DIR$/modules/informationsystem/components/TagBehavior.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/config/menu.php" afterPath="$PROJECT_DIR$/modules/informationsystem/config/menu.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/config/module.php" afterPath="$PROJECT_DIR$/modules/informationsystem/config/module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/controllers/backend/CreateController.php" afterPath="$PROJECT_DIR$/modules/informationsystem/controllers/backend/CreateController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/controllers/backend/DeleteController.php" afterPath="$PROJECT_DIR$/modules/informationsystem/controllers/backend/DeleteController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/controllers/backend/ManagerController.php" afterPath="$PROJECT_DIR$/modules/informationsystem/controllers/backend/ManagerController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/controllers/backend/UpdateController.php" afterPath="$PROJECT_DIR$/modules/informationsystem/controllers/backend/UpdateController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/messages/ru/module.php" afterPath="$PROJECT_DIR$/modules/informationsystem/messages/ru/module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/models/Group.php" afterPath="$PROJECT_DIR$/modules/informationsystem/models/Group.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/models/Informationsystem.php" afterPath="$PROJECT_DIR$/modules/informationsystem/models/Informationsystem.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/models/Item.php" afterPath="$PROJECT_DIR$/modules/informationsystem/models/Item.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/models/ItemSearch.php" afterPath="$PROJECT_DIR$/modules/informationsystem/models/ItemSearch.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/models/Tag.php" afterPath="$PROJECT_DIR$/modules/informationsystem/models/Tag.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/models/TagRelations.php" afterPath="$PROJECT_DIR$/modules/informationsystem/models/TagRelations.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/models/TagSearch.php" afterPath="$PROJECT_DIR$/modules/informationsystem/models/TagSearch.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/public/.htaccess" afterPath="$PROJECT_DIR$/modules/informationsystem/public/.htaccess" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/public/images/4466cec191c95c42eab5f699d28c2fa9.jpg" afterPath="$PROJECT_DIR$/modules/informationsystem/public/images/4466cec191c95c42eab5f699d28c2fa9.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/public/images/57de7cf6b59bc25595f926de3b0549d2.jpg" afterPath="$PROJECT_DIR$/modules/informationsystem/public/images/57de7cf6b59bc25595f926de3b0549d2.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/public/images/9bf0bedbfe778e9c0a8b467cc81461af.jpg" afterPath="$PROJECT_DIR$/modules/informationsystem/public/images/9bf0bedbfe778e9c0a8b467cc81461af.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/public/images/de10a5baa72f4e4b80eb487bca86e81d.jpg" afterPath="$PROJECT_DIR$/modules/informationsystem/public/images/de10a5baa72f4e4b80eb487bca86e81d.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/public/images/e0c5894462e34b48a22828a64caf8ea6.jpg" afterPath="$PROJECT_DIR$/modules/informationsystem/public/images/e0c5894462e34b48a22828a64caf8ea6.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/public/images/thumbnail_de10a5baa72f4e4b80eb487bca86e81d.jpg" afterPath="$PROJECT_DIR$/modules/informationsystem/public/images/thumbnail_de10a5baa72f4e4b80eb487bca86e81d.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/public/images/thumbnail_e0c5894462e34b48a22828a64caf8ea6.jpg" afterPath="$PROJECT_DIR$/modules/informationsystem/public/images/thumbnail_e0c5894462e34b48a22828a64caf8ea6.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/backend/create/group.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/backend/create/group.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/backend/create/item.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/backend/create/item.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/backend/create/system.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/backend/create/system.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/backend/create/tag.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/backend/create/tag.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/backend/manager/group.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/backend/manager/group.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/backend/manager/system.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/backend/manager/system.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/backend/manager/tag.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/backend/manager/tag.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/backend/manager/view.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/backend/manager/view.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/backend/update/group.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/backend/update/group.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/backend/update/item.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/backend/update/item.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/backend/update/system.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/backend/update/system.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/backend/update/tag.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/backend/update/tag.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/image/_form.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/image/_form.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/image/_item.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/image/_item.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/image/create.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/image/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/image/manager.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/image/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/image/update.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/image/update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/image/view.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/image/view.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/news/_form.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/news/_form.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/news/_item.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/news/_item.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/news/create.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/news/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/news/manager.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/news/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/news/update.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/news/update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/news/view.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/news/view.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/offers/_form.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/offers/_form.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/offers/create.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/offers/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/offers/manager.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/offers/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/offers/update.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/offers/update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/offers/view.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/offers/view.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/video/_form.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/video/_form.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/video/_item.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/video/_item.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/video/create.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/video/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/video/manager.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/video/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/video/update.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/video/update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/views/frontend/video/view.php" afterPath="$PROJECT_DIR$/modules/informationsystem/views/frontend/video/view.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/widgets/backend/fileInForm/Widget.php" afterPath="$PROJECT_DIR$/modules/informationsystem/widgets/backend/fileInForm/Widget.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/widgets/backend/fileInForm/views/index.php" afterPath="$PROJECT_DIR$/modules/informationsystem/widgets/backend/fileInForm/views/index.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/widgets/backend/tagEditor/Asset.php" afterPath="$PROJECT_DIR$/modules/informationsystem/widgets/backend/tagEditor/Asset.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/widgets/backend/tagEditor/TagEditor.php" afterPath="$PROJECT_DIR$/modules/informationsystem/widgets/backend/tagEditor/TagEditor.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/informationsystem/widgets/frontend/ButtonAdd.php" afterPath="$PROJECT_DIR$/modules/informationsystem/widgets/frontend/ButtonAdd.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/Module.php" afterPath="$PROJECT_DIR$/modules/page/Module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/components/PageRule.php" afterPath="$PROJECT_DIR$/modules/page/components/PageRule.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/config/menu.php" afterPath="$PROJECT_DIR$/modules/page/config/menu.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/config/module.php" afterPath="$PROJECT_DIR$/modules/page/config/module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/controllers/backend/DefaultController.php" afterPath="$PROJECT_DIR$/modules/page/controllers/backend/DefaultController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/messages/ru/module.php" afterPath="$PROJECT_DIR$/modules/page/messages/ru/module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/models/Page.php" afterPath="$PROJECT_DIR$/modules/page/models/Page.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/public/.htaccess" afterPath="$PROJECT_DIR$/modules/page/public/.htaccess" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/public/images/57c95d62cea00.jpg" afterPath="$PROJECT_DIR$/modules/page/public/images/57c95d62cea00.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/views/backend/default/_form.php" afterPath="$PROJECT_DIR$/modules/page/views/backend/default/_form.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/views/backend/default/create.php" afterPath="$PROJECT_DIR$/modules/page/views/backend/default/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/views/backend/default/manager.php" afterPath="$PROJECT_DIR$/modules/page/views/backend/default/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/views/backend/default/update.php" afterPath="$PROJECT_DIR$/modules/page/views/backend/default/update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/page/views/default/view.php" afterPath="$PROJECT_DIR$/modules/page/views/default/view.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/Module.php" afterPath="$PROJECT_DIR$/modules/shop/Module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/config/menu.php" afterPath="$PROJECT_DIR$/modules/shop/config/menu.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/config/module.php" afterPath="$PROJECT_DIR$/modules/shop/config/module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/controllers/backend/GroupController.php" afterPath="$PROJECT_DIR$/modules/shop/controllers/backend/GroupController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/controllers/backend/ProductController.php" afterPath="$PROJECT_DIR$/modules/shop/controllers/backend/ProductController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/controllers/backend/PropertyController.php" afterPath="$PROJECT_DIR$/modules/shop/controllers/backend/PropertyController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/messages/ru/module.php" afterPath="$PROJECT_DIR$/modules/shop/messages/ru/module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/models/Group.php" afterPath="$PROJECT_DIR$/modules/shop/models/Group.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/models/GroupSearch.php" afterPath="$PROJECT_DIR$/modules/shop/models/GroupSearch.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/models/Image.php" afterPath="$PROJECT_DIR$/modules/shop/models/Image.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/models/Product.php" afterPath="$PROJECT_DIR$/modules/shop/models/Product.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/models/ProductProperty.php" afterPath="$PROJECT_DIR$/modules/shop/models/ProductProperty.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/models/ProductRelation.php" afterPath="$PROJECT_DIR$/modules/shop/models/ProductRelation.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/models/ProductSearch.php" afterPath="$PROJECT_DIR$/modules/shop/models/ProductSearch.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/models/ProductService.php" afterPath="$PROJECT_DIR$/modules/shop/models/ProductService.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/models/Property.php" afterPath="$PROJECT_DIR$/modules/shop/models/Property.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/.htaccess" afterPath="$PROJECT_DIR$/modules/shop/public/.htaccess" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/02d350ce90a2a665076f23290396014e.jpg" afterPath="$PROJECT_DIR$/modules/shop/public/images/02d350ce90a2a665076f23290396014e.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/11d05f168ff661efc1dd4f64bf0a968b.jpg" afterPath="$PROJECT_DIR$/modules/shop/public/images/11d05f168ff661efc1dd4f64bf0a968b.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/161567af476b8d8cc77804b885246567.jpg" afterPath="$PROJECT_DIR$/modules/shop/public/images/161567af476b8d8cc77804b885246567.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/56402c34c1bded55b77d03600d02f841.png" afterPath="$PROJECT_DIR$/modules/shop/public/images/56402c34c1bded55b77d03600d02f841.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/5b0c5a0ccc9062c2be851d980880feed.png" afterPath="$PROJECT_DIR$/modules/shop/public/images/5b0c5a0ccc9062c2be851d980880feed.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/601202f93b7ce2a1f2b0ca1926643b97.jpg" afterPath="$PROJECT_DIR$/modules/shop/public/images/601202f93b7ce2a1f2b0ca1926643b97.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/6bdb5bf49643cf0ee4c24947017ca55d.jpg" afterPath="$PROJECT_DIR$/modules/shop/public/images/6bdb5bf49643cf0ee4c24947017ca55d.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/931e1227b7fabd7a095fba830777d769.jpg" afterPath="$PROJECT_DIR$/modules/shop/public/images/931e1227b7fabd7a095fba830777d769.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/989d39a81cb60c85e18c67639edf54d5.jpg" afterPath="$PROJECT_DIR$/modules/shop/public/images/989d39a81cb60c85e18c67639edf54d5.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/a171ef3d2653e77720c9d320fa85a7cc.png" afterPath="$PROJECT_DIR$/modules/shop/public/images/a171ef3d2653e77720c9d320fa85a7cc.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/bd5fc05c96bc2d432206ecd07cc3227b.jpg" afterPath="$PROJECT_DIR$/modules/shop/public/images/bd5fc05c96bc2d432206ecd07cc3227b.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/d1a28aa5219d54ac311711b36ce81b40.png" afterPath="$PROJECT_DIR$/modules/shop/public/images/d1a28aa5219d54ac311711b36ce81b40.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/ea692b92fa09bba078a0887d524ebffc.png" afterPath="$PROJECT_DIR$/modules/shop/public/images/ea692b92fa09bba078a0887d524ebffc.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/public/images/eaa84e6fcdcff0988ffde84f4f86475c.png" afterPath="$PROJECT_DIR$/modules/shop/public/images/eaa84e6fcdcff0988ffde84f4f86475c.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/table" afterPath="$PROJECT_DIR$/modules/shop/table" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/views/backend/group/_form.php" afterPath="$PROJECT_DIR$/modules/shop/views/backend/group/_form.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/views/backend/group/create.php" afterPath="$PROJECT_DIR$/modules/shop/views/backend/group/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/views/backend/group/manager.php" afterPath="$PROJECT_DIR$/modules/shop/views/backend/group/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/views/backend/group/update.php" afterPath="$PROJECT_DIR$/modules/shop/views/backend/group/update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/views/backend/product/_form.php" afterPath="$PROJECT_DIR$/modules/shop/views/backend/product/_form.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/views/backend/product/create.php" afterPath="$PROJECT_DIR$/modules/shop/views/backend/product/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/views/backend/product/update.php" afterPath="$PROJECT_DIR$/modules/shop/views/backend/product/update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/views/backend/property/_form.php" afterPath="$PROJECT_DIR$/modules/shop/views/backend/property/_form.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/views/backend/property/create.php" afterPath="$PROJECT_DIR$/modules/shop/views/backend/property/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/views/backend/property/manager.php" afterPath="$PROJECT_DIR$/modules/shop/views/backend/property/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/shop/Интернет магазин.txt" afterPath="$PROJECT_DIR$/modules/shop/Интернет магазин.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/Module.php" afterPath="$PROJECT_DIR$/modules/user/Module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/commands/CreateController.php" afterPath="$PROJECT_DIR$/modules/user/commands/CreateController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/commands/RbacController.php" afterPath="$PROJECT_DIR$/modules/user/commands/RbacController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/components/AuthorInterface.php" afterPath="$PROJECT_DIR$/modules/user/components/AuthorInterface.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/config/console.php" afterPath="$PROJECT_DIR$/modules/user/config/console.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/config/menu.php" afterPath="$PROJECT_DIR$/modules/user/config/menu.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/config/module.php" afterPath="$PROJECT_DIR$/modules/user/config/module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/controllers/backend/DefaultController.php" afterPath="$PROJECT_DIR$/modules/user/controllers/backend/DefaultController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/controllers/backend/FieldController.php" afterPath="$PROJECT_DIR$/modules/user/controllers/backend/FieldController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/controllers/frontend/DefaultController.php" afterPath="$PROJECT_DIR$/modules/user/controllers/frontend/DefaultController.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/messages/ru/module.php" afterPath="$PROJECT_DIR$/modules/user/messages/ru/module.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/models/Field.php" afterPath="$PROJECT_DIR$/modules/user/models/Field.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/models/FieldRelation.php" afterPath="$PROJECT_DIR$/modules/user/models/FieldRelation.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/models/LoginForm.php" afterPath="$PROJECT_DIR$/modules/user/models/LoginForm.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/models/User.php" afterPath="$PROJECT_DIR$/modules/user/models/User.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/views/backend/default/_form.php" afterPath="$PROJECT_DIR$/modules/user/views/backend/default/_form.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/views/backend/default/create.php" afterPath="$PROJECT_DIR$/modules/user/views/backend/default/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/views/backend/default/manager.php" afterPath="$PROJECT_DIR$/modules/user/views/backend/default/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/views/backend/default/password.php" afterPath="$PROJECT_DIR$/modules/user/views/backend/default/password.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/views/backend/default/update.php" afterPath="$PROJECT_DIR$/modules/user/views/backend/default/update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/views/backend/field/_form.php" afterPath="$PROJECT_DIR$/modules/user/views/backend/field/_form.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/views/backend/field/create.php" afterPath="$PROJECT_DIR$/modules/user/views/backend/field/create.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/views/backend/field/manager.php" afterPath="$PROJECT_DIR$/modules/user/views/backend/field/manager.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/views/backend/field/update.php" afterPath="$PROJECT_DIR$/modules/user/views/backend/field/update.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/views/frontend/default/login.php" afterPath="$PROJECT_DIR$/modules/user/views/frontend/default/login.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/modules/user/views/frontend/default/registry.php" afterPath="$PROJECT_DIR$/modules/user/views/frontend/default/registry.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/rbac/AuthorRule.php" afterPath="$PROJECT_DIR$/rbac/AuthorRule.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/runtime/.gitignore" afterPath="$PROJECT_DIR$/core/vendor/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/temp/5cbdb0c84a98097c097b01549a2c3103.jpg" afterPath="$PROJECT_DIR$/temp/5cbdb0c84a98097c097b01549a2c3103.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/temp/66650e3100661e3a691061488723b1c8.jpg" afterPath="$PROJECT_DIR$/temp/66650e3100661e3a691061488723b1c8.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/temp/6fb8d2783baade98a1dc6262c72cfaba.jpg" afterPath="$PROJECT_DIR$/temp/6fb8d2783baade98a1dc6262c72cfaba.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/temp/9d123082621ed05dd3e29dd041449a06.jpg" afterPath="$PROJECT_DIR$/temp/9d123082621ed05dd3e29dd041449a06.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/temp/a2284e7fb12aa75825f48dc96ef1a7b1.jpg" afterPath="$PROJECT_DIR$/temp/a2284e7fb12aa75825f48dc96ef1a7b1.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/temp/b95228131dfe90d9620a94fb368b409a.jpg" afterPath="$PROJECT_DIR$/temp/b95228131dfe90d9620a94fb368b409a.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/temp/f1f859141be3463482c12d0035715125.jpg" afterPath="$PROJECT_DIR$/temp/f1f859141be3463482c12d0035715125.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/README.md" afterPath="$PROJECT_DIR$/tests/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception.yml" afterPath="$PROJECT_DIR$/tests/codeception.yml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/.gitignore" afterPath="$PROJECT_DIR$/tests/codeception/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/_bootstrap.php" afterPath="$PROJECT_DIR$/tests/codeception/_bootstrap.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/_output/.gitignore" afterPath="$PROJECT_DIR$/runtime/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/_pages/AboutPage.php" afterPath="$PROJECT_DIR$/tests/codeception/_pages/AboutPage.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/_pages/ContactPage.php" afterPath="$PROJECT_DIR$/tests/codeception/_pages/ContactPage.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/_pages/LoginPage.php" afterPath="$PROJECT_DIR$/tests/codeception/_pages/LoginPage.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/acceptance.suite.yml" afterPath="$PROJECT_DIR$/tests/codeception/acceptance.suite.yml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/acceptance/AboutCept.php" afterPath="$PROJECT_DIR$/tests/codeception/acceptance/AboutCept.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/acceptance/ContactCept.php" afterPath="$PROJECT_DIR$/tests/codeception/acceptance/ContactCept.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/acceptance/HomeCept.php" afterPath="$PROJECT_DIR$/tests/codeception/acceptance/HomeCept.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/acceptance/LoginCept.php" afterPath="$PROJECT_DIR$/tests/codeception/acceptance/LoginCept.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/acceptance/_bootstrap.php" afterPath="$PROJECT_DIR$/tests/codeception/acceptance/_bootstrap.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/bin/_bootstrap.php" afterPath="$PROJECT_DIR$/tests/codeception/bin/_bootstrap.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/bin/yii" afterPath="$PROJECT_DIR$/tests/codeception/bin/yii" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/bin/yii.bat" afterPath="$PROJECT_DIR$/tests/codeception/bin/yii.bat" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/config/acceptance.php" afterPath="$PROJECT_DIR$/tests/codeception/config/acceptance.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/config/config.php" afterPath="$PROJECT_DIR$/tests/codeception/config/config.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/config/functional.php" afterPath="$PROJECT_DIR$/tests/codeception/config/functional.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/config/unit.php" afterPath="$PROJECT_DIR$/tests/codeception/config/unit.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/fixtures/.gitignore" afterPath="$PROJECT_DIR$/tests/codeception/_output/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/functional.suite.yml" afterPath="$PROJECT_DIR$/tests/codeception/functional.suite.yml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/functional/AboutCept.php" afterPath="$PROJECT_DIR$/tests/codeception/functional/AboutCept.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/functional/ContactCept.php" afterPath="$PROJECT_DIR$/tests/codeception/functional/ContactCept.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/functional/HomeCept.php" afterPath="$PROJECT_DIR$/tests/codeception/functional/HomeCept.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/functional/LoginCept.php" afterPath="$PROJECT_DIR$/tests/codeception/functional/LoginCept.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/functional/_bootstrap.php" afterPath="$PROJECT_DIR$/tests/codeception/functional/_bootstrap.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/templates/.gitignore" afterPath="$PROJECT_DIR$/tests/codeception/fixtures/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/unit.suite.yml" afterPath="$PROJECT_DIR$/tests/codeception/unit.suite.yml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/unit/_bootstrap.php" afterPath="$PROJECT_DIR$/tests/codeception/unit/_bootstrap.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/unit/fixtures/.gitkeep" afterPath="$PROJECT_DIR$/tests/codeception/unit/fixtures/.gitkeep" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/unit/fixtures/data/.gitkeep" afterPath="$PROJECT_DIR$/tests/codeception/unit/fixtures/data/.gitkeep" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/unit/models/ContactFormTest.php" afterPath="$PROJECT_DIR$/tests/codeception/unit/models/ContactFormTest.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/unit/models/LoginFormTest.php" afterPath="$PROJECT_DIR$/tests/codeception/unit/models/LoginFormTest.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/unit/models/UserTest.php" afterPath="$PROJECT_DIR$/tests/codeception/unit/models/UserTest.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/tests/codeception/unit/templates/fixtures/.gitkeep" afterPath="$PROJECT_DIR$/tests/codeception/unit/templates/fixtures/.gitkeep" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/vendor/.gitignore" afterPath="$PROJECT_DIR$/tests/codeception/templates/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/assets/Asset.php" afterPath="$PROJECT_DIR$/views/assets/Asset.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/assets/bundle/css/main.css" afterPath="$PROJECT_DIR$/views/assets/bundle/css/main.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/layouts/column_2.php" afterPath="$PROJECT_DIR$/views/layouts/column_2.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/layouts/main.php" afterPath="$PROJECT_DIR$/views/layouts/main.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/site/error.php" afterPath="$PROJECT_DIR$/views/site/error.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/site/index.php" afterPath="$PROJECT_DIR$/views/site/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="main2" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name=".htaccess" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.htaccess">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="8" lean-forward="true" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>guessColumns</find>
+      <find>req</find>
+      <find>yii2-money</find>
+      <find>Test</find>
+      <find>Shop_Item_Import_Cml_Controller.onAfterOffersShopItem</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="newTree" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/modules/shop/models/ProductProperty.php" />
+        <option value="$PROJECT_DIR$/app/modules/shop/models/ProductRelation.php" />
+        <option value="$PROJECT_DIR$/app/modules/shop/models/ProductSearch.php" />
+        <option value="$PROJECT_DIR$/app/modules/shop/models/Property.php" />
+        <option value="$PROJECT_DIR$/app/modules/admin/components/BackendController.php" />
+        <option value="$PROJECT_DIR$/app/modules/admin/controllers/DefaultController.php" />
+        <option value="$PROJECT_DIR$/app/modules/admin/controllers/SettingController.php" />
+        <option value="$PROJECT_DIR$/app/modules/informationsystem/controllers/backend/DeleteController.php" />
+        <option value="$PROJECT_DIR$/app/modules/shop/controllers/backend/GroupController.php" />
+        <option value="$PROJECT_DIR$/app/modules/shop/controllers/backend/ProductController.php" />
+        <option value="$PROJECT_DIR$/app/modules/shop/controllers/backend/PropertyController.php" />
+        <option value="$PROJECT_DIR$/app/modules/user/controllers/backend/DefaultController.php" />
+        <option value="$PROJECT_DIR$/app/core/service/ModelServiceInterface.php" />
+        <option value="$PROJECT_DIR$/app/components/actions/Action.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/app/core/components/configManager/ConfigManager.php" />
+        <option value="$PROJECT_DIR$/app/core/components/configManager/Config.php" />
+        <option value="$PROJECT_DIR$/app/core/components/configManager/ConfigConsole.php" />
+        <option value="$PROJECT_DIR$/app/core/components/configManager/ConfigWeb.php" />
+        <option value="$PROJECT_DIR$/app/core/components/DbSetting.php" />
+        <option value="$PROJECT_DIR$/app/core/config/web.php" />
+        <option value="$PROJECT_DIR$/app/modules/user/models/User.php" />
+        <option value="$PROJECT_DIR$/app/core/components/actions/Action.php" />
+        <option value="$PROJECT_DIR$/app/core/components/actions/Create.php" />
+        <option value="$PROJECT_DIR$/app/core/components/actions/Delete.php" />
+        <option value="$PROJECT_DIR$/app/core/components/actions/Update.php" />
+        <option value="$PROJECT_DIR$/app/core/components/actions/View.php" />
+        <option value="$PROJECT_DIR$/app/core/components/behaviors/ConvertDate.php" />
+        <option value="$PROJECT_DIR$/app/core/components/behaviors/FillData.php" />
+        <option value="$PROJECT_DIR$/app/core/components/behaviors/GenerateAlias.php" />
+        <option value="$PROJECT_DIR$/app/core/components/behaviors/UserId.php" />
+        <option value="$PROJECT_DIR$/app/core/components/behaviors/UserIp.php" />
+        <option value="$PROJECT_DIR$/app/core/components/behaviors/file/FileUpload.php" />
+        <option value="$PROJECT_DIR$/app/core/components/behaviors/file/ImageUpload.php" />
+        <option value="$PROJECT_DIR$/app/core/components/fontAwesome/Asset.php" />
+        <option value="$PROJECT_DIR$/app/core/components/helpers/Breadcrumbs.php" />
+        <option value="$PROJECT_DIR$/app/modules/admin/views/layouts/index.php" />
+        <option value="$PROJECT_DIR$/app/modules/admin/views/assets/Asset.php" />
+        <option value="$PROJECT_DIR$/app/modules/informationsystem/controllers/backend/CreateController.php" />
+        <option value="$PROJECT_DIR$/app/modules/informationsystem/controllers/backend/ManagerController.php" />
+        <option value="$PROJECT_DIR$/app/modules/informationsystem/controllers/backend/UpdateController.php" />
+        <option value="$PROJECT_DIR$/app/modules/page/controllers/backend/DefaultController.php" />
+        <option value="$PROJECT_DIR$/app/modules/user/controllers/backend/FieldController.php" />
+        <option value="$PROJECT_DIR$/app/modules/shop/views/backend/group/manager.php" />
+        <option value="$PROJECT_DIR$/app/modules/shop/views/backend/product/create.php" />
+        <option value="$PROJECT_DIR$/app/modules/shop/views/backend/product/update.php" />
+        <option value="$PROJECT_DIR$/app/modules/shop/models/Image.php" />
+        <option value="$PROJECT_DIR$/app/modules/shop/models/Product.php" />
+        <option value="$PROJECT_DIR$/app/modules/shop/models/ProductService.php" />
+        <option value="$PROJECT_DIR$/core/.gitignore" />
+        <option value="$PROJECT_DIR$/.htaccess" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true">
+    <include_path>
+      <path value="C:\OpenServer\domains\main2\app\vendor" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1608" />
+    <option name="height" value="864" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers ProjectPane="false" />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource ProjectPane="false" />
+      <autoscrollFromSource />
+      <sortByType ProjectPane="true" />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="main2">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\main2" />
+      <recent name="C:\OpenServer\domains\main2\public" />
+      <recent name="C:\OpenServer\domains\main2\core" />
+      <recent name="C:\OpenServer\domains\main2\app\core" />
+      <recent name="C:\OpenServer\domains\main2\app" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\main2\app\modules\shop\public" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e07290f-06c4-4323-91cd-9aa29f041099" name="Default" comment="" />
+      <created>1476161426596</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1476161426596</updated>
+      <workItem from="1476161453017" duration="291000" />
+      <workItem from="1476243581450" duration="10869000" />
+      <workItem from="1476262190732" duration="10753000" />
+      <workItem from="1476330528496" duration="28688000" />
+      <workItem from="1476416187940" duration="104000" />
+      <workItem from="1476416341178" duration="4765000" />
+      <workItem from="1476422668597" duration="12337000" />
+      <workItem from="1476445365803" duration="589000" />
+      <workItem from="1477030174870" duration="11861000" />
+      <workItem from="1477281231058" duration="6926000" />
+      <workItem from="1477305733092" duration="4709000" />
+      <workItem from="1477367050464" duration="21063000" />
+      <workItem from="1477453932788" duration="25469000" />
+      <workItem from="1477538648523" duration="28347000" />
+      <workItem from="1477625019198" duration="8219000" />
+      <workItem from="1477639890308" duration="7691000" />
+      <workItem from="1477887468800" duration="11186000" />
+      <workItem from="1477971284422" duration="14002000" />
+      <workItem from="1478057663178" duration="14082000" />
+      <workItem from="1478151500602" duration="12585000" />
+      <workItem from="1478578082525" duration="3472000" />
+    </task>
+    <task id="LOCAL-00001" summary="Tests commit">
+      <created>1477292810798</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1477292810798</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="238008000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-4" y="-4" width="1608" height="864" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24582799" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="626" y="46" width="348" height="763" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.65675676" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24967907" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32837838" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22593068" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="626" y="46" width="348" height="763" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32837838" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Tests commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/core/components/actions/Delete.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/components/actions/Update.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/components/actions/View.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/components/behaviors/ConvertDate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/components/behaviors/FillData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/components/behaviors/UserId.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/components/behaviors/UserIp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/components/behaviors/file/FileUpload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/components/fontAwesome/Asset.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="36" lean-forward="false" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/components/helpers/Breadcrumbs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/config/db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/config/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="41" column="33" lean-forward="false" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/admin/components/BackendController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="38" lean-forward="false" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/admin/models/Module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-230">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/admin/models/Setting.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1199">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/admin/views/layouts/column_2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/admin/views/layouts/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/admin/views/assets/Asset.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/informationsystem/controllers/backend/CreateController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-587">
+          <caret line="18" column="37" lean-forward="false" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/informationsystem/controllers/backend/DeleteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-629">
+          <caret line="5" column="51" lean-forward="false" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/informationsystem/controllers/backend/ManagerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/informationsystem/controllers/backend/UpdateController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" column="37" lean-forward="false" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/page/controllers/backend/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="25" column="37" lean-forward="false" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/page/models/Page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-587">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/user/controllers/backend/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="51" lean-forward="false" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/user/controllers/backend/FieldController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/models/Group.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-910">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/models/GroupSearch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/models/ProductProperty.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/models/ProductRelation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-714">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/models/ProductSearch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/models/Property.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-417">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/views/backend/group/create.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/views/backend/group/manager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="15" lean-forward="true" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/views/backend/group/update.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/views/backend/group/_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/views/backend/product/_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/views/backend/product/create.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/views/backend/product/update.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/db/ActiveRecord.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/module/ModuleInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/module/Module.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/service/ModelServiceInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/components/actions/Action.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/models/Image.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="67" column="90" lean-forward="false" selection-start-line="67" selection-start-column="90" selection-end-line="67" selection-end-column="90" />
+          <folding>
+            <element signature="e#43#51#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/components/behaviors/GenerateAlias.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" lean-forward="false" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/components/behaviors/file/ImageUpload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1454">
+          <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/models/Product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
+          <caret line="87" column="35" lean-forward="false" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
+          <folding>
+            <element signature="e#43#91#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/shop/models/ProductService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="125" column="15" lean-forward="true" selection-start-line="125" selection-start-column="15" selection-end-line="125" selection-end-column="15" />
+          <folding>
+            <element signature="e#126#145#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="8" lean-forward="true" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
