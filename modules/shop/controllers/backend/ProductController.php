@@ -1,0 +1,47 @@
+<?php
+
+namespace app\modules\shop\controllers\backend;
+
+
+use Yii;
+use app\modules\admin\components\BackendController;
+use app\modules\shop\models\Product;
+use app\modules\shop\models\ProductService;
+
+class ProductController extends BackendController
+{
+    protected $image;
+    protected $property;
+    protected $relation;
+
+    public function actionCreate($group_id)
+    {
+        $model = new Product();
+        $modelService = Yii::createObject(ProductService::class, [$model]);
+        $modelService->setModelGroupId = $group_id;
+
+        if ($modelService->load(Yii::$app->request->post()) and $modelService->validate()) {
+
+            $modelService->save();
+
+            return $this->redirect(['product/update', 'id' => $modelService->getModel()->id]);
+        }
+
+        return $this->render('create', $modelService->getData());
+    }
+
+    public function actionUpdate($id)
+    {
+        $model = Product::findOne($id);
+        $modelService = Yii::createObject(ProductService::class, [$model]);
+
+        if ($modelService->load(Yii::$app->request->post()) and $modelService->validate()) {
+
+            $modelService->save();
+
+            return $this->redirect(['product/update', 'id' => $modelService->getModel()->id]);
+        }
+
+        return $this->render('update', $modelService->getData());
+    }
+}
