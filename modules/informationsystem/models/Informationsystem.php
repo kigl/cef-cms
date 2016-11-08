@@ -4,7 +4,6 @@ namespace app\modules\informationsystem\models;
 
 use Yii;
 use yii\db\Expression;
-use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "mn_informationsystem".
@@ -41,12 +40,12 @@ class Informationsystem extends \app\core\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['content'], 'string'],
-            [['sort', 'user_id', 'items_per_page', 'create_time', 'update_time'], 'integer'],
+            [['sort', 'user_id', 'item_on_page', 'create_time', 'update_time'], 'integer'],
             [['template'], 'string', 'max' => 50],
             [['name'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 300],
             ['image', 'file'],
-            ['items_per_page', 'default', 'value' => 10],
+            ['item_on_page', 'default', 'value' => 10],
         ];
     }
 
@@ -65,7 +64,7 @@ class Informationsystem extends \app\core\db\ActiveRecord
             'meta_title' => Yii::t('app', 'Meta title'),
             'meta_description' => Yii::t('app', 'Meta description'),
             'user_id' => Yii::t('informationsystem', 'User id'),
-            'items_per_page' => Yii::t('informationsystem', 'Items per page'),
+            'item_on_page' => Yii::t('informationsystem', 'Items on page'),
             'create_time' => Yii::t('app', 'Create time'),
             'update_time' => Yii::t('app', 'Update time'),
         ];
@@ -81,7 +80,7 @@ class Informationsystem extends \app\core\db\ActiveRecord
                 'updatedAtAttribute' => 'update_time',
             ],
             [
-                'class' => 'app\components\behaviors\file\ImageUpload',
+                'class' => 'app\core\behaviors\file\ImageUpload',
                 'attribute' => 'image',
                 'path' => Yii::$app->controller->module->getPublicPath() . '/images',
                 'pathUrl' => Yii::$app->controller->module->getPublicPathUrl() . '/images',

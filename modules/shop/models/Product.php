@@ -2,10 +2,10 @@
 
 namespace app\modules\shop\models;
 
-use app\core\components\behaviors\GenerateAlias;
 use Yii;
 use yii\helpers\ArrayHelper;
 use app\core\db\ActiveRecord;
+use app\core\behaviors\GenerateAlias;
 
 /**
  * This is the model class for table "mn_shop_product".

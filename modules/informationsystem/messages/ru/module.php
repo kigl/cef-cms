@@ -20,7 +20,7 @@ return [
 
 	'Id' => 'Id',
 	'Image' => 'Изображение',
-	'Items per page' => 'Количество элементов на страницце',
+	'Items on page' => 'Количество элементов на страницце',
 	'Informationsystem id' => 'Информационная система',
 	'Item type' => 'Тип элемента',
     'Item type group' => 'Группа',

@@ -18,7 +18,7 @@ class PropertyController extends BackendController
     {
         return [
             'create' => [
-                'class' => 'app\components\actions\Create',
+                'class' => 'app\core\actions\Create',
                 'model' => Property::className(),
             ],
         ];

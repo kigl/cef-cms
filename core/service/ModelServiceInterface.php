@@ -10,6 +10,8 @@ interface ModelServiceInterface
 
     public function save();
 
+    public function delete();
+
     public function getModel();
 
     public function getData();

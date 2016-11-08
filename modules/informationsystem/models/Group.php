@@ -77,7 +77,7 @@ class Group extends \app\core\db\ActiveRecord
     {
         return [
             [
-                'class' => 'app\components\behaviors\file\ImageUpload',
+                'class' => 'app\core\behaviors\file\ImageUpload',
                 'attribute' => 'image',
                 'path' => Yii::$app->getModule('informationsystem')->getPublicPath() . '/images',
                 'pathUrl' => Yii::$app->getModule('informationsystem')->getPublicPathUrl() . '/images',
@@ -89,7 +89,7 @@ class Group extends \app\core\db\ActiveRecord
                 'updatedAtAttribute' => 'update_time',
             ],
             [
-                'class' => 'app\components\behaviors\GenerateAlias',
+                'class' => 'app\core\behaviors\GenerateAlias',
                 'text' => 'name',
                 'alias' => 'alias',
             ]

@@ -62,7 +62,7 @@ class Image extends ActiveRecord
     {
         return [
             [
-                'class' => 'app\core\components\behaviors\file\ImageUpload',
+                'class' => 'app\core\behaviors\file\ImageUpload',
                 'attribute' => 'name',
                 'path' => Yii::$app->getModule('shop')->getPublicPath() . '/images',
                 'pathUrl' => Yii::$app->getModule('shop')->getPublicPathUrl() . '/images',

@@ -8,6 +8,8 @@ $config = [
 
     'language' => 'ru-RU',
 
+    'vendorPath' => '@app/core/vendor',
+
     'components' => [
         'i18n' => array(
             'translations' => array(
@@ -23,7 +25,7 @@ $config = [
 
         'formatter' => [
             'locale' => 'ru-Ru',
-            'dateFormat' => 'medium',
+            'dateFormat' => 'dd/MM/yyyy',
             'defaultTimeZone' => 'Europe/Moscow',
         ],
 
@@ -66,7 +68,7 @@ $config = [
         ],
 
         'user' => [
-            'identityClass' => 'app\modules\user\models\User',
+            'identityClass' => 'app\modules\user\models\UserIdentity',
             'enableAutoLogin' => false,
             'loginUrl' => ['/user/default/login'],
         ],

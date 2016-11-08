@@ -1,5 +1,5 @@
 <?php
-use app\core\components\helpers\Breadcrumbs;
+use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
 $this->params['breadcrumbs'] = Breadcrumbs::getLinksGroup(

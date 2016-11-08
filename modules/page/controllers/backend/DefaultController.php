@@ -15,15 +15,15 @@ class DefaultController extends BackendController
     {
         return [
             'create' => [
-                'class' => 'app\core\components\actions\Create',
+                'class' => 'app\core\actions\Create',
                 'model' => '\app\modules\page\models\Page',
             ],
             'update' => [
-                'class' => 'app\core\components\actions\Update',
+                'class' => 'app\core\actions\Update',
                 'model' => '\app\modules\page\models\Page',
             ],
             'delete' => [
-                'class' => 'app\core\components\actions\Delete',
+                'class' => 'app\core\actions\Delete',
                 'model' => '\app\modules\page\models\Page',
             ],
             'images-get' => [

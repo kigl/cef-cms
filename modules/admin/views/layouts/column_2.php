@@ -59,4 +59,7 @@ use app\modules\admin\widgets\menuTop\Widget as MenuTop;
 		</div>
 	</div>
 </div>
+<div class="row">
+    <div class="col-md-12 padding-top-50"></div>
+</div>
 <?php $this->endContent();?>

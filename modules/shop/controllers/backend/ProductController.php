@@ -24,10 +24,10 @@ class ProductController extends BackendController
 
             $modelService->save();
 
-            return $this->redirect(['group/manager', 'parent_id' => $modelService->getModel()->group_id]);
+            return $this->redirect(['product/update', 'id' => $modelService->getModel()->id]);
         }
 
-        return $this->render('update', $modelService->getData());
+        return $this->render('create', $modelService->getData());
     }
 
     public function actionUpdate($id)
@@ -39,7 +39,7 @@ class ProductController extends BackendController
 
             $modelService->save();
 
-            return $this->redirect(['group/manager', 'parent_id' => $modelService->getModel()->group_id]);
+            return $this->redirect(['product/update', 'id' => $modelService->getModel()->id]);
         }
 
         return $this->render('update', $modelService->getData());

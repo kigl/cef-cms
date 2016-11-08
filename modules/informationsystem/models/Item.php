@@ -113,7 +113,7 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
     {
         return [
             'imageUpload' => [
-                'class' => 'app\components\behaviors\file\ImageUpload',
+                'class' => 'app\core\behaviors\file\ImageUpload',
                 'attribute' => 'image',
                 'deleteKey' => 'deleteImage',
                 'path' => Yii::$app->controller->module->getPublicPath() . '/images',
@@ -124,14 +124,14 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
                 ],
             ],
             'videoUpload' => [
-                'class' => 'app\components\behaviors\file\FileUpload',
+                'class' => 'app\core\behaviors\file\FileUpload',
                 'attribute' => 'video',
                 'deleteKey' => 'deleteVideo',
                 'path' => Yii::$app->controller->module->getPublicPath() . '/video',
                 'pathUrl' => Yii::$app->controller->module->getPublicPathUrl() . '/video',
             ],
             'fileUpload' => [
-                'class' => 'app\components\behaviors\file\FileUpload',
+                'class' => 'app\core\behaviors\file\FileUpload',
                 'attribute' => 'file',
                 'deleteKey' => 'deleteFile',
                 'path' => Yii::$app->controller->module->getPublicPath() . '/files',
@@ -147,24 +147,24 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
                 'class' => TagBehavior::className(),
             ],
             'convertDate' => [
-                'class' => 'app\components\behaviors\ConvertDate',
+                'class' => 'app\core\behaviors\ConvertDate',
                 'attribute' => 'date',
             ],
             'convertDateStart' => [
-                'class' => 'app\components\behaviors\ConvertDate',
+                'class' => 'app\core\behaviors\ConvertDate',
                 'attribute' => 'date_start',
             ],
             'convertDateEnd' => [
-                'class' => 'app\components\behaviors\ConvertDate',
+                'class' => 'app\core\behaviors\ConvertDate',
                 'attribute' => 'date_end',
             ],
             [
-              'class' => 'app\components\behaviors\FillData',
+              'class' => 'app\core\behaviors\FillData',
                 'setAttribute' => 'date',
                 'getAttribute' => 'create_time',
             ],
             [
-                'class' => 'app\components\behaviors\UserId',
+                'class' => 'app\core\behaviors\UserId',
                 'attribute' => 'user_id',
             ],
         ];

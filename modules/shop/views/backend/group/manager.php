@@ -3,7 +3,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use app\modules\admin\widgets\grid\GridView;
 use app\modules\shop\models\Group;
-use app\core\components\helpers\Breadcrumbs;
+use app\core\helpers\Breadcrumbs;
 
 $this->params['breadcrumbs'] = Breadcrumbs::getLinksGroup(
     $parent_id,

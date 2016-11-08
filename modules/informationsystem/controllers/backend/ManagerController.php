@@ -29,14 +29,10 @@ class ManagerController extends BackendController
 
     public function actionSystem()
     {
-        echo "<pre>";
-        print_r(System::find()->select(['name', 'id'])->indexBy('id')->column());
-        echo "</pre>";
-
         $dataProvider = new ActiveDataProvider([
             'query' => System::find(),
             'pagination' => [
-                'pageSize' => $this->module->itemsPerPage,
+                'pageSize' => $this->module->itemsOnPage,
             ],
         ]);
 

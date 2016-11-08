@@ -39,7 +39,7 @@ use app\modules\user\models\User;
         </div>
 
         <div class="tab-pane" id="field">
-            <?php foreach ($fieldRelation as $fr) : ?>
+            <?php foreach ($field as $fr) : ?>
                 <?= $form->field($fr, '[' . $fr->field_id . ']value')->label($fr->field->name); ?>
             <?php endforeach; ?>
         </div>

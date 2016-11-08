@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core\components\behaviors\file;
+namespace app\core\behaviors\file;
 
 use Yii;
 use yii\web\UploadedFile;
@@ -8,7 +8,7 @@ use yii\imagine\Image;
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 
-class ImageUpload extends \app\core\components\behaviors\file\FileUpload
+class ImageUpload extends \app\core\behaviors\file\FileUpload
 {
 	public $thumbnailPrefix = 'thumbnail_';
 	

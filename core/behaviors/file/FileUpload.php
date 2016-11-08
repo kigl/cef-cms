@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core\components\behaviors\file;
+namespace app\core\behaviors\file;
 
 use Yii;
 use yii\db\ActiveRecord;

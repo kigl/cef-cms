@@ -92,12 +92,25 @@ class ProductService implements ModelServiceInterface
     
     public function save()
     {
-        $this->model->save(false);
-        $this->saveProperty();
-        $this->saveRelation();
-        $this->uploadImage();
-        $this->processImage();
+        $transaction =  Product::getDb()->beginTransaction();
+        try {
+            $this->model->save(false);
+            $this->saveProperty();
+            $this->saveRelation();
+            $this->uploadImage();
+            $this->processImage();
+
+            $transaction->commit();
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
         
+    }
+
+    public function delete()
+    {
+        return false;
     }
 
     protected function saveProperty()
@@ -105,8 +118,8 @@ class ProductService implements ModelServiceInterface
         foreach ($this->property as $property) {
             $property->product_id = $this->model->id;
 
-            if (isset($property->value) and $property->validate()) {
-                $property->save(false);
+            if (isset($property->value)) {
+                $property->save();
             }
         }
     }
@@ -117,6 +130,13 @@ class ProductService implements ModelServiceInterface
             $this->relation->product_relation_id = $this->model->id;
             $this->relation->save();
         }
+    }
+
+    protected function initImage()
+    {
+        $images = $this->model->getImages()->indexBy('id')->all();
+
+        return $images;
     }
 
     public function uploadImage($attribute = 'imageUpload')
@@ -137,13 +157,9 @@ class ProductService implements ModelServiceInterface
         }
     }
 
-    protected function initImage()
-    {
-        $images = $this->model->getImages()->indexBy('id')->all();
-
-        return $images;
-    }
-
+    /**
+     *
+     */
     protected function processImage()
     {
         $imageStatus = (isset($this->post[Image::POST_STATUS_NAME]))? $this->post[Image::POST_STATUS_NAME] : null;
@@ -153,15 +169,38 @@ class ProductService implements ModelServiceInterface
                 if (!empty($image->deleteKey)) {
                     $image->delete();
                 } else {
-                    $image->status = ($imageStatus == $image->id)? Image::STATUS_MAIN : null;
+                    $image->status = ($imageStatus === $image->id)? Image::STATUS_MAIN : null;
                     $image->save();
                 }
             }
         }
+
         /*
          * @todo
-         * Добавить логику присвоение статуса главной картинки
+         * Добавить логику присвоение статуса главной картинки если нет главной
          */
+        $this->setStatusImage();
+    }
+
+    /*
+     * @todo
+     */
+    private function setStatusImage()
+    {
+        $success = false;
+        $result = '';
+        foreach ($this->image as $image) {
+            $result[] = $image;
+            if ($image->status === Image::STATUS_MAIN) {
+                $success = true;
+            }
+        }
+
+        if (!$success and $this->image) {
+
+            $result[0]->status = Image::STATUS_MAIN;
+            $result[0]->save();
+        }
     }
 
     public function setGroupId($groupId)

@@ -1,9 +1,8 @@
 <?php
 
-namespace app\core\components\actions;
+namespace app\core\actions;
 
 use Yii;
-use yii\db\ActiveRecord;
 
 class Create extends Action
 {

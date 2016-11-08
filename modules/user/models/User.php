@@ -19,13 +19,16 @@ use Yii;
  * @property integer $create_time
  * @property string $ip
  */
-class User extends \app\core\db\ActiveRecord  implements \yii\web\IdentityInterface
+class User extends \app\core\db\ActiveRecord
 {
     public $password_repeat;
 
     const STATUS_BLOCK = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_NOT_ACTIVE = 2;
+
+    const SCENARIO_INSERT = 'insert';
+    const SCENARIO_UPDATE = 'update';
 
 
     /**
@@ -42,11 +45,11 @@ class User extends \app\core\db\ActiveRecord  implements \yii\web\IdentityInterf
     public function rules()
     {
         return [
-            [['login', 'email', 'password', 'password_repeat'], 'required', 'on' => 'insert'],
+            [['login', 'email', 'password', 'password_repeat'], 'required', 'on' => self::SCENARIO_INSERT],
 
             ['login', 'match', 'pattern' => '/^[a-z]+$/', 'message' => 'Символы от a-z'],
 
-            [['login', 'email'], 'required', 'on' => 'update'],
+            [['login', 'email'], 'required', 'on' => self::SCENARIO_UPDATE],
 
             [['surname', 'name', 'lastname', 'password', 'password_repeat'], 'string', 'max' => 255],
             ['password', 'compare'],
@@ -86,7 +89,7 @@ class User extends \app\core\db\ActiveRecord  implements \yii\web\IdentityInterf
                 'updatedAtAttribute' => 'update_time',
             ],
             'userIp' => [
-                'class' => 'app\core\components\behaviors\UserIp',
+                'class' => 'app\core\behaviors\UserIp',
                 'attribute' => 'ip',
             ],
         ];
@@ -136,72 +139,6 @@ class User extends \app\core\db\ActiveRecord  implements \yii\web\IdentityInterf
     public function getFieldRelation()
     {
         return $this->hasMany(FieldRelation::className(), ['user_id' => 'id']);
-    }
-
-    /**
-     * @return array|\yii\db\ActiveRecord[]
-     */
-    public function getInitField()
-    {
-        $fieldRelation = $this->getFieldRelation()->with('field')->indexBy('field_id')->all();
-        $allField = Field::find()->indexBy('id')->all();
-
-        foreach (array_diff_key($allField, $fieldRelation) as $field) {
-            $fieldRelation[$field->id] = new FieldRelation();
-            $fieldRelation[$field->id]->field_id = $field->id;
-        }
-
-        return $fieldRelation;
-    }
-
-    /**
-     * @param $fields
-     */
-    public function saveField($fields)
-    {
-        foreach ($fields as $field) {
-            $field->user_id = $this->id;
-
-            if (!empty($field->value) and $field->validate()) {
-                $field->save(false);
-            } else {
-                $field->delete();
-            }
-        }
-    }
-
-    /*
-    * Аутентификация пользователя
-    */
-
-    public static function findIdentity($id)
-    {
-        return static::findOne($id);
-    }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        //return static::findOne(['access_token' => $token]);
-    }
-
-    public function generateAuthKey()
-    {
-        //$this->auth_key = Yii::$app->security->generateRandomString();
-    }
-
-    public function getAuthKey()
-    {
-        //return $this->auth_key;
-    }
-
-    public function validateAuthKey($authKey)
-    {
-        //return $this->auth_key === $authKey;
     }
 }
 

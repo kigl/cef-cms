@@ -9,5 +9,5 @@ class Module extends \app\core\module\Module
 {
 	public $defaultBackendRoute = 'manager/system';
 	
-	public $itemsPerPage = 10;
+	public $itemsOnPage = 10;
 }

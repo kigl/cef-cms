@@ -2,6 +2,7 @@
 
 namespace app\modules\user\controllers\backend;
 
+use app\modules\user\models\UserService;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -15,7 +16,7 @@ class DefaultController extends BackendController
 	{
 		return [
 			'delete' => [
-				'class' => 'app\components\actions\Delete',
+				'class' => 'app\core\actions\Delete',
 				'model' => '\app\modules\user\models\User',
 			],
 		];
@@ -33,36 +34,30 @@ class DefaultController extends BackendController
 	public function actionCreate()
     {
         $model = new User();
-        $fieldRelation = $model->getInitField();
-        $post = Yii::$app->request->post();
+        $modelService = new UserService($model);
+        $modelService->setModelScenario(User::SCENARIO_INSERT);
 
-        if ($model->load($post) and $model->save() and Model::loadMultiple($fieldRelation, $post)) {
-            $model->saveField($fieldRelation);
+        if ($modelService->load(Yii::$app->request->post())) {
+            $modelService->save();
 
             return $this->redirect(['default/manager']);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-            'fieldRelation' => $fieldRelation,
-        ]);
+        return $this->render('create', $modelService->getData());
      }
 
     public function actionUpdate($id)
     {
         $model = User::findOne($id);
-        $fieldRelation = $model->getInitField();
-        $post = Yii::$app->request->post();
+        $modelService = new UserService($model);
+        $modelService->setModelScenario(User::SCENARIO_UPDATE);
 
-        if ($model->load($post) and $model->save() and Model::loadMultiple($fieldRelation, $post)) {
-            $model->saveField($fieldRelation);
+        if ($modelService->load(Yii::$app->request->post())) {
+            $modelService->save();
 
             return $this->redirect(['default/manager']);
         }
 
-        return $this->render('update', [
-            'model' => $model,
-            'fieldRelation' => $fieldRelation,
-        ]);
+        return $this->render('update', $modelService->getData());
     }
 }

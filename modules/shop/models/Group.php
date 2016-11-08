@@ -2,6 +2,7 @@
 
 namespace app\modules\shop\models;
 
+use app\core\behaviors\GenerateAlias;
 use Yii;
 use yii\helpers\ArrayHelper;
 use app\core\db\ActiveRecord;
@@ -70,6 +71,17 @@ class Group extends ActiveRecord
             'meta_description' => Yii::t('app', 'Meta description'),
             'create_time' => Yii::t('shop', 'Create Time'),
             'update_time' => Yii::t('shop', 'Update Time'),
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => GenerateAlias::class,
+                'text' => 'name',
+                'alias' => 'alias',
+            ]
         ];
     }
 

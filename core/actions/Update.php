@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core\components\actions;
+namespace app\core\actions;
 
 use Yii;
 
