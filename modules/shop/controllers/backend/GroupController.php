@@ -2,6 +2,7 @@
 
 namespace app\modules\shop\controllers\backend;
 
+use app\modules\shop\models\GroupService;
 use Yii;
 use app\modules\admin\components\BackendController;
 use app\modules\shop\models\GroupSearch;
@@ -48,5 +49,18 @@ class GroupController extends BackendController
         }
 
         return $this->render('update', ['model' => $model]);
+    }
+
+    public function actionDelete($id)
+    {
+        $model = Group::findOne($id);
+        $modelService = new GroupService($model);
+
+        if ($modelService->delete()) {
+
+            return $this->redirect(['group/manager', 'parent_id' => $modelService->getModel()->parent_id]);
+        }
+
+        return false;
     }
 }

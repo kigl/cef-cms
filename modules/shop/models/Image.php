@@ -18,6 +18,7 @@ use app\core\db\ActiveRecord;
 class Image extends ActiveRecord
 {
     const STATUS_MAIN = 1;
+    const STATUS_DEFAULT = 0;
     const POST_STATUS_NAME = 'imageStatus';
 
     public $deleteKey;

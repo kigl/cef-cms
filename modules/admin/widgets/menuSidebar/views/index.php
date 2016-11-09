@@ -7,6 +7,7 @@ use yii\widgets\Menu;
 	echo Menu::widget([
 		'options' => ['class' => 'nav nav-pills nav-stacked'],
 		'items' => $module,
+        'encodeLabels' => false,
 	]);
 	?>
 </div>

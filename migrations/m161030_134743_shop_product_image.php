@@ -13,7 +13,7 @@ class m161030_134743_shop_product_image extends Migration
             'id' => $this->primaryKey(),
             'product_id' => $this->integer(),
             'name' => $this->string(),
-            'status' => $this->integer(),
+            'status' => $this->integer()->defaultValue(0),
             'alt' => $this->string(),
             'create_time' => $this->timestamp(),
         ]);

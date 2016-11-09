@@ -10,23 +10,31 @@ namespace app\modules\shop\models;
 
 use yii\base\Model;
 use yii\web\UploadedFile;
-use app\core\service\ModelServiceInterface;
+use app\core\service\ModelService;
 
-class ProductService implements ModelServiceInterface
+class ProductService extends ModelService
 {
+    /**
+     * @var Product
+     */
     protected $model;
+    /**
+     * @var array
+     */
     protected $image;
+    /**
+     * @var array
+     */
     protected $property;
+    /**
+     * @var array
+     */
     protected $relation;
+    /**
+     * @var array
+     */
     protected $post;
 
-    public function __construct(Product $model)
-    {
-        $this->model = $model;
-
-        $this->init();
-    }
-    
     protected function init()
     {
         $this->property = $this->initProperty();
@@ -35,7 +43,6 @@ class ProductService implements ModelServiceInterface
     }
 
     /**
-     * @param Product $model
      * @return mixed
      */
     protected function initProperty()
@@ -51,11 +58,17 @@ class ProductService implements ModelServiceInterface
         return $property;
     }
 
+    /**
+     * @return array
+     */
     public function getProperty()
     {
         return $this->property;
     }
 
+    /**
+     * @return ProductRelation
+     */
     protected function initRelation()
     {
         $relation = $this->model->getParentProductRelation()->one();
@@ -67,11 +80,18 @@ class ProductService implements ModelServiceInterface
         return $relation;
     }
 
+    /**
+     * @return mixed
+     */
     public function getRelation()
     {
         return $this->relation;
     }
 
+    /**
+     * @param array $post
+     * @return boolean
+     */
     public function load(array $post)
     {
         $this->post = $post;
@@ -85,14 +105,17 @@ class ProductService implements ModelServiceInterface
         return $result;
     }
 
+    /**
+     * @return boolean
+     */
     public function validate()
     {
         return $this->model->validate();
     }
-    
+
     public function save()
     {
-        $transaction =  Product::getDb()->beginTransaction();
+        $transaction = Product::getDb()->beginTransaction();
         try {
             $this->model->save(false);
             $this->saveProperty();
@@ -105,12 +128,14 @@ class ProductService implements ModelServiceInterface
             $transaction->rollBack();
             throw $e;
         }
-        
     }
 
     public function delete()
     {
-        return false;
+        $success = $this->model->delete();
+        $this->deleteImage();
+
+        return $success;
     }
 
     protected function saveProperty()
@@ -143,71 +168,79 @@ class ProductService implements ModelServiceInterface
     {
         $uploadedImages = UploadedFile::getInstances($this->model, $attribute);
 
-        $c = 0;
         foreach ($uploadedImages as $upload) {
-            $c++;
             $image = new Image();
             $image->product_id = $this->model->id;
             $image->name = $upload;
-            // Ставит статус главной 1 картинки, если нет загруженных картинок
-            if (!$this->image and $c == 1) {
-                $image->status = Image::STATUS_MAIN;
-            }
             $image->save(false);
+
+            $this->image[$image->id] = $image;
         }
     }
 
-    /**
-     *
-     */
     protected function processImage()
     {
-        $imageStatus = (isset($this->post[Image::POST_STATUS_NAME]))? $this->post[Image::POST_STATUS_NAME] : null;
+        $imageStatus = (isset($this->post[Image::POST_STATUS_NAME])) ? (int)$this->post[Image::POST_STATUS_NAME] : null;
 
         if (is_array($this->image)) {
-            foreach ($this->image as $image) {
+            $img = $this->image;
+            foreach ($this->image as $key => $image) {
+                $img[$key] = $image;
                 if (!empty($image->deleteKey)) {
-                    $image->delete();
+                    if ($image->delete()) {
+                        unset($img[$key]);
+                    }
                 } else {
-                    $image->status = ($imageStatus === $image->id)? Image::STATUS_MAIN : null;
+                    $image->status = ($imageStatus === $image->id) ? Image::STATUS_MAIN : Image::STATUS_DEFAULT;
                     $image->save();
                 }
             }
+            $this->image = $img;
         }
 
-        /*
-         * @todo
-         * Добавить логику присвоение статуса главной картинки если нет главной
-         */
+        // проверим и установим статус
         $this->setStatusImage();
     }
 
-    /*
-     * @todo
+    /**
+     * Устанавливает реклама статус, если он не установлен
      */
     private function setStatusImage()
     {
         $success = false;
-        $result = '';
-        foreach ($this->image as $image) {
-            $result[] = $image;
-            if ($image->status === Image::STATUS_MAIN) {
+        foreach ($this->image as $img) {
+            if ($img->status === Image::STATUS_MAIN) {
                 $success = true;
             }
         }
 
-        if (!$success and $this->image) {
-
-            $result[0]->status = Image::STATUS_MAIN;
-            $result[0]->save();
+        if ($success === false and $this->image) {
+            $image = reset($this->image);
+            $image->status = Image::STATUS_MAIN;
+            $image->save(false);
         }
     }
 
-    public function setGroupId($groupId)
+    private function deleteImage()
+    {
+        $modelImage = Image::findAll(['product_id' => $this->model->id]);
+
+        foreach ($modelImage as $image) {
+            $image->delete();
+        }
+    }
+
+    /**
+     * @param $groupId
+     */
+    public function setModelGroupId($groupId)
     {
         $this->model->group_id = (int)$groupId;
     }
 
+    /**
+     * @return array
+     */
     public function getData()
     {
         return [
@@ -216,10 +249,5 @@ class ProductService implements ModelServiceInterface
             'relation' => $this->relation,
             'images' => $this->image,
         ];
-    }
-
-    public function getModel()
-    {
-        return $this->model;
     }
 }

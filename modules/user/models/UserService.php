@@ -45,8 +45,9 @@ class UserService implements ModelServiceInterface
     {
         $transaction = User::getDb()->beginTransaction();
 
+        $success = false;
         try {
-            $this->model->save();
+            $success = $this->model->save();
             $this->saveField();
 
             $transaction->commit();
@@ -55,6 +56,8 @@ class UserService implements ModelServiceInterface
 
             throw $e;
         }
+
+        return $success;
     }
 
     public function delete()
@@ -96,9 +99,6 @@ class UserService implements ModelServiceInterface
         return $fieldRelation;
     }
 
-    /**
-     * @param $fields
-     */
     public function saveField()
     {
         foreach ($this->field as $field) {
@@ -107,7 +107,7 @@ class UserService implements ModelServiceInterface
             if (!empty($field->value)) {
                 $field->save();
             } else {
-                $field->delete();
+                //$field->delete();
             }
         }
     }

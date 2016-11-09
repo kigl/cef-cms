@@ -52,8 +52,10 @@ class User extends \app\core\db\ActiveRecord
             [['login', 'email'], 'required', 'on' => self::SCENARIO_UPDATE],
 
             [['surname', 'name', 'lastname', 'password', 'password_repeat'], 'string', 'max' => 255],
+            ['password', 'string', 'min' => 6],
             ['password', 'compare'],
             ['email', 'email'],
+            [['login' ,'email'], 'unique'],
             [['status'], 'integer'],
         ];
     }

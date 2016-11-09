@@ -18,7 +18,7 @@ class ProductController extends BackendController
     {
         $model = new Product();
         $modelService = Yii::createObject(ProductService::class, [$model]);
-        $modelService->setModelGroupId = $group_id;
+        $modelService->setModelGroupId($group_id);
 
         if ($modelService->load(Yii::$app->request->post()) and $modelService->validate()) {
 
@@ -43,5 +43,18 @@ class ProductController extends BackendController
         }
 
         return $this->render('update', $modelService->getData());
+    }
+
+    public function actionDelete($id)
+    {
+        $model = Product::findOne($id);
+        $modelService = new ProductService($model);
+
+        if ($modelService->delete()) {
+
+            return $this->redirect(['group/manager', 'parent_id' => $modelService->getModel()->group_id]);
+        }
+
+        return false;
     }
 }

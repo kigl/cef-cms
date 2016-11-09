@@ -37,8 +37,7 @@ class DefaultController extends BackendController
         $modelService = new UserService($model);
         $modelService->setModelScenario(User::SCENARIO_INSERT);
 
-        if ($modelService->load(Yii::$app->request->post())) {
-            $modelService->save();
+        if ($modelService->load(Yii::$app->request->post()) and $modelService->save()) {
 
             return $this->redirect(['default/manager']);
         }

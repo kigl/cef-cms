@@ -21,7 +21,6 @@ echo GridView::widget([
 				},
 			],
 			'email',
-			'id',
 			[
 				'headerOptions' => ['style' => 'width: 50px'],
 				'class' => 'yii\grid\ActionColumn',
