@@ -10,13 +10,13 @@ namespace app\modules\user\controllers\backend;
 
 
 use yii\data\ActiveDataProvider;
-use app\modules\admin\components\BackendController;
+use app\modules\user\components\Controller;
 use app\core\actions\Update;
 use app\core\actions\Create;
 use app\core\actions\Delete;
 use app\modules\user\models\Field;
 
-class FieldController extends BackendController
+class FieldController extends Controller
 {
     public function actions()
     {

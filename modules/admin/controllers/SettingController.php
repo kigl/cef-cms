@@ -4,10 +4,10 @@ namespace app\modules\admin\controllers;
 
 use Yii;
 use yii\data\ActiveDataProvider;
+use app\modules\admin\components\Controller;
 use app\modules\admin\models\Setting;
-use app\modules\admin\components\BackendController;
 
-class SettingController extends BackendController
+class SettingController extends Controller
 {
     public function actions()
     {

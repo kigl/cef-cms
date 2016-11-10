@@ -12,7 +12,7 @@ class Asset extends \yii\web\AssetBundle
 		'yii\web\YiiAsset',
 		'yii\bootstrap\BootstrapAsset',
 		'yii\bootstrap\BootstrapPluginAsset',
-		'app\components\fontAwesome\Asset',
+		'app\core\components\fontAwesome\Asset',
 	];
 }
 

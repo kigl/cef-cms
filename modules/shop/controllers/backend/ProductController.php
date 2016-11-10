@@ -4,11 +4,11 @@ namespace app\modules\shop\controllers\backend;
 
 
 use Yii;
-use app\modules\admin\components\BackendController;
+use app\modules\shop\components\Controller;
 use app\modules\shop\models\Product;
 use app\modules\shop\models\ProductService;
 
-class ProductController extends BackendController
+class ProductController extends Controller
 {
     protected $image;
     protected $property;

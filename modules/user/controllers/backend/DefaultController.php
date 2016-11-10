@@ -2,14 +2,13 @@
 
 namespace app\modules\user\controllers\backend;
 
-use app\modules\user\models\UserService;
 use Yii;
-use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\admin\components\BackendController;
+use app\modules\user\components\Controller;
+use app\modules\user\models\UserService;
 use app\modules\user\models\User;
 
-class DefaultController extends BackendController
+class DefaultController extends Controller
 {
 
 	public function actions()
