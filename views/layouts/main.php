@@ -4,10 +4,7 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use yii\widgets\Menu;
+
 //use webroot\assets\AppAsset;
 
 \app\views\assets\Asset::register($this);
@@ -25,7 +22,7 @@ use yii\widgets\Menu;
 <body>
 <?php $this->beginBody() ?>
 <div class="container-fluid wrapper">
-	<?= $content;?>
+    <?= $content; ?>
 </div>
 <?php $this->endBody() ?>
 </body>

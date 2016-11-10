@@ -1,5 +1,7 @@
 <?php
 return [
+	'Authenticate' => 'Войти',
+
 	'Name' => 'Имя',
 
 	'Module name' => 'Пользователи',
@@ -10,6 +12,8 @@ return [
 	'Lastname' => 'Отчество',
 	'Login' => 'Логин',
 	'Logout' => 'Выйти',
+
+	'Registration' => 'Регистрация',
 	
 	'Profile' => 'Профиль',
 	'Password' => 'Пароль',

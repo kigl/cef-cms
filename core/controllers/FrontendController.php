@@ -10,5 +10,5 @@ namespace app\core\controllers;
  */
 abstract class FrontendController extends \yii\web\Controller
 {
-    public $layouts = '@app/views/layouts/column_2';
+    public $layout = '@app/views/layouts/column_2';
 }
