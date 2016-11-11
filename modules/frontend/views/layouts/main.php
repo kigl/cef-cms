@@ -5,9 +5,7 @@
 
 use yii\helpers\Html;
 
-//use webroot\assets\AppAsset;
-
-\app\views\assets\Asset::register($this);
+\app\modules\frontend\views\assets\Asset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -21,7 +19,7 @@ use yii\helpers\Html;
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="container-fluid wrapper">
+<div class="container wrapper">
     <?= $content; ?>
 </div>
 <?php $this->endBody() ?>

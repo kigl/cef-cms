@@ -1,10 +1,10 @@
 <?php
 
-namespace app\views\assets;
+namespace app\modules\frontend\views\assets;
 
 class Asset extends \yii\web\AssetBundle
 {
-	public $sourcePath = '@app/views/assets/bundle';
+	public $sourcePath = '@app/modules/frontend/views/assets/bundle';
 	
 	public $css = ['css/main.css'];
 	

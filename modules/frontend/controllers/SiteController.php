@@ -1,10 +1,10 @@
 <?php
 
-namespace app\controllers;
+namespace app\modules\frontend\controllers;
 
-use app\core\controllers\FrontendController;
+use app\modules\frontend\components\Controller;
 
-class SiteController extends FrontendController
+class SiteController extends Controller
 {
     public function actionIndex()
     {

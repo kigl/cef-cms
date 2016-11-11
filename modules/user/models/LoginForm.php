@@ -87,7 +87,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user == null) {
-            $this->_user = User::find()
+            $this->_user = UserIdentity::find()
                 ->where(['login' => $this->login])
                 ->orWhere(['email' => $this->login])
                 ->one();

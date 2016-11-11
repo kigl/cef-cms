@@ -8,10 +8,6 @@
 
 namespace app\modules\user\components;
 
-
-use app\core\controllers\BackendController;
-
-abstract class Controller extends BackendController
+abstract class BackendController extends \app\core\controllers\BackendController
 {
-
 }

@@ -10,10 +10,13 @@ return [
 	'Id' => 'Id',
 	
 	'Lastname' => 'Отчество',
-	'Login' => 'Логин',
+    'Login' => 'Логин',
 	'Logout' => 'Выйти',
+    'Login menu item' => 'Войти',
+    'Login btn' => 'Войти',
 
 	'Registration' => 'Регистрация',
+    'Registration btn' => 'Зарегистрироваться',
 	
 	'Profile' => 'Профиль',
 	'Password' => 'Пароль',

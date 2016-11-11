@@ -5,7 +5,7 @@ use yii\bootstrap\Nav;
 
 <?php 
 NavBar::begin([
-		'options' => ['class' => 'navbar navbar-inverse bg-theme no-border-radius'],
+		'options' => ['class' => 'navbar navbar-inverse no-border-radius'],
         'innerContainerOptions' => ['class' => 'container-fluid'],
 	]);
 

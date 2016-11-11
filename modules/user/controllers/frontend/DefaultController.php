@@ -3,10 +3,11 @@
 namespace app\modules\user\controllers\frontend;
 
 use Yii;
+use app\modules\frontend\components\Controller;
 use app\modules\user\models\User;
 use app\modules\user\models\LoginForm;
 
-class DefaultController extends \yii\web\Controller
+class DefaultController extends Controller
 {
 	
 	public function actionLogin()
@@ -23,7 +24,7 @@ class DefaultController extends \yii\web\Controller
 		return $this->render('login', ['model' => $model]);
 	} 
 	
-	public function actionRegistry()
+	public function actionRegistration()
 	{
 		$model = new User;
 		$model->scenario = 'insert';
@@ -32,7 +33,7 @@ class DefaultController extends \yii\web\Controller
 			if ($model->load(Yii::$app->request->post()) and $model->save()) {
 				return $this->goBack();
 			} 
-			return $this->render('registry', ['model' => $model]);
+			return $this->render('registration', ['model' => $model]);
 		} else {
 			return $this->goBack();
 		}

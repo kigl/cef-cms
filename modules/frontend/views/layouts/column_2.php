@@ -6,15 +6,27 @@ use yii\bootstrap\Nav;
 use app\modules\main\widgets\backend\Alert;
 
 ?>
-
-<?php $this->beginContent('@app/views/layouts/main.php'); ?>
+<?php $this->beginContent('@app/modules/frontend/views/layouts/main.php'); ?>
     <div class="row">
         <div class="col-md-12">
             <?php NavBar::begin(); ?>
             <?= Nav::widget([
                 'items' => [
-                    ['label' => Yii::t('user', 'Login'), 'url' => ['/user/default/login']],
-                    ['label' => Yii::t('user', 'Registration'), 'url' => ['/user/default/registration']],
+                    [
+                        'label' => Yii::t('user', 'Login menu item'),
+                        'url' => ['/user/default/login'],
+                        'visible' => Yii::$app->user->isGuest
+                    ],
+                    [
+                        'label' => Yii::t('user', 'Logout'),
+                        'url' => ['/user/default/logout'],
+                        'visible' => !Yii::$app->user->isGuest
+                    ],
+                    [
+                        'label' => Yii::t('user', 'Registration'),
+                        'url' => ['/user/default/registration'],
+                        'visible' => Yii::$app->user->isGuest
+                    ],
                 ],
                 'options' => ['class' => 'pull-right navbar-nav'],
             ]); ?>
@@ -42,7 +54,12 @@ use app\modules\main\widgets\backend\Alert;
         }
         ?>
     </div>
-<?= $content; ?>
+    <div class="row">
+        <div class="col-md-12">
+            <?= \app\modules\shop\widgets\frontend\treeGroup\Widget::widget();?>
+        </div>
     </div>
+<?= $content; ?>
+    </>
     </div>
 <?php $this->endContent(); ?>

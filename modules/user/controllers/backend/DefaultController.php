@@ -4,11 +4,11 @@ namespace app\modules\user\controllers\backend;
 
 use Yii;
 use yii\data\ActiveDataProvider;
-use app\modules\user\components\Controller;
+use app\modules\user\components\BackendController;
 use app\modules\user\models\UserService;
 use app\modules\user\models\User;
 
-class DefaultController extends Controller
+class DefaultController extends BackendController
 {
 
 	public function actions()

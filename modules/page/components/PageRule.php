@@ -28,7 +28,6 @@ class PageRule implements \yii\web\UrlRuleInterface
     public function parseRequest($manager, $request)
     {
         $pathInfo = $request->getPathInfo();
-        $queryId = $request->getQueryParam('id');
 
         if (!empty($pathInfo) and (preg_match('/(^[^\/?&_]+)$/', $pathInfo))) {
             $model = Page::find()
@@ -38,7 +37,6 @@ class PageRule implements \yii\web\UrlRuleInterface
                 ->one();
 
             if ($model) {
-                ;
                 return [$this->pageRequest, ['id' => $model['id']]];
             }
         }
