@@ -3,7 +3,7 @@ use yii\widgets\Menu;
 use yii\widgets\Breadcrumbs;
 use yii\bootstrap\NavBar;
 use yii\bootstrap\Nav;
-use app\modules\main\widgets\backend\Alert;
+use app\modules\admin\widgets\Alert;
 
 ?>
 <?php $this->beginContent('@app/modules/frontend/views/layouts/main.php'); ?>
@@ -16,6 +16,11 @@ use app\modules\main\widgets\backend\Alert;
                         'label' => Yii::t('user', 'Login menu item'),
                         'url' => ['/user/default/login'],
                         'visible' => Yii::$app->user->isGuest
+                    ],
+                    [
+                        'label' => Yii::t('user', 'Menu personal area'),
+                        'url' => ['/user/default/personal', 'id' => Yii::$app->user->getId()],
+                        'visible' => !Yii::$app->user->isGuest,
                     ],
                     [
                         'label' => Yii::t('user', 'Logout'),
@@ -41,7 +46,7 @@ use app\modules\main\widgets\backend\Alert;
     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
     'activeItemTemplate' => "<li class=\"active\"><!--noindex-->{link}<!--/noindex--></li>",
 ]); ?>
-<? //= Alert::widget(); ?>
+<?= Alert::widget(); ?>
     <div>
         <?php
         if (isset($this->params['actionBar'])) {

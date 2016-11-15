@@ -4,7 +4,7 @@ namespace app\modules\informationsystem\controllers\backend;
 
 use Yii;
 use yii\data\ActiveDataProvider;
-use app\modules\informationsystem\components\Controller;
+use app\modules\informationsystem\components\BackendController;
 use app\modules\informationsystem\models\Informationsystem as System;
 use app\modules\informationsystem\models\Group;
 use app\modules\informationsystem\models\Item;
@@ -12,7 +12,7 @@ use app\modules\informationsystem\models\ItemSearch;
 use app\modules\informationsystem\models\Tag;
 use app\modules\informationsystem\models\TagSearch;
 
-class ManagerController extends Controller
+class ManagerController extends BackendController
 {
     public function actions()
     {

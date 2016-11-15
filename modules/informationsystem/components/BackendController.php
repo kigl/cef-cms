@@ -3,15 +3,13 @@
  * Created by PhpStorm.
  * User: ARstudio
  * Date: 10.11.2016
- * Time: 17:48
+ * Time: 17:53
  */
 
 namespace app\modules\informationsystem\components;
 
+use app\modules\admin\components\Controller;
 
-use app\core\controllers\BackendController;
-
-abstract class Controller extends BackendController
+abstract class BackendController extends Controller
 {
-
 }

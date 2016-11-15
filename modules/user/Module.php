@@ -2,10 +2,7 @@
 
 namespace app\modules\user;
 
-/**
- * user module definition class
- */
 class Module extends \app\core\module\Module
 {
-    public $defaultBackendRoute = 'default/manager';
+    public $defaultBackendRoute = '/admin/user/default/manager';
 }

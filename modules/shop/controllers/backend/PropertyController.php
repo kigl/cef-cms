@@ -9,10 +9,10 @@
 namespace app\modules\shop\controllers\backend;
 
 use yii\data\ActiveDataProvider;
-use app\modules\shop\components\Controller;
+use app\modules\shop\components\BackendController;
 use app\modules\shop\models\Property;
 
-class PropertyController extends Controller
+class PropertyController extends BackendController
 {
     public function actions()
     {

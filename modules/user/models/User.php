@@ -30,7 +30,6 @@ class User extends \app\core\db\ActiveRecord
     const SCENARIO_INSERT = 'insert';
     const SCENARIO_UPDATE = 'update';
 
-
     /**
      * @inheritdoc
      */

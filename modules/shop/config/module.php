@@ -16,6 +16,8 @@ return [
 
         'shop' => [
             'class' => Module::className(),
+            'controllerNamespace' => 'app\modules\shop\controllers\frontend',
+            'viewPath' => '@app/modules/shop/views/frontend',
         ],
     ],
 
@@ -29,6 +31,11 @@ return [
                         'shop' => 'module.php',
                     ],
                 ],
+            ],
+        ],
+        'urlManager' => [
+            'rules' => [
+               '/shop/group/<id>' => '/shop/group/view',
             ],
         ],
     ],

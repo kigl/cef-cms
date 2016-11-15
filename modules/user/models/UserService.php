@@ -8,6 +8,8 @@
 
 namespace app\modules\user\models;
 
+use Yii;
+use yii\web\HttpException;
 use yii\base\Model;
 use app\core\service\ModelServiceInterface;
 
@@ -48,7 +50,7 @@ class UserService implements ModelServiceInterface
         $success = false;
         try {
             $success = $this->model->save();
-            $this->saveField();
+            if ($success) $this->saveField();
 
             $transaction->commit();
         } catch (\Exception $e) {
@@ -112,4 +114,10 @@ class UserService implements ModelServiceInterface
         }
     }
 
+    public function isUser()
+    {
+        if ($this->model->id != Yii::$app->user->getId()) {
+            throw new HttpException(403);
+        }
+    }
 }
