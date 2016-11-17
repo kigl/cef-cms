@@ -48,9 +48,10 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
 
-        /*
+
         'view' => [
-            'class' => 'app\modules\main\components\View',
+            'class' => 'app\core\web\View',
+            /*
             'theme' => [
                 'pathMap'  => [
                     '@app/views' => ['@app/themes/basic'],
@@ -58,8 +59,9 @@ $config = [
                 'basePath' => '@app/themes/basic',
                 'baseUrl' => '@web/app/themes/basic',
             ],
+            */
         ],
-        */
+
 
         'assetManager' => [
             'basePath' => '@webroot/public/assets',

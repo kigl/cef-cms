@@ -34,7 +34,7 @@ use app\modules\shop\models\Property;
                     ]); ?>
             </div>
             <div class="col-md-4"><?= $form->field($model, 'sku'); ?></div>
-            <div class="col-md-4"><?= $form->field($relation, 'product_id')
+            <div class="col-md-4"><?= $form->field($modification, 'product_id')
                     ->dropDownList($model->getListProductInGroup(), ['prompt' => ''])
                     ->label(Yii::t('shop', 'Product relation')); ?>
             </div>

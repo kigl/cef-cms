@@ -1,9 +1,11 @@
 <?php
 
-/* @var $this \yii\web\View */
+/* @var $this \app\core\web\View */
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
 
 \app\modules\frontend\views\assets\Asset::register($this);
 ?>
@@ -14,12 +16,55 @@ use yii\helpers\Html;
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= $this->getTitle(); ?></title>
+    <meta name="description" content="<?= $this->getMetaDescription(); ?>">
     <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
 <div class="container wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <?php NavBar::begin(); ?>
+            <?= Nav::widget([
+                'items' => [
+                    [
+                        'label' => Yii::t('user', 'Login menu item'),
+                        'url' => ['/user/default/login'],
+                        'visible' => Yii::$app->user->isGuest
+                    ],
+                    [
+                        'label' => Yii::t('user', 'Menu personal area'),
+                        'url' => ['/user/default/personal'],
+                        'visible' => !Yii::$app->user->isGuest,
+                    ],
+                    [
+                        'label' => Yii::t('user', 'Logout'),
+                        'url' => ['/user/default/logout'],
+                        'visible' => !Yii::$app->user->isGuest
+                    ],
+                    [
+                        'label' => Yii::t('user', 'Registration'),
+                        'url' => ['/user/default/registration'],
+                        'visible' => Yii::$app->user->isGuest
+                    ],
+                ],
+                'options' => ['class' => 'pull-right navbar-nav'],
+            ]); ?>
+            <?php NavBar::end(); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <?= Nav::widget([
+                'items' => [
+                    ['label' => 'Интернет магазин', 'url' => ['/shop/groups']],
+                    ['label' => 'Информационные системы', 'url' => ['/informationsystem/manager/system']],
+                ],
+                'options' => ['class' => 'nav-pills'],
+            ]); ?>
+        </div>
+    </div>
     <?= $content; ?>
 </div>
 <?php $this->endBody() ?>

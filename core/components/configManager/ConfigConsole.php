@@ -2,7 +2,7 @@
 
 namespace app\core\components\configManager;
 
-class ConfigConsole extends \app\components\configManager\Config
+class ConfigConsole extends \app\core\components\configManager\Config
 {
     protected $_fileName = 'console';
 

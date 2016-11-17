@@ -1,1 +1,0 @@
-<img src="<?= $model->getBehavior('imageUpload')->getFileUrl()?>" width="100%"/>

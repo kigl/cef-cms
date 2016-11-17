@@ -1,3 +1,7 @@
+<?php
+$this->setPageHeader('Регистрация');
+?>
+
 <?php $form = \app\modules\frontend\widgets\ActiveForm::begin([]); ?>
 <?= $form->errorSummary($model); ?>
 <?php echo $form->field($model, 'login'); ?>

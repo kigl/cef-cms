@@ -8,16 +8,22 @@
 
 namespace app\modules\shop\widgets\frontend\treeGroup;
 
+use Yii;
 use app\modules\shop\models\Group;
 use app\modules\shop\widgets\frontend\treeGroup\asset\Asset;
 
 class Widget extends \yii\base\Widget
 {
+    public $options;
+
     public function run()
     {
         Asset::register($this->view);
 
-        return $this->render('index', ['data' => $this->getDataTreeGroup()]);
+        return $this->render('index', [
+            'data' => $this->getDataTreeGroup(),
+            'options' => $this->options,
+            ]);
     }
 
     private function getModelsGroup()
@@ -52,10 +58,15 @@ class Widget extends \yii\base\Widget
         foreach ($data[$parentId] as $item) {
             $result[$item['id']] = [
                 'label' => $item['name'],
-                'url' => ['/shop/group/view', 'id' => $item['id']],
+                'url' => ['/shop/group/view', 'id' => $this->isAlias()? $item['alias'] : $item['id']],
                 'items' => $this->createDataTreeGroup($data, $item['id']),
             ];
         }
         return $result;
+    }
+
+    protected function isAlias()
+    {
+        return Yii::$app->getModule('shop')->alias;
     }
 }

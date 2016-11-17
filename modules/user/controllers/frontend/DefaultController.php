@@ -9,6 +9,8 @@ use app\modules\user\models\UserRegistration;
 use app\modules\user\models\LoginForm;
 use app\modules\user\models\User;
 use app\modules\user\models\UserService;
+use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 
 class DefaultController extends Controller
 {
@@ -22,6 +24,26 @@ class DefaultController extends Controller
         ];
     }
 
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'accessControl' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['personal'],
+                        'roles' => ['register'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['login', 'logout', 'registration', 'captcha'],
+                        'roles' => ['guest'],
+                    ],
+                ],
+            ],
+        ]);
+    }
 	
 	public function actionLogin()
 	{		
@@ -59,14 +81,10 @@ class DefaultController extends Controller
 		return $this->goHome();
 	}
 
-	public function actionPersonal($id)
+	public function actionPersonal()
     {
-        $model = User::findOne($id);
+        $model = User::findOne(Yii::$app->user->getId());
         $modelService = new UserService($model);
-        /**
-         * @todo
-         * если указать id лубого пользователя, он будет доступен
-         */
         $modelService->setModelScenario(User::SCENARIO_UPDATE);
 
         if ($modelService->load(Yii::$app->request->post())) {

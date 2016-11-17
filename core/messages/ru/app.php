@@ -4,7 +4,9 @@ return [
 
 	'Button create' => 'Добавить',
 	'Button save' => 'Сохранить',
-	
+
+    'Link name page main' => 'Главная',
+
 	'Saved element' => 'Сохранено!',
 	
 	'Created element' => 'Элемент создан!',

@@ -4,7 +4,7 @@ Yii::setAlias('@tests', dirname(__DIR__) . '/tests/codeception');
 
 $config = [
     'id' => 'main2-console',
-    'basePath' => dirname(__DIR__),
+    'basePath' => dirname(dirname(__DIR__)),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
 

@@ -1,17 +1,19 @@
 <?php
 use yii\widgets\Menu;
-use app\modules\admin\widgets\Alert;
 use app\core\widgets\pageHeader\Widget as PageHeader;
-?>
+use app\modules\frontend\widgets\Breadcrumbs;
+use app\modules\admin\widgets\Alert;
 
+?>
 <?php $this->beginContent('@app/modules/frontend/views/layouts/main.php'); ?>
     <div calss="row">
         <div class="col-md-3">
-            <?= $this->blocks['menu']; ?>
+           <?= \app\modules\shop\widgets\frontend\treeGroup\Widget::widget(['options' => ['class' => 'tree-group']]);?>
         </div>
         <div class="col-md-9">
-            <?= \app\modules\frontend\widgets\Breadcrumbs::widget(); ?>
+            <?= Breadcrumbs::widget(); ?>
             <?= Alert::widget(); ?>
+            <?= PageHeader::widget();?>
             <div>
                 <?php
                 if (isset($this->params['actionBar'])) {
@@ -24,7 +26,6 @@ use app\core\widgets\pageHeader\Widget as PageHeader;
                 }
                 ?>
             </div>
-            <?= PageHeader::widget(); ?>
             <?= $content; ?>
         </div>
     </div>

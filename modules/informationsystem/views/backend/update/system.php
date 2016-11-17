@@ -27,6 +27,6 @@ use app\modules\admin\widgets\imageInForm\Widget as ImageInForm;
     ],
 ]); ?>
 
-<?= $form->field($model, 'items_per_page'); ?>
+<?= $form->field($model, 'item_on_page'); ?>
 
 <?php ActiveForm::end(); ?>

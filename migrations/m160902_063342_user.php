@@ -23,6 +23,10 @@ class m160902_063342_user extends Migration
 				'update_time' => $this->integer(),
 				'ip' => $this->string(50),
 			]);
+
+			$this->createIndex('ix-user-login', $this->tableName, 'login', true);
+			$this->createIndex('ix-user-email', $this->tableName, 'email', true);
+			$this->createIndex('ix-user-surname', $this->tableName, 'surname');
 			
 			$this->batchInsert($this->tableName,
 			 	['id', 'role', 'login', 'surname', 'name', 'lastname', 'email', 'password', 'auth_key', 'status'],

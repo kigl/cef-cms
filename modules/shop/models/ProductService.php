@@ -29,7 +29,7 @@ class ProductService extends ModelService
     /**
      * @var array
      */
-    protected $relation;
+    protected $modification;
     /**
      * @var array
      */
@@ -38,7 +38,7 @@ class ProductService extends ModelService
     protected function init()
     {
         $this->property = $this->initProperty();
-        $this->relation = $this->initRelation();
+        $this->modification = $this->initModification();
         $this->image = $this->initImage();
     }
 
@@ -69,12 +69,12 @@ class ProductService extends ModelService
     /**
      * @return ProductRelation
      */
-    protected function initRelation()
+    protected function initModification()
     {
-        $relation = $this->model->getParentProductRelation()->one();
+        $relation = $this->model->getParentProductModification()->one();
 
         if (!isset($relation)) {
-            $relation = new ProductRelation();
+            $relation = new ProductModification();
         }
 
         return $relation;
@@ -83,9 +83,9 @@ class ProductService extends ModelService
     /**
      * @return mixed
      */
-    public function getRelation()
+    public function getModification()
     {
-        return $this->relation;
+        return $this->modification;
     }
 
     /**
@@ -100,7 +100,7 @@ class ProductService extends ModelService
 
         Model::loadMultiple($this->property, $post);
         Model::loadMultiple($this->image, $post);
-        $this->relation->load($post);
+        $this->modification->load($post);
 
         return $result;
     }
@@ -119,7 +119,7 @@ class ProductService extends ModelService
         try {
             $this->model->save(false);
             $this->saveProperty();
-            $this->saveRelation();
+            $this->saveModification();
             $this->uploadImage();
             $this->processImage();
 
@@ -149,11 +149,11 @@ class ProductService extends ModelService
         }
     }
 
-    protected function saveRelation()
+    protected function saveModification()
     {
-        if (!empty($this->relation->product_id)) {
-            $this->relation->product_relation_id = $this->model->id;
-            $this->relation->save();
+        if (!empty($this->modification->product_id)) {
+            $this->modification->product_modification_id = $this->model->id;
+            $this->modification->save();
         }
     }
 
@@ -246,8 +246,9 @@ class ProductService extends ModelService
         return [
             'model' => $this->model,
             'property' => $this->property,
-            'relation' => $this->relation,
+            'modification' => $this->modification,
             'images' => $this->image,
+            'group_id' => $this->model->group_id,
         ];
     }
 }

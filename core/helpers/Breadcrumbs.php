@@ -7,28 +7,45 @@ use yii\helpers\ArrayHelper;
 
 class Breadcrumbs
 {
-
     /**
      * @param null $id
-     * @param array $urlOptions
+     * $config = [
+     *  'modelClass' => Model::className(),
+     *  'enableRoot' => true,
+     *  'enableQueryGroupAlias' => true,
+     *  'urlOptions' => [
+     *      'route' => 'controller/action',
+     *      'queryGroupName' => name_id,
+     *      'queryParams' => [
+     *          'query' => 'value',
+     *  ],
+     * ],
+     * ],
      *  $urlOptions => [
      *              'route' => 'controller/action',
      *              'queryParams' => [
      *                  'query' => 'value'
      *              ],
-     * @param $modelClass
      * @return array|null
      */
-    public static function getLinksGroup($id = null, array $urlOptions, $modelClass)
+    public static function getLinksGroup($id = null, $config = [])
     {
+        if (!isset($config['enableRoot'])) {
+            $config['enableRoot'] = true;
+        }
+
+        if (!isset($config['enableQueryGroupAlias'])) {
+            $config['enableQueryGroupAlias'] = false;
+        }
+
         $result = [];
-        $breadcrumbs = self::recursive($id, $modelClass);
+        $breadcrumbs = self::recursive($id, $config['modelClass'], $config['enableQueryGroupAlias']);
 
         $root = [
             'label' => Yii::t('admin', 'Breadcrumbs root'),
             'url' => [
-                $urlOptions['route'],
-                'parent_id' => 0,
+                $config['urlOptions']['route'],
+                $config['urlOptions']['queryGroupName'] => 0,
             ],
         ];
 
@@ -37,19 +54,22 @@ class Breadcrumbs
             $result[$key] = [
                 'label' => $model['name'],
                 'url' => [
-                    $urlOptions['route'],
-                    'parent_id' => $model['id'],
+                    $config['urlOptions']['route'],
+                    $config['urlOptions']['queryGroupName'] => $config['enableQueryGroupAlias'] ? $model['alias'] : $model['id'],
                 ]
             ];
 
-            if (isset($urlOptions['queryParams'])) {
+            if (isset($config['urlOptions']['route']['queryParams'])) {
                 $result[$key]['url'] = ArrayHelper::merge(
                     $result[$key]['url'],
-                    $urlOptions['queryParams']);
+                    $config['urlOptions']['route']['queryParams']);
             }
         }
 
-        array_unshift($result, $root);
+
+        if ($config['enableRoot'] === true) {
+            array_unshift($result, $root);
+        }
 
         return (!empty($result)) ? $result : null;
     }
@@ -60,21 +80,26 @@ class Breadcrumbs
      *
      * @return array | false
      */
-    protected static function recursive($id, $modelClass)
+    protected static function recursive($id, $modelClass, $alias = false)
     {
-        $model = $modelClass::find()
-            ->select(['id', 'parent_id', 'name'])
-            ->where('id = :id', [':id' => $id])
-            ->asArray()
-            ->one();
+        $model = $modelClass::find();
+        $model->select(['id', 'parent_id', 'name']);
+        if ($alias) {
+            $model->addSelect('alias');
+        }
+        $model->where('id = :id', [':id' => $id])
+            ->asArray();
+
+        $model = $model->one();
 
         if ($model) {
-            $result = self::recursive($model['parent_id'], $modelClass);
+            $result = self::recursive($model['parent_id'], $modelClass, $alias);
 
             $result[] = [
                 'id' => $model['id'],
                 'parent_id' => $model['parent_id'],
                 'name' => $model['name'],
+                'alias' => $alias ? $model['alias'] : null,
             ];
         }
 

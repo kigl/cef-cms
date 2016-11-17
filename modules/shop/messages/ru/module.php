@@ -14,6 +14,8 @@ return [
     'Content' => 'Текст',
     'Code' => 'Артикул',
 
+    'Group name' => 'Группа',
+
     'Price' => 'Цена',
 	'Product relation' => 'Связать с товаром',
 	'Property type string' => 'Строка',

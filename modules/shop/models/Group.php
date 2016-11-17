@@ -2,9 +2,9 @@
 
 namespace app\modules\shop\models;
 
-use app\core\behaviors\GenerateAlias;
 use Yii;
 use yii\helpers\ArrayHelper;
+use app\core\behaviors\GenerateAlias;
 use app\core\db\ActiveRecord;
 
 /**
@@ -96,5 +96,10 @@ class Group extends ActiveRecord
     public function getStatus($key)
     {
         return ArrayHelper::getValue($this->getStatusList(), $key);
+    }
+
+    public function getProducts()
+    {
+        return $this->hasMany(Product::className(), ['group_id' => 'id']);
     }
 }

@@ -76,6 +76,7 @@ class Product extends ActiveRecord
             'create_time' => Yii::t('app', 'Create time'),
             'update_time' => Yii::t('app', 'Update time'),
             'imageUpload' => Yii::t('shop', 'Image upload'),
+            'groupName' => Yii::t('shop', 'Group name'),
         ];
     }
 
@@ -111,6 +112,11 @@ class Product extends ActiveRecord
         return ArrayHelper::getValue($this->getListStatus(), $key);
     }
 
+    public function getGroup()
+    {
+        return $this->hasOne(Group::className(), ['id' => 'group_id']);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -123,22 +129,17 @@ class Product extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProductsRelation()
+    public function getProductsModification()
     {
-       return $this->hasMany(ProductRelation::className(), ['product_id' => 'id']);
+       return $this->hasMany(ProductModification::className(), ['product_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getParentProductRelation()
+    public function getParentProductModification()
     {
-        return $this->hasOne(ProductRelation::className(), ['product_relation_id' => 'id']);
-    }
-
-    public function getProperty()
-    {
-
+        return $this->hasOne(ProductModification::className(), ['product_modification_id' => 'id']);
     }
 
     public function getImages()

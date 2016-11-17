@@ -5,12 +5,17 @@ use app\modules\admin\widgets\grid\GridView;
 use app\modules\shop\models\Group;
 use app\core\helpers\Breadcrumbs;
 
-$this->params['breadcrumbs'] = Breadcrumbs::getLinksGroup(
+$this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
     $parent_id,
     [
-        'route' => 'group/manager',
-    ],
-    Group::className());
+        'modelClass' => Group::className(),
+        'urlOptions' => [
+            'route' => '/admin/shop/group/manager',
+            'queryGroupName' => 'parent_id',
+        ],
+    ]
+)
+);
 
 $this->params['toolbar'] = [
     ['label' => '<i class="fa fa-cogs"></i> ' . Yii::t('shop', 'Toolbar property'), 'url' => ['property/manager']],

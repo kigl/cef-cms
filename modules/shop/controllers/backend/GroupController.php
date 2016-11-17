@@ -36,7 +36,10 @@ class GroupController extends BackendController
             if ($model->save()) return $this->redirect(['manager', 'parent_id' => $parent_id]);
         }
 
-        return $this->render('create', ['model' => $model]);
+        return $this->render('create', [
+            'model' => $model,
+            'parent_id' => $parent_id,
+        ]);
     }
 
     public function actionUpdate($id)

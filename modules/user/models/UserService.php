@@ -113,11 +113,4 @@ class UserService implements ModelServiceInterface
             }
         }
     }
-
-    public function isUser()
-    {
-        if ($this->model->id != Yii::$app->user->getId()) {
-            throw new HttpException(403);
-        }
-    }
 }

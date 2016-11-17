@@ -4,5 +4,7 @@ namespace app\modules\user;
 
 class Module extends \app\core\module\Module
 {
-    public $defaultBackendRoute = '/admin/user/default/manager';
+    public $defaultBackendRoute = 'default/manager';
+
+    public $defaultRoute = "default/personal";
 }

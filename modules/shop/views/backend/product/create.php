@@ -1,19 +1,18 @@
 <?php
-
 use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
-$this->params['breadcrumbs'] = Breadcrumbs::getLinksGroup(
-    $model->group_id,
-    [
-        'route' => 'group/manager',
+$this->setBreadcrumbs(Breadcrumbs::getLinksGroup($group_id, [
+    'modelClass' => Group::className(),
+    'urlOptions' => [
+        'route' => '/admin/shop/group/manager',
+        'queryGroupName' => 'parent_id',
     ],
-    Group::className());
-?>
+]))?>
 
 <?= $this->render('_form', [
     'model' => $model,
     'property' => $property,
-    'relation' => $relation,
+    'modification' => $modification,
     'images' => $images,
 ]);?>

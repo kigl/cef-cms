@@ -15,7 +15,7 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
 
     public $defaultOptions = [];
 
-    public $errorSummaryCssClass = 'error-simmary alert alert-danger';
+    public $errorSummaryCssClass = 'error-summary alert alert-danger';
 
     public function run()
     {
@@ -36,11 +36,10 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
         }
 
 
-        $options = ['class' => 'panel-footer'];
+        $options = ['class' => 'form-group'];
         $buttonSave = Html::submitButton(Yii::t('app', 'Button save'), ['class' => 'btn btn-success btn-sm']);
 
         echo Html::tag('div', $buttonSave, $options);
-
 
         echo Html::endForm();
     }
