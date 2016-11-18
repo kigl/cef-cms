@@ -6,11 +6,16 @@
  * Time: 20:52
  */
 
-namespace app\modules\shop\models;
+namespace app\modules\shop\models\backend;
 
 use yii\base\Model;
 use yii\web\UploadedFile;
 use app\core\service\ModelService;
+use app\modules\shop\models\Product;
+use app\modules\shop\models\Image;
+use app\modules\shop\models\Property;
+use app\modules\shop\models\ProductProperty;
+use app\modules\shop\models\ProductModification;
 
 class ProductService extends ModelService
 {
@@ -34,6 +39,35 @@ class ProductService extends ModelService
      * @var array
      */
     protected $post;
+
+    public function create()
+    {
+        $this->model = new Product();
+
+        $this->init();
+
+        $this->setViewData([
+            'model' => $this->model,
+            'property' => $this->property,
+            'modification' => $this->modification,
+            'images' => $this->image,
+            'group_id' => $this->getQuery('group_id'),
+        ]);
+    }
+
+    public function update()
+    {
+        $this->model = Product::findOne($this->getQuery('id'));
+
+        $this->init();
+
+        $this->setViewData([
+            'model' => $this->model,
+            'property' => $this->property,
+            'modification' => $this->modification,
+            'images' => $this->image,
+        ]);
+    }
 
     protected function init()
     {
@@ -92,9 +126,9 @@ class ProductService extends ModelService
      * @param array $post
      * @return boolean
      */
-    public function load(array $post)
+    public function load()
     {
-        $this->post = $post;
+        $post = $this->requestData;
 
         $result = $this->model->load($post);
 
@@ -117,7 +151,7 @@ class ProductService extends ModelService
     {
         $transaction = Product::getDb()->beginTransaction();
         try {
-            $this->model->save(false);
+            $success = $this->model->save() ? true : false;
             $this->saveProperty();
             $this->saveModification();
             $this->uploadImage();
@@ -128,6 +162,8 @@ class ProductService extends ModelService
             $transaction->rollBack();
             throw $e;
         }
+
+        return $success;
     }
 
     public function delete()
@@ -180,7 +216,7 @@ class ProductService extends ModelService
 
     protected function processImage()
     {
-        $imageStatus = (isset($this->post[Image::POST_STATUS_NAME])) ? (int)$this->post[Image::POST_STATUS_NAME] : null;
+        $imageStatus = (isset($this->requestData[Image::POST_STATUS_NAME])) ? (int)$this->requestData[Image::POST_STATUS_NAME] : null;
 
         if (is_array($this->image)) {
             $img = $this->image;
@@ -236,19 +272,5 @@ class ProductService extends ModelService
     public function setModelGroupId($groupId)
     {
         $this->model->group_id = (int)$groupId;
-    }
-
-    /**
-     * @return array
-     */
-    public function getData()
-    {
-        return [
-            'model' => $this->model,
-            'property' => $this->property,
-            'modification' => $this->modification,
-            'images' => $this->image,
-            'group_id' => $this->model->group_id,
-        ];
     }
 }

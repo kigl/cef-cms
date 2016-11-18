@@ -2,11 +2,9 @@
 
 namespace app\modules\shop\controllers\backend;
 
-
 use Yii;
 use app\modules\shop\components\BackendController;
-use app\modules\shop\models\Product;
-use app\modules\shop\models\ProductService;
+use app\modules\shop\models\backend\ProductService;
 
 class ProductController extends BackendController
 {
@@ -16,33 +14,36 @@ class ProductController extends BackendController
 
     public function actionCreate($group_id)
     {
-        $model = new Product();
-        $modelService = Yii::createObject(ProductService::class, [$model]);
-        $modelService->setModelGroupId($group_id);
+        $modelService = new ProductService();
+        $modelService->setQuery([
+            'group_id' => $group_id,
+        ]);
+        $modelService->setRequestData(Yii::$app->request->post());
+        $modelService->create();
 
-        if ($modelService->load(Yii::$app->request->post()) and $modelService->validate()) {
-
-            $modelService->save();
+        if ($modelService->load() and $modelService->save()) {
 
             return $this->redirect(['product/update', 'id' => $modelService->getModel()->id]);
         }
 
-        return $this->render('create', $modelService->getData());
+        return $this->render('create', $modelService->getViewData());
     }
 
     public function actionUpdate($id)
     {
-        $model = Product::findOne($id);
-        $modelService = Yii::createObject(ProductService::class, [$model]);
+        $modelService = new ProductService();
+        $modelService->setQuery([
+            'id' => $id,
+        ]);
+        $modelService->setRequestData(Yii::$app->request->post());
+        $modelService->update();
 
-        if ($modelService->load(Yii::$app->request->post()) and $modelService->validate()) {
-
-            $modelService->save();
+        if ($modelService->load() and $modelService->save()) {
 
             return $this->redirect(['product/update', 'id' => $modelService->getModel()->id]);
         }
 
-        return $this->render('update', $modelService->getData());
+        return $this->render('update', $modelService->getViewData());
     }
 
     public function actionDelete($id)

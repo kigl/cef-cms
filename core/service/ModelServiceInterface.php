@@ -4,7 +4,7 @@ namespace app\core\service;
 
 interface ModelServiceInterface
 {
-    public function load(array $post);
+    public function load();
 
     public function validate();
 
@@ -12,7 +12,11 @@ interface ModelServiceInterface
 
     public function delete();
 
+    public function setRequestData(array $request);
+
+    public function setViewData(array $data);
+
     public function getModel();
 
-    public function getData();
+    public function getViewData();
 }

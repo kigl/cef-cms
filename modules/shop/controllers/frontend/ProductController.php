@@ -9,14 +9,17 @@
 namespace app\modules\shop\controllers\frontend;
 
 use app\modules\shop\components\FrontendController;
+use app\modules\shop\models\frontend\ProductService;
 use app\modules\shop\models\Product;
 
 class ProductController extends FrontendController
 {
     public function actionView($id)
     {
-        $model = Product::find()->where('id = :id', [':id' => $id])->one();
+        $modelService = new ProductService();
+        $modelService->setQuery(['id' => $id]);
+        $modelService->view();
 
-        return $this->render('view', ['model' => $model]);
+        return $this->render('view', $modelService->getViewData());
     }
 }

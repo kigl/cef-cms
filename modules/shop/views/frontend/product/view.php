@@ -7,7 +7,7 @@ $this->setBreadcrumbs(
         $model->group_id,
         [
             'modelClass' => Group::className(),
-            'enableQueryGroupAlias' => $this->getModule()->alias,
+            'enableQueryGroupAlias' => $this->getModule()->urlAlias,
             'enableRoot' => false,
             'urlOptions' => [
                 'route' => '/shop/group/view',

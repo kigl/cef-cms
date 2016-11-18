@@ -8,29 +8,77 @@
 
 namespace app\core\service;
 
-use yii\base\Model;
+use yii\web\HttpException;
 
 abstract class ModelService implements ModelServiceInterface
 {
     protected $model;
 
-    public function __construct(Model $model)
-    {
-        $this->model = $model;
+    protected $requestData = [];
 
-        $this->init();
+    protected $viewData = [];
+
+    protected $query = [];
+
+    public function load()
+    {
+        return $this->model->load($this->requestData);
     }
 
-    protected function init()
-    {}
+    public function validate()
+    {
+        return $this->model->validate();
+    }
+
+    public function save()
+    {
+        return $this->model->save();
+    }
+
+    public function delete()
+    {
+        return $this->model->delete();
+    }
+
+    public function setRequestData(array $request)
+    {
+        $this->requestData = $request;
+    }
+
+    public function setQuery(array $query)
+    {
+        $this->query = $query;
+    }
+
+    public function setViewData(array $data)
+    {
+        foreach ($data as $key => $value) {
+            $this->viewData[$key] = $value;
+        }
+    }
+
+    public function getViewData()
+    {
+        return $this->viewData;
+    }
+
+    public function getQuery($key)
+    {
+        if (!isset($this->query[$key])) {
+            throw new HttpException(500);
+        }
+
+        return $this->query[$key];
+    }
 
     public function getModel()
     {
         return $this->model;
     }
-    
-    public function validate()
+
+    public function getFind()
     {
-        return $this->model->validate();
+        $class = get_class($this->model);
+        return $class::find();
     }
 }

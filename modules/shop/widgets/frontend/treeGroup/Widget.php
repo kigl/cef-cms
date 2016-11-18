@@ -67,6 +67,6 @@ class Widget extends \yii\base\Widget
 
     protected function isAlias()
     {
-        return Yii::$app->getModule('shop')->alias;
+        return Yii::$app->getModule('shop')->urlAlias;
     }
 }

@@ -9,8 +9,8 @@
 namespace app\modules\shop\controllers\frontend;
 
 use app\modules\shop\components\FrontendController;
+use app\modules\shop\models\frontend\GroupService;
 use app\modules\shop\models\Group;
-use yii\data\ActiveDataProvider;
 
 class GroupController extends FrontendController
 {
@@ -18,19 +18,11 @@ class GroupController extends FrontendController
 
     public function actionView($id)
     {
-        $model = Group::find()
-            ->where('id = :id', [':id' => $id])
-            ->orWhere('alias = :alias', [':alias' => $id])
-            ->one();
+        $modelService = new GroupService();
+        $modelService->setQuery(['id' => $id]);
+        $modelService->view();
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $model->getProducts(),
-        ]);
-
-        return $this->render('view', [
-            'dataProvider' => $dataProvider,
-            'model' => $model,
-        ]);
+        return $this->render('view', $modelService->getViewData());
     }
 
     public function actionList()

@@ -3,10 +3,10 @@ use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
 $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
-    $model->id,
+    $group->id,
     [
         'modelClass' => Group::className(),
-        'enableQueryGroupAlias' => $this->getModule()->alias,
+        'enableQueryGroupAlias' => $this->getModule()->urlAlias,
         'enableRoot' => false,
         'urlOptions' => [
             'route' => '/shop/group/view',
@@ -15,11 +15,11 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
     ]
 ));
 
-$this->setPageHeader("Группа - $model->name");
+$this->setPageHeader("Группа - $group->name");
 ?>
 
 <?= \yii\widgets\ListView::widget([
-    'dataProvider' => $dataProvider,
+    'dataProvider' => $dataProviderProduct,
     'itemView' => '_product',
 ]);
 
