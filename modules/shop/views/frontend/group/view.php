@@ -22,7 +22,4 @@ $this->setPageHeader("Группа - $group->name");
     'dataProvider' => $dataProviderProduct,
     'itemView' => '_product',
 ]);
-
 ?>
-
-

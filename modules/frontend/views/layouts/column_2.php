@@ -10,7 +10,7 @@ use app\core\widgets\pageHeader\Widget as PageHeader;
             <?= $this->blocks['menu']; ?>
         </div>
         <div class="col-md-9">
-            <?= \app\modules\frontend\widgets\Breadcrumbs::widget(); ?>
+            <?= \app\modules\frontend\widgets\Breadcrumbs::widget(['enableModuleItem' => false]); ?>
             <?= Alert::widget(); ?>
             <div>
                 <?php

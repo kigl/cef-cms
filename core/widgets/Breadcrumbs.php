@@ -13,6 +13,7 @@ use yii\helpers\Html;
 
 abstract class Breadcrumbs extends \yii\widgets\Breadcrumbs
 {
+    public $enableModuleItem = true;
     /**
      * @return array
      */
@@ -42,7 +43,7 @@ abstract class Breadcrumbs extends \yii\widgets\Breadcrumbs
             $links[] = $this->renderItem($this->homeLink, $this->itemTemplate);
         }
 
-        $links[] = $this->getModuleItem();
+        $links[] = $this->enableModuleItem ? $this->getModuleItem() : null;
 
         foreach ($this->links as $link) {
             if (!is_array($link)) {

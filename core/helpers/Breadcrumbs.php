@@ -7,6 +7,10 @@ use yii\helpers\ArrayHelper;
 
 class Breadcrumbs
 {
+
+    const ROOT_GROUP = true;
+    const QUERY_GROUP_ALIAS = false;
+
     /**
      * @param null $id
      * $config = [
@@ -31,11 +35,11 @@ class Breadcrumbs
     public static function getLinksGroup($id = null, $config = [])
     {
         if (!isset($config['enableRoot'])) {
-            $config['enableRoot'] = true;
+            $config['enableRoot'] = self::ROOT_GROUP;
         }
 
         if (!isset($config['enableQueryGroupAlias'])) {
-            $config['enableQueryGroupAlias'] = false;
+            $config['enableQueryGroupAlias'] = self::QUERY_GROUP_ALIAS;
         }
 
         $result = [];
@@ -66,8 +70,16 @@ class Breadcrumbs
             }
         }
 
+        /*
+         * @todo
+        // уберем из последнего элемента группы ссылкку
+        $end = end($result);
+        unset($end['url']);
+        array_pop($result);
+        array_push($result, $end);
+        */
 
-        if ($config['enableRoot'] === true) {
+        if ($config['enableRoot'] === self::ROOT_GROUP) {
             array_unshift($result, $root);
         }
 

@@ -3,18 +3,19 @@ use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
 $this->setBreadcrumbs(
-    Breadcrumbs::getLinksGroup(
-        $model->group_id,
-        [
-            'modelClass' => Group::className(),
-            'enableQueryGroupAlias' => $this->getModule()->urlAlias,
-            'enableRoot' => false,
-            'urlOptions' => [
-                'route' => '/shop/group/view',
-                'queryGroupName' => 'id',
-            ],
-        ]
-    ));
+    \yii\helpers\ArrayHelper::merge(
+        Breadcrumbs::getLinksGroup(
+            $model->group_id,
+            [
+                'modelClass' => Group::className(),
+                'enableQueryGroupAlias' => $this->getModule()->urlAlias,
+                'enableRoot' => false,
+                'urlOptions' => [
+                    'route' => '/shop/group/view',
+                    'queryGroupName' => 'id',
+                ],
+            ]
+        ), ['label' => $model->name]));
 
 echo \yii\widgets\DetailView::widget([
     'model' => $model,

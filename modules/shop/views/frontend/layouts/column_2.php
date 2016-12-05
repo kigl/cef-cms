@@ -11,7 +11,7 @@ use app\modules\admin\widgets\Alert;
            <?= \app\modules\shop\widgets\frontend\treeGroup\Widget::widget(['options' => ['class' => 'tree-group']]);?>
         </div>
         <div class="col-md-9">
-            <?= Breadcrumbs::widget(); ?>
+            <?= Breadcrumbs::widget(['enableModuleItem' => false]); ?>
             <?= Alert::widget(); ?>
             <?= PageHeader::widget();?>
             <div>

@@ -14,4 +14,6 @@ class Module extends \app\core\module\Module
     public $urlAlias = false;
 
     public $defaultBackendRoute = 'group/manager';
+
+    public $defaultRoute = '';
 }
