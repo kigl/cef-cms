@@ -8,18 +8,18 @@
 
 namespace app\modules\shop\controllers\frontend;
 
+use Yii;
 use app\modules\shop\components\FrontendController;
 use app\modules\shop\models\frontend\ProductService;
-use app\modules\shop\models\Product;
 
 class ProductController extends FrontendController
 {
     public function actionView($id)
     {
         $modelService = new ProductService();
-        $modelService->setQuery(['id' => $id]);
+        $modelService->setRequestData(['get' => Yii::$app->request->getQueryParams()]);
         $modelService->view();
 
-        return $this->render('view', $modelService->getViewData());
+        return $this->render('view', $modelService->getData());
     }
 }

@@ -46,22 +46,22 @@ class ProductService extends ModelService
 
         $this->init();
 
-        $this->setViewData([
+        $this->setData([
             'model' => $this->model,
             'property' => $this->property,
             'modification' => $this->modification,
             'images' => $this->image,
-            'group_id' => $this->getQuery('group_id'),
+            'group_id' => $this->getRequestData('get', 'group_id'),
         ]);
     }
 
     public function update()
     {
-        $this->model = Product::findOne($this->getQuery('id'));
+        $this->model = Product::findOne($this->getRequestData('get', 'id'));
 
         $this->init();
 
-        $this->setViewData([
+        $this->setData([
             'model' => $this->model,
             'property' => $this->property,
             'modification' => $this->modification,
@@ -128,7 +128,7 @@ class ProductService extends ModelService
      */
     public function load()
     {
-        $post = $this->requestData;
+        $post = $this->getRequestData('post');
 
         $result = $this->model->load($post);
 

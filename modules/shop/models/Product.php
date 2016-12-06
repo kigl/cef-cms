@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use app\core\db\ActiveRecord;
 use app\core\behaviors\GenerateAlias;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "mn_shop_product".
@@ -150,5 +151,12 @@ class Product extends ActiveRecord
     public function getListProductInGroup()
     {
         return self::find()->where('group_id = :group', ['group' => $this->group_id])->select(['name', 'id'])->indexBy('id')->column();
+    }
+
+    public function getTitle()
+    {
+        $result = $this->meta_title ? $this->meta_title : $this->name;
+
+        return Html::encode($result);
     }
 }

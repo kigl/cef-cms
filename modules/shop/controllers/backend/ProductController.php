@@ -15,10 +15,11 @@ class ProductController extends BackendController
     public function actionCreate($group_id)
     {
         $modelService = new ProductService();
-        $modelService->setQuery([
-            'group_id' => $group_id,
-        ]);
-        $modelService->setRequestData(Yii::$app->request->post());
+        $modelService->setRequestData([
+                'post' => Yii::$app->request->post(),
+                'get' => Yii::$app->request->getQueryParams(),
+            ]
+        );
         $modelService->create();
 
         if ($modelService->load() and $modelService->save()) {
@@ -26,16 +27,16 @@ class ProductController extends BackendController
             return $this->redirect(['product/update', 'id' => $modelService->getModel()->id]);
         }
 
-        return $this->render('create', $modelService->getViewData());
+        return $this->render('create', $modelService->getData());
     }
 
     public function actionUpdate($id)
     {
         $modelService = new ProductService();
-        $modelService->setQuery([
-            'id' => $id,
+        $modelService->setRequestData([
+            'post' => Yii::$app->request->post(),
+            'get' => Yii::$app->request->getQueryParams(),
         ]);
-        $modelService->setRequestData(Yii::$app->request->post());
         $modelService->update();
 
         if ($modelService->load() and $modelService->save()) {
@@ -43,7 +44,7 @@ class ProductController extends BackendController
             return $this->redirect(['product/update', 'id' => $modelService->getModel()->id]);
         }
 
-        return $this->render('update', $modelService->getViewData());
+        return $this->render('update', $modelService->getData());
     }
 
     public function actionDelete($id)

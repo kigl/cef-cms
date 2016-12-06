@@ -16,9 +16,9 @@ class ProductService extends ModelService
 {
     public function view()
     {
-        $model = Product::findOne($this->getQuery('id'));
+        $model = Product::findOne($this->getRequestData('get', 'id'));
 
-        $this->setViewData([
+        $this->setData([
            'model' => $model,
         ]);
     }

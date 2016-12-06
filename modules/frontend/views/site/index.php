@@ -1,6 +1,9 @@
-<?php 
-use yii\bootstrap\Modal;
+<?php
 use yii\helpers\Html;
+$this->setTitle('Сайт без имени title');
+$this->setMetaDescription('Сайт без имени description');
+$this->setPageHeader('Сайт без имени page header');
+
 ?>
 
 <?php $this->registerJs("
@@ -13,9 +16,4 @@ $('.view-item').click(function() {
     return false;
 });
 ")?>
-
-<div class="modal fade"></div>
-
-<?= Html::a('test', ['/informationsystem/backend/create/item', 'informationsystem_id' => 'news'], ['class' => 'view-item']);?>
-<h1> site controller</h1>
 

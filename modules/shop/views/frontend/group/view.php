@@ -2,6 +2,8 @@
 use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
+$this->setTitle($group->name);
+$this->setMetaDescription($group->meta_description);
 $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
     $group->id,
     [

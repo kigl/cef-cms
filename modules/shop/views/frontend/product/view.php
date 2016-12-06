@@ -2,6 +2,7 @@
 use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
+$this->setTitle($model->getTitle());
 $this->setBreadcrumbs(
     \yii\helpers\ArrayHelper::merge(
         Breadcrumbs::getLinksGroup(

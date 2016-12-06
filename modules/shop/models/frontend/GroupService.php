@@ -17,10 +17,10 @@ class GroupService extends ModelService
 {
     public function view()
     {
-        $modelGroup = Group::find()->where('id = :id', [':id' => $this->query['id']]);
+        $modelGroup = Group::find()->where('id = :id', [':id' => $this->getRequestData('get', 'id')]);
 
         if (Yii::$app->getModule('shop')->urlAlias) {
-            $modelGroup->orWhere('alias = :alias', [':alias' => $this->query['id']]);
+            $modelGroup->orWhere('alias = :alias', [':alias' => $this->getRequestData('get', 'id')]);
         }
         $model = $modelGroup->one();
 
@@ -28,7 +28,7 @@ class GroupService extends ModelService
             'query' => $model->getProducts(),
         ]);
 
-        $this->setViewData([
+        $this->setData([
             'group' => $model,
             'dataProviderProduct' => $dataProvider,
         ]);
