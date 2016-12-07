@@ -12,42 +12,10 @@ use app\core\db\ActiveRecord;
  * @property string $name
  * @property integer $type
  */
-class Property extends ActiveRecord
+class Property extends \app\modules\shop\models\base\Property
 {
     const TYPE_STRING = 1;
     const TYPE_BOOLEAN = 2;
-
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%shop_property}}';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            ['name', 'required'],
-            [['name'], 'string', 'max' => 255],
-            ['type', 'integer'],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('shop', 'Id'),
-            'name' => Yii::t('shop', 'Name'),
-            'type' => Yii::t('shop', 'Property type'),
-        ];
-    }
 
     public function getListType()
     {

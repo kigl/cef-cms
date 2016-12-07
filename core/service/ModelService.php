@@ -20,7 +20,7 @@ abstract class ModelService implements ModelServiceInterface
 
     public function load()
     {
-        return $this->model->load($this->requestData);
+        return $this->model->load($this->getRequestData('post'));
     }
 
     public function validate()
@@ -63,14 +63,14 @@ abstract class ModelService implements ModelServiceInterface
 
     /**
      * @param $name
-     * @param $data
+     * @param null $data
      * @return mixed
-     * @throws \HttpException
+     * @throws HttpException
      */
     public function getRequestData($name, $data = null)
     {
         if (!isset($this->requestData[$name])) {
-            throw new \HttpException(500);
+            throw new HttpException(500);
         }
 
         return $data ? $this->requestData[$name][$data] : $this->requestData[$name];

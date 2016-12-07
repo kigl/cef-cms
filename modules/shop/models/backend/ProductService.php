@@ -40,35 +40,6 @@ class ProductService extends ModelService
      */
     protected $post;
 
-    public function create()
-    {
-        $this->model = new Product();
-
-        $this->init();
-
-        $this->setData([
-            'model' => $this->model,
-            'property' => $this->property,
-            'modification' => $this->modification,
-            'images' => $this->image,
-            'group_id' => $this->getRequestData('get', 'group_id'),
-        ]);
-    }
-
-    public function update()
-    {
-        $this->model = Product::findOne($this->getRequestData('get', 'id'));
-
-        $this->init();
-
-        $this->setData([
-            'model' => $this->model,
-            'property' => $this->property,
-            'modification' => $this->modification,
-            'images' => $this->image,
-        ]);
-    }
-
     protected function init()
     {
         $this->property = $this->initProperty();
@@ -98,6 +69,36 @@ class ProductService extends ModelService
     public function getProperty()
     {
         return $this->property;
+    }
+
+
+    public function create()
+    {
+        $this->model = new Product();
+
+        $this->init();
+
+        $this->setData([
+            'model' => $this->model,
+            'property' => $this->property,
+            'modification' => $this->modification,
+            'images' => $this->image,
+            'group_id' => $this->getRequestData('get', 'group_id'),
+        ]);
+    }
+
+    public function update()
+    {
+        $this->model = Product::findOne($this->getRequestData('get', 'id'));
+
+        $this->init();
+
+        $this->setData([
+            'model' => $this->model,
+            'property' => $this->property,
+            'modification' => $this->modification,
+            'images' => $this->image,
+        ]);
     }
 
     /**
@@ -137,14 +138,6 @@ class ProductService extends ModelService
         $this->modification->load($post);
 
         return $result;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function validate()
-    {
-        return $this->model->validate();
     }
 
     public function save()
@@ -264,13 +257,5 @@ class ProductService extends ModelService
         foreach ($modelImage as $image) {
             $image->delete();
         }
-    }
-
-    /**
-     * @param $groupId
-     */
-    public function setModelGroupId($groupId)
-    {
-        $this->model->group_id = (int)$groupId;
     }
 }

@@ -11,44 +11,9 @@ use app\core\db\ActiveRecord;
  * @property integer $product_id
  * @property integer $product_related_id
  */
-class ProductModification extends ActiveRecord
+class ProductModification extends \app\modules\shop\models\base\ProductModification
 {
     protected static $_productModification;
-
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%shop_product_modification}}';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['product_id', 'product_modification_id'], 'integer'],
-            ['product_modification_id', 'compare', 'compareAttribute' => 'product_id', 'operator' => '!='],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'product_id' => Yii::t('shop', 'Product id'),
-            'product_modification_id' => Yii::t('shop', 'Product modification id'),
-        ];
-    }
-
-    public static function primaryKey()
-    {
-        return ['product_id', 'product_modification_id'];
-    }
 
     public function getProducts()
     {

@@ -6,41 +6,42 @@
  * Time: 15:32
  */
 
-namespace app\modules\user\models;
+namespace app\modules\user\models\frontend;
 
 use Yii;
-use yii\web\HttpException;
 use yii\base\Model;
-use app\core\service\ModelServiceInterface;
+use app\core\service\ModelService;
+use app\modules\user\models\User;
+use app\modules\user\models\Field;
 
-class UserService implements ModelServiceInterface
+class UserService extends ModelService
 {
-    private $model;
-    private $field;
+    protected $field;
 
-    public function __construct(User $model)
+    public function personal()
     {
-        $this->model = $model;
+        $this->model = User::findOne(Yii::$app->user->getId());
+        $this->model->setScenario(User::SCENARIO_UPDATE);
 
         $this->init();
+
+        $this->setData([
+            'model' => $this->model,
+            'field' => $this->field,
+        ]);
     }
 
-    private function init()
+    protected function init()
     {
         $this->field = $this->initField();
     }
 
-    public function load(array $post)
+    public function load()
     {
-        $result = $this->model->load($post);
-        Model::loadMultiple($this->field, $post);
+        $result = $this->model->load($this->getRequestData('post'));
+        Model::loadMultiple($this->field, $this->getRequestData('post'));
 
         return $result;
-    }
-
-    public function validate()
-    {
-        return false;
     }
 
     public function save()
@@ -60,29 +61,6 @@ class UserService implements ModelServiceInterface
         }
 
         return $success;
-    }
-
-    public function delete()
-    {
-        return false;
-    }
-
-    public function getModel()
-    {
-        return $this->model;
-    }
-
-    public function getData()
-    {
-        return [
-            'model' => $this->model,
-            'field' => $this->field,
-        ];
-    }
-
-    public function setModelScenario($scenario)
-    {
-        $this->model->scenario = $scenario;
     }
 
     /**

@@ -7,8 +7,7 @@ use yii\captcha\CaptchaAction;
 use app\modules\frontend\components\Controller;
 use app\modules\user\models\UserRegistration;
 use app\modules\user\models\LoginForm;
-use app\modules\user\models\User;
-use app\modules\user\models\UserService;
+use app\modules\user\models\frontend\UserService;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 
@@ -83,11 +82,11 @@ class DefaultController extends Controller
 
 	public function actionPersonal()
     {
-        $model = User::findOne(Yii::$app->user->getId());
-        $modelService = new UserService($model);
-        $modelService->setModelScenario(User::SCENARIO_UPDATE);
+        $modelService = new UserService();
+        $modelService->setRequestData(['post' => Yii::$app->request->post()]);
+        $modelService->personal();
 
-        if ($modelService->load(Yii::$app->request->post())) {
+        if ($modelService->load()) {
 
             $modelService->save();
         }

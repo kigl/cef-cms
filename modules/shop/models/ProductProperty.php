@@ -12,39 +12,9 @@ use app\core\db\ActiveRecord;
  * @property integer $property_id
  * @property string $value
  */
-class ProductProperty extends ActiveRecord
+class ProductProperty extends \app\modules\shop\models\base\ProductProperty
 {
     protected static $_properties;
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%shop_product_property}}';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['product_id', 'property_id'], 'integer'],
-            [['value'], 'string', 'max' => 255],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'product_id' => Yii::t('shop', 'Product id'),
-            'property_id' => Yii::t('shop', 'Property id'),
-            'value' => Yii::t('shop', 'Value'),
-        ];
-    }
 
     public function getProperty()
     {
