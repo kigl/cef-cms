@@ -6,7 +6,7 @@
  * Time: 15:32
  */
 
-namespace app\modules\user\models\frontend;
+namespace app\modules\user\service\frontend;
 
 use Yii;
 use yii\base\Model;
@@ -14,7 +14,7 @@ use app\core\service\ModelService;
 use app\modules\user\models\User;
 use app\modules\user\models\Field;
 
-class UserService extends ModelService
+class UserModelService extends ModelService
 {
     protected $field;
 

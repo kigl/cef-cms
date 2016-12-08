@@ -26,21 +26,21 @@ $this->setPageHeader('Личный кабинет');
     </div>
 </div>
 <?php $form = ActiveForm::begin(); ?>
-<?= $form->errorSummary($model); ?>
+<?= $form->errorSummary($data->getModel()); ?>
 <div class="tab-content">
     <div class="tab-pane active" id="main">
-        <?= $form->field($model, 'login'); ?>
-        <?= $form->field($model, 'email'); ?>
-        <?= $form->field($model, 'password')->passwordInput(['value' => '']); ?>
-        <?= $form->field($model, 'password_repeat')->passwordInput(['value' => '']); ?>
+        <?= $form->field($data->getModel(), 'login'); ?>
+        <?= $form->field($data->getModel(), 'email'); ?>
+        <?= $form->field($data->getModel(), 'password')->passwordInput(['value' => '']); ?>
+        <?= $form->field($data->getModel(), 'password_repeat')->passwordInput(['value' => '']); ?>
     </div>
     <div class="tab-pane" id="personal">
-        <?= $form->field($model, 'surname'); ?>
-        <?= $form->field($model, 'name'); ?>
-        <?= $form->field($model, 'lastname'); ?>
+        <?= $form->field($data->getModel(), 'surname'); ?>
+        <?= $form->field($data->getModel(), 'name'); ?>
+        <?= $form->field($data->getModel(), 'lastname'); ?>
     </div>
     <div class="tab-pane" id="property">
-        <?php foreach ($field as $fi) : ?>
+        <?php foreach ($data->getField() as $fi) : ?>
             <?= $form->field($fi, '[' . $fi->field_id . ']value')->label($fi->field->name); ?>
         <?php endforeach; ?>
     </div>

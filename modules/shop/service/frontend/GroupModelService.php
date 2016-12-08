@@ -6,14 +6,14 @@
  */
 
 
-namespace app\modules\shop\models\frontend;
+namespace app\modules\shop\service\frontend;
 
 use Yii;
 use yii\data\ActiveDataProvider;
 use app\core\service\ModelService;
 use app\modules\shop\models\Group;
 
-class GroupService extends ModelService
+class GroupModelService extends ModelService
 {
     public function view()
     {
@@ -29,7 +29,7 @@ class GroupService extends ModelService
         ]);
 
         $this->setData([
-            'group' => $model,
+            'model' => $model,
             'dataProviderProduct' => $dataProvider,
         ]);
     }

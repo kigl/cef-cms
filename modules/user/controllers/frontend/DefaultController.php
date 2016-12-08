@@ -2,12 +2,13 @@
 
 namespace app\modules\user\controllers\frontend;
 
+use app\modules\user\service\frontend\UserViewService;
 use Yii;
 use yii\captcha\CaptchaAction;
 use app\modules\frontend\components\Controller;
 use app\modules\user\models\UserRegistration;
 use app\modules\user\models\LoginForm;
-use app\modules\user\models\frontend\UserService;
+use app\modules\user\service\frontend\UserModelService;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 
@@ -82,15 +83,17 @@ class DefaultController extends Controller
 
 	public function actionPersonal()
     {
-        $modelService = new UserService();
+        $modelService = new UserModelService();
         $modelService->setRequestData(['post' => Yii::$app->request->post()]);
         $modelService->personal();
+
+        $viewService = (new UserViewService())->setData($modelService->getData());
 
         if ($modelService->load()) {
 
             $modelService->save();
         }
 
-        return $this->render('personal', $modelService->getData());
+        return $this->render('personal', ['data' => $viewService]);
     }
 }

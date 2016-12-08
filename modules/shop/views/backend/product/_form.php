@@ -14,51 +14,51 @@ use app\modules\shop\models\Property;
 
 <?php $form = ActiveForm::begin(); ?>
 
-<?= $form->errorSummary($model); ?>
+<?= $form->errorSummary($data->getModel()); ?>
 
 <div class="tab-content">
     <div class="tab-pane active" id="main">
 
         <div class="row">
-            <div class="col-md-2"><?= $form->field($model, 'code'); ?></div>
-            <div class="col-md-6"><?= $form->field($model, 'name'); ?></div>
-            <div class="col-md-4"><?= $form->field($model, 'status')->dropDownList($model->getListStatus()); ?></div>
+            <div class="col-md-2"><?= $form->field($data->getModel(), 'code'); ?></div>
+            <div class="col-md-6"><?= $form->field($data->getModel(), 'name'); ?></div>
+            <div class="col-md-4"><?= $form->field($data->getModel(), 'status')->dropDownList($data->getModel()->getListStatus()); ?></div>
         </div>
 
         <div class="row">
-            <div class="col-md-4"><?= $form->field($model, 'price')
+            <div class="col-md-4"><?= $form->field($data->getModel(), 'price')
                     ->widget(\kartik\money\MaskMoney::className(), [
                         'pluginOptions' => [
                             'prefix' => 'RUR ',
                         ]
                     ]); ?>
             </div>
-            <div class="col-md-4"><?= $form->field($model, 'sku'); ?></div>
-            <div class="col-md-4"><?= $form->field($modification, 'product_id')
-                    ->dropDownList($model->getListProductInGroup(), ['prompt' => ''])
+            <div class="col-md-4"><?= $form->field($data->getModel(), 'sku'); ?></div>
+            <div class="col-md-4"><?= $form->field($data->getModification(), 'product_id')
+                    ->dropDownList($data->getModel()->getListProductInGroup(), ['prompt' => ''])
                     ->label(Yii::t('shop', 'Product relation')); ?>
             </div>
         </div>
 
-        <?= $form->field($model, 'description')->textarea(); ?>
+        <?= $form->field($data->getModel(), 'description')->textarea(); ?>
 
-        <?= $form->field($model, 'content')->widget(\vova07\imperavi\Widget::className(), [
+        <?= $form->field($data->getModel(), 'content')->widget(\vova07\imperavi\Widget::className(), [
             'settings' => [
                 'minHeight' => 400,
             ],
         ]); ?>
 
-        <?= $form->field($model, 'alias'); ?>
+        <?= $form->field($data->getModel(), 'alias'); ?>
 
-        <?= $form->field($model, 'meta_title'); ?>
+        <?= $form->field($data->getModel(), 'meta_title'); ?>
 
-        <?= $form->field($model, 'meta_description')->textarea(); ?>
+        <?= $form->field($data->getModel(), 'meta_description')->textarea(); ?>
     </div>
 
     <div class="tab-pane" id="images">
-        <?= $form->field($model, 'imageUpload[]')->fileInput(['multiple' => true]); ?>
+        <?= $form->field($data->getModel(), 'imageUpload[]')->fileInput(['multiple' => true]); ?>
         <div class="row">
-            <?php foreach ($images as $image) : ?>
+            <?php foreach ($data->getImages() as $image) : ?>
             <div class="col-md-3">
                 <div class="img-thumbnail">
                     <?= $form->field($image, '[' . $image->id . ']deleteKey')->checkbox(); ?>
@@ -77,7 +77,7 @@ use app\modules\shop\models\Property;
         </div>
 
         <div class="tab-pane" id="property">
-            <?php foreach ($property as $value): ?>
+            <?php foreach ($data->getProperty() as $value): ?>
                 <?php if ($value->property->type === Property::TYPE_STRING) : ?>
                     <?= $form->field($value, "[{$value->property_id}]value")->label($value->property->name); ?>
                 <?php elseif ($value->property->type === Property::TYPE_BOOLEAN) : ?>

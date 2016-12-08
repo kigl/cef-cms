@@ -6,7 +6,7 @@
  */
 
 
-namespace app\modules\shop\models\frontend;
+namespace app\modules\shop\service\frontend;
 
 
 use app\core\service\ModelService;

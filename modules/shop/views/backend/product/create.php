@@ -2,7 +2,7 @@
 use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
-$this->setBreadcrumbs(Breadcrumbs::getLinksGroup($group_id, [
+$this->setBreadcrumbs(Breadcrumbs::getLinksGroup($data->getGroupId(), [
     'modelClass' => Group::className(),
     'urlOptions' => [
         'route' => '/admin/shop/group/manager',
@@ -10,9 +10,4 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup($group_id, [
     ],
 ]))?>
 
-<?= $this->render('_form', [
-    'model' => $model,
-    'property' => $property,
-    'modification' => $modification,
-    'images' => $images,
-]);?>
+<?= $this->render('_form', ['data' => $data]);?>

@@ -18,9 +18,11 @@ abstract class ModelService implements ModelServiceInterface
 
     protected $data = [];
 
+    protected $viewData = [];
+
     public function load()
     {
-        return $this->model->load($this->getRequestData('post'));
+        return $this->model->load($this->getData('post'));
     }
 
     public function validate()
@@ -38,9 +40,9 @@ abstract class ModelService implements ModelServiceInterface
         return $this->model->delete();
     }
 
-    public function setRequestData(array $request)
+    public function setRequestData(array $data)
     {
-        $this->requestData = $request;
+        $this->requestData = $data;
     }
 
     /**

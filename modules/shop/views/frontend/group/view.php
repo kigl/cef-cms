@@ -2,10 +2,10 @@
 use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
-$this->setTitle($group->name);
-$this->setMetaDescription($group->meta_description);
+$this->setTitle($data->getName());
+$this->setMetaDescription($data->getMetaDescription());
 $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
-    $group->id,
+    $data->getId(),
     [
         'modelClass' => Group::className(),
         'enableQueryGroupAlias' => $this->getModule()->urlAlias,
@@ -17,11 +17,11 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
     ]
 ));
 
-$this->setPageHeader("Группа - $group->name");
+$this->setPageHeader("Группа - " . $data->getName());
 ?>
 
 <?= \yii\widgets\ListView::widget([
-    'dataProvider' => $dataProviderProduct,
+    'dataProvider' => $data->getDataProviderProducts(),
     'itemView' => '_product',
 ]);
 ?>

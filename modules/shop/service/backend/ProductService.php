@@ -6,7 +6,7 @@
  * Time: 20:52
  */
 
-namespace app\modules\shop\models\backend;
+namespace app\modules\shop\service\backend;
 
 use yii\base\Model;
 use yii\web\UploadedFile;
@@ -71,10 +71,10 @@ class ProductService extends ModelService
         return $this->property;
     }
 
-
     public function create()
     {
         $this->model = new Product();
+        $this->model->group_id = $this->getRequestData('get', 'group_id');
 
         $this->init();
 
@@ -93,12 +93,19 @@ class ProductService extends ModelService
 
         $this->init();
 
-        $this->setData([
+        $this->setViewData([
             'model' => $this->model,
             'property' => $this->property,
             'modification' => $this->modification,
             'images' => $this->image,
         ]);
+
+        return [
+            'model' => $this->model,
+            'property' => $this->property,
+            'modification' => $this->modification,
+            'images' => $this->image,
+        ];
     }
 
     /**
