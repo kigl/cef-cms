@@ -17,11 +17,15 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
     ]
 ));
 
-$this->setPageHeader("Группа - " . $data->getName());
+$this->setPageHeader($data->getName());
 ?>
 
 <?= \yii\widgets\ListView::widget([
     'dataProvider' => $data->getDataProviderProducts(),
     'itemView' => '_product',
+    //'summary' => "{count} " . Yii::t('app', 'List view summary text: is') . " {totalCount}",
+    'summaryOptions' => [
+        'class' => 'text-right'
+    ],
 ]);
 ?>

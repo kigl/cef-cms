@@ -30,7 +30,7 @@ abstract class ViewService implements ViewServiceInterface
         if (key_exists($data, $this->data)) {
             return $this->data[$data];
         } else {
-            throw new Exception();
+            throw new Exception(Yii::t('app', 'Not exist value: {value}', ['value' => $data]));
         }
     }
 }

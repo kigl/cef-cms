@@ -5,7 +5,7 @@ namespace app\modules\shop\controllers\backend;
 use app\modules\shop\service\backend\ProductViewService;
 use Yii;
 use app\modules\shop\components\BackendController;
-use app\modules\shop\service\backend\ProductService;
+use app\modules\shop\service\backend\ProductModelService;
 
 class ProductController extends BackendController
 {
@@ -15,14 +15,13 @@ class ProductController extends BackendController
 
     public function actionCreate($group_id)
     {
-        $modelService = new ProductService();
+        $modelService = new ProductModelService();
         $modelService->setRequestData([
                 'post' => Yii::$app->request->post(),
                 'get' => Yii::$app->request->getQueryParams(),
             ]
         );
         $modelService->create();
-
         $viewService = (new ProductViewService())->setData($modelService->getData());
 
         if ($modelService->load() and $modelService->save()) {
@@ -35,25 +34,30 @@ class ProductController extends BackendController
 
     public function actionUpdate($id)
     {
-        $modelService = new ProductService();
-        $modelService->setData([
+
+        $modelService = new ProductModelService();
+        $modelService->setRequestData([
             'post' => Yii::$app->request->post(),
             'get' => Yii::$app->request->getQueryParams(),
         ]);
         $modelService->update();
+
+        $viewService = (new ProductViewService())->setData($modelService->getData());
 
         if ($modelService->load() and $modelService->save()) {
 
             return $this->redirect(['product/update', 'id' => $modelService->getModel()->id]);
         }
 
-        return $this->render('update', $modelService->getViewData());
+        return $this->render('update', [
+            'data' => $viewService,
+        ]);
     }
 
     public function actionDelete($id)
     {
-        $model = Product::findOne($id);
-        $modelService = new ProductService($model);
+        $modelService = new ProductModelService();
+        $modelService->setRequestData(['get' => Yii::$app->request->getQueryParams()]);
 
         if ($modelService->delete()) {
 

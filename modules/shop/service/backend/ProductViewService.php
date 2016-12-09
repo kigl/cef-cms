@@ -15,11 +15,14 @@ class ProductViewService extends ViewService
 {
     public function getGroupId()
     {
-        $data = $this->getData('model');
+        return $this->getData('model')->group_id;
+    }
 
-        $dataGetGroupId = $this->getData('group_id');
+    public function getName()
+    {
+        $data = $this->getModel();
 
-        return $data->group_id ? $data->group_id : $dataGetGroupId;
+        return $data->name;
     }
 
     public function getModel()

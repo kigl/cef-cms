@@ -1,16 +1,9 @@
-<?= \yii\widgets\DetailView::widget([
-    'model' => $model,
-    'attributes' => [
-        [
-            'label' => 'id',
-            'value' => $model->id,
-        ],
-        [
-            'format' => 'raw',
-            'label' => 'name',
-            'value' => \yii\helpers\Html::a($model->name, ['/shop/product/view', 'id' => $model->id]),
-        ],
-        'description',
-        'price',
-    ],
-]);
+<?php
+use yii\helpers\Html;
+?>
+
+<div class="col-md-4 product img-thumbnail">
+    <div>image</div>
+    <div class="h4 name"><?= Html::a(Html::encode($model->name), ['/shop/product/view', 'id' => $model->id]);?></div>
+    <div class="price"><?= $model->price;?></div>
+</div>

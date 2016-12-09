@@ -24,14 +24,14 @@ class GroupViewService extends ViewService
     {
         $data = $this->getData('model');
 
-        return Html::encode($data->name);
+        return $data->name;
     }
 
     public function getMetaDescription()
     {
         $data = $this->getData('model');
 
-        return Html::encode($data->meta_description);
+        return $data->meta_description;
     }
 
     public  function getDataProviderProducts()

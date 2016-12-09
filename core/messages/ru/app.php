@@ -6,6 +6,9 @@ return [
 	'Button save' => 'Сохранить',
 
     'Link name page main' => 'Главная',
+	'List view summary text: is' => 'из',
+	
+	'Not exist value: {value}' => 'Значение "{value}" не существует',
 
 	'Saved element' => 'Сохранено!',
 	

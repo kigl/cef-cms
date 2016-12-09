@@ -8,6 +8,8 @@
 
 namespace app\core\service;
 
+use Yii;
+use yii\base\Exception;
 use yii\web\HttpException;
 
 abstract class ModelService implements ModelServiceInterface
@@ -67,12 +69,14 @@ abstract class ModelService implements ModelServiceInterface
      * @param $name
      * @param null $data
      * @return mixed
-     * @throws HttpException
+     * @throws Exception
      */
     public function getRequestData($name, $data = null)
     {
-        if (!isset($this->requestData[$name])) {
-            throw new HttpException(500);
+        if (!key_exists($name, $this->requestData)) {
+            throw new Exception(Yii::t('app', 'Not exist value: {value}', ['value' => $name]));
+        } elseif (($data !== null) and (!key_exists($data, $this->requestData[$name]))) {
+            throw new Exception(Yii::t('app', 'Not exist value: {value}', ['value' => $data]));
         }
 
         return $data ? $this->requestData[$name][$data] : $this->requestData[$name];

@@ -2,11 +2,11 @@
 use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
-$this->setTitle($model->getTitle());
+$this->setTitle($data->getName());
 $this->setBreadcrumbs(
     \yii\helpers\ArrayHelper::merge(
         Breadcrumbs::getLinksGroup(
-            $model->group_id,
+            $data->getGroupId(),
             [
                 'modelClass' => Group::className(),
                 'enableQueryGroupAlias' => $this->getModule()->urlAlias,
@@ -16,16 +16,18 @@ $this->setBreadcrumbs(
                     'queryGroupName' => 'id',
                 ],
             ]
-        ), ['label' => $model->name]));
+        ), ['label' => $data->getName()]));
+
+$this->setPageHeader($data->getName());
 
 echo \yii\widgets\DetailView::widget([
-    'model' => $model,
+    'model' => $data->getModel(),
     'attributes' => [
         'name',
         'price',
         [
             'attribute' => 'groupName',
-            'value' => $model->group->name,
+            'value' => $data->getGroupName(),
         ],
         'description',
     ],

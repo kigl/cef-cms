@@ -12,7 +12,7 @@ namespace app\modules\shop\service\frontend;
 use app\core\service\ModelService;
 use app\modules\shop\models\Product;
 
-class ProductService extends ModelService
+class ProductModelService extends ModelService
 {
     public function view()
     {

@@ -17,7 +17,7 @@ use app\modules\shop\models\Property;
 use app\modules\shop\models\ProductProperty;
 use app\modules\shop\models\ProductModification;
 
-class ProductService extends ModelService
+class ProductModelService extends ModelService
 {
     /**
      * @var Product
@@ -83,7 +83,6 @@ class ProductService extends ModelService
             'property' => $this->property,
             'modification' => $this->modification,
             'images' => $this->image,
-            'group_id' => $this->getRequestData('get', 'group_id'),
         ]);
     }
 
@@ -93,19 +92,12 @@ class ProductService extends ModelService
 
         $this->init();
 
-        $this->setViewData([
+        $this->setData([
             'model' => $this->model,
             'property' => $this->property,
             'modification' => $this->modification,
             'images' => $this->image,
         ]);
-
-        return [
-            'model' => $this->model,
-            'property' => $this->property,
-            'modification' => $this->modification,
-            'images' => $this->image,
-        ];
     }
 
     /**
@@ -168,6 +160,8 @@ class ProductService extends ModelService
 
     public function delete()
     {
+        $this->model = Product::findOne($this->getRequestData('get', 'id'));
+
         $success = $this->model->delete();
         $this->deleteImage();
 

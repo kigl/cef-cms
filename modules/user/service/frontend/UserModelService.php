@@ -13,6 +13,7 @@ use yii\base\Model;
 use app\core\service\ModelService;
 use app\modules\user\models\User;
 use app\modules\user\models\Field;
+use app\modules\user\models\FieldRelation;
 
 class UserModelService extends ModelService
 {
