@@ -15,7 +15,7 @@ class m161025_155911_shop_product extends Migration
             'name' => $this->string()->notNull(),
             'description' => $this->string(),
             'content' => $this->text(),
-            'sku' => $this->integer(),
+            'sku' => $this->integer()->defaultValue(0),
             'price' => $this->decimal(5,2),
             'discount' => $this->float(),
             'status' => $this->integer()->defaultValue(1),

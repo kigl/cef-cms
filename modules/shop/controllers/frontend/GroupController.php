@@ -16,7 +16,7 @@ use app\modules\shop\models\Group;
 
 class GroupController extends FrontendController
 {
-    public $layout = '@app/modules/shop/views/frontend/layouts/column_2';
+    //public $layout = '@app/modules/shop/views/frontend/layouts/column_2';
 
     public function actionView($id)
     {

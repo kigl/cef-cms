@@ -4,7 +4,7 @@ use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
 $breadcrumbsGroup = Breadcrumbs::getLinksGroup(
-    $model->group_id,
+    $data->getGroupId(),
     [
         'modelClass' => Group::className(),
         'urlOptions' => [
@@ -13,15 +13,10 @@ $breadcrumbsGroup = Breadcrumbs::getLinksGroup(
         ],
     ]);
 $breadcrumbs = ArrayHelper::merge($breadcrumbsGroup, [
-    ['label' => $model->name],
+    ['label' => $data->getName()],
 ]);
 
 $this->setBreadcrumbs($breadcrumbs);?>
 
 
-<?= $this->render('_form', [
-    'model' => $model,
-    'property' => $property,
-    'modification' => $modification,
-    'images' => $images,
-]);?>
+<?= $this->render('_form', ['data' => $data]);?>

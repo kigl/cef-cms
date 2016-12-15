@@ -8,11 +8,17 @@
 
 namespace app\modules\shop\service\backend;
 
-
+use Yii;
 use app\core\service\ViewService;
 
 class ProductViewService extends ViewService
 {
+
+    public function getId()
+    {
+        return $this->getData('model')->id;
+    }
+
     public function getGroupId()
     {
         $data = $this->getData('model');
@@ -42,5 +48,21 @@ class ProductViewService extends ViewService
     public function getImages()
     {
         return $this->getData('images');
+    }
+
+    public function getName()
+    {
+        return $this->getData('model')->name;
+    }
+
+    public function getUserFN()
+    {
+        $data = $this->getData('model')->user;
+
+        if (!$data) {
+            return false;
+        }
+
+        return $data->surname . ' ' . $data->name;
     }
 }

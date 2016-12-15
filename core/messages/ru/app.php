@@ -1,6 +1,7 @@
 <?php
 return [
 	'Alias' => 'Алиас',
+    'Author' => 'Автор',
 
 	'Button create' => 'Добавить',
 	'Button save' => 'Сохранить',

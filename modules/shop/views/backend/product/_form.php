@@ -18,11 +18,17 @@ use app\modules\shop\models\Property;
 
 <div class="tab-content">
     <div class="tab-pane active" id="main">
-
         <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label><?= Yii::t('app', 'Author'); ?></label>
+                    <div><?= $data->getUserFN(); ?></div>
+                </div>
+            </div>
             <div class="col-md-2"><?= $form->field($data->getModel(), 'code'); ?></div>
-            <div class="col-md-6"><?= $form->field($data->getModel(), 'name'); ?></div>
-            <div class="col-md-4"><?= $form->field($data->getModel(), 'status')->dropDownList($data->getModel()->getListStatus()); ?></div>
+            <div class="col-md-4"><?= $form->field($data->getModel(), 'name'); ?></div>
+            <div class="col-md-4"><?= $form->field($data->getModel(),
+                    'status')->dropDownList($data->getModel()->getListStatus()); ?></div>
         </div>
 
         <div class="row">
@@ -59,32 +65,32 @@ use app\modules\shop\models\Property;
         <?= $form->field($data->getModel(), 'imageUpload[]')->fileInput(['multiple' => true]); ?>
         <div class="row">
             <?php foreach ($data->getImages() as $image) : ?>
-            <div class="col-md-3">
-                <div class="img-thumbnail">
-                    <?= $form->field($image, '[' . $image->id . ']deleteKey')->checkbox(); ?>
-                    <div class="form-group">
-                        <label class="control-label">
-                            <?= Html::radio('imageStatus', $image->status, ['value' => $image->id]); ?>
-                            <?= Yii::t('shop', 'Image status') ?>
-                        </label>
-                    </div>
+                <div class="col-md-3">
+                    <div class="img-thumbnail">
+                        <?= $form->field($image, '[' . $image->id . ']deleteKey')->checkbox(); ?>
+                        <div class="form-group">
+                            <label class="control-label">
+                                <?= Html::radio('imageStatus', $image->status, ['value' => $image->id]); ?>
+                                <?= Yii::t('shop', 'Image status') ?>
+                            </label>
+                        </div>
                         <?= $form->field($image, '[' . $image->id . ']alt'); ?>
                         <img src="<?= $image->getFileUrl(); ?>" class="width-all"/>
                     </div>
                 </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-
-        <div class="tab-pane" id="property">
-            <?php foreach ($data->getProperty() as $value): ?>
-                <?php if ($value->property->type === Property::TYPE_STRING) : ?>
-                    <?= $form->field($value, "[{$value->property_id}]value")->label($value->property->name); ?>
-                <?php elseif ($value->property->type === Property::TYPE_BOOLEAN) : ?>
-                    <?= $form->field($value,
-                        "[{$value->property_id}]value")->checkbox(['label' => false])->label($value->property->name); ?>
-                <?php endif; ?>
             <?php endforeach; ?>
         </div>
     </div>
-    <?php ActiveForm::end(); ?>
+
+    <div class="tab-pane" id="property">
+        <?php foreach ($data->getProperty() as $value): ?>
+            <?php if ($value->property->type === Property::TYPE_STRING) : ?>
+                <?= $form->field($value, "[{$value->property_id}]value")->label($value->property->name); ?>
+            <?php elseif ($value->property->type === Property::TYPE_BOOLEAN) : ?>
+                <?= $form->field($value,
+                    "[{$value->property_id}]value")->checkbox(['label' => false])->label($value->property->name); ?>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+</div>
+<?php ActiveForm::end(); ?>

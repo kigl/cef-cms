@@ -17,7 +17,7 @@ use app\modules\shop\models\Property;
 use app\modules\shop\models\ProductProperty;
 use app\modules\shop\models\ProductModification;
 
-class ProductService extends ModelService
+class ProductModelService extends ModelService
 {
     /**
      * @var Product
@@ -52,7 +52,7 @@ class ProductService extends ModelService
      */
     protected function initProperty()
     {
-        $property = $this->model->getProductProperty()->with('property')->indexBy('property_id')->all();
+        $property = $this->model->getProperty()->with('property')->indexBy('property_id')->all();
         $allProperty = Property::find()->indexBy('id')->all();
 
         foreach (array_diff_key($allProperty, $property) as $pr) {
@@ -93,19 +93,13 @@ class ProductService extends ModelService
 
         $this->init();
 
-        $this->setViewData([
+        $this->setData([
             'model' => $this->model,
             'property' => $this->property,
             'modification' => $this->modification,
             'images' => $this->image,
+            'group_id' => $this->model->group_id,
         ]);
-
-        return [
-            'model' => $this->model,
-            'property' => $this->property,
-            'modification' => $this->modification,
-            'images' => $this->image,
-        ];
     }
 
     /**
@@ -150,6 +144,7 @@ class ProductService extends ModelService
     public function save()
     {
         $transaction = Product::getDb()->beginTransaction();
+
         try {
             $success = $this->model->save() ? true : false;
             $this->saveProperty();
@@ -168,6 +163,8 @@ class ProductService extends ModelService
 
     public function delete()
     {
+        $this->model = Product::findOne($this->getRequestData('get', 'id'));
+
         $success = $this->model->delete();
         $this->deleteImage();
 
@@ -216,7 +213,7 @@ class ProductService extends ModelService
 
     protected function processImage()
     {
-        $imageStatus = (isset($this->requestData[Image::POST_STATUS_NAME])) ? (int)$this->requestData[Image::POST_STATUS_NAME] : null;
+        $imageStatus = (isset($this->requestData['post'][Image::POST_STATUS_NAME])) ? (int)$this->requestData['post'][Image::POST_STATUS_NAME] : null;
 
         if (is_array($this->image)) {
             $img = $this->image;

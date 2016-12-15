@@ -1,0 +1,89 @@
+#pp {
+    display: none;
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.86);
+}
+
+.coupon-window {
+    position: fixed;
+    top:20%;
+    left:50%;
+    margin-left:-285px;
+    width: 600px;
+    height: 400px;
+    background: url("../images/fon.jpg");
+    border-radius: 0 !important;
+    box-shadow: 0 0 5px 0 rgba(68, 68, 68, 0.15);
+    z-index:999999;
+}
+
+.coupon-header {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.coupon-header h1 {
+    font-size: 48px;
+    color: #751929;
+}
+
+.coupon-header p {
+    font-size: 30px;
+}
+
+.coupon-input {
+    width: 85%;
+    margin: 0 auto;
+
+}
+
+.coupon-button {
+    margin-top: 38px !important;
+    text-align: center;
+}
+
+.coupon-button .btn-coupon {
+    background: #7a0329;
+    color: #fff;
+    border: 1px solid #7a0329;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 6px 48px;
+    box-shadow: none;
+}
+
+.coupon-condition {
+    font-size: 75%;
+    margin-top: 18px;
+}
+
+.indent-top {
+    margin-top: 28px;
+}
+
+.form-input_error,
+.form-textarea_error {
+    border-color: #e85656;
+    box-shadow: 0 0 3px #e85656;
+}
+.form-input_success,
+.form-textarea_success {
+    border-color: #7dbf23;
+    box-shadow: 0 0 3px #7dbf23;
+}
+
+.btn-get-money {
+    position: fixed;
+    bottom: 0;
+    right: 5%;
+    background: #fee3c5;
+    color: #7a0329;
+    border-radius: 0 !important;
+    font-weight: bold;
+    box-shadow: 0 0 5px 0 #d6d6d6;
+}

@@ -2,11 +2,11 @@
 use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
-$this->setTitle($model->getTitle());
+$this->setTitle($data->getTitle());
 $this->setBreadcrumbs(
     \yii\helpers\ArrayHelper::merge(
         Breadcrumbs::getLinksGroup(
-            $model->group_id,
+            $data->getGroupId(),
             [
                 'modelClass' => Group::className(),
                 'enableQueryGroupAlias' => $this->getModule()->urlAlias,
@@ -16,17 +16,43 @@ $this->setBreadcrumbs(
                     'queryGroupName' => 'id',
                 ],
             ]
-        ), ['label' => $model->name]));
+        ), ['label' => $data->getName()]));
 
 echo \yii\widgets\DetailView::widget([
-    'model' => $model,
+    'model' => $data->getModel(),
     'attributes' => [
+        [
+            'label' => 'image',
+            'format' => 'raw',
+            'value' => \yii\helpers\Html::img($data->getMainImage()),
+        ],
         'name',
         'price',
         [
             'attribute' => 'groupName',
-            'value' => $model->group->name,
+            'value' => $data->getGroupName(),
         ],
         'description',
     ],
 ]);
+?>
+
+<?php
+$test = [
+    [
+        'label' => 123,
+        'value' => 'foo',
+    ],
+];
+?>
+
+<?= \yii\widgets\DetailView::widget([
+        'model' => $test,
+        'attributes' => ['123',],
+]); ?>
+
+<?php foreach ($data->getImages() as $images) : ?>
+
+<img src="<?= $images->getFileUrl(); ?>" style="max-width: 100px;">
+
+<?php endforeach; ?>

@@ -8,18 +8,28 @@
 
 namespace app\modules\shop\service\frontend;
 
-
+use Yii;
 use app\core\service\ModelService;
 use app\modules\shop\models\Product;
 
-class ProductService extends ModelService
+class ProductModelService extends ModelService
 {
     public function view()
     {
-        $model = Product::findOne($this->getRequestData('get', 'id'));
+        $model = Product::find();
+
+        if (Yii::$app->getModule('shop')->urlAlias) {
+            $model->where('alias = :alias', [':alias' => $this->getRequestData('get', 'id')]);
+        } else {
+            $model->where('id = :id', [':id' => $this->getRequestData('get', 'id')]);
+        }
+
+        $this->model = $model->with('images', 'property')->one();
 
         $this->setData([
-           'model' => $model,
+            'model' => $this->model,
+            'images' => $this->model->images,
+            'property' => $this->model->property,
         ]);
     }
 }
