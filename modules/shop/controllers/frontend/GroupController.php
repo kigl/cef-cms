@@ -8,6 +8,7 @@
 
 namespace app\modules\shop\controllers\frontend;
 
+use app\core\actions\View;
 use Yii;
 use app\modules\shop\components\FrontendController;
 use app\modules\shop\service\frontend\GroupModelService;
@@ -18,15 +19,15 @@ class GroupController extends FrontendController
 {
     //public $layout = '@app/modules/shop/views/frontend/layouts/column_2';
 
-    public function actionView($id)
+    public function actions()
     {
-        $modelService = new GroupModelService();
-        $modelService->setRequestData(['get' => Yii::$app->request->getQueryParams()]);
-        $modelService->view();
-
-        $viewService = (new GroupViewService())->setData($modelService->getData());
-
-        return $this->render('view', ['data' => $viewService]);
+        return [
+            'view' => [
+                'class' => View::class,
+                'modelService' => GroupModelService::class,
+                'viewService' => GroupViewService::class,
+            ],
+        ];
     }
 
     public function actionList()

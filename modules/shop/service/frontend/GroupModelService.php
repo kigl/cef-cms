@@ -32,9 +32,15 @@ class GroupModelService extends ModelService
         $model = $modelGroup->one();
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $model->getProducts(),
+            'query' => $model->getProducts()->with('mainImage'),
             'pagination' => [
-                    'pageSize' => $pageSize,
+                'pageSize' => $pageSize,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'name' => SORT_ASC,
+                ],
+                'attributes' => ['id', 'name', 'price'],
             ],
         ]);
 

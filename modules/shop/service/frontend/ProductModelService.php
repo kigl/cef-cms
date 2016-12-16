@@ -24,12 +24,14 @@ class ProductModelService extends ModelService
             $model->where('id = :id', [':id' => $this->getRequestData('get', 'id')]);
         }
 
-        $this->model = $model->with('images', 'property')->one();
+        $this->model = $model->with('group', 'images', 'mainImage', 'property.property')->one();
 
         $this->setData([
             'model' => $this->model,
             'images' => $this->model->images,
             'property' => $this->model->property,
+            'mainImage' => $this->model->mainImage,
+            'group' => $this->model->group,
         ]);
     }
 }

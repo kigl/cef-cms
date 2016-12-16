@@ -9,12 +9,23 @@ namespace app\core\actions;
  	public $view = 'view';
  	
  	public $queryParam = 'id';
+
+ 	public $modelService;
+
+ 	public $viewService;
  	
  	public function run()
  	{
-		$model = $this->loadModel(Yii::$app->request->getQueryParam($this->queryParam));
+        $modelService = new $this->modelService;
+        $modelService->setRequestData([
+            'get' => Yii::$app->request->getQueryParams(),
+        ]);
+        $modelService->view();
 
-		return $this->controller->renderPartial($this->view, ['model' => $model]);	
+        $viewService = new $this->viewService;
+        $viewService->setData($modelService->getData());
+
+		return $this->controller->render($this->view, ['data' => $viewService]);
 	}
  }
 ?>

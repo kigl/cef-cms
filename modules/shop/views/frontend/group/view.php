@@ -23,5 +23,11 @@ $this->setPageHeader("Группа - " . $data->getName());
 <?= \yii\widgets\ListView::widget([
     'dataProvider' => $data->getDataProviderProducts(),
     'itemView' => '_product',
+    'layout' => "{summary}\n{sorter}\n{items}\n{pager}",
+    'itemOptions' => ['class' => 'product-item col-md-4 img-thumbnail'],
+    'summaryOptions' => ['class' => 'text-right'],
+    'sorter' => [
+        'options' => ['class' => 'list-inline'],
+    ],
 ]);
 ?>

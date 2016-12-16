@@ -36,7 +36,7 @@ class ProductViewService extends ViewService
 
     public function getGroupName()
     {
-        return $this->getData('model')->group->name;
+        return $this->getData('group')->name;
     }
 
     public function getModel()
@@ -76,20 +76,16 @@ class ProductViewService extends ViewService
 
     public function getMainImage()
     {
-        return $this->getData('model')->getMainImage();
+        $data = $this->getData('mainImage');
+
+        return $data ? $data->getFileUrl() : null;
     }
 
     public function getProperty()
     {
         $ar = [];
-
-        $i = 0;
         foreach ($this->getData('property') as $property) {
-            $i++;
-            $ar[$i]['attribute'] = $property->property->name;
-            $ar[$i]['format'] = 'text';
-            $ar[$i]['label'] = $property->property->name;
-            $ar[$i]['value'] = $property->value;
+            $ar[$property->property->name] = $property->value;
         }
 
         return $ar;

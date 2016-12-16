@@ -3,6 +3,7 @@ use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
 $this->setTitle($data->getTitle());
+
 $this->setBreadcrumbs(
     \yii\helpers\ArrayHelper::merge(
         Breadcrumbs::getLinksGroup(
@@ -37,22 +38,11 @@ echo \yii\widgets\DetailView::widget([
 ]);
 ?>
 
-<?php
-$test = [
-    [
-        'label' => 123,
-        'value' => 'foo',
-    ],
-];
-?>
-
 <?= \yii\widgets\DetailView::widget([
-        'model' => $test,
-        'attributes' => ['123',],
-]); ?>
+    'model' => $data->getProperty(),
+    'attributes' => [
+        'size',
+        'color'
+    ],
+]);?>
 
-<?php foreach ($data->getImages() as $images) : ?>
-
-<img src="<?= $images->getFileUrl(); ?>" style="max-width: 100px;">
-
-<?php endforeach; ?>

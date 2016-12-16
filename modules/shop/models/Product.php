@@ -2,14 +2,12 @@
 
 namespace app\modules\shop\models;
 
-use app\core\behaviors\UserId;
-use app\modules\user\models\User;
 use Yii;
 use yii\helpers\ArrayHelper;
-use app\core\db\ActiveRecord;
-use app\core\behaviors\GenerateAlias;
-use yii\helpers\Html;
 use yii\helpers\Url;
+use app\core\behaviors\GenerateAlias;
+use app\core\behaviors\UserId;
+use app\modules\user\models\User;
 
 /**
  * This is the model class for table "mn_shop_product".
@@ -130,8 +128,7 @@ class Product extends \app\modules\shop\models\base\Product
 
     public function getMainImage()
     {
-        $data = $this->getImages()->where('status = :status', [':status' => Image::STATUS_MAIN])->one();
-
-        return $data ? $data->getFileUrl() : null;
+        return $this->hasOne(Image::className(), ['product_id' => 'id'])
+            ->where('status = :status', [':status' => Image::STATUS_MAIN]);
     }
 }
