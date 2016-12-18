@@ -1,9 +1,27 @@
 <?php
-use yii\helpers\Html;
+use yii\helpers\Url;
 ?>
 
-<div class="col-md-4 product img-thumbnail">
-    <div>image</div>
-    <div class="h4 name"><?= Html::a(Html::encode($model->name), ['/shop/product/view', 'id' => $model->id]);?></div>
-    <div class="price"><?= $model->price;?></div>
+<div>
+    <a href="<?= Url::to($model->getUrl()); ?>">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-main-image">
+                    <?= \app\modules\shop\widgets\frontend\mainImage\Widget::widget(['model' => $model->mainImage]);?>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3><?= $model->name;?></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-price">
+                    <?= $model->price; ?>
+                </div>
+            </div>
+        </div>
+    </a>
 </div>

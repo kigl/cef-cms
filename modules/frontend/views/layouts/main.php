@@ -56,9 +56,13 @@ use yii\bootstrap\NavBar;
     </div>
     <div class="row">
         <div class="col-md-12">
+            <?= \app\modules\shop\widgets\frontend\searchProduct\Widget::widget();?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <?= Nav::widget([
                 'items' => [
-                    ['label' => 'Интернет магазин', 'url' => ['/shop/groups']],
                     ['label' => 'Информационные системы', 'url' => ['/informationsystem/manager/system']],
                 ],
                 'options' => ['class' => 'nav-pills'],

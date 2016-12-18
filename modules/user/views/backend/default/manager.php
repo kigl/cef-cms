@@ -15,7 +15,7 @@ echo GridView::widget([
 			'login',
 			[
 				'attribute' => 'status',
-				'value' =>
+				'views' =>
 				function($data)	{
 					return User::getStatus($data->status);
 				},

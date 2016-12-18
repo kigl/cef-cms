@@ -28,8 +28,8 @@ use app\modules\user\models\User;
             <?php echo $form->field($model, 'status')->dropDownList(User::getStatusList()); ?>
             <?php echo $form->field($model, 'email'); ?>
 
-            <?php echo $form->field($model, 'password')->passwordInput(['value' => '']); ?>
-            <?php echo $form->field($model, 'password_repeat')->passwordInput(['value' => '']); ?>
+            <?php echo $form->field($model, 'password')->passwordInput(['views' => '']); ?>
+            <?php echo $form->field($model, 'password_repeat')->passwordInput(['views' => '']); ?>
         </div>
 
         <div class="tab-pane" id="profile">
@@ -40,7 +40,7 @@ use app\modules\user\models\User;
 
         <div class="tab-pane" id="field">
             <?php foreach ($field as $fr) : ?>
-                <?= $form->field($fr, '[' . $fr->field_id . ']value')->label($fr->field->name); ?>
+                <?= $form->field($fr, '[' . $fr->field_id . ']views')->label($fr->field->name); ?>
             <?php endforeach; ?>
         </div>
     </div>

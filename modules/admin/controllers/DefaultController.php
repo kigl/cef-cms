@@ -11,7 +11,7 @@ use app\modules\admin\components\Controller;
 class DefaultController extends Controller
 {
     /**
-     * Renders the index view for the module
+     * Renders the index views for the module
      * @return string
      */
     public function actionIndex()

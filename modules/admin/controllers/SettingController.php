@@ -48,7 +48,7 @@ class SettingController extends Controller
             foreach ($model as $setting) {
                 foreach ($data as $post) {
                     if ($setting->id == $post['id']) {
-                        $setting->value = $post['value'];
+                        $setting->value = $post['views'];
                         $setting->save();
                     }
                 }

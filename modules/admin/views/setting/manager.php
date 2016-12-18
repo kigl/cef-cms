@@ -10,7 +10,7 @@ use app\modules\admin\widgets\grid\GridView;
             'module_id',
             'name',
             'label',
-            'value',
+            'views',
             'id',
             [
                 'headerOptions' => ['style' => 'width: 50px'],

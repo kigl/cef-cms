@@ -52,7 +52,7 @@ class ProductModelService extends ModelService
      */
     protected function initProperty()
     {
-        $property = $this->model->getProductProperty()->with('property')->indexBy('property_id')->all();
+        $property = $this->model->getProperty()->with('property')->indexBy('property_id')->all();
         $allProperty = Property::find()->indexBy('id')->all();
 
         foreach (array_diff_key($allProperty, $property) as $pr) {
@@ -97,6 +97,7 @@ class ProductModelService extends ModelService
             'property' => $this->property,
             'modification' => $this->modification,
             'images' => $this->image,
+            'group_id' => $this->model->group_id,
         ]);
     }
 
@@ -142,6 +143,7 @@ class ProductModelService extends ModelService
     public function save()
     {
         $transaction = Product::getDb()->beginTransaction();
+
         try {
             $success = $this->model->save() ? true : false;
             $this->saveProperty();
@@ -210,7 +212,7 @@ class ProductModelService extends ModelService
 
     protected function processImage()
     {
-        $imageStatus = (isset($this->requestData[Image::POST_STATUS_NAME])) ? (int)$this->requestData[Image::POST_STATUS_NAME] : null;
+        $imageStatus = (isset($this->requestData['post'][Image::POST_STATUS_NAME])) ? (int)$this->requestData['post'][Image::POST_STATUS_NAME] : null;
 
         if (is_array($this->image)) {
             $img = $this->image;

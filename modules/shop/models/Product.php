@@ -4,9 +4,10 @@ namespace app\modules\shop\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use app\core\db\ActiveRecord;
+use yii\helpers\Url;
 use app\core\behaviors\GenerateAlias;
-use yii\helpers\Html;
+use app\core\behaviors\UserId;
+use app\modules\user\models\User;
 
 /**
  * This is the model class for table "mn_shop_product".
@@ -27,7 +28,6 @@ class Product extends \app\modules\shop\models\base\Product
 {
     const STATUS_ACTIVE = 1;
     const STATUS_BLOCK = 0;
-    const STATUS_NOT_AVAIlABLE = 2;
 
     public $imageUpload;
 
@@ -38,6 +38,10 @@ class Product extends \app\modules\shop\models\base\Product
                 'class' => GenerateAlias::className(),
                 'text' => 'name',
                 'alias' => 'alias',
+            ],
+            [
+                'class' => UserId::className(),
+                'attribute' => 'user_id',
             ],
         ];
     }
@@ -50,7 +54,6 @@ class Product extends \app\modules\shop\models\base\Product
         return [
             self::STATUS_ACTIVE => Yii::t('shop', 'Status active'),
             self::STATUS_BLOCK => Yii::t('shop', 'Status block'),
-            self::STATUS_NOT_AVAIlABLE => Yii::t('shop', 'Status not available'),
         ];
     }
 
@@ -68,10 +71,15 @@ class Product extends \app\modules\shop\models\base\Product
         return $this->hasOne(Group::className(), ['id' => 'group_id']);
     }
 
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProductProperty()
+    public function getProperty()
     {
         return $this->hasMany(ProductProperty::className(), ['product_id' => 'id']);
     }
@@ -82,7 +90,7 @@ class Product extends \app\modules\shop\models\base\Product
      */
     public function getProductsModification()
     {
-       return $this->hasMany(ProductModification::className(), ['product_id' => 'id']);
+        return $this->hasMany(ProductModification::className(), ['product_id' => 'id']);
     }
 
     /**
@@ -98,15 +106,35 @@ class Product extends \app\modules\shop\models\base\Product
         return $this->hasMany(Image::className(), ['product_id' => 'id']);
     }
 
+    /**
+     * @todo
+     * ненравится присутствие в модели, служит только
+     * для формирования массива для представления
+     * @return array
+     */
     public function getListProductInGroup()
     {
-        return self::find()->where('group_id = :group', ['group' => $this->group_id])->select(['name', 'id'])->indexBy('id')->column();
+        return self::find()->where('group_id = :group', ['group' => $this->group_id])->select([
+            'name',
+            'id'
+        ])->indexBy('id')->column();
     }
 
-    public function getTitle()
+    /**
+     * @todo функция должна находиться в сервисе представления
+     * @param string $route
+     * @return string
+     */
+    public function getUrl($route = "/shop/product/view")
     {
-        $result = $this->meta_title ? $this->meta_title : $this->name;
+        $id = Yii::$app->getModule('shop')->urlAlias ? $this->alias : $this->id;
 
-        return Html::encode($result);
+        return Url::to([$route, 'id' => $id]);
+    }
+
+    public function getMainImage()
+    {
+        return $this->hasOne(Image::className(), ['product_id' => 'id'])
+            ->where('status = :status', [':status' => Image::STATUS_MAIN]);
     }
 }

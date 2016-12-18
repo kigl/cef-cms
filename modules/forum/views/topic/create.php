@@ -6,7 +6,7 @@ use app\modules\main\widgets\backend\ActiveForm;
 
 <?= $form->errorSummary($modelTopic);?>
 
-<?= $form->field($modelTopic, 'parent_id')->hiddenInput(['value' => $parentId])->label(false);?>
+<?= $form->field($modelTopic, 'parent_id')->hiddenInput(['views' => $parentId])->label(false);?>
 
 <?= $form->field($modelTopic, 'name');?>
 

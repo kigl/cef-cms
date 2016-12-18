@@ -16,7 +16,7 @@ abstract class FrontendControllerAbstract extends \app\modules\main\components\c
 				'rules' => [
 					[
 						'allow' => true,
-						'actions' => ['manager', 'view', 'index'],
+						'actions' => ['manager', 'views', 'index'],
 						'roles' => ['guest'],
 					],
 					[

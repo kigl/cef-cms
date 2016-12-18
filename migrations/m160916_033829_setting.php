@@ -19,7 +19,7 @@ class m160916_033829_setting extends Migration
             'module_id' => $this->string(50),
             'name' => $this->string(),
             'label' => $this->string(),
-            'value' =>$this->string(),
+            'views' =>$this->string(),
             'type_id' => $this->integer(),
             'user_id' => $this->integer(),
             'create_time' => $this->integer(),
@@ -27,7 +27,7 @@ class m160916_033829_setting extends Migration
         ]);
         
         $this->batchInsert($this->tableName,
-        	 ['module_id', 'name', 'label', 'value', 'type_id'],
+        	 ['module_id', 'name', 'label', 'views', 'type_id'],
         	 [
         	 	['main', 'site_name', 'Название сайта', '', '0'],
         	 	['main', 'site_description', 'Описание сайта', '', '2']

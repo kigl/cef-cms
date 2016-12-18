@@ -11,7 +11,7 @@ class m161025_160030_shop_product_property extends Migration
         $this->createTable($this->tableName, [
             'product_id' => $this->integer(),
             'property_id' => $this->integer(),
-            'value' => $this->string(),
+            'views' => $this->string(),
         ]);
 
         $this->addPrimaryKey('pk-product_property', $this->tableName, ['product_id', 'property_id']);

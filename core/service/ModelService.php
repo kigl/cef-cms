@@ -74,9 +74,9 @@ abstract class ModelService implements ModelServiceInterface
     public function getRequestData($name, $data = null)
     {
         if (!key_exists($name, $this->requestData)) {
-            throw new Exception(Yii::t('app', 'Not exist value: {value}', ['value' => $name]));
+            throw new Exception(Yii::t('app', 'Not exist views: {views}', ['views' => $name]));
         } elseif (($data !== null) and (!key_exists($data, $this->requestData[$name]))) {
-            throw new Exception(Yii::t('app', 'Not exist value: {value}', ['value' => $data]));
+            throw new Exception(Yii::t('app', 'Not exist views: {views}', ['views' => $data]));
         }
 
         return $data ? $this->requestData[$name][$data] : $this->requestData[$name];

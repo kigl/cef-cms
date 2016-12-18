@@ -1,6 +1,7 @@
 <?php
 return [
 	'Alias' => 'Алиас',
+    'Author' => 'Автор',
 
 	'Button create' => 'Добавить',
 	'Button save' => 'Сохранить',
@@ -8,7 +9,7 @@ return [
     'Link name page main' => 'Главная',
 	'List view summary text: is' => 'из',
 	
-	'Not exist value: {value}' => 'Значение "{value}" не существует',
+	'Not exist views: {views}' => 'Значение "{views}" не существует',
 
 	'Saved element' => 'Сохранено!',
 	

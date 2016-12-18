@@ -18,7 +18,7 @@ class UpdateController extends BackendController
 			'system' => [
 				'class' => 'app\core\actions\Update',
 				'model' => '\app\modules\informationsystem\models\Informationsystem',
-				'view' => 'system',
+				'views' => 'system',
 				'redirect' => ['manager/system'],
 			],
 		];

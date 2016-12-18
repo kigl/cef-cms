@@ -15,22 +15,38 @@ use app\modules\shop\models\Group;
 
 class GroupModelService extends ModelService
 {
-    public function view()
+    /**
+     * @todo $pageSize
+     * @param int $pageSize
+     */
+    public function view($pageSize = 3)
     {
-        $modelGroup = Group::find()->where('id = :id', [':id' => $this->getRequestData('get', 'id')]);
+        $model = Group::find();
 
         if (Yii::$app->getModule('shop')->urlAlias) {
-            $modelGroup->orWhere('alias = :alias', [':alias' => $this->getRequestData('get', 'id')]);
+            $model->orWhere('alias = :alias', [':alias' => $this->getRequestData('get', 'id')]);
+        } else {
+            $model->where('id = :id', [':id' => $this->getRequestData('get', 'id')]);
         }
-        $model = $modelGroup->one();
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $model->getProducts(),
+        $modelGroup = $model->one();
+
+        $dataProviderProduct = new ActiveDataProvider([
+            'query' => $modelGroup->getProducts()->with('mainImage'),
+            'pagination' => [
+                'pageSize' => $pageSize,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'name' => SORT_ASC,
+                ],
+                'attributes' => ['id', 'name', 'price'],
+            ],
         ]);
 
         $this->setData([
-            'model' => $model,
-            'dataProviderProduct' => $dataProvider,
+            'model' => $modelGroup,
+            'dataProvider' => $dataProviderProduct,
         ]);
     }
 }

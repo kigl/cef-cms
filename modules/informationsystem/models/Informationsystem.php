@@ -45,7 +45,7 @@ class Informationsystem extends \app\core\db\ActiveRecord
             [['name'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 300],
             ['image', 'file'],
-            ['item_on_page', 'default', 'value' => 10],
+            ['item_on_page', 'default', 'views' => 10],
         ];
     }
 
@@ -75,7 +75,7 @@ class Informationsystem extends \app\core\db\ActiveRecord
         return [
             [
                 'class' => 'yii\behaviors\TimestampBehavior',
-                'value' => new Expression('NOW()'),
+                'views' => new Expression('NOW()'),
                 'createdAtAttribute' => 'create_time',
                 'updatedAtAttribute' => 'update_time',
             ],

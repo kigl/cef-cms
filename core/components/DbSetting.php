@@ -25,7 +25,7 @@ class DbSetting extends \yii\base\Object
      */
     public function getValue($moduleId, $paramName)
     {
-        return $this->getParams($moduleId, 'value', $paramName);
+        return $this->getParams($moduleId, 'views', $paramName);
     }
 
     public function getLabel($moduleId, $paramName)

@@ -18,7 +18,5 @@ $breadcrumbs = ArrayHelper::merge($breadcrumbsGroup, [
 
 $this->setBreadcrumbs($breadcrumbs);?>
 
+<?= $this->render('_form', ['data' => $data]);?>
 
-<?= $this->render('_form', [
-    'data' => $data,
-]);?>

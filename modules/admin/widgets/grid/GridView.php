@@ -20,7 +20,7 @@ class GridView extends \yii\grid\GridView
 
     public $buttons = [];
 
-    public $layout = "{view}\n{buttons}\n{summary}\n{items}\n<div class='text-right'>{pager}</div>";
+    public $layout = "{views}\n{buttons}\n{summary}\n{items}\n<div class='text-right'>{pager}</div>";
 
     public $summaryOptions = ['class' => 'summary pull-right'];
 
@@ -34,7 +34,7 @@ class GridView extends \yii\grid\GridView
      *          'urlOptions' => [
      *              'route' => 'controller/action',
      *              'queryParams' => [
-     *                  'query' => 'value'
+     *                  'query' => 'views'
      *              ],
      *      ],
      * ]
@@ -44,14 +44,14 @@ class GridView extends \yii\grid\GridView
     public $breadcrumbsGroup;
     */
 
-    public $options = ['class' => 'grid-view'];
+    public $options = ['class' => 'grid-views'];
 
     public $tableOptions = ['class' => 'table table-condensed table-striped grid-table'];
 
     public function renderSection($name)
     {
         switch ($name) {
-            case '{view}' :
+            case '{views}' :
                 return $this->renderViewModal();
             case '{buttons}':
                 return $this->renderButtons();
@@ -118,7 +118,7 @@ class GridView extends \yii\grid\GridView
         $view = $this->getView();
 
         $view->registerJs("
-			$('.view-modal-item').click(function() {
+			$('.views-modal-item').click(function() {
 					$('.modal').modal('show')
 			    var url = $(this).attr('href');
 			    var modal = $('.modal-body');
@@ -164,7 +164,7 @@ class GridView extends \yii\grid\GridView
     }
 
     /**
-     * Renders the data models for the grid view.
+     * Renders the data models for the grid views.
      */
     public function renderItems()
     {
@@ -294,7 +294,7 @@ class GridView extends \yii\grid\GridView
         return [
             'format' => 'raw',
             'headerOptions' => ['style' => 'width: 50px'],
-            'value' => function ($data) {
+            'views' => function ($data) {
                 return $this->getIconColumnType(self::TYPE_ITEM);
             }
         ];
@@ -304,7 +304,7 @@ class GridView extends \yii\grid\GridView
     {
         return [
             'format' => 'raw',
-            'value' => function ($data) {
+            'views' => function ($data) {
                 return $this->getIconColumnType(self::TYPE_GROUP);
             }
         ];

@@ -11,7 +11,7 @@ use app\modules\admin\Module;
 		<?php echo $form->field($model, 'module_id')->dropDownList(Module::getModuleList());?>
 		<?php echo $form->field($model, 'name');?>
 		<?php echo $form->field($model, 'label');?>
-		<?php echo $form->field($model, 'value');?>
+		<?php echo $form->field($model, 'views');?>
 		<?php $form->end();?>
 	</div>
 </div>

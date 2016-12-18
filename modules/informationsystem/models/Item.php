@@ -139,7 +139,7 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
             ],
             [
                 'class' => 'yii\behaviors\TimeStampBehavior',
-                'value' => new Expression('NOW()'),
+                'views' => new Expression('NOW()'),
                 'createdAtAttribute' => 'create_time',
                 'updatedAtAttribute' => 'update_time',
             ],

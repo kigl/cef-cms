@@ -30,6 +30,7 @@ return [
     'Status block' => 'Не доступен',
     'Status not available' => 'Нет в наличии',
     'Sort' => 'Сортировка',
+	'Search button' => 'Поиск',
 
     'Toolbar property' => 'Свойства товара',
     'Tab main' => 'Общие',

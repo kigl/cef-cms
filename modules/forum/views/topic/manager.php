@@ -20,9 +20,9 @@ $this->params['actionBar'] = [
 			[
 				'attribute' => 'name',
 				'format' => 'raw',
-				'value' => function($data) {
+				'views' => function($data) {
 					$view = '';
-					$view.= Html::tag('div', Html::a($data->name, ['view', 'id' => $data->id, 'view_counter' => 1]));
+					$view.= Html::tag('div', Html::a($data->name, ['views', 'id' => $data->id, 'view_counter' => 1]));
 					$view.= Html::tag('span', "{$data->author->surname} {$data->author->name}", ['class' => 'small margin-right-10']);
 					$view.= Html::tag('span', Yii::$app->formatter->asDatetime($data->create_time), ['class' => 'small']);
 					return $view;

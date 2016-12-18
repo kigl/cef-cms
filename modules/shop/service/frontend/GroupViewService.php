@@ -34,9 +34,9 @@ class GroupViewService extends ViewService
         return $data->meta_description;
     }
 
-    public  function getDataProviderProducts()
+    public  function getDataProvider()
     {
-        $data = $this->getData('dataProviderProduct');
+        $data = $this->getData('dataProvider');
 
         return $data;
     }

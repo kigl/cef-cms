@@ -13,7 +13,7 @@ class PostController extends \app\modules\main\components\controllers\FrontendCo
 		$model = Post::findOne($id);
 		
 		if ($model->load(Yii::$app->request->post()) and $model->save()) {
-			return $this->redirect(['topic/view', 'id' => $model->topic_id]);
+			return $this->redirect(['topic/views', 'id' => $model->topic_id]);
 		}
 		
 		return $this->render('update', ['model' => $model]);
@@ -24,7 +24,7 @@ class PostController extends \app\modules\main\components\controllers\FrontendCo
 		$model = new Post;
 		
 		if ($model->load(Yii::$app->request->post()) and $model->save()) {
-			return $this->redirect(['topic/view', 'id' => $topicId]);
+			return $this->redirect(['topic/views', 'id' => $topicId]);
 		}
 		
 		return $this->render('create', [

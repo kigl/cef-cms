@@ -21,14 +21,14 @@ class Breadcrumbs
      *      'route' => 'controller/action',
      *      'queryGroupName' => name_id,
      *      'queryParams' => [
-     *          'query' => 'value',
+     *          'query' => 'views',
      *  ],
      * ],
      * ],
      *  $urlOptions => [
      *              'route' => 'controller/action',
      *              'queryParams' => [
-     *                  'query' => 'value'
+     *                  'query' => 'views'
      *              ],
      * @return array|null
      */

@@ -4,3 +4,20 @@ html, body {
 	height: 100%;
 	text-transform: uppercase;
 }
+
+/** shop **/
+.product-item {
+	height: 250px;
+	border: 1px solid #e0e0e0;
+	margin: 0 0 -1px -1px;
+}
+
+.product-item .product-main-image {
+	height: 150px;
+	overflow: hidden;
+}
+
+.product-detail .product-more-image {
+	width: 100px;
+}
+

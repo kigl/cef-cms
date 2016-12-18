@@ -7,7 +7,7 @@ use app\modules\page\models\Page;
 
 class PageRule implements \yii\web\UrlRuleInterface
 {
-    public $pageRequest = 'page/default/view';
+    public $pageRequest = 'page/default/views';
 
     public function createUrl($manager, $route, $params)
     {

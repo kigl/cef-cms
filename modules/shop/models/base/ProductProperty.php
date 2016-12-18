@@ -10,7 +10,7 @@ use app\core\db\ActiveRecord;
  *
  * @property integer $product_id
  * @property integer $property_id
- * @property string $value
+ * @property string $views
  */
 class ProductProperty extends ActiveRecord
 {
@@ -29,7 +29,7 @@ class ProductProperty extends ActiveRecord
     {
         return [
             [['product_id', 'property_id'], 'integer'],
-            [['value'], 'string', 'max' => 255],
+            [['views'], 'string', 'max' => 255],
         ];
     }
 
@@ -41,7 +41,7 @@ class ProductProperty extends ActiveRecord
         return [
             'product_id' => Yii::t('shop', 'Product id'),
             'property_id' => Yii::t('shop', 'Property id'),
-            'value' => Yii::t('shop', 'Value'),
+            'views' => Yii::t('shop', 'Value'),
         ];
     }
 }

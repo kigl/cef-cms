@@ -10,8 +10,8 @@ $this->params['breadcrumbs'] = $breadcrumbs;
 
 <?= $form->errorSummary($model);?>
 
-<?= $form->field($model, 'informationsystem_id')->hiddenInput(['value' => $informationsystem_id])->label(false);?>
-<?= $form->field($model, 'parent_id')->hiddenInput(['value' => $parent_id])->label(false);?>
+<?= $form->field($model, 'informationsystem_id')->hiddenInput(['views' => $informationsystem_id])->label(false);?>
+<?= $form->field($model, 'parent_id')->hiddenInput(['views' => $parent_id])->label(false);?>
 
     <div class="row">
         <div class="col-md-12">

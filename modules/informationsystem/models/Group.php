@@ -84,7 +84,7 @@ class Group extends \app\core\db\ActiveRecord
             ],
             [
                 'class' => TimestampBehavior::className(),
-                'value' => new Expression('NOW()'),
+                'views' => new Expression('NOW()'),
                 'createdAtAttribute' => 'create_time',
                 'updatedAtAttribute' => 'update_time',
             ],

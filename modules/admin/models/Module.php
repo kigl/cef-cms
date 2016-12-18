@@ -21,7 +21,7 @@ class Module extends \yii\base\Model
 			'module_id' => Yii::t('admin', 'Module id'),
 			'name' => Yii::t('admin', 'Name setting'),
 			'label' => Yii::t('admin', 'Label'),
-			'value' => Yii::t('admin', 'Value'),
+			'views' => Yii::t('admin', 'Value'),
 		];
 	}
 

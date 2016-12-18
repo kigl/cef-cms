@@ -40,7 +40,7 @@ class Breadcrumbs extends \app\core\widgets\Breadcrumbs
 
     private function getLinks()
     {
-        return Yii::$app->view->getBreadcrumbs();
+        return Yii::$app->views->getBreadcrumbs();
     }
 
     private function getActiveItemTemplate()

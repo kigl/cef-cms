@@ -51,7 +51,7 @@ class TopicController extends \app\modules\forum\controllers\FrontendControllerA
 	public function actionView($id, $view_counter = null)
 	{
 		if (($view_counter != null) and (Topic::updateCounter($id))) {
-			return $this->redirect(['view', 'id' => $id]);
+			return $this->redirect(['views', 'id' => $id]);
 		}
 		
 		$dataProvider = new ActiveDataProvider([
@@ -61,7 +61,7 @@ class TopicController extends \app\modules\forum\controllers\FrontendControllerA
 			],
 		]);
 				
-		return $this->render('view', [
+		return $this->render('views', [
 			'dataProvider' => $dataProvider,
 			'id' => $id,
 			'breadcrumbs' => static::buildBreadcrumbs($id),

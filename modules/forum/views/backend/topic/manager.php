@@ -18,13 +18,13 @@ use app\modules\main\widgets\backend\grid\GridView;
 		[
 			'attribute' => 'name',
 			'format' => 'raw',
-			'value' => function($data) {
+			'views' => function($data) {
 				return Html::a($data->name, Url::to(['manager', 'parent_id' => $data->id]	));
 			},
 		],
 		[
 			'attribute' => 'user_id',
-			'value' => function($data) {
+			'views' => function($data) {
 				return "{$data->author->surname} {$data->author->name}";
 			},
 		],
@@ -46,7 +46,7 @@ use app\modules\main\widgets\backend\grid\GridView;
 			'columns' => [
 				[
 					'attribute' => 'user_id',
-					'value' => function($data) {
+					'views' => function($data) {
 						return "{$data->author->surname} {$data->author->name}";
 					},
 				],

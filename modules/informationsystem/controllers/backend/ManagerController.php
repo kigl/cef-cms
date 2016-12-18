@@ -17,10 +17,10 @@ class ManagerController extends BackendController
     public function actions()
     {
         return [
-            'view' => [
+            'views' => [
                 'class' => 'app\core\components\actions\View',
                 'model' => Item::className(),
-                'view' => 'view',
+                'views' => 'views',
             ],
         ];
     }

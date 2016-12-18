@@ -2,10 +2,10 @@
 
 namespace app\modules\shop\controllers\backend;
 
-use app\modules\shop\service\backend\ProductViewService;
 use Yii;
 use app\modules\shop\components\BackendController;
 use app\modules\shop\service\backend\ProductModelService;
+use app\modules\shop\service\backend\ProductViewService;
 
 class ProductController extends BackendController
 {
@@ -34,7 +34,6 @@ class ProductController extends BackendController
 
     public function actionUpdate($id)
     {
-
         $modelService = new ProductModelService();
         $modelService->setRequestData([
             'post' => Yii::$app->request->post(),
@@ -46,12 +45,14 @@ class ProductController extends BackendController
 
         if ($modelService->load() and $modelService->save()) {
 
-            return $this->redirect(['product/update', 'id' => $modelService->getModel()->id]);
+            return $this->redirect(['product/update', 'id' => $viewService->getId()]);
         }
 
         return $this->render('update', [
             'data' => $viewService,
         ]);
+
+        return $this->render('update', ['data' => $viewService]);
     }
 
     public function actionDelete($id)

@@ -8,6 +8,7 @@
 
 namespace app\core\service;
 
+use Yii;
 use yii\base\Exception;
 
 abstract class ViewService implements ViewServiceInterface
@@ -30,7 +31,7 @@ abstract class ViewService implements ViewServiceInterface
         if (key_exists($data, $this->data)) {
             return $this->data[$data];
         } else {
-            throw new Exception(Yii::t('app', 'Not exist value: {value}', ['value' => $data]));
+            throw new Exception(Yii::t('app', 'Not exist views: {views}', ['views' => $data]));
         }
     }
 }

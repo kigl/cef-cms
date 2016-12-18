@@ -11,7 +11,7 @@ class Module extends \app\core\module\Module
      * использование псевдонима элемента в url
      * @var bool
      */
-    public $urlAlias = false;
+    public $urlAlias;
 
     public $defaultBackendRoute = 'group/manager';
 

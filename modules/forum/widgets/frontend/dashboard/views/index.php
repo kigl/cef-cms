@@ -10,7 +10,7 @@ use yii\grid\GridView;
 		'columns' => [
 			[
 				'format' => 'raw',
-				'value' => function($data) {
+				'views' => function($data) {
 					return Html::a($data->name, ['topic/manager', 'parentId' => $data->id]);
 				},
 			],
