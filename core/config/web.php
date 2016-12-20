@@ -67,6 +67,11 @@ $config = [
             'basePath' => '@webroot/public/assets',
             'baseUrl' => '@web/public/assets',
             'appendTimestamp' => false,
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'jsOptions' => ['position' => \yii\web\View::POS_HEAD],
+                ],
+            ],
         ],
 
         'user' => [
