@@ -6,7 +6,7 @@ use app\modules\admin\widgets\menuSidebar\Widget as MenuSidebar;
 use app\modules\admin\widgets\menuTop\Widget as MenuTop;
 
 ?>
-<?php $this->beginContent('@app/modules/admin/views/layouts/search.php'); ?>
+<?php $this->beginContent('@app/modules/admin/views/layouts/index.php'); ?>
     <div class="row">
         <div class="col-md-12">
             <div class="row">

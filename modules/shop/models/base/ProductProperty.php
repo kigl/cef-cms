@@ -29,7 +29,7 @@ class ProductProperty extends ActiveRecord
     {
         return [
             [['product_id', 'property_id'], 'integer'],
-            [['views'], 'string', 'max' => 255],
+            [['value'], 'string', 'max' => 255],
         ];
     }
 
@@ -41,7 +41,7 @@ class ProductProperty extends ActiveRecord
         return [
             'product_id' => Yii::t('shop', 'Product id'),
             'property_id' => Yii::t('shop', 'Property id'),
-            'views' => Yii::t('shop', 'Value'),
+            'value' => Yii::t('shop', 'Value'),
         ];
     }
 }

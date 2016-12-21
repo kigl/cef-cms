@@ -294,7 +294,7 @@ class GridView extends \yii\grid\GridView
         return [
             'format' => 'raw',
             'headerOptions' => ['style' => 'width: 50px'],
-            'views' => function ($data) {
+            'value' => function ($data) {
                 return $this->getIconColumnType(self::TYPE_ITEM);
             }
         ];
@@ -304,7 +304,7 @@ class GridView extends \yii\grid\GridView
     {
         return [
             'format' => 'raw',
-            'views' => function ($data) {
+            'value' => function ($data) {
                 return $this->getIconColumnType(self::TYPE_GROUP);
             }
         ];

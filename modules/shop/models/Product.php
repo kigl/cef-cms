@@ -127,9 +127,7 @@ class Product extends \app\modules\shop\models\base\Product
      */
     public function getUrl($route = "/shop/product/view")
     {
-        $id = Yii::$app->getModule('shop')->urlAlias ? $this->alias : $this->id;
-
-        return Url::to([$route, 'id' => $id]);
+        return Url::to([$route, 'id' => $this->id, 'alias' => $this->alias]);
     }
 
     public function getMainImage()

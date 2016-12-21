@@ -11,11 +11,10 @@ $this->setBreadcrumbs(
             $data->getGroupId(),
             [
                 'modelClass' => Group::className(),
-                'enableQueryGroupAlias' => $this->getModule()->urlAlias,
                 'enableRoot' => false,
                 'urlOptions' => [
-                    'route' => '/shop/group/view',
-                    'queryGroupName' => 'id',
+                    'route' => '/shop/product/list',
+                    'queryGroupName' => 'group_id',
                 ],
             ]
         ), ['label' => Html::encode($data->getName())]));

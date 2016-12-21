@@ -60,8 +60,11 @@ abstract class ModelService implements ModelServiceInterface
     /**
      * @return array
      */
-    public function getData()
+    public function getData($name = null)
     {
+        if (isset($name) and (isset($this->data[$name]))) {
+            return $this->data[$name];
+        }
         return $this->data;
     }
 
@@ -80,6 +83,17 @@ abstract class ModelService implements ModelServiceInterface
         }
 
         return $data ? $this->requestData[$name][$data] : $this->requestData[$name];
+    }
+
+    public function hasRequestData($name, $data = null)
+    {
+        if (!key_exists($name, $this->requestData)) {
+            return false;
+        } elseif (($data !== null) and (!key_exists($data, $this->requestData[$name]))) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

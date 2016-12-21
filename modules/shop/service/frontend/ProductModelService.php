@@ -12,20 +12,64 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use app\core\service\ModelService;
 use app\modules\shop\models\Product;
+use app\modules\shop\models\Group;
+use yii\web\HttpException;
 
 class ProductModelService extends ModelService
 {
+    /**
+     * @todo $pageSize
+     * @param int $pageSize
+     */
+    public function listProduct($pageSize = 3)
+    {
+        $model = Group::find();
+
+        $model->where('id = :id', [':id' => $this->getRequestData('get', 'group_id')]);
+
+        $modelGroup = $model->one();
+
+        $dataProviderProduct = new ActiveDataProvider([
+            'query' => $modelGroup->getProducts()->with('mainImage'),
+            'pagination' => [
+                'pageSize' => $pageSize,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'name' => SORT_ASC,
+                ],
+                'attributes' => ['id', 'name', 'price'],
+            ],
+        ]);
+
+        $this->setData([
+            'model' => $modelGroup,
+            'dataProvider' => $dataProviderProduct,
+        ]);
+
+        /**@todo
+         * проверка на алиас
+         */
+        if (!$this->hasRequestData('get', 'alias')) {
+            return false;
+        } elseif ($modelGroup->alias !== $this->getRequestData('get', 'alias')) {
+            return false;
+        }
+
+        return true;
+    }
+
     public function view()
     {
         $model = Product::find();
 
-        if (Yii::$app->getModule('shop')->urlAlias) {
-            $model->where('alias = :alias', [':alias' => $this->getRequestData('get', 'id')]);
-        } else {
-            $model->where('id = :id', [':id' => $this->getRequestData('get', 'id')]);
-        }
+        $model->where('id = :id', [':id' => $this->getRequestData('get', 'id')]);
 
         $this->model = $model->with('group', 'images', 'mainImage', 'property.property')->one();
+
+        if (!$this->model) {
+            throw new HttpException(404);
+        }
 
         $this->setData([
             'model' => $this->model,
@@ -34,6 +78,14 @@ class ProductModelService extends ModelService
             'mainImage' => $this->model->mainImage,
             'group' => $this->model->group,
         ]);
+        
+        if (!$this->hasRequestData('get', 'alias')) {
+            return false;
+        } elseif ($this->model->alias !== $this->getRequestData('get', 'alias')) {
+            return false;
+        }
+
+        return true;
     }
 
     public function search($pageSize = 3)

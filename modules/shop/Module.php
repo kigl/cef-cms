@@ -7,12 +7,6 @@ namespace app\modules\shop;
  */
 class Module extends \app\core\module\Module
 {
-    /**
-     * использование псевдонима элемента в url
-     * @var bool
-     */
-    public $urlAlias;
-
     public $defaultBackendRoute = 'group/manager';
 
     public $defaultRoute = '';

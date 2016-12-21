@@ -7,16 +7,14 @@ use yii\helpers\ArrayHelper;
 
 class Breadcrumbs
 {
-
     const ROOT_GROUP = true;
-    const QUERY_GROUP_ALIAS = false;
+    const QUERY_GROUP_ALIAS = true;
 
     /**
      * @param null $id
      * $config = [
      *  'modelClass' => Model::className(),
      *  'enableRoot' => true,
-     *  'enableQueryGroupAlias' => true,
      *  'urlOptions' => [
      *      'route' => 'controller/action',
      *      'queryGroupName' => name_id,
@@ -59,9 +57,11 @@ class Breadcrumbs
                 'label' => $model['name'],
                 'url' => [
                     $config['urlOptions']['route'],
-                    $config['urlOptions']['queryGroupName'] => $config['enableQueryGroupAlias'] ? $model['alias'] : $model['id'],
+                    $config['urlOptions']['queryGroupName'] => $model['id'],
                 ]
             ];
+            
+            $result[$key]['url']['alias'] = $config['enableQueryGroupAlias'] ? $model['alias'] : null;
 
             if (isset($config['urlOptions']['route']['queryParams'])) {
                 $result[$key]['url'] = ArrayHelper::merge(
