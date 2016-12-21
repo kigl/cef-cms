@@ -17,8 +17,7 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
     ]
 ));
 
-
 $this->setPageHeader($data->getName());
-
 ?>
+
 <?= $this->render('_listViewProduct', ['data' => $data]);?>

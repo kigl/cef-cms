@@ -13,50 +13,47 @@ use Yii;
 use app\modules\shop\components\FrontendController;
 use yii\helpers\ArrayHelper;
 use yii\web\Cookie;
+use yii\web\CookieCollection;
 
 class AjaxController extends FrontendController
 {
     public function actionIndex()
     {
         $response = Yii::$app->response;
-        $response->format = $response::FORMAT_JSON;
+        $response->format = $response::FORMAT_RAW;
 
         // получаем куку
+        $cookieName = 'toCart';
         $cookieRequest = Yii::$app->request->cookies;
         $cookieResponse = Yii::$app->response->cookies;
-        // создаем куку
-        if (!$cookieRequest->get('toCart')) {
-            $cookieResponse->add(new Cookie([
-                'name' => 'toCart',
-                'value' => json_encode($value = []),
-                'expire' => time()+3600*30,
-            ]));
+
+        // получаем данные из куки, если нет, получаем пустой массив
+        $data = $cookieRequest->has($cookieName) ? json_decode($cookieRequest->get($cookieName)->value, true) : [];
+
+        if (isset($_POST['toCart'])) {
+            $post = $_POST['toCart'];
+            $data[$post['productId']] = (int)$post['count'];
         }
 
-        $oldCookie = $cookieRequest->get('toCart');
-
-        $dataFromCookie = json_decode($oldCookie->value);
-
-        $keyArrayPost = key($_POST['toCart']);
-        $valueArrayPost = $_POST['toCart'][$keyArrayPost];
-
-        $dataFromCookie[$keyArrayPost] = $valueArrayPost;
-
-        $newDataJson = json_encode($dataFromCookie);
-
         $cookieResponse->add(new Cookie([
-            'name' => 'toCart',
-            'value' => $newDataJson,
+            'name' => $cookieName,
+            'value' => json_encode($data),
             'expire' => time()+3600*30,
         ]));
 
-        print_r($cookieResponse->get('toCart')->value);
+        return $cookieResponse->get($cookieName)->value;
+    }
 
-
+    public function actionTest()
+    {
+        if (isset($_POST['test'])) {
+            $_POST['loop'] = 123;
+            return 213;
+        }
     }
 
     public function actionView()
     {
-        return $this->render('view');
+        return $this->render('index');
     }
 }

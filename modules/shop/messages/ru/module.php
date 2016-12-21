@@ -2,6 +2,8 @@
 return [
     'Alt' => 'Alt',
 
+    'Button add to cart' => 'В корзину',
+
 	'Module name' => 'Интеренет магазин',
 	'Module description' => 'Интеренет магазин',
 
