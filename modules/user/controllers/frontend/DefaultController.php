@@ -56,7 +56,7 @@ class DefaultController extends Controller
 		if ($model->load(Yii::$app->request->post()) and $model->login()) {
 			return $this->goBack();
 		}
-		return $this->render('login', ['model' => $model]);
+		return $this->renderAjax('login', ['model' => $model]);
 	} 
 	
 	public function actionRegistration()

@@ -5,9 +5,11 @@ use app\modules\frontend\widgets\ActiveForm;
 $this->setPageHeader('Аутентификация пользователя');
 ?>
 
-<?php Pjax::begin(); ?>
+<?php Pjax::begin([
+    'enablePushState' => false,
+]); ?>
     <div class="row">
-        <div class="col-md-offset-2 col-md-8">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading"><?= Yii::t('user', 'Authenticate'); ?></div>
                 <div class="panel-body">

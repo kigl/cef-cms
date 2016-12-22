@@ -57,9 +57,9 @@ class GridView extends \yii\grid\GridView
                 return $this->renderButtons();
             case '{summary}':
                 return $this->renderSummary();
-           /* case '{breadcrumbsGroup}' :
-                return $this->renderBreadcrumbsGroup();
-           */
+            /* case '{breadcrumbsGroup}' :
+                 return $this->renderBreadcrumbsGroup();
+            */
             case '{items}':
                 return $this->renderItems();
             case '{pager}':

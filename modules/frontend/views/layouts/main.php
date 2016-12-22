@@ -31,7 +31,8 @@ use yii\bootstrap\NavBar;
                     [
                         'label' => Yii::t('user', 'Login menu item'),
                         'url' => ['/user/default/login'],
-                        'visible' => Yii::$app->user->isGuest
+                        'visible' => Yii::$app->user->isGuest,
+                        'linkOptions' => ['id' => 'show-modal-login'],
                     ],
                     [
                         'label' => Yii::t('user', 'Menu personal area'),
@@ -56,7 +57,7 @@ use yii\bootstrap\NavBar;
     </div>
     <div class="row">
         <div class="col-md-12">
-            <?= \app\modules\shop\widgets\frontend\searchProduct\Widget::widget();?>
+            <?= \app\modules\shop\widgets\frontend\searchProduct\Widget::widget(); ?>
         </div>
     </div>
     <div class="row">
@@ -71,6 +72,7 @@ use yii\bootstrap\NavBar;
     </div>
     <?= $content; ?>
 </div>
+<?= \app\modules\user\widgets\frontend\authModal\widget::widget();?>
 <?php $this->endBody() ?>
 </body>
 </html>
