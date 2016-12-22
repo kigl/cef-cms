@@ -8,7 +8,6 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
     $data->getId(),
     [
         'modelClass' => Group::className(),
-        'enableQueryGroupAlias' => $this->getModule()->urlAlias,
         'enableRoot' => false,
         'urlOptions' => [
             'route' => '/shop/group/view',

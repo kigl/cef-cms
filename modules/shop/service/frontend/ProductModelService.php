@@ -29,6 +29,11 @@ class ProductModelService extends ModelService
 
         $modelGroup = $model->one();
 
+        if (!$model->one()) {
+            $this->setError(self::ERROR_NOT_MODEL);
+            return;
+        }
+
         $dataProviderProduct = new ActiveDataProvider([
             'query' => $modelGroup->getProducts()->with('mainImage'),
             'pagination' => [
@@ -51,12 +56,10 @@ class ProductModelService extends ModelService
          * проверка на алиас
          */
         if (!$this->hasRequestData('get', 'alias')) {
-            return false;
+            $this->setError(self::ERROR_NOT_MODEL_ALIAS);
         } elseif ($modelGroup->alias !== $this->getRequestData('get', 'alias')) {
-            return false;
+            $this->setError(self::ERROR_NOT_MODEL_ALIAS);
         }
-
-        return true;
     }
 
     public function view()
@@ -67,8 +70,9 @@ class ProductModelService extends ModelService
 
         $this->model = $model->with('group', 'images', 'mainImage', 'property.property')->one();
 
-        if (!$this->model) {
-            throw new HttpException(404);
+        if (!$model->one()) {
+            $this->setError(self::ERROR_NOT_MODEL);
+            return;
         }
 
         $this->setData([
@@ -78,14 +82,12 @@ class ProductModelService extends ModelService
             'mainImage' => $this->model->mainImage,
             'group' => $this->model->group,
         ]);
-        
-        if (!$this->hasRequestData('get', 'alias')) {
-            return false;
-        } elseif ($this->model->alias !== $this->getRequestData('get', 'alias')) {
-            return false;
-        }
 
-        return true;
+        if (!$this->hasRequestData('get', 'alias')) {
+            $this->setError(self::ERROR_NOT_MODEL_ALIAS);
+        } elseif ($this->model->alias !== $this->getRequestData('get', 'alias')) {
+            $this->setError(self::ERROR_NOT_MODEL_ALIAS);
+        }
     }
 
     public function search($pageSize = 3)

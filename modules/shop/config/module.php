@@ -35,9 +35,12 @@ return [
         ],
         'urlManager' => [
             'rules' => [
+                '/shop/group/<id>/<alias>' => '/shop/group/view',
+                '/shop/group/<id>' => '/shop/group/view',
+                /*
                 '/shop/group/<group_id>/<alias>' => '/shop/product/list',
                 '/shop/group/<group_id>' => '/shop/product/list',
-                //'/shop/groups' => '/shop/group/list',
+                */
                 '/shop/search' => '/shop/product/search',
                 '/shop/product/<id>/<alias>' => '/shop/product/view',
                 '/shop/product/<id>' => '/shop/product/view',

@@ -9,7 +9,7 @@ use Yii;
  *
  * @property integer $user_id
  * @property integer $field_id
- * @property string $views
+ * @property string $value
  *
  * @property UserField $field
  * @property User $user
@@ -32,7 +32,7 @@ class FieldRelation extends \app\core\db\ActiveRecord
         return [
             [['user_id', 'field_id'], 'required'],
             [['user_id', 'field_id'], 'integer'],
-            [['views'], 'string', 'max' => 255],
+            [['value'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,7 +44,7 @@ class FieldRelation extends \app\core\db\ActiveRecord
         return [
             'user_id' => Yii::t('user', 'User ID'),
             'field_id' => Yii::t('user', 'Field ID'),
-            'views' => Yii::t('user', 'Value'),
+            'value' => Yii::t('user', 'Value'),
         ];
     }
 

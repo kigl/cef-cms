@@ -31,8 +31,8 @@ $this->setPageHeader('Личный кабинет');
     <div class="tab-pane active" id="main">
         <?= $form->field($data->getModel(), 'login'); ?>
         <?= $form->field($data->getModel(), 'email'); ?>
-        <?= $form->field($data->getModel(), 'password')->passwordInput(['views' => '']); ?>
-        <?= $form->field($data->getModel(), 'password_repeat')->passwordInput(['views' => '']); ?>
+        <?= $form->field($data->getModel(), 'password')->passwordInput(['value' => '']); ?>
+        <?= $form->field($data->getModel(), 'password_repeat')->passwordInput(['value' => '']); ?>
     </div>
     <div class="tab-pane" id="personal">
         <?= $form->field($data->getModel(), 'surname'); ?>
@@ -41,7 +41,7 @@ $this->setPageHeader('Личный кабинет');
     </div>
     <div class="tab-pane" id="property">
         <?php foreach ($data->getField() as $fi) : ?>
-            <?= $form->field($fi, '[' . $fi->field_id . ']views')->label($fi->field->name); ?>
+            <?= $form->field($fi, '[' . $fi->field_id . ']value')->label($fi->field->name); ?>
         <?php endforeach; ?>
     </div>
 </div>

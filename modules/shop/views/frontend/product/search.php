@@ -15,7 +15,7 @@ echo \yii\widgets\ListView::widget([
         'class' => 'text-right',
     ],
     'layout' => "{summary}\n{sorter}\n<div class='row'>{items}</div>\n<div class='text-center'>{pager}</div>",
-    'itemOptions' => ['class' => 'product-item col-md-4'],
+    'itemOptions' => ['class' => 'col-md-4'],
     'summaryOptions' => ['class' => 'text-right'],
     'sorter' => [
         'options' => ['class' => 'list-inline'],

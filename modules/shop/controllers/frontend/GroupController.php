@@ -17,16 +17,30 @@ use app\modules\shop\models\Group;
 
 class GroupController extends FrontendController
 {
-    //public $layout = '@app/modules/shop/views/frontend/layouts/column_2';
-
-    public function actions()
+    public function actionView($id, $alias = '')
     {
-        return [
-            'view' => [
-                'class' => View::class,
-                'modelService' => GroupModelService::class,
-                'viewService' => GroupViewService::class,
-            ],
-        ];
+        $modelService = new GroupModelService();
+        $modelService->setRequestData([
+            'get' => Yii::$app->request->getQueryParams(),
+        ]);
+        $modelService->view();
+
+        if ($modelService->hasError($modelService::ERROR_NOT_MODEL)) {
+            throw new HttpException(404);
+        }
+
+        if ($modelService->hasError($modelService::ERROR_NOT_MODEL_ALIAS)) {
+            $this->redirect([
+                '/shop/group/view',
+                'id' => $id,
+                'alias' => $modelService->getData('model')->alias
+            ], 301);
+        }
+
+        $viewService = (new GroupViewService())->setData($modelService->getData());
+
+        return $this->render('view', [
+            'data' => $viewService,
+        ]);
     }
 }

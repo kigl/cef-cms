@@ -14,6 +14,9 @@ use yii\web\HttpException;
 
 abstract class ModelService implements ModelServiceInterface
 {
+    const ERROR_NOT_MODEL = 1;
+    const ERROR_NOT_MODEL_ALIAS = 2;
+
     protected $model;
 
     protected $requestData = [];
@@ -21,6 +24,8 @@ abstract class ModelService implements ModelServiceInterface
     protected $data = [];
 
     protected $viewData = [];
+
+    protected $error;
 
     public function load()
     {
@@ -102,6 +107,16 @@ abstract class ModelService implements ModelServiceInterface
     public function getModel()
     {
         return $this->model;
+    }
+
+    protected function setError($constError)
+    {
+        $this->error = $constError;
+    }
+
+    public function hasError($constError)
+    {
+        return $this->error === $constError ? true : false;
     }
 
     /*

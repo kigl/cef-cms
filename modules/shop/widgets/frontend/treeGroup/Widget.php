@@ -58,7 +58,7 @@ class Widget extends \yii\base\Widget
         foreach ($data[$parentId] as $item) {
             $result[$item['id']] = [
                 'label' => $item['name'],
-                'url' => ['/shop/product/list', 'group_id' => $item['id'], 'alias' => $item['alias']],
+                'url' => ['/shop/group/view', 'id' => $item['id'], 'alias' => $item['alias']],
                 'items' => $this->createDataTreeGroup($data, $item['id']),
             ];
         }
