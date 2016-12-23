@@ -32,7 +32,7 @@ use yii\bootstrap\NavBar;
                         'label' => Yii::t('user', 'Login menu item'),
                         'url' => ['/user/default/login'],
                         'visible' => Yii::$app->user->isGuest,
-                        'linkOptions' => ['id' => 'show-modal-login'],
+                        'linkOptions' => ['class' => 'show-in-modal'],
                     ],
                     [
                         'label' => Yii::t('user', 'Menu personal area'),
@@ -47,7 +47,8 @@ use yii\bootstrap\NavBar;
                     [
                         'label' => Yii::t('user', 'Registration'),
                         'url' => ['/user/default/registration'],
-                        'visible' => Yii::$app->user->isGuest
+                        'visible' => Yii::$app->user->isGuest,
+                        'linkOptions' => ['class' => 'show-in-modal'],
                     ],
                 ],
                 'options' => ['class' => 'pull-right navbar-nav'],
@@ -72,7 +73,7 @@ use yii\bootstrap\NavBar;
     </div>
     <?= $content; ?>
 </div>
-<?= \app\modules\user\widgets\frontend\authModal\widget::widget();?>
+<?= \app\core\widgets\showContentModal\widget::widget();?>
 <?php $this->endBody() ?>
 </body>
 </html>

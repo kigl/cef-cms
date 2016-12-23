@@ -13,8 +13,8 @@ $this->setBreadcrumbs(
                 'modelClass' => Group::className(),
                 'enableRoot' => false,
                 'urlOptions' => [
-                    'route' => '/shop/product/list',
-                    'queryGroupName' => 'group_id',
+                    'route' => '/shop/group/view',
+                    'queryGroupName' => 'id',
                 ],
             ]
         ), ['label' => Html::encode($data->getName())]));

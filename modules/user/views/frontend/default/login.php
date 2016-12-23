@@ -7,6 +7,7 @@ $this->setPageHeader('Аутентификация пользователя');
 
 <?php Pjax::begin([
     'enablePushState' => false,
+    'id' => 'user-auth'
 ]); ?>
     <div class="row">
         <div class="col-md-12">

@@ -1,8 +1,15 @@
 <?php
 $this->setPageHeader('Регистрация');
 ?>
-
-<?php $form = \app\modules\frontend\widgets\ActiveForm::begin([]); ?>
+<?php \yii\widgets\Pjax::begin([
+    'id' => 'user-registration',
+    'enablePushState' => false,
+]); ?>
+<?php $form = \app\modules\frontend\widgets\ActiveForm::begin([
+    'options' => [
+        'data-pjax' => true,
+    ],
+]); ?>
 <?= $form->errorSummary($model); ?>
 <?php echo $form->field($model, 'login'); ?>
 <?php echo $form->field($model, 'email'); ?>
@@ -12,3 +19,4 @@ $this->setPageHeader('Регистрация');
     'captchaAction' => '/user/default/captcha',
 ]); ?>
 <?php $form->end(); ?>
+<?php \yii\widgets\Pjax::end(); ?>

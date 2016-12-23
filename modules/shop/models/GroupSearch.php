@@ -17,8 +17,6 @@ class GroupSearch extends Group
             'query' => $query,
         ]);
 
-
-
         return $dataProvider;
     }
 }

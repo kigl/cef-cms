@@ -56,7 +56,12 @@ class DefaultController extends Controller
 		if ($model->load(Yii::$app->request->post()) and $model->login()) {
 			return $this->goBack();
 		}
-		return $this->renderAjax('login', ['model' => $model]);
+
+		if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('login', ['model' => $model]);
+        }
+
+		return $this->render('login', ['model' => $model]);
 	} 
 	
 	public function actionRegistration()
@@ -68,7 +73,7 @@ class DefaultController extends Controller
 			if ($model->load(Yii::$app->request->post()) and $model->save()) {
 				return $this->goBack();
 			} 
-			return $this->render('registration', ['model' => $model]);
+			return $this->renderAjax('registration', ['model' => $model]);
 		} else {
 			return $this->goBack();
 		}

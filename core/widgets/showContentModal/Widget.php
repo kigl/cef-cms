@@ -6,13 +6,13 @@
  * Time: 21:02
  */
 
-namespace app\modules\user\widgets\frontend\authModal;
+namespace app\core\widgets\showContentModal;
 
 
 class widget extends \yii\base\Widget
 {
     public function run()
     {
-        return $this->render('index');
+        return $this->render('index', ['view' => $this->view]);
     }
 }
