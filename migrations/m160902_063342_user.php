@@ -19,10 +19,11 @@ class m160902_063342_user extends Migration
 				'password' => $this->string(),
 				'auth_key' => $this->string(300),
 				'status' => $this->integer()->defaultValue(0),
-				'create_time' => $this->integer(),
-				'update_time' => $this->integer(),
 				'ip' => $this->string(50),
 			]);
+
+		$this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `status`;");
+		$this->execute("ALTER TABLE {$this->tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
 
 			$this->createIndex('ix-user-login', $this->tableName, 'login', true);
 			$this->createIndex('ix-user-email', $this->tableName, 'email', true);

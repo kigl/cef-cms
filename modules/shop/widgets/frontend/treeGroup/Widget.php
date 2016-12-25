@@ -44,11 +44,12 @@ class Widget extends \yii\base\Widget
     public function getDataTreeGroup($parentId = 0)
     {
         $dataForMenu = $this->toRenewData($this->getModelsGroup());
+        $result = $this->createDataTreeGroup($dataForMenu, $parentId);
 
-        return $this->createDataTreeGroup($dataForMenu, $parentId);
+        return $result ? $result : [];
     }
 
-    private function createDataTreeGroup($data, $parentId)
+    private function createDataTreeGroup($data = [], $parentId)
     {
         if (empty($data[$parentId])) {
             return;

@@ -4,7 +4,7 @@ use yii\db\Migration;
 
 class m161025_155911_shop_product extends Migration
 {
-    public $tableName = 'mn_shop_product';
+    public $tableName = '{{%shop_product}}';
 
     public function up()
     {
@@ -16,17 +16,18 @@ class m161025_155911_shop_product extends Migration
             'description' => $this->string(),
             'content' => $this->text(),
             'sku' => $this->integer()->defaultValue(0),
-            'price' => $this->decimal(5,2),
+            'price' => $this->float(5,2),
             'discount' => $this->float(),
             'status' => $this->integer()->defaultValue(1),
             'user_id' => $this->integer(),
             'alias' => $this->string(),
             'meta_title' => $this->string(),
             'meta_description' => $this->string(),
-            'create_time' => $this->timestamp()->defaultValue(null),
-            'update_time' => $this->timestamp()->defaultValue(null),
         ]);
-        
+
+        $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_description`;");
+        $this->execute("ALTER TABLE {$this->tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
+
         $this->createIndex('ix-product-name', $this->tableName, 'name');
         $this->createIndex('ix-product-group_id', $this->tableName, 'group_id');
         $this->createIndex('ix-product-code', $this->tableName, 'code');

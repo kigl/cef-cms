@@ -15,8 +15,9 @@ class m161030_134743_shop_product_image extends Migration
             'name' => $this->string(),
             'status' => $this->integer()->defaultValue(0),
             'alt' => $this->string(),
-            'create_time' => $this->timestamp(),
         ]);
+
+        $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `alt`;");
 
         $this->createIndex('ix-product_image-product_id', $this->tableName, 'product_id');
     }

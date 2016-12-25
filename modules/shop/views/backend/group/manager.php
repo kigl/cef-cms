@@ -43,13 +43,20 @@ $this->params['toolbar'] = [
                 return Html::a($data->name, ['manager', 'parent_id' => $data->id]);
             }
         ],
+        [],
+        'create_time:date',
         [
             'class' => \yii\grid\ActionColumn::className(),
             'template' => "{update} {delete}",
         ],
     ],
     'columns' => [
-        'name',
+        [
+            'attribute' => 'name',
+            'headerOptions' => ['style' => 'width: 50%'],
+        ],
+        'price',
+        'create_time:date',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => \yii\grid\ActionColumn::className(),

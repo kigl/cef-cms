@@ -1,10 +1,10 @@
 function addToCart(productId, count) {
 
-    var urlTo = '/shop/ajax/index';
+    var urlTo = '/shop/cart/add';
     $.ajax({
         type: 'POST',
         url: urlTo,
-        data: {"toCart": {"productId": productId, "count": count}},
+        data: {"productId": productId, "count": count},
         success: function (data) {
             alert(data);
         }

@@ -20,9 +20,10 @@ class m160825_111921_informationsystem extends Migration
 				'meta_title' => $this->string(),
 				'meta_description' => $this->string(),
                 'item_on_page' => $this->integer(),
-				'create_time' => $this->timestamp()->defaultValue(null),
-				'update_time' => $this->timestamp()->defaultValue(null),
 			]);
+
+		$this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `item_on_page`;");
+		$this->execute("ALTER TABLE {$this->tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
 
 			$this->createIndex('ix-informationsystem-name', $this->tableName, 'name');
     }

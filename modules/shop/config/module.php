@@ -33,6 +33,9 @@ return [
                 ],
             ],
         ],
+       'cart' => [
+            'class' => \app\modules\shop\components\Cart::className(),
+        ],
         'urlManager' => [
             'rules' => [
                 '/shop/group/<id>/<alias>' => '/shop/group/view',

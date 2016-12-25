@@ -15,9 +15,10 @@ class m160902_081826_page extends Migration
 				'alias' => $this->string(),
 				'meta_title' => $this->string(),
 				'meta_description' => $this->string(),
-				'create_time' => $this->integer(),
-				'update_time' => $this->integer(),
 			]);
+
+		$this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_description`;");
+		$this->execute("ALTER TABLE {$this->tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
     }
 
     public function down()

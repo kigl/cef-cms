@@ -22,9 +22,10 @@ class m161025_041849_shop_group extends Migration
             'alias' => $this->string(),
             'meta_title' => $this->string(),
             'meta_description' => $this->string(),
-            'create_time' => $this->timestamp()->defaultValue(null),
-            'update_time' => $this->timestamp()->defaultValue(null),
         ]);
+
+        $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_description`;");
+        $this->execute("ALTER TABLE {$this->tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
 
         $this->createIndex('ix-shop_group-parent_id', $this->tableName, 'parent_id');
         $this->createIndex('ix-shop_group-name', $this->tableName, 'name');

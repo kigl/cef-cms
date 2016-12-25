@@ -3,6 +3,8 @@
 namespace app\modules\shop\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Exception;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use app\core\behaviors\GenerateAlias;

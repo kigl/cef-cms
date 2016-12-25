@@ -25,7 +25,7 @@ $config = [
 
         'formatter' => [
             'locale' => 'ru-Ru',
-            'dateFormat' => 'dd/MM/yyyy',
+            'dateFormat' => 'long',
             'defaultTimeZone' => 'Europe/Moscow',
         ],
 
