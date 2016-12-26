@@ -6,9 +6,12 @@ function addToCart(productId, count) {
         url: urlTo,
         data: {"productId": productId, "count": count},
         success: function (data) {
-            alert(data);
+            //alert(data);
         }
     });
 
-    return false;
+    // обновляем корзину
+    setTimeout( function () {
+        $.pjax.reload({container:"#cart-pjax"});  //Reload GridView
+    }, 400);
 }

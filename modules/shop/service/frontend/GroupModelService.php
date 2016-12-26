@@ -19,43 +19,7 @@ class GroupModelService extends ModelService
      * @todo $pageSize
      * @param int $pageSize
      */
-    /*public function view($pageSize = 3)
-    {
-        $model = Group::find();
-
-        if (Yii::$app->getModule('shop')->urlAlias) {
-            $model->orWhere('alias = :alias', [':alias' => $this->getRequestData('get', 'id')]);
-        } else {
-            $model->where('id = :id', [':id' => $this->getRequestData('get', 'id')]);
-        }
-
-        $modelGroup = $model->one();
-
-        $dataProviderProduct = new ActiveDataProvider([
-            'query' => $modelGroup->getProducts()->with('mainImage'),
-            'pagination' => [
-                'pageSize' => $pageSize,
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'name' => SORT_ASC,
-                ],
-                'attributes' => ['id', 'name', 'price'],
-            ],
-        ]);
-
-        $this->setData([
-            'model' => $modelGroup,
-            'dataProvider' => $dataProviderProduct,
-        ]);
-    }
-    */
-
-    /**
-     * @todo $pageSize
-     * @param int $pageSize
-     */
-    public function view($pageSize = 3)
+    public function view($pageSize = 10)
     {
         $model = Group::find();
 

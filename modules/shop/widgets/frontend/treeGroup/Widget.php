@@ -10,7 +10,6 @@ namespace app\modules\shop\widgets\frontend\treeGroup;
 
 use Yii;
 use app\modules\shop\models\Group;
-use app\modules\shop\widgets\frontend\treeGroup\asset\Asset;
 
 class Widget extends \yii\base\Widget
 {
@@ -18,8 +17,6 @@ class Widget extends \yii\base\Widget
 
     public function run()
     {
-        Asset::register($this->view);
-
         return $this->render('index', [
             'data' => $this->getDataTreeGroup(),
             'options' => $this->options,

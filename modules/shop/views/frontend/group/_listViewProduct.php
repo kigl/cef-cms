@@ -1,6 +1,4 @@
 <?php
-$this->registerJsFile('@web/modules/shop/views/frontend/js/addToCart.js', ['position' => \yii\web\View::POS_BEGIN]);
-
 \yii\widgets\Pjax::begin();
 echo \yii\widgets\ListView::widget([
     'dataProvider' => $data->getDataProvider(),

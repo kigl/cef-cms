@@ -8,34 +8,20 @@
 
 namespace app\modules\shop\controllers\frontend;
 
-use Yii;
+use app\modules\shop\components\cart\actions\Add;
 use app\modules\shop\components\FrontendController;
-use yii\filters\VerbFilter;
+
 
 class CartController extends FrontendController
 {
-    public function behaviors()
+
+    public function actions()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'add' => ['post'],
-                ],
+            'add' => [
+                'class' => Add::className(),
             ],
         ];
-    }
-
-    public function actionAdd()
-    {
-        $response = Yii::$app->response;
-        $response->format = $response::FORMAT_JSON;
-
-        $postData = Yii::$app->request->post();
-
-        Yii::$app->cart->add($postData['productId'], $postData['count']);
-
-        return true;
     }
 
     public function actionView()

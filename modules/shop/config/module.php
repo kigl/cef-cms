@@ -21,6 +21,8 @@ return [
         ],
     ],
 
+    'bootstrap' => ['cart'],
+
     'components' => [
         'i18n' => [
             'translations' => [
@@ -33,8 +35,11 @@ return [
                 ],
             ],
         ],
-       'cart' => [
-            'class' => \app\modules\shop\components\Cart::className(),
+        'cart' => [
+            'class' => \app\modules\shop\components\cart\Cart::className(),
+            'classProduct' => \app\modules\shop\models\Product::className(),
+            'cookieName' => 'cart',
+            'cookieTimeDays' => 1,
         ],
         'urlManager' => [
             'rules' => [

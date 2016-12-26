@@ -6,7 +6,7 @@
  * Time: 21:11
  */
 
-namespace app\modules\shop\components;
+namespace app\modules\shop\components\cart;
 
 
 interface CartInterface

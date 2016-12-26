@@ -23,58 +23,70 @@ use yii\bootstrap\NavBar;
 <body>
 <?php $this->beginBody() ?>
 <div class="container wrapper">
-    <div class="row">
-        <div class="col-md-12">
-            <?php NavBar::begin(); ?>
-            <?= Nav::widget([
-                'items' => [
-                    [
-                        'label' => Yii::t('user', 'Login menu item'),
-                        'url' => ['/user/default/login'],
-                        'visible' => Yii::$app->user->isGuest,
-                        'linkOptions' => ['class' => 'show-in-modal'],
+    <div class="top-block">
+        <div class="row">
+            <div class="col-md-12">
+                <?php NavBar::begin(); ?>
+                <?= Nav::widget([
+                    'items' => [
+                        [
+                            'label' => Yii::t('user', 'Login menu item'),
+                            'url' => ['/user/default/login'],
+                            'visible' => Yii::$app->user->isGuest,
+                            'linkOptions' => ['class' => 'show-in-modal'],
+                        ],
+                        [
+                            'label' => Yii::t('user', 'Menu personal area'),
+                            'url' => ['/user/default/personal'],
+                            'visible' => !Yii::$app->user->isGuest,
+                        ],
+                        [
+                            'label' => Yii::t('user', 'Logout'),
+                            'url' => ['/user/default/logout'],
+                            'visible' => !Yii::$app->user->isGuest
+                        ],
+                        [
+                            'label' => Yii::t('user', 'Registration'),
+                            'url' => ['/user/default/registration'],
+                            'visible' => Yii::$app->user->isGuest,
+                            'linkOptions' => ['class' => 'show-in-modal'],
+                        ],
                     ],
-                    [
-                        'label' => Yii::t('user', 'Menu personal area'),
-                        'url' => ['/user/default/personal'],
-                        'visible' => !Yii::$app->user->isGuest,
-                    ],
-                    [
-                        'label' => Yii::t('user', 'Logout'),
-                        'url' => ['/user/default/logout'],
-                        'visible' => !Yii::$app->user->isGuest
-                    ],
-                    [
-                        'label' => Yii::t('user', 'Registration'),
-                        'url' => ['/user/default/registration'],
-                        'visible' => Yii::$app->user->isGuest,
-                        'linkOptions' => ['class' => 'show-in-modal'],
-                    ],
-                ],
-                'options' => ['class' => 'pull-right navbar-nav'],
-            ]); ?>
-            <?php NavBar::end(); ?>
+                    'options' => ['class' => 'pull-right navbar-nav'],
+                ]); ?>
+                <?php NavBar::end(); ?>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <?= \app\modules\shop\widgets\frontend\searchProduct\Widget::widget(); ?>
+    <div class="header-block">
+        <div class="row">
+            <div class="col-md-8">
+                <?= \app\modules\shop\widgets\frontend\searchProduct\Widget::widget(); ?>
+            </div>
+            <div class="col-md-4">
+                <?= \app\modules\shop\widgets\frontend\cart\Widget::widget(); ?>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <?= Nav::widget([
-                'items' => [
-                    ['label' => 'Информационные системы', 'url' => ['/informationsystem/manager/system']],
-                ],
-                'options' => ['class' => 'nav-pills'],
-            ]); ?>
+    <div class="content-block">
+        <div class="row">
+            <div class="col-md-12">
+                <?= Nav::widget([
+                    'items' => [
+                        ['label' => 'Информационные системы', 'url' => ['/informationsystem/manager/system']],
+                    ],
+                    'options' => ['class' => 'nav-pills'],
+                ]); ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <?= $content; ?>
+            </div>
         </div>
     </div>
-    <?= $content; ?>
-</div>
-<?= \app\core\widgets\showContentModal\widget::widget();?>
-<?php $this->endBody() ?>
+    <?= \app\core\widgets\showContentModal\widget::widget(); ?>
+    <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>

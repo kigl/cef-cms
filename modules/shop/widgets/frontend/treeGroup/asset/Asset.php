@@ -9,7 +9,6 @@
 namespace app\modules\shop\widgets\frontend\treeGroup\asset;
 
 
-
 use yii\web\AssetBundle;
 
 class Asset extends AssetBundle
