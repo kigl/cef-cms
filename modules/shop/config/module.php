@@ -37,9 +37,10 @@ return [
         ],
         'cart' => [
             'class' => \app\modules\shop\components\cart\Cart::className(),
-            'classProduct' => \app\modules\shop\models\Product::className(),
-            'cookieName' => 'cart',
-            'cookieTimeDays' => 1,
+            'orderModelClass' => \app\modules\shop\models\base\Order::className(),
+            'cartModelClass' => \app\modules\shop\models\base\Cart::className(),
+            'cookieKey' => 'cart',
+            'cookieTimeDays' => '1',
         ],
         'urlManager' => [
             'rules' => [

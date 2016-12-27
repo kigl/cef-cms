@@ -63,7 +63,7 @@ use yii\bootstrap\NavBar;
             <div class="col-md-8">
                 <?= \app\modules\shop\widgets\frontend\searchProduct\Widget::widget(); ?>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-offset-2 col-md-2">
                 <?= \app\modules\shop\widgets\frontend\cart\Widget::widget(); ?>
             </div>
         </div>

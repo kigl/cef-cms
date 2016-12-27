@@ -53,6 +53,7 @@ class ProductModelService extends ModelService
     protected function initProperty()
     {
         $property = $this->model->getProperty()->with('property')->indexBy('property_id')->all();
+
         $allProperty = Property::find()->indexBy('id')->all();
 
         foreach (array_diff_key($allProperty, $property) as $pr) {

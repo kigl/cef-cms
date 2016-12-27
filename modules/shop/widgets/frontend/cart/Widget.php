@@ -9,10 +9,14 @@
 namespace app\modules\shop\widgets\frontend\cart;
 
 
+use Yii;
+
 class Widget extends \yii\base\Widget
 {
     public function run()
     {
-        return $this->render('index', ['data' => rand(0, 40)]);
+        $data = Yii::$app->cart;
+
+        return $this->render('index', ['data' => $data]);
     }
 }

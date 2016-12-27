@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: kirill
- * Date: 24.12.2016
- * Time: 21:11
+ * User: ARstudio
+ * Date: 27.12.2016
+ * Time: 13:05
  */
 
 namespace app\modules\shop\components\cart;
@@ -11,9 +10,9 @@ namespace app\modules\shop\components\cart;
 
 interface CartInterface
 {
-    public function add($productId, $coun);
+    public function add($productId, $qty);
 
-    public function delete($productId);
+    public function delete();
 
-    public function deleteAll();
+    public function clear();
 }

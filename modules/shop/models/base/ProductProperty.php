@@ -8,6 +8,7 @@ use app\core\db\ActiveRecord;
 /**
  * This is the model class for table "mn_shop_product_property".
  *
+ * @property integer $id
  * @property integer $product_id
  * @property integer $property_id
  * @property string $views
