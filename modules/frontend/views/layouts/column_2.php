@@ -7,7 +7,12 @@ use app\core\widgets\pageHeader\Widget as PageHeader;
 <?php $this->beginContent('@app/modules/frontend/views/layouts/main.php'); ?>
     <div calss="row">
         <div class="col-md-3">
-            <?= \app\modules\shop\widgets\frontend\treeGroup\Widget::widget(['options' => ['class' => 'tree-group']]);?>
+            <?= \app\modules\shop\widgets\frontend\treeGroup\Widget::widget([
+                'options' => [
+                    'class' => 'tree-group',
+                ],
+                'groupId' => isset($this->params['groupId']) ? $this->params['groupId'] : null,
+            ]);?>
         </div>
         <div class="col-md-9">
             <?= \app\modules\frontend\widgets\Breadcrumbs::widget(['enableModuleItem' => false]); ?>

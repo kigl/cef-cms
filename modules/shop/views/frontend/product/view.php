@@ -19,6 +19,8 @@ $this->setBreadcrumbs(
             ]
         ), ['label' => Html::encode($data->getName())]));
 //$this->setPageHeader(Html::encode($data->getName()));
+
+$this->params['groupId'] = $data->getGroupId();
 ?>
 
 <div class="product-detail">

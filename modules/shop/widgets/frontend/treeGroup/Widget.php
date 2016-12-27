@@ -14,6 +14,8 @@ use app\modules\shop\models\Group;
 class Widget extends \yii\base\Widget
 {
     public $options;
+    
+    public $groupId;
 
     public function run()
     {
@@ -57,6 +59,7 @@ class Widget extends \yii\base\Widget
             $result[$item['id']] = [
                 'label' => $item['name'],
                 'url' => ['/shop/group/view', 'id' => $item['id'], 'alias' => $item['alias']],
+                'active' => $this->groupId && $item['id'] == $this->groupId ? true : null,
                 'items' => $this->createDataTreeGroup($data, $item['id']),
             ];
         }

@@ -5,7 +5,6 @@
  * Date: 17.12.2016
  * Time: 21:13
  */
-$this->registerJsFile('@web/modules/shop/view/frontend/js/addToCart.js', ['position' => \yii\web\View::POS_END]);
 
 \yii\widgets\Pjax::begin();
 echo \yii\widgets\ListView::widget([
