@@ -55,7 +55,7 @@ $this->params['toolbar'] = [
             'attribute' => 'name',
             'headerOptions' => ['style' => 'width: 50%'],
         ],
-        'price',
+        'price:currency',
         'create_time:date',
         [
             'headerOptions' => ['style' => 'width: 70px'],

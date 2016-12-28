@@ -3,9 +3,9 @@ use yii\helpers\Url;
 
 ?>
 
-<div class="product-item">
+<div class="product-item img-thumbnail">
     <div class="row">
-        <div class="col-md-12"><?= $model->id;?></div>
+        <div class="col-md-12"><?= $model->id; ?></div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -24,14 +24,21 @@ use yii\helpers\Url;
     <div class="row">
         <div class="col-md-12">
             <div class="product-price">
-                <?= $model->price; ?>
+                <?= Yii::$app->formatter->asCurrency($model->price); ?>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12 product-action">
-            <input type="text" id="count_<?= $model->id?>" name="toCart[<?= $model->id;?>]"/>
-            <a href="#" onclick="addToCart(<?= $model->id;?>,  document.getElementById('<?= 'count_' . $model->id;?>').value); return false;">press</a>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" id="count_<?= $model->id ?>" class="form-control"/>
+                </div>
+                <div class="col-md-6">
+                    <a href="#"
+                       onclick="addToCart(<?= $model->id; ?>,  document.getElementById('<?= 'count_' . $model->id; ?>').value); return false;" class="btn btn-primary btn-sm"><?= Yii::t('shop', 'Button add to cart');?></a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

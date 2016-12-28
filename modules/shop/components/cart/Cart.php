@@ -11,6 +11,7 @@ namespace app\modules\shop\components\cart;
 
 use Yii;
 use yii\base\Component;
+use yii\data\ActiveDataProvider;
 use yii\web\Cookie;
 use yii\web\HttpException;
 
@@ -91,6 +92,18 @@ class Cart extends Component implements CartInterface
         }
 
         return $this->order;
+    }
+
+    public function getDataProvider()
+    {
+        $orderId = $this->getOrderIdFromCookie();
+        $cartModelClass = $this->cartModelClass;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $cartModelClass::find()->indexBy('id')->where(['order_id' => $orderId])->with(['product']),
+        ]);
+
+        return $dataProvider;
     }
 
     public function createOrder()

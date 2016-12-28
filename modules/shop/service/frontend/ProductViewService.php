@@ -24,7 +24,9 @@ class ProductViewService extends ViewService
 
     public function getPrice()
     {
-        return $this->getData('model')->price;
+        //return $this->getData('model')->price;
+        return Yii::t('shop', 'Price: {price, number, currency}', ['price' => $this->getData('model')->price]);
+        //return Yii::$app->formatter->asCurrency($this->getData('model')->price);
     }
 
     public function getGroupId()
@@ -34,7 +36,7 @@ class ProductViewService extends ViewService
 
     public function getGroupName()
     {
-        return $this->getData('model')->group->name;
+        return Yii::t('shop', 'Group: {group}', ['group' => $this->getData('model')->group->name]);
     }
 
     public function getGroupMetaDescription()

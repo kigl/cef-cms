@@ -7,6 +7,7 @@ $config = [
     'defaultRoute' => 'site/index',
 
     'language' => 'ru-RU',
+    'sourceLanguage' => 'en-US',
 
     'vendorPath' => '@app/core/vendor',
 
@@ -27,6 +28,7 @@ $config = [
             'locale' => 'ru-Ru',
             'dateFormat' => 'long',
             'defaultTimeZone' => 'Europe/Moscow',
+            'currencyCode' => 'RUB',
         ],
 
         'request' => [

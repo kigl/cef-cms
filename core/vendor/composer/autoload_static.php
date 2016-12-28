@@ -31,7 +31,13 @@ class ComposerStaticInitd08a2b6f5e41e256fb611c05532ca1a7
         ),
         'k' => 
         array (
+            'kartik\\touchspin\\' => 17,
+            'kartik\\popover\\' => 15,
+            'kartik\\plugins\\popover\\' => 23,
             'kartik\\money\\' => 13,
+            'kartik\\grid\\' => 12,
+            'kartik\\editable\\' => 16,
+            'kartik\\dialog\\' => 14,
             'kartik\\base\\' => 12,
         ),
         'c' => 
@@ -89,9 +95,33 @@ class ComposerStaticInitd08a2b6f5e41e256fb611c05532ca1a7
         array (
             0 => __DIR__ . '/..' . '/vova07/yii2-imperavi-widget/src',
         ),
+        'kartik\\touchspin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-touchspin',
+        ),
+        'kartik\\popover\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-popover-x',
+        ),
+        'kartik\\plugins\\popover\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/bootstrap-popover-x',
+        ),
         'kartik\\money\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-money',
+        ),
+        'kartik\\grid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-grid',
+        ),
+        'kartik\\editable\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-editable',
+        ),
+        'kartik\\dialog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-dialog',
         ),
         'kartik\\base\\' => 
         array (

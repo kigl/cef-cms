@@ -42,6 +42,7 @@ class Product extends ActiveRecord
             [['name'], 'required'],
             [['group_id', 'sku', 'status', 'user_id'], 'integer'],
             [['content'], 'string'],
+            [['price', 'sku'], 'default', 'value' => 0],
             [['price'], 'number'],
             [['create_time', 'update_time'], 'safe'],
             [['code', 'name', 'description', 'alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],

@@ -10,7 +10,7 @@ echo \yii\widgets\ListView::widget([
     'itemOptions' => ['class' => 'col-md-4'],
     'summaryOptions' => ['class' => 'text-right'],
     'sorter' => [
-        'options' => ['class' => 'list-inline'],
+        'options' => ['class' => 'list-inline panel'],
     ],
 ]);
 \yii\widgets\Pjax::end();

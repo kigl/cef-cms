@@ -2,6 +2,7 @@
 use yii\widgets\Menu;
 use app\modules\admin\widgets\Alert;
 use app\core\widgets\pageHeader\Widget as PageHeader;
+
 ?>
 
 <?php $this->beginContent('@app/modules/frontend/views/layouts/main.php'); ?>
@@ -9,13 +10,18 @@ use app\core\widgets\pageHeader\Widget as PageHeader;
         <div class="col-md-3">
             <?= \app\modules\shop\widgets\frontend\treeGroup\Widget::widget([
                 'options' => [
-                    'class' => 'tree-group',
+                    'class' => 'tree-group nav nav-pills nav-stacked',
                 ],
                 'groupId' => isset($this->params['groupId']) ? $this->params['groupId'] : null,
-            ]);?>
+            ]); ?>
         </div>
         <div class="col-md-9">
-            <?= \app\modules\frontend\widgets\Breadcrumbs::widget(['enableModuleItem' => false]); ?>
+            <div class="panel panel-default">
+                <div class="panel-heading">Хлебные крошки</div>
+                <div class="panel-body">
+                    <?= \app\modules\frontend\widgets\Breadcrumbs::widget(['enableModuleItem' => false]); ?>
+                </div>
+            </div>
             <?= Alert::widget(); ?>
             <div>
                 <?php
@@ -29,8 +35,18 @@ use app\core\widgets\pageHeader\Widget as PageHeader;
                 }
                 ?>
             </div>
-            <?= PageHeader::widget(); ?>
-            <?= $content; ?>
+            <div class="panel panel-default">
+                <div class="panel-heading">Заголовок страницы</div>
+                <div class="panel-body">
+                    <?= PageHeader::widget(['text' => $this->getPageHeader()]); ?>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Контент страницы</div>
+                <div class="panel-body">
+                    <?= $content; ?>
+                </div>
+            </div>
         </div>
     </div>
 <?php $this->endContent(); ?>

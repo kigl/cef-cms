@@ -17,12 +17,14 @@ return [
     'Code' => 'Артикул',
 
     'Group name' => 'Группа',
+    'Group: {group}' => 'Группа: {group}',
 
     'Price' => 'Цена',
 	'Product relation' => 'Связать с товаром',
 	'Property type string' => 'Строка',
 	'Property type boolean' => 'Boolean',
 	'Property type' => 'Тип свойства',
+    'Price: {price, number, currency}' => 'Цена: {price, number, currency}',
 
     'Image status' => 'Основное изображение',
     'Image upload' => 'Загрузить',
@@ -38,4 +40,5 @@ return [
     'Tab main' => 'Общие',
     'Tab property' => 'Свойства',
     'Tab images' => 'Изображения',
+    'Text  price' => 'Цена: ',
 ];

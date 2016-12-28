@@ -17,11 +17,13 @@ class Widget extends \yii\base\Widget
 
     public $options = [];
 
+    public $text = '';
+
     public function run()
     {
         return $this->render('index', [
             'options' => ArrayHelper::merge($this->defaultOptions, $this->options),
-            'header' => Yii::$app->view->getPageHeader(),
+            'header' => $this->text,
         ]);
     }
 }

@@ -1,10 +1,6 @@
-.tree-group {
-    margin: 0;
-    padding: 0;
-}
-
 .tree-group ul {
     display: none;
+    margin-left: 10px;
 }
 
 .tree-group > ul > li, .tree-group .active > ul{

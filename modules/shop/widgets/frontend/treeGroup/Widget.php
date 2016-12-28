@@ -8,7 +8,6 @@
 
 namespace app\modules\shop\widgets\frontend\treeGroup;
 
-use Yii;
 use app\modules\shop\models\Group;
 
 class Widget extends \yii\base\Widget
@@ -19,55 +18,32 @@ class Widget extends \yii\base\Widget
 
     public function run()
     {
+        $data = $this->getModelsGroup();
+
         return $this->render('index', [
-            'data' => $this->getDataTreeGroup(),
+            'data' => $this->createDataTreeGroup($data, 0),
             'options' => $this->options,
             ]);
     }
 
     private function getModelsGroup()
     {
-        return Group::find()->asArray()->all();
+        return Group::find()->select(['id', 'name', 'parent_id', 'alias'])->asArray()->all();
     }
 
-    private function toRenewData($data)
+    private function createDataTreeGroup(&$data = [], $parentId)
     {
-        $dt = [];
-        foreach ($data as $item) {
-            $dt[$item['parent_id']][$item['id']] = $item;
-        }
-
-        return $dt;
-    }
-
-    public function getDataTreeGroup($parentId = 0)
-    {
-        $dataForMenu = $this->toRenewData($this->getModelsGroup());
-        $result = $this->createDataTreeGroup($dataForMenu, $parentId);
-
-        return $result ? $result : [];
-    }
-
-    private function createDataTreeGroup($data = [], $parentId)
-    {
-        if (empty($data[$parentId])) {
-            return;
-        }
-
         $result = [];
-        foreach ($data[$parentId] as $item) {
-            $result[$item['id']] = [
-                'label' => $item['name'],
-                'url' => ['/shop/group/view', 'id' => $item['id'], 'alias' => $item['alias']],
-                'active' => $this->groupId && $item['id'] == $this->groupId ? true : null,
-                'items' => $this->createDataTreeGroup($data, $item['id']),
-            ];
+        foreach ($data as $item) {
+            if ($item['parent_id'] == $parentId) {
+                $result[$item['id']] = [
+                    'label' => $item['name'],
+                    'url' => ['/shop/group/view', 'id' => $item['id'], 'alias' => $item['alias']],
+                    'active' => $this->groupId && $item['id'] == $this->groupId ? true : null,
+                    'items' => $this->createDataTreeGroup($data, $item['id']),
+                ];
+            }
         }
         return $result;
-    }
-
-    protected function isAlias()
-    {
-        return Yii::$app->getModule('shop')->urlAlias;
     }
 }

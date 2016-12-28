@@ -12,7 +12,7 @@ class m161025_160030_shop_product_property extends Migration
             'id' => $this->primaryKey(),
             'product_id' => $this->integer(),
             'property_id' => $this->integer(),
-            'views' => $this->string(),
+            'value' => $this->string(),
         ]);
 
         $this->createIndex('ix-product_modification-product_id', $this->tableName, 'product_id');
