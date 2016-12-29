@@ -23,7 +23,7 @@ class GroupModelService extends ModelService
     {
         $model = Group::find();
 
-        $model->where('id = :id', [':id' => $this->getRequestData('get', 'id')]);
+        $model->where('id = :id', [':id' => $this->getData('get', 'id')]);
 
         $modelGroup = $model->one();
 
@@ -53,9 +53,9 @@ class GroupModelService extends ModelService
         /**@todo
          * проверка на алиас
          */
-        if (!$this->hasRequestData('get', 'alias')) {
+        if (!$this->hasData('get', 'alias')) {
             $this->setError(self::ERROR_NOT_MODEL_ALIAS);
-        } elseif ($modelGroup->alias !== $this->getRequestData('get', 'alias')) {
+        } elseif ($modelGroup->alias !== $this->getData('get', 'alias')) {
             $this->setError(self::ERROR_NOT_MODEL_ALIAS);
         }
     }

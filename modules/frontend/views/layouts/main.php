@@ -6,6 +6,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Url;
 
 \app\modules\frontend\views\assets\Asset::register($this);
 ?>
@@ -72,7 +73,9 @@ use yii\bootstrap\NavBar;
                         <?= \app\modules\shop\widgets\frontend\searchProduct\Widget::widget(); ?>
                     </div>
                     <div class="col-md-offset-2 col-md-2">
-                        <?= \app\modules\shop\widgets\frontend\cart\Widget::widget(); ?>
+                        <?= \app\modules\shop\widgets\frontend\cart\Widget::widget([
+                                'urlPageCart' => Url::to(['/shop/cart/index']),
+                        ]); ?>
                     </div>
                 </div>
             </div>

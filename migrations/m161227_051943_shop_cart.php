@@ -12,6 +12,7 @@ class m161227_051943_shop_cart extends Migration
             'id' => $this->primaryKey(),
             'order_id' => $this->integer(),
             'product_id' => $this->integer(),
+            'price' => $this->float(5, 2),
             'qty' => $this->integer()->defaultValue(0),
         ]);
 

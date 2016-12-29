@@ -12,7 +12,7 @@ interface CartInterface
 {
     public function add($productId, $qty);
 
-    public function delete();
+    public function delete($productId);
 
     public function clear();
 }

@@ -46,7 +46,7 @@ class Cart extends \yii\db\ActiveRecord
             'id' => 'ID',
             'order_id' => 'Order ID',
             'product_id' => 'Product ID',
-            'qty' => 'Qty',
+            'qty' => Yii::t('shop', 'Qty'),
         ];
     }
 

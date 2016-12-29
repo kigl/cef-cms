@@ -62,6 +62,7 @@ return [
                 '/shop/search' => '/shop/product/search',
                 '/shop/product/<id>/<alias>' => '/shop/product/view',
                 '/shop/product/<id>' => '/shop/product/view',
+                '/shop/cart' => '/shop/cart/index',
             ],
         ],
     ],

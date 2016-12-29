@@ -20,7 +20,7 @@ class GroupController extends FrontendController
     public function actionView($id, $alias = '')
     {
         $modelService = new GroupModelService();
-        $modelService->setRequestData([
+        $modelService->setData([
             'get' => Yii::$app->request->getQueryParams(),
         ]);
         $modelService->view();
@@ -29,13 +29,14 @@ class GroupController extends FrontendController
             throw new HttpException(404);
         }
 
+        /*
         if ($modelService->hasError($modelService::ERROR_NOT_MODEL_ALIAS)) {
             $this->redirect([
                 '/shop/group/view',
                 'id' => $id,
                 'alias' => $modelService->getData('model')->alias
             ], 301);
-        }
+        }*/
 
         $viewService = (new GroupViewService())->setData($modelService->getData());
 

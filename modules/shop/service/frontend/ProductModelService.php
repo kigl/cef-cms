@@ -66,7 +66,7 @@ class ProductModelService extends ModelService
     {
         $model = Product::find();
 
-        $model->where('id = :id', [':id' => $this->getRequestData('get', 'id')]);
+        $model->where('id = :id', [':id' => $this->getData('get', 'id')]);
 
         $this->model = $model->with('group', 'images', 'mainImage', 'property.property')->one();
 
@@ -83,9 +83,9 @@ class ProductModelService extends ModelService
             'group' => $this->model->group,
         ]);
 
-        if (!$this->hasRequestData('get', 'alias')) {
+        if (!$this->hasData('get', 'alias')) {
             $this->setError(self::ERROR_NOT_MODEL_ALIAS);
-        } elseif ($this->model->alias !== $this->getRequestData('get', 'alias')) {
+        } elseif ($this->model->alias !== $this->getData('get', 'alias')) {
             $this->setError(self::ERROR_NOT_MODEL_ALIAS);
         }
     }

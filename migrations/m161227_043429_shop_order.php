@@ -12,6 +12,7 @@ class m161227_043429_shop_order extends Migration
             'id' => $this->primaryKey(),
             'status' => $this->integer()->defaultValue(0),
             'user_id' => $this->integer(),
+            'sum_product' => $this->float(5, 2),
         ]);
 
         $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `user_id`;");

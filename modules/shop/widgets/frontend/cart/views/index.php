@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 \app\modules\shop\widgets\frontend\cart\asset\Asset::register($this);
 ?>
 
@@ -6,7 +7,7 @@
 
 <div class="cart-block panel panel-default">
     <div class="panel-heading">
-        Корзина
+        <?= Html::a('Корзина', $urlPageCart, ['data-pjax' => 0]);?>
     </div>
     <div class="panel-body">
         <div class="row">

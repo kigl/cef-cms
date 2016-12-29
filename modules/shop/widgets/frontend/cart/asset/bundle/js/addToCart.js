@@ -1,5 +1,4 @@
 function addToCart(productId, qty) {
-
     var urlTo = '/shop/cart/add';
     $.ajax({
         type: 'POST',

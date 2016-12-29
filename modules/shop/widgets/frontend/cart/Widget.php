@@ -13,10 +13,15 @@ use Yii;
 
 class Widget extends \yii\base\Widget
 {
+    public $urlPageCart = null;
+
     public function run()
     {
         $data = Yii::$app->cart;
 
-        return $this->render('index', ['data' => $data]);
+        return $this->render('index', [
+            'data' => $data,
+            'urlPageCart' => $this->urlPageCart,
+        ]);
     }
 }

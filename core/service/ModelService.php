@@ -65,10 +65,14 @@ abstract class ModelService implements ModelServiceInterface
     /**
      * @return array
      */
-    public function getData($name = null)
+    public function getData($key = null, $value = null)
     {
-        if (isset($name) and (isset($this->data[$name]))) {
-            return $this->data[$name];
+        if (isset($value) && (isset($this->data[$key][$value]))) {
+            return $this->data[$key][$value];
+        }
+
+        if (isset($key) and (isset($this->data[$key]))) {
+            return $this->data[$key];
         }
         return $this->data;
     }
@@ -90,11 +94,11 @@ abstract class ModelService implements ModelServiceInterface
         return $data ? $this->requestData[$name][$data] : $this->requestData[$name];
     }
 
-    public function hasRequestData($name, $data = null)
+    public function hasData($name, $data = null)
     {
-        if (!key_exists($name, $this->requestData)) {
+        if (!key_exists($name, $this->data)) {
             return false;
-        } elseif (($data !== null) and (!key_exists($data, $this->requestData[$name]))) {
+        } elseif (($data !== null) and (!key_exists($data, $this->data[$name]))) {
             return false;
         }
 

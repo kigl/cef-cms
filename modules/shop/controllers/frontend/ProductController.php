@@ -21,7 +21,7 @@ class ProductController extends FrontendController
     public function actionView($id, $alias = '')
     {
         $modelService = new ProductModelService();
-        $modelService->setRequestData([
+        $modelService->setData([
             'get' => Yii::$app->request->getQueryParams()
         ]);
         $modelService->view();
@@ -38,6 +38,10 @@ class ProductController extends FrontendController
         }
 
         $viewService = (new ProductViewService())->setData($modelService->getData());
+
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('view', ['data' => $viewService]);
+        }
 
         return $this->render('view', ['data' => $viewService]);
     }

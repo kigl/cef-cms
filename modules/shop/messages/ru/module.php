@@ -3,6 +3,8 @@ return [
     'Alt' => 'Alt',
 
     'Button add to cart' => 'В корзину',
+    'Button refresh cart' => 'Пересчитать',
+    'Button order' => 'Оформить заказ',
 
 	'Module name' => 'Интеренет магазин',
 	'Module description' => 'Интеренет магазин',
@@ -19,6 +21,7 @@ return [
     'Group name' => 'Группа',
     'Group: {group}' => 'Группа: {group}',
 
+    'Page header cart' => 'Корзина',
     'Price' => 'Цена',
 	'Product relation' => 'Связать с товаром',
 	'Property type string' => 'Строка',
@@ -29,12 +32,16 @@ return [
     'Image status' => 'Основное изображение',
     'Image upload' => 'Загрузить',
 
+    'Qty' => 'Количество',
+
     'Status' => 'Статус',
     'Status active' => 'Доступен',
     'Status block' => 'Не доступен',
     'Status not available' => 'Нет в наличии',
     'Sort' => 'Сортировка',
 	'Search button' => 'Поиск',
+
+    'Quick view product' => 'Быстрый просмотр',
 
     'Toolbar property' => 'Свойства товара',
     'Tab main' => 'Общие',

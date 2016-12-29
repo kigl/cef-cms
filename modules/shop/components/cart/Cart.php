@@ -12,11 +12,14 @@ namespace app\modules\shop\components\cart;
 use Yii;
 use yii\base\Component;
 use yii\data\ActiveDataProvider;
+use yii\data\Sort;
 use yii\web\Cookie;
 use yii\web\HttpException;
 
 class Cart extends Component implements CartInterface
 {
+    const ZERO_QTY = 0;
+
     public $orderModelClass;
 
     public $cartModelClass;
@@ -44,12 +47,24 @@ class Cart extends Component implements CartInterface
         $cart->order_id = $this->getOrder()->id;
         $cart->qty = (int)$qty;
 
+        if ($cart->qty == self::ZERO_QTY) {
+            return $cart->delete();
+        }
+
         return $cart->save();
     }
 
-    public function delete()
+    public function delete($productId)
     {
+        $cartModelClass = $this->cartModelClass;
 
+        $model = $cartModelClass::find()->select('id')->where(['id' => $productId])->one();
+
+        if ($model) {
+            return $model->delete();
+        }
+
+        return false;
     }
 
     public function clear()
@@ -101,6 +116,7 @@ class Cart extends Component implements CartInterface
 
         $dataProvider = new ActiveDataProvider([
             'query' => $cartModelClass::find()->indexBy('id')->where(['order_id' => $orderId])->with(['product']),
+            'sort' => false,
         ]);
 
         return $dataProvider;
@@ -156,6 +172,6 @@ class Cart extends Component implements CartInterface
 
     protected function getCookieTime()
     {
-        return time() + 3600 * $this->cookieTimeDays;
+        return time() + 3600 * 24 * $this->cookieTimeDays;
     }
 }

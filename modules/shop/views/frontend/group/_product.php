@@ -10,7 +10,7 @@ use yii\helpers\Url;
     <div class="row">
         <div class="col-md-12">
             <div class="product-main-image">
-                <a href="<?= Url::to($model->getUrl()); ?>">
+                <a href="<?= Url::to($model->getUrl()); ?>" data-pjax="0">
                     <?= \app\modules\shop\widgets\frontend\mainImage\Widget::widget(['model' => $model->mainImage]); ?>
                 </a>
             </div>
@@ -26,6 +26,13 @@ use yii\helpers\Url;
             <div class="product-price">
                 <?= Yii::$app->formatter->asCurrency($model->price); ?>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="<?= Url::to($model->getUrl()); ?>" class="show-in-modal">
+                <?= Yii::t('shop', 'Quick view product');?>
+            </a>
         </div>
     </div>
     <div class="row">

@@ -5,7 +5,6 @@ use app\modules\shop\models\Property;
 
 ?>
 
-
 <ul class="nav nav-tabs">
     <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('shop', 'Tab main'); ?></a></li>
     <li><a href="#images" data-toggle="tab"><?= Yii::t('shop', 'Tab images'); ?></a></li>
