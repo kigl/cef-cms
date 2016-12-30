@@ -52,14 +52,14 @@ echo GridView::widget([
     ],
     'columns' => [
         [
+            'class' => '\kartik\grid\SerialColumn',
+        ],
+        [
             'class' => '\kartik\grid\DataColumn',
             'attribute' => 'product.name',
             'value' => function ($data) {
                 return $data->product->name;
-            },
-            'pageSummary' => function ($summary, $data, $widget) {
-                return count($data);
-            },
+            }
         ],
         [
             'contentOptions' => ['class' => 'action-column', 'data-method' => 'post'],

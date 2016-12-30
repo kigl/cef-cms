@@ -48,8 +48,8 @@ return [
             'class' => \app\modules\shop\components\cart\Cart::className(),
             'orderModelClass' => \app\modules\shop\models\base\Order::className(),
             'cartModelClass' => \app\modules\shop\models\base\Cart::className(),
-            'cookieKey' => 'cart',
-            'cookieTimeDays' => '1',
+            'cookieName' => 'cart',
+            'cookieExpire' => time() * 3600 * 24 *1,
         ],
         'urlManager' => [
             'rules' => [

@@ -72,7 +72,7 @@ class DefaultController extends Controller
 		if (Yii::$app->user->isGuest) {
 			if ($model->load(Yii::$app->request->post()) and $model->save()) {
 				return $this->goBack();
-			} 
+			}
 			return $this->renderAjax('registration', ['model' => $model]);
 		} else {
 			return $this->goBack();

@@ -34,6 +34,7 @@ class Cart extends \yii\db\ActiveRecord
             [['order_id', 'product_id', 'qty'], 'integer'],
             [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_id' => 'id']],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
+            [['price'], 'number'],
         ];
     }
 
@@ -47,6 +48,7 @@ class Cart extends \yii\db\ActiveRecord
             'order_id' => 'Order ID',
             'product_id' => 'Product ID',
             'qty' => Yii::t('shop', 'Qty'),
+            'price' => 'Price',
         ];
     }
 

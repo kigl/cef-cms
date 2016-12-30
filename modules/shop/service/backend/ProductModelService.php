@@ -52,7 +52,10 @@ class ProductModelService extends ModelService
      */
     protected function initProperty()
     {
-        $property = $this->model->getProperty()->with('property')->indexBy('property_id')->all();
+        $property = $this->model->getProperty()
+            ->indexBy('property_id')
+            ->all();
+
 
         $allProperty = Property::find()->indexBy('id')->all();
 

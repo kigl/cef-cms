@@ -23,5 +23,4 @@ use yii\helpers\Html;
     </div>
 </div>
 
-
 <?php \yii\widgets\Pjax::end(); ?>

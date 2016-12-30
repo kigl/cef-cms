@@ -6,15 +6,18 @@
  */
 
 
+/**
+ * @todo
+ * лапшекод, много условных операторов, продумать структура, разнести обязаннасти
+ */
+
 namespace app\modules\shop\components\cart;
 
 
 use Yii;
 use yii\base\Component;
 use yii\data\ActiveDataProvider;
-use yii\data\Sort;
-use yii\web\Cookie;
-use yii\web\HttpException;
+use app\modules\shop\models\base\Order;
 
 class Cart extends Component implements CartInterface
 {
@@ -26,26 +29,52 @@ class Cart extends Component implements CartInterface
 
     public $productModelClass;
 
-    public $cookieKey = 'cart';
+    public $cookieName = 'cart';
 
-    public $cookieTimeDays = 1;
+    public $cookieExpire;
+
+    protected $cartCookie;
 
     protected $order = null;
+
+    public function __construct(
+        CartCookie $cartCookie,
+        $config = [])
+    {
+        $this->cartCookie = $cartCookie;
+        parent::__construct($config);
+    }
+
+    public function init()
+    {
+        $this->cartCookie->setName($this->cookieName);
+        $this->cartCookie->setExpire($this->cookieExpire);
+
+        parent::init();
+    }
 
     public function add($productId, $qty = 1)
     {
         $cartModelClass = $this->cartModelClass;
         $qty = (int)$qty;
 
-        $cart = $cartModelClass::findOne(['order_id' => $this->getOrder()->id, 'product_id' => $productId]);
+        $cart = $cartModelClass::find()
+            ->where(['order_id' => $this->getOrder()->id, 'product_id' => $productId])
+            ->with('product')
+            ->one();
 
         if (!$cart) {
             $cart = new $cartModelClass;
         }
 
+        if ($cart->qty == $qty) {
+            return null;
+        }
+
         $cart->product_id = $productId;
         $cart->order_id = $this->getOrder()->id;
         $cart->qty = (int)$qty;
+        $cart->price = $cart->product->price;
 
         if ($cart->qty == self::ZERO_QTY) {
             return $cart->delete();
@@ -58,7 +87,10 @@ class Cart extends Component implements CartInterface
     {
         $cartModelClass = $this->cartModelClass;
 
-        $model = $cartModelClass::find()->select('id')->where(['id' => $productId])->one();
+        $model = $cartModelClass::find()
+            ->select('id')
+            ->where(['id' => $productId])
+            ->one();
 
         if ($model) {
             return $model->delete();
@@ -96,30 +128,50 @@ class Cart extends Component implements CartInterface
         return array_sum($result);
     }
 
+    public function getDataProvider()
+    {
+        $orderId = $this->getOrderId();
+        $cartModelClass = $this->cartModelClass;
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $cartModelClass::find()
+                ->indexBy('id')
+                ->where(['order_id' => $orderId])
+                ->with(['product']),
+            'sort' => false,
+        ]);
+
+        return $dataProvider;
+    }
+
     public function getOrder()
     {
         $model = $this->orderModelClass;
 
         if ($this->order === null) {
-            $orderId = $this->getOrderIdFromCookie();
+            $orderId = $this->getOrderId();
 
-            $this->order = $model::find()->with('cart.product')->where(['id' => $orderId])->one();
+            $this->order = $model::find()
+                ->with('cart.product')
+                ->where(['id' => $orderId])
+                ->one();
         }
+
+        $this->setUser($this->order, Yii::$app->user->id);
 
         return $this->order;
     }
 
-    public function getDataProvider()
+    protected function setUser(Order $order, $userId)
     {
-        $orderId = $this->getOrderIdFromCookie();
-        $cartModelClass = $this->cartModelClass;
+        if (!Yii::$app->user->isGuest) {
+            if (!isset($order->user_id)) {
+                $order->user_id = $userId;
+                return $order->save(false);
+            }
+        }
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => $cartModelClass::find()->indexBy('id')->where(['order_id' => $orderId])->with(['product']),
-            'sort' => false,
-        ]);
-
-        return $dataProvider;
+        return false;
     }
 
     public function createOrder()
@@ -137,41 +189,18 @@ class Cart extends Component implements CartInterface
         return false;
     }
 
-    protected function getOrderIdFromCookie()
+    protected function getOrderId()
     {
-        if (Yii::$app->request->cookies->has($this->cookieKey)) {
-            $cookieValue = Yii::$app->request->cookies->get($this->cookieKey);
+        if ($orderId = $this->cartCookie->getRequestValue()) {
+            $this->cartCookie->create($orderId);
 
-            $this->createCookie($cookieValue);
-
-            return $this->getResponseCookieValue();
+            return $this->cartCookie->getResponseValue();
         }
 
         if ($this->createOrder()) {
-            $this->createCookie($this->order->id);
+            $this->cartCookie->create($this->order->id);
 
-            return $this->getResponseCookieValue();
+            return $this->cartCookie->getResponseValue();
         }
-
-        throw new HttpException(500);
-    }
-
-    protected function createCookie($value)
-    {
-        Yii::$app->response->cookies->add(new Cookie([
-            'name' => $this->cookieKey,
-            'value' => $value,
-            'expire' => $this->getCookieTime(),
-        ]));
-    }
-
-    protected function getResponseCookieValue()
-    {
-        return Yii::$app->response->cookies->get($this->cookieKey)->value;
-    }
-
-    protected function getCookieTime()
-    {
-        return time() + 3600 * 24 * $this->cookieTimeDays;
     }
 }
