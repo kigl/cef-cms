@@ -49,7 +49,7 @@ return [
             'orderModelClass' => \app\modules\shop\models\base\Order::className(),
             'cartModelClass' => \app\modules\shop\models\base\Cart::className(),
             'cookieName' => 'cart',
-            'cookieExpire' => time() * 3600 * 24 *1,
+            'cookieExpire' => time() * 3600 * 24 * 1,
         ],
         'urlManager' => [
             'rules' => [

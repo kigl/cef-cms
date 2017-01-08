@@ -12,6 +12,7 @@ class m161230_111153_shop_order_field extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string()->unique(),
             'type' => $this->integer(),
+            'required' => $this->integer(),
         ]);
 
         $this->createIndex('ix-order_field-name', $this->tableName, 'name');

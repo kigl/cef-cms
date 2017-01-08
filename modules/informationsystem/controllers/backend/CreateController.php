@@ -18,7 +18,7 @@ class CreateController extends BackendController
             'system' => [
                 'class' => 'app\core\actions\Create',
                 'model' => '\app\modules\informationsystem\models\Informationsystem',
-                'views' => 'system',
+                'view' => 'system',
                 'redirect' => ['manager/system'],
             ],
         ];

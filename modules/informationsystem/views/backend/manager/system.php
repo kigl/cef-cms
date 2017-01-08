@@ -18,7 +18,7 @@ use app\modules\admin\widgets\grid\GridView;
         [
             'attribute' => 'name',
             'format' => 'raw',
-            'views' => function ($data) {
+            'value' => function ($data) {
                 return Html::a(Html::encode($data->name), Url::to([
                     'manager/group',
                     'informationsystem_id' => $data->id,

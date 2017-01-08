@@ -28,16 +28,7 @@ class GroupController extends FrontendController
         if ($modelService->hasError($modelService::ERROR_NOT_MODEL)) {
             throw new HttpException(404);
         }
-
-        /*
-        if ($modelService->hasError($modelService::ERROR_NOT_MODEL_ALIAS)) {
-            $this->redirect([
-                '/shop/group/view',
-                'id' => $id,
-                'alias' => $modelService->getData('model')->alias
-            ], 301);
-        }*/
-
+        
         $viewService = (new GroupViewService())->setData($modelService->getData());
 
         return $this->render('view', [

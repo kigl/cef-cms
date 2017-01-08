@@ -23,9 +23,12 @@ class OrderController extends FrontendController
             'post' => Yii::$app->request->post(),
             'orderId' => Yii::$app->cart->getOrderId(),
         ]);
+        $modelService->actionIndex();
 
         $viewService = (new OrderViewService())->setData($modelService->getData());
 
-        return $this->render('index', ['data' => $viewService]);
+
+
+        //return $this->render('index', ['data' => $viewService]);
     }
 }

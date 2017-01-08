@@ -11,7 +11,7 @@ use app\core\db\ActiveRecord;
  * @property integer $id
  * @property integer $product_id
  * @property integer $property_id
- * @property string $views
+ * @property string $value
  */
 class ProductProperty extends ActiveRecord
 {

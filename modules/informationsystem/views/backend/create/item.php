@@ -11,8 +11,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
 
 <?php $form = ActiveForm::begin(); ?>
 
-<?= $form->field($model, 'informationsystem_id')->hiddenInput(['views' => $informationsystem_id])->label(false);?>
-<?= $form->field($model, 'group_id')->hiddenInput(['views' => $group_id])->label(false);?>
+<?= $form->field($model, 'informationsystem_id')->hiddenInput(['value' => $informationsystem_id])->label(false);?>
+<?= $form->field($model, 'group_id')->hiddenInput(['value' => $group_id])->label(false);?>
 
 <?= $form->errorSummary($model); ?>
 

@@ -84,10 +84,12 @@ use app\modules\shop\models\Property;
     <div class="tab-pane" id="property">
         <?php foreach ($data->getProperty() as $value): ?>
             <?php if ($value->property->type === Property::TYPE_STRING) : ?>
-                <?= $form->field($value, "[{$value->property_id}]value")->label($value->property->name); ?>
+                <?= $form->field($value, "[{$value->property_id}]value")
+                    ->label($value->property->name); ?>
             <?php elseif ($value->property->type === Property::TYPE_BOOLEAN) : ?>
-                <?= $form->field($value,
-                    "[{$value->property_id}]value")->checkbox(['label' => false])->label($value->property->name); ?>
+                <?= $form->field($value, "[{$value->property_id}]value")
+                    ->checkbox(['label' => false])
+                    ->label($value->property->name); ?>
             <?php endif; ?>
         <?php endforeach; ?>
     </div>

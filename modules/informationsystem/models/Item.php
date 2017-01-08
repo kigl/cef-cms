@@ -138,12 +138,6 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
                 'pathUrl' => Yii::$app->controller->module->getPublicPathUrl() . '/files',
             ],
             [
-                'class' => 'yii\behaviors\TimeStampBehavior',
-                'views' => new Expression('NOW()'),
-                'createdAtAttribute' => 'create_time',
-                'updatedAtAttribute' => 'update_time',
-            ],
-            [
                 'class' => TagBehavior::className(),
             ],
             'convertDate' => [

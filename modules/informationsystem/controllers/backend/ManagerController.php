@@ -46,8 +46,8 @@ class ManagerController extends BackendController
 
         $dataProviderGroup = new ActiveDataProvider([
             'query' => Group::find()
-                ->where('parent_id = :parent_id', [':parent_id' => $parent_id])
-                ->andWhere('informationsystem_id = :system_id', [':system_id' => $informationsystem_id]),
+                ->whereParentId($parent_id)
+                ->whereInformationsystemId($informationsystem_id),
         ]);
 
         return $this->render('group', [

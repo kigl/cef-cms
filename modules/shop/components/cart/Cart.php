@@ -106,23 +106,26 @@ class Cart extends Component implements CartInterface
 
     public function getCount()
     {
-        $order = $this->getOrder();
-
         $result = [];
-        foreach ($order->cart as $cart) {
-            $result[] = $cart->qty;
+        if ($cart = $this->getCart()) {
+            foreach ($cart as $item) {
+                $result[] = $item->qty;
+            }
         }
+
 
         return array_sum($result);
     }
 
+
     public function getSum()
     {
-        $order = $this->getOrder();
-
         $result = [];
-        foreach ($order->cart as $cart) {
-            $result[] = $cart->qty * $cart->product->price;
+
+        if ($cart = $this->getCart()) {
+            foreach ($cart as $item) {
+                $result[] = $item->qty * $item->product->price;
+            }
         }
 
         return array_sum($result);
@@ -162,8 +165,21 @@ class Cart extends Component implements CartInterface
         return $this->order;
     }
 
-    protected function setUser(Order $order, $userId)
+    public function getCart()
     {
+        if ($order = $this->getOrder()) {
+            return $order->cart;
+        }
+
+        return null;
+    }
+
+    protected function setUser(Order $order = null, $userId)
+    {
+        if ($order === null) {
+            return false;
+        }
+
         if (!Yii::$app->user->isGuest) {
             if (!isset($order->user_id)) {
                 $order->user_id = $userId;
@@ -189,8 +205,13 @@ class Cart extends Component implements CartInterface
         return false;
     }
 
-    protected function getOrderId()
+    public function getOrderId()
     {
+
+        /**
+         * @todo
+         * Если заказ удален, а кука с номером заказа жива, то ошибка
+         */
         if ($orderId = $this->cartCookie->getRequestValue()) {
             $this->cartCookie->create($orderId);
 

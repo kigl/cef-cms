@@ -12,6 +12,7 @@ namespace app\modules\shop\service\frontend;
 use app\modules\shop\models\base\Order;
 use app\modules\shop\models\base\OrderField;
 use app\core\service\ModelService;
+use app\modules\shop\models\base\OrderFieldRelation;
 
 class OrderModelService extends ModelService
 {
@@ -42,5 +43,11 @@ class OrderModelService extends ModelService
         $allProperty = OrderField::find()
             ->indexBy('id')
             ->all();
+
+        foreach (array_diff_key($allProperty, $field) as $item) {
+            $field[$item->id] = new OrderFieldRelation(['field_id' => $item->id]);
+        }
+        
+        return $field;
     }
 }

@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property integer $type
+ * @property  integer $required
  *
  * @property ShopOrderFieldRelation[] $shopOrderFieldRelations
  */
@@ -29,9 +30,11 @@ class OrderField extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            ['name', 'required'],
             [['type'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['name'], 'unique'],
+            ['required'],
         ];
     }
 

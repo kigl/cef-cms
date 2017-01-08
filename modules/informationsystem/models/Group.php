@@ -83,12 +83,6 @@ class Group extends \app\core\db\ActiveRecord
                 'pathUrl' => Yii::$app->getModule('informationsystem')->getPublicPathUrl() . '/images',
             ],
             [
-                'class' => TimestampBehavior::className(),
-                'views' => new Expression('NOW()'),
-                'createdAtAttribute' => 'create_time',
-                'updatedAtAttribute' => 'update_time',
-            ],
-            [
                 'class' => 'app\core\behaviors\GenerateAlias',
                 'text' => 'name',
                 'alias' => 'alias',
@@ -161,5 +155,10 @@ class Group extends \app\core\db\ActiveRecord
         }
 
         return (!empty($result))? $result : false;
+    }
+
+    public static function find()
+    {
+        return new GroupQuery(get_called_class());
     }
 }

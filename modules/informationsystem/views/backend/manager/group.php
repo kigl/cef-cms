@@ -39,7 +39,7 @@ $this->params['toolbar'] = [
         [
             'attribute' => 'name',
             'format' => 'raw',
-            'views' => function ($data) {
+            'value' => function ($data) {
                 return Html::a($data->name,
                     ['group', 'parent_id' => $data->id, 'informationsystem_id' => $data->informationsystem_id]);
             }
@@ -72,7 +72,7 @@ $this->params['toolbar'] = [
         [
             'attribute' => 'name',
             'format' => 'raw',
-            'views' => function ($data) {
+            'value' => function ($data) {
                 return $data->name . "&nbsp;&nbsp;&nbsp;<span class='small'>(" . Yii::$app->formatter->asDate($data->create_time) . ")</span>";
             },
         ],

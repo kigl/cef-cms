@@ -66,19 +66,7 @@ class ProductViewService extends ViewService
 
         return $title;
     }
-
-    public function getUrl($route = '/shop/product/views')
-    {
-        $id = $this->isAlias() ? $this->getAlias : $this->getId();
-
-        return Url::to([$route, 'id' => $id]);
-    }
-
-    protected function isAlias()
-    {
-        return Yii::$app->getModule('shop')->urlAlias;
-    }
-
+    
     public function getMainImage()
     {
         $data = $this->getData('mainImage');
