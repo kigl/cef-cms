@@ -21,17 +21,20 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
     <div class="row">
         <div class="col-md-4">
             <?= $form->field($model, 'date')->widget(DatePicker::className(), [
-                'options' => ['class' => 'form-control']
+                'options' => ['class' => 'form-control'],
+                'dateFormat' => 'dd-MM-yyyy',
             ]); ?>
         </div>
         <div class="col-md-4">
             <?= $form->field($model, 'date_start')->widget(DatePicker::className(), [
-                'options' => ['class' => 'form-control']
+                'options' => ['class' => 'form-control'],
+                'dateFormat' => 'dd-MM-yyyy',
             ]); ?>
         </div>
         <div class="col-md-4">
             <?= $form->field($model, 'date_end')->widget(DatePicker::className(), [
-                'options' => ['class' => 'form-control']
+                'options' => ['class' => 'form-control'],
+                'dateFormat' => 'dd-MM-yyyy',
             ]); ?>
         </div>
     </div>

@@ -17,15 +17,16 @@ abstract class ModelService implements ModelServiceInterface
     const ERROR_NOT_MODEL = 1;
     const ERROR_NOT_MODEL_ALIAS = 2;
 
-    protected $model;
+    const ACTION_VALIDATE = 1;
+    const ACTION_SAVE = 2;
 
-    protected $requestData = [];
+    protected $model;
 
     protected $data = [];
 
-    protected $viewData = [];
-
     protected $error;
+
+    protected $actions = [];
 
     public function load()
     {
@@ -45,11 +46,6 @@ abstract class ModelService implements ModelServiceInterface
     public function delete()
     {
         return $this->model->delete();
-    }
-
-    public function setRequestData(array $data)
-    {
-        $this->requestData = $data;
     }
 
     /**
@@ -77,23 +73,6 @@ abstract class ModelService implements ModelServiceInterface
         return $this->data;
     }
 
-    /**
-     * @param $name
-     * @param null $data
-     * @return mixed
-     * @throws Exception
-     */
-    public function getRequestData($name, $data = null)
-    {
-        if (!key_exists($name, $this->requestData)) {
-            throw new Exception(Yii::t('app', 'Not exist views: {views}', ['views' => $name]));
-        } elseif (($data !== null) and (!key_exists($data, $this->requestData[$name]))) {
-            throw new Exception(Yii::t('app', 'Not exist views: {views}', ['views' => $data]));
-        }
-
-        return $data ? $this->requestData[$name][$data] : $this->requestData[$name];
-    }
-
     public function hasData($name, $data = null)
     {
         if (!key_exists($name, $this->data)) {
@@ -103,14 +82,6 @@ abstract class ModelService implements ModelServiceInterface
         }
 
         return true;
-    }
-
-    /**
-     * @return Model
-     */
-    public function getModel()
-    {
-        return $this->model;
     }
 
     protected function setError($constError)
@@ -123,11 +94,13 @@ abstract class ModelService implements ModelServiceInterface
         return $this->error === $constError ? true : false;
     }
 
-    /*
-    public function getFind()
+    public function setAction($action)
     {
-        $class = get_class($this->model);
-        return $class::find();
+        $this->actions[] = $action;
     }
-    */
+
+    public function hasAction($action)
+    {
+        return in_array($action, $this->actions);
+    }
 }

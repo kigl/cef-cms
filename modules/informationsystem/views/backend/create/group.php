@@ -3,45 +3,45 @@ use yii\jui\DatePicker;
 use app\modules\admin\widgets\ActiveForm;
 use vova07\imperavi\Widget;
 
-$this->params['breadcrumbs'] = $breadcrumbs;
+//$this->params['breadcrumbs'] = $breadcrumbs;
 ?>
 
 <?php $form = ActiveForm::begin();?>
 
-<?= $form->errorSummary($model);?>
+<?= $form->errorSummary($data->getModel());?>
 
-<?= $form->field($model, 'informationsystem_id')->hiddenInput(['value' => $informationsystem_id])->label(false);?>
-<?= $form->field($model, 'parent_id')->hiddenInput(['value' => $parent_id])->label(false);?>
+<?= $form->field($data->getModel(), 'informationsystem_id')->hiddenInput(['value' => $data->getInformationsystemId()])->label(false);?>
+<?= $form->field($data->getModel(), 'parent_id')->hiddenInput(['value' => $data->getParentId()])->label(false);?>
 
     <div class="row">
         <div class="col-md-12">
-            <?= $form->field($model, 'name');?>
+            <?= $form->field($data->getModel(), 'name');?>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6">
-            <?= $form->field($model, 'image')->fileInput();?>
+            <?= $form->field($data->getModel(), 'image')->fileInput();?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($model, 'sort');?>
+            <?= $form->field($data->getModel(), 'sort');?>
         </div>
     </div>
 
 
-<?= $form->field($model, 'description')->textArea();?>
+<?= $form->field($data->getModel(), 'description')->textArea();?>
 
-<?= $form->field($model, 'content')->widget(Widget::className(), [
+<?= $form->field($data->getModel(), 'content')->widget(Widget::className(), [
     'settings' => [
         'lang' => 'ru',
         'minHeight' => 400,
     ],
 ]);?>
 
-<?= $form->field($model, 'alias');?>
+<?= $form->field($data->getModel(), 'alias');?>
 
-<?= $form->field($model, 'meta_title');?>
+<?= $form->field($data->getModel(), 'meta_title');?>
 
-<?= $form->field($model, 'meta_description')->textArea();?>
+<?= $form->field($data->getModel(), 'meta_description')->textArea();?>
 
 <?php ActiveForm::end();?>

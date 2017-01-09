@@ -4,46 +4,46 @@ use app\modules\admin\widgets\imageInForm\Widget as ImageInForm;
 use app\modules\admin\widgets\ActiveForm;
 use vova07\imperavi\Widget;
 
-$this->params['breadcrumbs'] = $breadcrumbs;
+//$this->params['breadcrumbs'] = $breadcrumbs;
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
 
-<?= $form->errorSummary($model); ?>
+<?= $form->errorSummary($data->getModel()); ?>
 
     <div class="row">
         <div class="col-md-12">
-            <?= $form->field($model, 'name'); ?>
+            <?= $form->field($data->getModel(), 'name'); ?>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6">
             <?= ImageInForm::widget([
-                'model' => $model,
+                'model' => $data->getModel(),
                 'attribute' => 'image',
             ]);
             ?>
-            <?= $form->field($model, 'image')->fileInput(); ?>
+            <?= $form->field($data->getModel(), 'image')->fileInput(); ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($model, 'sort'); ?>
+            <?= $form->field($data->getModel(), 'sort'); ?>
         </div>
     </div>
 
-<?= $form->field($model, 'description')->textArea(); ?>
+<?= $form->field($data->getModel(), 'description')->textArea(); ?>
 
-<?= $form->field($model, 'content')->widget(Widget::className(), [
+<?= $form->field($data->getModel(), 'content')->widget(Widget::className(), [
     'settings' => [
         'lang' => 'ru',
         'minHeight' => 400,
     ],
 ]); ?>
 
-<?= $form->field($model, 'alias'); ?>
+<?= $form->field($data->getModel(), 'alias'); ?>
 
-<?= $form->field($model, 'meta_title'); ?>
+<?= $form->field($data->getModel(), 'meta_title'); ?>
 
-<?= $form->field($model, 'meta_description')->textArea(); ?>
+<?= $form->field($data->getModel(), 'meta_description')->textArea(); ?>
 
 <?php ActiveForm::end(); ?>

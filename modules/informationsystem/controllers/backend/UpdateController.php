@@ -3,6 +3,8 @@
 namespace app\modules\informationsystem\controllers\backend;
 
 use Yii;
+use app\modules\informationsystem\service\backend\GroupModelService;
+use app\modules\informationsystem\service\backend\GroupViewService;
 use app\modules\informationsystem\components\BackendController;
 use app\modules\informationsystem\models\Group;
 use app\modules\informationsystem\models\Item;
@@ -26,21 +28,25 @@ class UpdateController extends BackendController
 
     public function actionGroup($id)
     {
-        $model = Group::findOne($id);
+        $modelService = new GroupModelService();
+        $modelService->setData([
+            'post' => Yii::$app->request->post(),
+            'get' => Yii::$app->request->getQueryParams(),
+        ]);
+        $modelService->actionUpdate();
 
-        if ($model->load(Yii::$app->request->post()) and $model->save()) {
+        $viewService = (new GroupViewService())->setData($modelService->getData());
+
+        if ($modelService->hasAction($modelService::ACTION_SAVE)) {
 
             return $this->redirect([
                 'manager/group',
-                'parent_id' => $model->parent_id,
-                'informationsystem_id' => $model->informationsystem_id,
+                'parent_id' => $modelService->getData('parentId'),
+                'informationsystem_id' => $modelService->getData('informationsystemId'),
             ]);
         }
 
-        return $this->render('group', [
-            'model' => $model,
-            'breadcrumbs' => Group::buildBreadcrumbs($model->id, $model->informationsystem_id),
-        ]);
+        return $this->render('group', ['data' => $viewService]);
     }
 
     public function actionItem($id)

@@ -75,12 +75,16 @@ class ProductModelService extends ModelService
         return $this->property;
     }
 
-    public function create()
+    public function actionCreate()
     {
         $this->model = new Product();
-        $this->model->group_id = $this->getRequestData('get', 'group_id');
+        $this->model->group_id = $this->getData('get', 'group_id');
 
         $this->init();
+
+        if ($this->load() and $this->save()) {
+            $this->setAction(self::ACTION_SAVE);
+        }
 
         $this->setData([
             'model' => $this->model,
@@ -90,11 +94,15 @@ class ProductModelService extends ModelService
         ]);
     }
 
-    public function update()
+    public function actionUpdate()
     {
-        $this->model = Product::findOne($this->getRequestData('get', 'id'));
+        $this->model = Product::findOne($this->getData('get', 'id'));
 
         $this->init();
+
+        if ($this->load() and $this->save()) {
+            $this->setAction(self::ACTION_SAVE);
+        }
 
         $this->setData([
             'model' => $this->model,
@@ -133,7 +141,7 @@ class ProductModelService extends ModelService
      */
     public function load()
     {
-        $post = $this->getRequestData('post');
+        $post = $this->getData('post');
 
         $result = $this->model->load($post);
 

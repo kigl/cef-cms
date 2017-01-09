@@ -3,11 +3,11 @@
 namespace app\modules\informationsystem\models;
 
 use Yii;
-use yii\db\Expression;
 use yii\helpers\ArrayHelper;
 use app\modules\informationsystem\models\Informationsystem as System;
 use app\modules\informationsystem\components\TagBehavior;
 use app\modules\user\models\User;
+use yii\validators\DateValidator;
 
 /**
  * This is the model class for table "mn_informationsystem_item".
@@ -55,7 +55,7 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
     {
         return [
             [['group_id', 'informationsystem_id', 'status', 'sort', 'user_id'], 'integer'],
-            [['date', 'date_start', 'date_end'], 'date'],
+            [['date', 'date_start', 'date_end'], 'date', 'format' => 'yyyy-MM-dd'],
             [['name'], 'required'],
             [['content'], 'string'],
             [['name'], 'string', 'max' => 255],

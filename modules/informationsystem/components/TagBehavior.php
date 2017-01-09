@@ -83,7 +83,8 @@ class TagBehavior extends \yii\base\Behavior
     public function getTags()
     {
         return Tag::find()
-            ->leftJoin(TagRelations::tableName() . ' r', 'id = r.tag_id')
+            ->alias('m')
+            ->leftJoin(TagRelations::tableName() . ' r', 'm.id = r.tag_id')
             ->where('r.item_id = :id', [':id' => $this->owner->id])
             ->asArray()
             ->all();

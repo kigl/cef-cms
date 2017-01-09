@@ -14,11 +14,5 @@ interface ModelServiceInterface
 
     public function setData(array $data);
 
-    public function setRequestData(array $data);
-
-    public function getModel();
-
     public function getData();
-
-    public function getRequestData($name, $data);
 }

@@ -16,17 +16,18 @@ class ProductController extends BackendController
     public function actionCreate($group_id)
     {
         $modelService = new ProductModelService();
-        $modelService->setRequestData([
+        $modelService->setData([
                 'post' => Yii::$app->request->post(),
                 'get' => Yii::$app->request->getQueryParams(),
             ]
         );
-        $modelService->create();
+        $modelService->actionCreate();
+
         $viewService = (new ProductViewService())->setData($modelService->getData());
 
-        if ($modelService->load() and $modelService->save()) {
+        if ($modelService->hasAction($modelService::ACTION_SAVE)) {
 
-            return $this->redirect(['product/update', 'id' => $modelService->getModel()->id]);
+            return $this->redirect(['product/update', 'id' => $modelService->getData('model')->id]);
         }
 
         return $this->render('create', ['data' => $viewService]);
@@ -35,17 +36,17 @@ class ProductController extends BackendController
     public function actionUpdate($id)
     {
         $modelService = new ProductModelService();
-        $modelService->setRequestData([
+        $modelService->setData([
             'post' => Yii::$app->request->post(),
             'get' => Yii::$app->request->getQueryParams(),
         ]);
-        $modelService->update();
+        $modelService->actionUpdate();
 
         $viewService = (new ProductViewService())->setData($modelService->getData());
 
-        if ($modelService->load() and $modelService->save()) {
+        if ($modelService->hasAction($modelService::ACTION_SAVE)) {
 
-            return $this->redirect(['product/update', 'id' => $viewService->getId()]);
+            return $this->redirect(['product/update', 'id' => $modelService->getData('model')->id]);
         }
 
         return $this->render('update', [

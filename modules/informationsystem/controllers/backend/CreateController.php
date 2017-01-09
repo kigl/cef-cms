@@ -2,6 +2,9 @@
 
 namespace app\modules\informationsystem\controllers\backend;
 
+use app\modules\informationsystem\service\backend\GroupModelService;
+use app\modules\informationsystem\service\backend\GroupViewService;
+use app\modules\informationsystem\service\backend\ItemModelService;
 use Yii;
 use app\modules\informationsystem\components\BackendController;
 use app\modules\informationsystem\models\Group;
@@ -26,44 +29,46 @@ class CreateController extends BackendController
 
     public function actionGroup($informationsystem_id, $parent_id = 0)
     {
-        $model = new Group;
+        $modelService = new GroupModelService();
+        $modelService->setData([
+            'post' => Yii::$app->request->post(),
+            'get' => Yii::$app->request->getQueryParams(),
+        ]);
+        $modelService->actionCreate();
 
-        if ($model->load(Yii::$app->request->post()) and $model->save()) {
+        $viewService = (new GroupViewService())->setData($modelService->getData());
 
+        if ($modelService->hasAction($modelService::ACTION_SAVE)) {
             return $this->redirect([
                 'manager/group',
-                'parent_id' => $parent_id,
-                'informationsystem_id' => $informationsystem_id,
+                'parent_id' => $modelService->getData('parentId'),
+                'informationsystem_id' => $modelService->getData('informationsystemId'),
             ]);
         }
 
-        return $this->render('group', [
-            'model' => $model,
-            'breadcrumbs' => Group::buildBreadcrumbs($parent_id, $informationsystem_id),
-            'informationsystem_id' => $informationsystem_id,
-            'parent_id' => $parent_id,
-        ]);
+        return $this->render('group', ['data' => $viewService]);
     }
 
     public function actionItem($group_id = 0, $informationsystem_id)
     {
-        $model = new Item;
+        $modelService = new ItemModelService();
+        $modelService->setData([
+            'post' => Yii::$app->request->post(),
+            'get' => Yii::$app->request->getQueryParams(),
+        ]);
+        $modelService->actionCreate();
 
-        if ($model->load(Yii::$app->request->post()) and $model->save()) {
+        $viewService = (new GroupViewService())->setData($modelService->getData());
 
+        if ($modelService->hasAction($modelService::ACTION_SAVE)) {
             return $this->redirect([
                 'manager/group',
-                'parent_id' => $group_id,
-                'informationsystem_id' => $informationsystem_id,
+                'parent_id' => $modelService->getData('groupId'),
+                'informationsystem_id' => $modelService->getData('informationsystemId'),
             ]);
         }
 
-        return $this->render('item', [
-            'model' => $model,
-            'breadcrumbs' => Group::buildBreadcrumbs($group_id, $informationsystem_id),
-            'informationsystem_id' => $informationsystem_id,
-            'group_id' => $group_id,
-        ]);
+        return $this->render('item', ['data' => $viewService]);
     }
 
     public function actionTag($informationsystem_id)
