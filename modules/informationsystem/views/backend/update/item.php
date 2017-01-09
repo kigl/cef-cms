@@ -5,34 +5,32 @@ use app\modules\admin\widgets\ActiveForm;
 use app\modules\informationsystem\widgets\backend\fileInForm\Widget as FileInForm;
 use app\modules\informationsystem\widgets\backend\tagEditor\TagEditor;
 
-$this->params['breadcrumbs'] = $breadcrumbs;
-$this->params['breadcrumbs'][] = ['label' => $model->name];
 ?>
 
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-<?= $form->errorSummary($model); ?>
+<?= $form->errorSummary($data->getModel()); ?>
 
     <div class="row">
         <div class="col-md-12">
-            <?= $form->field($model, 'name'); ?>
+            <?= $form->field($data->getModel(), 'name'); ?>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <?= $form->field($model, 'date')->widget(DatePicker::className(), [
+            <?= $form->field($data->getModel(), 'date')->widget(DatePicker::className(), [
                 'options' => ['class' => 'form-control'],
                 'dateFormat' => 'dd-MM-yyyy',
             ]); ?>
         </div>
         <div class="col-md-4">
-            <?= $form->field($model, 'date_start')->widget(DatePicker::className(), [
+            <?= $form->field($data->getModel(), 'date_start')->widget(DatePicker::className(), [
                 'options' => ['class' => 'form-control'],
                 'dateFormat' => 'dd-MM-yyyy',
             ]); ?>
         </div>
         <div class="col-md-4">
-            <?= $form->field($model, 'date_end')->widget(DatePicker::className(), [
+            <?= $form->field($data->getModel(), 'date_end')->widget(DatePicker::className(), [
                 'options' => ['class' => 'form-control'],
                 'dateFormat' => 'dd-MM-yyyy',
             ]); ?>
@@ -41,39 +39,39 @@ $this->params['breadcrumbs'][] = ['label' => $model->name];
 
     <div class="row">
         <div class="col-md-6">
-            <?= $form->field($model, 'status')->dropDownList($model->getStatusList()); ?>
+            <?= $form->field($data->getModel(), 'status')->dropDownList($data->getModel()->getStatusList()); ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($model, 'sort'); ?>
+            <?= $form->field($data->getModel(), 'sort'); ?>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4">
-            <?= $form->field($model, 'image')->widget(FileInForm::className(), [
+            <?= $form->field($data->getModel(), 'image')->widget(FileInForm::className(), [
                 'deleteKey' => 'deleteImage',
                 'behaviorName' => 'imageUpload'
             ]); ?>
         </div>
         <div class="col-md-4">
-            <?= $form->field($model, 'video')->widget(FileInForm::className(), [
+            <?= $form->field($data->getModel(), 'video')->widget(FileInForm::className(), [
                 'deleteKey' => 'deleteVideo',
                 'behaviorName' => 'videoUpload',
             ]); ?>
         </div>
         <div class="col-md-4">
-            <?= $form->field($model, 'file')->widget(FileInForm::className(), [
+            <?= $form->field($data->getModel(), 'file')->widget(FileInForm::className(), [
                 'deleteKey' => 'deleteFile',
                 'behaviorName' => 'fileUpload',
             ]); ?>
         </div>
     </div>
 
-<?= $form->field($model, 'editorTag')->widget(TagEditor::className(), []); ?>
+<?= $form->field($data->getModel(), 'editorTag')->widget(TagEditor::className(), []); ?>
 
-<?= $form->field($model, 'description')->textArea(); ?>
+<?= $form->field($data->getModel(), 'description')->textArea(); ?>
 
-<?= $form->field($model, 'content')->widget(Widget::className(), [
+<?= $form->field($data->getModel(), 'content')->widget(Widget::className(), [
     'settings' => [
         'lang' => 'ru',
         'minHeight' => 400,

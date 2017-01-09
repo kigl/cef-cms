@@ -177,4 +177,9 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
     {
         return ArrayHelper::getValue($this->getStatusList(), $number);
     }
+
+    public static function find()
+    {
+        return new ItemQuery(get_called_class());
+    }
 }

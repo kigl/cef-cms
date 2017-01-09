@@ -13,13 +13,18 @@ use yii\db\ActiveQuery;
 
 class GroupQuery extends ActiveQuery
 {
-    public function whereParentId($parentId)
+    public function parentId($parentId)
     {
         return $this->where('parent_id = :parent_id', [':parent_id' => $parentId]);
     }
 
-    public function whereInformationsystemId($id)
+    public function informationsystemId($id)
     {
         return $this->andWhere('informationsystem_id = :system_id', [':system_id' => $id]);
+    }
+
+    public function byId($id)
+    {
+        return $this->where('id = :id', [':id' => $id]);
     }
 }

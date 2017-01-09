@@ -17,8 +17,8 @@ abstract class ModelService implements ModelServiceInterface
     const ERROR_NOT_MODEL = 1;
     const ERROR_NOT_MODEL_ALIAS = 2;
 
-    const ACTION_VALIDATE = 1;
-    const ACTION_SAVE = 2;
+    const EXECUTED_ACTION_VALIDATE = 1;
+    const EXECUTED_ACTION_SAVE = 2;
 
     protected $model;
 
@@ -26,7 +26,7 @@ abstract class ModelService implements ModelServiceInterface
 
     protected $error;
 
-    protected $actions = [];
+    protected $executedActions = [];
 
     public function load()
     {
@@ -94,13 +94,13 @@ abstract class ModelService implements ModelServiceInterface
         return $this->error === $constError ? true : false;
     }
 
-    public function setAction($action)
+    public function setExecutedAction($action)
     {
-        $this->actions[] = $action;
+        $this->executedActions[] = $action;
     }
 
-    public function hasAction($action)
+    public function hasExecutedAction($action)
     {
-        return in_array($action, $this->actions);
+        return in_array($action, $this->executedActions);
     }
 }

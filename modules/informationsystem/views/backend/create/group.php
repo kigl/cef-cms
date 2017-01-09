@@ -10,9 +10,6 @@ use vova07\imperavi\Widget;
 
 <?= $form->errorSummary($data->getModel());?>
 
-<?= $form->field($data->getModel(), 'informationsystem_id')->hiddenInput(['value' => $data->getInformationsystemId()])->label(false);?>
-<?= $form->field($data->getModel(), 'parent_id')->hiddenInput(['value' => $data->getParentId()])->label(false);?>
-
     <div class="row">
         <div class="col-md-12">
             <?= $form->field($data->getModel(), 'name');?>

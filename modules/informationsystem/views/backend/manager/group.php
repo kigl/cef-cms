@@ -69,13 +69,7 @@ $this->params['toolbar'] = [
     ],
 
     'columns' => [
-        [
-            'attribute' => 'name',
-            'format' => 'raw',
-            'value' => function ($data) {
-                return $data->name . "&nbsp;&nbsp;&nbsp;<span class='small'>(" . Yii::$app->formatter->asDate($data->create_time) . ")</span>";
-            },
-        ],
+        'name',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',

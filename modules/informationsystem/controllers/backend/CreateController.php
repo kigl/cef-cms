@@ -5,6 +5,8 @@ namespace app\modules\informationsystem\controllers\backend;
 use app\modules\informationsystem\service\backend\GroupModelService;
 use app\modules\informationsystem\service\backend\GroupViewService;
 use app\modules\informationsystem\service\backend\ItemModelService;
+use app\modules\informationsystem\service\backend\TagModelService;
+use app\modules\informationsystem\service\backend\TagViewService;
 use Yii;
 use app\modules\informationsystem\components\BackendController;
 use app\modules\informationsystem\models\Group;
@@ -38,7 +40,7 @@ class CreateController extends BackendController
 
         $viewService = (new GroupViewService())->setData($modelService->getData());
 
-        if ($modelService->hasAction($modelService::ACTION_SAVE)) {
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
             return $this->redirect([
                 'manager/group',
                 'parent_id' => $modelService->getData('parentId'),
@@ -60,7 +62,7 @@ class CreateController extends BackendController
 
         $viewService = (new GroupViewService())->setData($modelService->getData());
 
-        if ($modelService->hasAction($modelService::ACTION_SAVE)) {
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
             return $this->redirect([
                 'manager/group',
                 'parent_id' => $modelService->getData('groupId'),
@@ -73,20 +75,23 @@ class CreateController extends BackendController
 
     public function actionTag($informationsystem_id)
     {
-        $model = new Tag;
+        $modelService = new TagModelService();
+        $modelService->setData([
+            'post' => Yii::$app->request->post(),
+            'get' => Yii::$app->request->getQueryParams(),
+        ]);
+        $modelService->actionCreate();
 
-        if ($model->load(Yii::$app->request->post()) and $model->save()) {
+        $viewService = (new TagViewService())->setData($modelService->getData());
+
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
             return $this->redirect([
                 'manager/tag',
-                'informationsystem_id' => $informationsystem_id,
+                'informationsystem_id' => $modelService->getData('informationsystemId'),
             ]);
         }
 
-        return $this->render('tag', [
-            'model' => $model,
-            'informationsytem_id' => $informationsystem_id,
-            'breadcrumbs' => Group::buildBreadcrumbs(null, $informationsystem_id),
-        ]);
+        return $this->render('tag', ['data' => $viewService]);
     }
 }

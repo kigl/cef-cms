@@ -52,4 +52,9 @@ class Tag extends \app\core\db\ActiveRecord
         return $this->hasMany(Item::className(), ['id' => 'item_id'])
             ->viaTable(TagRelations::tableName(), ['tag_id' => 'id']);
     }
+
+    public static function find()
+    {
+        return new ItemQuery(get_called_class());
+    }
 }

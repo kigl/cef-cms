@@ -83,7 +83,7 @@ class ProductModelService extends ModelService
         $this->init();
 
         if ($this->load() and $this->save()) {
-            $this->setAction(self::ACTION_SAVE);
+            $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 
         $this->setData([
@@ -101,7 +101,7 @@ class ProductModelService extends ModelService
         $this->init();
 
         if ($this->load() and $this->save()) {
-            $this->setAction(self::ACTION_SAVE);
+            $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 
         $this->setData([
@@ -224,7 +224,9 @@ class ProductModelService extends ModelService
 
     protected function processImage()
     {
-        $imageStatus = (isset($this->requestData['post'][Image::POST_STATUS_NAME])) ? (int)$this->requestData['post'][Image::POST_STATUS_NAME] : null;
+        $imageStatus = (isset($this->data['post'][Image::POST_STATUS_NAME]))
+            ? (int)$this->data['post'][Image::POST_STATUS_NAME]
+            : null;
 
         if (is_array($this->image)) {
             $img = $this->image;

@@ -24,9 +24,6 @@ class TagSearch extends Tag
 					'id' => SORT_DESC,
 				],
 			],
-			'pagination' => [
-				'pageSize' => Yii::$app->controller->module->itemsPerPage,
-			],
 		]);
 		
 		$this->load($params);
