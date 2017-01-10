@@ -25,8 +25,7 @@
         "kartik-v/yii2-money": "*",
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-editable": "^1.7",
-        "kartik-v/yii2-widget-touchspin": "^1.2",
-        "dektrium/yii2-rbac": "1.0.0-alpha@dev"
+        "kartik-v/yii2-widget-touchspin": "^1.2"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

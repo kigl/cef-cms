@@ -3,6 +3,7 @@
 namespace app\modules\user\controllers\backend;
 
 
+use app\modules\user\components\rbac\RbacService;
 use Yii;
 use yii\data\ActiveDataProvider;
 use app\modules\user\service\backend\UserModelService;
@@ -10,30 +11,31 @@ use app\modules\user\service\backend\UserViewService;
 use app\modules\user\components\BackendController;
 use app\modules\user\models\UserService;
 use app\modules\user\models\User;
+use yii\rbac\Item;
 
 class DefaultController extends BackendController
 {
 
-	public function actions()
-	{
-		return [
-			'delete' => [
-				'class' => 'app\core\actions\Delete',
-				'model' => '\app\modules\user\models\User',
-			],
-		];
-	}
+    public function actions()
+    {
+        return [
+            'delete' => [
+                'class' => 'app\core\actions\Delete',
+                'model' => '\app\modules\user\models\User',
+            ],
+        ];
+    }
 
-	public function actionManager()
-	{
-		$dataProvider = new ActiveDataProvider([
-				'query' => User::find(),
-				'sort' => ['attributes' => ['id', 'login', 'email', 'status']],
-			]);
-		return $this->render('manager', ['dataProvider' => $dataProvider]);
-	}
+    public function actionManager()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => User::find(),
+            'sort' => ['attributes' => ['id', 'login', 'email', 'status']],
+        ]);
+        return $this->render('manager', ['dataProvider' => $dataProvider]);
+    }
 
-	public function actionCreate()
+    public function actionCreate()
     {
         $modelService = new UserModelService();
         $modelService->actionCreate([
@@ -47,7 +49,7 @@ class DefaultController extends BackendController
         $viewService = (new UserViewService())->setData($modelService->getData());
 
         return $this->render('create', ['data' => $viewService]);
-     }
+    }
 
     public function actionUpdate($id)
     {

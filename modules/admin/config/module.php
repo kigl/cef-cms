@@ -3,12 +3,12 @@ return [
 	'modules' => [
 		'admin' => [
 			'class' => 'app\modules\admin\Module',
-            'modules' => [
+            /*'modules' => [
                 'rbac' => [
                     'class' => 'dektrium\rbac\RbacWebModule',
                     'layout' => '@app/modules/admin/views/layouts/column_2.php',
                 ],
-            ],
+            ],*/
 		],
 	],
 	
