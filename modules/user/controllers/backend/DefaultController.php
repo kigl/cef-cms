@@ -2,8 +2,11 @@
 
 namespace app\modules\user\controllers\backend;
 
+
 use Yii;
 use yii\data\ActiveDataProvider;
+use app\modules\user\service\backend\UserModelService;
+use app\modules\user\service\backend\UserViewService;
 use app\modules\user\components\BackendController;
 use app\modules\user\models\UserService;
 use app\modules\user\models\User;
@@ -32,30 +35,35 @@ class DefaultController extends BackendController
 
 	public function actionCreate()
     {
-        $model = new User();
-        $modelService = new UserService($model);
-        $modelService->setModelScenario(User::SCENARIO_INSERT);
+        $modelService = new UserModelService();
+        $modelService->actionCreate([
+            'post' => Yii::$app->request->post(),
+        ]);
 
-        if ($modelService->load(Yii::$app->request->post()) and $modelService->save()) {
-
-            return $this->redirect(['default/manager']);
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
+            return $this->redirect(['manager']);
         }
 
-        return $this->render('create', $modelService->getData());
+        $viewService = (new UserViewService())->setData($modelService->getData());
+
+        return $this->render('create', ['data' => $viewService]);
      }
 
     public function actionUpdate($id)
     {
-        $model = User::findOne($id);
-        $modelService = new UserService($model);
-        $modelService->setModelScenario(User::SCENARIO_UPDATE);
+        $modelService = new UserModelService();
+        $modelService->actionUpdate([
+            'get' => Yii::$app->request->getQueryParams(),
+            'post' => Yii::$app->request->post(),
+        ]);
 
-        if ($modelService->load(Yii::$app->request->post())) {
-            $modelService->save();
+        $viewService = (new UserViewService())->setData($modelService->getData());
+
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
             return $this->redirect(['default/manager']);
         }
 
-        return $this->render('update', $modelService->getData());
+        return $this->render('update', ['data' => $viewService]);
     }
 }

@@ -18,6 +18,7 @@ use app\modules\admin\widgets\menuTop\Widget as MenuTop;
             </div>
         </div>
     </div>
+
     <div class="row height-all">
         <div class="col-md-2 sidebar padding-left-5 height-all bg-theme">
             <?= MenuSidebar::widget(); ?>
@@ -28,14 +29,16 @@ use app\modules\admin\widgets\menuTop\Widget as MenuTop;
                     <div class="content">
                         <div class="row">
                             <div class="col-md-12">
-                                <?php echo Breadcrumbs::widget([
+                                <?php
+                                /* echo Breadcrumbs::widget([
                                     'homeLink' => [
                                         'label' => 'Главная',
                                         'url' => ['/admin/default/index'],
                                     ],
                                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                                     'activeItemTemplate' => "<li class=\"active\"><!--noindex-->{link}<!--/noindex--></li>",
-                                ]); ?>
+                                ]);*/
+                                ?>
                                 <?= Alert::widget(); ?>
                                 <?php if (isset($this->params['pageHeader'])) : ?>
                                     <div class="page-header">
@@ -60,6 +63,7 @@ use app\modules\admin\widgets\menuTop\Widget as MenuTop;
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-12 padding-top-50"></div>
     </div>

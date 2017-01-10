@@ -4,14 +4,6 @@ namespace app\core\service;
 
 interface ModelServiceInterface
 {
-    public function load();
-
-    public function validate();
-
-    public function save();
-
-    public function delete();
-
     public function setData(array $data);
 
     public function getData();

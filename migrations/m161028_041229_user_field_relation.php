@@ -11,7 +11,7 @@ class m161028_041229_user_field_relation extends Migration
         $this->createTable($this->tableName, [
             'user_id' => $this->integer(),
             'field_id' => $this->integer(),
-            'views' => $this->string(),
+            'value' => $this->string(),
         ]);
 
         $this->addPrimaryKey('pk-user_field_relation', $this->tableName, ['user_id', 'field_id']);

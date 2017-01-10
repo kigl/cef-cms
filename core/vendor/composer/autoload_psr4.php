@@ -18,6 +18,7 @@ return array(
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'vova07\\imperavi\\' => array($vendorDir . '/vova07/yii2-imperavi-widget/src'),
     'kartik\\touchspin\\' => array($vendorDir . '/kartik-v/yii2-widget-touchspin'),
+    'kartik\\select2\\' => array($vendorDir . '/kartik-v/yii2-widget-select2'),
     'kartik\\popover\\' => array($vendorDir . '/kartik-v/yii2-popover-x'),
     'kartik\\plugins\\popover\\' => array($vendorDir . '/kartik-v/bootstrap-popover-x'),
     'kartik\\money\\' => array($vendorDir . '/kartik-v/yii2-money'),
@@ -25,6 +26,7 @@ return array(
     'kartik\\editable\\' => array($vendorDir . '/kartik-v/yii2-editable'),
     'kartik\\dialog\\' => array($vendorDir . '/kartik-v/yii2-dialog'),
     'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base'),
+    'dektrium\\rbac\\' => array($vendorDir . '/dektrium/yii2-rbac'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
 );

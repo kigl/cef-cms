@@ -54,7 +54,7 @@ class User extends \app\core\db\ActiveRecord
             ['password', 'string', 'min' => 6],
             ['password', 'compare'],
             ['email', 'email'],
-            [['login' ,'email'], 'unique'],
+            [['login', 'email'], 'unique'],
             [['status'], 'integer'],
         ];
     }
@@ -96,29 +96,6 @@ class User extends \app\core\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return array
-     */
-    public static function getStatusList()
-    {
-        return [
-            self::STATUS_BLOCK => Yii::t('user', 'Status block'),
-            self::STATUS_ACTIVE => Yii::t('user', 'Status active'),
-            self::STATUS_NOT_ACTIVE => Yii::t('user', 'Status not active'),
-        ];
-    }
-
-    /**
-     * @param $status
-     * @return mixed
-     */
-    public static function getStatus($status)
-    {
-        $result = self::getStatusList();
-
-        return $result[$status];
-    }
-
     public function beforeSave($insert)
     {
         if ($this->isNewRecord) {
@@ -140,6 +117,11 @@ class User extends \app\core\db\ActiveRecord
     public function getFieldRelation()
     {
         return $this->hasMany(FieldRelation::className(), ['user_id' => 'id']);
+    }
+
+    public static function find()
+    {
+        return new UserQuery(get_called_class());
     }
 }
 

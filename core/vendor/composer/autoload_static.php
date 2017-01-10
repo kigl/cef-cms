@@ -32,6 +32,7 @@ class ComposerStaticInitd08a2b6f5e41e256fb611c05532ca1a7
         'k' => 
         array (
             'kartik\\touchspin\\' => 17,
+            'kartik\\select2\\' => 15,
             'kartik\\popover\\' => 15,
             'kartik\\plugins\\popover\\' => 23,
             'kartik\\money\\' => 13,
@@ -39,6 +40,10 @@ class ComposerStaticInitd08a2b6f5e41e256fb611c05532ca1a7
             'kartik\\editable\\' => 16,
             'kartik\\dialog\\' => 14,
             'kartik\\base\\' => 12,
+        ),
+        'd' => 
+        array (
+            'dektrium\\rbac\\' => 14,
         ),
         'c' => 
         array (
@@ -99,6 +104,10 @@ class ComposerStaticInitd08a2b6f5e41e256fb611c05532ca1a7
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-touchspin',
         ),
+        'kartik\\select2\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-select2',
+        ),
         'kartik\\popover\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-popover-x',
@@ -126,6 +135,10 @@ class ComposerStaticInitd08a2b6f5e41e256fb611c05532ca1a7
         'kartik\\base\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
+        ),
+        'dektrium\\rbac\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dektrium/yii2-rbac',
         ),
         'cebe\\markdown\\' => 
         array (

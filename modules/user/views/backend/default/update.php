@@ -1,6 +1,3 @@
-<?= $this->render('_form', [
-    'model' => $model,
-    'field' => $field,
-]);?>
+<?= $this->render('_form', ['data' => $data]);?>
 
 

@@ -20,33 +20,11 @@ abstract class ModelService implements ModelServiceInterface
     const EXECUTED_ACTION_VALIDATE = 1;
     const EXECUTED_ACTION_SAVE = 2;
 
-    protected $model;
-
     protected $data = [];
 
     protected $error;
 
     protected $executedActions = [];
-
-    public function load()
-    {
-        return $this->model->load($this->getData('post'));
-    }
-
-    public function validate()
-    {
-        return $this->model->validate();
-    }
-
-    public function save()
-    {
-        return $this->model->save();
-    }
-
-    public function delete()
-    {
-        return $this->model->delete();
-    }
 
     /**
      * @param array $data

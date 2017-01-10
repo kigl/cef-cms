@@ -89,15 +89,12 @@ class DefaultController extends Controller
 	public function actionPersonal()
     {
         $modelService = new UserModelService();
-        $modelService->setRequestData(['post' => Yii::$app->request->post()]);
-        $modelService->personal();
+        $modelService->actionPersonal([
+            'post' => Yii::$app->request->post(),
+            'id' => Yii::$app->user->getId(),
+        ]);
 
         $viewService = (new UserViewService())->setData($modelService->getData());
-
-        if ($modelService->load()) {
-
-            $modelService->save();
-        }
 
         return $this->render('personal', ['data' => $viewService]);
     }

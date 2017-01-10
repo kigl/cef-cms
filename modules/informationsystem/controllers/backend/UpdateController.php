@@ -2,9 +2,11 @@
 
 namespace app\modules\informationsystem\controllers\backend;
 
+
 use Yii;
 use app\modules\informationsystem\components\BackendController;
 use app\modules\informationsystem\service\backend\ItemModelService;
+use app\modules\informationsystem\service\backend\ItemViewService;
 use app\modules\informationsystem\service\backend\TagModelService;
 use app\modules\informationsystem\service\backend\TagViewService;
 use app\modules\informationsystem\service\backend\GroupModelService;
@@ -58,7 +60,7 @@ class UpdateController extends BackendController
         ]);
         $modelService->actionUpdate();
 
-        $viewService = (new GroupViewService())->setData($modelService->getData());
+        $viewService = (new ItemViewService())->setData($modelService->getData());
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 

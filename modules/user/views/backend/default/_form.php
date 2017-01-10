@@ -1,7 +1,6 @@
 <?php
-use yii\helpers\Html;
 use app\modules\admin\widgets\ActiveForm;
-use app\modules\user\models\User;
+use app\modules\user\helpers\StatusHelper;
 
 ?>
 
@@ -22,25 +21,30 @@ use app\modules\user\models\User;
 <?php $form = ActiveForm::begin(['id' => 'form']); ?>
 
     <div class="tab-content well well-sm">
-        <div class="tab-pane active" id="main">
-            <?php echo $form->errorSummary($model, ['class' => 'alert alert-danger']); ?>
-            <?php echo $form->field($model, 'login'); ?>
-            <?php echo $form->field($model, 'status')->dropDownList(User::getStatusList()); ?>
-            <?php echo $form->field($model, 'email'); ?>
 
-            <?php echo $form->field($model, 'password')->passwordInput(['views' => '']); ?>
-            <?php echo $form->field($model, 'password_repeat')->passwordInput(['views' => '']); ?>
+        <?php echo $form->errorSummary($data->getModel(), ['class' => 'alert alert-danger']); ?>
+
+        <div class="tab-pane active" id="main">
+
+            <?php echo $form->field($data->getModel(), 'login'); ?>
+            <?php echo $form->field($data->getModel(), 'status')
+                ->dropDownList(StatusHelper::getList()); ?>
+
+            <?php echo $form->field($data->getModel(), 'email'); ?>
+
+            <?php echo $form->field($data->getModel(), 'password')->passwordInput(['value' => '']); ?>
+            <?php echo $form->field($data->getModel(), 'password_repeat')->passwordInput(['value' => '']); ?>
         </div>
 
         <div class="tab-pane" id="profile">
-            <?php echo $form->field($model, 'surname'); ?>
-            <?php echo $form->field($model, 'name'); ?>
-            <?php echo $form->field($model, 'lastname'); ?>
+            <?php echo $form->field($data->getModel(), 'surname'); ?>
+            <?php echo $form->field($data->getModel(), 'name'); ?>
+            <?php echo $form->field($data->getModel(), 'lastname'); ?>
         </div>
 
         <div class="tab-pane" id="field">
-            <?php foreach ($field as $fr) : ?>
-                <?= $form->field($fr, '[' . $fr->field_id . ']views')->label($fr->field->name); ?>
+            <?php foreach ($data->getFieldModels() as $fr) : ?>
+                <?= $form->field($fr, '[' . $fr->field_id . ']value')->label($fr->field->name); ?>
             <?php endforeach; ?>
         </div>
     </div>

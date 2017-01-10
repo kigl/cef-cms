@@ -2,16 +2,15 @@
 
 namespace app\modules\informationsystem\controllers\backend;
 
+
+use app\modules\informationsystem\service\backend\ItemViewService;
+use Yii;
 use app\modules\informationsystem\service\backend\GroupModelService;
 use app\modules\informationsystem\service\backend\GroupViewService;
 use app\modules\informationsystem\service\backend\ItemModelService;
 use app\modules\informationsystem\service\backend\TagModelService;
 use app\modules\informationsystem\service\backend\TagViewService;
-use Yii;
 use app\modules\informationsystem\components\BackendController;
-use app\modules\informationsystem\models\Group;
-use app\modules\informationsystem\models\Item;
-use app\modules\informationsystem\models\Tag;
 
 class CreateController extends BackendController
 {
@@ -60,7 +59,7 @@ class CreateController extends BackendController
         ]);
         $modelService->actionCreate();
 
-        $viewService = (new GroupViewService())->setData($modelService->getData());
+        $viewService = (new ItemViewService())->setData($modelService->getData());
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
             return $this->redirect([

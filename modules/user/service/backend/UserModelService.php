@@ -1,14 +1,14 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ARstudio
- * Date: 08.11.2016
- * Time: 15:32
+ * Class UserModelService
+ * @package app\modules\user\service\backend
+ * @author Kirill Golodaev <kirillgolodaev@gmail.com>
  */
 
-namespace app\modules\user\service\frontend;
 
-use Yii;
+namespace app\modules\user\service\backend;
+
+
 use yii\base\Model;
 use app\core\service\ModelService;
 use app\modules\user\models\User;
@@ -17,18 +17,21 @@ use app\modules\user\models\FieldRelation;
 
 class UserModelService extends ModelService
 {
+    protected $model;
+
     protected $field;
 
-    public function actionPersonal(array $params)
+    protected function init()
     {
-        $this->model = User::find()
-            ->byId($params['id'])
-            ->one();
+        $this->field = $this->initField();
+    }
 
-        $this->model->setScenario(User::SCENARIO_UPDATE);
+    public function actionCreate(array $params)
+    {
+        $this->model = new User;
+        $this->model->setScenario(User::SCENARIO_INSERT);
 
         $this->init();
-
 
         if ($this->load($params) && $this->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
@@ -40,9 +43,24 @@ class UserModelService extends ModelService
         ]);
     }
 
-    protected function init()
+    public function actionUpdate(array $params)
     {
-        $this->field = $this->initField();
+        $this->model = User::find()
+            ->byId($params['get']['id'])
+            ->one();
+
+        $this->model->setScenario(User::SCENARIO_UPDATE);
+
+        $this->init();
+
+        if ($this->load($params) && $this->save()) {
+            $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
+        }
+
+        $this->setData([
+            'model' => $this->model,
+            'field' => $this->field,
+        ]);
     }
 
     public function load(array $params)
@@ -60,7 +78,9 @@ class UserModelService extends ModelService
         $success = false;
         try {
             $success = $this->model->save();
-            if ($success) $this->saveField();
+            if ($success) {
+                $this->saveField();
+            }
 
             $transaction->commit();
         } catch (\Exception $e) {
@@ -75,10 +95,17 @@ class UserModelService extends ModelService
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public function initField()
+    protected function initField()
     {
-        $fieldRelation = $this->model->getFieldRelation()->with('field')->indexBy('field_id')->all();
-        $allField = Field::find()->indexBy('id')->all();
+        $fieldRelation = $this->model
+            ->getFieldRelation()
+            ->with('field')
+            ->indexBy('field_id')
+            ->all();
+
+        $allField = Field::find()
+            ->indexBy('id')
+            ->all();
 
         foreach (array_diff_key($allField, $fieldRelation) as $field) {
             $fieldRelation[$field->id] = new FieldRelation();
