@@ -19,6 +19,11 @@ return [
     'Login menu item' => 'Войти',
     'Login btn' => 'Войти',
 
+	'Rbac status role' => 'Роль',
+	'Rbac status permission' => 'Действие',
+	'Rbac form name' => 'Имя',
+	'Rbac form type' => 'Тип',
+	'Rbac form description' => 'Описание',
 	'Registration' => 'Регистрация',
     'Registration btn' => 'Зарегистрироваться',
 	
@@ -39,6 +44,7 @@ return [
 	'Surname' => 'Фамилия',
 
     'Toolbar field' => 'Дополнительные поля',
+    'Toolbar rbac' => 'RBAC',
     'Tab field' => 'Дополнительные поля',
 	
 	'Email' => 'Email',

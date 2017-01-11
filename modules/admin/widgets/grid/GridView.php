@@ -78,14 +78,17 @@ class GridView extends \yii\grid\GridView
          */
         // добавляем колонку тип элемента
         array_unshift($this->columns, $this->getColumnTypeItemAttribute());
-        // добавляем колонку id по умолчанию
-        array_unshift($this->columns, [
-            'attribute' => 'id',
-            'headerOptions' => ['style' => 'width: 50px;'],
-        ]);
+
+        $this->editColumnId($this->columns);
 
         parent::initColumns();
 
+       $this->initColumnsGroup();
+
+    }
+
+    protected function initColumnsGroup()
+    {
         if (!empty($this->columnsGroup)) {
             /*
              * @todo
@@ -310,4 +313,20 @@ class GridView extends \yii\grid\GridView
         ];
     }
 
+    protected function editColumnId(&$columns)
+    {
+        $arrayFilter = array_filter($columns, function ($value) {
+            return $value === 'id';
+        });
+        $keyArrayFilter = key($arrayFilter);
+
+        if ($arrayFilter) {
+            unset($columns[$keyArrayFilter]);
+
+            array_unshift($columns, [
+                'attribute' => 'id',
+                'headerOptions' => ['style' => 'width: 50px;'],
+            ]);
+        }
+    }
 }

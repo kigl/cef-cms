@@ -13,6 +13,7 @@ use app\modules\admin\widgets\grid\GridView;
     ],
     'dataProvider' => $dataProvider,
     'columns' => [
+        'id',
         'name',
         [
             'headerOptions' => ['style' => 'width: 70px'],

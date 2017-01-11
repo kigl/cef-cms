@@ -51,6 +51,7 @@ $this->params['toolbar'] = [
         ],
     ],
     'columns' => [
+        'id',
         [
             'attribute' => 'name',
             'headerOptions' => ['style' => 'width: 50%'],

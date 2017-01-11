@@ -15,6 +15,7 @@ use app\modules\admin\widgets\grid\GridView;
         ],
     ],
     'columns' => [
+        'id',
         [
             'attribute' => 'name',
             'format' => 'raw',

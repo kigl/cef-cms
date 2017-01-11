@@ -27,17 +27,35 @@ class RbacService implements RbacServiceInterface
         $data = null
     )
     {
+        $item = $this->createItem($name, $type, $description, $rule, $data);
+        $this->authManager->add($this->createItem($item));
+
+        return $item;
+    }
+
+    public function createItem(
+        $name,
+        $type = Item::TYPE_ROLE,
+        $description = null,
+        Rule $rule = null,
+        $data = null
+    )
+    {
         if ($type === Item::TYPE_ROLE) {
-            $role = $this->authManager->createRole($name);
+            $item = $this->authManager->createRole($name);
         } else if ($type === Item::TYPE_PERMISSION) {
-            $role = $this->authManager->createPermission($name);
+            $item = $this->authManager->createPermission($name);
         }
 
-        $role->description = $description;
-        $role->ruleName = $rule ? $rule->name : null;
-        $this->authManager->add($role);
+        $item->description = $description;
+        $item->ruleName = $rule ? $rule->name : null;
 
-        return $role;
+        return $item;
+    }
+
+    public function update($name, $object)
+    {
+        return $this->authManager->update($name, $object);
     }
     
     public function addChild(Item $parent, Item $child)
@@ -61,5 +79,13 @@ class RbacService implements RbacServiceInterface
         $rMethod->setAccessible(true);
 
         return $rMethod->invoke($this->authManager, $name);
+    }
+
+    public function getItems($type)
+    {
+        $rMethod = new \ReflectionMethod(DbManager::class, 'getItems');
+        $rMethod->setAccessible(true);
+
+        return $rMethod->invoke($this->authManager, $type);
     }
 }

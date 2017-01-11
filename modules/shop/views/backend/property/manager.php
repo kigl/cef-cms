@@ -14,6 +14,7 @@ use app\modules\admin\widgets\grid\GridView;
     ],
     'dataProvider' => $dataProvider,
     'columns' => [
+        'id',
         'name',
     ],
 ]); ?>

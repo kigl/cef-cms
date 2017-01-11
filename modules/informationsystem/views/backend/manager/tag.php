@@ -24,8 +24,8 @@ $this->params['breadcrumbs'] = ArrayHelper::merge($breadcrumbs, [
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'columns' => [
-        'name',
         'id',
+        'name',
         [
             'headerOptions' => ['style' => 'width: 50px'],
             'class' => 'yii\grid\ActionColumn',
