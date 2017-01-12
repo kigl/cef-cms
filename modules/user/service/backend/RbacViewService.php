@@ -17,4 +17,15 @@ class RbacViewService extends ViewService
     {
         return $this->getData('model');
     }
+
+    public function getItems()
+    {
+        $items = $this->getData('items');
+        $ar = [];
+        foreach ($items as $item) {
+            $ar[$item->name] = $item->name;
+        }
+
+        return $ar;
+    }
 }

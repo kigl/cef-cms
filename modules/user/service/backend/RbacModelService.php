@@ -12,24 +12,27 @@ namespace app\modules\user\service\backend;
 use Yii;
 use yii\rbac\Item;
 use yii\data\ArrayDataProvider;
-use app\modules\user\models\RbacForm;
 use app\core\service\ModelService;
+use app\modules\user\models\RbacForm;
 use app\modules\user\components\rbac\RbacService;
-use yii\base\Model;
-use app\core\session\Flash;
 
 class RbacModelService extends ModelService
 {
+    protected $rbacService;
+
+    public function __construct(RbacService $rbacService)
+    {
+        $this->rbacService = $rbacService;
+    }
+
     public function actionManager()
     {
-        $rbacService = Yii::createObject(RbacService::class);
-
         $roleDataProvider = new ArrayDataProvider([
-            'allModels' => $rbacService->getItems(Item::TYPE_ROLE),
+            'allModels' => $this->rbacService->getItems(Item::TYPE_ROLE),
         ]);
 
         $permissionDataProvider = new ArrayDataProvider([
-            'allModels' => $rbacService->getItems(Item::TYPE_PERMISSION),
+            'allModels' => $this->rbacService->getItems(Item::TYPE_PERMISSION),
         ]);
 
         $this->setData([
@@ -40,42 +43,33 @@ class RbacModelService extends ModelService
 
     public function actionCreate($params)
     {
-        $modelForm = new RbacForm();
-        $modelForm->type = $params['get']['type'];
+        $modelForm = Yii::createObject(RbacForm::className());
+        $modelForm->type = $params['type'];
 
-
-        $modelForm->on($modelForm::EVENT_BEFORE_VALIDATE, function ($event) {
-            Yii::$app->session->setFlash(Flash::FLASH_SUCCESS, Yii::t('app', 'Created element'));
-        });
-
-        if ($modelForm->load($params['post']) &&  $modelForm->validate()) {
+        if ($modelForm->load($params['post']) &&  $modelForm->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_VALIDATE);
-        }
-
-        if ($this->hasExecutedAction(self::EXECUTED_ACTION_VALIDATE)) {
-            $this->addItem($modelForm);
-
-            $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 
         $this->setData([
             'model' => $modelForm,
+            'items' => $this->rbacService->getItems($params['type']),
         ]);
     }
 
     public function actionUpdate(array $params)
     {
+        $modelForm = Yii::createObject([
+            'class' => RbacForm::className(),
+            'item' => $this->rbacService->getItem($params['name']),
+        ]);
 
-    }
+        if ($modelForm->load($params['post']) &&  $modelForm->save()) {
+            $this->setExecutedAction(self::EXECUTED_ACTION_VALIDATE);
+        }
 
-    protected function addItem(Model $model)
-    {
-        $rbacService = Yii::createObject(RbacService::class);
-
-        $rbacService->add(
-            $model->name,
-            $model->type,
-            $model->description
-        );
+        $this->setData([
+            'model' => $modelForm,
+            'items' => $this->rbacService->getItems($modelForm->type),
+        ]);
     }
 }

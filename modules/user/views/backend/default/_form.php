@@ -3,7 +3,6 @@ use app\modules\admin\widgets\ActiveForm;
 use app\modules\user\helpers\StatusHelper;
 
 ?>
-
     <ul class="nav nav-tabs">
         <li class="active">
             <a href="#main" data-toggle="tab">
@@ -15,7 +14,7 @@ use app\modules\user\helpers\StatusHelper;
                 <?= Yii::t('user', 'Profile'); ?>
             </a>
         </li>
-        <li><a href="#field" data-toggle="tab"><?= Yii::t('user', 'Tab field');   ?></a></li>
+        <li><a href="#field" data-toggle="tab"><?= Yii::t('user', 'Tab field'); ?></a></li>
     </ul>
 
 <?php $form = ActiveForm::begin(['id' => 'form']); ?>

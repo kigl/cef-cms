@@ -9,9 +9,10 @@
 namespace app\modules\user\controllers\backend;
 
 
+use Yii;
+use yii\helpers\ArrayHelper;
 use app\modules\user\components\rbac\RbacService;
 use app\modules\user\service\backend\RbacViewService;
-use Yii;
 use app\modules\user\components\BackendController;
 use app\modules\user\service\backend\RbacModelService;
 
@@ -19,7 +20,7 @@ class RbacController extends BackendController
 {
     public function actionManager()
     {
-        $modelService = new RbacModelService();
+        $modelService = Yii::createObject(RbacModelService::class);
         $modelService->actionManager();
 
         return $this->render('manager', [
@@ -30,10 +31,10 @@ class RbacController extends BackendController
 
     public function actionCreate($type)
     {
-        $modelService = new RbacModelService();
+        $modelService = Yii::createObject(RbacModelService::class);
         $modelService->actionCreate([
             'post' => Yii::$app->request->post(),
-            'get' => Yii::$app->request->getQueryParams(),
+            'type' => $type,
         ]);
 
         $viewService = (new RbacViewService())->setData($modelService->getData());
@@ -45,12 +46,12 @@ class RbacController extends BackendController
         return $this->render('create', ['data' => $viewService]);
     }
 
-    public function actionUpdate($name = '')
-    {/*
-        $modelService = new RbacModelService();
+    public function actionUpdate($name)
+    {
+        $modelService = Yii::createObject(RbacModelService::class);
         $modelService->actionUpdate([
             'post' => Yii::$app->request->post(),
-            'get' => Yii::$app->request->getQueryParams(),
+            'name' => $name,
         ]);
 
         $viewService = (new RbacViewService())->setData($modelService->getData());
@@ -60,13 +61,6 @@ class RbacController extends BackendController
         }
 
         return $this->render('update', ['data' => $viewService]);
-*/
-        $rbacService = Yii::createObject(RbacService::class);
-
-        $newItem = $rbacService->createItem('loop', 1);
-
-        $rbacService->update('test', $newItem);
-
     }
 
     public function actionDelete($name)

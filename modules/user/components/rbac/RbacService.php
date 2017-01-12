@@ -6,6 +6,7 @@ namespace app\modules\user\components\rbac;
 use yii\rbac\DbManager;
 use yii\rbac\Rule;
 use yii\rbac\Item;
+use yii\web\HttpException;
 
 class RbacService implements RbacServiceInterface
 {
@@ -19,18 +20,14 @@ class RbacService implements RbacServiceInterface
         $this->authManager = $authManager;
     }
 
-    public function add(
-        $name,
-        $type = Item::TYPE_ROLE,
-        $description = null,
-        Rule $rule = null,
-        $data = null
-    )
+    public function add(Item $item)
     {
-        $item = $this->createItem($name, $type, $description, $rule, $data);
-        $this->authManager->add($this->createItem($item));
+        return $this->authManager->add($item);
+    }
 
-        return $item;
+    public function addChild(Item $parent, Item $child)
+    {
+        return $this->authManager->addChild($parent, $child);
     }
 
     public function createItem(
@@ -47,25 +44,39 @@ class RbacService implements RbacServiceInterface
             $item = $this->authManager->createPermission($name);
         }
 
+        if (!$item) {
+            throw new HttpException(500);
+        }
+
         $item->description = $description;
         $item->ruleName = $rule ? $rule->name : null;
 
         return $item;
     }
 
-    public function update($name, $object)
+    public function update($name, Item $item)
     {
-        return $this->authManager->update($name, $object);
-    }
-    
-    public function addChild(Item $parent, Item $child)
-    {
-        return $this->authManager->addChild($parent, $child);
+        return $this->authManager->update($name, $item);
     }
 
-    public function remove($object)
+    public function remove(Item $item)
     {
-        return $this->authManager->remove($object);
+        return $this->authManager->remove($item);
+    }
+
+    public function removeChildren(Item $parent)
+    {
+        return $this->authManager->removeChildren($parent);
+    }
+
+    public function removeChild(Item $parent, Item $child)
+    {
+        return $this->authManager->removeChild($parent, $child);
+    }
+
+    public function hasChild(Item $parent, Item $child)
+    {
+        return $this->authManager->hasChild($parent, $child);
     }
 
     public function assign()
@@ -87,5 +98,10 @@ class RbacService implements RbacServiceInterface
         $rMethod->setAccessible(true);
 
         return $rMethod->invoke($this->authManager, $type);
+    }
+
+    public function getChildren($parentName)
+    {
+        return $this->authManager->getChildren($parentName);
     }
 }
