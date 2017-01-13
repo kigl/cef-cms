@@ -1,9 +1,13 @@
 <?php
 use app\modules\admin\widgets\grid\GridView;
 use app\modules\user\helpers\StatusHelper;
+use yii\widgets\Menu;
 
 $this->params['toolbar'] = [
-    ['label' => '<i class="fa fa-minus"></i> ' . Yii::t('user', 'Toolbar field'), 'url' => ['field/manager']],
+    [
+        'label' => '<i class="fa fa-minus"></i> ' . Yii::t('user', 'Toolbar field'),
+        'url' => ['field/manager'],
+    ],
     ['label' => Yii::t('user', 'Toolbar rbac'), 'url' => ['rbac/manager']],
 ];
 ?>
@@ -18,7 +22,7 @@ echo GridView::widget([
         [
             'attribute' => 'status',
             'value' =>
-                function($data)	{
+                function ($data) {
                     return StatusHelper::get($data->status);
                 },
         ],

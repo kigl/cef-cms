@@ -9,6 +9,7 @@
 namespace app\modules\user\controllers\backend;
 
 
+use Yii;
 use yii\data\ActiveDataProvider;
 use app\modules\user\components\BackendController;
 use app\core\actions\Update;

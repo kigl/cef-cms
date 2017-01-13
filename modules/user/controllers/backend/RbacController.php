@@ -32,10 +32,10 @@ class RbacController extends BackendController
     public function actionCreate($type)
     {
         $modelService = Yii::createObject(RbacModelService::class);
-        $modelService->actionCreate([
-            'post' => Yii::$app->request->post(),
-            'type' => $type,
-        ]);
+        $modelService->actionCreate(
+            Yii::$app->request->post(),
+            $type
+        );
 
         $viewService = (new RbacViewService())->setData($modelService->getData());
 
@@ -49,10 +49,7 @@ class RbacController extends BackendController
     public function actionUpdate($name)
     {
         $modelService = Yii::createObject(RbacModelService::class);
-        $modelService->actionUpdate([
-            'post' => Yii::$app->request->post(),
-            'name' => $name,
-        ]);
+        $modelService->actionUpdate($name, Yii::$app->request->post());
 
         $viewService = (new RbacViewService())->setData($modelService->getData());
 

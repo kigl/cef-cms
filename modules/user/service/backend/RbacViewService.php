@@ -18,6 +18,11 @@ class RbacViewService extends ViewService
         return $this->getData('model');
     }
 
+    public function getItem()
+    {
+        return $this->getData('item');
+    }
+
     public function getItems()
     {
         $items = $this->getData('items');

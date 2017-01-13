@@ -25,21 +25,6 @@ $this->registerJs("
 
                 return false;
             });
-        });");
-
-/*
-$this->registerJs("
-$( function () {
-    $('.show-in-modal').click(function (data) {
-        $('#show-content-modal').modal('show');
-        var url = $(this).attr('href');
-        var modal = $('.modal-body');
-        $.get(url, function (data) {
-            modal.html(data);
-        });
-        return false;
-    });
-    });
-")
-*/
+        });"
+);
 ?>

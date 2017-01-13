@@ -2,7 +2,6 @@
 
 namespace app\modules\frontend\views\assets;
 
-use yii\web\View;
 
 class Asset extends \yii\web\AssetBundle
 {

@@ -41,35 +41,55 @@ class RbacModelService extends ModelService
         ]);
     }
 
-    public function actionCreate($params)
-    {
-        $modelForm = Yii::createObject(RbacForm::className());
-        $modelForm->type = $params['type'];
-
-        if ($modelForm->load($params['post']) &&  $modelForm->save()) {
-            $this->setExecutedAction(self::EXECUTED_ACTION_VALIDATE);
-        }
-
-        $this->setData([
-            'model' => $modelForm,
-            'items' => $this->rbacService->getItems($params['type']),
-        ]);
-    }
-
-    public function actionUpdate(array $params)
+    public function actionCreate($data = [], $type)
     {
         $modelForm = Yii::createObject([
             'class' => RbacForm::className(),
-            'item' => $this->rbacService->getItem($params['name']),
+            'type' => $type,
         ]);
 
-        if ($modelForm->load($params['post']) &&  $modelForm->save()) {
-            $this->setExecutedAction(self::EXECUTED_ACTION_VALIDATE);
+        if ($modelForm->load($data) &&  $modelForm->validate()) {
+            Yii::createObject([
+                'class' => RbacActionService::class,
+                'data' => $modelForm,
+            ])->add();
+
+            $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 
         $this->setData([
             'model' => $modelForm,
-            'items' => $this->rbacService->getItems($modelForm->type),
+            'items' => $this->rbacService->getItems($type),
+        ]);
+    }
+
+    public function actionUpdate($name, $data = [])
+    {
+        $item = $this->rbacService->getItem($name);
+
+        $modelForm = Yii::createObject([
+            'class' => RbacForm::className(),
+            'name' => $item->name,
+            'description' => $item->description,
+            'type' => $item->type,
+            'child' => array_keys(Yii::createObject(RbacService::class)->getChildren($item->name)),
+        ]);
+
+        if ($modelForm->load($data) &&  $modelForm->validate()) {
+            // логика обновления
+            Yii::createObject([
+                'class' => RbacActionService::class,
+                'item' => $item,
+                'data' => $modelForm,
+            ])->update();
+
+            $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
+        }
+
+        $this->setData([
+            'item' => $item,
+            'model' => $modelForm,
+            'items' => $this->rbacService->getItems($item->type),
         ]);
     }
 }
