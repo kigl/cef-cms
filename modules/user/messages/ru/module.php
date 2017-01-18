@@ -34,6 +34,7 @@ return [
     'Tab main data' => 'Основные',
     'Tab personal data' => 'Персональные данные',
     'Tab property' => 'Дополнительные свойства',
+    'Tab role' => 'Роли',
 
     'You have registered, use your email and password to access the site' => 'Вы зарегистрировались, используйте свой email и пароль для входа на сайт',
 

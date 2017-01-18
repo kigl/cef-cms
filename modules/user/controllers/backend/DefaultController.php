@@ -37,7 +37,7 @@ class DefaultController extends BackendController
 
     public function actionCreate()
     {
-        $modelService = new UserModelService();
+        $modelService = Yii::createObject(UserModelService::class);
         $modelService->actionCreate([
             'post' => Yii::$app->request->post(),
         ]);
@@ -53,7 +53,7 @@ class DefaultController extends BackendController
 
     public function actionUpdate($id)
     {
-        $modelService = new UserModelService();
+        $modelService = Yii::createObject(UserModelService::class);
         $modelService->actionUpdate([
             'get' => Yii::$app->request->getQueryParams(),
             'post' => Yii::$app->request->post(),

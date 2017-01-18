@@ -29,6 +29,9 @@ class User extends \app\core\db\ActiveRecord
 
     const SCENARIO_INSERT = 'insert';
     const SCENARIO_UPDATE = 'update';
+    const SCENARIO_PASSWORD_RESET = 'resetPassword';
+
+    public $rolePermission;
 
     /**
      * @inheritdoc
@@ -56,6 +59,7 @@ class User extends \app\core\db\ActiveRecord
             ['email', 'email'],
             [['login', 'email'], 'unique'],
             [['status'], 'integer'],
+            ['rolePermission', 'safe'],
         ];
     }
 

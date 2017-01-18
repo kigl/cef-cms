@@ -14,5 +14,5 @@ interface RbacServiceInterface
 
     public function remove(Item $item);
 
-    public function assign();
+    public function assign(Item $role, $userId);
 }

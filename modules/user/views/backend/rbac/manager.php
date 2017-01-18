@@ -25,9 +25,14 @@ use yii\rbac\Item;
                 ],
             ],
             'columns' => [
-                'name',
                 [
-                    'attribute' => 'type',
+                    'attribute' => Yii::t('user', 'Rbac form name'),
+                    'value' => function ($data) {
+                        return $data->name;
+                    }
+                ],
+                [
+                    'attribute' => Yii::t('user', 'Rbac form type'),
                     'value' => function ($data) {
                         return StatusRbacHelper::getStatus($data->type);
                     }
@@ -68,9 +73,14 @@ use yii\rbac\Item;
                 ],
             ],
             'columns' => [
-                'name',
                 [
-                    'attribute' => 'type',
+                    'attribute' => Yii::t('user', 'Rbac form name'),
+                    'value' => function ($data) {
+                        return $data->name;
+                    }
+                ],
+                [
+                    'attribute' => Yii::t('user', 'Rbac form type'),
                     'value' => function ($data) {
                         return StatusRbacHelper::getStatus($data->type);
                     }

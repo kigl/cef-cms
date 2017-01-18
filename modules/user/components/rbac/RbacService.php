@@ -2,7 +2,7 @@
 
 namespace app\modules\user\components\rbac;
 
-
+use yii\db\Query;
 use yii\rbac\DbManager;
 use yii\rbac\Rule;
 use yii\rbac\Item;
@@ -79,17 +79,30 @@ class RbacService implements RbacServiceInterface
         return $this->authManager->hasChild($parent, $child);
     }
 
-    public function assign()
+    public function assign(Item $role, $userId)
     {
-        // TODO: Implement assign() method.
+        return $this->authManager->assign($role, $userId);
     }
 
-    public function getItem($name)
+    public function revoke(Item $role, $userId)
+    {
+        return $this->authManager->revoke($role, $userId);
+    }
+
+    public function getItem($name = null)
     {
         $rMethod = new \ReflectionMethod(DbManager::class, 'getItem');
         $rMethod->setAccessible(true);
 
         return $rMethod->invoke($this->authManager, $name);
+    }
+
+    public function getAllItems()
+    {
+        $query = new Query();
+        $query->from($this->authManager->itemTable);
+
+        return $query->all();
     }
 
     public function getItems($type)
@@ -103,5 +116,10 @@ class RbacService implements RbacServiceInterface
     public function getChildren($parentName)
     {
         return $this->authManager->getChildren($parentName);
+    }
+
+    public function getAssignments($userId)
+    {
+        return $this->authManager->getAssignments($userId);
     }
 }
