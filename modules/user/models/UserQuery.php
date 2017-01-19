@@ -17,4 +17,9 @@ class UserQuery extends ActiveQuery
     {
         return $this->where('id = :id', [':id' => $id]);
     }
+
+    public function byEmail($email)
+    {
+        return $this->where(['email' => $email]);
+    }
 }

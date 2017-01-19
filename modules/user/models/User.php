@@ -3,6 +3,7 @@
 namespace app\modules\user\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "mn_user".
@@ -29,7 +30,7 @@ class User extends \app\core\db\ActiveRecord
 
     const SCENARIO_INSERT = 'insert';
     const SCENARIO_UPDATE = 'update';
-    const SCENARIO_PASSWORD_RESET = 'resetPassword';
+    const SCENARIO_PASSWORD_RESTORE = 'passwordRestore';
 
     public $rolePermission;
 
@@ -54,7 +55,7 @@ class User extends \app\core\db\ActiveRecord
             [['login', 'email'], 'required', 'on' => self::SCENARIO_UPDATE],
 
             [['surname', 'name', 'lastname', 'password', 'password_repeat'], 'string', 'max' => 255],
-            ['password', 'string', 'min' => 6],
+           // ['password', 'string', 'min' => 6],
             ['password', 'compare'],
             ['email', 'email'],
             [['login', 'email'], 'unique'],

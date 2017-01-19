@@ -2,15 +2,15 @@
 
 namespace app\modules\user\controllers\frontend;
 
-use app\modules\user\service\frontend\UserViewService;
+
 use Yii;
-use yii\captcha\CaptchaAction;
-use app\modules\frontend\components\Controller;
-use app\modules\user\models\UserRegistration;
-use app\modules\user\models\LoginForm;
-use app\modules\user\service\frontend\UserModelService;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
+use yii\captcha\CaptchaAction;
+use app\modules\user\service\frontend\UserViewService;
+use app\modules\frontend\components\Controller;
+use app\modules\user\models\forms\LoginForm;
+use app\modules\user\service\frontend\UserModelService;
 
 class DefaultController extends Controller
 {
@@ -37,7 +37,7 @@ class DefaultController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['login', 'logout', 'registration', 'captcha'],
+                        'actions' => ['login', 'logout', 'registration', 'captcha', 'password-restore'],
                         'roles' => ['guest'],
                     ],
                 ],
@@ -66,14 +66,16 @@ class DefaultController extends Controller
 	
 	public function actionRegistration()
 	{
-		$model = new UserRegistration();
-		$model->scenario = UserRegistration::SCENARIO_INSERT;
+	    $modelService = Yii::createObject(UserModelService::class);
+	    $modelService->actionRegistration(Yii::$app->request->post());
+
+	    $viewService = (new UserViewService())->setData($modelService->getData());
 		
 		if (Yii::$app->user->isGuest) {
-			if ($model->load(Yii::$app->request->post()) and $model->save()) {
+			if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_VALIDATE)) {
 				return $this->goBack();
 			}
-			return $this->renderAjax('registration', ['model' => $model]);
+			return $this->renderAjax('registration', ['data' => $viewService]);
 		} else {
 			return $this->goBack();
 		}
@@ -97,5 +99,15 @@ class DefaultController extends Controller
         $viewService = (new UserViewService())->setData($modelService->getData());
 
         return $this->render('personal', ['data' => $viewService]);
+    }
+
+    public function actionPasswordRestore()
+    {
+        $modelService = Yii::createObject(UserModelService::class);
+        $modelService->actionPasswordRestore(Yii::$app->request->post());
+
+        $viewService = (new UserViewService())->setData($modelService->getData());
+
+        return $this->render('passwordRestore', ['data' => $viewService]);
     }
 }

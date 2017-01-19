@@ -6,7 +6,7 @@
  */
 
 
-namespace app\modules\user\models;
+namespace app\modules\user\models\forms;
 
 
 use Yii;

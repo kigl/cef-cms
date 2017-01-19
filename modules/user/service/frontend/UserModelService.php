@@ -8,6 +8,8 @@
 
 namespace app\modules\user\service\frontend;
 
+use app\modules\user\models\forms\PasswordRestoreForm;
+use app\modules\user\models\forms\UserRegistrationForm;
 use Yii;
 use yii\base\Model;
 use app\core\service\ModelService;
@@ -37,6 +39,45 @@ class UserModelService extends ModelService
         $this->setData([
             'model' => $this->model,
             'field' => $this->field,
+        ]);
+    }
+
+    public function actionRegistration($params)
+    {
+        $form = new UserRegistrationForm();
+
+        if ($form->load($params) && $form->validate()) {
+            $this->setExecutedAction(self::EXECUTED_ACTION_VALIDATE);
+        }
+
+        if ($this->hasExecutedAction(self::EXECUTED_ACTION_VALIDATE)) {
+            $model = new User();
+            $model->attributes = $form->attributes;
+            $model->save(false);
+        }
+
+        $this->setData([
+            'model' => $form,
+        ]);
+    }
+
+    public function actionPasswordRestore($params = [])
+    {
+        $form = new PasswordRestoreForm();
+
+        if ($form->load($params) && $form->validate()) {
+            $user = User::find()
+                ->byEmail($form->email)
+                ->one();
+
+            $newPassword = Yii::$app->security->generateRandomString(8);
+            echo $newPassword;
+            $user->password = $newPassword;
+            $user->save(false);
+        }
+
+        $this->setData([
+            'model' => $form,
         ]);
     }
 

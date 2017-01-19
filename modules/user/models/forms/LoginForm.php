@@ -1,11 +1,12 @@
 <?php
 
-namespace app\modules\user\models;
+namespace app\modules\user\models\forms;
 
 use Yii;
 use yii\base\Model;
 use yii\web\HttpException;
 use app\modules\user\models\User;
+use app\modules\user\models\UserIdentity;
 
 /**
  * This is the model class for table "mn_user".

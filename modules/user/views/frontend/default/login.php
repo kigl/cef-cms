@@ -1,6 +1,7 @@
 <?php
 use yii\widgets\Pjax;
 use app\modules\frontend\widgets\ActiveForm;
+use yii\helpers\Html;
 
 $this->setPageHeader('Аутентификация пользователя');
 ?>
@@ -22,6 +23,11 @@ $this->setPageHeader('Аутентификация пользователя');
                     <?php echo $form->errorSummary($model, ['class' => 'alert alert-danger']); ?>
                     <?php echo $form->field($model, 'login'); ?>
                     <?php echo $form->field($model, 'password')->passwordInput(); ?>
+
+                    <div class="form-group">
+                        <?= Html::a(Yii::t('user', 'Forgot your password?'), ['/user/default/password-restore']);?>
+                    </div>
+
                     <?php $form->end(); ?>
                 </div>
             </div>
