@@ -18,13 +18,4 @@ class ItemViewService extends ViewService
     {
         return $this->getData('model');
     }
-
-    public function getStatusList()
-    {
-        return [
-            Item::STATUS_BLOCK => Yii::t('informationsystem', 'Status block'),
-            Item::STATUS_ACTIVE => Yii::t('informationsystem', 'Status active'),
-            Item::STATUS_DRAFT => Yii::t('informationsystem', 'Status draft'),
-        ];
-    }
 }

@@ -11,7 +11,9 @@ namespace app\modules\user\models\forms;
 
 use Yii;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 use yii\rbac\Item;
+use yii\db\Query;
 use app\core\session\Flash;
 
 class RbacForm extends Model
@@ -70,5 +72,15 @@ class RbacForm extends Model
             'type' => Yii::t('user', 'Rbac form type'),
             'description' => Yii::t('user', 'Rbac form description'),
         ];
+    }
+
+    public function getItems()
+    {
+        $query = new Query;
+        $query->from('{{%auth_item}}')
+            ->where(['type' => $this->type])
+            ->select(['name', 'type']);
+
+        return ArrayHelper::map($query->all(), 'name', 'name');
     }
 }

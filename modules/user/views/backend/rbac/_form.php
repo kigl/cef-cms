@@ -12,7 +12,7 @@ use app\modules\admin\widgets\ActiveForm;
 <?= $form->field($data->getModel(), 'description'); ?>
 
 <?= $form->field($data->getModel(), 'child')
-    ->dropDownList($data->getItems(), ['prompt' => '', 'size' => 10, 'multiple' => 'multiple']);
+    ->dropDownList($data->getModel()->getItems(), ['prompt' => '', 'size' => 10, 'multiple' => 'multiple']);
 ?>
 
 <?php ActiveForm::end(); ?>

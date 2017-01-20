@@ -38,7 +38,6 @@ class ProductModelService extends ModelService
     /**
      * @var array
      */
-    protected $post;
 
     protected function init()
     {
@@ -78,7 +77,7 @@ class ProductModelService extends ModelService
     public function actionCreate()
     {
         $this->model = new Product();
-        $this->model->group_id = $this->getData('get', 'group_id');
+        $this->model->group_id = $this->getdata('groupId');
 
         $this->init();
 
@@ -96,7 +95,7 @@ class ProductModelService extends ModelService
 
     public function actionUpdate()
     {
-        $this->model = Product::findOne($this->getData('get', 'id'));
+        $this->model = Product::findOne($this->getData('id'));
 
         $this->init();
 
@@ -109,7 +108,7 @@ class ProductModelService extends ModelService
             'property' => $this->property,
             'modification' => $this->modification,
             'images' => $this->image,
-            'group_id' => $this->model->group_id,
+            'grouopId' => $this->model->group_id,
         ]);
     }
 
@@ -172,9 +171,9 @@ class ProductModelService extends ModelService
         return $success;
     }
 
-    public function delete()
+    public function delete($id)
     {
-        $this->model = Product::findOne($this->getRequestData('get', 'id'));
+        $this->model = Product::findOne($id);
 
         $success = $this->model->delete();
         $this->deleteImage();
@@ -203,7 +202,9 @@ class ProductModelService extends ModelService
 
     protected function initImage()
     {
-        $images = $this->model->getImages()->indexBy('id')->all();
+        $images = $this->model->getImages()
+            ->indexBy('id')
+            ->all();
 
         return $images;
     }

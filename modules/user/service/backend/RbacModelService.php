@@ -13,7 +13,7 @@ use Yii;
 use yii\rbac\Item;
 use yii\data\ArrayDataProvider;
 use app\core\service\ModelService;
-use app\modules\user\models\RbacForm;
+use app\modules\user\models\forms\RbacForm;
 use app\modules\user\components\rbac\RbacService;
 
 class RbacModelService extends ModelService
@@ -59,7 +59,6 @@ class RbacModelService extends ModelService
 
         $this->setData([
             'model' => $modelForm,
-            'items' => $this->rbacService->getItems($type),
         ]);
     }
 
@@ -89,7 +88,6 @@ class RbacModelService extends ModelService
         $this->setData([
             'item' => $item,
             'model' => $modelForm,
-            'items' => $this->rbacService->getItems($item->type),
         ]);
     }
 }

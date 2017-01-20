@@ -23,7 +23,7 @@ echo GridView::widget([
             'attribute' => 'status',
             'value' =>
                 function ($data) {
-                    return StatusHelper::get($data->status);
+                    return $data->getStatus($data->status);
                 },
         ],
         'email',

@@ -27,7 +27,7 @@ use app\modules\user\helpers\StatusHelper;
         <div class="tab-pane active" id="main">
             <?php echo $form->field($data->getModel(), 'login'); ?>
             <?php echo $form->field($data->getModel(), 'status')
-                ->dropDownList(StatusHelper::getList()); ?>
+                ->dropDownList($data->getModel()->getStatusList()); ?>
 
             <?php echo $form->field($data->getModel(), 'email'); ?>
 

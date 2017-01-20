@@ -168,4 +168,13 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
     {
         return new ItemQuery(get_called_class());
     }
+
+    public function getStatusList()
+    {
+        return [
+            self::STATUS_BLOCK => Yii::t('informationsystem', 'Status block'),
+            self::STATUS_ACTIVE => Yii::t('informationsystem', 'Status active'),
+            self::STATUS_DRAFT => Yii::t('informationsystem', 'Status draft'),
+        ];
+    }
 }

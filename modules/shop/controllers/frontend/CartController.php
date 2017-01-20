@@ -13,6 +13,7 @@ use app\modules\shop\service\frontend\CartViewService;
 use Yii;
 use app\modules\shop\components\FrontendController;
 use app\modules\shop\service\frontend\CartModelService;
+use yii\web\Cookie;
 
 class CartController extends FrontendController
 {

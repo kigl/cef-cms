@@ -207,7 +207,6 @@ class Cart extends Component implements CartInterface
 
     public function getOrderId()
     {
-
         /**
          * @todo
          * Если заказ удален, а кука с номером заказа жива, то ошибка

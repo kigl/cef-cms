@@ -18,14 +18,14 @@ class ProductController extends BackendController
         $modelService = new ProductModelService();
         $modelService->setData([
                 'post' => Yii::$app->request->post(),
-                'get' => Yii::$app->request->getQueryParams(),
+                'groupId' => $group_id,
             ]
         );
         $modelService->actionCreate();
 
         $viewService = (new ProductViewService())->setData($modelService->getData());
 
-        if ($modelService->hasAction($modelService::ACTION_SAVE)) {
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
             return $this->redirect(['product/update', 'id' => $modelService->getData('model')->id]);
         }
@@ -38,20 +38,16 @@ class ProductController extends BackendController
         $modelService = new ProductModelService();
         $modelService->setData([
             'post' => Yii::$app->request->post(),
-            'get' => Yii::$app->request->getQueryParams(),
+            'id' => $id,
         ]);
         $modelService->actionUpdate();
 
         $viewService = (new ProductViewService())->setData($modelService->getData());
 
-        if ($modelService->hasAction($modelService::ACTION_SAVE)) {
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
             return $this->redirect(['product/update', 'id' => $modelService->getData('model')->id]);
         }
-
-        return $this->render('update', [
-            'data' => $viewService,
-        ]);
 
         return $this->render('update', ['data' => $viewService]);
     }
@@ -59,9 +55,8 @@ class ProductController extends BackendController
     public function actionDelete($id)
     {
         $modelService = new ProductModelService();
-        $modelService->setRequestData(['get' => Yii::$app->request->getQueryParams()]);
 
-        if ($modelService->delete()) {
+        if ($modelService->delete($id)) {
 
             return $this->redirect(['group/manager', 'parent_id' => $modelService->getModel()->group_id]);
         }

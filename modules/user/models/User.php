@@ -128,6 +128,20 @@ class User extends \app\core\db\ActiveRecord
     {
         return new UserQuery(get_called_class());
     }
+
+    public function getStatusList()
+    {
+        return [
+            self::STATUS_BLOCK => Yii::t('user', 'Status block'),
+            self::STATUS_ACTIVE => Yii::t('user', 'Status active'),
+            self::STATUS_NOT_ACTIVE => Yii::t('user', 'Status not active'),
+        ];
+    }
+
+    public function getStatus($status)
+    {
+        return $this->getStatusList()[$status];
+    }
 }
 
 
