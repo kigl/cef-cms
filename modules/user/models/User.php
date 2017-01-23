@@ -89,11 +89,6 @@ class User extends \app\core\db\ActiveRecord
     public function behaviors()
     {
         return [
-            [
-                'class' => 'yii\behaviors\TimeStampBehavior',
-                'createdAtAttribute' => 'create_time',
-                'updatedAtAttribute' => 'update_time',
-            ],
             'userIp' => [
                 'class' => 'app\core\behaviors\UserIp',
                 'attribute' => 'ip',

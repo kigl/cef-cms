@@ -30,7 +30,6 @@ class OrderController extends FrontendController
                     ],
                 ],
             ],
-            // сделать фильтр проверки наличие товаров в корзине и наличие заказа
         ];
     }
 
@@ -42,7 +41,7 @@ class OrderController extends FrontendController
         ]);
 
         if ($modelService->hasExecutedAction($modelService::EMPTY_CART)) {
-            return $this->redirect(['/shop/cart']);
+            return $this->redirect(['/shop/cart/index']);
         }
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {

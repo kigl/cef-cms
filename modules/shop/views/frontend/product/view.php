@@ -76,7 +76,6 @@ $this->params['groupId'] = $data->getGroupId();
                         <div class="col-md-6">
                             <?= Html::a(Yii::t('shop', 'Button add to cart'), '#', [
                                 'class' => 'btn btn-primary',
-                                'data-pjax' => 0,
                                 'onclick' => "addToCart({$data->getId()}, document.getElementById('qty_{$data->getId()}').value);
                 return false;",
                             ]); ?>

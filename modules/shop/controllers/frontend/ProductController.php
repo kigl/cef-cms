@@ -39,9 +39,11 @@ class ProductController extends FrontendController
 
         $viewService = (new ProductViewService())->setData($modelService->getData());
 
-        if (Yii::$app->request->isAjax) {
+
+        if (!Yii::$app->request->isPjax && Yii::$app->request->isAjax) {
             return $this->renderAjax('view', ['data' => $viewService]);
         }
+
 
         return $this->render('view', ['data' => $viewService]);
     }

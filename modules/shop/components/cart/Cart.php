@@ -18,6 +18,7 @@ use Yii;
 use yii\base\Component;
 use yii\data\ActiveDataProvider;
 use app\modules\shop\models\base\Order;
+use app\modules\shop\models\base\OrderItem;
 
 class Cart extends Component implements CartInterface
 {
@@ -242,6 +243,32 @@ class Cart extends Component implements CartInterface
     {
         if ($this->createOrder()) {
             $this->cartCookie->create($this->order->id);
+        }
+    }
+
+    public function saveOrder(array $attributes)
+    {
+        $orderId = $this->getOrderId();
+        $orderModelClass = $this->orderModelClass;
+
+        $order = $orderModelClass::findOne($orderId);
+
+        $order->status = Order::STATUS_ACCEPTED;
+        $order->attributes = $attributes;
+        return $order->save(false);
+    }
+
+    public function saveOrderItem()
+    {
+        foreach ($this->getCart() as $item) {
+            $orderItem = new OrderItem([
+                'order_id' => $this->getOrderId(),
+                'name' => $item->product->name,
+                'qty' => $item->qty,
+                'price' => $item->product->price,
+            ]);
+
+            $orderItem->save(false);
         }
     }
 }

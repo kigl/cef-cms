@@ -13,8 +13,8 @@ use app\core\service\ViewService;
 
 class OrderViewService extends ViewService
 {
-    public function getFieldDataProvider()
+    public function getDataProvider()
     {
-        return $this->getData('fieldDataProvider');
+        return $this->getData('dataProvider');
     }
 }

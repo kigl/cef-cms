@@ -9,22 +9,23 @@
 namespace app\modules\shop\service\backend;
 
 
-use app\core\service\ModelService;
-use app\modules\shop\models\base\OrderField;
 use yii\data\ActiveDataProvider;
+use app\core\service\ModelService;
+use app\modules\shop\models\base\Order;
 
 class OrderModelService extends ModelService
 {
-    public function actionFieldManager()
+    public function actionManager()
     {
-        $query = OrderField::find();
+        $query = Order::find();
 
+        $query->joinWith(['user']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
         $this->setData([
-            'fieldDataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider,
         ]);
     }
 }

@@ -43,8 +43,8 @@ class OrderModelService extends ModelService
         }
 
         if ($this->hasExecutedAction(self::EXECUTED_ACTION_VALIDATE)) {
-            $this->saveOrder($model->attributes);
-            $this->saveOrderItem();
+            $this->cartService->saveOrder($model->attributes);
+            $this->cartService->saveOrderItem();
             $this->cartService->clear();
             $this->cartService->newOrder(); //создадим новый пустой заказ
 
@@ -54,29 +54,5 @@ class OrderModelService extends ModelService
         $this->setData([
             'model' => $model,
         ]);
-    }
-
-    protected function saveOrder(array $attributes)
-    {
-        $orderId = $this->cartService->getOrderId();
-        $order = Order::findOne($orderId);
-
-        $order->status = Order::STATUS_ACCEPTED;
-        $order->attributes = $attributes;
-        return $order->save(false);
-    }
-
-    protected function saveOrderItem()
-    {
-        foreach ($this->cartService->getCart() as $item) {
-            $orderItem = new OrderItem([
-                'order_id' => $this->cartService->getOrderId(),
-                'name' => $item->product->name,
-                'qty' => $item->qty,
-                'price' => $item->product->price,
-            ]);
-
-            $orderItem->save(false);
-        }
     }
 }

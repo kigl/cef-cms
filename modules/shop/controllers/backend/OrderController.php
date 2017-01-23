@@ -9,6 +9,7 @@
 namespace app\modules\shop\controllers\backend;
 
 
+use Yii;
 use app\core\actions\Create;
 use app\core\actions\Delete;
 use app\core\actions\Update;
@@ -19,6 +20,7 @@ use app\modules\shop\service\backend\OrderViewService;
 
 class OrderController extends BackendController
 {
+    /*
     public function actions()
     {
         return [
@@ -51,14 +53,15 @@ class OrderController extends BackendController
 
         return $this->render('field/manager', ['data' => $viewService]);
     }
+    */
     
-    public function actionFieldUpdate($id)
+    public function actionManager()
     {
-        
-    }
-    
-    public function actionFieldDelete($id)
-    {
-        
+        $modelService = Yii::createObject(OrderModelService::class);
+        $modelService->actionManager();
+
+        $viewService = (new OrderViewService())->setData($modelService->getData());
+
+        return $this->render('manager', ['data' => $viewService]);
     }
 }
