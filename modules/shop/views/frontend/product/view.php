@@ -62,6 +62,11 @@ $this->params['groupId'] = $data->getGroupId();
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-12">
+                            Показывать модификации
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <?= Html::textInput('', '', [
                                 'class' => 'form-control',
@@ -69,8 +74,9 @@ $this->params['groupId'] = $data->getGroupId();
                             ]); ?>
                         </div>
                         <div class="col-md-6">
-                            <?= Html::a(Yii::t('shop', 'Button add to cart'), '', [
+                            <?= Html::a(Yii::t('shop', 'Button add to cart'), '#', [
                                 'class' => 'btn btn-primary',
+                                'data-pjax' => 0,
                                 'onclick' => "addToCart({$data->getId()}, document.getElementById('qty_{$data->getId()}').value);
                 return false;",
                             ]); ?>
@@ -94,4 +100,3 @@ $this->params['groupId'] = $data->getGroupId();
         </div>
     </div>
 </div>
-

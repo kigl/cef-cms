@@ -88,4 +88,9 @@ class ProductViewService extends ViewService
     {
         return $this->getData('dataProvider');
     }
+
+    public function getModification()
+    {
+        return $this->getData('modification');
+    }
 }

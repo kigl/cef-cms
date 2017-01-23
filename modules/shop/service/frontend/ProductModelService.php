@@ -68,9 +68,10 @@ class ProductModelService extends ModelService
 
         $model->where('id = :id', [':id' => $this->getData('get', 'id')]);
 
-        $this->model = $model->with('group', 'images', 'mainImage', 'property.property')->one();
+        $this->model = $model->with('group', 'modification.product', 'images', 'mainImage', 'property.property')
+            ->one();
 
-        if (!$model->one()) {
+        if (!$this->model) {
             $this->setError(self::ERROR_NOT_MODEL);
             return;
         }
@@ -81,6 +82,7 @@ class ProductModelService extends ModelService
             'property' => $this->model->property,
             'mainImage' => $this->model->mainImage,
             'group' => $this->model->group,
+            'modification' => $this->model->modification,
         ]);
 
         if (!$this->hasData('get', 'alias')) {

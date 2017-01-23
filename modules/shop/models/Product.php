@@ -90,7 +90,7 @@ class Product extends \app\modules\shop\models\base\Product
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProductsModification()
+    public function getModification()
     {
         return $this->hasMany(ProductModification::className(), ['product_id' => 'id']);
     }

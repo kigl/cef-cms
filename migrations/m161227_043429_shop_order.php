@@ -12,6 +12,14 @@ class m161227_043429_shop_order extends Migration
             'id' => $this->primaryKey(),
             'status' => $this->integer()->defaultValue(0),
             'user_id' => $this->integer(),
+            'country' => $this->string(),
+            'region' => $this->string(),
+            'city' => $this->string(),
+            'postcode' => $this->integer(),
+            'address' => $this->string(),
+            'company' => $this->string(),
+            'phone' => $this->string(),
+            'comment' => $this->string(),
         ]);
 
         $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `user_id`;");

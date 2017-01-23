@@ -2,7 +2,8 @@
 
 namespace app\modules\shop\models\base;
 
-use Yii;
+
+use app\core\db\ActiveRecord;
 use app\modules\user\models\User;
 
 /**
@@ -14,11 +15,14 @@ use app\modules\user\models\User;
  * @property string $create_time
  * @property string $update_time
  *
- * @property ShopCart[] $shopCarts
+ * @property Cart[] $shopCarts
  * @property User $user
  */
-class Order extends \yii\db\ActiveRecord
+class Order extends ActiveRecord
 {
+    const STATUS_NOT_ACCEPTED = 0;
+    const STATUS_ACCEPTED = 1;
+
     /**
      * @inheritdoc
      */
@@ -33,8 +37,9 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'user_id'], 'integer'],
+            [['status', 'user_id', 'postcode'], 'integer'],
             [['create_time', 'update_time'], 'safe'],
+            [['country', 'region', 'city', 'address', 'company', 'phone', 'comment'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -72,5 +77,10 @@ class Order extends \yii\db\ActiveRecord
     public function getFieldRelation()
     {
         return $this->hasMany(OrderFieldRelation::className(), ['order_id' => 'id']);
+    }
+
+    public function getItems()
+    {
+        return $this->hasMany(OrderItem::class, ['order_id' => 'id']);
     }
 }

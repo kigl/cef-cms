@@ -101,7 +101,18 @@ class Cart extends Component implements CartInterface
 
     public function clear()
     {
-        return $this;
+        $cartModelClass = $this->cartModelClass;
+
+        return $cartModelClass::deleteAll();
+    }
+
+    public function isEmptyCart()
+    {
+        if ($this->getCount() > 0) {
+            return false;
+        }
+
+        return true;
     }
 
     public function getCount()
@@ -160,6 +171,9 @@ class Cart extends Component implements CartInterface
                 ->one();
         }
 
+        /**
+         * @TODO
+         */
         $this->setUser($this->order, Yii::$app->user->id);
 
         return $this->order;
@@ -196,7 +210,7 @@ class Cart extends Component implements CartInterface
 
         $model = new $orderClass;
 
-        if ($model->save()) {
+        if ($model->save(false)) {
             $this->order = $model;
 
             return true;
@@ -221,6 +235,13 @@ class Cart extends Component implements CartInterface
             $this->cartCookie->create($this->order->id);
 
             return $this->cartCookie->getResponseValue();
+        }
+    }
+
+    public function newOrder()
+    {
+        if ($this->createOrder()) {
+            $this->cartCookie->create($this->order->id);
         }
     }
 }

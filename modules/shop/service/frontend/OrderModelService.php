@@ -9,45 +9,74 @@
 namespace app\modules\shop\service\frontend;
 
 
-use app\modules\shop\models\base\Order;
-use app\modules\shop\models\base\OrderField;
+use Yii;
+use app\modules\shop\models\base\OrderItem;
 use app\core\service\ModelService;
-use app\modules\shop\models\base\OrderFieldRelation;
+use app\modules\shop\models\forms\OrderForm;
+use app\modules\shop\models\base\Order;
 
 class OrderModelService extends ModelService
 {
+    const EMPTY_CART = 95;
+
     protected $field;
 
-    public function actionIndex()
-    {
-        $this->model = Order::find()
-            ->where('id = :id', [':id' => $this->getData('orderId')])
-            ->with('fieldRelation')
-            ->one();
+    protected $cartService;
 
-        $this->init();
+    protected $order;
+
+    public function __construct()
+    {
+        $this->cartService = Yii::$app->cart;
     }
 
-    protected function init()
+    public function actionIndex(array $params)
     {
-        $this->initField();
-    }
+        $model = new OrderForm();
 
-    protected function initField()
-    {
-        $field = $this->model->getFieldRelation()
-            ->with('field')
-            ->indexBy('field_id')
-            ->all();
-
-        $allProperty = OrderField::find()
-            ->indexBy('id')
-            ->all();
-
-        foreach (array_diff_key($allProperty, $field) as $item) {
-            $field[$item->id] = new OrderFieldRelation(['field_id' => $item->id]);
+        if ($this->cartService->isEmptyCart()) {
+            $this->setExecutedAction(self::EMPTY_CART);
         }
-        
-        return $field;
+
+        if ($model->load($params['post']) && $model->validate()) {
+            $this->setExecutedAction(self::EXECUTED_ACTION_VALIDATE);
+        }
+
+        if ($this->hasExecutedAction(self::EXECUTED_ACTION_VALIDATE)) {
+            $this->saveOrder($model->attributes);
+            $this->saveOrderItem();
+            $this->cartService->clear();
+            $this->cartService->newOrder(); //создадим новый пустой заказ
+
+            $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
+        }
+
+        $this->setData([
+            'model' => $model,
+        ]);
+    }
+
+    protected function saveOrder(array $attributes)
+    {
+        $orderId = $this->cartService->getOrderId();
+        $order = Order::findOne($orderId);
+
+        $order->status = Order::STATUS_ACCEPTED;
+        $order->attributes = $attributes;
+        return $order->save(false);
+    }
+
+    protected function saveOrderItem()
+    {
+        foreach ($this->cartService->getCart() as $item) {
+            $orderItem = new OrderItem([
+                'order_id' => $this->cartService->getOrderId(),
+                'name' => $item->product->name,
+                'qty' => $item->qty,
+                'price' => $item->product->price,
+            ]);
+
+            $orderItem->save(false);
+        }
     }
 }

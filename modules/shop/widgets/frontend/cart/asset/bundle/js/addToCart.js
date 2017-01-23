@@ -13,4 +13,6 @@ function addToCart(productId, qty) {
     setTimeout( function () {
         $.pjax.reload({container:"#cart-pjax"});  //Reload GridView
     }, 200);
+
+    alert('Товар добавлен в корзину');
 }

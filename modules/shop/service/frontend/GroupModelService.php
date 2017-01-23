@@ -23,11 +23,11 @@ class GroupModelService extends ModelService
     {
         $model = Group::find();
 
-        $model->where('id = :id', [':id' => $this->getData('get', 'id')]);
+        $model->where(['id' => $this->getData('get', 'id')]);
 
         $modelGroup = $model->one();
 
-        if (!$model->one()) {
+        if (!$modelGroup) {
             $this->setError(self::ERROR_NOT_MODEL);
             return;
         }

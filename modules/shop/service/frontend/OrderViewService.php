@@ -13,4 +13,8 @@ use app\core\service\ViewService;
 
 class OrderViewService extends ViewService
 {
+    public function getModel()
+    {
+        return $this->getData('model');
+    }
 }
