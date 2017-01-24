@@ -5,6 +5,10 @@ use yii\helpers\Html;
 
 <?php \yii\widgets\Pjax::begin(['id' => 'cart-pjax']); ?>
 
+<?php
+//var_dump($data->cartCookie->getRequestValue());
+?>
+
 <div class="cart-block panel panel-default">
     <div class="panel-heading">
         <?= Html::a('Корзина', $urlPageCart, ['data-pjax' => 0]);?>

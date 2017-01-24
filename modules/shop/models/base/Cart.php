@@ -3,17 +3,16 @@
 namespace app\modules\shop\models\base;
 
 use Yii;
+use app\modules\user\models\User;
 
 /**
  * This is the model class for table "{{%shop_cart}}".
  *
  * @property integer $id
- * @property integer $order_id
- * @property integer $product_id
- * @property integer $qty
+ * @property integer $user_id
  *
- * @property ShopOrder $order
- * @property ShopProduct $product
+ * @property User $user
+ * @property CartItem[] $shopCartItems
  */
 class Cart extends \yii\db\ActiveRecord
 {
@@ -31,10 +30,8 @@ class Cart extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_id', 'product_id', 'qty'], 'integer'],
-            [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Order::className(), 'targetAttribute' => ['order_id' => 'id']],
-            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
-            [['price'], 'number'],
+            [['user_id'], 'integer'],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -44,27 +41,24 @@ class Cart extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'order_id' => 'Order ID',
-            'product_id' => 'Product ID',
-            'qty' => Yii::t('shop', 'Qty'),
-            'price' => 'Price',
+            'id' => Yii::t('shop', 'ID'),
+            'user_id' => Yii::t('shop', 'User ID'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOrder()
+    public function getUser()
     {
-        return $this->hasOne(Order::className(), ['id' => 'order_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProduct()
+    public function getItems()
     {
-        return $this->hasOne(Product::className(), ['id' => 'product_id']);
+        return $this->hasMany(CartItem::className(), ['cart_id' => 'id']);
     }
 }

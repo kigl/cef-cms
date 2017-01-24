@@ -28,9 +28,6 @@ class CartController extends FrontendController
     public function actionIndex()
     {
         $modelService = new CartModelService();
-        $modelService->setData([
-            'post' => Yii::$app->request->post(),
-        ]);
         $modelService->actionIndex();
 
         $viewService = (new CartViewService())->setData($modelService->getData());

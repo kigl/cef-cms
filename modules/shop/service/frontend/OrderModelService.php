@@ -10,10 +10,10 @@ namespace app\modules\shop\service\frontend;
 
 
 use Yii;
+use app\modules\shop\models\base\Order;
 use app\modules\shop\models\base\OrderItem;
 use app\core\service\ModelService;
 use app\modules\shop\models\forms\OrderForm;
-use app\modules\shop\models\base\Order;
 
 class OrderModelService extends ModelService
 {
@@ -43,16 +43,40 @@ class OrderModelService extends ModelService
         }
 
         if ($this->hasExecutedAction(self::EXECUTED_ACTION_VALIDATE)) {
-            $this->cartService->saveOrder($model->attributes);
-            $this->cartService->saveOrderItem();
+            $this->newOrder($model->attributes); //создадим новый пустой заказ
             $this->cartService->clear();
-            $this->cartService->newOrder(); //создадим новый пустой заказ
 
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
+
         }
 
         $this->setData([
             'model' => $model,
         ]);
+    }
+
+    protected function newOrder(array $attributes)
+    {
+        $model = new Order();
+
+        $model->status = Order::STATUS_ACCEPTED;
+        $model->attributes = $attributes;
+        $model->save(false);
+
+        $this->saveOrderItem($model);
+    }
+
+    protected function saveOrderItem(Order $model)
+    {
+        foreach ($this->cartService->getCart()->items as $item) {
+            $orderItem = new OrderItem([
+                'order_id' => $model->id,
+                'name' => $item->product->name,
+                'qty' => $item->qty,
+                'price' => $item->product->price,
+            ]);
+
+            $orderItem->save(false);
+        }
     }
 }

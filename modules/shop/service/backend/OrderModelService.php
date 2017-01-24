@@ -17,9 +17,10 @@ class OrderModelService extends ModelService
 {
     public function actionManager()
     {
-        $query = Order::find();
+        $query = Order::find()
+         ->where("status != :status", [':status' => Order::STATUS_NOT_ACCEPTED]);
 
-        $query->joinWith(['user']);
+        $query->with(['user']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

@@ -30,7 +30,7 @@ return [
         ]
     ],
 
-    'bootstrap' => ['cart'],
+    //'bootstrap' => ['cart'],
 
     'components' => [
         'i18n' => [
@@ -46,8 +46,6 @@ return [
         ],
         'cart' => [
             'class' => \app\modules\shop\components\cart\Cart::className(),
-            'orderModelClass' => \app\modules\shop\models\base\Order::className(),
-            'cartModelClass' => \app\modules\shop\models\base\Cart::className(),
             'cookieName' => 'cart',
             'cookieExpire' => time() + 3600 * 24 * 1,
         ],

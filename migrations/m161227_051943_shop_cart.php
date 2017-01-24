@@ -10,17 +10,12 @@ class m161227_051943_shop_cart extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'order_id' => $this->integer(),
-            'product_id' => $this->integer(),
-            'qty' => $this->integer()->defaultValue(0),
-            'price' => $this->float(5, 2),
+            'user_id' => $this->integer(),
         ]);
 
-        $this->createIndex('ix-order_product-order_id', $this->tableName, 'order_id');
-        $this->createIndex('ix-order_product-product_id', $this->tableName, 'product_id');
+        $this->createIndex('ix-shop_cart-user_id', $this->tableName, 'user_id');
 
-        $this->addForeignKey('fk-order_product-order_id', $this->tableName, 'order_id', '{{%shop_order}}', 'id', 'CASCADE', 'CASCADE');
-        $this->addForeignKey('fk-order_product-product_id', $this->tableName, 'product_id', '{{%shop_product}}', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('fk-shop_cart-user_id', $this->tableName, 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()

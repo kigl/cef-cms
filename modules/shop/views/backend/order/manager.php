@@ -9,7 +9,7 @@ use app\modules\admin\widgets\grid\GridView;
         [
             'attribute' => 'login',
             'value' => function ($data) {
-                return $data->user->login;
+                return $data->user->name;
             }
         ],
         'update_time:dateTime',

@@ -3,6 +3,7 @@
 namespace app\modules\shop\models\base;
 
 
+use app\core\behaviors\UserId;
 use app\core\db\ActiveRecord;
 use app\modules\user\models\User;
 
@@ -55,6 +56,15 @@ class Order extends ActiveRecord
             'user_id' => 'User ID',
             'create_time' => 'Create Time',
             'update_time' => 'Update Time',
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => UserId::class,
+            ]
         ];
     }
 

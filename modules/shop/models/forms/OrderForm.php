@@ -33,7 +33,7 @@ class OrderForm extends Model
     public function rules()
     {
         return [
-            [['country', 'city', 'address', 'postcode'], 'required'],
+            [['country', /*'city', 'address', 'postcode'*/], 'required'],
             ['postcode', 'integer'],
             [['country', 'region', 'city', 'address', 'company', 'comment', 'phone'], 'string', 'max' => 255],
         ];
