@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Url;
-
+use yii\helpers\Html;
 ?>
 
 <div class="product-item img-thumbnail">
@@ -18,7 +18,7 @@ use yii\helpers\Url;
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h3><?= $model->name; ?></h3>
+            <h3><?=Html::encode($model->name);?></h3>
         </div>
     </div>
     <div class="row">

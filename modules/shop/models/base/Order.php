@@ -3,6 +3,7 @@
 namespace app\modules\shop\models\base;
 
 
+use Yii;
 use app\core\behaviors\UserId;
 use app\core\db\ActiveRecord;
 use app\modules\user\models\User;
@@ -51,10 +52,10 @@ class Order extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => Yii::t('app', 'Id'),
             'status' => 'Status',
             'user_id' => 'User ID',
-            'create_time' => 'Create Time',
+            'create_time' => Yii::t('app', 'Create time'),
             'update_time' => 'Update Time',
         ];
     }

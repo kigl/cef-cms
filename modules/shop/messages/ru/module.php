@@ -44,6 +44,7 @@ return [
     'Quick view product' => 'Быстрый просмотр',
 
     'Toolbar property' => 'Свойства товара',
+    'Toolbar order' => 'Заказы',
     'Tab main' => 'Общие',
     'Tab property' => 'Свойства',
     'Tab images' => 'Изображения',

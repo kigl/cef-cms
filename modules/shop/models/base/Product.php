@@ -44,7 +44,6 @@ class Product extends ActiveRecord
             [['content'], 'string'],
             [['price', 'sku'], 'default', 'value' => 0],
             [['price'], 'number'],
-            [['create_time', 'update_time'], 'safe'],
             [['code', 'name', 'description', 'alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],
             ['imageUpload', 'image', 'maxFiles' => 5],
         ];

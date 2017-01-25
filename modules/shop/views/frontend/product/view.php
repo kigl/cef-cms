@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\HtmlPurifier;
 use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
@@ -24,6 +25,13 @@ $this->params['groupId'] = $data->getGroupId();
 ?>
 
 <div class="product-detail">
+    <pre>
+    <?php
+    foreach ($data->getModification() as $modification) {
+        echo "<a href='". $modification->product->id ."'>" . $modification->product->property[0]->value . "</a>";
+    }
+    ?>
+    </pre>
     <div class="row">
         <div class="col-md-6">
             <div class="product-main-image">
@@ -40,6 +48,9 @@ $this->params['groupId'] = $data->getGroupId();
                 <div class="col-md-12">
                     <?= \app\modules\shop\widgets\frontend\moreImages\Widget::widget(['model' => $data->getImages()]); ?>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12"><?= HtmlPurifier::process($data->getContent());?></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -90,7 +101,7 @@ $this->params['groupId'] = $data->getGroupId();
                         <div class="col-md-12">
                             <?= \yii\widgets\DetailView::widget([
                                 'model' => $data->getProperty(),
-                                'attributes' => ['size'],
+                                'attributes' => ['size', 'color'],
                             ]); ?>
                         </div>
                     </div>

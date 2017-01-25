@@ -21,10 +21,7 @@ class ProductController extends FrontendController
     public function actionView($id, $alias = '')
     {
         $modelService = new ProductModelService();
-        $modelService->setData([
-            'get' => Yii::$app->request->getQueryParams()
-        ]);
-        $modelService->view();
+        $modelService->view($id, $alias);
 
         if ($modelService->hasError($modelService::ERROR_NOT_MODEL)) {
             throw new HttpException(404);
@@ -47,34 +44,6 @@ class ProductController extends FrontendController
 
         return $this->render('view', ['data' => $viewService]);
     }
-
-    /*public function actionList($group_id, $alias = '')
-    {
-        $modelService = new ProductModelService();
-        $modelService->setRequestData([
-            'get' => Yii::$app->request->getQueryParams(),
-        ]);
-        $modelService->listProduct();
-
-        if ($modelService->hasError($modelService::ERROR_NOT_MODEL)) {
-            throw new HttpException(404);
-        }
-
-        if ($modelService->hasError($modelService::ERROR_NOT_MODEL_ALIAS)) {
-            $this->redirect([
-                '/shop/product/list',
-                'group_id' => $group_id,
-                'alias' => $modelService->getData('model')->alias], 301);
-        }
-
-        $viewProductService = (new ProductViewService())->setData($modelService->getData());
-        $viewGroupService = (new GroupViewService())->setData($modelService->getData());
-        
-        return $this->render('list', [
-            'dataProduct' => $viewProductService,
-            'dataGroup' => $viewGroupService,
-        ]);
-    }*/
 
     public function actionSearch($value)
     {

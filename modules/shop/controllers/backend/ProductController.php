@@ -9,10 +9,6 @@ use app\modules\shop\service\backend\ProductViewService;
 
 class ProductController extends BackendController
 {
-    protected $image;
-    protected $property;
-    protected $relation;
-
     public function actionCreate($group_id)
     {
         $modelService = new ProductModelService();
@@ -56,9 +52,9 @@ class ProductController extends BackendController
     {
         $modelService = new ProductModelService();
 
-        if ($modelService->delete($id)) {
+        if ($modelService->actionDelete($id)) {
 
-            return $this->redirect(['group/manager', 'parent_id' => $modelService->getModel()->group_id]);
+            return $this->redirect(['group/manager', 'parent_id' => $modelService->getData('groupId')]);
         }
 
         return false;

@@ -41,7 +41,7 @@ $this->params['toolbar'] = [
             'attribute' => 'name',
             'format' => 'raw',
             'value' => function ($data) {
-                return Html::a($data->name, ['manager', 'parent_id' => $data->id]);
+                return Html::a(Html::encode($data->name), ['manager', 'parent_id' => $data->id]);
             }
         ],
         [],

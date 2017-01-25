@@ -1,6 +1,7 @@
 <?php
 use yii\bootstrap\NavBar;
 use yii\bootstrap\Nav;
+use yii\helpers\Html;
 ?>
 
 <?php 
@@ -24,7 +25,7 @@ echo Nav::widget([
 	'options' => ['class' => 'navbar-nav pull-right'],
 	'encodeLabels' => false,
 	'items' => [
-		['label' => '<i class="glyphicon glyphicon-user"></i> '. Yii::$app->user->identity->login, 'url' => ['/admin/user/default/update', 'id' => Yii::$app->user->identity->id]],
+		['label' => '<i class="glyphicon glyphicon-user"></i> '. Html::encode(Yii::$app->user->identity->login), 'url' => ['/admin/user/default/update', 'id' => Yii::$app->user->identity->id]],
 		['label' => Yii::t('user', 'Logout'), 'url' => ['/user/default/logout']],
 	],
 ]);

@@ -50,15 +50,4 @@ class ProductViewService extends ViewService
     {
         return $this->getData('model')->name;
     }
-
-    public function getUserFN()
-    {
-        $data = $this->getData('model')->user;
-
-        if (!$data) {
-            return false;
-        }
-
-        return $data->surname . ' ' . $data->name;
-    }
 }

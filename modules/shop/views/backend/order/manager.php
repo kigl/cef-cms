@@ -12,6 +12,9 @@ use app\modules\admin\widgets\grid\GridView;
                 return $data->user->name;
             }
         ],
-        'update_time:dateTime',
+        'create_time:dateTime',
+        [
+            'class' => 'yii\grid\ActionColumn',
+        ],
     ],
 ])?>

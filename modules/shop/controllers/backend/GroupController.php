@@ -4,7 +4,6 @@ namespace app\modules\shop\controllers\backend;
 
 use Yii;
 use app\modules\shop\components\BackendController;
-use app\modules\shop\models\GroupService;
 use app\modules\shop\models\GroupSearch;
 use app\modules\shop\models\Group;
 use app\modules\shop\models\ProductSearch;

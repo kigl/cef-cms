@@ -17,4 +17,9 @@ class OrderViewService extends ViewService
     {
         return $this->getData('dataProvider');
     }
+
+    public function getModel()
+    {
+        return $this->getData('model');
+    }
 }

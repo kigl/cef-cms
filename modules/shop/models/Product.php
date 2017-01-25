@@ -116,10 +116,11 @@ class Product extends \app\modules\shop\models\base\Product
      */
     public function getListProductInGroup()
     {
-        return self::find()->where('group_id = :group', ['group' => $this->group_id])->select([
-            'name',
-            'id'
-        ])->indexBy('id')->column();
+        return self::find()
+            ->where('group_id = :group', ['group' => $this->group_id])
+            ->select(['name', 'id'])
+            ->indexBy('id')
+            ->column();
     }
 
     /**
@@ -135,6 +136,6 @@ class Product extends \app\modules\shop\models\base\Product
     public function getMainImage()
     {
         return $this->hasOne(Image::className(), ['product_id' => 'id'])
-            ->where('status = :status', [':status' => Image::STATUS_MAIN]);
+            ->where(['status' => Image::STATUS_MAIN]);
     }
 }

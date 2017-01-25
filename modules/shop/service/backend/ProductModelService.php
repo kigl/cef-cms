@@ -171,12 +171,16 @@ class ProductModelService extends ModelService
         return $success;
     }
 
-    public function delete($id)
+    public function actionDelete($id)
     {
         $this->model = Product::findOne($id);
 
         $success = $this->model->delete();
         $this->deleteImage();
+
+        $this->setData([
+            'groupId' => $this->model->group_id,
+        ]);
 
         return $success;
     }

@@ -32,18 +32,18 @@ class OrderModelService extends ModelService
 
     public function actionIndex(array $params)
     {
-        $model = new OrderForm();
+        $form = new OrderForm();
 
         if ($this->cartService->isEmptyCart()) {
             $this->setExecutedAction(self::EMPTY_CART);
         }
 
-        if ($model->load($params['post']) && $model->validate()) {
+        if ($form->load($params['post']) && $form->validate()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_VALIDATE);
         }
 
         if ($this->hasExecutedAction(self::EXECUTED_ACTION_VALIDATE)) {
-            $this->newOrder($model->attributes); //создадим новый пустой заказ
+            $this->newOrder($form->attributes); //создадим новый пустой заказ
             $this->cartService->clear();
 
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
@@ -51,7 +51,7 @@ class OrderModelService extends ModelService
         }
 
         $this->setData([
-            'model' => $model,
+            'model' => $form,
         ]);
     }
 

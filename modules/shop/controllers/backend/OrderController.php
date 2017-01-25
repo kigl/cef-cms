@@ -64,4 +64,14 @@ class OrderController extends BackendController
 
         return $this->render('manager', ['data' => $viewService]);
     }
+
+    public function actionView($id)
+    {
+        $modelService = Yii::createObject(OrderModelService::class);
+        $modelService->actionView($id);
+
+        $viewService = (new OrderViewService())->setData($modelService->getData());
+
+        return $this->render('view', ['data' => $viewService]);
+    }
 }

@@ -29,4 +29,18 @@ class OrderModelService extends ModelService
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    public function actionView($id)
+    {
+        $model = Order::findOne($id);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $model->getItems(),
+        ]);
+
+        $this->setData([
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 }

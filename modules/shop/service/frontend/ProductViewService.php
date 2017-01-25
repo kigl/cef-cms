@@ -29,6 +29,11 @@ class ProductViewService extends ViewService
         //return Yii::$app->formatter->asCurrency($this->getData('model')->price);
     }
 
+    public function getContent()
+    {
+        return $this->getData('model')->content;
+    }
+
     public function getGroupId()
     {
         return $this->getData('model')->group_id;

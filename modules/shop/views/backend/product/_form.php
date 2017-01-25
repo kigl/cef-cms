@@ -18,13 +18,7 @@ use app\modules\shop\models\Property;
 <div class="tab-content">
     <div class="tab-pane active" id="main">
         <div class="row">
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label><?= Yii::t('app', 'Author'); ?></label>
-                    <div><?= $data->getUserFN(); ?></div>
-                </div>
-            </div>
-            <div class="col-md-2"><?= $form->field($data->getModel(), 'code'); ?></div>
+            <div class="col-md-4"><?= $form->field($data->getModel(), 'code'); ?></div>
             <div class="col-md-4"><?= $form->field($data->getModel(), 'name'); ?></div>
             <div class="col-md-4"><?= $form->field($data->getModel(),
                     'status')->dropDownList($data->getModel()->getListStatus()); ?></div>

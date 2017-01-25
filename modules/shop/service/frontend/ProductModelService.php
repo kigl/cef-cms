@@ -8,67 +8,21 @@
 
 namespace app\modules\shop\service\frontend;
 
-use Yii;
 use yii\data\ActiveDataProvider;
 use app\core\service\ModelService;
 use app\modules\shop\models\Product;
-use app\modules\shop\models\Group;
-use yii\web\HttpException;
 
 class ProductModelService extends ModelService
 {
-    /**
-     * @todo $pageSize
-     * @param int $pageSize
-     */
-    public function listProduct($pageSize = 3)
-    {
-        $model = Group::find();
+    protected $model;
 
-        $model->where('id = :id', [':id' => $this->getRequestData('get', 'group_id')]);
-
-        $modelGroup = $model->one();
-
-        if (!$model->one()) {
-            $this->setError(self::ERROR_NOT_MODEL);
-            return;
-        }
-
-        $dataProviderProduct = new ActiveDataProvider([
-            'query' => $modelGroup->getProducts()->with('mainImage'),
-            'pagination' => [
-                'pageSize' => $pageSize,
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'name' => SORT_ASC,
-                ],
-                'attributes' => ['id', 'name', 'price'],
-            ],
-        ]);
-
-        $this->setData([
-            'model' => $modelGroup,
-            'dataProvider' => $dataProviderProduct,
-        ]);
-
-        /**@todo
-         * проверка на алиас
-         */
-        if (!$this->hasRequestData('get', 'alias')) {
-            $this->setError(self::ERROR_NOT_MODEL_ALIAS);
-        } elseif ($modelGroup->alias !== $this->getRequestData('get', 'alias')) {
-            $this->setError(self::ERROR_NOT_MODEL_ALIAS);
-        }
-    }
-
-    public function view()
+    public function view($id, $alias)
     {
         $model = Product::find();
 
-        $model->where('id = :id', [':id' => $this->getData('get', 'id')]);
+        $model->where(['id' => $id]);
 
-        $this->model = $model->with('group', 'modification.product', 'images', 'mainImage', 'property.property')
+        $this->model = $model->with('group', 'modification.product.property.property', 'images', 'mainImage', 'property.property')
             ->one();
 
         if (!$this->model) {
@@ -85,9 +39,9 @@ class ProductModelService extends ModelService
             'modification' => $this->model->modification,
         ]);
 
-        if (!$this->hasData('get', 'alias')) {
+        if ($alias == '') {
             $this->setError(self::ERROR_NOT_MODEL_ALIAS);
-        } elseif ($this->model->alias !== $this->getData('get', 'alias')) {
+        } elseif ($this->model->alias !== $alias) {
             $this->setError(self::ERROR_NOT_MODEL_ALIAS);
         }
     }
