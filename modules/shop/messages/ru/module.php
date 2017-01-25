@@ -23,7 +23,7 @@ return [
 
     'Page header cart' => 'Корзина',
     'Price' => 'Цена',
-	'Product relation' => 'Связать с товаром',
+	'Product relation' => 'Модификация для товара',
 	'Property type string' => 'Строка',
 	'Property type boolean' => 'Boolean',
 	'Property type' => 'Тип свойства',

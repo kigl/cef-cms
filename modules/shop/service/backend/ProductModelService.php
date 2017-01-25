@@ -51,7 +51,7 @@ class ProductModelService extends ModelService
      */
     protected function initProperty()
     {
-        $property = $this->model->getProperty()
+        $property = $this->model->getProperties()
             ->indexBy('property_id')
             ->all();
 
@@ -77,7 +77,7 @@ class ProductModelService extends ModelService
     public function actionCreate()
     {
         $this->model = new Product();
-        $this->model->group_id = $this->getdata('groupId');
+        $this->model->group_id = $this->getData('groupId');
 
         $this->init();
 

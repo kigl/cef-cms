@@ -28,7 +28,8 @@ $this->params['groupId'] = $data->getGroupId();
     <pre>
     <?php
     foreach ($data->getModification() as $modification) {
-        echo "<a href='". $modification->product->id ."'>" . $modification->product->property[0]->value . "</a>";
+        echo $data->getModel()->properties[0]->value;
+        echo "<a href='". $modification->product->id ."'>" . $modification->product->properties[0]->value . "</a>";
     }
     ?>
     </pre>
@@ -100,8 +101,8 @@ $this->params['groupId'] = $data->getGroupId();
                     <div class="row">
                         <div class="col-md-12">
                             <?= \yii\widgets\DetailView::widget([
-                                'model' => $data->getProperty(),
-                                'attributes' => ['size', 'color'],
+                                'model' => $data->getProperties(),
+                                'attributes' => ['test', 'color'],
                             ]); ?>
                         </div>
                     </div>

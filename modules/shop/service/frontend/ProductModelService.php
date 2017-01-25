@@ -22,7 +22,7 @@ class ProductModelService extends ModelService
 
         $model->where(['id' => $id]);
 
-        $this->model = $model->with('group', 'modification.product.property.property', 'images', 'mainImage', 'property.property')
+        $this->model = $model->with('group', 'modification.product.properties.property', 'images', 'mainImage', 'properties.property')
             ->one();
 
         if (!$this->model) {
@@ -33,7 +33,7 @@ class ProductModelService extends ModelService
         $this->setData([
             'model' => $this->model,
             'images' => $this->model->images,
-            'property' => $this->model->property,
+            'properties' => $this->model->properties,
             'mainImage' => $this->model->mainImage,
             'group' => $this->model->group,
             'modification' => $this->model->modification,
@@ -60,7 +60,7 @@ class ProductModelService extends ModelService
             ],
         ]);
 
-        if ($searchValue = $this->getRequestData('get', 'value')) {
+        if ($searchValue = $this->getData('get', 'value')) {
             $model->where(['like', 'name', $searchValue]);
         } else {
             /*@todo

@@ -81,7 +81,7 @@ class Product extends \app\modules\shop\models\base\Product
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getProperty()
+    public function getProperties()
     {
         return $this->hasMany(ProductProperty::className(), ['product_id' => 'id']);
     }

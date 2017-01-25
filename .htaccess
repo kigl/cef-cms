@@ -1,18 +1,3 @@
-# запрещает показ списка файлов
-# Options -Indexes
-# задает обработку доступа, сначала должны идти все разрешения, потом запрет
-# Order allow,deny
-# разрешаем доступ к index.php
-# <Files "index.php">
-#    Allow from all
-# </Files>
-
-# <Files "./">
-#    Allow from all
-# </Files>
-# запрещаем доступ ко всему отовсюду
-# Deny from all
-
 AddDefaultCharset UTF-8
 
 RewriteEngine on

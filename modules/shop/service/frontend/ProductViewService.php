@@ -79,10 +79,10 @@ class ProductViewService extends ViewService
         return $data ? $data : null;
     }
 
-    public function getProperty()
+    public function getProperties()
     {
         $ar = [];
-        foreach ($this->getData('property') as $property) {
+        foreach ($this->getData('properties') as $property) {
             $ar[$property->property->name] = $property->value;
         }
 
