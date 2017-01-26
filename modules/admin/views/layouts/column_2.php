@@ -50,7 +50,7 @@ use app\modules\admin\widgets\menuTop\Widget as MenuTop;
                                     echo Menu::widget([
                                         'options' => ['class' => 'list-inline'],
                                         'encodeLabels' => false,
-                                        'linkTemplate' => '<a href="{url}" class="btn btn-default btn-sm show-in-modal">{label}</a>',
+                                        'linkTemplate' => '<a href="{url}" class="btn btn-default btn-sm">{label}</a>',
                                         'items' => $this->params['toolbar'],
                                     ]);
                                 }

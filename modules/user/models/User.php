@@ -9,7 +9,6 @@ use yii\helpers\ArrayHelper;
  * This is the model class for table "mn_user".
  *
  * @property integer $id
- * @property integer $role
  * @property string $login
  * @property string $surname
  * @property string $name
@@ -71,7 +70,6 @@ class User extends \app\core\db\ActiveRecord
     {
         return [
             'id' => Yii::t('user', 'Id'),
-            'role' => Yii::t('user', 'Role'),
             'login' => Yii::t('user', 'Login'),
             'surname' => Yii::t('user', 'Surname'),
             'name' => Yii::t('user', 'Name'),
@@ -79,7 +77,7 @@ class User extends \app\core\db\ActiveRecord
             'email' => Yii::t('user', 'Email'),
             'password' => Yii::t('user', 'Password'),
             'status' => Yii::t('user', 'Status'),
-            'create_time' => Yii::t('app', 'Create Time'),
+            'create_time' => Yii::t('app', 'Create time'),
             'update_time' => Yii::t('app', 'Update time'),
             'ip' => Yii::t('user', 'Ip'),
             'password_repeat' => Yii::t('user', 'Password repeat'),
@@ -138,5 +136,3 @@ class User extends \app\core\db\ActiveRecord
         return $this->getStatusList()[$status];
     }
 }
-
-

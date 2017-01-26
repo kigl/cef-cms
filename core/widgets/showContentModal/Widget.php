@@ -11,8 +11,13 @@ namespace app\core\widgets\showContentModal;
 
 class widget extends \yii\base\Widget
 {
+    public $options = [];
+
     public function run()
     {
-        return $this->render('index', ['view' => $this->view]);
+        return $this->render('index', [
+            'view' => $this->view,
+            'options' => $this->options,
+            ]);
     }
 }

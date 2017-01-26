@@ -26,13 +26,13 @@ use yii\rbac\Item;
             ],
             'columns' => [
                 [
-                    'attribute' => Yii::t('user', 'Rbac form name'),
+                    'label' => Yii::t('user', 'Rbac form name'),
                     'value' => function ($data) {
                         return $data->name;
                     }
                 ],
                 [
-                    'attribute' => Yii::t('user', 'Rbac form type'),
+                    'label' => Yii::t('user', 'Rbac form type'),
                     'value' => function ($data) {
                         return StatusRbacHelper::getStatus($data->type);
                     }
@@ -74,13 +74,13 @@ use yii\rbac\Item;
             ],
             'columns' => [
                 [
-                    'attribute' => Yii::t('user', 'Rbac form name'),
+                    'label' => Yii::t('user', 'Rbac form name'),
                     'value' => function ($data) {
                         return $data->name;
                     }
                 ],
                 [
-                    'attribute' => Yii::t('user', 'Rbac form type'),
+                    'label' => Yii::t('user', 'Rbac form type'),
                     'value' => function ($data) {
                         return StatusRbacHelper::getStatus($data->type);
                     }

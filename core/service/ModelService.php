@@ -19,6 +19,7 @@ abstract class ModelService implements ModelServiceInterface
 
     const EXECUTED_ACTION_VALIDATE = 1;
     const EXECUTED_ACTION_SAVE = 2;
+    const EXECUTED_ACTION_DELETE = 3;
 
     protected $data = [];
 

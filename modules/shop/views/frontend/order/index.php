@@ -24,6 +24,6 @@ use yii\helpers\Html;
 
 <?= $form->field($data->getModel(), 'comment')->textarea();?>
 
-<?= Html::submitButton();?>
+<?= Html::submitButton(Yii::t('shop', 'Checkout'), ['class' => 'btn btn-primary']);?>
 
 <?php ActiveForm::end();?>

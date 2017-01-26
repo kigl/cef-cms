@@ -61,6 +61,7 @@ echo GridView::widget([
                 return $data->product->name;
             }
         ],
+        'price:currency',
         [
             'contentOptions' => ['class' => 'action-column', 'data-method' => 'post'],
             'class' => '\kartik\grid\DataColumn',
@@ -68,7 +69,12 @@ echo GridView::widget([
             'format' => 'raw',
             'value' => function ($data) {
                 return Html::textInput("Cart[{$data->product->id}]", $data->qty,
-                    ['data-product' => $data->product->id]);
+                    [
+                        'data-product' => $data->product->id,
+                        'class' => 'form-control',
+                        'style' => 'width: 70px',
+                    ]
+                );
             },
             'pageSummary' => function ($summary, $data, $widget) {
                 $result = [];
@@ -79,12 +85,6 @@ echo GridView::widget([
                 }
                 return array_sum($result);
             },
-        ],
-        [
-            'class' => '\kartik\grid\DataColumn',
-            'attribute' => 'product.price',
-            'format' => 'currency',
-            'pageSummary' => true
         ],
         [
             'class' => '\kartik\grid\DataColumn',

@@ -1,12 +1,16 @@
 <?php
 use yii\bootstrap\Modal;
+use yii\helpers\ArrayHelper;
+
 ?>
 
-<?= Modal::widget([
+<?= Modal::widget(ArrayHelper::merge([
     'options' => [
         'id' => 'show-content-modal',
-        ],
-]); ?>
+    ],
+],
+    $options));
+?>
 
 <?php
 $this->registerJs("

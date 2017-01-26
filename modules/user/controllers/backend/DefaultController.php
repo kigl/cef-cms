@@ -68,4 +68,19 @@ class DefaultController extends BackendController
 
         return $this->render('update', ['data' => $viewService]);
     }
+
+    public function actionView($id)
+    {
+        $modelService = Yii::createObject(UserModelService::class);
+        $modelService->actionView($id);
+
+        $viewService = (new UserViewService())->setData($modelService->getData());
+
+
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('view', ['data' => $viewService]);
+        }
+
+        return $this->render('view', ['data' => $viewService]);
+    }
 }

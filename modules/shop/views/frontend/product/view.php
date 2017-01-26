@@ -3,7 +3,6 @@ use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
-
 $this->setTitle($data->getTitle());
 $this->setPageHeader($data->getName());
 
@@ -25,14 +24,15 @@ $this->params['groupId'] = $data->getGroupId();
 ?>
 
 <div class="product-detail">
-    <pre>
+<ul>
     <?php
+    echo "<li>" . Html::a($data->getModel()->properties[0]->value, ['/shop/product/view', 'id' => $data->getModel()->id, 'alias' => $data->getModel()->alias]);
+
     foreach ($data->getModification() as $modification) {
-        echo $data->getModel()->properties[0]->value;
-        echo "<a href='". $modification->product->id ."'>" . $modification->product->properties[0]->value . "</a>";
+        echo "<li>" . Html::a($modification->product->properties[0]->value, ['/shop/product/view', 'id' => $modification->product->id, 'alias' => $modification->product->alias]);
     }
     ?>
-    </pre>
+</ul>
     <div class="row">
         <div class="col-md-6">
             <div class="product-main-image">
@@ -102,7 +102,7 @@ $this->params['groupId'] = $data->getGroupId();
                         <div class="col-md-12">
                             <?= \yii\widgets\DetailView::widget([
                                 'model' => $data->getProperties(),
-                                'attributes' => ['test', 'color'],
+                                'attributes' => ['size', 'color'],
                             ]); ?>
                         </div>
                     </div>

@@ -24,6 +24,7 @@ return [
 	'Rbac form name' => 'Имя',
 	'Rbac form type' => 'Тип',
 	'Rbac form description' => 'Описание',
+	'Rbac form child' => 'Дочерний элемент',
 	'Registration' => 'Регистрация',
     'Registration btn' => 'Зарегистрироваться',
 	

@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\widgets\DetailView;
 use app\modules\admin\widgets\ActiveForm;
 use app\modules\shop\models\Property;
 
@@ -9,6 +10,7 @@ use app\modules\shop\models\Property;
     <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('shop', 'Tab main'); ?></a></li>
     <li><a href="#images" data-toggle="tab"><?= Yii::t('shop', 'Tab images'); ?></a></li>
     <li><a href="#property" data-toggle="tab"><?= Yii::t('shop', 'Tab property') ?></a></li>
+    <li><a href="#other" data-toggle="tab"><?= Yii::t('shop', 'Tab other'); ?></a></li>
 </ul>
 
 <?php $form = ActiveForm::begin(); ?>
@@ -86,6 +88,20 @@ use app\modules\shop\models\Property;
                     ->label($value->property->name); ?>
             <?php endif; ?>
         <?php endforeach; ?>
+    </div>
+    <div class="tab-pane" id="other">
+        <?= DetailView::widget([
+            'model' => $data->getModel(),
+            'attributes' => [
+                'id',
+                [
+                    'attribute' => 'user_id',
+                    'format' => 'raw',
+                    'value' => Html::a($data->getModel()->user_id,
+                        ['/admin/user/default/view', 'id' => $data->getModel()->user_id]),
+                ],
+            ],
+        ]); ?>
     </div>
 </div>
 <?php ActiveForm::end(); ?>

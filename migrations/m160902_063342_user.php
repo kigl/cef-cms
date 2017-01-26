@@ -10,14 +10,12 @@ class m160902_063342_user extends Migration
     {
 			$this->createTable($this->tableName, [
 				'id' => $this->primaryKey(),
-				'role' => $this->integer(),
 				'login' => $this->string(50),
 				'surname' => $this->string(100),
 				'name' => $this->string(100),
 				'lastname' => $this->string(100),
 				'email' => $this->string(50),
 				'password' => $this->string(),
-				'auth_key' => $this->string(300),
 				'status' => $this->integer()->defaultValue(0),
 				'ip' => $this->string(50),
 			]);
@@ -30,9 +28,9 @@ class m160902_063342_user extends Migration
 			$this->createIndex('ix-user-surname', $this->tableName, 'surname');
 			
 			$this->batchInsert($this->tableName,
-			 	['id', 'role', 'login', 'surname', 'name', 'lastname', 'email', 'password', 'auth_key', 'status'],
+			 	['id', 'login', 'surname', 'name', 'lastname', 'email', 'password', 'status'],
 			 	[
-			 		['1', '', 'admin', '', '', '', '', Yii::$app->security->generatePasswordHash('admin'), '', '1'],
+			 		['1', 'admin', '', '', '', Yii::$app->security->generatePasswordHash('admin'), '', '1'],
 			 	]
 			 	);
     }

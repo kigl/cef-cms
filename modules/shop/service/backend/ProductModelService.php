@@ -39,41 +39,6 @@ class ProductModelService extends ModelService
      * @var array
      */
 
-    protected function init()
-    {
-        $this->property = $this->initProperty();
-        $this->modification = $this->initModification();
-        $this->image = $this->initImage();
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function initProperty()
-    {
-        $property = $this->model->getProperties()
-            ->indexBy('property_id')
-            ->all();
-
-
-        $allProperty = Property::find()->indexBy('id')->all();
-
-        foreach (array_diff_key($allProperty, $property) as $pr) {
-            $property[$pr->id] = new ProductProperty();
-            $property[$pr->id]->property_id = $pr->id;
-        }
-
-        return $property;
-    }
-
-    /**
-     * @return array
-     */
-    public function getProperty()
-    {
-        return $this->property;
-    }
-
     public function actionCreate()
     {
         $this->model = new Product();
@@ -112,12 +77,49 @@ class ProductModelService extends ModelService
         ]);
     }
 
+    protected function init()
+    {
+        $this->property = $this->initProperty();
+        $this->modification = $this->initModification();
+        $this->image = $this->initImage();
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function initProperty()
+    {
+        $property = $this->model->getProperties()
+            ->indexBy('property_id')
+            ->all();
+
+
+        $allProperty = Property::find()->indexBy('id')->all();
+
+        foreach (array_diff_key($allProperty, $property) as $pr) {
+            $property[$pr->id] = new ProductProperty();
+            $property[$pr->id]->property_id = $pr->id;
+        }
+
+        return $property;
+    }
+
+    /**
+     * @return array
+     */
+    public function getProperty()
+    {
+        return $this->property;
+    }
+
     /**
      * @return ProductRelation
      */
     protected function initModification()
     {
-        $relation = $this->model->getParentProductModification()->one();
+        $relation = $this->model
+            ->getParentProductModification()
+            ->one();
 
         if (!isset($relation)) {
             $relation = new ProductModification();
@@ -201,6 +203,10 @@ class ProductModelService extends ModelService
         if (!empty($this->modification->product_id)) {
             $this->modification->product_modification_id = $this->model->id;
             $this->modification->save();
+        } else {
+            if (isset($this->modification->product_modification_id)) {
+                $this->modification->delete();
+            }
         }
     }
 

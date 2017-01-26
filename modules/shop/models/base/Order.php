@@ -16,6 +16,7 @@ use app\modules\user\models\User;
  * @property integer $user_id
  * @property string $create_time
  * @property string $update_time
+ * @property number $sum
  *
  * @property Cart[] $shopCarts
  * @property User $user
@@ -40,7 +41,7 @@ class Order extends ActiveRecord
     {
         return [
             [['status', 'user_id', 'postcode'], 'integer'],
-            [['create_time', 'update_time'], 'safe'],
+            ['sum', 'safe'],
             [['country', 'region', 'city', 'address', 'company', 'phone', 'comment'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -53,10 +54,19 @@ class Order extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'Id'),
-            'status' => 'Status',
+            'status' => Yii::t('shop', 'Status'),
             'user_id' => 'User ID',
+            'sum' => Yii::t('shop', 'Sum'),
+            'country' => Yii::t('shop', 'Country'),
+            'region' => Yii::t('shop', 'Region'),
+            'city' => Yii::t('shop', 'City'),
+            'postcode' => Yii::t('shop', 'Postcode'),
+            'address' => Yii::t('shop', 'Address'),
+            'company' => Yii::t('shop', 'Company'),
+            'phone' => Yii::t('shop', 'Phone'),
+            'comment' => Yii::t('shop', 'Comment'),
             'create_time' => Yii::t('app', 'Create time'),
-            'update_time' => 'Update Time',
+            'update_time' => Yii::t('app', 'Update time'),
         ];
     }
 

@@ -14,17 +14,6 @@ use app\modules\informationsystem\models\TagSearch;
 
 class ManagerController extends BackendController
 {
-    public function actions()
-    {
-        return [
-            'views' => [
-                'class' => 'app\core\components\actions\View',
-                'model' => Item::className(),
-                'views' => 'views',
-            ],
-        ];
-    }
-
     public $defaultAction = 'system';
 
     public function actionSystem()

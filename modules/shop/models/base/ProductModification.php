@@ -3,7 +3,7 @@
 namespace app\modules\shop\models\base;
 
 use Yii;
-use app\core\db\ActiveRecord;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "mn_shop_product_related".

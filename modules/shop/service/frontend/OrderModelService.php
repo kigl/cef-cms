@@ -61,6 +61,7 @@ class OrderModelService extends ModelService
 
         $model->status = Order::STATUS_ACCEPTED;
         $model->attributes = $attributes;
+        $model->sum = $this->cartService->getSum();
         $model->save(false);
 
         $this->saveOrderItem($model);

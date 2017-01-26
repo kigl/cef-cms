@@ -2,6 +2,8 @@
 
 namespace app\modules\shop\controllers\backend;
 
+use app\modules\shop\service\backend\GroupModelService;
+use app\modules\shop\service\backend\GroupViewService;
 use Yii;
 use app\modules\shop\components\BackendController;
 use app\modules\shop\models\GroupSearch;
@@ -27,40 +29,48 @@ class GroupController extends BackendController
 
     public function actionCreate($parent_id)
     {
-        $model = new Group;
+        $modelService = Yii::createObject(GroupModelService::class);
+        $modelService->actionCreate([
+            'post' => Yii::$app->request->post(),
+            'parentId' => $parent_id,
+        ]);
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->parent_id = $parent_id;
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
-            if ($model->save()) return $this->redirect(['manager', 'parent_id' => $parent_id]);
+            return $this->redirect(['manager', 'parent_id' => $modelService->getData('parentId')]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-            'parent_id' => $parent_id,
-        ]);
+        $viewService = (new GroupViewService())->setData($modelService->getData());
+
+        return $this->render('create', ['data' => $viewService]);
     }
 
     public function actionUpdate($id)
     {
-        $model = Group::findOne($id);
+        $modelService = Yii::createObject(GroupModelService::class);
+        $modelService->actionUpdate([
+            'post' => Yii::$app->request->post(),
+            'id' => $id,
+        ]);
 
-        if ($model->load(Yii::$app->request->post()) and $model->save()) {
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
-            return $this->redirect(['manager', 'parent_id' => $model->parent_id]);
+            return $this->redirect(['manager', 'parent_id' => $modelService->getData('parentId')]);
         }
 
-        return $this->render('update', ['model' => $model]);
+        $viewService = (new GroupViewService())->setData($modelService->getData());
+
+        return $this->render('update', ['data' => $viewService]);
     }
 
     public function actionDelete($id)
     {
-        $model = Group::findOne($id);
-        $modelService = new GroupService($model);
+        $modelService = new GroupModelService();
+        $modelService->actionDelete($id);
 
-        if ($modelService->delete()) {
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_DELETE)) {
 
-            return $this->redirect(['group/manager', 'parent_id' => $modelService->getModel()->parent_id]);
+            return $this->redirect(['group/manager', 'parent_id' => $modelService->getData('parentId')]);
         }
 
         return false;

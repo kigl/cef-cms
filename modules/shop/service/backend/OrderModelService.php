@@ -23,6 +23,12 @@ class OrderModelService extends ModelService
         $query->with(['user']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'create_time' => SORT_DESC,
+                ],
+                'attributes' => ['id', 'create_time'],
+            ],
         ]);
 
         $this->setData([

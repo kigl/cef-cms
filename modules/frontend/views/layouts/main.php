@@ -103,7 +103,13 @@ use yii\helpers\Url;
             </div>
         </div>
     </div>
-    <?= \app\core\widgets\showContentModal\widget::widget(); ?>
+
+    <?= \app\core\widgets\showContentModal\widget::widget([
+            'options' => [
+                    'size' => \yii\bootstrap\Modal::SIZE_LARGE,
+            ],
+    ]); ?>
+
     <?php $this->endBody() ?>
 </body>
 </html>

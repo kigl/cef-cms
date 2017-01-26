@@ -20,41 +20,7 @@ use app\modules\shop\service\backend\OrderViewService;
 
 class OrderController extends BackendController
 {
-    /*
-    public function actions()
-    {
-        return [
-            'field-create' => [
-                'class' => Create::className(),
-                'model' => OrderField::className(),
-                'view' => 'field/create',
-                'redirect' => 'field-manager',
-            ],
-            'field-update' => [
-                'class' => Update::className(),
-                'model' => OrderField::className(),
-                'view' => 'field/update',
-                'redirect' => 'field-manager',
-            ],
-            'field-delete' => [
-                'class' => Delete::className(),
-                'model' => OrderField::className(),
-                'redirect' => ['field-manager'],
-            ],
-        ];
-    }
 
-    public function actionFieldManager()
-    {
-        $modelService = new OrderModelService();
-        $modelService->actionFieldManager();
-
-        $viewService = (new OrderViewService())->setData($modelService->getData());
-
-        return $this->render('field/manager', ['data' => $viewService]);
-    }
-    */
-    
     public function actionManager()
     {
         $modelService = Yii::createObject(OrderModelService::class);
@@ -71,6 +37,10 @@ class OrderController extends BackendController
         $modelService->actionView($id);
 
         $viewService = (new OrderViewService())->setData($modelService->getData());
+
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('view', ['data' => $viewService]);
+        }
 
         return $this->render('view', ['data' => $viewService]);
     }

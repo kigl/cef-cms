@@ -38,8 +38,8 @@ class OrderForm extends Model
             [['country', 'region', 'city', 'address', 'company', 'comment', 'phone'], 'string', 'max' => 255],
         ];
     }
-/*
-    public function attributes()
+
+    public function attributeLabels()
     {
         return [
             'country' => Yii::t('shop', 'Country'),
@@ -52,5 +52,4 @@ class OrderForm extends Model
             'comment' => Yii::t('shop', 'Comment'),
         ];
     }
-*/
 }

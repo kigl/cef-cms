@@ -76,6 +76,15 @@ class UserModelService extends ModelService
         ]);
     }
 
+    public function actionView($id)
+    {
+        $model = User::findOne($id);
+
+        $this->setData([
+            'model' => $model,
+        ]);
+    }
+
     public function load(array $params)
     {
         $result = $this->model->load($params['post']);

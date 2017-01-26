@@ -1,7 +1,7 @@
 <?php
+use yii\helpers\Html;
 use app\modules\admin\widgets\grid\GridView;
 use app\modules\user\helpers\StatusHelper;
-use yii\widgets\Menu;
 
 $this->params['toolbar'] = [
     [
@@ -28,9 +28,19 @@ echo GridView::widget([
         ],
         'email',
         [
-            'headerOptions' => ['style' => 'width: 50px'],
+            'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',
-            'template' => '{update}  {delete}',
+            'template' => '{view}  {update}  {delete}',
+            'buttons' => [
+                'view' => function ($url, $model, $key) {
+                    return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', [
+                            'view',
+                            'id' => $model->id
+                        ],
+                    ['class' => 'show-in-modal']
+                    );
+                },
+            ],
         ]
     ],
 ]);
