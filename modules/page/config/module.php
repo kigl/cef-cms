@@ -1,7 +1,7 @@
 <?php
 return [
 	'modules' => [
-		'admin' => [
+		'backend' => [
 			'modules' => [
 				'page' => [
 					'class' => 'app\modules\page\Module',

@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Html;
 use vova07\imperavi\Widget;
-use app\modules\admin\widgets\ActiveForm;
-use app\modules\admin\widgets\imageInForm\Widget as ImageInForm;
+use app\modules\backend\widgets\ActiveForm;
+use app\modules\backend\widgets\imageInForm\Widget as ImageInForm;
 
 ?>
 

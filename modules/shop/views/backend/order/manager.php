@@ -1,5 +1,5 @@
 <?php
-use app\modules\admin\widgets\grid\GridView;
+use app\modules\backend\widgets\grid\GridView;
 use yii\helpers\Html;
 ?>
 

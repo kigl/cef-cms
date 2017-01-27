@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-use app\modules\admin\widgets\grid\GridView;
+use app\modules\backend\widgets\grid\GridView;
 use app\modules\user\helpers\StatusHelper;
 
 $this->params['toolbar'] = [

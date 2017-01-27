@@ -3,7 +3,7 @@ use app\modules\informationsystem\Module;
 
 return [
 	'modules' => [
-		'admin' => [
+		'backend' => [
 			'modules' => [
 				'informationsystem' => [
 					'class' => Module::className(),

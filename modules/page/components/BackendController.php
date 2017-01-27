@@ -8,7 +8,8 @@
 
 namespace app\modules\page\components;
 
-use app\modules\admin\components\Controller;
+
+use app\modules\backend\components\Controller;
 
 abstract class BackendController extends Controller
 {

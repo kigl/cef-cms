@@ -1,5 +1,5 @@
 <?php
-use app\modules\admin\widgets\ActiveForm;
+use app\modules\backend\widgets\ActiveForm;
 ?>
 
 <?php $form = ActiveForm::begin();?>

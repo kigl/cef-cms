@@ -1,7 +1,7 @@
 <?php
 use yii\jui\DatePicker;
 use vova07\imperavi\Widget;
-use app\modules\admin\widgets\ActiveForm;
+use app\modules\backend\widgets\ActiveForm;
 use app\modules\informationsystem\widgets\backend\fileInForm\Widget as FileInForm;
 use app\modules\informationsystem\widgets\backend\tagEditor\TagEditor;
 

@@ -24,9 +24,7 @@ class ProductViewService extends ViewService
 
     public function getPrice()
     {
-        //return $this->getData('model')->price;
         return Yii::t('shop', 'Price: {price, number, currency}', ['price' => $this->getData('model')->price]);
-        //return Yii::$app->formatter->asCurrency($this->getData('model')->price);
     }
 
     public function getContent()

@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use app\modules\admin\widgets\ActiveForm;
+use app\modules\backend\widgets\ActiveForm;
 use app\modules\shop\models\Property;
 
 ?>

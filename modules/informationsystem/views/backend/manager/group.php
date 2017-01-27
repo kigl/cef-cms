@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\modules\admin\widgets\grid\GridView;
+use app\modules\backend\widgets\grid\GridView;
 
 $this->params['breadcrumbs'] = $breadcrumbs;
 

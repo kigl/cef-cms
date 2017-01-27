@@ -7,17 +7,32 @@
 
 
 namespace app\modules\shop\controllers\frontend;
-
-use app\modules\shop\service\frontend\GroupViewService;
+;
+use app\modules\shop\models\Product;
 use Yii;
-use app\core\actions\View;
 use app\modules\shop\components\FrontendController;
 use app\modules\shop\service\frontend\ProductModelService;
 use app\modules\shop\service\frontend\ProductViewService;
 use yii\web\HttpException;
+use yii\web\Response;
 
 class ProductController extends FrontendController
 {
+    public function actionGetValue($id)
+    {
+        $response = Yii::$app->response;
+        $response->format = Response::FORMAT_JSON;
+
+        $model = Product::findOne($id);
+
+        $result = [
+            'id' => $model->id,
+            'price' => Yii::t('shop', 'Price: {price, number, currency}', ['price' => $model->price]),
+        ];
+
+        echo json_encode($result);
+    }
+
     public function actionView($id, $alias = '')
     {
         $modelService = new ProductModelService();

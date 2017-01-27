@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
-use app\modules\admin\widgets\grid\GridView;
+use app\modules\backend\widgets\grid\GridView;
 use app\modules\shop\models\Group;
 use app\core\helpers\Breadcrumbs;
 
@@ -10,7 +10,7 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
     [
         'modelClass' => Group::className(),
         'urlOptions' => [
-            'route' => '/admin/shop/group/manager',
+            'route' => '/backend/shop/group/manager',
             'queryGroupName' => 'parent_id',
         ],
     ]

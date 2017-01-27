@@ -8,18 +8,16 @@
 
 namespace app\modules\shop\service\frontend;
 
-use Yii;
+
 use yii\data\ActiveDataProvider;
+use app\modules\shop\models\Product;
 use app\core\service\ModelService;
 use app\modules\shop\models\Group;
 
 class GroupModelService extends ModelService
 {
-    /**
-     * @todo $pageSize
-     * @param int $pageSize
-     */
-    public function view($pageSize = 10)
+
+    public function view()
     {
         $model = Group::find();
 
@@ -33,10 +31,7 @@ class GroupModelService extends ModelService
         }
 
         $dataProviderProduct = new ActiveDataProvider([
-            'query' => $modelGroup->getProducts()->with('mainImage'),
-            'pagination' => [
-                'pageSize' => $pageSize,
-            ],
+            'query' => $modelGroup->getProducts(),
             'sort' => [
                 'defaultOrder' => [
                     'name' => SORT_ASC,

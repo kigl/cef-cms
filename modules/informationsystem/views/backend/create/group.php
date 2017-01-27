@@ -1,6 +1,5 @@
 <?php
-use yii\jui\DatePicker;
-use app\modules\admin\widgets\ActiveForm;
+use app\modules\backend\widgets\ActiveForm;
 use vova07\imperavi\Widget;
 
 //$this->params['breadcrumbs'] = $breadcrumbs;

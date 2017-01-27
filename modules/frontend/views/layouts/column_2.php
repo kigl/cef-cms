@@ -1,6 +1,6 @@
 <?php
 use yii\widgets\Menu;
-use app\modules\admin\widgets\Alert;
+use app\core\widgets\Alert;
 use app\core\widgets\pageHeader\Widget as PageHeader;
 
 ?>

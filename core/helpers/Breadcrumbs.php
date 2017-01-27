@@ -44,7 +44,7 @@ class Breadcrumbs
         $breadcrumbs = self::recursive($id, $config['modelClass'], $config['enableQueryGroupAlias']);
 
         $root = [
-            'label' => Yii::t('admin', 'Breadcrumbs root'),
+            'label' => Yii::t('app', 'Breadcrumbs root'),
             'url' => [
                 $config['urlOptions']['route'],
                 $config['urlOptions']['queryGroupName'] => 0,

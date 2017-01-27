@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
+
 $this->setTitle($data->getTitle());
 $this->setPageHeader($data->getName());
 
@@ -21,18 +22,27 @@ $this->setBreadcrumbs(
         ), ['label' => Html::encode($data->getName())]));
 
 $this->params['groupId'] = $data->getGroupId();
+
+$this->registerJs("
+$(function () {
+    $('.product-property__item').click(function () {
+        var url = $(this);
+        $.ajax({
+                                type: 'GET',
+                                url: url.attr('href'),
+                                success: function (data) {
+            var product = $.parseJSON(data);
+            $('.product-price').html(product.price);
+            $('#productId').val(product.id);
+        }
+                            });
+                            return false;
+                        });
+});
+");
 ?>
 
 <div class="product-detail">
-<ul>
-    <?php
-    echo "<li>" . Html::a($data->getModel()->properties[0]->value, ['/shop/product/view', 'id' => $data->getModel()->id, 'alias' => $data->getModel()->alias]);
-
-    foreach ($data->getModification() as $modification) {
-        echo "<li>" . Html::a($modification->product->properties[0]->value, ['/shop/product/view', 'id' => $modification->product->id, 'alias' => $modification->product->alias]);
-    }
-    ?>
-</ul>
     <div class="row">
         <div class="col-md-6">
             <div class="product-main-image">
@@ -51,7 +61,7 @@ $this->params['groupId'] = $data->getGroupId();
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12"><?= HtmlPurifier::process($data->getContent());?></div>
+                <div class="col-md-12"><?= HtmlPurifier::process($data->getContent()); ?></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -75,25 +85,44 @@ $this->params['groupId'] = $data->getGroupId();
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            Показывать модификации
+                            <ul>
+                                <?php
+                                echo "<li>" . Html::a(
+                                        $data->getModel()->properties[0]->value,
+                                        ['/shop/product/get-value', 'id' => $data->getModel()->id],
+                                        ['class' => 'product-property__item']
+                                    );
+
+                                foreach ($data->getModification() as $modification) {
+                                    echo "<li>" . Html::a(
+                                            $modification->product->properties[0]->value,
+                                            ['/shop/product/get-value', 'id' => $modification->product->id],
+                                            ['class' => 'product-property__item']
+                                        );
+                                }
+                                ?>
+                            </ul>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-6">
+                            <input type="hidden" value="<?= $data->getId(); ?>" id="productId"/>
                             <?= Html::textInput('', '', [
                                 'class' => 'form-control',
-                                'id' => 'qty_' . $data->getId(),
+                                'id' => 'qty',
                             ]); ?>
                         </div>
                         <div class="col-md-6">
                             <?= Html::a(Yii::t('shop', 'Button add to cart'), '#', [
                                 'class' => 'btn btn-primary',
-                                'onclick' => "addToCart({$data->getId()}, document.getElementById('qty_{$data->getId()}').value);
+                                'onclick' => "addToCart(document.getElementById('productId').value, document.getElementById('qty').value);
                 return false;",
                             ]); ?>
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">Свойства товара</div>

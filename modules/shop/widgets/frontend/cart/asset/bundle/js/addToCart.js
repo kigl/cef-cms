@@ -5,7 +5,7 @@ function addToCart(productId, qty) {
         url: urlTo,
         data: {"productId": productId, "qty": qty},
         success: function (data) {
-            //alert(data);
+            alert('Товар добавлен в корзину');
         }
     });
 
@@ -13,6 +13,4 @@ function addToCart(productId, qty) {
     setTimeout( function () {
         $.pjax.reload({container:"#cart-pjax"});  //Reload GridView
     }, 200);
-
-    alert('Товар добавлен в корзину');
 }
