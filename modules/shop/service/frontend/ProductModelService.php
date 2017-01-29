@@ -22,7 +22,7 @@ class ProductModelService extends ModelService
 
         $model->where(['id' => $id]);
 
-        $this->model = $model->with('group', 'modification.product.properties.property', 'images', 'mainImage', 'properties.property')
+        $this->model = $model->with('group', 'subProducts.properties.property', 'images', 'mainImage', 'properties.property')
             ->one();
 
         if (!$this->model) {
@@ -36,7 +36,7 @@ class ProductModelService extends ModelService
             'properties' => $this->model->properties,
             'mainImage' => $this->model->mainImage,
             'group' => $this->model->group,
-            'modification' => $this->model->modification,
+            'subProducts' => $this->model->subProducts,
         ]);
 
         if ($alias == '') {

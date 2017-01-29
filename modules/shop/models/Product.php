@@ -85,27 +85,24 @@ class Product extends \app\modules\shop\models\base\Product
     {
         return $this->hasMany(ProductProperty::className(), ['product_id' => 'id']);
     }
-
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getModification()
+    public function getSubProducts()
     {
-        return $this->hasMany(ProductModification::className(), ['product_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getParentProductModification()
-    {
-        return $this->hasOne(ProductModification::className(), ['product_modification_id' => 'id']);
+        return $this->hasMany(static::class, ['parent_id' => 'id']);
     }
 
     public function getImages()
     {
         return $this->hasMany(Image::className(), ['product_id' => 'id']);
+    }
+
+    public function getMainImage()
+    {
+        return $this->hasOne(Image::className(), ['product_id' => 'id'])
+            ->where(['status' => Image::STATUS_MAIN]);
     }
 
     /**
@@ -131,11 +128,5 @@ class Product extends \app\modules\shop\models\base\Product
     public function getUrl($route = "/shop/product/view")
     {
         return Url::to([$route, 'id' => $this->id, 'alias' => $this->alias]);
-    }
-
-    public function getMainImage()
-    {
-        return $this->hasOne(Image::className(), ['product_id' => 'id'])
-            ->where(['status' => Image::STATUS_MAIN]);
     }
 }

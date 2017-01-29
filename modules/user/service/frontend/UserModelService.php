@@ -8,18 +8,28 @@
 
 namespace app\modules\user\service\frontend;
 
-use app\modules\user\models\forms\PasswordRestoreForm;
-use app\modules\user\models\forms\UserRegistrationForm;
 use Yii;
 use yii\base\Model;
 use app\core\service\ModelService;
+use app\modules\user\components\rbac\RbacService;
 use app\modules\user\models\User;
 use app\modules\user\models\Field;
 use app\modules\user\models\FieldRelation;
+use app\modules\user\models\forms\PasswordRestoreForm;
+use app\modules\user\models\forms\UserRegistrationForm;
 
 class UserModelService extends ModelService
 {
-    protected $field;
+    protected $fields;
+
+    protected $model;
+
+    protected $rbacService;
+
+    public function __construct(RbacService $rbacService)
+    {
+        $this->rbacService = $rbacService;
+    }
 
     public function actionPersonal(array $params)
     {
@@ -27,10 +37,7 @@ class UserModelService extends ModelService
             ->byId($params['id'])
             ->one();
 
-        $this->model->setScenario(User::SCENARIO_UPDATE);
-
         $this->init();
-
 
         if ($this->load($params) && $this->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
@@ -38,7 +45,7 @@ class UserModelService extends ModelService
 
         $this->setData([
             'model' => $this->model,
-            'field' => $this->field,
+            'fields' => $this->fields,
         ]);
     }
 
@@ -54,6 +61,9 @@ class UserModelService extends ModelService
             $model = new User();
             $model->attributes = $form->attributes;
             $model->save(false);
+
+            $item = $this->rbacService->getItem(User::ROLE_REGISTRATION);
+            $this->rbacService->assign($item, $model->id);
         }
 
         $this->setData([
@@ -83,13 +93,13 @@ class UserModelService extends ModelService
 
     protected function init()
     {
-        $this->field = $this->initField();
+        $this->fields = $this->initFields();
     }
 
     public function load(array $params)
     {
         $result = $this->model->load($params['post']);
-        Model::loadMultiple($this->field, $params['post']);
+        Model::loadMultiple($this->fields, $params['post']);
 
         return $result;
     }
@@ -101,7 +111,7 @@ class UserModelService extends ModelService
         $success = false;
         try {
             $success = $this->model->save();
-            if ($success) $this->saveField();
+            if ($success) $this->saveFields();
 
             $transaction->commit();
         } catch (\Exception $e) {
@@ -116,9 +126,9 @@ class UserModelService extends ModelService
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    public function initField()
+    public function initFields()
     {
-        $fieldRelation = $this->model->getFieldRelation()->with('field')->indexBy('field_id')->all();
+        $fieldRelation = $this->model->getFields()->with('field')->indexBy('field_id')->all();
         $allField = Field::find()->indexBy('id')->all();
 
         foreach (array_diff_key($allField, $fieldRelation) as $field) {
@@ -129,9 +139,9 @@ class UserModelService extends ModelService
         return $fieldRelation;
     }
 
-    public function saveField()
+    public function saveFields()
     {
-        foreach ($this->field as $field) {
+        foreach ($this->fields as $field) {
             $field->user_id = $this->model->id;
 
             if (!empty($field->value)) {

@@ -21,17 +21,15 @@ use yii\helpers\ArrayHelper;
  */
 class User extends \app\core\db\ActiveRecord
 {
-    public $password_repeat;
-
     const STATUS_BLOCK = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_NOT_ACTIVE = 2;
 
-    const SCENARIO_INSERT = 'insert';
-    const SCENARIO_UPDATE = 'update';
-    const SCENARIO_PASSWORD_RESTORE = 'passwordRestore';
+    const ROLE_REGISTRATION = 'register';
 
     public $rolePermission;
+
+    public $password_repeat;
 
     /**
      * @inheritdoc
@@ -47,15 +45,11 @@ class User extends \app\core\db\ActiveRecord
     public function rules()
     {
         return [
-            [['login', 'email', 'password', 'password_repeat'], 'required', 'on' => self::SCENARIO_INSERT],
-
+            [['login', 'email'], 'required'],
             ['login', 'match', 'pattern' => '/^[a-z]+$/', 'message' => 'Символы от a-z'],
-
-            [['login', 'email'], 'required', 'on' => self::SCENARIO_UPDATE],
-
             [['surname', 'name', 'lastname', 'password', 'password_repeat'], 'string', 'max' => 255],
            // ['password', 'string', 'min' => 6],
-            ['password', 'compare'],
+            ['password', 'compare',  'message' => Yii::t('user', 'Message: password do not match')],
             ['email', 'email'],
             [['login', 'email'], 'unique'],
             [['status'], 'integer'],
@@ -77,6 +71,7 @@ class User extends \app\core\db\ActiveRecord
             'email' => Yii::t('user', 'Email'),
             'password' => Yii::t('user', 'Password'),
             'status' => Yii::t('user', 'Status'),
+            'rolePermission' => Yii::t('user', 'Role and permission'),
             'create_time' => Yii::t('app', 'Create time'),
             'update_time' => Yii::t('app', 'Update time'),
             'ip' => Yii::t('user', 'Ip'),
@@ -100,7 +95,7 @@ class User extends \app\core\db\ActiveRecord
             $this->status = self::STATUS_ACTIVE;
         }
 
-        if ($this->password == '') {
+        if ($this->password === '') {
             $this->password = $this->getOldAttribute('password');
         } else {
             $this->password = Yii::$app->security->generatePasswordHash($this->password);
@@ -109,17 +104,17 @@ class User extends \app\core\db\ActiveRecord
         return parent::beforeSave($insert);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFieldRelation()
-    {
-        return $this->hasMany(FieldRelation::className(), ['user_id' => 'id']);
-    }
-
     public static function find()
     {
         return new UserQuery(get_called_class());
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFields()
+    {
+        return $this->hasMany(FieldRelation::className(), ['user_id' => 'id']);
     }
 
     public function getStatusList()

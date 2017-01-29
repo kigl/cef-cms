@@ -43,6 +43,11 @@ class Group extends \app\modules\shop\models\base\Group
         return $this->hasMany(Product::className(), ['group_id' => 'id']);
     }
 
+    public function getSubGroups()
+    {
+        return $this->hasMany(static::className(), ['parent_id' => 'id']);
+    }
+
     public function getStatusList()
     {
         return [

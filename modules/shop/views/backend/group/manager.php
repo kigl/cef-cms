@@ -76,7 +76,7 @@ $this->params['toolbar'] = [
                         'product/delete',
                         'id' => $model->id
                     ],
-                        ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'question on delete file')]
+                        ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'Question on delete file')]
                     );
                 }
             ],

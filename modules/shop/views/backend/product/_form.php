@@ -1,8 +1,10 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\Url;
 use app\modules\backend\widgets\ActiveForm;
 use app\modules\shop\models\Property;
+use app\modules\backend\widgets\grid\GridView;
 
 ?>
 
@@ -10,6 +12,7 @@ use app\modules\shop\models\Property;
     <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('shop', 'Tab main'); ?></a></li>
     <li><a href="#images" data-toggle="tab"><?= Yii::t('shop', 'Tab images'); ?></a></li>
     <li><a href="#property" data-toggle="tab"><?= Yii::t('shop', 'Tab property') ?></a></li>
+    <li><a href="#modifications" data-toggle="tab"><?= Yii::t('shop', 'Tab modifications'); ?></a></li>
     <li><a href="#other" data-toggle="tab"><?= Yii::t('shop', 'Tab other'); ?></a></li>
 </ul>
 
@@ -35,10 +38,6 @@ use app\modules\shop\models\Property;
                     ]); ?>
             </div>
             <div class="col-md-4"><?= $form->field($data->getModel(), 'sku'); ?></div>
-            <div class="col-md-4"><?= $form->field($data->getModification(), 'product_id')
-                    ->dropDownList($data->getModel()->getListProductInGroup(), ['prompt' => ''])
-                    ->label(Yii::t('shop', 'Product relation')); ?>
-            </div>
         </div>
 
         <?= $form->field($data->getModel(), 'description')->textarea(); ?>
@@ -89,6 +88,53 @@ use app\modules\shop\models\Property;
             <?php endif; ?>
         <?php endforeach; ?>
     </div>
+
+    <div class="tab-pane" id="modifications">
+        <?php if (is_null($data->getParentId())) : ?>
+            <?= GridView::widget([
+                'dataProvider' => $data->getDataProvider(),
+                'buttons' => [
+                    'create' => [
+                        'item' => [
+                            'url' => Url::to([
+                                'product/create',
+                                'group_id' => $data->getGroupId(),
+                                'parent_id' => $data->getId(),
+                            ]),
+                        ],
+                    ],
+                ],
+                'columns' => [
+                    'id',
+                    'name',
+                    'price:currency',
+                    [
+                        'headerOptions' => ['style' => 'width: 70px'],
+                        'class' => \yii\grid\ActionColumn::className(),
+                        'template' => "{update} {delete}",
+                        'buttons' => [
+                            'update' => function ($url, $model, $key) {
+                                return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
+                                        'product/update',
+                                        'id' => $model->id
+                                    ]
+                                );
+                            },
+                            'delete' => function ($url, $model, $key) {
+                                return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
+                                    'product/delete',
+                                    'id' => $model->id
+                                ],
+                                    ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'question on delete file')]
+                                );
+                            }
+                        ],
+                    ],
+                ],
+            ]); ?>
+        <?php endif; ?>
+    </div>
+
     <div class="tab-pane" id="other">
         <?= DetailView::widget([
             'model' => $data->getModel(),
@@ -98,7 +144,7 @@ use app\modules\shop\models\Property;
                     'attribute' => 'user_id',
                     'format' => 'raw',
                     'value' => Html::a($data->getModel()->user_id,
-                        ['/admin/user/default/view', 'id' => $data->getModel()->user_id]),
+                        ['/backend/user/default/view', 'id' => $data->getModel()->user_id]),
                 ],
             ],
         ]); ?>

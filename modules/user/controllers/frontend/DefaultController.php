@@ -90,7 +90,7 @@ class DefaultController extends Controller
 
 	public function actionPersonal()
     {
-        $modelService = new UserModelService();
+		$modelService = Yii::createObject(UserModelService::class);
         $modelService->actionPersonal([
             'post' => Yii::$app->request->post(),
             'id' => Yii::$app->user->getId(),

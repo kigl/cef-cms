@@ -46,7 +46,7 @@ abstract class ModelService implements ModelServiceInterface
             return $this->data[$key][$value];
         }
 
-        if (isset($key) and (isset($this->data[$key]))) {
+        if (array_key_exists($key, $this->data)) {
             return $this->data[$key];
         }
         return $this->data;

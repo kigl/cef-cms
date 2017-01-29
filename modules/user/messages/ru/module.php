@@ -19,6 +19,8 @@ return [
     'Login menu item' => 'Войти',
     'Login btn' => 'Войти',
 
+	'Message: password do not match' => 'Пароли не совпадают',
+
 	'Rbac status role' => 'Роль',
 	'Rbac status permission' => 'Действие',
 	'Rbac form name' => 'Имя',
@@ -27,6 +29,7 @@ return [
 	'Rbac form child' => 'Дочерний элемент',
 	'Registration' => 'Регистрация',
     'Registration btn' => 'Зарегистрироваться',
+	'Role and permission' => 'Роли и разрешения',
 	
 	'Profile' => 'Профиль',
 	'Password' => 'Пароль',
@@ -44,6 +47,8 @@ return [
     'Status not active' => 'Не активирован',
 	'Status' => 'Статус',
 	'Surname' => 'Фамилия',
+
+	'Verify code' => 'Проверочный код',
 
     'Toolbar field' => 'Дополнительные поля',
     'Toolbar rbac' => 'RBAC',

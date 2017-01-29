@@ -8,14 +8,15 @@
 
 namespace app\modules\shop\service\backend;
 
+
 use yii\base\Model;
+use yii\data\ActiveDataProvider;
 use yii\web\UploadedFile;
 use app\core\service\ModelService;
 use app\modules\shop\models\Product;
 use app\modules\shop\models\Image;
 use app\modules\shop\models\Property;
 use app\modules\shop\models\ProductProperty;
-use app\modules\shop\models\ProductModification;
 
 class ProductModelService extends ModelService
 {
@@ -31,10 +32,7 @@ class ProductModelService extends ModelService
      * @var array
      */
     protected $property;
-    /**
-     * @var array
-     */
-    protected $modification;
+
     /**
      * @var array
      */
@@ -43,6 +41,11 @@ class ProductModelService extends ModelService
     {
         $this->model = new Product();
         $this->model->group_id = $this->getData('groupId');
+        $this->model->parent_id = $this->getData('parentId');
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => $this->model->getSubProducts(),
+        ]);
 
         $this->init();
 
@@ -53,14 +56,20 @@ class ProductModelService extends ModelService
         $this->setData([
             'model' => $this->model,
             'property' => $this->property,
-            'modification' => $this->modification,
             'images' => $this->image,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
     public function actionUpdate()
     {
-        $this->model = Product::findOne($this->getData('id'));
+        $this->model = Product::find()
+            ->where(['id' => $this->getData('id')])
+            ->one();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $this->model->getSubProducts(),
+        ]);
 
         $this->init();
 
@@ -71,16 +80,35 @@ class ProductModelService extends ModelService
         $this->setData([
             'model' => $this->model,
             'property' => $this->property,
-            'modification' => $this->modification,
             'images' => $this->image,
-            'grouopId' => $this->model->group_id,
+            'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionDelete($id)
+    {
+        $model = Product::find()
+            ->where(['id' => $id])
+            ->with('subProducts')
+            ->one();
+
+        $success = $model->delete();
+        $this->deleteImage($model->id);
+
+        foreach ($model->subProducts as $product) {
+            $this->actionDelete($product->id);
+        }
+
+        $this->setData([
+            'groupId' => $model->group_id,
+        ]);
+
+        return $success;
     }
 
     protected function init()
     {
         $this->property = $this->initProperty();
-        $this->modification = $this->initModification();
         $this->image = $this->initImage();
     }
 
@@ -113,30 +141,6 @@ class ProductModelService extends ModelService
     }
 
     /**
-     * @return ProductRelation
-     */
-    protected function initModification()
-    {
-        $relation = $this->model
-            ->getParentProductModification()
-            ->one();
-
-        if (!isset($relation)) {
-            $relation = new ProductModification();
-        }
-
-        return $relation;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getModification()
-    {
-        return $this->modification;
-    }
-
-    /**
      * @param array $post
      * @return boolean
      */
@@ -148,41 +152,17 @@ class ProductModelService extends ModelService
 
         Model::loadMultiple($this->property, $post);
         Model::loadMultiple($this->image, $post);
-        $this->modification->load($post);
 
         return $result;
     }
 
     public function save()
     {
-        $transaction = Product::getDb()->beginTransaction();
-
-        try {
-            $success = $this->model->save() ? true : false;
-            $this->saveProperty();
-            $this->saveModification();
-            $this->uploadImage();
-            $this->processImage();
-
-            $transaction->commit();
-        } catch (\Exception $e) {
-            $transaction->rollBack();
-            throw $e;
-        }
-
-        return $success;
-    }
-
-    public function actionDelete($id)
-    {
-        $this->model = Product::findOne($id);
-
-        $success = $this->model->delete();
-        $this->deleteImage();
-
-        $this->setData([
-            'groupId' => $this->model->group_id,
-        ]);
+            if ($success = $this->model->save()) {
+                $this->saveProperty();
+                $this->uploadImage();
+                $this->processImage();
+            }
 
         return $success;
     }
@@ -192,20 +172,8 @@ class ProductModelService extends ModelService
         foreach ($this->property as $property) {
             $property->product_id = $this->model->id;
 
-            if (isset($property->value)) {
+            if ($property->value !== '') {
                 $property->save();
-            }
-        }
-    }
-
-    protected function saveModification()
-    {
-        if (!empty($this->modification->product_id)) {
-            $this->modification->product_modification_id = $this->model->id;
-            $this->modification->save();
-        } else {
-            if (isset($this->modification->product_modification_id)) {
-                $this->modification->delete();
             }
         }
     }
@@ -278,9 +246,9 @@ class ProductModelService extends ModelService
         }
     }
 
-    private function deleteImage()
+    private function deleteImage($id)
     {
-        $modelImage = Image::findAll(['product_id' => $this->model->id]);
+        $modelImage = Image::findAll(['product_id' => $id]);
 
         foreach ($modelImage as $image) {
             $image->delete();

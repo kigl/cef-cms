@@ -9,10 +9,9 @@
 namespace app\modules\user\service\backend;
 
 
-use app\modules\user\components\rbac\RbacService;
 use Yii;
-use yii\db\Query;
 use yii\base\Model;
+use app\modules\user\components\rbac\RbacService;
 use app\core\service\ModelService;
 use app\modules\user\models\User;
 use app\modules\user\models\Field;
@@ -22,7 +21,7 @@ class UserModelService extends ModelService
 {
     protected $model;
 
-    protected $field;
+    protected $fields;
 
     protected $rbacService;
 
@@ -33,13 +32,12 @@ class UserModelService extends ModelService
 
     protected function init()
     {
-        $this->field = $this->initField();
+        $this->fields = $this->initFields();
     }
 
     public function actionCreate(array $params)
     {
         $this->model = new User;
-        $this->model->setScenario(User::SCENARIO_INSERT);
 
         $this->init();
 
@@ -49,7 +47,7 @@ class UserModelService extends ModelService
 
         $this->setData([
             'model' => $this->model,
-            'field' => $this->field,
+            'fields' => $this->fields,
             'authItem' => $this->rbacService->getAllItems(),
         ]);
     }
@@ -60,7 +58,6 @@ class UserModelService extends ModelService
             ->byId($params['get']['id'])
             ->one();
 
-        //$this->model->setScenario(User::SCENARIO_UPDATE);
         $this->model->rolePermission = array_keys($this->rbacService->getAssignments($this->model->id));
 
         $this->init();
@@ -71,7 +68,7 @@ class UserModelService extends ModelService
 
         $this->setData([
             'model' => $this->model,
-            'field' => $this->field,
+            'fields' => $this->fields,
             'authItem' => $this->rbacService->getAllItems(),
         ]);
     }
@@ -88,7 +85,7 @@ class UserModelService extends ModelService
     public function load(array $params)
     {
         $result = $this->model->load($params['post']);
-        Model::loadMultiple($this->field, $params['post']);
+        Model::loadMultiple($this->fields, $params['post']);
 
         return $result;
     }
@@ -137,10 +134,10 @@ class UserModelService extends ModelService
     /**
      * @return array|\yii\db\ActiveRecord[]
      */
-    protected function initField()
+    protected function initFields()
     {
         $fieldRelation = $this->model
-            ->getFieldRelation()
+            ->getFields()
             ->with('field')
             ->indexBy('field_id')
             ->all();
@@ -159,7 +156,7 @@ class UserModelService extends ModelService
 
     public function saveField()
     {
-        foreach ($this->field as $field) {
+        foreach ($this->fields as $field) {
             $field->user_id = $this->model->id;
 
             if (!empty($field->value)) {

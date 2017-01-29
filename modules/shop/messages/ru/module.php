@@ -64,5 +64,6 @@ return [
     'Tab other' => 'Дополнительные',
     'Tab order view detail' => 'Информация',
     'Tab order view items' => 'Состав заказа',
+	'Tab modifications' => 'Модификации',
     'Text  price' => 'Цена: ',
 ];

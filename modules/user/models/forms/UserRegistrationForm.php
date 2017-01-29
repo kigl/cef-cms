@@ -38,6 +38,7 @@ class UserRegistrationForm extends Model
             'email' => Yii::t('user', 'Email'),
             'password' => Yii::t('user', 'Password'),
             'password_repeat' => Yii::t('user', 'Password repeat'),
+            'verifyCode' => Yii::t('user', 'Verify code'),
         ];
     }
 }

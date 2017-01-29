@@ -48,13 +48,16 @@ class GroupModelService extends ModelService
     public function actionDelete($id)
     {
         $model = Group::find()
-            ->where(['id' => $id])
-            ->with(['products'])
+            ->where([Group::tableName() . '.id' => $id])
             ->one();
+
+           $modelProducts = $model->getProducts()
+            ->where('parent_id IS NULL')
+            ->all();
 
         if ($model->delete()) {
 
-            foreach ($model->products as $product) {
+            foreach ($modelProducts as $product) {
                 $productModelService = new ProductModelService();
                 $productModelService->actionDelete($product->id);
             }

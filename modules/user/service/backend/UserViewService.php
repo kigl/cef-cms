@@ -18,9 +18,9 @@ class UserViewService extends ViewService
         return $this->getData('model');
     }
 
-    public function getFieldModels()
+    public function getFields()
     {
-        return $this->getData('field');
+        return $this->getData('fields');
     }
 
     public function getAuthItemList()

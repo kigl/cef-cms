@@ -12,6 +12,7 @@ use yii\helpers\Html;
  * This is the model class for table "mn_shop_product".
  *
  * @property integer $id
+ * @property integer $parent_id
  * @property integer $group_id
  * @property string $code
  * @property string $name
@@ -41,6 +42,7 @@ class Product extends ActiveRecord
         return [
             [['name'], 'required'],
             [['group_id', 'sku', 'status', 'user_id'], 'integer'],
+            ['parent_id', 'exist', 'targetAttribute' => 'id'],
             [['content'], 'string'],
             [['price', 'sku'], 'default', 'value' => 0],
             [['price'], 'number'],
@@ -56,6 +58,7 @@ class Product extends ActiveRecord
     {
         return [
             'id' => Yii::t('shop', 'Id'),
+            'parent_id' => Yii::t('shop', 'Product parent id'),
             'group_id' => Yii::t('shop', 'Group id'),
             'code' => Yii::t('shop', 'Code'),
             'name' => Yii::t('shop', 'Name'),

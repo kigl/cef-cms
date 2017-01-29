@@ -67,11 +67,12 @@ class GroupController extends BackendController
     {
         $modelService = new GroupModelService();
         $modelService->actionDelete($id);
-
+        
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_DELETE)) {
 
             return $this->redirect(['group/manager', 'parent_id' => $modelService->getData('parentId')]);
         }
+
 
         return false;
     }

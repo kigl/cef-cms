@@ -93,10 +93,10 @@ $(function () {
                                         ['class' => 'product-property__item']
                                     );
 
-                                foreach ($data->getModification() as $modification) {
+                                foreach ($data->getSubProducts() as $product) {
                                     echo "<li>" . Html::a(
-                                            $modification->product->properties[0]->value,
-                                            ['/shop/product/get-value', 'id' => $modification->product->id],
+                                            $product->properties[0]->value,
+                                            ['/shop/product/get-value', 'id' => $product->id],
                                             ['class' => 'product-property__item']
                                         );
                                 }

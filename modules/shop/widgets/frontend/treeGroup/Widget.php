@@ -28,7 +28,10 @@ class Widget extends \yii\base\Widget
 
     private function getModelsGroup()
     {
-        return Group::find()->select(['id', 'name', 'parent_id', 'alias'])->asArray()->all();
+        return Group::find()
+            ->select(['id', 'name', 'parent_id', 'alias'])
+            ->asArray()
+            ->all();
     }
 
     private function createDataTreeGroup(&$data = [], $parentId)

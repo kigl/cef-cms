@@ -9,12 +9,13 @@ use app\modules\shop\service\backend\ProductViewService;
 
 class ProductController extends BackendController
 {
-    public function actionCreate($group_id)
+    public function actionCreate($group_id, $parent_id = null)
     {
         $modelService = new ProductModelService();
         $modelService->setData([
                 'post' => Yii::$app->request->post(),
                 'groupId' => $group_id,
+                'parentId' => $parent_id,
             ]
         );
         $modelService->actionCreate();

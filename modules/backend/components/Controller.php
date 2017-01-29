@@ -16,7 +16,7 @@ abstract class Controller extends \yii\web\Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['admin'],
+                        'roles' => ['admin', 'manager'],
                         //'ips' => ['127.0.0.1'],
                     ],
                 ],

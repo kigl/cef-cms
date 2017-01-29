@@ -42,14 +42,14 @@ use app\modules\user\helpers\StatusHelper;
         </div>
 
         <div class="tab-pane" id="field">
-            <?php foreach ($data->getFieldModels() as $fr) : ?>
+            <?php foreach ($data->getFields() as $fr) : ?>
                 <?= $form->field($fr, '[' . $fr->field_id . ']value')->label($fr->field->name); ?>
             <?php endforeach; ?>
         </div>
 
         <div class="tab-pane" id="role">
             <?= $form->field($data->getModel(), 'rolePermission')
-                ->dropDownList($data->getauthItemList(), ['multiple' => 'multiple', 'size' => 15, 'prompt' => '']);?>
+                ->dropDownList($data->getAuthItemList(), ['multiple' => 'multiple', 'size' => 15, 'prompt' => '']);?>
         </div>
     </div>
 <?php $form->end(); ?>

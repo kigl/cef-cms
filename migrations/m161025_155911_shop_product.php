@@ -10,6 +10,7 @@ class m161025_155911_shop_product extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
+            'parent_id' => $this->integer(),
             'group_id' => $this->integer()->defaultValue(0),
             'code' => $this->string(),
             'name' => $this->string()->notNull(),
@@ -28,11 +29,12 @@ class m161025_155911_shop_product extends Migration
         $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_description`;");
         $this->execute("ALTER TABLE {$this->tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
 
+        $this->createIndex('ix-product-parent_id', $this->tableName, 'parent_id');
         $this->createIndex('ix-product-name', $this->tableName, 'name');
         $this->createIndex('ix-product-group_id', $this->tableName, 'group_id');
         $this->createIndex('ix-product-code', $this->tableName, 'code');
+        $this->createIndex('ix-product-user_id', $this->tableName, 'user_id');
         $this->createIndex('ix-product-alias', $this->tableName, 'alias');
-
     }
 
     public function down()

@@ -7,11 +7,12 @@ use Yii;
 /**
  * This is the model class for table "{{%user_field_relation}}".
  *
+ * @property integer $id
  * @property integer $user_id
  * @property integer $field_id
  * @property string $value
  *
- * @property UserField $field
+ * @property Field $field
  * @property User $user
  */
 class FieldRelation extends \app\core\db\ActiveRecord
@@ -42,6 +43,7 @@ class FieldRelation extends \app\core\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => Yii::t('user', 'Id'),
             'user_id' => Yii::t('user', 'User ID'),
             'field_id' => Yii::t('user', 'Field ID'),
             'value' => Yii::t('user', 'Value'),

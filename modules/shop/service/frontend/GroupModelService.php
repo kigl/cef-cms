@@ -10,7 +10,6 @@ namespace app\modules\shop\service\frontend;
 
 
 use yii\data\ActiveDataProvider;
-use app\modules\shop\models\Product;
 use app\core\service\ModelService;
 use app\modules\shop\models\Group;
 
@@ -21,7 +20,8 @@ class GroupModelService extends ModelService
     {
         $model = Group::find();
 
-        $model->where(['id' => $this->getData('get', 'id')]);
+        $model->where(['id' => $this->getData('get', 'id')])
+            ->with('subGroups');
 
         $modelGroup = $model->one();
 
@@ -31,7 +31,9 @@ class GroupModelService extends ModelService
         }
 
         $dataProviderProduct = new ActiveDataProvider([
-            'query' => $modelGroup->getProducts(),
+            'query' => $modelGroup->getProducts()
+                ->with('mainImage')
+                ->where('parent_id IS NULL'),
             'sort' => [
                 'defaultOrder' => [
                     'name' => SORT_ASC,
@@ -43,6 +45,7 @@ class GroupModelService extends ModelService
         $this->setData([
             'model' => $modelGroup,
             'dataProvider' => $dataProviderProduct,
+            'subGroups' => $modelGroup->subGroups,
         ]);
 
         /**@todo

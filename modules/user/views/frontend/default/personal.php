@@ -40,7 +40,7 @@ $this->setPageHeader('Личный кабинет');
         <?= $form->field($data->getModel(), 'lastname'); ?>
     </div>
     <div class="tab-pane" id="property">
-        <?php foreach ($data->getField() as $fi) : ?>
+        <?php foreach ($data->getFields() as $fi) : ?>
             <?= $form->field($fi, '[' . $fi->field_id . ']value')->label($fi->field->name); ?>
         <?php endforeach; ?>
     </div>

@@ -27,6 +27,16 @@ class GroupViewService extends ViewService
         return $data->name;
     }
 
+    public function getContent()
+    {
+        return $this->getData('model')->content;
+    }
+
+    public function getSubGroups()
+    {
+        return $this->getData('subGroups');
+    }
+
     public function getMetaDescription()
     {
         $data = $this->getData('model');

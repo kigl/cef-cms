@@ -31,14 +31,20 @@ class ProductViewService extends ViewService
         return $data;
     }
 
+    public function getParentId()
+    {
+        return $this->getData('model')->parent_id;
+    }
+
     public function getProperty()
     {
         return $this->getData('property');
     }
 
-    public function getModification()
+
+    public function getDataProvider()
     {
-        return $this->getData('modification');
+        return $this->getData('dataProvider');
     }
 
     public function getImages()
