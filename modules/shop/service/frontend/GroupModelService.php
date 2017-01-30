@@ -32,8 +32,7 @@ class GroupModelService extends ModelService
 
         $dataProviderProduct = new ActiveDataProvider([
             'query' => $modelGroup->getProducts()
-                ->with('mainImage')
-                ->parentIsNull(),
+                ->with('mainImage'),
             'sort' => [
                 'defaultOrder' => [
                     'name' => SORT_ASC,

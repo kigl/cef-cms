@@ -9,7 +9,7 @@ use app\modules\shop\service\backend\ProductViewService;
 
 class ProductController extends BackendController
 {
-    public function actionCreate($group_id, $parent_id = null)
+    public function actionCreate($group_id = null, $parent_id = null)
     {
         $modelService = new ProductModelService();
         $modelService->setData([

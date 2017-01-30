@@ -7,10 +7,14 @@
 
 namespace app\modules\page\controllers\frontend;
 
+use app\modules\page\models\Page;
+
 class DefaultController extends \app\modules\page\components\FrontendController
 {
-    public function actionView()
+    public function actionView($id)
     {
-        die('Сделать представление');
+        $model = Page::findOne($id);
+
+        return $this->render('view', ['model' => $model]);
     }
 }

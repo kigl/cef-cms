@@ -51,7 +51,6 @@ class GroupModelService extends ModelService
             ->one();
 
            $modelProducts = $model->getProducts()
-            ->where('parent_id IS NULL')
             ->all();
 
         if ($model->delete()) {

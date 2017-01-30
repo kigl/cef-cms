@@ -20,6 +20,8 @@ use Yii;
  */
 class Page extends \app\core\db\ActiveRecord
 {
+    protected $fileData;
+
     /**
      * @inheritdoc
      */
@@ -36,8 +38,8 @@ class Page extends \app\core\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['content', 'alias'], 'string'],
-            [['create_time', 'update_time'], 'integer'],
             [['name', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+            ['viewFile', 'safe'],
         ];
     }
 
@@ -67,5 +69,28 @@ class Page extends \app\core\db\ActiveRecord
                 'alias' => 'alias',
             ]
         ];
+    }
+
+    protected function getViewFilePathUrl()
+    {
+        return $file = Yii::$app->controller->module->getViewFilesPathUrl() . '/' . $this->id . '.php';
+    }
+
+    public function getViewFile()
+    {
+        $file = $this->getViewFilePathUrl();
+        return is_file($file)? file_get_contents($file) : null;
+    }
+
+    public function setViewFile($data)
+    {
+        $this->fileData = $data;
+    }
+
+    public function beforeSave($insert)
+    {
+        file_put_contents($this->getViewFilePathUrl(), $this->fileData);
+
+        return parent::beforeSave($insert);
     }
 }

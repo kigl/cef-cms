@@ -11,7 +11,7 @@ class m161025_155911_shop_product extends Migration
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
             'parent_id' => $this->integer(),
-            'group_id' => $this->integer()->defaultValue(0),
+            'group_id' => $this->integer(),
             'code' => $this->string(),
             'name' => $this->string()->notNull(),
             'description' => $this->string(),

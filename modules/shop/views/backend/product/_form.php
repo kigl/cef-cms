@@ -98,7 +98,6 @@ use app\modules\backend\widgets\grid\GridView;
                         'item' => [
                             'url' => Url::to([
                                 'product/create',
-                                'group_id' => $data->getGroupId(),
                                 'parent_id' => $data->getId(),
                             ]),
                         ],

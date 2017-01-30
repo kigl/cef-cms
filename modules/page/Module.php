@@ -7,4 +7,8 @@ namespace app\modules\page;
  */
 class Module extends \app\core\module\Module
 {
+    public function getViewFilesPathUrl()
+    {
+        return $this->getBasePath() . '/views/files';
+    }
 }

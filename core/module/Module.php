@@ -17,7 +17,7 @@ abstract class Module extends \yii\base\Module implements ModuleInterface
 		return Yii::t($this->id, 'Module description');
 	}
 
-	public function getProtectedPathUrl()
+	public function getAppPathUrl()
 	{
 		return Yii::$app->request->getHostInfo() . '/';
 	}
@@ -29,6 +29,6 @@ abstract class Module extends \yii\base\Module implements ModuleInterface
 
 	public function getPublicPathUrl()
 	{
-		return $this->getProtectedPathUrl() . '/modules/' . $this->id . '/public';
+		return $this->getAppPathUrl() . '/modules/' . $this->id . '/public';
 	}
 }

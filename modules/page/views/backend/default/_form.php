@@ -23,6 +23,8 @@ use vova07\imperavi\Widget as Imperavi;
 				]
 			]);?>
 
+<?= $form->field($model, 'viewFile')->textarea();?>
+
 <?= $form->field($model, 'alias');?>
 
 <?= $form->field($model, 'meta_title');?>
