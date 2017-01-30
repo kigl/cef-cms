@@ -63,7 +63,7 @@ class DeleteController extends BackendController
 
                 return $this->redirect([
                     'manager/group',
-                    'parent_id' => $model->parent_id,
+                    'id' => $model->parent_id,
                     'informationsystem_id' => $model->informationsystem_id,
                 ]);
             }
@@ -80,7 +80,7 @@ class DeleteController extends BackendController
 
             return $this->redirect([
                 'manager/group',
-                'parent_id' => $model->group_id,
+                'id' => $model->group_id,
                 'informationsystem_id' => $model->informationsystem_id,
             ]);
         }

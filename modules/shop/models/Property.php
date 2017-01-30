@@ -15,13 +15,13 @@ use app\core\db\ActiveRecord;
 class Property extends \app\modules\shop\models\base\Property
 {
     const TYPE_STRING = 1;
-    const TYPE_BOOLEAN = 2;
+    const TYPE_CHECKBOX = 2;
 
     public function getListType()
     {
         return [
             self::TYPE_STRING => Yii::t('shop', 'Property type string'),
-            self::TYPE_BOOLEAN => Yii::t('shop', 'Property type boolean'),
+            self::TYPE_CHECKBOX => Yii::t('shop', 'Property type checkbox'),
         ];
     }
 }

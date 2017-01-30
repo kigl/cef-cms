@@ -11,13 +11,6 @@ use app\modules\backend\widgets\imageInForm\Widget as ImageInForm;
 
 <?php echo $form->field($model, 'name'); ?>
 
-    <div class="row">
-        <div class="col-md-12">
-            <?= ImageInForm::widget(['model' => $model, 'attribute' => 'image']); ?>
-            <?= $form->field($model, 'image')->fileInput(); ?>
-        </div>
-    </div>
-
 <?php echo $form->field($model, 'description')->textArea(); ?>
 
 <?php echo $form->field($model, 'content')->widget(Widget::className(), [
@@ -26,7 +19,5 @@ use app\modules\backend\widgets\imageInForm\Widget as ImageInForm;
         'minHeight' => 400,
     ],
 ]); ?>
-
-<?= $form->field($model, 'item_on_page'); ?>
 
 <?php ActiveForm::end(); ?>

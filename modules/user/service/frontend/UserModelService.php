@@ -59,6 +59,7 @@ class UserModelService extends ModelService
 
         if ($this->hasExecutedAction(self::EXECUTED_ACTION_VALIDATE)) {
             $model = new User();
+            $model->status = User::STATUS_ACTIVE;
             $model->attributes = $form->attributes;
             $model->save(false);
 

@@ -43,7 +43,7 @@ class UpdateController extends BackendController
 
             return $this->redirect([
                 'manager/group',
-                'parent_id' => $modelService->getData('parentId'),
+                'id' => $modelService->getData('model')->id,
                 'informationsystem_id' => $modelService->getData('informationsystemId'),
             ]);
         }

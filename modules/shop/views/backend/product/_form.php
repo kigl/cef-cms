@@ -77,11 +77,11 @@ use app\modules\backend\widgets\grid\GridView;
     </div>
 
     <div class="tab-pane" id="property">
-        <?php foreach ($data->getProperty() as $value): ?>
+        <?php foreach ($data->getProperties() as $value): ?>
             <?php if ($value->property->type === Property::TYPE_STRING) : ?>
                 <?= $form->field($value, "[{$value->property_id}]value")
                     ->label($value->property->name); ?>
-            <?php elseif ($value->property->type === Property::TYPE_BOOLEAN) : ?>
+            <?php elseif ($value->property->type === Property::TYPE_CHECKBOX) : ?>
                 <?= $form->field($value, "[{$value->property_id}]value")
                     ->checkbox(['label' => false])
                     ->label($value->property->name); ?>

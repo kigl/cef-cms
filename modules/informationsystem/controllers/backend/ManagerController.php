@@ -20,22 +20,19 @@ class ManagerController extends BackendController
     {
         $dataProvider = new ActiveDataProvider([
             'query' => System::find(),
-            'pagination' => [
-                'pageSize' => $this->module->itemsOnPage,
-            ],
         ]);
 
         return $this->render('system', ['dataProvider' => $dataProvider]);
     }
 
-    public function actionGroup($parent_id = 0, $informationsystem_id)
+    public function actionGroup($id = 0, $informationsystem_id)
     {
         $searchModel = new ItemSearch();
-        $dataProvider = $searchModel->search($informationsystem_id, $parent_id, Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search($informationsystem_id, $id, Yii::$app->request->queryParams);
 
         $dataProviderGroup = new ActiveDataProvider([
             'query' => Group::find()
-                ->parentId($parent_id)
+                ->parentId($id)
                 ->informationsystemId($informationsystem_id),
         ]);
 
@@ -44,8 +41,7 @@ class ManagerController extends BackendController
             'dataProvider' => $dataProvider,
             'dataProviderGroup' => $dataProviderGroup,
             'informationsystem_id' => $informationsystem_id,
-            'parent_id' => $parent_id,
-            'breadcrumbs' => Group::buildBreadcrumbs($parent_id, $informationsystem_id),
+            'id' => $id,
         ]);
     }
 

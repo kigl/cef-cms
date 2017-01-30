@@ -6,7 +6,7 @@ use app\modules\shop\models\Group;
 use app\core\helpers\Breadcrumbs;
 
 $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
-    $parent_id,
+    $id,
     [
         'modelClass' => Group::className(),
         'urlOptions' => [
@@ -29,10 +29,10 @@ $this->params['toolbar'] = [
     'buttons' => [
         'create' => [
             'group' => [
-                'url' => Url::to(['create', 'parent_id' => $parent_id]),
+                'url' => Url::to(['create', 'parent_id' => $id]),
             ],
             'item' => [
-                'url' => Url::to(['product/create', 'group_id' => $parent_id]),
+                'url' => Url::to(['product/create', 'group_id' => $id]),
             ],
         ],
     ],
@@ -41,7 +41,7 @@ $this->params['toolbar'] = [
             'attribute' => 'name',
             'format' => 'raw',
             'value' => function ($data) {
-                return Html::a(Html::encode($data->name), ['manager', 'parent_id' => $data->id]);
+                return Html::a(Html::encode($data->name), ['manager', 'id' => $data->id]);
             }
         ],
         [],

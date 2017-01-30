@@ -2,6 +2,7 @@
 
 namespace app\modules\shop\models;
 
+use app\modules\shop\models\query\ProductQuery;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Exception;
@@ -46,6 +47,11 @@ class Product extends \app\modules\shop\models\base\Product
                 'attribute' => 'user_id',
             ],
         ];
+    }
+
+    public static function find()
+    {
+        return new ProductQuery(get_called_class());
     }
 
     /**
@@ -103,21 +109,6 @@ class Product extends \app\modules\shop\models\base\Product
     {
         return $this->hasOne(Image::className(), ['product_id' => 'id'])
             ->where(['status' => Image::STATUS_MAIN]);
-    }
-
-    /**
-     * @todo
-     * ненравится присутствие в модели, служит только
-     * для формирования массива для представления
-     * @return array
-     */
-    public function getListProductInGroup()
-    {
-        return self::find()
-            ->where('group_id = :group', ['group' => $this->group_id])
-            ->select(['name', 'id'])
-            ->indexBy('id')
-            ->column();
     }
 
     /**

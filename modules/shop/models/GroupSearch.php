@@ -8,10 +8,10 @@ use app\modules\shop\models\Group;
 class GroupSearch extends Group
 {
 
-    public function search($parent_id, $params)
+    public function search($id, $params)
     {
         $query = Group::find()
-            ->where('parent_id = :parent_id', [':parent_id' => $parent_id]);
+            ->where(['parent_id' => $id]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

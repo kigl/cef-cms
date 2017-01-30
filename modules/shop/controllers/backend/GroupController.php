@@ -2,26 +2,26 @@
 
 namespace app\modules\shop\controllers\backend;
 
+
+use Yii;
 use app\modules\shop\service\backend\GroupModelService;
 use app\modules\shop\service\backend\GroupViewService;
-use Yii;
 use app\modules\shop\components\BackendController;
 use app\modules\shop\models\GroupSearch;
-use app\modules\shop\models\Group;
 use app\modules\shop\models\ProductSearch;
 
 class GroupController extends BackendController
 {
 
-    public function actionManager($parent_id = 0)
+    public function actionManager($id = 0)
     {
         $dataProviderSearch = new GroupSearch();
-        $dataProviderGroup = $dataProviderSearch->search($parent_id, Yii::$app->request->getQueryParams());
+        $dataProviderGroup = $dataProviderSearch->search($id, Yii::$app->request->getQueryParams());
         $dataProviderProductSearch = new ProductSearch();
-        $dataProviderProduct = $dataProviderProductSearch->search($parent_id, Yii::$app->request->getQueryParams());
+        $dataProviderProduct = $dataProviderProductSearch->search($id, Yii::$app->request->getQueryParams());
 
         return $this->render('manager', [
-            'parent_id' => $parent_id,
+            'id' => $id,
             'dataProviderGroup' => $dataProviderGroup,
             'dataProviderProduct' => $dataProviderProduct,
         ]);
@@ -37,7 +37,7 @@ class GroupController extends BackendController
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
-            return $this->redirect(['manager', 'parent_id' => $modelService->getData('parentId')]);
+            return $this->redirect(['manager', 'id' => $modelService->getData('model')->id]);
         }
 
         $viewService = (new GroupViewService())->setData($modelService->getData());
@@ -55,7 +55,7 @@ class GroupController extends BackendController
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
-            return $this->redirect(['manager', 'parent_id' => $modelService->getData('parentId')]);
+            return $this->redirect(['manager', 'id' => $modelService->getData('model')->id]);
         }
 
         $viewService = (new GroupViewService())->setData($modelService->getData());
@@ -70,7 +70,7 @@ class GroupController extends BackendController
         
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_DELETE)) {
 
-            return $this->redirect(['group/manager', 'parent_id' => $modelService->getData('parentId')]);
+            return $this->redirect(['group/manager', 'id' => $modelService->getData('parentId')]);
         }
 
 

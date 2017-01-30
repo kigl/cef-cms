@@ -41,7 +41,6 @@ class GroupModelService extends ModelService
 
         $this->setData([
             'model' => $model,
-            'parentId' => $model->parent_id,
         ]);
     }
 

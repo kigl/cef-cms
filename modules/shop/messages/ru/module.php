@@ -31,7 +31,7 @@ return [
     'Price' => 'Цена',
 	'Product relation' => 'Модификация для товара',
 	'Property type string' => 'Строка',
-	'Property type boolean' => 'Boolean',
+	'Property type checkbox' => 'Чекбокс',
 	'Property type' => 'Тип свойства',
     'Price: {price, number, currency}' => 'Цена: {price, number, currency}',
     'Postcode' => 'Индекс',

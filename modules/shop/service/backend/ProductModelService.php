@@ -31,7 +31,7 @@ class ProductModelService extends ModelService
     /**
      * @var array
      */
-    protected $property;
+    protected $properties;
 
     /**
      * @var array
@@ -55,7 +55,7 @@ class ProductModelService extends ModelService
 
         $this->setData([
             'model' => $this->model,
-            'property' => $this->property,
+            'properties' => $this->properties,
             'images' => $this->image,
             'dataProvider' => $dataProvider,
         ]);
@@ -79,7 +79,7 @@ class ProductModelService extends ModelService
 
         $this->setData([
             'model' => $this->model,
-            'property' => $this->property,
+            'properties' => $this->properties,
             'images' => $this->image,
             'dataProvider' => $dataProvider,
         ]);
@@ -108,14 +108,14 @@ class ProductModelService extends ModelService
 
     protected function init()
     {
-        $this->property = $this->initProperty();
+        $this->properties = $this->initProperties();
         $this->image = $this->initImage();
     }
 
     /**
      * @return mixed
      */
-    protected function initProperty()
+    protected function initProperties()
     {
         $property = $this->model->getProperties()
             ->indexBy('property_id')
@@ -133,14 +133,6 @@ class ProductModelService extends ModelService
     }
 
     /**
-     * @return array
-     */
-    public function getProperty()
-    {
-        return $this->property;
-    }
-
-    /**
      * @param array $post
      * @return boolean
      */
@@ -150,7 +142,7 @@ class ProductModelService extends ModelService
 
         $result = $this->model->load($post);
 
-        Model::loadMultiple($this->property, $post);
+        Model::loadMultiple($this->properties, $post);
         Model::loadMultiple($this->image, $post);
 
         return $result;
@@ -159,7 +151,7 @@ class ProductModelService extends ModelService
     public function save()
     {
             if ($success = $this->model->save()) {
-                $this->saveProperty();
+                $this->saveProperties();
                 $this->uploadImage();
                 $this->processImage();
             }
@@ -167,9 +159,9 @@ class ProductModelService extends ModelService
         return $success;
     }
 
-    protected function saveProperty()
+    protected function saveProperties()
     {
-        foreach ($this->property as $property) {
+        foreach ($this->properties as $property) {
             $property->product_id = $this->model->id;
 
             if ($property->value !== '') {

@@ -25,7 +25,7 @@ use app\modules\user\models\UserIdentity;
  */
 class LoginForm extends Model
 {
-    private $_user;
+    private $model = null;
 
     public $login;
     public $password;
@@ -44,9 +44,9 @@ class LoginForm extends Model
 
     public function validatePassword($attribute)
     {
-        $user = $this->getUser();
+        $model = $this->getUser();
 
-        if (!$user or !Yii::$app->security->validatePassword($this->password, $user->password)) {
+        if (!$model or !Yii::$app->security->validatePassword($this->password, $model->password)) {
             $this->addError($attribute, 'Логин или пароль введены неверно!');
         }
     }
@@ -65,7 +65,7 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate() and $this->checkUser(true)) {
-            Yii::$app->user->login($this->_user);
+            Yii::$app->user->login($this->getUser());
             return true;
         }
 
@@ -74,8 +74,10 @@ class LoginForm extends Model
 
     public function checkUser($status = true)
     {
+        $model = $this->getUser();
+
         if ($status) {
-            if ($this->_user->status == User::STATUS_ACTIVE) {
+            if ($model->status === User::STATUS_ACTIVE) {
                 return true;
             } else {
                 throw new HttpException(403);
@@ -87,13 +89,13 @@ class LoginForm extends Model
 
     public function getUser()
     {
-        if ($this->_user == null) {
-            $this->_user = UserIdentity::find()
+        if (is_null($this->model)) {
+            $this->model = UserIdentity::find()
                 ->where(['login' => $this->login])
                 ->orWhere(['email' => $this->login])
                 ->one();
         }
 
-        return $this->_user;
+        return $this->model;
     }
 }

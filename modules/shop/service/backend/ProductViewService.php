@@ -36,9 +36,9 @@ class ProductViewService extends ViewService
         return $this->getData('model')->parent_id;
     }
 
-    public function getProperty()
+    public function getProperties()
     {
-        return $this->getData('property');
+        return $this->getData('properties');
     }
 
 

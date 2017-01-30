@@ -91,10 +91,6 @@ class User extends \app\core\db\ActiveRecord
 
     public function beforeSave($insert)
     {
-        if ($this->isNewRecord) {
-            $this->status = self::STATUS_ACTIVE;
-        }
-
         if ($this->password === '') {
             $this->password = $this->getOldAttribute('password');
         } else {

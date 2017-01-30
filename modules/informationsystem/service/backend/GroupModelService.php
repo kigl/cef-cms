@@ -27,7 +27,6 @@ class GroupModelService extends ModelService
         $this->setData([
             'model' => $model,
             'informationsystemId' => $model->informationsystem_id,
-            'parentId' => $model->parent_id,
         ]);
     }
 
@@ -43,7 +42,6 @@ class GroupModelService extends ModelService
 
         $this->setData([
             'model' => $model,
-            'parentId' => $model->parent_id,
             'informationsystemId' => $model->informationsystem_id,
         ]);
     }

@@ -2,8 +2,9 @@
 
 namespace app\modules\page\models;
 
+
+use app\core\behaviors\GenerateAlias;
 use Yii;
-use	yii\behaviors\SluggableBehavior as Slug;
 
 /**
  * This is the model class for table "mn_page".
@@ -33,7 +34,7 @@ class Page extends \app\core\db\ActiveRecord
     public function rules()
     {
         return [
-        		[['name'], 'required'],
+            [['name'], 'required'],
             [['content', 'alias'], 'string'],
             [['create_time', 'update_time'], 'integer'],
             [['name', 'meta_title', 'meta_description'], 'string', 'max' => 255],
@@ -56,15 +57,15 @@ class Page extends \app\core\db\ActiveRecord
             'update_time' => Yii::t('app', 'Update time'),
         ];
     }
-    
+
     public function behaviors()
     {
-			return [
-				[
-					'class' => Slug::className(),
-					'attribute' => 'name',
-					'slugAttribute' => 'alias',
-				]
-			];
-		}
+        return [
+            [
+                'class' => GenerateAlias::class,
+                'text' => 'name',
+                'alias' => 'alias',
+            ]
+        ];
+    }
 }

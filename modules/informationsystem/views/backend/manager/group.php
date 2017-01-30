@@ -3,8 +3,6 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use app\modules\backend\widgets\grid\GridView;
 
-$this->params['breadcrumbs'] = $breadcrumbs;
-
 $this->params['toolbar'] = [
     [
         'label' => '<i class="glyphicon glyphicon-tags"></i> ' . Yii::t('informationsystem', 'Tag toolbar'),
@@ -23,14 +21,14 @@ $this->params['toolbar'] = [
                 'url' => Url::to([
                     'create/group',
                     'informationsystem_id' => $informationsystem_id,
-                    'parent_id' => $parent_id,
+                    'parent_id' => $id,
                 ]),
             ],
             'item' => [
                 'url' => Url::to([
                     'create/item',
                     'informationsystem_id' => $informationsystem_id,
-                    'group_id' => $parent_id,
+                    'group_id' => $id,
                 ]),
             ],
         ],
@@ -41,7 +39,7 @@ $this->params['toolbar'] = [
             'format' => 'raw',
             'value' => function ($data) {
                 return Html::a($data->name,
-                    ['group', 'parent_id' => $data->id, 'informationsystem_id' => $data->informationsystem_id]);
+                    ['group', 'id' => $data->id, 'informationsystem_id' => $data->informationsystem_id]);
             }
         ],
         [
