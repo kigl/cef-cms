@@ -46,6 +46,11 @@ class Product extends \app\modules\shop\models\base\Product
                 'class' => UserId::className(),
                 'attribute' => 'user_id',
             ],
+            [
+                'class' => 'app\core\behaviors\FillData',
+                'attribute' => 'name',
+                'setAttribute' => 'meta_title',
+            ],
         ];
     }
 

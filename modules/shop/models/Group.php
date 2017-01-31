@@ -24,6 +24,8 @@ use app\core\behaviors\GenerateAlias;
  */
 class Group extends \app\modules\shop\models\base\Group
 {
+    const ROOT_GROUP = 0;
+
     const STATUS_BLOCK = 0;
     const STATUS_ACTIVE = 1;
 
@@ -34,7 +36,12 @@ class Group extends \app\modules\shop\models\base\Group
                 'class' => GenerateAlias::class,
                 'text' => 'name',
                 'alias' => 'alias',
-            ]
+            ],
+            [
+                'class' => 'app\core\behaviors\FillData',
+                'attribute' => 'name',
+                'setAttribute' => 'meta_title',
+            ],
         ];
     }
 

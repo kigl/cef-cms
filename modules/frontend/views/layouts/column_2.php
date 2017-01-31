@@ -1,5 +1,6 @@
 <?php
 use yii\widgets\Menu;
+use yii\helpers\Html;
 use app\core\widgets\Alert;
 use app\core\widgets\pageHeader\Widget as PageHeader;
 
@@ -38,7 +39,7 @@ use app\core\widgets\pageHeader\Widget as PageHeader;
             <div class="panel panel-default">
                 <div class="panel-heading">Заголовок страницы</div>
                 <div class="panel-body">
-                    <?= PageHeader::widget(['text' => $this->getPageHeader()]); ?>
+                    <?= PageHeader::widget(['text' => Html::encode($this->getPageHeader())]); ?>
                 </div>
             </div>
             <div class="panel panel-default">

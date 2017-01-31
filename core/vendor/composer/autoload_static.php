@@ -42,6 +42,8 @@ class ComposerStaticInitd08a2b6f5e41e256fb611c05532ca1a7
         ),
         'c' => 
         array (
+            'conquer\\helpers\\' => 16,
+            'conquer\\codemirror\\' => 19,
             'cebe\\markdown\\' => 14,
         ),
         'F' => 
@@ -126,6 +128,14 @@ class ComposerStaticInitd08a2b6f5e41e256fb611c05532ca1a7
         'kartik\\base\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-krajee-base',
+        ),
+        'conquer\\helpers\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/conquer/helpers',
+        ),
+        'conquer\\codemirror\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/conquer/codemirror',
         ),
         'cebe\\markdown\\' => 
         array (

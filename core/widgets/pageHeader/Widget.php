@@ -23,7 +23,7 @@ class Widget extends \yii\base\Widget
     {
         return $this->render('index', [
             'options' => ArrayHelper::merge($this->defaultOptions, $this->options),
-            'header' => $this->text,
+            'text' => $this->text,
         ]);
     }
 }

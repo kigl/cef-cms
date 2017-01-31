@@ -9,6 +9,7 @@
 namespace app\modules\shop\service\backend;
 
 
+use Yii;
 use app\core\service\ModelService;
 use app\modules\shop\models\Group;
 
@@ -26,7 +27,6 @@ class GroupModelService extends ModelService
 
         $this->setData([
             'model' => $model,
-            'parentId' => $model->parent_id,
         ]);
     }
 
@@ -48,32 +48,25 @@ class GroupModelService extends ModelService
     {
         $model = Group::find()
             ->where([Group::tableName() . '.id' => $id])
+            ->with(['products', 'subGroups'])
             ->one();
 
-           $modelProducts = $model->getProducts()
-            ->all();
+        if ($model && $model->delete()) {
 
-        if ($model->delete()) {
-
-            foreach ($modelProducts as $product) {
-                $productModelService = new ProductModelService();
-                $productModelService->actionDelete($product->id);
+            foreach ($model->products as $product) {
+                Yii::createObject(ProductModelService::class)->actionDelete($product->id);
             }
 
             $this->setExecutedAction(self::EXECUTED_ACTION_DELETE);
-        }
 
-        // рекурсивно удаляем вложенные группы
-        $modelGroups = Group::findAll(['parent_id' => $model->id]);
-
-        if ($modelGroups) {
-            foreach ($modelGroups as $group) {
+            // рекурсивно удаляем вложенные группы
+            foreach ($model->subGroups as $group) {
                 $this->actionDelete($group->id);
             }
-        }
 
-        $this->setData([
-            'parentId' => $model->parent_id,
-        ]);
+            $this->setData([
+                'model' => $model,
+            ]);
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace app\modules\page\models;
 
 
+use app\core\behaviors\FillData;
 use app\core\behaviors\GenerateAlias;
 use Yii;
 
@@ -20,7 +21,7 @@ use Yii;
  */
 class Page extends \app\core\db\ActiveRecord
 {
-    protected $fileData;
+    protected $dynamicPageData;
 
     /**
      * @inheritdoc
@@ -39,7 +40,7 @@ class Page extends \app\core\db\ActiveRecord
             [['name'], 'required'],
             [['content', 'alias'], 'string'],
             [['name', 'meta_title', 'meta_description'], 'string', 'max' => 255],
-            ['viewFile', 'safe'],
+            ['dynamicPage', 'safe'],
         ];
     }
 
@@ -49,9 +50,10 @@ class Page extends \app\core\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('page', 'Id'),
+            'id' => Yii::t('app', 'Id'),
             'name' => Yii::t('page', 'Name'),
-            'content' => Yii::t('page', 'Content'),
+            'content' => Yii::t('app', 'Content'),
+            'dynamicPage' => Yii::t('page', 'Dynamic page'),
             'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta title'),
             'meta_description' => Yii::t('app', 'Meta description'),
@@ -67,30 +69,59 @@ class Page extends \app\core\db\ActiveRecord
                 'class' => GenerateAlias::class,
                 'text' => 'name',
                 'alias' => 'alias',
-            ]
+            ],
+            [
+                'class' => FillData::class,
+                'attribute' => 'name',
+                'setAttribute' => 'meta_title',
+            ],
         ];
     }
 
-    protected function getViewFilePathUrl()
+    public function afterSave($insert, $changedAttributes)
     {
-        return $file = Yii::$app->controller->module->getViewFilesPathUrl() . '/' . $this->id . '.php';
+        $this->saveViewFile();
+
+        return parent::afterSave($insert, $changedAttributes);
     }
 
-    public function getViewFile()
+    public function afterDelete()
     {
-        $file = $this->getViewFilePathUrl();
-        return is_file($file)? file_get_contents($file) : null;
+        $this->deleteViewFile();
+
+        return parent::afterDelete();
     }
 
-    public function setViewFile($data)
+    public function getDynamicPageFileUrl()
     {
-        $this->fileData = $data;
+        return $file = Yii::$app->controller->module->getDynamicPagePath() . '/pageId_' . $this->id . '.php';
     }
 
-    public function beforeSave($insert)
+    public function getDynamicPage()
     {
-        file_put_contents($this->getViewFilePathUrl(), $this->fileData);
+        $file = $this->getDynamicPageFileUrl();
+        return is_file($file) ? file_get_contents($file) : null;
+    }
 
-        return parent::beforeSave($insert);
+    public function setDynamicPage($data)
+    {
+        $this->dynamicPageData = $data;
+    }
+
+    protected function saveViewFile()
+    {
+        if ($this->dynamicPageData !== '') {
+            file_put_contents($this->getDynamicPageFileUrl(), $this->dynamicPageData);
+        } else {
+            $this->deleteViewFile();
+        }
+    }
+
+    protected function deleteViewFile()
+    {
+        $file = $this->getDynamicPageFileUrl();
+        if (is_file($file)) {
+            unlink($file);
+        }
     }
 }

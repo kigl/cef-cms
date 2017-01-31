@@ -5,6 +5,7 @@ use yii\helpers\HtmlPurifier;
 
 $this->setTitle($data->getName());
 $this->setMetaDescription($data->getMetaDescription());
+$this->setPageHeader($data->getName());
 $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
     $data->getId(),
     [
@@ -15,10 +16,7 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
             'queryGroupName' => 'id',
         ],
     ]
-));
-
-$this->setPageHeader($data->getName());
-?>
+)); ?>
 
     <div class="panel panel-default">
         <div class="panel-heading">Описание группы</div>

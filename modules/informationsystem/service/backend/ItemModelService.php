@@ -25,8 +25,6 @@ class ItemModelService extends ModelService
 
         $this->setData([
             'model' => $model,
-            'informationsystemId' => $model->informationsystem_id,
-            'groupId' => $model->group_id,
         ]);
     }
 
@@ -42,8 +40,19 @@ class ItemModelService extends ModelService
 
         $this->setData([
             'model' => $model,
-            'groupId' => $model->group_id,
-            'informationsystemId' => $model->informationsystem_id,
+        ]);
+    }
+
+    public function actionDelete($id)
+    {
+        $model = Item::findOne($id);
+
+        if ($model->delete()) {
+            $this->setExecutedAction(self::EXECUTED_ACTION_DELETE);
+        }
+
+        $this->setData([
+            'model' => $model,
         ]);
     }
 }

@@ -20,6 +20,6 @@ class GroupViewService extends ViewService
 
     public function getParentId()
     {
-        return $this->getData('parentId');
+        return $this->getData('model')->parent_id;
     }
 }

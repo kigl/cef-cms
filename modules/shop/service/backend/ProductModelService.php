@@ -55,8 +55,6 @@ class ProductModelService extends ModelService
 
         $this->setData([
             'model' => $this->model,
-            'properties' => $this->properties,
-            'images' => $this->image,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -79,8 +77,6 @@ class ProductModelService extends ModelService
 
         $this->setData([
             'model' => $this->model,
-            'properties' => $this->properties,
-            'images' => $this->image,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -89,19 +85,25 @@ class ProductModelService extends ModelService
     {
         $model = Product::find()
             ->where(['id' => $id])
-            ->with('subProducts')
+            ->with(['subProducts', 'images'])
             ->one();
 
-        $success = $model->delete();
-        $this->deleteImage($model->id);
+        $success = false;
 
-        foreach ($model->subProducts as $product) {
-            $this->actionDelete($product->id);
+        if ($model && ($success = $model->delete())) {
+
+            foreach ($model->images as $image) {
+                $image->delete();
+            }
+
+            foreach ($model->subProducts as $product) {
+                $this->actionDelete($product->id);
+            }
+
+            $this->setData([
+                'model' => $model,
+            ]);
         }
-
-        $this->setData([
-            'groupId' => $model->group_id,
-        ]);
 
         return $success;
     }
@@ -235,15 +237,6 @@ class ProductModelService extends ModelService
             $image = reset($this->image);
             $image->status = Image::STATUS_MAIN;
             $image->save(false);
-        }
-    }
-
-    private function deleteImage($id)
-    {
-        $modelImage = Image::findAll(['product_id' => $id]);
-
-        foreach ($modelImage as $image) {
-            $image->delete();
         }
     }
 }

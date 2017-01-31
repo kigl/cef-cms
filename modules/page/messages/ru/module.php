@@ -2,10 +2,11 @@
 return [
 	'Module name' => 'Статичные страницы',
 	'Module description' => 'Описание',
-	
-	'Id' => 'Id', 
-	
-	'Name' => 'Название',
-	
-	'Content' => 'Данные',
+
+    'Name' => 'Название',
+
+    'Dynamic page' => 'Динимическая страница',
+
+    'Tab content' => 'Содержание',
+    'Tab dynamic page' => 'Динамическое содержание (PHP)',
 ];

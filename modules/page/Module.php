@@ -7,8 +7,8 @@ namespace app\modules\page;
  */
 class Module extends \app\core\module\Module
 {
-    public function getViewFilesPathUrl()
+    public function getDynamicPagePath()
     {
-        return $this->getBasePath() . '/views/files';
+        return $this->getBasePath() . '/views/dynamicPage';
     }
 }

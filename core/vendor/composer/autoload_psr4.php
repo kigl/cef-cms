@@ -25,6 +25,8 @@ return array(
     'kartik\\editable\\' => array($vendorDir . '/kartik-v/yii2-editable'),
     'kartik\\dialog\\' => array($vendorDir . '/kartik-v/yii2-dialog'),
     'kartik\\base\\' => array($vendorDir . '/kartik-v/yii2-krajee-base'),
+    'conquer\\helpers\\' => array($vendorDir . '/conquer/helpers'),
+    'conquer\\codemirror\\' => array($vendorDir . '/conquer/codemirror'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
 );

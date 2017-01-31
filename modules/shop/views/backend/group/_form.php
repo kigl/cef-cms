@@ -23,6 +23,8 @@ use app\modules\backend\widgets\ActiveForm;
     ],
 ]);?>
 
+<legend><?= Yii::t('app', 'Form legend seo');?></legend>
+
 <?= $form->field($data->getModel(), 'alias');?>
 
 <?= $form->field($data->getModel(), 'meta_title');?>

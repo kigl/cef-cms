@@ -27,6 +27,8 @@ use yii\db\Expression;
  */
 class Group extends \app\core\db\ActiveRecord
 {
+    const ROOT_GROUP = 0;
+
     /**
      * @inheritdoc
      */
@@ -86,12 +88,27 @@ class Group extends \app\core\db\ActiveRecord
                 'class' => 'app\core\behaviors\GenerateAlias',
                 'text' => 'name',
                 'alias' => 'alias',
-            ]
+            ],
+            [
+                'class' => 'app\core\behaviors\FillData',
+                'attribute' => 'name',
+                'setAttribute' => 'meta_title',
+            ],
         ];
     }
 
+    public function getSubGroups()
+    {
+        return $this->hasMany(static::class, ['parent_id' => 'id']);
+    }
+
+    public function getItems()
+    {
+        return $this->hasMany(Item::className(), ['group_id' => 'id']);
+    }
+
     /**
-     *	Строит путь с вложениями для виджета Breadcrumbs
+     *    Строит путь с вложениями для виджета Breadcrumbs
      * @param integer $id
      *
      * @return array | false
@@ -109,8 +126,7 @@ class Group extends \app\core\db\ActiveRecord
             $c = count($breadcrumbs) - 1;
             $breadcrumbs[$c]['last'] = 1;
 
-            foreach ($breadcrumbs as $model)
-            {
+            foreach ($breadcrumbs as $model) {
                 if (!isset($model['last'])) {
                     $result[] = [
                         'label' => $model['name'],
@@ -126,7 +142,7 @@ class Group extends \app\core\db\ActiveRecord
             }
         }
 
-        return (!empty($result))? $result : null;
+        return (!empty($result)) ? $result : null;
     }
 
     /**
@@ -154,7 +170,7 @@ class Group extends \app\core\db\ActiveRecord
             ];
         }
 
-        return (!empty($result))? $result : false;
+        return (!empty($result)) ? $result : false;
     }
 
     public static function find()

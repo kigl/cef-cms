@@ -7,7 +7,6 @@
 
 namespace app\core\web;
 
-use yii\helpers\Html;
 
 class View extends \yii\web\View
 {
@@ -44,22 +43,22 @@ class View extends \yii\web\View
 
     public function getTitle()
     {
-        return Html::encode($this->title);
+        return $this->title;
     }
 
     public function getMetaDescription()
     {
-        return Html::encode($this->metaDescription);
+        return $this->metaDescription;
     }
 
     public function getMetaKeywords()
     {
-        return Html::encode($this->metaKeywords);
+        return $this->metaKeywords;
     }
 
     public function getPageHeader()
     {
-        return Html::encode($this->pageHeader);
+        return $this->pageHeader;
     }
 
     public function getBreadcrumbs()

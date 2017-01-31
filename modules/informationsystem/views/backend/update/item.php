@@ -78,4 +78,10 @@ use app\modules\informationsystem\widgets\backend\tagEditor\TagEditor;
     ],
 ]); ?>
 
+    <legend><?= Yii::t('app', 'Form legend seo'); ?></legend>
+
+<?= $form->field($data->getModel(), 'meta_title');?>
+
+<?= $form->field($data->getModel(), 'meta_description')->textarea();?>
+
 <?php ActiveForm::end(); ?>

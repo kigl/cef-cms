@@ -6,29 +6,29 @@ use app\modules\backend\widgets\grid\GridView;
 $this->params['toolbar'] = [
     [
         'label' => '<i class="glyphicon glyphicon-tags"></i> ' . Yii::t('informationsystem', 'Tag toolbar'),
-        'url' => ['manager/tag', 'informationsystem_id' => $informationsystem_id],
+        'url' => ['manager/tag', 'informationsystem_id' => $data->getInformationSystemId()],
     ]
 ];
 ?>
 
 <?php echo GridView::widget([
-    'filterModel' => $searchModel,
-    'dataProvider' => $dataProvider,
-    'dataProviderGroup' => $dataProviderGroup,
+    'filterModel' => $data->getSearchModel(),
+    'dataProvider' => $data->getDataProvider(),
+    'dataProviderGroup' => $data->getGroupDataProvider(),
     'buttons' => [
         'create' => [
             'group' => [
                 'url' => Url::to([
                     'create/group',
-                    'informationsystem_id' => $informationsystem_id,
-                    'parent_id' => $id,
+                    'informationsystem_id' => $data->getInformationSystemId(),
+                    'parent_id' => $data->getId(),
                 ]),
             ],
             'item' => [
                 'url' => Url::to([
                     'create/item',
-                    'informationsystem_id' => $informationsystem_id,
-                    'group_id' => $id,
+                    'informationsystem_id' => $data->getInformationSystemId(),
+                    'group_id' => $data->getId(),
                 ]),
             ],
         ],
@@ -86,7 +86,7 @@ $this->params['toolbar'] = [
                         'delete/item',
                         'id' => $model->id
                     ],
-                        ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'question on delete file')]
+                        ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'Question on delete file')]
                     );
                 }
             ],

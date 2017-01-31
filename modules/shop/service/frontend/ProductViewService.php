@@ -17,6 +17,11 @@ class ProductViewService extends ViewService
         return $this->getData('model')->name;
     }
 
+    public function getMetaDescription()
+    {
+        return $this->getData('model')->meta_description;
+    }
+
     public function getCode()
     {
         return $this->getData('model')->code;

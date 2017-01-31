@@ -58,7 +58,7 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
             [['date', 'date_start', 'date_end'], 'date', 'format' => 'yyyy-MM-dd'],
             [['name'], 'required'],
             [['content'], 'string'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'meta_title', 'meta_description'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 300],
             ['image', 'file', 'extensions' => ['jpg', 'png', 'gif']],
             ['video', 'file', 'extensions' => ['mp4']],
@@ -74,13 +74,13 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('informationsystem', 'Id'),
+            'id' => Yii::t('app', 'Id'),
             'group_id' => Yii::t('informationsystem', 'Group id'),
             'informationsystem_id' => Yii::t('informationsystem', 'Informationsystem id'),
             'name' => Yii::t('informationsystem', 'Name'),
             'tag_list' => Yii::t('informationsystem', 'Tags'),
             'description' => Yii::t('informationsystem', 'Description'),
-            'content' => Yii::t('informationsystem', 'Content'),
+            'content' => Yii::t('app', 'Content'),
             'image' => Yii::t('informationsystem', 'Image'),
             'video' => Yii::t('informationsystem', 'Video'),
             'file' => Yii::t('informationsystem', 'File'),
@@ -92,10 +92,10 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
             'date_start' => Yii::t('informationsystem', 'Date start'),
             'date_end' => Yii::t('informationsystem', 'Date end'),
             'alias' => Yii::t('informationsystem', 'Alias'),
-            'meta_title' => Yii::t('informationsystem', 'Meta title'),
-            'meta_description' => Yii::t('informationsystem', 'Meta description'),
-            'create_time' => Yii::t('informationsystem', 'Create time'),
-            'update_time' => Yii::t('informationsystem', 'Update time'),
+            'meta_title' => Yii::t('app', 'Meta title'),
+            'meta_description' => Yii::t('app', 'Meta description'),
+            'create_time' => Yii::t('app', 'Create time'),
+            'update_time' => Yii::t('app', 'Update time'),
         ];
     }
 
@@ -154,8 +154,13 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
             ],
             [
               'class' => 'app\core\behaviors\FillData',
+                'attribute' => 'create_time',
                 'setAttribute' => 'date',
-                'getAttribute' => 'create_time',
+            ],
+            [
+                'class' => 'app\core\behaviors\FillData',
+                'attribute' => 'name',
+                'setAttribute' => 'meta_title',
             ],
             [
                 'class' => 'app\core\behaviors\UserId',

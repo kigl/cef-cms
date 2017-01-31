@@ -2,11 +2,11 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use app\modules\backend\widgets\grid\GridView;
-
+use app\modules\informationsystem\models\Group;
 ?>
 
 <?= GridView::widget([
-    'dataProvider' => $dataProvider,
+    'dataProvider' => $data->getDataProvider(),
     'buttons' => [
         'create' => [
             'item' => [
@@ -22,6 +22,7 @@ use app\modules\backend\widgets\grid\GridView;
             'value' => function ($data) {
                 return Html::a(Html::encode($data->name), Url::to([
                     'manager/group',
+                    'id' => Group::ROOT_GROUP,
                     'informationsystem_id' => $data->id,
                 ]));
             }

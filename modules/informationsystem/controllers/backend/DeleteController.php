@@ -2,93 +2,65 @@
 
 namespace app\modules\informationsystem\controllers\backend;
 
+
+use Yii;
 use app\modules\informationsystem\components\BackendController;
-use app\modules\informationsystem\models\Informationsystem as System;
-use app\modules\informationsystem\models\Group;
-use app\modules\informationsystem\models\Item;
+use app\modules\informationsystem\service\backend\ItemModelService;
+use app\modules\informationsystem\service\backend\GroupModelService;
+use app\modules\informationsystem\service\backend\InformationSystemModelService;
 use app\modules\informationsystem\models\Tag;
 use app\modules\informationsystem\models\TagRelations;
 
 class DeleteController extends BackendController
 {
 
-	public function actionSystem($id)
-	{	
-		if ($modelSystem = System::findOne($id)) {
-		    $modelGroup = Group::findAll(['informationsystem_id' => $modelSystem->id]);
-			$modelItem = Item::findAll(['informationsystem_id' => $modelSystem->id]);
-
-			if ($modelGroup) {
-                foreach ($modelGroup as $group) {
-                    $group->delete();
-                }
-            }
-
-            if ($modelItem) {
-                foreach ($modelItem as $item) {
-                    $item->delete();
-                }
-            }
-
-			if ($modelSystem->delete()) {
-
-                return $this->redirect(['manager/system']);
-            }
-		}
-
-		return false;
-	}
-
-    public function actionGroup($id)
+    public function actionSystem($id)
     {
-        $model = Group::findOne($id);
+        $modelService = Yii::createObject(InformationSystemModelService::class);
+        $modelService->actionDelete($id);
 
-        if ($model) {
-            $modelGroups = Group::findAll(['parent_id' => $model->id]);
-            $modelItems = Item::findAll(['group_id' => $model->id]);
-
-            if ($modelGroups) {
-                foreach ($modelGroups as $group) {
-                    $group->delete();
-                }
-            }
-
-            if ($modelItems) {
-                foreach ($modelItems as $item) {
-                    $item->delete();
-                }
-            }
-
-            if ($model->delete()) {
-
-                return $this->redirect([
-                    'manager/group',
-                    'id' => $model->parent_id,
-                    'informationsystem_id' => $model->informationsystem_id,
-                ]);
-            }
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_DELETE)) {
+            return $this->redirect(['manager/system']);
         }
 
         return false;
     }
-	
-	public function actionItem($id)
-	{
-		$model = Item::findOne($id);
-		
-        if ($model->delete()) {
+
+    public function actionGroup($id)
+    {
+        $modelService = Yii::createObject(GroupModelService::class);
+        $modelService->actionDelete($id);
+
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_DELETE)) {
+
+                return $this->redirect([
+                    'manager/group',
+                    'id' => $modelService->getData('model')->parent_id,
+                    'informationsystem_id' => $modelService->getData('model')->informationsystem_id,
+                ]);
+        }
+
+        return false;
+    }
+
+    public function actionItem($id)
+    {
+        $modelService = Yii::createObject(ItemModelService::class);
+        $modelService->actionDelete($id);
+
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_DELETE)) {
 
             return $this->redirect([
                 'manager/group',
-                'id' => $model->group_id,
-                'informationsystem_id' => $model->informationsystem_id,
+                'id' => $modelService->getData('model')->group_id,
+                'informationsystem_id' => $modelService->getData('model')->informationsystem_id,
             ]);
         }
 
         return false;
-	}
+    }
 
-	public function actionTag($id)
+    public function actionTag($id)
     {
         $model = Tag::findOne($id);
 

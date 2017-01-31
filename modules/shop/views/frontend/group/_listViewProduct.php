@@ -1,4 +1,6 @@
 <?php
+
+
 \yii\widgets\Pjax::begin();
 echo \yii\widgets\ListView::widget([
     'dataProvider' => $data->getDataProvider(),

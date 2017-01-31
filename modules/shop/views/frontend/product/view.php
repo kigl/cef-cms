@@ -5,6 +5,7 @@ use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
 
 $this->setTitle($data->getTitle());
+$this->setMetaDescription($data->getMetaDescription());
 $this->setPageHeader($data->getName());
 
 $this->setBreadcrumbs(

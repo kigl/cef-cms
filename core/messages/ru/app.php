@@ -11,10 +11,13 @@ return [
 	
 	'Not exist views: {views}' => 'Значение "{views}" не существует',
 
+	'Form legend seo' => 'SEO',
+
 	'Saved element' => 'Сохранено!',
 	
 	'Created element' => 'Элемент создан!',
 	'Create time' => 'Дата создания',
+    'Content' => 'Содержание',
 
     'Deleted element' => 'Элемент удален!',
 	
@@ -23,4 +26,6 @@ return [
 	
 	'Updated element' => 'Элемент обновлен!',
 	'Update time' => 'Дата обновления',
+
+    'Question on delete file' => 'Удалить элемент?',
 ];

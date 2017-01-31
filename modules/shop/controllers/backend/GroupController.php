@@ -55,7 +55,7 @@ class GroupController extends BackendController
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
-            return $this->redirect(['manager', 'id' => $modelService->getData('model')->id]);
+            return $this->redirect(['manager', 'id' => $modelService->getData('model')->parent_id]);
         }
 
         $viewService = (new GroupViewService())->setData($modelService->getData());
@@ -70,7 +70,7 @@ class GroupController extends BackendController
         
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_DELETE)) {
 
-            return $this->redirect(['group/manager', 'id' => $modelService->getData('parentId')]);
+            return $this->redirect(['group/manager', 'id' => $modelService->getData('model')->parent_id]);
         }
 
 

@@ -1,4 +1,15 @@
-<?php 
-use Yii;
+<?php
+use yii\helpers\HtmlPurifier;
 
-$this->render(Yii::$app->controller->modules)?>
+$this->setTitle($model->meta_title);
+$this->setMetaDescription($model->meta_description);
+$this->setPageHeader($model->name);
+?>
+
+<?= HtmlPurifier::process($model->content);?>
+
+<?php
+if (is_file($model->getDynamicPageFileUrl())) {
+    echo $this->renderFile($model->getDynamicPageFileUrl());
+}
+?>

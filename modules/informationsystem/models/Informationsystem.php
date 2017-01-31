@@ -57,6 +57,16 @@ class Informationsystem extends \app\core\db\ActiveRecord
         ];
     }
 
+    public function getItemGroups()
+    {
+        return $this->hasMany(Group::className(), ['informationsystem_id' => 'id']);
+    }
+
+    public function getItems()
+    {
+        return $this->hasMany(Item::className(), ['informationsystem_id' => 'id']);
+    }
+
     public static function getSystem($id, $type = 'object')
     {
         $model = self::find()->where('id = :id', [':id' => $id]);

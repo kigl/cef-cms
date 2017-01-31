@@ -38,7 +38,7 @@ class ProductViewService extends ViewService
 
     public function getProperties()
     {
-        return $this->getData('properties');
+        return $this->getData('model')->properties;
     }
 
 
@@ -49,7 +49,7 @@ class ProductViewService extends ViewService
 
     public function getImages()
     {
-        return $this->getData('images');
+        return $this->getData('model')->images;
     }
 
     public function getName()

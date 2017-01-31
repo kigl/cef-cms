@@ -3,11 +3,11 @@
 namespace app\modules\informationsystem\controllers\backend;
 
 
-use app\modules\informationsystem\service\backend\ItemViewService;
 use Yii;
+use app\modules\informationsystem\service\backend\ItemModelService;
+use app\modules\informationsystem\service\backend\ItemViewService;
 use app\modules\informationsystem\service\backend\GroupModelService;
 use app\modules\informationsystem\service\backend\GroupViewService;
-use app\modules\informationsystem\service\backend\ItemModelService;
 use app\modules\informationsystem\service\backend\TagModelService;
 use app\modules\informationsystem\service\backend\TagViewService;
 use app\modules\informationsystem\components\BackendController;
@@ -33,6 +33,7 @@ class CreateController extends BackendController
         $modelService = new GroupModelService();
         $modelService->setData([
             'post' => Yii::$app->request->post(),
+            'parentId' => $parent_id,
             'get' => Yii::$app->request->getQueryParams(),
         ]);
         $modelService->actionCreate();
@@ -43,7 +44,7 @@ class CreateController extends BackendController
             return $this->redirect([
                 'manager/group',
                 'id' => $modelService->getData('model')->id,
-                'informationsystem_id' => $modelService->getData('informationsystemId'),
+                'informationsystem_id' => $modelService->getData('model')->informationsystem_id,
             ]);
         }
 
@@ -64,8 +65,8 @@ class CreateController extends BackendController
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
             return $this->redirect([
                 'manager/group',
-                'parent_id' => $modelService->getData('groupId'),
-                'informationsystem_id' => $modelService->getData('informationsystemId'),
+                'id' => $modelService->getData('model')->group_id,
+                'informationsystem_id' => $modelService->getData('model')->informationsystem_id,
             ]);
         }
 

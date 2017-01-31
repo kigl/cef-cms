@@ -3,7 +3,7 @@ use yii\helpers\Html;
 ?>
 
 <?php
-    if ($header !== '') {
-        echo Html::tag('h1', $header, $options);
+    if ($text !== '') {
+        echo Html::tag('h1', $text, $options);
     }
 ?>

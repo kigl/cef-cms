@@ -2,13 +2,14 @@
 
 namespace app\modules\informationsystem\controllers\backend;
 
+
 use Yii;
-use yii\data\ActiveDataProvider;
 use app\modules\informationsystem\components\BackendController;
+use app\modules\informationsystem\service\backend\InformationSystemModelService;
+use app\modules\informationsystem\service\backend\InformationSystemViewService;
+use app\modules\informationsystem\service\backend\GroupModelService;
+use app\modules\informationsystem\service\backend\GroupViewService;
 use app\modules\informationsystem\models\Informationsystem as System;
-use app\modules\informationsystem\models\Group;
-use app\modules\informationsystem\models\Item;
-use app\modules\informationsystem\models\ItemSearch;
 use app\modules\informationsystem\models\Tag;
 use app\modules\informationsystem\models\TagSearch;
 
@@ -18,31 +19,22 @@ class ManagerController extends BackendController
 
     public function actionSystem()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => System::find(),
-        ]);
+        $modelService = Yii::createObject(InformationSystemModelService::class);
+        $modelService->actionManager();
 
-        return $this->render('system', ['dataProvider' => $dataProvider]);
+        $viewService = Yii::createObject(InformationSystemViewService::class)->setData($modelService->getData());
+
+        return $this->render('system', ['data' => $viewService]);
     }
 
-    public function actionGroup($id = 0, $informationsystem_id)
+    public function actionGroup($id, $informationsystem_id)
     {
-        $searchModel = new ItemSearch();
-        $dataProvider = $searchModel->search($informationsystem_id, $id, Yii::$app->request->queryParams);
+        $modelService = Yii::createObject(GroupModelService::class);
+        $modelService->actionManager(Yii::$app->request->getQueryParams());
 
-        $dataProviderGroup = new ActiveDataProvider([
-            'query' => Group::find()
-                ->parentId($id)
-                ->informationsystemId($informationsystem_id),
-        ]);
+        $viewService = (new GroupViewService())->setData($modelService->getData());
 
-        return $this->render('group', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'dataProviderGroup' => $dataProviderGroup,
-            'informationsystem_id' => $informationsystem_id,
-            'id' => $id,
-        ]);
+        return $this->render('group', ['data' => $viewService]);
     }
 
     public function actionTag($informationsystem_id)

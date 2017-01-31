@@ -17,7 +17,7 @@ class m170123_064306_shop_order_item extends Migration
         ]);
 
         $this->createIndex('ix-shop_order_items-order_id', $this->tableName, 'order_id');
-        $this->addForeignKey('fk-shop_order_itme-order_id', $this->tableName, 'order_id', '{{%shop_order}}', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('fk-shop_order_item-order_id', $this->tableName, 'order_id', '{{%shop_order}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()
