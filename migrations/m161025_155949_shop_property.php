@@ -12,6 +12,7 @@ class m161025_155949_shop_property extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(),
             'type' => $this->integer(),
+            'required' => $this->integer()->defaultValue(0),
         ]);
 
         $this->createIndex('ix-property-name', $this->tableName, 'name');

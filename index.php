@@ -33,3 +33,4 @@ $config = Yii::createObject([
 ], [$baseConfig, new ConfigWeb]);
 
 (new yii\web\Application($config->getConfig()))->run();
+

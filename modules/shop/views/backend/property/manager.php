@@ -16,5 +16,10 @@ use app\modules\backend\widgets\grid\GridView;
     'columns' => [
         'id',
         'name',
+        [
+            'headerOptions' => ['style' => 'width: 70px'],
+            'class' => \yii\grid\ActionColumn::className(),
+            'template' => "{update} {delete}",
+        ],
     ],
 ]); ?>

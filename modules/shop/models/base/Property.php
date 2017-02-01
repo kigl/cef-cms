@@ -11,6 +11,7 @@ use app\core\db\ActiveRecord;
  * @property integer $id
  * @property string $name
  * @property integer $type
+ * @property integer $required
  */
 class Property extends ActiveRecord
 {
@@ -30,7 +31,7 @@ class Property extends ActiveRecord
         return [
             ['name', 'required'],
             [['name'], 'string', 'max' => 255],
-            ['type', 'integer'],
+            [['type', 'required'], 'integer'],
         ];
     }
 
@@ -43,6 +44,7 @@ class Property extends ActiveRecord
             'id' => Yii::t('shop', 'Id'),
             'name' => Yii::t('shop', 'Name'),
             'type' => Yii::t('shop', 'Property type'),
+            'required' => Yii::t('shop', 'Property required'),
         ];
     }
 }

@@ -10,4 +10,6 @@ use app\modules\backend\widgets\ActiveForm;
 
 <?= $form->field($model, 'type')->dropDownList($model->getListType());?>
 
+<?= $form->field($model, 'required')->checkbox();?>
+
 <?php ActiveForm::end();?>

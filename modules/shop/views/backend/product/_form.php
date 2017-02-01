@@ -16,9 +16,12 @@ use app\modules\backend\widgets\grid\GridView;
     <li><a href="#other" data-toggle="tab"><?= Yii::t('shop', 'Tab other'); ?></a></li>
 </ul>
 
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin([
+    'enableClientValidation' => false
+]); ?>
 
 <?= $form->errorSummary($data->getModel()); ?>
+<?= $form->errorSummary($data->getData('properties')); ?>
 
 <div class="tab-content">
     <div class="tab-pane active" id="main">
@@ -79,7 +82,7 @@ use app\modules\backend\widgets\grid\GridView;
     </div>
 
     <div class="tab-pane" id="property">
-        <?php foreach ($data->getProperties() as $value): ?>
+        <?php foreach ($data->getData('properties') as $value): ?>
             <?php if ($value->property->type === Property::TYPE_STRING) : ?>
                 <?= $form->field($value, "[{$value->property_id}]value")
                     ->label($value->property->name); ?>

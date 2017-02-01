@@ -9,6 +9,7 @@
 namespace app\modules\shop\service\backend;
 
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\web\UploadedFile;
@@ -38,7 +39,7 @@ class ProductModelService extends ModelService
         $this->model = new Product();
         $this->model->group_id = $this->getData('groupId');
         $this->model->parent_id = $this->getData('parentId');
-        
+
         $dataProvider = new ActiveDataProvider([
             'query' => $this->model->getSubProducts(),
         ]);
@@ -51,6 +52,7 @@ class ProductModelService extends ModelService
 
         $this->setData([
             'model' => $this->model,
+            'properties' => $this->properties,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -73,6 +75,7 @@ class ProductModelService extends ModelService
 
         $this->setData([
             'model' => $this->model,
+            'properties' => $this->properties,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -116,11 +119,15 @@ class ProductModelService extends ModelService
     protected function initProperties()
     {
         $property = $this->model->getProperties()
+            ->with('property')
             ->indexBy('property_id')
             ->all();
 
 
-        $allProperty = Property::find()->indexBy('id')->all();
+        $allProperty = Property::find()
+            ->indexBy('id')
+            ->all();
+
 
         foreach (array_diff_key($allProperty, $property) as $pr) {
             $property[$pr->id] = new ProductProperty();
@@ -148,24 +155,43 @@ class ProductModelService extends ModelService
 
     public function save()
     {
-            if ($success = $this->model->save()) {
-                $this->saveProperties();
-                $this->uploadImage();
-                $this->processImage();
-            }
+        if ($this->saveProperties() && $this->model->save()) {
+            $this->uploadImage();
+            $this->processImage();
 
-        return $success;
+            return true;
+        }
+
+        return false;
     }
 
     protected function saveProperties()
     {
+        $success = true;
+
         foreach ($this->properties as $property) {
             $property->product_id = $this->model->id;
 
-            if ($property->value !== '') {
-                $property->save();
+            if ($property->property->required && $property->value === '') {
+                $property->addError(
+                    'value',
+                    Yii::t('yii', '{attribute} cannot be blank.', ['attribute' => Yii::t('shop', 'Properties')]));
+
+                $success = false;
             }
         }
+
+        foreach ($this->properties as $property) {
+            if ($success === true) {
+                if ($property->value !== '') {
+                    $property->save();
+                } else {
+                    $property->delete();
+                }
+            }
+        }
+
+        return $success;
     }
 
     protected function initImage()
