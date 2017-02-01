@@ -13,9 +13,10 @@ class TagSearch extends Tag
 		];
 	}
 	
-	public function search($informationsystem_id, $params)
+	public function search(array $params)
 	{
-		$query = Tag::find()->where('informationsystem_id = :id', [':id' => $informationsystem_id]);
+		$query = Tag::find()
+            ->where(['informationsystem_id' => $params['informationsystem_id']]);
 		
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,
@@ -29,8 +30,9 @@ class TagSearch extends Tag
 		$this->load($params);
 		
 		if (!$this->validate()) return $dataProvider;
-		
+
 		$query->andFilterWhere(['like', 'name', $this->name]);
+
 		return $dataProvider;
 	}
 }

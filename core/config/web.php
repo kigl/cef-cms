@@ -88,7 +88,7 @@ $config = [
         ],
 
         'errorHandler' => [
-            //'errorAction' => 'site/error',
+            //'errorAction' => '/frontend/site/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',

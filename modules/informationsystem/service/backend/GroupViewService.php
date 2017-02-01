@@ -43,9 +43,4 @@ class GroupViewService extends ViewService
     {
         return $this->getData('parentId');
     }
-
-    public function getId()
-    {
-        return $this->getData('id');
-    }
 }

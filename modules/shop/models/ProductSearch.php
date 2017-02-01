@@ -6,10 +6,10 @@ use yii\data\ActiveDataProvider;
 
 class ProductSearch extends Product
 {
-    public function search($group_id, $params)
+    public function search($params)
     {
         $query = Product::find()
-            ->where(['group_id' => $group_id])
+            ->where(['group_id' => $params['id']])
             ->parentIsNull();
 
         $dataProvider = new ActiveDataProvider([

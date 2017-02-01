@@ -21,12 +21,12 @@ class GroupModelService extends ModelService
         $searchModel = new ItemSearch();
         $dataProvider = $searchModel->search($params['informationsystem_id'], $params['id'], $params);
 
+
         $groupDataProvider = new ActiveDataProvider([
             'query' => Group::find()
                 ->parentId($params['id'])
                 ->informationsystemId($params['informationsystem_id']),
         ]);
-
         $this->setData([
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -36,29 +36,28 @@ class GroupModelService extends ModelService
         ]);
     }
 
-    public function actionCreate()
+    public function actionCreate(array $params)
     {
         $model = new Group;
-        $model->parent_id = $this->getData('get', 'parent_id');
-        $model->informationsystem_id = $this->getData('get', 'informationsystem_id');
+        $model->parent_id = $params['get']['parent_id'];
+        $model->informationsystem_id = $params['get']['informationsystem_id'];
 
-        if ($model->load($this->getData('post')) and $model->save()) {
+        if ($model->load($params['post']) and $model->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 
         $this->setData([
             'model' => $model,
-            'informationSystemId' => $model->informationsystem_id,
         ]);
     }
 
-    public function actionUpdate()
+    public function actionUpdate(array $params)
     {
         $model = Group::find()
-            ->byId($this->getData('get', 'id'))
+            ->byId($params['get']['id'])
             ->one();
 
-        if ($model->load($this->getData('post')) and $model->save()) {
+        if ($model->load($params['post']) and $model->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 
@@ -70,7 +69,7 @@ class GroupModelService extends ModelService
     public function actionDelete($id)
     {
         $model = Group::find()
-            ->where(['id' => $id])
+            ->byId($id)
             ->with(['subGroups', 'items'])
             ->one();
 

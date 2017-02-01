@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use app\modules\backend\widgets\grid\GridView;
 use app\modules\shop\models\Group;
 use app\core\helpers\Breadcrumbs;
-
+/*
 $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
     $id,
     [
@@ -16,6 +16,7 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
     ]
 )
 );
+*/
 
 $this->params['toolbar'] = [
     ['label' => '<i class="fa fa-cogs"></i> ' . Yii::t('shop', 'Toolbar property'), 'url' => ['property/manager']],
@@ -24,15 +25,15 @@ $this->params['toolbar'] = [
 ?>
 
 <?= GridView::widget([
-    'dataProviderGroup' => $dataProviderGroup,
-    'dataProvider' => $dataProviderProduct,
+    'dataProviderGroup' => $data->getData('dataProviderGroup'),
+    'dataProvider' => $data->getData('dataProviderProduct'),
     'buttons' => [
         'create' => [
             'group' => [
-                'url' => Url::to(['create', 'parent_id' => $id]),
+                'url' => Url::to(['create', 'parent_id' => $data->getData('id')]),
             ],
             'item' => [
-                'url' => Url::to(['product/create', 'group_id' => $id]),
+                'url' => Url::to(['product/create', 'group_id' => $data->getData('id')]),
             ],
         ],
     ],

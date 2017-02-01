@@ -28,15 +28,13 @@ class CreateController extends BackendController
         ];
     }
 
-    public function actionGroup($informationsystem_id, $parent_id = 0)
+    public function actionGroup($informationsystem_id, $parent_id)
     {
         $modelService = new GroupModelService();
-        $modelService->setData([
+        $modelService->actionCreate([
             'post' => Yii::$app->request->post(),
-            'parentId' => $parent_id,
             'get' => Yii::$app->request->getQueryParams(),
         ]);
-        $modelService->actionCreate();
 
         $viewService = (new GroupViewService())->setData($modelService->getData());
 
@@ -51,14 +49,13 @@ class CreateController extends BackendController
         return $this->render('group', ['data' => $viewService]);
     }
 
-    public function actionItem($group_id = 0, $informationsystem_id)
+    public function actionItem($group_id, $informationsystem_id)
     {
         $modelService = new ItemModelService();
-        $modelService->setData([
+        $modelService->actionCreate([
             'post' => Yii::$app->request->post(),
             'get' => Yii::$app->request->getQueryParams(),
         ]);
-        $modelService->actionCreate();
 
         $viewService = (new ItemViewService())->setData($modelService->getData());
 
@@ -76,11 +73,10 @@ class CreateController extends BackendController
     public function actionTag($informationsystem_id)
     {
         $modelService = new TagModelService();
-        $modelService->setData([
+        $modelService->actionCreate([
             'post' => Yii::$app->request->post(),
             'get' => Yii::$app->request->getQueryParams(),
         ]);
-        $modelService->actionCreate();
 
         $viewService = (new TagViewService())->setData($modelService->getData());
 
@@ -88,7 +84,7 @@ class CreateController extends BackendController
 
             return $this->redirect([
                 'manager/tag',
-                'informationsystem_id' => $modelService->getData('informationsystemId'),
+                'informationsystem_id' => $modelService->getData('model')->informationsystem_id,
             ]);
         }
 

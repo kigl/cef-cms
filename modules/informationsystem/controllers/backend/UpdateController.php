@@ -31,11 +31,10 @@ class UpdateController extends BackendController
     public function actionGroup($id)
     {
         $modelService = new GroupModelService();
-        $modelService->setData([
+        $modelService->actionUpdate([
             'post' => Yii::$app->request->post(),
             'get' => Yii::$app->request->getQueryParams(),
         ]);
-        $modelService->actionUpdate();
 
         $viewService = (new GroupViewService())->setData($modelService->getData());
 
@@ -54,11 +53,10 @@ class UpdateController extends BackendController
     public function actionItem($id)
     {
         $modelService = new ItemModelService();
-        $modelService->setData([
+        $modelService->actionUpdate([
             'post' => Yii::$app->request->post(),
             'get' => Yii::$app->request->getQueryParams(),
         ]);
-        $modelService->actionUpdate();
 
         $viewService = (new ItemViewService())->setData($modelService->getData());
 
@@ -77,11 +75,10 @@ class UpdateController extends BackendController
     public function actionTag($id)
     {
         $modelService = new TagModelService();
-        $modelService->setData([
+        $modelService->actionUpdate([
             'post' => Yii::$app->request->post(),
             'get' => Yii::$app->request->getQueryParams(),
         ]);
-        $modelService->actionUpdate();
 
         $viewService = (new TagViewService())->setData($modelService->getData());
 
@@ -89,7 +86,7 @@ class UpdateController extends BackendController
 
             return $this->redirect([
                 'manager/tag',
-                'informationsystem_id' => $modelService->getData('informationsystemId'),
+                'informationsystem_id' => $modelService->getData('model')->informationsystemId,
             ]);
         }
 

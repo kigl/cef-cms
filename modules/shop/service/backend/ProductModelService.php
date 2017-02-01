@@ -33,10 +33,6 @@ class ProductModelService extends ModelService
      */
     protected $properties;
 
-    /**
-     * @var array
-     */
-
     public function actionCreate()
     {
         $this->model = new Product();

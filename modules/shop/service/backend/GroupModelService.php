@@ -12,9 +12,25 @@ namespace app\modules\shop\service\backend;
 use Yii;
 use app\core\service\ModelService;
 use app\modules\shop\models\Group;
+use app\modules\shop\models\GroupSearch;
+use app\modules\shop\models\ProductSearch;
 
 class GroupModelService extends ModelService
 {
+    public function actionManager(array $params)
+    {
+        $dataProviderSearch = new GroupSearch();
+        $dataProviderGroup = $dataProviderSearch->search(Yii::$app->request->getQueryParams());
+        $dataProviderProductSearch = new ProductSearch();
+        $dataProviderProduct = $dataProviderProductSearch->search(Yii::$app->request->getQueryParams());
+
+        $this->setData([
+            'id' => $params['id'],
+            'dataProviderGroup' => $dataProviderGroup,
+            'dataProviderProduct' => $dataProviderProduct,
+        ]);
+    }
+
     public function actionCreate(array $params)
     {
         $model = new Group;

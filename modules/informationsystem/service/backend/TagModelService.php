@@ -14,34 +14,32 @@ use app\modules\informationsystem\models\Tag;
 
 class TagModelService extends ModelService
 {
-    public function actionCreate()
+    public function actionCreate(array $params)
     {
         $model = new Tag();
-        $model->informationsystem_id = $this->getData('get', 'informationsystem_id');
+        $model->informationsystem_id = $params['get']['informationsystem_id'];
 
-        if ($model->load($this->getData('post')) and $model->save()) {
+        if ($model->load($params['post']) and $model->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 
         $this->setData([
             'model' => $model,
-            'informationsystemId' => $model->informationsystem_id,
         ]);
     }
     
-    public function actionUpdate()
+    public function actionUpdate(array $params)
     {
         $model = Tag::find()
-            ->byId($this->getData('get', 'id'))
+            ->byId($params['get']['id'])
             ->one();
 
-        if ($model->load($this->getData('post')) && $model->save()) {
+        if ($model->load($params['post']) && $model->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 
         $this->setData([
             'model' => $model,
-            'informationsystemId' => $model->informationsystem_id,
         ]);
     }
 }

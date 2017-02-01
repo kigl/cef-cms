@@ -20,15 +20,15 @@ $this->params['toolbar'] = [
             'group' => [
                 'url' => Url::to([
                     'create/group',
-                    'informationsystem_id' => $data->getInformationSystemId(),
-                    'parent_id' => $data->getId(),
+                    'informationsystem_id' => $data->getData('informationSystemId'),
+                    'parent_id' => $data->getData('id'),
                 ]),
             ],
             'item' => [
                 'url' => Url::to([
                     'create/item',
-                    'informationsystem_id' => $data->getInformationSystemId(),
-                    'group_id' => $data->getId(),
+                    'informationsystem_id' => $data->getData('informationSystemId'),
+                    'group_id' => $data->getData('id'),
                 ]),
             ],
         ],

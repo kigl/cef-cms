@@ -39,24 +39,14 @@ class ManagerController extends BackendController
 
     public function actionTag($informationsystem_id)
     {
-        $modelTag = new Tag;
-
-        if ($modelTag->load(Yii::$app->request->post()) and $modelTag->save()) {
-            $modelTag = new Tag;
-        }
-
         $model = new TagSearch;
-        $system = System::getSystem($informationsystem_id);
 
-        $dataProvider = $model->search($informationsystem_id, Yii::$app->request->getQueryParams());
+        $dataProvider = $model->search(Yii::$app->request->getQueryParams());
 
         return $this->render('tag', [
             'dataProvider' => $dataProvider,
             'searchModel' => $model,
-            'system' => $system,
             'informationsystem_id' => $informationsystem_id,
-            'breadcrumbs' => Group::buildBreadcrumbs(null, $informationsystem_id),
-            'modelTag' => $modelTag,
         ]);
     }
 }
