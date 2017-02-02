@@ -32,8 +32,6 @@ class Product extends \app\modules\shop\models\base\Product
     const STATUS_ACTIVE = 1;
     const STATUS_BLOCK = 0;
 
-    public $imageUpload;
-
     public function behaviors()
     {
         return [
@@ -94,7 +92,8 @@ class Product extends \app\modules\shop\models\base\Product
      */
     public function getProperties()
     {
-        return $this->hasMany(ProductProperty::className(), ['product_id' => 'id']);
+        return $this->hasMany(ProductProperty::className(), ['product_id' => 'id'])
+            ->indexBy('property_id');
     }
     
     /**

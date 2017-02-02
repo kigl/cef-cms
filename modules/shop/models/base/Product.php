@@ -26,6 +26,8 @@ use yii\helpers\Html;
  */
 class Product extends ActiveRecord
 {
+    public $imageUpload;
+
     /**
      * @inheritdoc
      */

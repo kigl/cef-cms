@@ -153,9 +153,21 @@ class ProductModelService extends ModelService
         return $result;
     }
 
+    protected function validate()
+    {
+
+        if ($this->validateProperties() && $this->model->validate()) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function save()
     {
-        if ($this->saveProperties() && $this->model->save()) {
+        if ($this->validate()) {
+            $this->model->save();
+            $this->saveProperties();
             $this->uploadImage();
             $this->processImage();
 
@@ -165,23 +177,35 @@ class ProductModelService extends ModelService
         return false;
     }
 
-    protected function saveProperties()
+    protected function validateProperties($validate = true)
     {
         $success = true;
+        if ($validate) {
+            foreach ($this->properties as $property) {
+                if ($property->property->required && $property->value === '') {
+                    $property->addError(
+                        'value',
+                        Yii::t('yii', '{attribute} cannot be blank.', ['attribute' => Yii::t('shop', 'Properties')]));
+
+                    $success = false;
+                }
+            }
+        }
+
+        return $success;
+    }
+
+    protected function saveProperties($validate = true)
+    {
+        $success = true;
+
+        if ($validate) {
+            $success = $this->validateProperties();
+        }
 
         foreach ($this->properties as $property) {
             $property->product_id = $this->model->id;
 
-            if ($property->property->required && $property->value === '') {
-                $property->addError(
-                    'value',
-                    Yii::t('yii', '{attribute} cannot be blank.', ['attribute' => Yii::t('shop', 'Properties')]));
-
-                $success = false;
-            }
-        }
-
-        foreach ($this->properties as $property) {
             if ($success === true) {
                 if ($property->value !== '') {
                     $property->save();

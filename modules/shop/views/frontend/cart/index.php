@@ -29,7 +29,7 @@ $this->registerJs("
                 success: function (data) {
                     $.pjax.reload({container: \"#pjax-grid-view\"});  //Reload GridView
                     /**
-                     * не обновляется
+                     * не обновляется виджет корзины
                      */
                     //$.pjax.reload({container:\"#cart-pjax\"});  //Обновить виджет корзины
                 }

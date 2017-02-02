@@ -10,7 +10,5 @@ function addToCart(productId, qty) {
     });
 
     // обновляем корзину
-    setTimeout( function () {
-        $.pjax.reload({container:"#cart-pjax"});  //Reload GridView
-    }, 200);
+    $.pjax.reload({container: "#cart-pjax"});  //Reload GridView
 }

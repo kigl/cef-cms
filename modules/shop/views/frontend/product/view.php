@@ -1,13 +1,12 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
-use app\core\helpers\Breadcrumbs;
-use app\modules\shop\models\Group;
+use yii\helpers\Url;
 
 $this->setTitle($data->getTitle());
 $this->setMetaDescription($data->getMetaDescription());
 $this->setPageHeader($data->getName());
-
+/*
 $this->setBreadcrumbs(
     \yii\helpers\ArrayHelper::merge(
         Breadcrumbs::getLinksGroup(
@@ -21,26 +20,8 @@ $this->setBreadcrumbs(
                 ],
             ]
         ), ['label' => Html::encode($data->getName())]));
-
+*/
 $this->params['groupId'] = $data->getGroupId();
-
-$this->registerJs("
-$(function () {
-    $('.product-property__item').click(function () {
-        var url = $(this);
-        $.ajax({
-                                type: 'GET',
-                                url: url.attr('href'),
-                                success: function (data) {
-            var product = $.parseJSON(data);
-            $('.product-price').html(product.price);
-            $('#productId').val(product.id);
-        }
-                            });
-                            return false;
-                        });
-});
-");
 ?>
 
 <div class="product-detail">
@@ -86,23 +67,17 @@ $(function () {
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <ul>
-                                <?php
-                                echo "<li>" . Html::a(
-                                        $data->getModel()->properties[0]->value,
-                                        ['/shop/product/get-value', 'id' => $data->getModel()->id],
-                                        ['class' => 'product-property__item']
-                                    );
+                            <?= \app\modules\shop\widgets\frontend\checkedProductProperties\Widget::widget([
+                                'model' => $data->getModel(),
+                                'propertyId' => 1,
+                                'radioName' => 'size',
+                            ]) ?>
 
-                                foreach ($data->getSubProducts() as $product) {
-                                    echo "<li>" . Html::a(
-                                            $product->properties[0]->value,
-                                            ['/shop/product/get-value', 'id' => $product->id],
-                                            ['class' => 'product-property__item']
-                                        );
-                                }
-                                ?>
-                            </ul>
+                            <?= \app\modules\shop\widgets\frontend\checkedProductProperties\Widget::widget([
+                                'model' => $data->getModel(),
+                                'propertyId' => 3,
+                                'radioName' => 'length',
+                            ]) ?>
                         </div>
                     </div>
 
