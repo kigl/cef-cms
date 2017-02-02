@@ -2,8 +2,8 @@
 
 namespace app\modules\backend\controllers;
 
-use app\modules\backend\components\Controller;
 
+use app\modules\backend\components\Controller;
 
 /**
  * Default controller for the `Main` module

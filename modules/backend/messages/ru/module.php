@@ -1,5 +1,7 @@
 <?php
 return [
+	'Attribute id menu' => 'Id меню',
+
     'Button create item' => 'Добавить элемент',
     'Button create group' => 'Добавить группу',
     'Breadcrumbs root' => 'Root',
@@ -9,6 +11,8 @@ return [
 	'Label' => 'Метка',
 	
 	'Value' => 'Значение',
+	
+	'Class menu' => 'Class HTML',
 	
 	'Setting type id' => 'Тип поля',
 	'Setting id' => 'Id',

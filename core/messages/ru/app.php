@@ -19,6 +19,8 @@ return [
 	'Create time' => 'Дата создания',
     'Content' => 'Содержание',
 
+	'Name' => 'Имя / Наименование',
+
     'Deleted element' => 'Элемент удален!',
 	
 	'Meta title' => 'Seo заголовок страницы',
