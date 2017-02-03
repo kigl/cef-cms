@@ -45,4 +45,9 @@ class Menu extends \yii\db\ActiveRecord
             'attribute_id' => Yii::t('backend', 'Attribute id menu'),
         ];
     }
+
+    public function getItems()
+    {
+        return $this->hasMany(MenuItem::className(), ['menu_id' => 'id']);
+    }
 }

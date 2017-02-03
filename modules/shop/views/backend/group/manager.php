@@ -17,11 +17,6 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
 )
 );
 */
-
-$this->params['toolbar'] = [
-    ['label' => '<i class="fa fa-cogs"></i> ' . Yii::t('shop', 'Toolbar property'), 'url' => ['property/manager']],
-    ['label' => Yii::t('shop', 'Toolbar order'), 'url' => ['order/manager']],
-];
 ?>
 
 <?= GridView::widget([

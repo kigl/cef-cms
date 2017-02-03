@@ -9,7 +9,7 @@ class ProductSearch extends Product
     public function search($params)
     {
         $query = Product::find()
-            ->where(['group_id' => $params['id']])
+            ->where(['group_id' => !empty($params['id']) ? $params['id'] : null])
             ->parentIsNull();
 
         $dataProvider = new ActiveDataProvider([

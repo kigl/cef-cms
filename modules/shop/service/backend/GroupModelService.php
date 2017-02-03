@@ -17,15 +17,15 @@ use app\modules\shop\models\ProductSearch;
 
 class GroupModelService extends ModelService
 {
-    public function actionManager(array $params)
+    public function actionManager()
     {
         $dataProviderSearch = new GroupSearch();
-        $dataProviderGroup = $dataProviderSearch->search(Yii::$app->request->getQueryParams());
+        $dataProviderGroup = $dataProviderSearch->search($this->getData('get'));
         $dataProviderProductSearch = new ProductSearch();
-        $dataProviderProduct = $dataProviderProductSearch->search(Yii::$app->request->getQueryParams());
+        $dataProviderProduct = $dataProviderProductSearch->search($this->getData('get'));
 
         $this->setData([
-            'id' => $params['id'],
+            'id' => $this->getData('get', 'id'),
             'dataProviderGroup' => $dataProviderGroup,
             'dataProviderProduct' => $dataProviderProduct,
         ]);

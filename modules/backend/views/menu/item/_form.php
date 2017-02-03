@@ -4,18 +4,18 @@ use app\modules\backend\widgets\ActiveForm;
 
 <?php $form = ActiveForm::begin();?>
 
-<?= $form->errorSummary($model);?>
+<?= $form->errorSummary($data['model']);?>
 
-<?= $form->field($model, 'name');?>
+<?= $form->field($data['model'], 'name');?>
 
-<?= $form->field($model, 'url');?>
+<?= $form->field($data['model'], 'url');?>
 
-<?= $form->field($model, 'visible');?>
+<?= $form->field($data['model'], 'visible')->dropDownList($data['model']->getStatusVisibleList());?>
 
-<?= $form->field($model, 'class');?>
+<?= $form->field($data['model'], 'class');?>
 
-<?= $form->field($model, 'icon_class');?>
+<?= $form->field($data['model'], 'icon_class');?>
 
-<?= $form->field($model, 'position');?>
+<?= $form->field($data['model'], 'position');?>
 
 <?php ActiveForm::end();?>

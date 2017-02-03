@@ -11,29 +11,20 @@ use app\modules\shop\components\BackendController;
 class GroupController extends BackendController
 {
 
-    public function actionManager($id)
+    public function actionManager($id = null)
     {
-        $modelService = Yii::createObject(GroupModelService::class);
-        $modelService->actionManager(Yii::$app->request->getQueryParams());
+        $modelService = Yii::createObject(GroupModelService::class)
+            ->setData([
+                'get' => Yii::$app->request->getQueryParams(),
+            ]);
+        $modelService->actionManager();
 
         $viewModelService = Yii::createObject(GroupViewService::class)->setData($modelService->getData());
 
         return $this->render('manager', ['data' => $viewModelService]);
-/*
-        $dataProviderSearch = new GroupSearch();
-        $dataProviderGroup = $dataProviderSearch->search($id, Yii::$app->request->getQueryParams());
-        $dataProviderProductSearch = new ProductSearch();
-        $dataProviderProduct = $dataProviderProductSearch->search($id, Yii::$app->request->getQueryParams());
-
-        return $this->render('manager', [
-            'id' => $id,
-            'dataProviderGroup' => $dataProviderGroup,
-            'dataProviderProduct' => $dataProviderProduct,
-        ]);
-*/
     }
 
-    public function actionCreate($parent_id)
+    public function actionCreate($parent_id = null)
     {
         $modelService = Yii::createObject(GroupModelService::class);
         $modelService->actionCreate([
@@ -73,7 +64,7 @@ class GroupController extends BackendController
     {
         $modelService = new GroupModelService();
         $modelService->actionDelete($id);
-        
+
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_DELETE)) {
 
             return $this->redirect(['group/manager', 'id' => $modelService->getData('model')->parent_id]);

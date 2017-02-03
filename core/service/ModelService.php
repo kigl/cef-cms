@@ -35,6 +35,8 @@ abstract class ModelService implements ModelServiceInterface
         foreach ($data as $key => $value) {
             $this->data[$key] = $value;
         }
+
+        return $this;
     }
 
     /**
@@ -42,13 +44,20 @@ abstract class ModelService implements ModelServiceInterface
      */
     public function getData($key = null, $value = null)
     {
-        if (isset($value) && (isset($this->data[$key][$value]))) {
-            return $this->data[$key][$value];
+        if (isset($value)) {
+            if (isset($this->data[$key][$value])) {
+                return $this->data[$key][$value];
+            } else {
+                return null;
+            }
         }
 
         if (array_key_exists($key, $this->data)) {
             return $this->data[$key];
+        } elseIf (isset($key)) {
+            return null;
         }
+
         return $this->data;
     }
 

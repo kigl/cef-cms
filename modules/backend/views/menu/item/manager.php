@@ -10,7 +10,7 @@ use yii\helpers\Html;
         'create' => [
             'item' => [
                 'url' => Url::to([
-                    'create-item',
+                    'create',
                     'menu_id' => $data['menuId'],
                     'parent_id' => $data['parentId'],
                 ]),
@@ -26,9 +26,31 @@ use yii\helpers\Html;
             'value' => function ($data) {
                 return Html::a(
                     $data->name,
-                    ['manager-item', 'menu_id' => $data->menu_id, 'parent_id' => $data>id]
+                    ['menu-item/manager', 'menu_id' => $data->menu_id, 'parent_id' => $data->id]
                 );
             }
-        ]
+        ],
+        [
+        'headerOptions' => ['style' => 'width: 70px'],
+        'class' => \yii\grid\ActionColumn::className(),
+        'template' => "{update} {delete}",
+        'buttons' => [
+            'update' => function ($url, $model, $key) {
+                return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
+                        'update',
+                        'id' => $model->id
+                    ]
+                );
+            },
+            'delete' => function ($url, $model, $key) {
+                return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
+                    'delete',
+                    'id' => $model->id
+                ],
+                    ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'Question on delete file')]
+                );
+            }
+        ],
+    ],
     ],
 ]);?>

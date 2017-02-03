@@ -6,28 +6,33 @@ return [
 	'Button create' => 'Добавить',
 	'Button save' => 'Сохранить',
 
+    'Deleted element' => 'Элемент удален!',
+
+    'Form legend seo' => 'SEO',
+
     'Link name page main' => 'Главная',
 	'List view summary text: is' => 'из',
-	
-	'Not exist views: {views}' => 'Значение "{views}" не существует',
 
-	'Form legend seo' => 'SEO',
+    'Name' => 'Имя / Наименование',
+    'Not exist views: {views}' => 'Значение "{views}" не существует',
 
-	'Saved element' => 'Сохранено!',
+    'Icon css class' => 'CSS класс иконки',
+
+    'Parent id' => 'Id родителя',
+	'Position' => 'Позиция',
 	
 	'Created element' => 'Элемент создан!',
 	'Create time' => 'Дата создания',
     'Content' => 'Содержание',
+    'CSS class' => 'CSS класс',
 
-	'Name' => 'Имя / Наименование',
+    'Visible' => 'Видимый',
 
-    'Deleted element' => 'Элемент удален!',
-	
-	'Meta title' => 'Seo заголовок страницы',
-	'Meta description' => 'Seo описание страницы',
-	
+    'Saved element' => 'Сохранено!',
+
 	'Updated element' => 'Элемент обновлен!',
 	'Update time' => 'Дата обновления',
+    'Url' =>  'URL',
 
     'Question on delete file' => 'Удалить элемент?',
 ];

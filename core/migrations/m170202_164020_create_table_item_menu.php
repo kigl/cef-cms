@@ -10,6 +10,7 @@ class m170202_164020_create_table_item_menu extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
+            'parent_id' => $this->integer(),
             'menu_id' => $this->integer(),
             'name' => $this->string(),
             'url' => $this->string(),
@@ -18,6 +19,10 @@ class m170202_164020_create_table_item_menu extends Migration
             'icon_class' => $this->string(),
             'position' => $this->integer(),
         ]);
+
+        $this->createIndex('ix-menu_item-menu_id', $this->tableName, 'menu_id');
+
+        $this->addForeignKey('fk-menu_item-menu_id', $this->tableName, 'menu_id', '{{%menu}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()

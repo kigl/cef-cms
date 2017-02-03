@@ -11,12 +11,11 @@ namespace app\modules\backend\controllers;
 
 use Yii;
 use yii\data\ActiveDataProvider;
+use app\modules\backend\service\MenuModelService;
 use app\core\actions\Create;
 use app\core\actions\Update;
-use app\modules\backend\service\MenuItemModelService;
 use app\modules\backend\components\Controller;
 use app\modules\backend\models\Menu;
-use app\modules\backend\models\MenuItem;
 
 class MenuController extends Controller
 {
@@ -31,16 +30,6 @@ class MenuController extends Controller
                 'class' => Update::className(),
                 'model' => Menu::className(),
             ],
-            'create-item' => [
-                'class' => Create::className(),
-                'model' => MenuItem::className(),
-                'view' => 'item/create',
-            ],
-            'update-item' => [
-                'class' => Update::className(),
-                'model' => MenuItem::className(),
-                'view' => 'item/update',
-            ],
         ];
     }
 
@@ -54,11 +43,13 @@ class MenuController extends Controller
         return $this->render('manager', ['dataProvider' => $dataProvider]);
     }
 
-    public function actionManagerItem($menu_id, $parent_id = null)
+    public function actionDelete($id)
     {
-        $modelService = Yii::createObject(MenuItemModelService::class);
-        $modelService->actionManager(Yii::$app->request->getQueryParams());
+        $modelService = Yii::createObject(MenuModelService::class);
+        $modelService->actionDelete($id);
 
-        return $this->render('item/manager', ['data' => $modelService->getData()]);
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_DELETE)) {
+            return $this->redirect(['manager']);
+        }
     }
 }
