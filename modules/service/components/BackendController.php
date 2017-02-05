@@ -6,7 +6,7 @@
  * Time: 17:53
  */
 
-namespace app\modules\shop\components;
+namespace app\modules\service\components;
 
 
 use app\modules\backend\components\Controller;

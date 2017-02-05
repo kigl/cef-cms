@@ -6,13 +6,13 @@
  * Time: 20:20
  */
 
-namespace app\modules\backend\service;
+namespace app\modules\service\service;
 
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\core\service\ModelService;
-use app\modules\backend\models\MenuItem;
+use app\modules\service\models\MenuItem;
 
 class MenuItemModelService extends ModelService
 {

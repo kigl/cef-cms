@@ -2,9 +2,9 @@
 
 use yii\db\Migration;
 
-class m170202_163953_create_table_menu extends Migration
+class m170202_163953_service_menu extends Migration
 {
-    protected $tableName = '{{%menu}}';
+    protected $tableName = '{{%service_menu}}';
 
     public function up()
     {

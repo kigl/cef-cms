@@ -45,6 +45,11 @@ use app\modules\backend\widgets\menuTop\Widget as MenuTop;
                                         <h3><?php echo $this->params['pageHeader']; ?></h3>
                                     </div>
                                 <?php endif; ?>
+
+                                <?= \app\modules\backend\widgets\toolbar\Widget::widget([
+                                    'options' => ['class' => 'list-inline'],
+                                ]);?>
+                                
                                 <?php
                                 if (isset($this->params['toolbar'])) {
                                     echo Menu::widget([

@@ -6,12 +6,12 @@
  */
 
 
-namespace app\modules\backend\controllers;
+namespace app\modules\service\controllers\backend;
 
 
 use Yii;
 use app\modules\backend\components\Controller;
-use app\modules\backend\service\MenuItemModelService;
+use app\modules\service\service\MenuItemModelService;
 
 class MenuItemController extends Controller
 {

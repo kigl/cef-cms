@@ -2,9 +2,9 @@
 
 use yii\db\Migration;
 
-class m170202_164020_create_table_item_menu extends Migration
+class m170202_164020_service_menu_item extends Migration
 {
-    protected $tableName = '{{%menu_item}}';
+    protected $tableName = '{{%service_menu_item}}';
 
     public function up()
     {
@@ -22,7 +22,7 @@ class m170202_164020_create_table_item_menu extends Migration
 
         $this->createIndex('ix-menu_item-menu_id', $this->tableName, 'menu_id');
 
-        $this->addForeignKey('fk-menu_item-menu_id', $this->tableName, 'menu_id', '{{%menu}}', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('fk-menu_item-menu_id', $this->tableName, 'menu_id', '{{%service_menu}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()

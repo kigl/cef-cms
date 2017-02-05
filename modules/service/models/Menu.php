@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\backend\models;
+namespace app\modules\service\models;
 
 use Yii;
 
@@ -19,7 +19,7 @@ class Menu extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%menu}}';
+        return '{{%service_menu}}';
     }
 
     /**
