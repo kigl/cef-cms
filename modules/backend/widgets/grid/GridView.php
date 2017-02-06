@@ -43,7 +43,7 @@ class GridView extends \yii\grid\GridView
     public $breadcrumbsGroup;
     */
 
-    public $options = ['class' => 'grid-views'];
+    public $options = ['class' => 'grid-views panel panel-default panel-body'];
 
     public $tableOptions = ['class' => 'table table-condensed table-striped grid-table'];
 

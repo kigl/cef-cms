@@ -26,13 +26,16 @@ return [
     'Content' => 'Содержание',
     'CSS class' => 'CSS класс',
 
-    'Visible' => 'Видимый',
+    'Visible' => 'Видим',
 
     'Saved element' => 'Сохранено!',
 
 	'Updated element' => 'Элемент обновлен!',
 	'Update time' => 'Дата обновления',
     'Url' =>  'URL',
+
+    'Tab main' => 'Основные',
+    'Tab more' => 'Дополнительные',
 
     'Question on delete file' => 'Удалить элемент?',
 ];

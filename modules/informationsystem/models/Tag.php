@@ -47,6 +47,11 @@ class Tag extends \app\core\db\ActiveRecord
         ];
     }
 
+    public function getInformationSystem()
+    {
+        return $this->hasOne(Informationsystem::className(), ['id' => 'informationsystem_id']);
+    }
+
     public function getItems()
     {
         return $this->hasMany(Item::className(), ['id' => 'item_id'])

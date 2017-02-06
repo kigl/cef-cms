@@ -1,21 +1,40 @@
 <?php
 use app\modules\backend\widgets\ActiveForm;
+
 ?>
 
-<?php $form = ActiveForm::begin();?>
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
+    <li><a href="#more" data-toggle="tab"><?= Yii::t('app', 'Tab more'); ?></a></li>
+</ul>
 
-<?= $form->errorSummary($data['model']);?>
+<?php $form = ActiveForm::begin(); ?>
 
-<?= $form->field($data['model'], 'name');?>
+<?= $form->errorSummary($data['model']); ?>
 
-<?= $form->field($data['model'], 'url');?>
+<div class="tab-content">
+    <div class="tab-pane active" id="main">
+        <?= $form->field($data['model'], 'name'); ?>
 
-<?= $form->field($data['model'], 'visible')->dropDownList($data['model']->getStatusVisibleList());?>
+        <?= $form->field($data['model'], 'url'); ?>
 
-<?= $form->field($data['model'], 'class');?>
+        <?= $form->field($data['model'], 'visible')->dropDownList($data['model']->getStatusVisibleList()); ?>
 
-<?= $form->field($data['model'], 'icon_class');?>
+        <?= $form->field($data['model'], 'position'); ?>
+    </div>
+    <div class="tab-pane" id="more">
 
-<?= $form->field($data['model'], 'position');?>
+        <p class="alert alert-danger">Пока не работает</p>
+        <?= $form->field($data['model'], 'item_icon_class'); ?>
 
-<?php ActiveForm::end();?>
+        <?= $form->field($data['model'], 'item_class'); ?>
+
+        <?= $form->field($data['model'], 'item_id'); ?>
+
+        <?= $form->field($data['model'], 'link_class'); ?>
+
+        <?= $form->field($data['model'], 'link_id'); ?>
+
+    </div>
+</div>
+<?php ActiveForm::end(); ?>

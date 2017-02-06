@@ -3,13 +3,6 @@ use yii\helpers\Html;
 use app\modules\backend\widgets\grid\GridView;
 use app\modules\user\helpers\StatusHelper;
 
-$this->params['toolbar'] = [
-    [
-        'label' => '<i class="fa fa-minus"></i> ' . Yii::t('user', 'Toolbar field'),
-        'url' => ['field/manager'],
-    ],
-    ['label' => Yii::t('user', 'Toolbar rbac'), 'url' => ['rbac/manager']],
-];
 ?>
 
 <?php

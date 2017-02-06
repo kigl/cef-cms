@@ -3,15 +3,14 @@
 namespace app\modules\informationsystem\controllers\backend;
 
 
+use app\modules\informationsystem\service\backend\ItemModelService;
+use app\modules\informationsystem\service\backend\TagModelService;
 use Yii;
 use app\modules\informationsystem\components\BackendController;
 use app\modules\informationsystem\service\backend\InformationSystemModelService;
 use app\modules\informationsystem\service\backend\InformationSystemViewService;
 use app\modules\informationsystem\service\backend\GroupModelService;
 use app\modules\informationsystem\service\backend\GroupViewService;
-use app\modules\informationsystem\models\Informationsystem as System;
-use app\modules\informationsystem\models\Tag;
-use app\modules\informationsystem\models\TagSearch;
 
 class ManagerController extends BackendController
 {
@@ -37,16 +36,11 @@ class ManagerController extends BackendController
         return $this->render('group', ['data' => $viewService]);
     }
 
-    public function actionTag($informationsystem_id)
+    public function actionTag()
     {
-        $model = new TagSearch;
+        $modelService = Yii::createObject(TagModelService::class);
+        $modelService->actionManager();
 
-        $dataProvider = $model->search(Yii::$app->request->getQueryParams());
-
-        return $this->render('tag', [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $model,
-            'informationsystem_id' => $informationsystem_id,
-        ]);
+        return $this->render('tag', ['data' => $modelService->getData()]);
     }
 }

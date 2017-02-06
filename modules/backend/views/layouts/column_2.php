@@ -47,7 +47,7 @@ use app\modules\backend\widgets\menuTop\Widget as MenuTop;
                                 <?php endif; ?>
 
                                 <?= \app\modules\backend\widgets\toolbar\Widget::widget([
-                                    'options' => ['class' => 'list-inline'],
+                                    'options' => ['class' => 'list-inline well well-sm'],
                                 ]);?>
                                 
                                 <?php

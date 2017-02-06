@@ -16,7 +16,7 @@ class TagSearch extends Tag
 	public function search(array $params)
 	{
 		$query = Tag::find()
-            ->where(['informationsystem_id' => $params['informationsystem_id']]);
+            ->with('informationSystem');
 		
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,

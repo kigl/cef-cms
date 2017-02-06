@@ -3,12 +3,6 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use app\modules\backend\widgets\grid\GridView;
 
-$this->params['toolbar'] = [
-    [
-        'label' => '<i class="glyphicon glyphicon-tags"></i> ' . Yii::t('informationsystem', 'Tag toolbar'),
-        'url' => ['manager/tag', 'informationsystem_id' => $data->getInformationSystemId()],
-    ]
-];
 ?>
 
 <?php echo GridView::widget([

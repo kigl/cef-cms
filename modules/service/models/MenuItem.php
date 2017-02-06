@@ -13,16 +13,18 @@ use Yii;
  * @property string $name
  * @property string $url
  * @property integer $visible
- * @property string $class
- * @property string $icon_class
  * @property integer $position
+ * @property string $item_class
+ * @property string $item_id
+ * @property string $item_icon_class
+ * @property string $link_class
+ * @property string $link_id
  */
 class MenuItem extends \yii\db\ActiveRecord
 {
     const STATUS_VISIBLE_ALL = 0;
     const STATUS_VISIBLE_GUEST = 1;
     const STATUS_VISIBLE_NOT_GUEST = 2;
-
 
     /**
      * @inheritdoc
@@ -40,8 +42,9 @@ class MenuItem extends \yii\db\ActiveRecord
         return [
             [['name', 'url'], 'required'],
             [['parent_id', 'menu_id', 'visible', 'position'], 'integer'],
-            [['name', 'url', 'icon_class'], 'string', 'max' => 255],
-            [['class'], 'string', 'max' => 100],
+            [['name', 'url'], 'string', 'max' => 255],
+            [['item_icon_class', 'item_class', 'item_id', 'link_class', 'link_id'], 'string', 'max' => 100],
+            ['position', 'default', 'value' => 500],
         ];
     }
 
@@ -57,9 +60,12 @@ class MenuItem extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'url' => Yii::t('app', 'Url'),
             'visible' => Yii::t('app', 'Visible'),
-            'class' => Yii::t('app', 'CSS class'),
-            'icon_class' => Yii::t('app', 'Icon css class'),
             'position' => Yii::t('app', 'Position'),
+            'item_class' => Yii::t('service', 'CSS item class'),
+            'item_icon_class' => Yii::t('service', 'Item icon CSS class'),
+            'item_id' => Yii::t('service', 'Menu item id html'),
+            'link_class' => Yii::t('service', 'Link class'),
+            'link_id' => Yii::t('service', 'Link id html'),
         ];
     }
 

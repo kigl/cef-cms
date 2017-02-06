@@ -15,9 +15,12 @@ class m170202_164020_service_menu_item extends Migration
             'name' => $this->string(),
             'url' => $this->string(),
             'visible' => $this->integer(),
-            'class' => $this->string(100),
-            'icon_class' => $this->string(),
             'position' => $this->integer(),
+            'item_class' => $this->string(100),
+            'item_id' => $this->string(100),
+            'item_icon_class' => $this->string(),
+            'link_class' => $this->string(100),
+            'link_id' => $this->string(100),
         ]);
 
         $this->createIndex('ix-menu_item-menu_id', $this->tableName, 'menu_id');

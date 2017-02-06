@@ -9,6 +9,7 @@
 namespace app\modules\service\controllers\backend;
 
 
+use app\modules\service\models\MenuItem;
 use Yii;
 use app\modules\backend\components\Controller;
 use app\modules\service\service\MenuItemModelService;
@@ -78,6 +79,16 @@ class MenuItemController extends Controller
                 'menu_id' => $modelService->getData('model')->menu_id,
                 'parent_id' => $modelService->getData('parent_id'),
             ]);
+        }
+    }
+
+    public function actionEditPosition($id)
+    {
+        $model = MenuItem::findOne($id);
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
+            return ['output' => $model->position, 'message' => ''];
         }
     }
 }

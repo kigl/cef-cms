@@ -8,20 +8,19 @@ $this->params['breadcrumbs'] = ArrayHelper::merge($breadcrumbs, [
 ]);
 */
 ?>
-
+    <p class="alert alert-danger">Не закончнно</p>
 <?= GridView::widget([
     'buttons' => [
         'create' => [
             'item' => [
                 'url' => Url::to([
                     'create/tag',
-                    'informationsystem_id' => $informationsystem_id,
                 ]),
             ],
         ],
     ],
-    'dataProvider' => $dataProvider,
-    'filterModel' => $searchModel,
+    'dataProvider' => $data['dataProvider'],
+    'filterModel' => $data['searchModel'],
     'columns' => [
         'id',
         'name',

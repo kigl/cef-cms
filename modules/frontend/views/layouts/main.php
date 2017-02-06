@@ -30,35 +30,10 @@ use yii\helpers\Url;
             <div class="top-block">
                 <div class="row">
                     <div class="col-md-12">
-                        <?php NavBar::begin(); ?>
-                        <?= Nav::widget([
-                            'items' => [
-                                [
-                                    'label' => Yii::t('user', 'Login menu item'),
-                                    'url' => ['/user/default/login'],
-                                    'visible' => Yii::$app->user->isGuest,
-                                    'linkOptions' => ['class' => 'show-in-modal'],
-                                ],
-                                [
-                                    'label' => Yii::t('user', 'Menu personal area'),
-                                    'url' => ['/user/default/personal'],
-                                    'visible' => !Yii::$app->user->isGuest,
-                                ],
-                                [
-                                    'label' => Yii::t('user', 'Logout'),
-                                    'url' => ['/user/default/logout'],
-                                    'visible' => !Yii::$app->user->isGuest
-                                ],
-                                [
-                                    'label' => Yii::t('user', 'Registration'),
-                                    'url' => ['/user/default/registration'],
-                                    'visible' => Yii::$app->user->isGuest,
-                                    'linkOptions' => ['class' => 'show-in-modal'],
-                                ],
-                            ],
-                            'options' => ['class' => 'navbar-nav'],
-                        ]); ?>
-                        <?php NavBar::end(); ?>
+                        <?= app\modules\service\widgets\frontend\menu\Widget::widget([
+                            'menuId' => 1,
+                            'options' => ['class' => 'list-inline pull-right'],
+                        ]);?>
                     </div>
                 </div>
             </div>
@@ -85,16 +60,6 @@ use yii\helpers\Url;
         <div class="panel-heading">Блок контента</div>
         <div class="panel-body">
             <div class="content-block">
-                <div class="row">
-                    <div class="col-md-12">
-                        <?= Nav::widget([
-                            'items' => [
-                                ['label' => 'Информационные системы', 'url' => ['/informationsystem/manager/system']],
-                            ],
-                            'options' => ['class' => 'nav-pills'],
-                        ]); ?>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <?= $content; ?>

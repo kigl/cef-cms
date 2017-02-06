@@ -13,7 +13,6 @@ use yii\rbac\Item;
 </ul>
 
 <div class="tab-content">
-    <div class="margin-top-10"></div>
     <div class="tab-pane active" id="role">
         <?= GridView::widget([
             'dataProvider' => $roleDataProvider,

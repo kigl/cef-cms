@@ -24,9 +24,6 @@ use app\core\widgets\pageHeader\Widget as PageHeader;
                 </div>
             </div>
             <?= Alert::widget(); ?>
-            <?= app\modules\service\widgets\frontend\menu\Widget::widget([
-                'menuId' => 1,
-            ]);?>
             <div>
                 <?php
                 if (isset($this->params['actionBar'])) {

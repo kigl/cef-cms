@@ -70,7 +70,7 @@ class CreateController extends BackendController
         return $this->render('item', ['data' => $viewService]);
     }
 
-    public function actionTag($informationsystem_id)
+    public function actionTag()
     {
         $modelService = new TagModelService();
         $modelService->actionCreate([
@@ -84,7 +84,6 @@ class CreateController extends BackendController
 
             return $this->redirect([
                 'manager/tag',
-                'informationsystem_id' => $modelService->getData('model')->informationsystem_id,
             ]);
         }
 
