@@ -19,9 +19,6 @@ use vova07\imperavi\Widget;
         <div class="col-md-6">
             <?= $form->field($data->getModel(), 'image')->fileInput(); ?>
         </div>
-        <div class="col-md-6">
-            <?= $form->field($data->getModel(), 'sort'); ?>
-        </div>
     </div>
 
 

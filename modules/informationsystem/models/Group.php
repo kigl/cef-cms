@@ -17,7 +17,6 @@ use yii\db\Expression;
  * @property string $description
  * @property string $content
  * @property string $image
- * @property integer $sort
  * @property integer $user_id
  * @property string $alias
  * @property string $meta_title
@@ -44,7 +43,7 @@ class Group extends \app\core\db\ActiveRecord
     {
         return [
             ['name', 'required'],
-            [['parent_id', 'informationsystem_id', 'sort', 'user_id'], 'integer'],
+            [['parent_id', 'informationsystem_id', 'user_id'], 'integer'],
             [['content'], 'string'],
             [['name', 'alias', 'meta_title'], 'string', 'max' => 255],
             [['description', 'meta_description'], 'string', 'max' => 300],
@@ -65,7 +64,6 @@ class Group extends \app\core\db\ActiveRecord
             'description' => Yii::t('informationsystem', 'Description'),
             'content' => Yii::t('informationsystem', 'Content'),
             'image' => Yii::t('informationsystem', 'Image'),
-            'sort' => Yii::t('informationsystem', 'Sort'),
             'user_id' => Yii::t('informationsystem', 'User ID'),
             'alias' => Yii::t('informationsystem', 'Alias'),
             'meta_title' => Yii::t('informationsystem', 'Meta Title'),

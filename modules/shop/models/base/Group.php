@@ -15,8 +15,6 @@ use app\core\db\ActiveRecord;
  * @property string $content
  * @property string $image
  * @property string $image_small
- * @property integer $status
- * @property integer $sort
  * @property integer $user_id
  * @property string $create_time
  * @property string $update_time
@@ -39,7 +37,7 @@ class Group extends ActiveRecord
     {
         return [
             ['name', 'required'],
-            [['parent_id', 'status', 'sort', 'user_id'], 'integer'],
+            [['parent_id', 'user_id'], 'integer'],
             [['content'], 'string'],
             [['create_time', 'update_time'], 'safe'],
             [['name', 'description', 'image', 'image_small', 'alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],
@@ -59,8 +57,6 @@ class Group extends ActiveRecord
             'content' => Yii::t('shop', 'Content'),
             'image' => Yii::t('shop', 'Image'),
             'image_small' => Yii::t('shop', 'Image Small'),
-            'status' => Yii::t('shop', 'Status'),
-            'sort' => Yii::t('shop', 'Sort'),
             'user_id' => Yii::t('shop', 'User ID'),
             'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta title'),

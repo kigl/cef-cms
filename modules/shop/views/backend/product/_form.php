@@ -9,11 +9,11 @@ use app\modules\backend\widgets\grid\GridView;
 ?>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('shop', 'Tab main'); ?></a></li>
+    <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
     <li><a href="#images" data-toggle="tab"><?= Yii::t('shop', 'Tab images'); ?></a></li>
     <li><a href="#property" data-toggle="tab"><?= Yii::t('shop', 'Tab property') ?></a></li>
     <li><a href="#modifications" data-toggle="tab"><?= Yii::t('shop', 'Tab modifications'); ?></a></li>
-    <li><a href="#other" data-toggle="tab"><?= Yii::t('shop', 'Tab other'); ?></a></li>
+    <li><a href="#other" data-toggle="tab"><?= Yii::t('app', 'Tab more'); ?></a></li>
 </ul>
 
 <?php $form = ActiveForm::begin([
@@ -26,21 +26,20 @@ use app\modules\backend\widgets\grid\GridView;
 <div class="tab-content">
     <div class="tab-pane active" id="main">
         <div class="row">
-            <div class="col-md-4"><?= $form->field($data->getModel(), 'code'); ?></div>
-            <div class="col-md-4"><?= $form->field($data->getModel(), 'name'); ?></div>
-            <div class="col-md-4"><?= $form->field($data->getModel(),
-                    'status')->dropDownList($data->getModel()->getListStatus()); ?></div>
+            <div class="col-md-12"><?= $form->field($data->getModel(), 'name'); ?></div>
         </div>
-
         <div class="row">
-            <div class="col-md-4"><?= $form->field($data->getModel(), 'price')
+            <div class="col-md-3"><?= $form->field($data->getModel(), 'code'); ?></div>
+            <div class="col-md-3"><?= $form->field($data->getModel(), 'price')
                     ->widget(\kartik\money\MaskMoney::className(), [
                         'pluginOptions' => [
                             'prefix' => 'RUR ',
                         ]
                     ]); ?>
             </div>
-            <div class="col-md-4"><?= $form->field($data->getModel(), 'sku'); ?></div>
+            <div class="col-md-3"><?= $form->field($data->getModel(), 'sku'); ?></div>
+            <div class="col-md-3"><?= $form->field($data->getModel(),
+                    'status')->dropDownList($data->getModel()->getListStatus()); ?></div>
         </div>
 
         <?= $form->field($data->getModel(), 'description')->textarea(); ?>
@@ -51,7 +50,7 @@ use app\modules\backend\widgets\grid\GridView;
             ],
         ]); ?>
 
-        <legend><?= Yii::t('app', 'Form legend seo');?></legend>
+        <legend><?= Yii::t('app', 'Form legend seo'); ?></legend>
 
         <?= $form->field($data->getModel(), 'alias'); ?>
 

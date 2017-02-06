@@ -16,8 +16,6 @@ class m161025_041849_shop_group extends Migration
             'content' => $this->text(),
             'image' => $this->string(),
             'image_small' => $this->string(),
-            'status' => $this->integer()->defaultValue(1),
-            'sort' => $this->integer()->defaultValue(0),
             'user_id' => $this->integer(),
             'alias' => $this->string(),
             'meta_title' => $this->string(),

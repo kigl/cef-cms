@@ -9,13 +9,27 @@
 namespace app\modules\service\controllers\backend;
 
 
-use app\modules\service\models\MenuItem;
 use Yii;
+use app\modules\service\models\MenuItem;
 use app\modules\backend\components\Controller;
 use app\modules\service\service\MenuItemModelService;
+use app\core\actions\EditAttribute;
 
 class MenuItemController extends Controller
 {
+    public function actions()
+    {
+        return [
+            'edit-position' => [
+                'class' => EditAttribute::class,
+                'modelClass' => MenuItem::class,
+                'attribute' => 'position',
+                'queryParams' => Yii::$app->request->getQueryParams(),
+                'postData' => Yii::$app->request->post(),
+            ]
+        ];
+    }
+
     public function actionManager($menu_id, $parent_id = null)
     {
         $modelService = Yii::createObject(MenuItemModelService::class)
@@ -79,16 +93,6 @@ class MenuItemController extends Controller
                 'menu_id' => $modelService->getData('model')->menu_id,
                 'parent_id' => $modelService->getData('parent_id'),
             ]);
-        }
-    }
-
-    public function actionEditPosition($id)
-    {
-        $model = MenuItem::findOne($id);
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            return ['output' => $model->position, 'message' => ''];
         }
     }
 }

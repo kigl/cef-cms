@@ -22,7 +22,6 @@ class m161012_101545_informationsystem_group extends Migration
             'description' => $this->string(300),
             'content' => $this->text(),
             'image' => $this->string(),
-            'sort' => $this->integer(),
             'user_id' => $this->integer(),
             'alias' => $this->string(),
             'meta_title' => $this->string(),

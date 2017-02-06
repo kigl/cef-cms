@@ -7,12 +7,7 @@ use app\modules\backend\widgets\ActiveForm;
 <?= $form->errorSummary($data->getModel());?>
 
 <div class="row">
-    <div class="col-md-4"><?= $form->field($data->getModel(), 'name')?></div>
-    <div class="col-md-4">
-        <?= $form->field($data->getModel(), 'status')
-            ->dropDownList($data->getModel()->getStatusList());?>
-    </div>
-    <div class="col-md-4"><?= $form->field($data->getModel(), 'sort')?></div>
+    <div class="col-md-12"><?= $form->field($data->getModel(), 'name')?></div>
 </div>
 
 <?= $form->field($data->getModel(), 'description')->textarea();?>

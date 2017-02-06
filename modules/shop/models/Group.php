@@ -16,18 +16,12 @@ use app\core\behaviors\GenerateAlias;
  * @property string $content
  * @property string $image
  * @property string $image_small
- * @property integer $status
- * @property integer $sort
  * @property integer $user_id
  * @property string $create_time
  * @property string $update_time
  */
 class Group extends \app\modules\shop\models\base\Group
 {
-    const ROOT_GROUP = 0;
-
-    const STATUS_BLOCK = 0;
-    const STATUS_ACTIVE = 1;
 
     public function behaviors()
     {
@@ -53,18 +47,5 @@ class Group extends \app\modules\shop\models\base\Group
     public function getSubGroups()
     {
         return $this->hasMany(static::className(), ['parent_id' => 'id']);
-    }
-
-    public function getStatusList()
-    {
-        return [
-            self::STATUS_ACTIVE => Yii::t('shop', 'Status active'),
-            self::STATUS_BLOCK => Yii::t('shop', 'Status block'),
-        ];
-    }
-
-    public function getStatus($key)
-    {
-        return ArrayHelper::getValue($this->getStatusList(), $key);
     }
 }
