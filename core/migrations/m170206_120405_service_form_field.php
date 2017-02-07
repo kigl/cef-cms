@@ -4,16 +4,27 @@ use yii\db\Migration;
 
 class m170206_120405_service_form_field extends Migration
 {
+    protected $tableName = '{{%service_form_field}}';
+
     public function up()
     {
+        $this->createTable($this->tableName, [
+            'id' => $this->primaryKey(),
+            'form_id' => $this->integer(),
+            'name' => $this->string(),
+            'description' => $this->string(),
+            'type' => $this->integer(),
+            'required' => $this->integer(),
+        ]);
 
+        $this->createIndex('ix-service_form_field-form_id', $this->tableName, 'form_id');
+
+        $this->addForeignKey('fk-service_form_field-form_id', $this->tableName, 'form_id', '{{%service_form}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()
     {
-        echo "m170206_120405_service_form_field cannot be reverted.\n";
-
-        return false;
+        $this->dropTable($this->tableName);
     }
 
     /*

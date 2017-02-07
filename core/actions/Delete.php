@@ -6,13 +6,13 @@ use Yii;
 
 class Delete extends Action
 {
-	public $getQuery = 'id';
+	public $queryParamName = 'id';
 
 	public $redirect = ['manager'];
 
 	public function run()
 	{
-		$this->loadModel(Yii::$app->request->getQueryParam($this->getQuery))->delete();
+		$this->loadModel(Yii::$app->request->getQueryParam($this->queryParamName))->delete();
 
 		return $this->controller->redirect($this->redirect);
 	}

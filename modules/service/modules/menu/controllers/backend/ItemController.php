@@ -6,45 +6,43 @@
  */
 
 
-namespace app\modules\service\controllers\backend;
+namespace app\modules\service\modules\menu\controllers\backend;
 
 
 use Yii;
-use app\modules\service\models\MenuItem;
+use app\modules\service\modules\menu\models\Item;
 use app\modules\backend\components\Controller;
-use app\modules\service\service\MenuItemModelService;
+use app\modules\service\modules\menu\service\ItemModelService;
 use app\core\actions\EditAttribute;
 
-class MenuItemController extends Controller
+class ItemController extends Controller
 {
     public function actions()
     {
         return [
-            'edit-position' => [
+            'edit-sorting' => [
                 'class' => EditAttribute::class,
-                'modelClass' => MenuItem::class,
-                'attribute' => 'position',
-                'queryParams' => Yii::$app->request->getQueryParams(),
-                'postData' => Yii::$app->request->post(),
+                'modelClass' => Item::class,
+                'attribute' => 'sorting',
             ]
         ];
     }
 
     public function actionManager($menu_id, $parent_id = null)
     {
-        $modelService = Yii::createObject(MenuItemModelService::class)
+        $modelService = Yii::createObject(ItemModelService::class)
             ->setData([
                     'get' => Yii::$app->request->getQueryParams()
                 ]
             );
         $modelService->actionManager();
 
-        return $this->render('/menu/item/manager', ['data' => $modelService->getData()]);
+        return $this->render('manager', ['data' => $modelService->getData()]);
     }
 
     public function actionCreate($menu_id, $parent_id = null)
     {
-        $modelService = Yii::createObject(MenuItemModelService::class);
+        $modelService = Yii::createObject(ItemModelService::class);
         $modelService->setData([
             'get' => Yii::$app->request->getQueryParams(),
             'post' => Yii::$app->request->post(),
@@ -59,12 +57,12 @@ class MenuItemController extends Controller
             ]);
         }
 
-        return $this->render('/menu/item/create', ['data' => $modelService->getData()]);
+        return $this->render('create', ['data' => $modelService->getData()]);
     }
 
     public function actionUpdate($id)
     {
-        $modelService = Yii::createObject(MenuItemModelService::class)
+        $modelService = Yii::createObject(ItemModelService::class)
             ->setData([
                 'get' => Yii::$app->request->getQueryParams(),
                 'post' => Yii::$app->request->post(),
@@ -79,12 +77,12 @@ class MenuItemController extends Controller
             ]);
         }
 
-        return $this->render('/menu/item/update', ['data' => $modelService->getData()]);
+        return $this->render('update', ['data' => $modelService->getData()]);
     }
 
     public function actionDelete($id)
     {
-        $modelService = YiI::createObject(MenuItemModelService::class);
+        $modelService = YiI::createObject(ItemModelService::class);
         $modelService->actionDelete($id);
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_DELETE)) {

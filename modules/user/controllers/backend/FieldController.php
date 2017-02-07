@@ -24,15 +24,15 @@ class FieldController extends BackendController
         return [
             'create' => [
                 'class' => Create::className(),
-                'model' => Field::className(),
+                'modelClass' => Field::className(),
             ],
             'update' => [
                 'class' => Update::className(),
-                'model' => Field::className(),
+                'modelClass' => Field::className(),
             ],
             'delete' => [
                 'class' => Delete::className(),
-                'model' => Field::className(),
+                'modelClass' => Field::className(),
             ],
         ];
     }

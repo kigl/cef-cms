@@ -6,20 +6,20 @@
  * Time: 20:20
  */
 
-namespace app\modules\service\service;
+namespace app\modules\service\modules\menu\service;
 
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\core\service\ModelService;
-use app\modules\service\models\MenuItem;
+use app\modules\service\modules\menu\models\Item;
 
-class MenuItemModelService extends ModelService
+class ItemModelService extends ModelService
 {
     public function actionManager()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => MenuItem::find()
+            'query' => Item::find()
                 ->where(['parent_id' => $this->getData('get', 'parent_id')])
                 ->andWhere(['menu_id' => $this->getData('get', 'menu_id')]),
         ]);
@@ -33,7 +33,7 @@ class MenuItemModelService extends ModelService
 
     public function actionCreate()
     {
-        $model = new MenuItem();
+        $model = new Item();
         $model->menu_id = $this->getData('get', 'menu_id');
         $model->parent_id = $this->getData('get', 'parent_id');
 
@@ -48,7 +48,7 @@ class MenuItemModelService extends ModelService
 
     public function actionUpdate()
     {
-        $model = MenuItem::findOne($this->getData('get', 'id'));
+        $model = Item::findOne($this->getData('get', 'id'));
 
         if ($this->saveItem($model, $this->getData('post'))) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
@@ -70,7 +70,7 @@ class MenuItemModelService extends ModelService
 
     public function actionDelete($id)
     {
-        $model = MenuItem::find()
+        $model = Item::find()
             ->with('subItems')
             ->where(['id' => $id])
             ->one();

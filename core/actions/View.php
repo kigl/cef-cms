@@ -8,7 +8,7 @@ namespace app\core\actions;
  {
  	public $view = 'view';
  	
- 	public $queryParam = 'id';
+ 	public $queryParamName = 'id';
 
  	public $modelService;
 

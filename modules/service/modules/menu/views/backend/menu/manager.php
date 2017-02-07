@@ -2,52 +2,24 @@
 use app\modules\backend\widgets\grid\GridView;
 use yii\helpers\Url;
 use yii\helpers\Html;
-
 ?>
 
 <?= GridView::widget([
-    'dataProvider' => $data['dataProvider'],
+    'dataProvider' => $dataProvider,
     'buttons' => [
         'create' => [
             'item' => [
-                'url' => Url::to([
-                    'create',
-                    'menu_id' => $data['menuId'],
-                    'parent_id' => $data['parentId'],
-                ]),
+                'url' => Url::to(['create']),
             ],
-        ]
+        ],
     ],
-
     'columns' => [
         'id',
         [
             'attribute' => 'name',
             'format' => 'raw',
             'value' => function ($data) {
-                return Html::a(
-                    Html::encode($data->name),
-                    ['menu-item/manager', 'menu_id' => $data->menu_id, 'parent_id' => $data->id]
-                );
-            }
-        ],
-        [
-            'attribute' => 'visible',
-            'value' => function ($data) {
-                return $data->getStatusVisible($data->visible);
-            }
-        ],
-        [
-            'attribute' => 'position',
-            'format' => 'raw',
-            'value' => function ($data) {
-                return \kartik\editable\Editable::widget([
-                    //'model' => $data,
-                    //'attribute' => 'position',
-                    'name' => 'MenuItem[position]',
-                    'value' => $data->position,
-                    'formOptions' => ['action' => ['edit-position', 'id' => $data->id]],
-                ]);
+                return Html::a($data->name, ['item/manager', 'menu_id' => $data->id]);
             }
         ],
         [
@@ -72,5 +44,5 @@ use yii\helpers\Html;
                 }
             ],
         ],
-    ],
-]); ?>
+    ]
+])?>

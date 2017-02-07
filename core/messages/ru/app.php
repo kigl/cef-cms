@@ -7,8 +7,10 @@ return [
 	'Button save' => 'Сохранить',
 
     'Deleted element' => 'Элемент удален!',
+    'Description' => 'Описание',
 
     'Form legend seo' => 'SEO',
+    'Fields' => 'Поля',
 
     'Link name page main' => 'Главная',
 	'List view summary text: is' => 'из',
@@ -20,6 +22,10 @@ return [
 
     'Parent id' => 'Id родителя',
 	'Position' => 'Позиция',
+
+	'Field type' => 'Тип поля',
+
+	'Required' => 'Обязательно для заполнения',
 	
 	'Created element' => 'Элемент создан!',
 	'Create time' => 'Дата создания',
@@ -29,13 +35,23 @@ return [
     'Visible' => 'Видим',
 
     'Saved element' => 'Сохранено!',
+	'Sorting' => 'Сортировка',
 
 	'Updated element' => 'Элемент обновлен!',
 	'Update time' => 'Дата обновления',
     'Url' =>  'URL',
 
     'Tab main' => 'Основные',
+    'Tab description' => 'Описание',
+    'Tab profile' => 'Профиль',
+    'Tab content' => 'Содержание',
+    'Tab SEO' => 'SEO',
+    'Tab more properties' => 'Дополнительные свойства',
     'Tab more' => 'Дополнительные',
+    'Tab images' => 'Изображения',
+    'Type field text' => 'Text',
+    'Type field checkbox' => 'Checkbox',
+
 
     'Question on delete file' => 'Удалить элемент?',
 ];

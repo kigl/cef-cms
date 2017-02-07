@@ -19,11 +19,11 @@ class PropertyController extends BackendController
         return [
             'create' => [
                 'class' => 'app\core\actions\Create',
-                'model' => Property::className(),
+                'modelClass' => Property::className(),
             ],
             'update' => [
                 'class' => 'app\core\actions\Update',
-                'model' => Property::className(),
+                'modelClass' => Property::className(),
             ],
         ];
     }

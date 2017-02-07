@@ -6,15 +6,15 @@ use app\modules\user\helpers\StatusHelper;
     <ul class="nav nav-tabs">
         <li class="active">
             <a href="#main" data-toggle="tab">
-                <?= Yii::t('user', 'Main data'); ?>
+                <?= Yii::t('app', 'Tab main'); ?>
             </a>
         </li>
         <li>
             <a href="#profile" data-toggle="tab">
-                <?= Yii::t('user', 'Profile'); ?>
+                <?= Yii::t('app', 'Tab profile'); ?>
             </a>
         </li>
-        <li><a href="#field" data-toggle="tab"><?= Yii::t('user', 'Tab field'); ?></a></li>
+        <li><a href="#field" data-toggle="tab"><?= Yii::t('app', 'Tab more properties'); ?></a></li>
         <li><a href="#role" data-toggle="tab"><?= Yii::t('user', 'Tab role');?></a></li>
     </ul>
 

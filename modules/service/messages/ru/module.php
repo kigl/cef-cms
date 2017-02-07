@@ -10,4 +10,7 @@ return [
     'Link class' => 'CSS стиль ссылки',
 
     'Item icon CSS class' => 'CSS стиль иконки пункта',
+
+    'Toolbar menu' => 'Меню',
+    'Toolbar form' => 'Формы',
 ];

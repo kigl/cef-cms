@@ -1,35 +1,22 @@
 <?php
 use app\modules\backend\widgets\grid\GridView;
-use yii\helpers\Url;
 use yii\helpers\Html;
+
 ?>
 
 <?= GridView::widget([
-    'dataProvider' => $dataProvider,
-    'buttons' => [
-        'create' => [
-            'item' => [
-                'url' => Url::to(['create']),
-            ],
-        ],
-    ],
+    'dataProvider' => $data['dataProvider'],
     'columns' => [
         'id',
-        [
-            'attribute' => 'name',
-            'format' => 'raw',
-            'value' => function ($data) {
-                return Html::a($data->name, ['menu-item/manager', 'menu_id' => $data->id]);
-            }
-        ],
+        'create_time',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => \yii\grid\ActionColumn::className(),
-            'template' => "{update} {delete}",
+            'template' => "{view} {delete}",
             'buttons' => [
                 'update' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
-                            'update',
+                            'view',
                             'id' => $model->id
                         ]
                     );
@@ -44,5 +31,5 @@ use yii\helpers\Html;
                 }
             ],
         ],
-    ]
-])?>
+    ],
+]); ?>

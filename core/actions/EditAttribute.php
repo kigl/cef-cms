@@ -9,24 +9,18 @@
 namespace app\core\actions;
 
 
-class EditAttributeModel extends Action
+class EditAttribute extends Action
 {
-    public $modelClass;
-
-    public $queryParams;
-
-    public $postData;
-
     public $attribute;
 
     public function run()
     {
         $modelClass = $this->modelClass;
-        $model = $modelClass::findOne($this->queryParams['id']);
+        $model = $modelClass::findOne(\Yii::$app->request->getQueryParam('id'));
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
         if ($model->load(\Yii::$app->request->post()) && $model->save(true, [$this->attribute])) {
-            return ['output' => $model->position, 'message' => ''];
+            return ['output' => $model->{$this->attribute}, 'message' => ''];
         }
     }
 }

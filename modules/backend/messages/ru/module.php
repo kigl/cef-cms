@@ -19,8 +19,6 @@ return [
 	
 	'Class menu' => 'Class HTML',
 
-	'Toolbar menu' => 'Меню',
-
 	'Setting type id' => 'Тип поля',
 	'Setting id' => 'Id',
 	'Setting name' => 'Название настройки',

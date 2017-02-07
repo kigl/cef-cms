@@ -6,11 +6,11 @@
  */
 
 
-namespace app\modules\service\service;
+namespace app\modules\service\modules\menu\service;
 
 
 use app\core\service\ModelService;
-use app\modules\service\models\Menu;
+use app\modules\service\modules\menu\models\Menu;
 
 class MenuModelService extends ModelService
 {

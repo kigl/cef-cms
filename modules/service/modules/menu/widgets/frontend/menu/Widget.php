@@ -6,11 +6,12 @@
  * Time: 16:34
  */
 
-namespace app\modules\service\widgets\frontend\menu;
+namespace app\modules\service\modules\menu\widgets\frontend\menu;
 
 
 use Yii;
-use app\modules\service\models\MenuItem;
+use app\modules\service\modules\menu\models\Item;
+use yii\helpers\ArrayHelper;
 
 class Widget extends \yii\base\Widget
 {
@@ -30,31 +31,13 @@ class Widget extends \yii\base\Widget
 
     protected function getModelsItem()
     {
-        $data = MenuItem::find()
+        $data = Item::find()
             ->where(['menu_id' => $this->menuId])
             ->asArray()
             ->indexBy('id')
             ->all();
 
-        $this->sortMenuByPosition($data);
-
-        return $data;
-    }
-
-    /**
-     * Сортирует меню по позиции
-     * @param $data
-     * @return array
-     */
-    protected function sortMenuByPosition(&$data)
-    {
-        $tmpArray = [];
-        foreach ($data as $item) {
-            $tmpArray[$item['id']] = $item['position'];
-        }
-
-        // сортируем по позиции
-        array_multisort($data, SORT_NUMERIC, $tmpArray);
+        ArrayHelper::multisort($data, ['sorting'], [SORT_ASC]);
 
         return $data;
     }
@@ -101,10 +84,10 @@ class Widget extends \yii\base\Widget
     protected function isVisible($visible)
     {
         switch ($visible) {
-            case MenuItem::STATUS_VISIBLE_GUEST :
+            case Item::STATUS_VISIBLE_GUEST :
                 return Yii::$app->user->IsGuest;
                 break;
-            case MenuItem::STATUS_VISIBLE_NOT_GUEST :
+            case Item::STATUS_VISIBLE_NOT_GUEST :
                 return !Yii::$app->user->isGuest;
                 break;
             default :

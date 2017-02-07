@@ -30,7 +30,7 @@ use yii\helpers\Url;
             <div class="top-block">
                 <div class="row">
                     <div class="col-md-12">
-                        <?= app\modules\service\widgets\frontend\menu\Widget::widget([
+                        <?= app\modules\service\modules\menu\widgets\frontend\menu\Widget::widget([
                             'menuId' => 1,
                             'options' => ['class' => 'list-inline pull-right'],
                         ]);?>

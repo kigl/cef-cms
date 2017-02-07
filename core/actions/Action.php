@@ -6,13 +6,13 @@ use yii\web\NotFoundHttpException;
 
 abstract class Action extends \yii\base\Action
 {
-    public $model;
+    public $modelClass;
 
     public $view = 'index';
 
     protected function loadModel($getQuery)
     {
-        $model = $this->model;
+        $model = $this->modelClass;
 
         if (($model = $model::findOne($getQuery)) !== null) {
             return $model;

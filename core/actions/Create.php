@@ -14,7 +14,7 @@ class Create extends Action
 
 	public function run()
 	{
-		$model = new $this->model;
+		$model = new $this->modelClass;
 		$model->scenario = $this->scenario;
 
 		if($model->load(Yii::$app->request->post()) and $model->save()) {

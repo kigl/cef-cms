@@ -10,8 +10,8 @@ use app\modules\backend\widgets\grid\GridView;
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
-    <li><a href="#images" data-toggle="tab"><?= Yii::t('shop', 'Tab images'); ?></a></li>
-    <li><a href="#property" data-toggle="tab"><?= Yii::t('shop', 'Tab property') ?></a></li>
+    <li><a href="#images" data-toggle="tab"><?= Yii::t('app', 'Tab images'); ?></a></li>
+    <li><a href="#property" data-toggle="tab"><?= Yii::t('app', 'Tab more properties') ?></a></li>
     <li><a href="#modifications" data-toggle="tab"><?= Yii::t('shop', 'Tab modifications'); ?></a></li>
     <li><a href="#other" data-toggle="tab"><?= Yii::t('app', 'Tab more'); ?></a></li>
 </ul>

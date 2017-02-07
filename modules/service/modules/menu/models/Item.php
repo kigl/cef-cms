@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\service\models;
+namespace app\modules\service\modules\menu\models;
 
 use Yii;
 
@@ -13,14 +13,14 @@ use Yii;
  * @property string $name
  * @property string $url
  * @property integer $visible
- * @property integer $position
+ * @property integer $sorting
  * @property string $item_class
  * @property string $item_id
  * @property string $item_icon_class
  * @property string $link_class
  * @property string $link_id
  */
-class MenuItem extends \yii\db\ActiveRecord
+class Item extends \yii\db\ActiveRecord
 {
     const STATUS_VISIBLE_ALL = 0;
     const STATUS_VISIBLE_GUEST = 1;
@@ -41,10 +41,10 @@ class MenuItem extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'url'], 'required'],
-            [['parent_id', 'menu_id', 'visible', 'position'], 'integer'],
+            [['parent_id', 'menu_id', 'visible', 'sorting'], 'integer'],
             [['name', 'url'], 'string', 'max' => 255],
             [['item_icon_class', 'item_class', 'item_id', 'link_class', 'link_id'], 'string', 'max' => 100],
-            ['position', 'default', 'value' => 500],
+            ['sorting', 'default', 'value' => 500],
         ];
     }
 
@@ -60,7 +60,7 @@ class MenuItem extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'url' => Yii::t('app', 'Url'),
             'visible' => Yii::t('app', 'Visible'),
-            'position' => Yii::t('app', 'Position'),
+            'sorting' => Yii::t('app', 'Sorting'),
             'item_class' => Yii::t('service', 'CSS item class'),
             'item_icon_class' => Yii::t('service', 'Item icon CSS class'),
             'item_id' => Yii::t('service', 'Menu item id html'),

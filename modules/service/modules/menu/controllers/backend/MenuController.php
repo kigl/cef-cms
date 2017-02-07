@@ -6,16 +6,16 @@
  * Time: 19:50
  */
 
-namespace app\modules\service\controllers\backend;
+namespace app\modules\service\modules\menu\controllers\backend;
 
 
 use Yii;
 use yii\data\ActiveDataProvider;
-use app\modules\service\service\MenuModelService;
+use app\modules\service\modules\menu\service\MenuModelService;
 use app\core\actions\Create;
 use app\core\actions\Update;
 use app\modules\service\components\BackendController;
-use app\modules\service\models\Menu;
+use app\modules\service\modules\menu\models\Menu;
 
 class MenuController extends BackendController
 {

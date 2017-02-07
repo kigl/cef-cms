@@ -20,7 +20,7 @@ use app\modules\backend\widgets\ActiveForm;
 
         <?= $form->field($data['model'], 'visible')->dropDownList($data['model']->getStatusVisibleList()); ?>
 
-        <?= $form->field($data['model'], 'position'); ?>
+        <?= $form->field($data['model'], 'sorting'); ?>
     </div>
     <div class="tab-pane" id="more">
 
