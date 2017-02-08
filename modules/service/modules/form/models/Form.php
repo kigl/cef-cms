@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $id
  * @property string $name
+ * @property string $description
  * @property integer $captcha
  * @property string $email_curator
  * @property integer $send_email_curator
@@ -34,7 +35,7 @@ class Form extends \yii\db\ActiveRecord
         return [
             ['name', 'required'],
             [['captcha', 'send_email_curator'], 'integer'],
-            [['name', 'email_curator'], 'string', 'max' => 255],
+            [['name', 'description', 'email_curator'], 'string', 'max' => 255],
         ];
     }
 
@@ -46,6 +47,7 @@ class Form extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'Id'),
             'name' => Yii::t('app', 'Name'),
+            'description' => Yii::t('app', 'Description'),
             'captcha' => Yii::t('app', 'Captcha'),
             'email_curator' => Yii::t('service', 'Email curator'),
             'send_email_curator' => Yii::t('service', 'Send email curator'),
@@ -56,8 +58,9 @@ class Form extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getServiceFormFields()
+    public function getFields()
     {
-        return $this->hasMany(Field::className(), ['form_id' => 'id']);
+        return $this->hasMany(Field::className(), ['form_id' => 'id'])
+            ->indexBy('id');
     }
 }

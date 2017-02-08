@@ -55,6 +55,7 @@ class Field extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'type' => Yii::t('app', 'Field type'),
             'required' => Yii::t('app', 'Required'),
+            'value' => Yii::t('app', 'Value'),
         ];
     }
 
@@ -84,6 +85,6 @@ class Field extends \yii\db\ActiveRecord
 
     public function getNameFieldType($type)
     {
-        return $this->getFieldTypeList()[$type];
+        return $this->getListFieldType()[$type];
     }
 }

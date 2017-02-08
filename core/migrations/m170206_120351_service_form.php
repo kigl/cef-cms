@@ -11,6 +11,7 @@ class m170206_120351_service_form extends Migration
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
             'name' => $this->string(),
+            'description' => $this->string(),
             'captcha' => $this->integer(),
             'email_curator' => $this->string(),
             'send_email_curator' => $this->integer(),

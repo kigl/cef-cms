@@ -36,6 +36,7 @@ return [
 
     'Saved element' => 'Сохранено!',
 	'Sorting' => 'Сортировка',
+	'Submit send' => 'Отправить',
 
 	'Updated element' => 'Элемент обновлен!',
 	'Update time' => 'Дата обновления',
@@ -51,6 +52,8 @@ return [
     'Tab images' => 'Изображения',
     'Type field text' => 'Text',
     'Type field checkbox' => 'Checkbox',
+
+    'Value' => 'Значение',
 
 
     'Question on delete file' => 'Удалить элемент?',

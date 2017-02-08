@@ -56,6 +56,7 @@ use yii\helpers\Url;
             </div>
         </div>
     </div>
+    <?= \app\modules\service\modules\form\widgets\frontend\form\Widget::widget(['formId' => 1]);?>
     <div class="panel panel-default">
         <div class="panel-heading">Блок контента</div>
         <div class="panel-body">

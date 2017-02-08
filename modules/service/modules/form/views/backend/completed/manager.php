@@ -14,13 +14,6 @@ use yii\helpers\Html;
             'class' => \yii\grid\ActionColumn::className(),
             'template' => "{view} {delete}",
             'buttons' => [
-                'update' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
-                            'view',
-                            'id' => $model->id
-                        ]
-                    );
-                },
                 'delete' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
                         'delete',
