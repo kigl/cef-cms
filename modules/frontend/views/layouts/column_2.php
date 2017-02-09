@@ -23,19 +23,9 @@ use app\core\widgets\pageHeader\Widget as PageHeader;
                     <?= \app\modules\frontend\widgets\Breadcrumbs::widget(['enableModuleItem' => false]); ?>
                 </div>
             </div>
+
             <?= Alert::widget(); ?>
-            <div>
-                <?php
-                if (isset($this->params['actionBar'])) {
-                    echo Menu::widget([
-                        'items' => $this->params['actionBar'],
-                        'options' => ['class' => 'list-inline'],
-                        'encodeLabels' => false,
-                        'linkTemplate' => '<a href="{url}" class="btn btn-default btn-sm">{label}</a>',
-                    ]);
-                }
-                ?>
-            </div>
+
             <div class="panel panel-default">
                 <div class="panel-heading">Заголовок страницы</div>
                 <div class="panel-body">

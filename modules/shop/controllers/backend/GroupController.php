@@ -19,45 +19,41 @@ class GroupController extends BackendController
             ]);
         $modelService->actionManager();
 
-        $viewModelService = Yii::createObject(GroupViewService::class)->setData($modelService->getData());
-
-        return $this->render('manager', ['data' => $viewModelService]);
+        return $this->render('manager', ['data' => $modelService->getData()]);
     }
 
     public function actionCreate($parent_id = null)
     {
         $modelService = Yii::createObject(GroupModelService::class);
-        $modelService->actionCreate([
+        $modelService->setData([
             'post' => Yii::$app->request->post(),
-            'parentId' => $parent_id,
+            'get' => Yii::$app->request->getQueryParams(),
         ]);
+        $modelService->actionCreate();
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
             return $this->redirect(['manager', 'id' => $modelService->getData('model')->id]);
         }
 
-        $viewService = (new GroupViewService())->setData($modelService->getData());
-
-        return $this->render('create', ['data' => $viewService]);
+        return $this->render('create', ['data' => $modelService->getData()]);
     }
 
     public function actionUpdate($id)
     {
         $modelService = Yii::createObject(GroupModelService::class);
-        $modelService->actionUpdate([
+        $modelService->setData([
             'post' => Yii::$app->request->post(),
-            'id' => $id,
+            'get' => Yii::$app->request->getQueryParams(),
         ]);
+        $modelService->actionUpdate();
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
             return $this->redirect(['manager', 'id' => $modelService->getData('model')->parent_id]);
         }
 
-        $viewService = (new GroupViewService())->setData($modelService->getData());
-
-        return $this->render('update', ['data' => $viewService]);
+        return $this->render('update', ['data' => $modelService->getData()]);
     }
 
     public function actionDelete($id)

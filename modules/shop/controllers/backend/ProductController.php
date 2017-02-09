@@ -20,14 +20,12 @@ class ProductController extends BackendController
         );
         $modelService->actionCreate();
 
-        $viewService = (new ProductViewService())->setData($modelService->getData());
-
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
             return $this->redirect(['product/update', 'id' => $modelService->getData('model')->id]);
         }
 
-        return $this->render('create', ['data' => $viewService]);
+        return $this->render('create', ['data' => $modelService->getData()]);
     }
 
     public function actionUpdate($id)
@@ -39,14 +37,12 @@ class ProductController extends BackendController
         ]);
         $modelService->actionUpdate();
 
-        $viewService = (new ProductViewService())->setData($modelService->getData());
-
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
             return $this->redirect(['product/update', 'id' => $modelService->getData('model')->id]);
         }
 
-        return $this->render('update', ['data' => $viewService]);
+        return $this->render('update', ['data' => $modelService->getData()]);
     }
 
     public function actionDelete($id)

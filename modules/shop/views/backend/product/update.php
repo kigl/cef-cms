@@ -2,7 +2,7 @@
 use yii\helpers\ArrayHelper;
 use app\core\helpers\Breadcrumbs;
 use app\modules\shop\models\Group;
-
+/*
 $breadcrumbsGroup = Breadcrumbs::getLinksGroup(
     $data->getGroupId(),
     [
@@ -16,7 +16,9 @@ $breadcrumbs = ArrayHelper::merge($breadcrumbsGroup, [
     ['label' => $data->getName()],
 ]);
 
-$this->setBreadcrumbs($breadcrumbs);?>
+$this->setBreadcrumbs($breadcrumbs);
+*/
+?>
 
 <?= $this->render('_form', ['data' => $data]);?>
 

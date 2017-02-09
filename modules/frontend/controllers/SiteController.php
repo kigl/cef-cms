@@ -4,6 +4,7 @@ namespace app\modules\frontend\controllers;
 
 
 use yii\web\ErrorAction;
+use yii\captcha\CaptchaAction;
 use app\modules\frontend\components\Controller;
 
 class SiteController extends Controller
@@ -13,6 +14,9 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => ErrorAction::className(),
+            ],
+            'captcha' => [
+                'class' => CaptchaAction::className(),
             ],
         ];
     }

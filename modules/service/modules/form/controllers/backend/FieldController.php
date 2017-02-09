@@ -11,12 +11,24 @@ namespace app\modules\service\modules\form\controllers\backend;
 
 use Yii;
 use yii\data\ActiveDataProvider;
+use app\core\actions\EditAttribute;
 use app\modules\service\modules\form\service\FieldModelService;
 use app\modules\service\components\BackendController;
 use app\modules\service\modules\form\models\Field;
 
 class FieldController extends BackendController
 {
+    public function actions()
+    {
+        return [
+            'edit-sorting' => [
+                'class' => EditAttribute::class,
+                'modelClass' => Field::class,
+                'attribute' => 'sorting',
+            ],
+        ];
+    }
+
     public function actionManager($form_id)
     {
         $dataProvider = new ActiveDataProvider([

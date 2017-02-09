@@ -13,4 +13,5 @@ use app\modules\backend\components\Controller;
 
 abstract class BackendController extends Controller
 {
+    public $layout = '@app/modules/shop/views/backend/layouts/index';
 }

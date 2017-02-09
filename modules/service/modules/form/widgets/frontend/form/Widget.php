@@ -9,6 +9,7 @@
 namespace app\modules\service\modules\form\widgets\frontend\form;
 
 
+use Yii;
 use yii\base\Model;
 use app\modules\service\modules\form\models\Form;
 use app\modules\service\modules\form\models\FieldValue;
@@ -17,6 +18,8 @@ use app\modules\service\modules\form\widgets\frontend\form\forms\FieldForm;
 
 class Widget extends \yii\base\Widget
 {
+    const FLASH_FORM_COMPLETED = 'completed';
+
     /**
      * Id формы
      * @var
@@ -37,12 +40,13 @@ class Widget extends \yii\base\Widget
 
     public function run()
     {
-        if (Model::loadMultiple($this->fieldsForm,
-                \Yii::$app->request->post()) && Model::validateMultiple($this->fieldsForm,
-                ['value'])
+        if (Model::loadMultiple($this->fieldsForm, \Yii::$app->request->post())
+            && Model::validateMultiple($this->fieldsForm, ['value', 'verifyCode'])
         ) {
             // Сохраняеи
             $this->save();
+            //Сообщение
+            Yii::$app->session->setFlash(self::FLASH_FORM_COMPLETED, Yii::t('app', 'Message thank you'));
         }
 
         return $this->render('index', [
@@ -73,14 +77,48 @@ class Widget extends \yii\base\Widget
     protected function initFieldsForm()
     {
         foreach ($this->getForm()->fields as $field) {
-            $this->fieldsForm[$field->id] = new FieldForm(['required' => $field->required]);
+            $this->fieldsForm[$field->id] = new FieldForm([
+                'required' => $field->required,
+                'sorting' => $field->sorting,
+            ]);
         }
+
+        $model = $this->getForm();
+
+        // сортируеи поля
+        $this->sortFieldsForm();
+
+        if ($model->captcha) {
+            $this->fieldsForm['captcha'] = new FieldForm(['captcha' => $model->captcha]);
+        }
+    }
+
+    /**
+     * Сортирует поля
+     */
+    protected function sortFieldsForm()
+    {
+        $tmp = [];
+        foreach ($this->getForm()->fields as $f) {
+            $tmp[$f->id] = $f->sorting;
+        }
+
+        asort($tmp);
+
+        $tmp2 = [];
+        foreach ($tmp as $key => $value) {
+            $tmp2[$key] = $this->fieldsForm[$key];
+        }
+
+        $this->fieldsForm = null;
+        $this->fieldsForm = $tmp2;
     }
 
     /**
      * Сохраяет полученные данные
      */
-    protected function save() {
+    protected function save()
+    {
         $model = $this->getForm();
 
         // Создаем объект заполненной формы

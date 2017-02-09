@@ -45,15 +45,11 @@ use app\modules\backend\widgets\menuTop\Widget as MenuTop;
                                         <h3><?php echo $this->params['pageHeader']; ?></h3>
                                     </div>
                                 <?php endif; ?>
-
-                                <?= \app\modules\backend\widgets\toolbar\Widget::widget([
-                                    'options' => ['class' => 'list-inline well well-sm'],
-                                ]);?>
                                 
                                 <?php
                                 if (isset($this->params['toolbar'])) {
                                     echo Menu::widget([
-                                        'options' => ['class' => 'list-inline'],
+                                        'options' => ['class' => 'list-inline well well-sm'],
                                         'encodeLabels' => false,
                                         'linkTemplate' => '<a href="{url}" class="btn btn-default btn-sm">{label}</a>',
                                         'items' => $this->params['toolbar'],

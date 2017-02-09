@@ -20,15 +20,15 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
 ?>
 
 <?= GridView::widget([
-    'dataProviderGroup' => $data->getData('dataProviderGroup'),
-    'dataProvider' => $data->getData('dataProviderProduct'),
+    'dataProviderGroup' => $data['dataProviderGroup'],
+    'dataProvider' => $data['dataProviderProduct'],
     'buttons' => [
         'create' => [
             'group' => [
-                'url' => Url::to(['create', 'parent_id' => $data->getData('id')]),
+                'url' => Url::to(['create', 'parent_id' => $data['id']]),
             ],
             'item' => [
-                'url' => Url::to(['product/create', 'group_id' => $data->getData('id')]),
+                'url' => Url::to(['product/create', 'group_id' => $data['id']]),
             ],
         ],
     ],

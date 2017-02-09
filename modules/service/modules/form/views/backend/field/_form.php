@@ -10,6 +10,8 @@ use app\modules\backend\widgets\ActiveForm;
 
 <?= $form->field($data['model'], 'description');?>
 
+<?= $form->field($data['model'], 'sorting');?>
+
 <?= $form->field($data['model'], 'type')->dropDownList($data['model']->getListFieldType());?>
 
 <?= $form->field($data['model'], 'required')->checkbox();?>

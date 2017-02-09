@@ -16,15 +16,15 @@ class DefaultController extends BackendController
         return [
             'create' => [
                 'class' => 'app\core\actions\Create',
-                'model' => '\app\modules\page\models\Page',
+                'modelClass' => '\app\modules\page\models\Page',
             ],
             'update' => [
                 'class' => 'app\core\actions\Update',
-                'model' => '\app\modules\page\models\Page',
+                'modelClass' => '\app\modules\page\models\Page',
             ],
             'delete' => [
                 'class' => 'app\core\actions\Delete',
-                'model' => '\app\modules\page\models\Page',
+                'modelClass' => '\app\modules\page\models\Page',
             ],
             'images-get' => [
                 'class' => 'vova07\imperavi\actions\GetAction',

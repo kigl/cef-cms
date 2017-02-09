@@ -16,7 +16,7 @@ $this->setPageHeader('Регистрация');
 <?= $form->field($data->getModel(), 'password')->passwordInput(); ?>
 <?= $form->field($data->getModel(), 'password_repeat')->passwordInput(); ?>
 <?= $form->field($data->getModel(), 'verifyCode')->widget(\yii\captcha\Captcha::className(), [
-    'captchaAction' => '/user/default/captcha',
+    'captchaAction' => '/frontend/site/captcha',
 ]); ?>
 <?php $form->end(); ?>
 <?php \yii\widgets\Pjax::end(); ?>

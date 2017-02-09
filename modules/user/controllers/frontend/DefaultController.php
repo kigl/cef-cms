@@ -6,7 +6,6 @@ namespace app\modules\user\controllers\frontend;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
-use yii\captcha\CaptchaAction;
 use app\modules\user\service\frontend\UserViewService;
 use app\modules\frontend\components\Controller;
 use app\modules\user\models\forms\LoginForm;
@@ -14,15 +13,6 @@ use app\modules\user\service\frontend\UserModelService;
 
 class DefaultController extends Controller
 {
-
-    public function actions()
-    {
-        return [
-            'captcha' => [
-                'class' => CaptchaAction::className(),
-            ],
-        ];
-    }
 
     public function behaviors()
     {

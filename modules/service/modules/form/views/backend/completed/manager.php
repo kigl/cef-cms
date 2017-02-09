@@ -8,7 +8,7 @@ use yii\helpers\Html;
     'dataProvider' => $data['dataProvider'],
     'columns' => [
         'id',
-        'create_time',
+        'create_time:datetime',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => \yii\grid\ActionColumn::className(),

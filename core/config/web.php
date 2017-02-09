@@ -50,10 +50,10 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
 
-
+/*
         'view' => [
             'class' => 'app\core\web\View',
-            /*
+
             'theme' => [
                 'pathMap'  => [
                     '@app/views' => ['@app/themes/basic'],
@@ -61,7 +61,20 @@ $config = [
                 'basePath' => '@app/themes/basic',
                 'baseUrl' => '@web/app/themes/basic',
             ],
-            */
+
+        ],
+*/
+
+        'view' => [
+            'class' => 'app\core\web\View',
+            'theme' => [
+                'basePath' => '@app/templates/flat',
+                'baseUrl' => '@web/templates/flat',
+                'pathMap' => [
+                    '@app/views/' => '@app/templates/flat',
+                    '@app/modules' => '@app/templates/flat/modules',
+                ],
+            ],
         ],
 
 

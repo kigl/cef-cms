@@ -37,4 +37,13 @@ class CompletedController extends BackendController
 
         return $this->render('view', ['data' => ['model' => $model]]);
     }
+
+    public function actionDelete($id)
+    {
+        $model = Completed::findOne($id);
+
+        if ($model->delete()) {
+            return $this->redirect(['manager', 'form_id' => $model->form_id]);
+        }
+    }
 }
