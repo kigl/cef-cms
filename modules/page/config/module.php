@@ -34,5 +34,11 @@ return [
 				['class' => 'app\modules\page\components\PageRule'],
 			],
 		],
+
+        'sitemap' => [
+            'models' => [
+                \app\modules\page\models\Page::class,
+            ],
+        ],
 	],
 ];

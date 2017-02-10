@@ -37,11 +37,17 @@ return [
                 ],
             ],
         ],
+
         'cart' => [
             'class' => \app\modules\shop\components\cart\Cart::className(),
             'cookieName' => 'cart',
             'cookieExpire' => time() + 3600 * 24 * 1,
         ],
+
+        'sitemap' => [
+            'models' => \app\modules\shop\models\Product::class,
+        ],
+
         'urlManager' => [
             'rules' => [
                 'shop/group/<id>/<alias>' => '/shop/group/view',

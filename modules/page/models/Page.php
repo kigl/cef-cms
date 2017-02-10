@@ -3,10 +3,11 @@
 namespace app\modules\page\models;
 
 
+use Yii;
+use yii\helpers\Url;
 use app\core\behaviors\FillData;
 use app\core\behaviors\GenerateAlias;
-use Yii;
-
+use app\core\components\sitemap\SitemapModelInterface;
 /**
  * This is the model class for table "mn_page".
  *
@@ -19,7 +20,7 @@ use Yii;
  * @property integer $create_time
  * @property integer $update_time
  */
-class Page extends \app\core\db\ActiveRecord
+class Page extends \app\core\db\ActiveRecord implements SitemapModelInterface
 {
     protected $dynamicPageData;
 
@@ -123,5 +124,16 @@ class Page extends \app\core\db\ActiveRecord
         if (is_file($file)) {
             unlink($file);
         }
+    }
+
+    public function getModelItems()
+    {
+        return self::find()
+            ->all();
+    }
+
+    public function getModelItemUrl()
+    {
+        return Url::to(['/page/default/view', 'id' => $this->id]);
     }
 }

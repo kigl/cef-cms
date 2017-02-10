@@ -9,6 +9,7 @@ return [
         'urlManager' => [
             'rules' => [
                 '/' => '/frontend/site/index',
+                'sitemap.xml' => '/frontend/site/sitemap',
             ],
         ],
     ],

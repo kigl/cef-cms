@@ -7,11 +7,11 @@ use app\modules\page\models\Page;
 
 class PageRule implements \yii\web\UrlRuleInterface
 {
-    public $pageRequest = '/page/default/view';
+    public $requestPage = 'page/default/view';
 
     public function createUrl($manager, $route, $params)
     {
-        if (($route === $this->pageRequest) and (isset($params['id']))) {
+        if (($route === $this->requestPage) && (isset($params['id']))) {
             $model = Page::find()
                 ->select(['id', 'alias'])
                 ->where('id = :id', [':id' => $params['id']])
