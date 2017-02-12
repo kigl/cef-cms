@@ -21,7 +21,7 @@ use yii\validators\DateValidator;
  * @property string $image
  * @property string $file
  * @property integer $status
- * @property integer $sort
+ * @property integer $sorting
  * @property integer $user_id
  * @property integer $date
  * @property integer $date_start
@@ -54,7 +54,7 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
     public function rules()
     {
         return [
-            [['group_id', 'informationsystem_id', 'status', 'sort', 'user_id'], 'integer'],
+            [['group_id', 'informationsystem_id', 'status', 'sorting', 'user_id'], 'integer'],
             [['date', 'date_start', 'date_end'], 'date', 'format' => 'yyyy-MM-dd'],
             [['name'], 'required'],
             [['content'], 'string'],
@@ -63,7 +63,6 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
             ['image', 'file', 'extensions' => ['jpg', 'png', 'gif']],
             ['video', 'file', 'extensions' => ['mp4']],
             ['file', 'file'], // video
-
             ['editorTag', 'safe'],
         ];
     }
@@ -77,21 +76,21 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
             'id' => Yii::t('app', 'Id'),
             'group_id' => Yii::t('informationsystem', 'Group id'),
             'informationsystem_id' => Yii::t('informationsystem', 'Informationsystem id'),
-            'name' => Yii::t('informationsystem', 'Name'),
+            'name' => Yii::t('app', 'Name'),
             'tag_list' => Yii::t('informationsystem', 'Tags'),
-            'description' => Yii::t('informationsystem', 'Description'),
+            'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
-            'image' => Yii::t('informationsystem', 'Image'),
-            'video' => Yii::t('informationsystem', 'Video'),
-            'file' => Yii::t('informationsystem', 'File'),
+            'image' => Yii::t('app', 'Image'),
+            'video' => Yii::t('app', 'Video'),
+            'file' => Yii::t('app', 'File'),
             'editorTag' => Yii::t('informationsystem', 'Editor tag'),
-            'status' => Yii::t('informationsystem', 'Status'),
-            'sort' => Yii::t('informationsystem', 'Sort'),
-            'user_id' => Yii::t('informationsystem', 'User id'),
-            'date' => Yii::t('informationsystem', 'Date'),
-            'date_start' => Yii::t('informationsystem', 'Date start'),
-            'date_end' => Yii::t('informationsystem', 'Date end'),
-            'alias' => Yii::t('informationsystem', 'Alias'),
+            'status' => Yii::t('app', 'Status'),
+            'sorting' => Yii::t('app', 'Sorting'),
+            'user_id' => Yii::t('app', 'User id'),
+            'date' => Yii::t('app', 'Date'),
+            'date_start' => Yii::t('app', 'Date start'),
+            'date_end' => Yii::t('app', 'Date end'),
+            'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta title'),
             'meta_description' => Yii::t('app', 'Meta description'),
             'create_time' => Yii::t('app', 'Create time'),
@@ -177,9 +176,9 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
     public function getStatusList()
     {
         return [
-            self::STATUS_BLOCK => Yii::t('informationsystem', 'Status block'),
-            self::STATUS_ACTIVE => Yii::t('informationsystem', 'Status active'),
-            self::STATUS_DRAFT => Yii::t('informationsystem', 'Status draft'),
+            self::STATUS_BLOCK => Yii::t('app', 'Status block'),
+            self::STATUS_ACTIVE => Yii::t('app', 'Status active'),
+            self::STATUS_DRAFT => Yii::t('app', 'Status draft'),
         ];
     }
 }

@@ -15,6 +15,7 @@ class m170206_120405_service_form_field extends Migration
             'description' => $this->string(),
             'type' => $this->integer(),
             'required' => $this->integer(),
+            'sorting' => $this->integer(),
         ]);
 
         $this->createIndex('ix-service_form_field-form_id', $this->tableName, 'form_id');

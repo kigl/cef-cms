@@ -31,7 +31,7 @@ abstract class Breadcrumbs extends \yii\widgets\Breadcrumbs
         $this->links = $this->getLinks();
 
         if (empty($this->links)) {
-            //return;
+            return;
         }
         $links = [];
         if ($this->homeLink === null) {

@@ -13,6 +13,7 @@ use Yii;
  * @property string $description
  * @property string $type
  * @property integer $required
+ * @property integer $sorting
  *
  * @property Form $form
  * @property FieldValue[] $serviceFormFieldValues
@@ -37,8 +38,9 @@ class Field extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'form_id', 'type'], 'required'],
-            [['form_id', 'required', 'type'], 'integer'],
+            [['form_id', 'required', 'type', 'sorting'], 'integer'],
             [['name', 'description'], 'string', 'max' => 255],
+            ['sorting', 'default', 'value' => 500],
             [['form_id'], 'exist', 'skipOnError' => true, 'targetClass' => Form::className(), 'targetAttribute' => ['form_id' => 'id']],
         ];
     }
@@ -55,6 +57,7 @@ class Field extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'type' => Yii::t('app', 'Field type'),
             'required' => Yii::t('app', 'Required'),
+            'sorting' => Yii::t('app', 'Sorting'),
         ];
     }
 
@@ -84,6 +87,6 @@ class Field extends \yii\db\ActiveRecord
 
     public function getNameFieldType($type)
     {
-        return $this->getFieldTypeList()[$type];
+        return $this->getListFieldType()[$type];
     }
 }

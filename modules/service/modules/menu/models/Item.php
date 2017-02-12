@@ -40,7 +40,7 @@ class Item extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'url'], 'required'],
+            [['name',], 'required'],
             [['parent_id', 'menu_id', 'visible', 'sorting'], 'integer'],
             [['name', 'url'], 'string', 'max' => 255],
             [['item_icon_class', 'item_class', 'item_id', 'link_class', 'link_id'], 'string', 'max' => 100],

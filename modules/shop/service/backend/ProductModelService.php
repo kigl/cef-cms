@@ -46,7 +46,8 @@ class ProductModelService extends ModelService
 
         $this->init();
 
-        if ($this->load() and $this->save()) {
+        if ($this->load() && $this->save()) {
+            
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 

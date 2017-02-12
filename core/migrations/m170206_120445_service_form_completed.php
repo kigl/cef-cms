@@ -18,15 +18,13 @@ class m170206_120445_service_form_completed extends Migration
 
         $this->createIndex('ix-service_form_completed-user_id', $this->tableName, 'user_id');
         $this->createIndex('ix-service_form_completed-form_id', $this->tableName, 'form_id');
-        $this->addForeignKey('fk-service_form_completed-form_id', $this->tableName, 'form_id', '{{%service_form_completed}}', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('fk-service_form_completed-form_id', $this->tableName, 'form_id', '{{%service_form}}', 'id', 'CASCADE', 'CASCADE');
         $this->addForeignKey('fk-service_form_completed-user_id', $this->tableName, 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()
     {
-        echo "m170206_120445_service_form_completed cannot be reverted.\n";
-
-        return false;
+        $this->dropTable($this->tableName);
     }
 
     /*

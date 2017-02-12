@@ -62,7 +62,7 @@ class Completed extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFieldValues()
+    public function getFieldsValue()
     {
         return $this->hasMany(FieldValue::className(), ['form_completed_id' => 'id']);
     }

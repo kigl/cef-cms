@@ -42,7 +42,7 @@ use app\modules\informationsystem\widgets\backend\tagEditor\TagEditor;
             <?= $form->field($data->getModel(), 'status')->dropDownList($data->getModel()->getStatusList()); ?>
         </div>
         <div class="col-md-6">
-            <?= $form->field($data->getModel(), 'sort'); ?>
+            <?= $form->field($data->getModel(), 'sorting'); ?>
         </div>
     </div>
 

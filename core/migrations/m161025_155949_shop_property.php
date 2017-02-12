@@ -4,7 +4,7 @@ use yii\db\Migration;
 
 class m161025_155949_shop_property extends Migration
 {
-    protected $tableName = 'mn_shop_property';
+    protected $tableName = '{{%shop_property}}';
 
     public function up()
     {

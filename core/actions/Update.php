@@ -6,7 +6,7 @@ use Yii;
 
 class Update extends Action
 {
-	public $returUrl;
+	public $returnUrl;
 
 	public $queryParam = 'id';
 
@@ -21,7 +21,7 @@ class Update extends Action
 		$model = $this->loadModel(Yii::$app->request->getQueryParam($this->queryParam));
 		$model->scenario = $this->scenario;
 
-		if ($model->load(Yii::$app->request->post()) and $model->save()) {
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			
 			return $this->controller->redirect($this->redirect);
 		} else {

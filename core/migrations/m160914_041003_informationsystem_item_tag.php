@@ -21,7 +21,6 @@ class m160914_041003_informationsystem_item_tag extends Migration
         ]);
 
         $this->createIndex('ix-informationsystem_item_tag-informationsystem_id', $this->tableName, 'informationsystem_id');
-        $this->createIndex('ix-item_tag-tag_id', $this->tableName, 'tag_id');
 
         $this->addForeignKey('fk-informationsystem_item_tag-informationsystem_id', $this->tableName, 'informationsystem_id', '{{%informationsystem}}', 'id', 'CASCADE', 'CASCADE');
     }

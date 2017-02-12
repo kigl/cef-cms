@@ -18,6 +18,17 @@ use yii\helpers\Html;
         'id',
         'name',
         [
+            'attribute' => 'sorting',
+            'format' => 'raw',
+            'value' => function ($data) {
+                return \kartik\editable\Editable::widget([
+                    'name' => 'Field[sorting]',
+                    'value' => $data->sorting,
+                    'formOptions' => ['action' => ['edit-sorting', 'id' => $data->id]],
+                ]);
+            }
+        ],
+        [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => \yii\grid\ActionColumn::className(),
             'template' => "{update} {delete}",

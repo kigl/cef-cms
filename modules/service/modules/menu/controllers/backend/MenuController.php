@@ -24,11 +24,11 @@ class MenuController extends BackendController
         return [
             'create' => [
                 'class' => Create::className(),
-                'model' => Menu::className(),
+                'modelClass' => Menu::className(),
             ],
             'update' => [
                 'class' => Update::className(),
-                'model' => Menu::className(),
+                'modelClass' => Menu::className(),
             ],
         ];
     }

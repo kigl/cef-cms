@@ -10,11 +10,11 @@ abstract class Action extends \yii\base\Action
 
     public $view = 'index';
 
-    protected function loadModel($getQuery)
+    protected function loadModel($queryId)
     {
         $model = $this->modelClass;
 
-        if (($model = $model::findOne($getQuery)) !== null) {
+        if (($model = $model::findOne($queryId)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

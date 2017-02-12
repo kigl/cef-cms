@@ -11,12 +11,17 @@ return [
 
     'Form legend seo' => 'SEO',
     'Fields' => 'Поля',
+    'Field' => 'Поле',
 
     'Link name page main' => 'Главная',
 	'List view summary text: is' => 'из',
 
     'Name' => 'Имя / Наименование',
     'Not exist views: {views}' => 'Значение "{views}" не существует',
+
+    'Message thank you' => 'Спасибо!',
+    'Meta title' => 'Meta заголовок страницы',
+    'Meta description' => 'Meta описание',
 
     'Icon css class' => 'CSS класс иконки',
 
@@ -36,10 +41,12 @@ return [
 
     'Saved element' => 'Сохранено!',
 	'Sorting' => 'Сортировка',
+	'Submit send' => 'Отправить',
 
 	'Updated element' => 'Элемент обновлен!',
 	'Update time' => 'Дата обновления',
     'Url' =>  'URL',
+    'Use captcha' => 'Использовать captcha',
 
     'Tab main' => 'Основные',
     'Tab description' => 'Описание',
@@ -52,6 +59,7 @@ return [
     'Type field text' => 'Text',
     'Type field checkbox' => 'Checkbox',
 
+    'Value' => 'Значение',
 
     'Question on delete file' => 'Удалить элемент?',
 ];

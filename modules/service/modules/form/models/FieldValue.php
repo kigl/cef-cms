@@ -62,7 +62,7 @@ class FieldValue extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFormCompleted()
+    public function getCompleted()
     {
         return $this->hasOne(Completed::className(), ['id' => 'form_completed_id']);
     }

@@ -14,7 +14,6 @@ class View extends \yii\web\View
     private $metaKeywords;
     private $pageHeader;
     private $breadcrumbs = [];
-    private $module;
 
     public function setTitle($data)
     {

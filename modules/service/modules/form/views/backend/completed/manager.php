@@ -8,19 +8,12 @@ use yii\helpers\Html;
     'dataProvider' => $data['dataProvider'],
     'columns' => [
         'id',
-        'create_time',
+        'create_time:datetime',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => \yii\grid\ActionColumn::className(),
             'template' => "{view} {delete}",
             'buttons' => [
-                'update' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
-                            'view',
-                            'id' => $model->id
-                        ]
-                    );
-                },
                 'delete' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
                         'delete',

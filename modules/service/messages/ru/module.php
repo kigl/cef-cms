@@ -11,6 +11,8 @@ return [
 
     'Item icon CSS class' => 'CSS стиль иконки пункта',
 
+    'Send email curator' =>  'Отправить уведомление куратору',
+
     'Toolbar menu' => 'Меню',
     'Toolbar form' => 'Формы',
 ];

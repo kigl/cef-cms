@@ -29,9 +29,9 @@ class m160902_063342_user extends Migration
         $this->createIndex('ix-user-status', $this->tableName, 'status');
 
         $this->batchInsert($this->tableName,
-            ['id', 'login', 'surname', 'name', 'lastname', 'email', 'password', 'status'],
+            ['id', 'login', 'password', 'status'],
             [
-                ['1', 'admin', '', '', '', Yii::$app->security->generatePasswordHash('admin'), '', '1'],
+                ['1', 'admin', Yii::$app->security->generatePasswordHash('admin'), '1'],
             ]
         );
     }

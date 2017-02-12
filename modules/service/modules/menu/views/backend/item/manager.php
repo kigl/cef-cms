@@ -27,7 +27,7 @@ use yii\helpers\Html;
             'value' => function ($data) {
                 return Html::a(
                     Html::encode($data->name),
-                    ['menu-item/manager', 'menu_id' => $data->menu_id, 'parent_id' => $data->id]
+                    ['item/manager', 'menu_id' => $data->menu_id, 'parent_id' => $data->id]
                 );
             }
         ],

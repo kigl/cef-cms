@@ -9,6 +9,7 @@
 namespace app\modules\service\modules\menu\widgets\frontend\menu;
 
 
+use app\modules\service\modules\menu\models\Menu;
 use Yii;
 use app\modules\service\modules\menu\models\Item;
 use yii\helpers\ArrayHelper;
@@ -26,7 +27,13 @@ class Widget extends \yii\base\Widget
         return $this->render('index', [
             'data' => $this->createDataMenu($data),
             'options' => $this->options,
+            'modelMenu' => $this->getModelMenu(),
             ]);
+    }
+
+    protected function getModelMenu()
+    {
+        return Menu::findOne($this->menuId);
     }
 
     protected function getModelsItem()
@@ -69,6 +76,10 @@ class Widget extends \yii\base\Widget
 
     protected function parseUrl($url)
     {
+        if (!$url) {
+            return null;
+        }
+
         if (substr($url, '0', '7') === 'http://') {
             return $url;
         }

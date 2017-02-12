@@ -8,6 +8,8 @@ use app\modules\backend\widgets\ActiveForm;
 
 <?= $form->field($model, 'name');?>
 
+<?= $form->field($model, 'description');?>
+
 <?= $form->field($model, 'email_curator')?>
 
 <?= $form->field($model, 'send_email_curator')->checkbox();?>

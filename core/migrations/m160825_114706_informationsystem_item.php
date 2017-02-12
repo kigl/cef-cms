@@ -16,7 +16,7 @@ class m160825_114706_informationsystem_item extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'group_id' => $this->integer()->defaultValue(0),
+            'group_id' => $this->integer(),
             'informationsystem_id' => $this->integer(),
             'name' => $this->string()->notNull(),
             'description' => $this->string(300),
@@ -25,7 +25,7 @@ class m160825_114706_informationsystem_item extends Migration
             'video' => $this->string(),
             'file' => $this->string(),
             'status' => $this->integer()->defaultValue(1),
-            'sort' => $this->integer(),
+            'sorting' => $this->integer(),
             'user_id' => $this->integer(),
             'date' => $this->date(),
             'date_start' => $this->date(),
