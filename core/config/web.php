@@ -2,7 +2,7 @@
 $config = [
     'id' => 'main2',
     'basePath' => dirname(dirname(__DIR__)),
-    'bootstrap' => ['log', 'setting'],
+    'bootstrap' => ['log'],
 
     'defaultRoute' => 'site/index',
 
@@ -42,28 +42,31 @@ $config = [
              */
         ],
 
+        /*
         'setting' => [
             'class' => 'app\core\components\DbSetting',
+        ],
+        */
+
+        'sitemap' => [
+            'class' => \app\core\components\sitemap\Sitemap::class,
         ],
 
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
 
-
         'view' => [
             'class' => 'app\core\web\View',
-            /*
             'theme' => [
-                'pathMap'  => [
-                    '@app/views' => ['@app/themes/basic'],
+                'basePath' => '@app/templates/flat',
+                'baseUrl' => '@web/templates/flat',
+                'pathMap' => [
+                    '@app/views/' => '@app/templates/flat',
+                    '@app/modules' => '@app/templates/flat/modules',
                 ],
-                'basePath' => '@app/themes/basic',
-                'baseUrl' => '@web/app/themes/basic',
             ],
-            */
         ],
-
 
         'assetManager' => [
             'basePath' => '@webroot/public/assets',

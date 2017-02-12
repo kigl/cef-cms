@@ -10,6 +10,7 @@ use app\modules\backend\widgets\grid\GridView;
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
+    <li><a href="#seo" data-toggle="tab"><?= Yii::t('app', 'Tab SEO'); ?></a></li>
     <li><a href="#images" data-toggle="tab"><?= Yii::t('app', 'Tab images'); ?></a></li>
     <li><a href="#property" data-toggle="tab"><?= Yii::t('app', 'Tab more properties') ?></a></li>
     <li><a href="#modifications" data-toggle="tab"><?= Yii::t('shop', 'Tab modifications'); ?></a></li>
@@ -20,49 +21,46 @@ use app\modules\backend\widgets\grid\GridView;
     'enableClientValidation' => false
 ]); ?>
 
-<?= $form->errorSummary($data->getModel()); ?>
-<?= $form->errorSummary($data->getData('properties')); ?>
+<?= $form->errorSummary($data['model']); ?>
+<?= $form->errorSummary($data['properties']); ?>
 
 <div class="tab-content">
     <div class="tab-pane active" id="main">
         <div class="row">
-            <div class="col-md-12"><?= $form->field($data->getModel(), 'name'); ?></div>
+            <div class="col-md-12"><?= $form->field($data['model'], 'name'); ?></div>
         </div>
         <div class="row">
-            <div class="col-md-3"><?= $form->field($data->getModel(), 'code'); ?></div>
-            <div class="col-md-3"><?= $form->field($data->getModel(), 'price')
+            <div class="col-md-3"><?= $form->field($data['model'], 'code'); ?></div>
+            <div class="col-md-3"><?= $form->field($data['model'], 'price')
                     ->widget(\kartik\money\MaskMoney::className(), [
                         'pluginOptions' => [
                             'prefix' => 'RUR ',
                         ]
                     ]); ?>
             </div>
-            <div class="col-md-3"><?= $form->field($data->getModel(), 'sku'); ?></div>
-            <div class="col-md-3"><?= $form->field($data->getModel(),
-                    'status')->dropDownList($data->getModel()->getListStatus()); ?></div>
+            <div class="col-md-3"><?= $form->field($data['model'], 'sku'); ?></div>
+            <div class="col-md-3"><?= $form->field($data['model'],
+                    'status')->dropDownList($data['model']->getListStatus()); ?></div>
         </div>
 
-        <?= $form->field($data->getModel(), 'description')->textarea(); ?>
+        <?= $form->field($data['model'], 'description')->textarea(); ?>
 
-        <?= $form->field($data->getModel(), 'content')->widget(\vova07\imperavi\Widget::className(), [
+        <?= $form->field($data['model'], 'content')->widget(\vova07\imperavi\Widget::className(), [
             'settings' => [
                 'minHeight' => 400,
             ],
         ]); ?>
 
-        <legend><?= Yii::t('app', 'Form legend seo'); ?></legend>
-
-        <?= $form->field($data->getModel(), 'alias'); ?>
-
-        <?= $form->field($data->getModel(), 'meta_title'); ?>
-
-        <?= $form->field($data->getModel(), 'meta_description')->textarea(); ?>
     </div>
-
-    <div class="tab-pane" id="images">
-        <?= $form->field($data->getModel(), 'imageUpload[]')->fileInput(['multiple' => true]); ?>
+    <div class="tab-pane" id="seo">
+        <?= $form->field($data['model'], 'alias'); ?>
+        <?= $form->field($data['model'], 'meta_title');?>
+        <?= $form->field($data['model'], 'meta_description'); ?>
+    </div>
+     <div class="tab-pane" id="images">
+        <?= $form->field($data['model'], 'imageUpload[]')->fileInput(['multiple' => true]); ?>
         <div class="row">
-            <?php foreach ($data->getImages() as $image) : ?>
+            <?php foreach ($data['model']->images as $image) : ?>
                 <div class="col-md-3">
                     <div class="img-thumbnail">
                         <?= $form->field($image, '[' . $image->id . ']deleteKey')->checkbox(); ?>
@@ -81,7 +79,7 @@ use app\modules\backend\widgets\grid\GridView;
     </div>
 
     <div class="tab-pane" id="property">
-        <?php foreach ($data->getData('properties') as $value): ?>
+        <?php foreach ($data['properties'] as $value): ?>
             <?php if ($value->property->type === Property::TYPE_STRING) : ?>
                 <?= $form->field($value, "[{$value->property_id}]value")
                     ->label($value->property->name); ?>
@@ -94,15 +92,15 @@ use app\modules\backend\widgets\grid\GridView;
     </div>
 
     <div class="tab-pane" id="modifications">
-        <?php if (is_null($data->getParentId())) : ?>
+        <?php if (is_null($data['model']->parent_id)) : ?>
             <?= GridView::widget([
-                'dataProvider' => $data->getDataProvider(),
+                'dataProvider' => $data['dataProvider'],
                 'buttons' => [
                     'create' => [
                         'item' => [
                             'url' => Url::to([
                                 'product/create',
-                                'parent_id' => $data->getId(),
+                                'parent_id' => $data['model']->id,
                             ]),
                         ],
                     ],
@@ -128,7 +126,10 @@ use app\modules\backend\widgets\grid\GridView;
                                     'product/delete',
                                     'id' => $model->id
                                 ],
-                                    ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'question on delete file')]
+                                    [
+                                        'date-method' => 'POST',
+                                        'data-confirm' => Yii::t('app', 'question on delete file')
+                                    ]
                                 );
                             }
                         ],
@@ -140,14 +141,14 @@ use app\modules\backend\widgets\grid\GridView;
 
     <div class="tab-pane" id="other">
         <?= DetailView::widget([
-            'model' => $data->getModel(),
+            'model' => $data['model'],
             'attributes' => [
                 'id',
                 [
                     'attribute' => 'user_id',
                     'format' => 'raw',
-                    'value' => Html::a($data->getModel()->user_id,
-                        ['/backend/user/default/view', 'id' => $data->getModel()->user_id]),
+                    'value' => Html::a($data['model']->user_id,
+                        ['/backend/user/default/view', 'id' => $data['model']->user_id]),
                 ],
             ],
         ]); ?>

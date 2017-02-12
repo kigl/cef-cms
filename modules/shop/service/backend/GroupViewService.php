@@ -13,13 +13,4 @@ use app\core\service\ViewService;
 
 class GroupViewService extends ViewService
 {
-    public function getModel()
-    {
-        return $this->getData('model');
-    }
-
-    public function getParentId()
-    {
-        return $this->getData('model')->parent_id;
-    }
 }

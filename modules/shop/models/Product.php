@@ -2,12 +2,12 @@
 
 namespace app\modules\shop\models;
 
-use app\modules\shop\models\query\ProductQuery;
+
 use Yii;
-use yii\behaviors\TimestampBehavior;
-use yii\db\Exception;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
+use app\modules\shop\models\query\ProductQuery;
+use app\core\components\sitemap\SitemapModelInterface;
 use app\core\behaviors\GenerateAlias;
 use app\core\behaviors\UserId;
 use app\modules\user\models\User;
@@ -27,7 +27,7 @@ use app\modules\user\models\User;
  * @property string $create_time
  * @property string $update_time
  */
-class Product extends \app\modules\shop\models\base\Product
+class Product extends \app\modules\shop\models\base\Product implements SitemapModelInterface
 {
     const STATUS_ACTIVE = 1;
     const STATUS_BLOCK = 0;
@@ -123,5 +123,17 @@ class Product extends \app\modules\shop\models\base\Product
     public function getUrl($route = "/shop/product/view")
     {
         return Url::to([$route, 'id' => $this->id, 'alias' => $this->alias]);
+    }
+
+    public function getModelItems()
+    {
+        return self::find()
+            ->where(['parent_id' => null])
+            ->all();
+    }
+
+    public function getModelItemUrl()
+    {
+        return Url::to(['/shop/product/view', 'id' => $this->id, 'alias' => $this->alias]);
     }
 }

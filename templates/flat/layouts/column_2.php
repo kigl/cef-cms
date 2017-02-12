@@ -6,7 +6,7 @@ use app\core\widgets\pageHeader\Widget as PageHeader;
 
 ?>
 
-<?php $this->beginContent('@app/modules/frontend/views/layouts/main.php'); ?>
+<?php $this->beginContent('@app/templates/flat/layouts/main.php'); ?>
     <div calss="row">
         <div class="col-md-3">
             <?= \app\modules\shop\widgets\frontend\treeGroup\Widget::widget([

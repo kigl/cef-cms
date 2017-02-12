@@ -37,8 +37,8 @@ class ProductModelService extends ModelService
     public function actionCreate()
     {
         $this->model = new Product();
-        $this->model->group_id = $this->getData('groupId');
-        $this->model->parent_id = $this->getData('parentId');
+        $this->model->group_id = $this->getData('get', 'group_id');
+        $this->model->parent_id = $this->getData('get', 'parent_id');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $this->model->getSubProducts(),
@@ -61,7 +61,7 @@ class ProductModelService extends ModelService
     public function actionUpdate()
     {
         $this->model = Product::find()
-            ->where(['id' => $this->getData('id')])
+            ->where(['id' => $this->getData('get', 'id')])
             ->one();
 
         $dataProvider = new ActiveDataProvider([
@@ -269,7 +269,7 @@ class ProductModelService extends ModelService
     }
 
     /**
-     * Устанавливает реклама статус, если он не установлен
+     * Устанавливает статус основного изображения, если он не установлен
      */
     private function setStatusImage()
     {

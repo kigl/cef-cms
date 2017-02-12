@@ -2,9 +2,9 @@
 
 namespace app\modules\user\models;
 
-use Yii;
-use yii\helpers\ArrayHelper;
 
+
+use Yii;
 /**
  * This is the model class for table "mn_user".
  *

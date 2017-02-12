@@ -25,7 +25,7 @@ class UserRegistrationForm extends Model
             ['login', 'match', 'pattern' => '/^[a-z]+$/', 'message' => 'Символы от a-z'],
             ['email', 'email'],
             ['password', 'compare'],
-            ['verifyCode', 'captcha', 'captchaAction' => '/user/default/captcha'],
+            ['verifyCode', 'captcha', 'captchaAction' => '/frontend/site/captcha'],
         ];
     }
 

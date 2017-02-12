@@ -31,12 +31,12 @@ class GroupModelService extends ModelService
         ]);
     }
 
-    public function actionCreate(array $params)
+    public function actionCreate()
     {
         $model = new Group;
-        $model->parent_id = $params['parentId'];
+        $model->parent_id = $this->getData('get', 'parent_id');
 
-        if ($model->load($params['post']) and $model->save()) {
+        if ($model->load($this->getData('post')) and $model->save()) {
 
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
@@ -46,11 +46,11 @@ class GroupModelService extends ModelService
         ]);
     }
 
-    public function actionUpdate(array $params)
+    public function actionUpdate()
     {
-        $model = Group::findOne($params['id']);
+        $model = Group::findOne($this->getData('get', 'id'));
 
-        if ($model->load($params['post']) and $model->save()) {
+        if ($model->load($this->getData('post')) and $model->save()) {
 
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
