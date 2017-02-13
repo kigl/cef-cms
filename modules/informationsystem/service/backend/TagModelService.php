@@ -29,11 +29,11 @@ class TagModelService extends ModelService
         ]);
     }
 
-    public function actionCreate(array $params)
+    public function actionCreate()
     {
         $model = new Tag();
 
-        if ($model->load($params['post']) and $model->save()) {
+        if ($model->load($this->getData('post')) and $model->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 

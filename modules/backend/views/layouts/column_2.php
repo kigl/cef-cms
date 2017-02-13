@@ -29,6 +29,9 @@ use app\modules\backend\widgets\menuTop\Widget as MenuTop;
                     <div class="content">
                         <div class="row">
                             <div class="col-md-12">
+
+                                <?= \app\modules\frontend\widgets\Breadcrumbs::widget(['enableModuleItem' => false]); ?>
+
                                 <?php
                                 /* echo Breadcrumbs::widget([
                                     'homeLink' => [

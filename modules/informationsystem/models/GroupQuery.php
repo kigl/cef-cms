@@ -15,7 +15,7 @@ class GroupQuery extends ActiveQuery
 {
     public function parentId($parentId)
     {
-        return $this->where('parent_id = :parent_id', [':parent_id' => $parentId]);
+        return $this->where(['parent_id' => $parentId]);
     }
 
     public function informationsystemId($id)

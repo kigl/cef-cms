@@ -16,33 +16,34 @@ use app\modules\informationsystem\models\ItemSearch;
 
 class GroupModelService extends ModelService
 {
-    public function actionManager(array $params)
+    public function actionManager()
     {
         $searchModel = new ItemSearch();
-        $dataProvider = $searchModel->search($params['informationsystem_id'], $params['id'], $params);
+        $dataProvider = $searchModel->search($this->getData('get'));
 
 
         $groupDataProvider = new ActiveDataProvider([
             'query' => Group::find()
-                ->parentId($params['id'])
-                ->informationsystemId($params['informationsystem_id']),
+                ->parentId($this->getData('get', 'id'))
+                ->informationsystemId($this->getData('get', 'informationsystem_id')),
         ]);
+
         $this->setData([
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'groupDataProvider' => $groupDataProvider,
-            'informationSystemId' => $params['informationsystem_id'],
-            'id' => $params['id'],
+            'informationSystemId' => $this->getData('get', 'informationsystem_id'),
+            'id' => $this->getData('get', 'id'),
         ]);
     }
 
-    public function actionCreate(array $params)
+    public function actionCreate()
     {
         $model = new Group;
-        $model->parent_id = $params['get']['parent_id'];
-        $model->informationsystem_id = $params['get']['informationsystem_id'];
+        $model->parent_id = $this->getData('get', 'parent_id');
+        $model->informationsystem_id = $this->getData('get', 'informationsystem_id');
 
-        if ($model->load($params['post']) and $model->save()) {
+        if ($model->load($this->getData('post')) and $model->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 

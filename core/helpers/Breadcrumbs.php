@@ -3,12 +3,13 @@
 namespace app\core\helpers;
 
 use Yii;
+use yii\caching\DbDependency;
 use yii\helpers\ArrayHelper;
 
 class Breadcrumbs
 {
     const ROOT_GROUP = true;
-    const QUERY_GROUP_ALIAS = true;
+    const QUERY_GROUP_ALIAS = false;
 
     /**
      * @param null $id
@@ -17,104 +18,101 @@ class Breadcrumbs
      *  'enableRoot' => true,
      *  'urlOptions' => [
      *      'route' => 'controller/action',
-     *      'queryGroupName' => name_id,
+     *      'params' => [param_id],
      *      'queryParams' => [
      *          'query' => 'views',
      *  ],
      * ],
      * ],
-     *  $urlOptions => [
-     *              'route' => 'controller/action',
-     *              'queryParams' => [
-     *                  'query' => 'views'
-     *              ],
      * @return array|null
      */
-    public static function getLinksGroup($id = null, $config = [])
+    public static function getLinksGroup($groupId = null, $config = [])
     {
-        if (!isset($config['enableRoot'])) {
-            $config['enableRoot'] = self::ROOT_GROUP;
-        }
-
         if (!isset($config['enableQueryGroupAlias'])) {
             $config['enableQueryGroupAlias'] = self::QUERY_GROUP_ALIAS;
         }
 
         $result = [];
-        $breadcrumbs = self::recursive($id, $config['modelClass'], $config['enableQueryGroupAlias']);
+        $data = self::getGroupsData($config['modelClass']);
+        $breadcrumbs = self::groupsDataRecursive($groupId, $data);
 
         $root = [
             'label' => Yii::t('app', 'Breadcrumbs root'),
             'url' => [
                 $config['urlOptions']['route'],
-                $config['urlOptions']['queryGroupName'] => 0,
+                //$config['urlOptions']['queryGroupName'] => null,
             ],
         ];
-
 
         foreach ($breadcrumbs as $key => $model) {
             $result[$key] = [
                 'label' => $model['name'],
-                'url' => [
-                    $config['urlOptions']['route'],
-                    $config['urlOptions']['queryGroupName'] => $model['id'],
-                ]
+                'url' => self::getUrl($model, $config['urlOptions']['route'], $config['urlOptions']['params']),
             ];
-            
-            $result[$key]['url']['alias'] = $config['enableQueryGroupAlias'] ? $model['alias'] : null;
 
-            if (isset($config['urlOptions']['route']['queryParams'])) {
+            if (isset($config['urlOptions']['queryParams'])) {
                 $result[$key]['url'] = ArrayHelper::merge(
                     $result[$key]['url'],
-                    $config['urlOptions']['route']['queryParams']);
+                    $config['urlOptions']['queryParams']);
             }
         }
 
-        /*
-         * @todo
-        // уберем из последнего элемента группы ссылкку
-        $end = end($result);
-        unset($end['url']);
-        array_pop($result);
-        array_push($result, $end);
-        */
-
         if ($config['enableRoot'] === self::ROOT_GROUP) {
+            if (isset($config['urlOptions']['queryParams'])) {
+                $root['url'] = ArrayHelper::merge(
+                    $root['url'],
+                    $config['urlOptions']['queryParams']);
+            }
+
             array_unshift($result, $root);
         }
 
         return (!empty($result)) ? $result : null;
     }
 
-    /**
-     * Рекурсивная функция для построение массива
-     * @param integer $id
-     *
-     * @return array | false
-     */
-    protected static function recursive($id, $modelClass, $alias = false)
+    protected static function getUrl($model, $route, $params = [])
     {
-        $model = $modelClass::find();
-        $model->select(['id', 'parent_id', 'name']);
-        if ($alias) {
-            $model->addSelect('alias');
-        }
-        $model->where('id = :id', [':id' => $id])
-            ->asArray();
+        $result = [];
 
-        $model = $model->one();
-
-        if ($model) {
-            $result = self::recursive($model['parent_id'], $modelClass, $alias);
-
-            $result[] = [
-                'id' => $model['id'],
-                'parent_id' => $model['parent_id'],
-                'name' => $model['name'],
-                'alias' => $alias ? $model['alias'] : null,
-            ];
+        foreach ($params as $param) {
+            $result[$param] = $model[$param];
         }
 
-        return (!empty($result)) ? $result : [];
+        array_unshift($result, $route);
+
+        return $result;
+    }
+
+    public static function groupsDataRecursive($id, &$data)
+    {
+        $result = [];
+        foreach ($data as $group) {
+            if ($group['id'] == $id) {
+                $result = self::groupsDataRecursive($group['parent_id'], $data);
+
+                $result[] = $group;
+            }
+        }
+
+        return $result;
+    }
+
+    public static function getGroupsData($modelClass)
+    {
+        $dependency = new DbDependency([
+            'sql' => 'SELECT MAX([[update_time]]) FROM ' . $modelClass::tableName(),
+        ]);
+
+        $cacheKey = $modelClass;
+
+        if (!$data = \Yii::$app->cache->get($cacheKey)) {
+            $data = $modelClass::find()
+                ->asArray()
+                ->all();
+
+            Yii::$app->cache->set($cacheKey, $data, 3600 * 24 * 12, $dependency);
+        }
+
+        return $data;
     }
 }

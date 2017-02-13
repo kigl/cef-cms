@@ -8,6 +8,9 @@ return [
 
     'Deleted element' => 'Элемент удален!',
     'Description' => 'Описание',
+    'Date' => 'Дата',
+    'Date start' => 'Дата начала',
+    'Date end' => 'Дата окончания',
 
     'Form legend seo' => 'SEO',
     'Fields' => 'Поля',
@@ -15,6 +18,7 @@ return [
 
     'Link name page main' => 'Главная',
 	'List view summary text: is' => 'из',
+    'Login or password is incorrect' => 'Логин или пароль введены неверно!',
 
     'Name' => 'Имя / Наименование',
     'Not exist views: {views}' => 'Значение "{views}" не существует',
@@ -24,11 +28,13 @@ return [
     'Meta description' => 'Meta описание',
 
     'Icon css class' => 'CSS класс иконки',
+    'Image' => 'Изображение',
 
     'Parent id' => 'Id родителя',
 	'Position' => 'Позиция',
 
 	'Field type' => 'Тип поля',
+	'File' => 'Файл',
 
 	'Required' => 'Обязательно для заполнения',
 	
@@ -38,10 +44,12 @@ return [
     'CSS class' => 'CSS класс',
 
     'Visible' => 'Видим',
+    'Video' => 'Видео',
 
     'Saved element' => 'Сохранено!',
 	'Sorting' => 'Сортировка',
 	'Submit send' => 'Отправить',
+	'Status' => 'Статус',
 
 	'Updated element' => 'Элемент обновлен!',
 	'Update time' => 'Дата обновления',

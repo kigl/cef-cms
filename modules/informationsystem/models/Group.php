@@ -26,8 +26,6 @@ use yii\db\Expression;
  */
 class Group extends \app\core\db\ActiveRecord
 {
-    const ROOT_GROUP = 0;
-
     /**
      * @inheritdoc
      */

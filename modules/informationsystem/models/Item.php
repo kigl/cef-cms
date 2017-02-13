@@ -117,10 +117,10 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
                 'deleteKey' => 'deleteImage',
                 'path' => Yii::$app->controller->module->getPublicPath() . '/images',
                 'pathUrl' => Yii::$app->controller->module->getPublicPathUrl() . '/images',
-                'thumbnail' => [
+                /*'thumbnail' => [
                     'width' => 350,
                     'height' => 233,
-                ],
+                ],*/
             ],
             'videoUpload' => [
                 'class' => 'app\core\behaviors\file\FileUpload',

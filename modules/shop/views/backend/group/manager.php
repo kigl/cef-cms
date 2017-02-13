@@ -4,19 +4,18 @@ use yii\helpers\Html;
 use app\modules\backend\widgets\grid\GridView;
 use app\modules\shop\models\Group;
 use app\core\helpers\Breadcrumbs;
-/*
+
 $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
-    $id,
+    $data['id'],
     [
         'modelClass' => Group::className(),
+        'enableRoot' => true,
         'urlOptions' => [
             'route' => '/backend/shop/group/manager',
-            'queryGroupName' => 'parent_id',
+            'params' => ['id'],
         ],
     ]
-)
-);
-*/
+));
 ?>
 
 <?= GridView::widget([

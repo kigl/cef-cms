@@ -25,8 +25,6 @@ class User extends \app\core\db\ActiveRecord
     const STATUS_ACTIVE = 1;
     const STATUS_NOT_ACTIVE = 2;
 
-    const ROLE_REGISTRATION = 'register';
-
     public $rolePermission;
 
     public $password_repeat;

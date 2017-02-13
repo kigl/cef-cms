@@ -2,27 +2,44 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\modules\backend\widgets\grid\GridView;
+use app\core\helpers\Breadcrumbs;
+
+
+$this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
+    $data['id'],
+    [
+        'modelClass' => \app\modules\informationsystem\models\Group::class,
+        'enableRoot' => true,
+        'urlOptions' => [
+            'route' => '/backend/informationsystem/group/manager',
+            'params' => ['id'],
+            'queryParams' => [
+                'informationsystem_id' => $data['informationSystemId'],
+            ],
+        ],
+    ]
+));
 
 ?>
 
 <?php echo GridView::widget([
-    'filterModel' => $data->getSearchModel(),
-    'dataProvider' => $data->getDataProvider(),
-    'dataProviderGroup' => $data->getGroupDataProvider(),
+    'filterModel' => $data['searchModel'],
+    'dataProvider' => $data['dataProvider'],
+    'dataProviderGroup' => $data['groupDataProvider'],
     'buttons' => [
         'create' => [
             'group' => [
                 'url' => Url::to([
-                    'create/group',
-                    'informationsystem_id' => $data->getData('informationSystemId'),
-                    'parent_id' => $data->getData('id'),
+                    'create',
+                    'informationsystem_id' => $data['informationSystemId'],
+                    'parent_id' => $data['id'],
                 ]),
             ],
             'item' => [
                 'url' => Url::to([
-                    'create/item',
-                    'informationsystem_id' => $data->getData('informationSystemId'),
-                    'group_id' => $data->getData('id'),
+                    'item/create',
+                    'informationsystem_id' => $data['informationSystemId'],
+                    'group_id' => $data['id'],
                 ]),
             ],
         ],
@@ -33,7 +50,7 @@ use app\modules\backend\widgets\grid\GridView;
             'format' => 'raw',
             'value' => function ($data) {
                 return Html::a($data->name,
-                    ['group', 'id' => $data->id, 'informationsystem_id' => $data->informationsystem_id]);
+                    ['manager', 'id' => $data->id, 'informationsystem_id' => $data->informationsystem_id]);
             }
         ],
         [
@@ -43,14 +60,14 @@ use app\modules\backend\widgets\grid\GridView;
             'buttons' => [
                 'update' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
-                            'update/group',
+                            'update',
                             'id' => $model->id
                         ]
                     );
                 },
                 'delete' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
-                        'delete/group',
+                        'delete',
                         'id' => $model->id
                     ],
                         ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'question on delete file')]
@@ -70,14 +87,14 @@ use app\modules\backend\widgets\grid\GridView;
             'buttons' => [
                 'update' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
-                            'update/item',
+                            'item/update',
                             'id' => $model->id
                         ]
                     );
                 },
                 'delete' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
-                        'delete/item',
+                        'item/delete',
                         'id' => $model->id
                     ],
                         ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'Question on delete file')]

@@ -14,11 +14,11 @@ class ItemSearch extends Item
         ];
     }
 
-    public function search($informationsystem_id, $group_id, $params)
+    public function search(array $params)
     {
         $query = Item::find()
-            ->where('group_id = :group_id', [':group_id' => $group_id])
-            ->andWhere('informationsystem_id = :system_id', [':system_id' => $informationsystem_id]);
+            ->where(['group_id' => !empty($params['id']) ? $params['id'] : null])
+            ->andWhere(['informationsystem_id' => $params['informationsystem_id']]);
 
 
         $dataProvider = new ActiveDataProvider([

@@ -6,11 +6,11 @@ use app\modules\informationsystem\models\Group;
 ?>
 
 <?= GridView::widget([
-    'dataProvider' => $data->getDataProvider(),
+    'dataProvider' => $data['dataProvider'],
     'buttons' => [
         'create' => [
             'item' => [
-                'url' => Url::to(['create/system']),
+                'url' => Url::to(['create']),
             ],
         ],
     ],
@@ -21,8 +21,7 @@ use app\modules\informationsystem\models\Group;
             'format' => 'raw',
             'value' => function ($data) {
                 return Html::a(Html::encode($data->name), Url::to([
-                    'manager/group',
-                    'id' => Group::ROOT_GROUP,
+                    'group/manager',
                     'informationsystem_id' => $data->id,
                 ]));
             }
@@ -34,10 +33,10 @@ use app\modules\informationsystem\models\Group;
             'template' => '{update}  {delete}',
             'buttons' => [
                 'update' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-pencil"></i>', ['update/system', 'id' => $model->id]);
+                    return Html::a('<i class="glyphicon glyphicon-pencil"></i>', ['update', 'id' => $model->id]);
                 },
                 'delete' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-trash"></i>', ['delete/system', 'id' => $model->id],
+                    return Html::a('<i class="glyphicon glyphicon-trash"></i>', ['delete', 'id' => $model->id],
                         ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'question on delete file')]);
                 }
             ],

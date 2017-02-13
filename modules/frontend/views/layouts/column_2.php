@@ -1,9 +1,7 @@
 <?php
-use yii\widgets\Menu;
 use yii\helpers\Html;
 use app\core\widgets\Alert;
 use app\core\widgets\pageHeader\Widget as PageHeader;
-
 ?>
 
 <?php $this->beginContent('@app/modules/frontend/views/layouts/main.php'); ?>

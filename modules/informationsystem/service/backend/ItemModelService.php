@@ -13,13 +13,13 @@ use app\core\service\ModelService;
 
 class ItemModelService extends ModelService
 {
-    public function actionCreate(array $params)
+    public function actionCreate()
     {
         $model = new Item;
-        $model->informationsystem_id = $params['get']['informationsystem_id'];
-        $model->group_id = $params['get']['group_id'];
+        $model->informationsystem_id = $this->getData('get', 'informationsystem_id');
+        $model->group_id = $this->getData('get', 'group_id');
 
-        if ($model->load($params['post']) and $model->save()) {
+        if ($model->load($this->getData('post')) and $model->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 

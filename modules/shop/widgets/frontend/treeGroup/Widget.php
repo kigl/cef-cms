@@ -9,11 +9,12 @@
 namespace app\modules\shop\widgets\frontend\treeGroup;
 
 use app\modules\shop\models\Group;
+use yii\caching\DbDependency;
 
 class Widget extends \yii\base\Widget
 {
     public $options;
-    
+
     public $groupId;
 
     public function run()
@@ -23,15 +24,25 @@ class Widget extends \yii\base\Widget
         return $this->render('index', [
             'data' => $this->createDataTreeGroup($data, 0),
             'options' => $this->options,
-            ]);
+        ]);
     }
 
     private function getModelsGroup()
     {
-        return Group::find()
-            ->select(['id', 'name', 'parent_id', 'alias'])
-            ->asArray()
-            ->all();
+        $dependency = new DbDependency([
+            'sql' => "SELECT MAX(update_time) FROM" . Group::tableName(),
+        ]);
+
+       if (!$data = \Yii::$app->cache->get('treeGroup')) {
+            $data = Group::find()
+                ->select(['id', 'name', 'parent_id', 'alias'])
+                ->asArray()
+                ->all();
+
+            \Yii::$app->cache->set('treeGroup', $data, 3600 * 24 * 12, $dependency);
+        }
+
+        return $data;
     }
 
     private function createDataTreeGroup(&$data = [], $parentId)
