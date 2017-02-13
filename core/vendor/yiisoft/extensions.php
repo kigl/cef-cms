@@ -165,4 +165,13 @@ return array (
       '@conquer/codemirror' => $vendorDir . '/conquer/codemirror',
     ),
   ),
+  'yii2mod/yii2-bx-slider' => 
+  array (
+    'name' => 'yii2mod/yii2-bx-slider',
+    'version' => '1.0.0.0',
+    'alias' => 
+    array (
+      '@yii2mod/bxslider' => $vendorDir . '/yii2mod/yii2-bx-slider',
+    ),
+  ),
 );

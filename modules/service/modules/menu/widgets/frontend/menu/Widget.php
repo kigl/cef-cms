@@ -9,10 +9,10 @@
 namespace app\modules\service\modules\menu\widgets\frontend\menu;
 
 
-use app\modules\service\modules\menu\models\Menu;
-use Yii;
-use app\modules\service\modules\menu\models\Item;
 use yii\helpers\ArrayHelper;
+use yii\widgets\Menu as MenuWidget;
+use app\modules\service\modules\menu\models\Menu;
+use app\modules\service\modules\menu\models\Item;
 
 class Widget extends \yii\base\Widget
 {
@@ -24,11 +24,14 @@ class Widget extends \yii\base\Widget
     {
         $data = $this->getModelsItem();
 
-        return $this->render('index', [
-            'data' => $this->createDataMenu($data),
-            'options' => $this->options,
-            'modelMenu' => $this->getModelMenu(),
+        if ($dataMenu = $this->createDataMenu($data)) {
+            echo MenuWidget::widget([
+                'options' => ArrayHelper::merge($this->options, ['class' => $this->getModelMenu()->class]),
+                'activateParents' => true,
+                'items' => $dataMenu,
+                'encodeLabels' => false,
             ]);
+        }
     }
 
     protected function getModelMenu()

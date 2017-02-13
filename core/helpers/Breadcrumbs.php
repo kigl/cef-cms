@@ -9,7 +9,6 @@ use yii\helpers\ArrayHelper;
 class Breadcrumbs
 {
     const ROOT_GROUP = true;
-    const QUERY_GROUP_ALIAS = false;
 
     /**
      * @param null $id
@@ -21,20 +20,21 @@ class Breadcrumbs
      *      'params' => [param_id],
      *      'queryParams' => [
      *          'query' => 'views',
-     *  ],
-     * ],
+     *          ],
+     *      ],
      * ],
      * @return array|null
      */
     public static function getLinksGroup($groupId = null, $config = [])
     {
-        if (!isset($config['enableQueryGroupAlias'])) {
-            $config['enableQueryGroupAlias'] = self::QUERY_GROUP_ALIAS;
-        }
+        return (new self)->getLinksGroupData($groupId, $config);
+    }
 
-        $result = [];
-        $data = self::getGroupsData($config['modelClass']);
-        $breadcrumbs = self::groupsDataRecursive($groupId, $data);
+    public function getLinksGroupData($groupId = null, $config = [])
+    {
+        $data = $this->getGroupsData($config['modelClass']);
+        $breadcrumbs = $this->groupsDataRecursive($groupId, $data);
+        sort($breadcrumbs);
 
         $root = [
             'label' => Yii::t('app', 'Breadcrumbs root'),
@@ -44,10 +44,11 @@ class Breadcrumbs
             ],
         ];
 
+        $result = [];
         foreach ($breadcrumbs as $key => $model) {
             $result[$key] = [
                 'label' => $model['name'],
-                'url' => self::getUrl($model, $config['urlOptions']['route'], $config['urlOptions']['params']),
+                'url' => $this->getUrl($model, $config['urlOptions']['route'], $config['urlOptions']['params']),
             ];
 
             if (isset($config['urlOptions']['queryParams'])) {
@@ -67,10 +68,10 @@ class Breadcrumbs
             array_unshift($result, $root);
         }
 
-        return (!empty($result)) ? $result : null;
+        return $result ? $result : null;
     }
 
-    protected static function getUrl($model, $route, $params = [])
+    protected function getUrl($model, $route, $params = [])
     {
         $result = [];
 
@@ -83,21 +84,22 @@ class Breadcrumbs
         return $result;
     }
 
-    public static function groupsDataRecursive($id, &$data)
+    public function groupsDataRecursive($id, &$data)
     {
         $result = [];
         foreach ($data as $group) {
             if ($group['id'] == $id) {
-                $result = self::groupsDataRecursive($group['parent_id'], $data);
 
                 $result[] = $group;
+
+                $result = ArrayHelper::merge($result, $this->groupsDataRecursive($group['parent_id'], $data));
             }
         }
 
         return $result;
     }
 
-    public static function getGroupsData($modelClass)
+    public function getGroupsData($modelClass)
     {
         $dependency = new DbDependency([
             'sql' => 'SELECT MAX([[update_time]]) FROM ' . $modelClass::tableName(),

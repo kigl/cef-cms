@@ -10,6 +10,7 @@ namespace app\core\widgets\pageHeader;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 
 class Widget extends \yii\base\Widget
 {
@@ -21,9 +22,8 @@ class Widget extends \yii\base\Widget
 
     public function run()
     {
-        return $this->render('index', [
-            'options' => ArrayHelper::merge($this->defaultOptions, $this->options),
-            'text' => $this->text,
-        ]);
+        if ($this->text !== '') {
+            echo Html::tag('h1', $this->text, ArrayHelper::merge($this->defaultOptions, $this->options));
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace app\modules\shop\widgets\frontend\treeGroup;
 
 use app\modules\shop\models\Group;
 use yii\caching\DbDependency;
+use yii\widgets\Menu;
 
 class Widget extends \yii\base\Widget
 {
@@ -21,10 +22,12 @@ class Widget extends \yii\base\Widget
     {
         $data = $this->getModelsGroup();
 
-        return $this->render('index', [
-            'data' => $this->createDataTreeGroup($data, 0),
+        echo Menu::widget([
+            'items' => $this->createDataTreeGroup($data, null),
+            'activateParents' => true,
             'options' => $this->options,
         ]);
+
     }
 
     private function getModelsGroup()
@@ -33,7 +36,7 @@ class Widget extends \yii\base\Widget
             'sql' => "SELECT MAX(update_time) FROM" . Group::tableName(),
         ]);
 
-       if (!$data = \Yii::$app->cache->get('treeGroup')) {
+        if (!$data = \Yii::$app->cache->get('treeGroup')) {
             $data = Group::find()
                 ->select(['id', 'name', 'parent_id', 'alias'])
                 ->asArray()

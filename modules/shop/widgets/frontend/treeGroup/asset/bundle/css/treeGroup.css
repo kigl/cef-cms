@@ -1,9 +1,0 @@
-.tree-group ul {
-    display: none;
-    margin-left: 10px;
-}
-
-.tree-group > ul > li, .tree-group .active > ul{
-    display: block;
-}
-

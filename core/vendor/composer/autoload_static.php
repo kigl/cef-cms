@@ -24,6 +24,7 @@ class ComposerStaticInitd08a2b6f5e41e256fb611c05532ca1a7
             'yii\\codeception\\' => 16,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+            'yii2mod\\bxslider\\' => 17,
         ),
         'v' => 
         array (
@@ -92,6 +93,10 @@ class ComposerStaticInitd08a2b6f5e41e256fb611c05532ca1a7
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'yii2mod\\bxslider\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yii2mod/yii2-bx-slider',
         ),
         'vova07\\imperavi\\' => 
         array (
