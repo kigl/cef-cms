@@ -22,7 +22,7 @@ class ButtonAction
 
     public function renderButtons()
     {
-        $options = ['class' => 'pull-left btn-group'];
+        $options = ['class' => 'btn-group'];
         $result = '';
 
         if (count($this->_buttons) > 0) {
@@ -45,7 +45,7 @@ class ButtonAction
         $iconPlus = '<i class="glyphicon glyphicon-plus"></i>';
         $linkDropdown = Html::a($iconPlus . " <b class='caret'></b>", '#', [
             'data-toggle' => 'dropdown',
-            'class' => 'dropdown-toggle btn btn-success btn-xs',
+            'class' => 'dropdown-toggle btn btn-success btn-sm',
         ]);
         $result = ['encodeLabels' => false];
 

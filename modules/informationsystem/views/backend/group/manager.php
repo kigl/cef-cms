@@ -4,22 +4,6 @@ use yii\helpers\Url;
 use app\modules\backend\widgets\grid\GridView;
 use app\core\helpers\Breadcrumbs;
 
-
-$this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
-    $data['id'],
-    [
-        'modelClass' => \app\modules\informationsystem\models\Group::class,
-        'enableRoot' => true,
-        'urlOptions' => [
-            'route' => '/backend/informationsystem/group/manager',
-            'params' => ['id'],
-            'queryParams' => [
-                'informationsystem_id' => $data['informationSystemId'],
-            ],
-        ],
-    ]
-));
-
 ?>
 
 <?php echo GridView::widget([

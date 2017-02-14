@@ -3,7 +3,7 @@
 
 \yii\widgets\Pjax::begin();
 echo \yii\widgets\ListView::widget([
-    'dataProvider' => $data->getDataProvider(),
+    'dataProvider' => $data['dataProvider'],
     'itemView' => '_product',
     'summaryOptions' => [
         'class' => 'text-right',

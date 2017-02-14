@@ -28,7 +28,7 @@ use app\modules\informationsystem\models\Group;
         ],
         'create_time:date',
         [
-            'headerOptions' => ['style' => 'width: 50px'],
+            'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',
             'template' => '{update}  {delete}',
             'buttons' => [

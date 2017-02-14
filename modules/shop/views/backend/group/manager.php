@@ -5,17 +5,7 @@ use app\modules\backend\widgets\grid\GridView;
 use app\modules\shop\models\Group;
 use app\core\helpers\Breadcrumbs;
 
-$this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
-    $data['id'],
-    [
-        'modelClass' => Group::className(),
-        'enableRoot' => true,
-        'urlOptions' => [
-            'route' => '/backend/shop/group/manager',
-            'params' => ['id'],
-        ],
-    ]
-));
+$this->setBreadcrumbs($data['breadcrumbs']);
 ?>
 
 <?= GridView::widget([
@@ -42,7 +32,7 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
         [],
         'create_time:date',
         [
-            'class' => \yii\grid\ActionColumn::className(),
+            'class' => \kartik\grid\ActionColumn::className(),
             'template' => "{update} {delete}",
         ],
     ],
@@ -56,7 +46,7 @@ $this->setBreadcrumbs(Breadcrumbs::getLinksGroup(
         'create_time:date',
         [
             'headerOptions' => ['style' => 'width: 70px'],
-            'class' => \yii\grid\ActionColumn::className(),
+            'class' => \kartik\grid\ActionColumn::className(),
             'template' => "{update} {delete}",
             'buttons' => [
                 'update' => function ($url, $model, $key) {

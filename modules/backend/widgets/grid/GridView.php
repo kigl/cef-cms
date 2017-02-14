@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\grid\DataColumn;
 use yii\bootstrap\Modal;
 
-class GridView extends \yii\grid\GridView
+class GridView extends \kartik\grid\GridView
 {
     const TYPE_GROUP = 'group';
     const TYPE_ITEM = 'item';
@@ -19,58 +19,36 @@ class GridView extends \yii\grid\GridView
 
     public $buttons = [];
 
-    public $layout = "{views}\n{buttons}\n{summary}\n{items}\n<div class='text-right'>{pager}</div>";
+    public $toolbar = [
+        '{buttons}',
+        '{export}',
+    ];
+
+    public $exportContainer = [
+        'class' => 'btn-group-sm'
+    ];
+
+    public $panel = [
+        'type' => 'default',
+    ];
+
+    public $bordered = false;
+
 
     public $summaryOptions = ['class' => 'summary pull-right'];
 
-    /*
-    /**
-     * ...
-     *  [
-     *      'breadcrumbsGroup' => [
-     *          'parent_id' => $parent_id,
-     *          'modelClass' => Group::className(),
-     *          'urlOptions' => [
-     *              'route' => 'controller/action',
-     *              'queryParams' => [
-     *                  'query' => 'views'
-     *              ],
-     *      ],
-     * ]
-     * ..
-     * @var
-
-    public $breadcrumbsGroup;
-    */
-
-    public $options = ['class' => 'grid-views panel panel-default panel-body'];
-
-    public $tableOptions = ['class' => 'table table-condensed table-striped grid-table'];
 
     public function renderSection($name)
     {
         switch ($name) {
-            case '{views}' :
-                return $this->renderViewModal();
             case '{buttons}':
                 return $this->renderButtons();
-            case '{summary}':
-                return $this->renderSummary();
-            /* case '{breadcrumbsGroup}' :
-                 return $this->renderBreadcrumbsGroup();
-            */
-            case '{items}':
-                return $this->renderItems();
-            case '{pager}':
-                return $this->renderPager();
-            case '{sorter}':
-                return $this->renderSorter();
             default:
-                return false;
+                return parent::renderSection($name);
         }
     }
 
-    public function initColumns()
+    protected function initColumns()
     {
         /*
          * @todo
@@ -115,46 +93,6 @@ class GridView extends \yii\grid\GridView
         }
     }
 
-    protected function renderViewModal()
-    {
-        $view = $this->getView();
-
-        $view->registerJs("
-			$('.views-modal-item').click(function() {
-					$('.modal').modal('show')
-			    var url = $(this).attr('href');
-			    var modal = $('.modal-body');
-			    $.get(url, function(data) {
-			        modal.html(data);
-			    });
-			    return false;
-			});
-		");
-
-        return Modal::widget(['size' => Modal::SIZE_LARGE]);
-    }
-
-    /*
-    public function renderBreadcrumbsGroup()
-    {
-        $breadcrumbs = new BreadcrumbsGroup();
-
-        if (isset($this->breadcrumbsGroup)) {
-            return Breadcrumbs::widget([
-                'links' => $breadcrumbs->getGroup(
-                    $this->breadcrumbsGroup['parent_id'],
-                    $this->breadcrumbsGroup['urlOptions'],
-                    $this->breadcrumbsGroup['modelClass']
-                ),
-                'homeLink' => false,
-                'options' => ['class' => 'clear-both no-margin breadcrumb small'],
-            ]);
-        }
-
-        return null;
-    }
-    */
-
     /**
      * @return string
      */
@@ -163,27 +101,6 @@ class GridView extends \yii\grid\GridView
         $button = new ButtonAction($this->buttons);
 
         return $button->renderButtons();
-    }
-
-    /**
-     * Renders the data models for the grid views.
-     */
-    public function renderItems()
-    {
-        $caption = $this->renderCaption();
-        $columnGroup = $this->renderColumnGroup();
-        $tableHeader = $this->showHeader ? $this->renderTableHeader() : false;
-        $tableBody = $this->renderTableBody();
-        $tableFooter = $this->showFooter ? $this->renderTableFooter() : false;
-        $content = array_filter([
-            $caption,
-            $columnGroup,
-            $tableHeader,
-            $tableFooter,
-            $tableBody,
-        ]);
-
-        return Html::tag('table', implode("\n", $content), $this->tableOptions);
     }
 
     /**
@@ -246,7 +163,12 @@ class GridView extends \yii\grid\GridView
             $rows[] = "<tr><td colspan=\"$colspan\">" . $this->renderEmpty() . "</td></tr>\n</tbody>";
         }
 
-        return "<tbody>\n" . implode("\n", array_merge($rowsGroup, $rows)) . "\n</tbody>";
+        $content = "<tbody>\n" . implode("\n", array_merge($rowsGroup, $rows)) . "\n</tbody>";
+
+        if ($this->showPageSummary) {
+            return $content . $this->renderPageSummary();
+        }
+        return $content;
     }
 
     /**

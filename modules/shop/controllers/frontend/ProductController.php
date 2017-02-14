@@ -49,17 +49,14 @@ class ProductController extends FrontendController
                 'alias' => $modelService->getData('model')->alias], 301);
         }
 
-        $viewService = (new ProductViewService())->setData($modelService->getData());
-
-
         if (!Yii::$app->request->isPjax && Yii::$app->request->isAjax) {
-            return $this->renderAjax('view', ['data' => $viewService]);
+            return $this->renderAjax('view', ['data' => $modelService->getData()]);
         }
 
-
-        return $this->render('view', ['data' => $viewService]);
+        return $this->render('view', ['data' => $modelService->getData()]);
     }
 
+    /*
     public function actionSearch($value)
     {
         $modelService = new ProductModelService();
@@ -73,4 +70,5 @@ class ProductController extends FrontendController
 
         return $this->render('search', ['data' => $viewService]);
     }
+    */
 }

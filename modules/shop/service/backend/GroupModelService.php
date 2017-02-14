@@ -9,6 +9,7 @@
 namespace app\modules\shop\service\backend;
 
 
+use app\core\traits\Breadcrumbs;
 use Yii;
 use app\core\service\ModelService;
 use app\modules\shop\models\Group;
@@ -17,6 +18,8 @@ use app\modules\shop\models\ProductSearch;
 
 class GroupModelService extends ModelService
 {
+    use Breadcrumbs;
+
     public function actionManager()
     {
         $dataProviderSearch = new GroupSearch();
@@ -24,10 +27,22 @@ class GroupModelService extends ModelService
         $dataProviderProductSearch = new ProductSearch();
         $dataProviderProduct = $dataProviderProductSearch->search($this->getData('get'));
 
+        $breadcrumbs = $this->buildBreadcrumb([
+            'group' => [
+                'id' => $this->getData('get', 'id'),
+                'modelClass' => Group::class,
+                'urlOptions' => [
+                    'route' => '/backend/shop/group/manager',
+                    'params' => ['id',],
+                ],
+            ],
+        ]);
+
         $this->setData([
             'id' => $this->getData('get', 'id'),
             'dataProviderGroup' => $dataProviderGroup,
             'dataProviderProduct' => $dataProviderProduct,
+            'breadcrumbs' => $breadcrumbs,
         ]);
     }
 

@@ -8,12 +8,18 @@
 
 namespace app\modules\shop\service\frontend;
 
+
 use yii\data\ActiveDataProvider;
+use app\core\traits\Breadcrumbs;
 use app\core\service\ModelService;
 use app\modules\shop\models\Product;
+use app\modules\shop\models\Group;
+use yii\helpers\ArrayHelper;
 
 class ProductModelService extends ModelService
 {
+    use Breadcrumbs;
+
     protected $model;
 
     public function view($id, $alias)
@@ -30,13 +36,26 @@ class ProductModelService extends ModelService
             return;
         }
 
+        $breadcrumbs = $this->buildBreadcrumb([
+            'group' => [
+                'id' => $this->model->group_id,
+                'modelClass' => Group::class,
+                'urlOptions' => [
+                    'route' => '/shop/group/view',
+                    'params' => ['id', 'alias'],
+                ],
+            ],
+            'items' => [
+                ['label' => $this->model->name],
+            ],
+        ]);
+
         $this->setData([
             'model' => $this->model,
             'images' => $this->model->images,
-            'properties' => $this->model->properties,
+            'properties' => ArrayHelper::map($this->model->properties, 'name', 'value'),
             'mainImage' => $this->model->mainImage,
-            'group' => $this->model->group,
-            'subProducts' => $this->model->subProducts,
+            'breadcrumbs' => $breadcrumbs,
         ]);
 
         if ($alias == '') {

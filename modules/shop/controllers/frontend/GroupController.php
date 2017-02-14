@@ -35,11 +35,9 @@ class GroupController extends FrontendController
                 'id' => $id,
                 'alias' => $modelService->getData('model')->alias], 301);
         }
-        
-        $viewService = (new GroupViewService())->setData($modelService->getData());
 
         return $this->render('view', [
-            'data' => $viewService,
+            'data' => $modelService->getData(),
         ]);
     }
 }

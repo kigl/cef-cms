@@ -1,72 +1,88 @@
 <?php
 
-namespace app\core\helpers;
+namespace app\core\traits;
 
 use Yii;
 use yii\caching\DbDependency;
 use yii\helpers\ArrayHelper;
 
-class Breadcrumbs
+trait Breadcrumbs
 {
-    const ROOT_GROUP = true;
-
     /**
-     * @param null $id
-     * $config = [
-     *  'modelClass' => Model::className(),
-     *  'enableRoot' => true,
-     *  'urlOptions' => [
-     *      'route' => 'controller/action',
-     *      'params' => [param_id],
-     *      'queryParams' => [
-     *          'query' => 'views',
+     * $breadcrumbs = $this->buildBreadcrumb([
+     * 'group' => [
+     *      'id' => 12,
+     *      'modelClass' => 'ModelClass',
+     *      'enableRoot' => true,
+     *           'urlOptions' => [
+     *           'route' => 'controller/action',
+     *           'params' => [param_id, 'par_id'],
+     *           'queryParams' => [
+     *              'query' => 'views',
+     *              ],
      *          ],
      *      ],
-     * ],
-     * @return array|null
+     * 'items' => [
+     *      ['label' => 'name'],
+     *      ],
+     * ]);
      */
-    public static function getLinksGroup($groupId = null, $config = [])
+
+    public function buildBreadcrumb(array $params)
     {
-        return (new self)->getLinksGroupData($groupId, $config);
+        $groupItem = [];
+        $items = [];
+
+        if (array_key_exists('group', $params)) {
+            $groupItem = $this->getLinksGroup($params['group']);
+        }
+
+        if (array_key_exists('items', $params)) {
+            $items = $params['items'];
+        }
+
+        return ArrayHelper::merge($groupItem, $items);
     }
 
-    public function getLinksGroupData($groupId = null, $config = [])
+    protected function getLinksGroup($params = [])
     {
-        $data = $this->getGroupsData($config['modelClass']);
-        $breadcrumbs = $this->groupsDataRecursive($groupId, $data);
+        $data = $this->getGroupsData($params['modelClass']);
+        $breadcrumbs = $this->groupsDataRecursive($params['id'], $data);
         sort($breadcrumbs);
 
-        $root = [
+        /*$root = [
             'label' => Yii::t('app', 'Breadcrumbs root'),
             'url' => [
-                $config['urlOptions']['route'],
+                $params['urlOptions']['route'],
                 //$config['urlOptions']['queryGroupName'] => null,
             ],
-        ];
+        ];*/
 
         $result = [];
         foreach ($breadcrumbs as $key => $model) {
             $result[$key] = [
                 'label' => $model['name'],
-                'url' => $this->getUrl($model, $config['urlOptions']['route'], $config['urlOptions']['params']),
+                'url' => $this->getUrl($model, $params['urlOptions']['route'], $params['urlOptions']['params']),
             ];
 
-            if (isset($config['urlOptions']['queryParams'])) {
+            if (isset($params['urlOptions']['queryParams'])) {
                 $result[$key]['url'] = ArrayHelper::merge(
                     $result[$key]['url'],
-                    $config['urlOptions']['queryParams']);
+                    $params['urlOptions']['queryParams']);
             }
         }
 
-        if ($config['enableRoot'] === self::ROOT_GROUP) {
-            if (isset($config['urlOptions']['queryParams'])) {
+        /*
+        if ($params['enableRoot'] === self::ROOT_GROUP) {
+            if (isset($params['urlOptions']['queryParams'])) {
                 $root['url'] = ArrayHelper::merge(
                     $root['url'],
-                    $config['urlOptions']['queryParams']);
+                    $params['urlOptions']['queryParams']);
             }
 
             array_unshift($result, $root);
         }
+        */
 
         return $result ? $result : null;
     }
@@ -101,11 +117,11 @@ class Breadcrumbs
 
     public function getGroupsData($modelClass)
     {
+        $cacheKey = $modelClass;
+
         $dependency = new DbDependency([
             'sql' => 'SELECT MAX([[update_time]]) FROM ' . $modelClass::tableName(),
         ]);
-
-        $cacheKey = $modelClass;
 
         if (!$data = \Yii::$app->cache->get($cacheKey)) {
             $data = $modelClass::find()

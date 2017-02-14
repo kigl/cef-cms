@@ -17,7 +17,7 @@ use yii\helpers\Html;
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-12"><?= $data->getCount(); ?></div>
+                    <div class="col-md-12"><span class="badge"><?= $data->getCount(); ?></span></div>
                 </div>
                 <div class="row">
                     <div class="col-md-12"><?= Yii::$app->formatter->asCurrency($data->getSum()); ?></div>

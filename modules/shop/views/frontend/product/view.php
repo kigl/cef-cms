@@ -2,26 +2,13 @@
 use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 
-$this->setTitle($data->getTitle());
-$this->setMetaDescription($data->getModel()->meta_description);
-$this->setPageHeader($data->getModel()->name);
+$this->setTitle($data['model']->meta_title);
+$this->setMetaDescription($data['model']->meta_description);
+$this->setPageHeader($data['model']->name);
+$this->setBreadcrumbs($data['breadcrumbs']);
 
-/*
-$this->setBreadcrumbs(
-    \yii\helpers\ArrayHelper::merge(
-        Breadcrumbs::getLinksGroup(
-            $data->getModel()->group_id,
-            [
-                'modelClass' => Group::className(),
-                'enableRoot' => false,
-                'urlOptions' => [
-                    'route' => '/shop/group/view',
-                    'queryGroupName' => 'id',
-                ],
-            ]
-        ), ['label' => Html::encode($data->getName())]));
-*/
-$this->params['groupId'] = $data->getModel()->group_id;
+
+$this->params['groupId'] = $data['model']->group_id;
 ?>
 
 <div class="product-detail">
@@ -33,17 +20,17 @@ $this->params['groupId'] = $data->getModel()->group_id;
                         Главная картинка
                     </div>
                     <div class="panel-body">
-                        <?= \app\modules\shop\widgets\frontend\mainImage\Widget::widget(['model' => $data->getMainImage()]); ?>
+                        <?= \app\modules\shop\widgets\frontend\mainImage\Widget::widget(['model' => $data['mainImage']]); ?>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <?= \app\modules\shop\widgets\frontend\moreImages\Widget::widget(['model' => $data->getImages()]); ?>
+                    <?= \app\modules\shop\widgets\frontend\moreImages\Widget::widget(['model' => $data['images']]); ?>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12"><?= HtmlPurifier::process($data->getModel()->content); ?></div>
+                <div class="col-md-12"><?= HtmlPurifier::process($data['model']->content); ?></div>
             </div>
         </div>
         <div class="col-md-6">
@@ -52,23 +39,25 @@ $this->params['groupId'] = $data->getModel()->group_id;
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="product-group-name"><?= Html::encode($data->getModel()->group->name); ?></div>
+                            <div class="product-group-name"><?= Html::encode($data['model']->group->name); ?></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="product-code"><?= Html::encode($data->getModel()->code); ?></div>
+                            <div class="product-code"><?= Html::encode($data['model']->code); ?></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="product-price">
-                                <?=Yii::t('shop', 'Price: {price, number, currency}', ['price' => $data->getModel()->price]);?>
+                                <?= Yii::t('shop', 'Price: {price, number, currency}',
+                                    ['price' => $data['model']->price]); ?>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                            <?php /*
                             <?= \app\modules\shop\widgets\frontend\checkedProductProperties\Widget::widget([
                                 'model' => $data->getModel(),
                                 'propertyId' => 1,
@@ -80,12 +69,13 @@ $this->params['groupId'] = $data->getModel()->group_id;
                                 'propertyId' => 3,
                                 'radioName' => 'length',
                             ]) ?>
+                            */ ?>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="hidden" value="<?= $data->getModel()->id; ?>" id="productId"/>
+                            <input type="hidden" value="<?= $data['model']->id; ?>" id="productId"/>
                             <?= Html::textInput('', '', [
                                 'class' => 'form-control',
                                 'id' => 'qty',
@@ -108,7 +98,7 @@ $this->params['groupId'] = $data->getModel()->group_id;
                     <div class="row">
                         <div class="col-md-12">
                             <?= \yii\widgets\DetailView::widget([
-                                'model' => $data->getProperties(),
+                                'model' => $data['properties'],
                                 'attributes' => ['size', 'color'],
                             ]); ?>
                         </div>
