@@ -23,10 +23,7 @@ class RbacController extends BackendController
         $modelService = Yii::createObject(RbacModelService::class);
         $modelService->actionManager();
 
-        return $this->render('manager', [
-            'roleDataProvider' => $modelService->getData('roleDataProvider'),
-            'permissionDataProvider' => $modelService->getData('permissionDataProvider'),
-        ]);
+        return $this->render('manager', ['data' => $modelService->getData()]);
     }
 
     public function actionCreate($type)

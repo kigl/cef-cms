@@ -10,7 +10,7 @@ namespace app\modules\user\service\backend;
 
 
 use Yii;
-use yii\rbac\Item;
+use yii\helpers\ArrayHelper;
 use yii\data\ArrayDataProvider;
 use app\core\service\ModelService;
 use app\modules\user\models\forms\RbacForm;
@@ -20,24 +20,22 @@ class RbacModelService extends ModelService
 {
     protected $rbacService;
 
-    public function __construct(RbacService $rbacService)
+    public function __construct()
     {
-        $this->rbacService = $rbacService;
+        $this->rbacService = Yii::$app->authManager;
     }
 
     public function actionManager()
     {
-        $roleDataProvider = new ArrayDataProvider([
-            'allModels' => $this->rbacService->getItems(Item::TYPE_ROLE),
-        ]);
-
-        $permissionDataProvider = new ArrayDataProvider([
-            'allModels' => $this->rbacService->getItems(Item::TYPE_PERMISSION),
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => ArrayHelper::merge(
+                $this->rbacService->getRoles(),
+                $this->rbacService->getPermissions()
+            ),
         ]);
 
         $this->setData([
-            'roleDataProvider' => $roleDataProvider,
-            'permissionDataProvider' => $permissionDataProvider,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
