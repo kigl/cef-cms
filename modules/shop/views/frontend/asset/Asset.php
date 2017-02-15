@@ -6,11 +6,11 @@
  * Time: 11:54
  */
 
-namespace app\modules\shop\widgets\frontend\cart\asset;
+namespace app\modules\shop\views\frontend\asset;
 
 class Asset extends \yii\web\AssetBundle
 {
-    public $sourcePath = '@app/modules/shop/widgets/frontend/cart/asset/bundle';
+    public $sourcePath = '@app/modules/shop/views/frontend/asset/bundle';
 
     public $js = [
         'js/addToCart.js',

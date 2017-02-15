@@ -22,6 +22,18 @@ trait Breadcrumbs
      *              ],
      *          ],
      *      ],
+     * 'group' => [
+     *      'id' => 12,
+     *      'modelClass' => 'ModelClass',
+     *      'enableRoot' => true,
+     *           'urlOptions' => [
+     *           'route' => 'controller/action',
+     *           'params' => [param_id, 'par_id'],
+     *           'queryParams' => [
+     *              'query' => 'views',
+     *              ],
+     *          ],
+     *      ],
      * 'items' => [
      *      ['label' => 'name'],
      *      ],
@@ -46,7 +58,7 @@ trait Breadcrumbs
 
     protected function getLinksGroup($params = [])
     {
-        $data = $this->getGroupsData($params['modelClass']);
+        $data = $this->getDbData($params['modelClass']);
         $breadcrumbs = $this->groupsDataRecursive($params['id'], $data);
         sort($breadcrumbs);
 
@@ -103,19 +115,19 @@ trait Breadcrumbs
     public function groupsDataRecursive($id, &$data)
     {
         $result = [];
-        foreach ($data as $group) {
-            if ($group['id'] == $id) {
+        foreach ($data as $item) {
+            if ($item['id'] == $id) {
 
-                $result[] = $group;
+                $result[] = $item;
 
-                $result = ArrayHelper::merge($result, $this->groupsDataRecursive($group['parent_id'], $data));
+                $result = ArrayHelper::merge($result, $this->groupsDataRecursive($item['parent_id'], $data));
             }
         }
 
         return $result;
     }
 
-    public function getGroupsData($modelClass)
+    public function getDbData($modelClass)
     {
         $cacheKey = $modelClass;
 

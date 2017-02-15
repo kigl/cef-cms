@@ -23,6 +23,7 @@ use yii\helpers\Url;
 </head>
 <body>
 <?php $this->beginBody() ?>
+
 <div class="container wrapper">
     <div class="panel panel-default">
         <div class="panel-heading">Верхний блок</div>

@@ -9,11 +9,10 @@
 namespace app\modules\shop\controllers\frontend;
 
 use Yii;
-use app\core\actions\View;
+use yii\web\HttpException;
 use app\modules\shop\components\FrontendController;
 use app\modules\shop\service\frontend\GroupModelService;
 use app\modules\shop\service\frontend\GroupViewService;
-use app\modules\shop\models\Group;
 
 class GroupController extends FrontendController
 {
@@ -23,7 +22,7 @@ class GroupController extends FrontendController
         $modelService->setData([
             'get' => Yii::$app->request->getQueryParams(),
         ]);
-        $modelService->view();
+        $modelService->actionView();
 
         if ($modelService->hasError($modelService::ERROR_NOT_MODEL)) {
             throw new HttpException(404);

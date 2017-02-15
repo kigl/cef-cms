@@ -1,14 +1,9 @@
 <?php
 use yii\helpers\Html;
-\app\modules\shop\widgets\frontend\cart\asset\Asset::register($this);
+
 ?>
 
 <?php \yii\widgets\Pjax::begin(['id' => 'cart-pjax']); ?>
-
-<?php
-//var_dump($data->cartCookie->getRequestValue());
-?>
-
 <div class="cart-block panel panel-default">
     <div class="panel-heading">
         <?= Html::a('Корзина', $urlPageCart, ['data-pjax' => 0]);?>
@@ -26,5 +21,4 @@ use yii\helpers\Html;
         </div>
     </div>
 </div>
-
 <?php \yii\widgets\Pjax::end(); ?>

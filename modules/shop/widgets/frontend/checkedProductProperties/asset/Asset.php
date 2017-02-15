@@ -17,8 +17,6 @@ class Asset extends AssetBundle
 
     public $css = ['css/style.css'];
 
-    //public $js = ['js/script.js'];
-
     public $depends = [
         'yii\web\JqueryAsset',
     ];

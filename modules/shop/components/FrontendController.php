@@ -12,4 +12,5 @@ use app\modules\frontend\components\Controller;
 
 abstract class FrontendController extends Controller
 {
+    public $layout = '@app/modules/shop/views/frontend/layouts/index';
 }

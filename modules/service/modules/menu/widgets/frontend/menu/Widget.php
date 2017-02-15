@@ -9,6 +9,7 @@
 namespace app\modules\service\modules\menu\widgets\frontend\menu;
 
 
+use Yii;
 use yii\helpers\ArrayHelper;
 use yii\widgets\Menu as MenuWidget;
 use app\modules\service\modules\menu\models\Menu;

@@ -20,14 +20,14 @@ class ItemModelService extends ModelService
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Item::find()
-                ->where(['parent_id' => $this->getData('get', 'parent_id')])
+                ->where(['parent_id' => $this->getData('get', 'id')])
                 ->andWhere(['menu_id' => $this->getData('get', 'menu_id')]),
         ]);
 
         $this->setData([
             'dataProvider' => $dataProvider,
             'menuId' => $this->getData('get', 'menu_id'),
-            'parentId' => $this->getData('get', 'parent_id'),
+            'id' => $this->getData('get', 'id'),
         ]);
     }
 

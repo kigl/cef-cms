@@ -25,7 +25,7 @@ class OrderController extends FrontendController
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index', 'test'],
                         'roles' => ['register'],
                     ],
                 ],

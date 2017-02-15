@@ -28,7 +28,7 @@ class ItemController extends Controller
         ];
     }
 
-    public function actionManager($menu_id, $parent_id = null)
+    public function actionManager($menu_id, $id = null)
     {
         $modelService = Yii::createObject(ItemModelService::class)
             ->setData([
@@ -53,7 +53,7 @@ class ItemController extends Controller
             return $this->redirect([
                 'manager',
                 'menu_id' => $modelService->getData('model')->menu_id,
-                'parent_id' => $modelService->getData('model')->parent_id,
+                'id' => $modelService->getData('model')->parent_id,
             ]);
         }
 
@@ -73,7 +73,7 @@ class ItemController extends Controller
             return $this->redirect([
                 'manager',
                 'menu_id' => $modelService->getData('model')->menu_id,
-                'parent_id' => $modelService->getData('model')->parent_id,
+                'id' => $modelService->getData('model')->parent_id,
             ]);
         }
 
@@ -89,7 +89,7 @@ class ItemController extends Controller
             return $this->redirect([
                 'manager',
                 'menu_id' => $modelService->getData('model')->menu_id,
-                'parent_id' => $modelService->getData('parent_id'),
+                'id' => $modelService->getData('parent_id'),
             ]);
         }
     }

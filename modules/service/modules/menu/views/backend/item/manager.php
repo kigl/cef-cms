@@ -13,7 +13,7 @@ use yii\helpers\Html;
                 'url' => Url::to([
                     'create',
                     'menu_id' => $data['menuId'],
-                    'parent_id' => $data['parentId'],
+                    'parent_id' => $data['id'],
                 ]),
             ],
         ]
@@ -27,7 +27,7 @@ use yii\helpers\Html;
             'value' => function ($data) {
                 return Html::a(
                     Html::encode($data->name),
-                    ['item/manager', 'menu_id' => $data->menu_id, 'parent_id' => $data->id]
+                    ['item/manager', 'menu_id' => $data->menu_id, 'id' => $data->id]
                 );
             }
         ],

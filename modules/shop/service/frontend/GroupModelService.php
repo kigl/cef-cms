@@ -18,7 +18,7 @@ class GroupModelService extends ModelService
 {
     use Breadcrumbs;
 
-    public function view()
+    public function actionView()
     {
         $model = Group::find();
 
