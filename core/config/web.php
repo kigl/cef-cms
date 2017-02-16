@@ -34,12 +34,6 @@ $config = [
         'request' => [
             'enableCsrfValidation' => true,
             'cookieValidationKey' => 'main2',
-
-            /*
-            'parsers' => [
-                'application/json' => 'yii\web\JsonParser',
-            ],
-             */
         ],
 
         /*

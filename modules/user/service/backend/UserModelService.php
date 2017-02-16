@@ -9,10 +9,10 @@
 namespace app\modules\user\service\backend;
 
 
-use Yii;
 use yii\base\Model;
-use app\modules\user\components\rbac\RbacService;
+use yii\helpers\ArrayHelper;
 use app\core\service\ModelService;
+use app\modules\user\components\RbacService;
 use app\modules\user\models\User;
 use app\modules\user\models\Field;
 use app\modules\user\models\FieldRelation;
@@ -25,9 +25,9 @@ class UserModelService extends ModelService
 
     protected $rbacService;
 
-    public function __construct(RbacService $rbacService)
+    public function __construct()
     {
-        $this->rbacService = $rbacService;
+        $this->rbacService = new RbacService();
     }
 
     protected function init()
@@ -48,7 +48,10 @@ class UserModelService extends ModelService
         $this->setData([
             'model' => $this->model,
             'fields' => $this->fields,
-            'authItem' => $this->rbacService->getAllItems(),
+            'roleListItem' => ArrayHelper::map(
+                $this->rbacService->getItems(),
+                'name', 'name', 'type'
+            )
         ]);
     }
 
@@ -58,7 +61,7 @@ class UserModelService extends ModelService
             ->byId($params['get']['id'])
             ->one();
 
-        $this->model->rolePermission = array_keys($this->rbacService->getAssignments($this->model->id));
+        $this->model->rolePermission = array_keys($this->rbacService->manager->getAssignments($this->model->id));
 
         $this->init();
 
@@ -69,7 +72,10 @@ class UserModelService extends ModelService
         $this->setData([
             'model' => $this->model,
             'fields' => $this->fields,
-            'authItem' => $this->rbacService->getAllItems(),
+            'roleListItem' => ArrayHelper::map(
+                $this->rbacService->getItems(),
+                'name', 'name', 'type'
+            )
         ]);
     }
 
@@ -99,7 +105,7 @@ class UserModelService extends ModelService
             $success = $this->model->save();
             if ($success) {
                 $this->saveField();
-                $this->saveUserAssignment($this->model->rolePermission, $this->model->id);
+                $this->rbacService->saveUserAssignment($this->model->rolePermission, $this->model->id);
             }
 
             $transaction->commit();
@@ -110,25 +116,6 @@ class UserModelService extends ModelService
         }
 
         return $success;
-    }
-
-    protected function saveUserAssignment($rolePermission, $userId)
-    {
-        if (is_array($rolePermission)) {
-            $items = array_keys($this->rbacService->getAssignments($userId));
-
-            foreach (array_diff($items, $rolePermission) as $item) {
-                $role = $this->rbacService->getItem($item);
-                $this->rbacService->revoke($role, $userId);
-            }
-
-            $item = null;
-            foreach (array_diff($rolePermission, $items) as $item) {
-                if ($role = $this->rbacService->getItem($item)) {
-                    $this->rbacService->assign($role, $userId);
-                }
-            }
-        }
     }
 
     /**
@@ -162,7 +149,7 @@ class UserModelService extends ModelService
             if (!empty($field->value)) {
                 $field->save();
             } else {
-                //$field->delete();
+                $field->delete();
             }
         }
     }

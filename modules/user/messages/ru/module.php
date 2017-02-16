@@ -35,8 +35,10 @@ return [
 	'Password' => 'Пароль',
 	'Password repeat' => 'Повторить пароль',
 
+    'Tab role' => 'Роли/привелегии',
     'Tab personal data' => 'Персональные данные',
-    'Tab role' => 'Роли',
+    'Toolbar field' => 'Дополнительные свойства',
+    'Toolbar rbac' => 'Менеджер ролей/привелегий',
 
     'You have registered, use your email and password to access the site' => 'Вы зарегистрировались, используйте свой email и пароль для входа на сайт',
 
@@ -47,10 +49,6 @@ return [
 	'Surname' => 'Фамилия',
 
 	'Verify code' => 'Проверочный код',
-
-    'Toolbar field' => 'Дополнительные поля',
-    'Toolbar rbac' => 'RBAC',
-    'Tab field' => 'Дополнительные поля',
 	
 	'Email' => 'Email',
 ];

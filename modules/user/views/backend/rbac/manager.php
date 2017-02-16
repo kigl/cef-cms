@@ -12,7 +12,7 @@ use yii\rbac\Item;
     'buttons' => [
         'create' => [
             'item' => [
-                'url' => Url::to(['rbac/create', 'type' => Item::TYPE_ROLE]),
+                'url' => Url::to(['rbac/create']),
             ],
         ],
     ],
@@ -37,13 +37,15 @@ use yii\rbac\Item;
                 'update' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
                             'rbac/update',
-                            'name' => $model->name
+                            'type' => $model->type,
+                            'name' => $model->name,
                         ]
                     );
                 },
                 'delete' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
                         'rbac/delete',
+                        'type' => $model->type,
                         'name' => $model->name
                     ],
                         ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'question on delete file')]

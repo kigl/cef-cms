@@ -22,6 +22,7 @@ return [
 
     'Name' => 'Имя / Наименование',
     'Not exist views: {views}' => 'Значение "{views}" не существует',
+    'Not selected' => 'Не выбран',
 
     'Message thank you' => 'Спасибо!',
     'Meta title' => 'Meta заголовок страницы',
@@ -50,6 +51,9 @@ return [
 	'Sorting' => 'Сортировка',
 	'Submit send' => 'Отправить',
 	'Status' => 'Статус',
+	'Status block' => 'Заблокирован',
+	'Status active' => 'Активный',
+	'Status draft' => 'Черновик',
 
 	'Updated element' => 'Элемент обновлен!',
 	'Update time' => 'Дата обновления',
@@ -66,6 +70,8 @@ return [
     'Tab images' => 'Изображения',
     'Type field text' => 'Text',
     'Type field checkbox' => 'Checkbox',
+    'Type role' => 'Роль',
+    'Type permission' => 'Разрешение',
 
     'Value' => 'Значение',
 

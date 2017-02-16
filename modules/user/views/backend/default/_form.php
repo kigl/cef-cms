@@ -22,34 +22,42 @@ use app\modules\user\helpers\StatusHelper;
 
     <div class="tab-content well well-sm">
 
-        <?php echo $form->errorSummary($data->getModel(), ['class' => 'alert alert-danger']); ?>
+        <?php echo $form->errorSummary($data['model'], ['class' => 'alert alert-danger']); ?>
 
         <div class="tab-pane active" id="main">
-            <?php echo $form->field($data->getModel(), 'login'); ?>
-            <?php echo $form->field($data->getModel(), 'status')
-                ->dropDownList($data->getModel()->getStatusList()); ?>
+            <?php echo $form->field($data['model'], 'login'); ?>
+            <?php echo $form->field($data['model'], 'status')
+                ->dropDownList($data['model']->getStatusList()); ?>
 
-            <?php echo $form->field($data->getModel(), 'email'); ?>
+            <?php echo $form->field($data['model'], 'email'); ?>
 
-            <?php echo $form->field($data->getModel(), 'password')->passwordInput(['value' => '']); ?>
-            <?php echo $form->field($data->getModel(), 'password_repeat')->passwordInput(['value' => '']); ?>
+            <?php echo $form->field($data['model'], 'password')->passwordInput(['value' => '']); ?>
+            <?php echo $form->field($data['model'], 'password_repeat')->passwordInput(['value' => '']); ?>
         </div>
 
         <div class="tab-pane" id="profile">
-            <?php echo $form->field($data->getModel(), 'surname'); ?>
-            <?php echo $form->field($data->getModel(), 'name'); ?>
-            <?php echo $form->field($data->getModel(), 'lastname'); ?>
+            <?php echo $form->field($data['model'], 'surname'); ?>
+            <?php echo $form->field($data['model'], 'name'); ?>
+            <?php echo $form->field($data['model'], 'lastname'); ?>
         </div>
 
         <div class="tab-pane" id="field">
-            <?php foreach ($data->getFields() as $fr) : ?>
+            <?php foreach ($data['fields'] as $fr) : ?>
                 <?= $form->field($fr, '[' . $fr->field_id . ']value')->label($fr->field->name); ?>
             <?php endforeach; ?>
         </div>
 
         <div class="tab-pane" id="role">
-            <?= $form->field($data->getModel(), 'rolePermission')
-                ->dropDownList($data->getAuthItemList(), ['multiple' => 'multiple', 'size' => 15, 'prompt' => '']);?>
+            <?= $form->field($data['model'], 'rolePermission')
+                ->dropDownList($data['roleListItem'], [
+                    'prompt' => Yii::t('app', 'Not selected'),
+                    'size' => 10,
+                    'multiple' => 'multiple',
+                    'groups' => [
+                        '1' => ['label' => Yii::t('app', 'Type role')],
+                        '2' => ['label' => Yii::t('app', 'Type permission')]
+                    ],
+                ]);?>
         </div>
     </div>
 <?php $form->end(); ?>

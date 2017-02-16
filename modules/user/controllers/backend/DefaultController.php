@@ -3,19 +3,15 @@
 namespace app\modules\user\controllers\backend;
 
 
-use app\modules\user\components\rbac\RbacService;
 use Yii;
 use yii\data\ActiveDataProvider;
 use app\modules\user\service\backend\UserModelService;
-use app\modules\user\service\backend\UserViewService;
 use app\modules\user\components\BackendController;
 use app\modules\user\models\UserService;
 use app\modules\user\models\User;
-use yii\rbac\Item;
 
 class DefaultController extends BackendController
 {
-
     public function actions()
     {
         return [
@@ -32,6 +28,7 @@ class DefaultController extends BackendController
             'query' => User::find(),
             'sort' => ['attributes' => ['id', 'login', 'email', 'status']],
         ]);
+
         return $this->render('manager', ['dataProvider' => $dataProvider]);
     }
 
@@ -46,9 +43,7 @@ class DefaultController extends BackendController
             return $this->redirect(['manager']);
         }
 
-        $viewService = (new UserViewService())->setData($modelService->getData());
-
-        return $this->render('create', ['data' => $viewService]);
+        return $this->render('create', ['data' => $modelService->getData()]);
     }
 
     public function actionUpdate($id)
@@ -59,14 +54,12 @@ class DefaultController extends BackendController
             'post' => Yii::$app->request->post(),
         ]);
 
-        $viewService = (new UserViewService())->setData($modelService->getData());
-
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
             return $this->redirect(['default/manager']);
         }
 
-        return $this->render('update', ['data' => $viewService]);
+        return $this->render('update', ['data' => $modelService->getData()]);
     }
 
     public function actionView($id)
@@ -74,13 +67,10 @@ class DefaultController extends BackendController
         $modelService = Yii::createObject(UserModelService::class);
         $modelService->actionView($id);
 
-        $viewService = (new UserViewService())->setData($modelService->getData());
-
-
         if (Yii::$app->request->isAjax) {
-            return $this->renderAjax('view', ['data' => $viewService]);
+            return $this->renderAjax('view', ['data' => $modelService->getData()]);
         }
 
-        return $this->render('view', ['data' => $viewService]);
+        return $this->render('view', ['data' => $modelService->getData()]);
     }
 }

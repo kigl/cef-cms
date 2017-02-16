@@ -14,6 +14,7 @@ use yii\base\Model;
 use yii\helpers\ArrayHelper;
 use yii\rbac\Item;
 use yii\db\Query;
+use yii\rbac\Role;
 use app\core\session\Flash;
 
 class RbacForm extends Model
@@ -26,7 +27,7 @@ class RbacForm extends Model
 
     public $description;
 
-    public $rule;
+    public $ruleName;
 
     public $data;
 
@@ -45,7 +46,7 @@ class RbacForm extends Model
     {
         return [
             [['name', 'type'], 'required'],
-            [['name', 'description'], 'string', 'max' => 255],
+            [['name', 'description', 'ruleName'], 'string', 'max' => 255],
             ['type', 'validatorType'],
             ['child', 'safe'],
         ];
@@ -78,9 +79,23 @@ class RbacForm extends Model
     {
         $query = new Query;
         $query->from('{{%auth_item}}')
-            ->where(['type' => $this->type])
-            ->select(['name', 'type']);
+            ->orderBy(['type' => SORT_ASC])
+            ->select(['name', 'type'])
+            ->all();
 
-        return ArrayHelper::map($query->all(), 'name', 'name');
+        return ArrayHelper::map($query->all(), 'name', 'name', 'type');
+    }
+
+    public function getListType()
+    {
+        return [
+            Role::TYPE_ROLE => Yii::t('app', 'Type role'),
+            Role::TYPE_PERMISSION => Yii::t('app', 'Type permission'),
+        ];
+    }
+
+    public function getType($type)
+    {
+        return $this->getListType()[$type];
     }
 }
