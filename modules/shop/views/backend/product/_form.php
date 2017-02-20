@@ -97,7 +97,7 @@ use app\modules\backend\widgets\grid\GridView;
                 'dataProvider' => $data['dataProvider'],
                 'buttons' => [
                     'create' => [
-                        'item' => [
+                        'element' => [
                             'url' => Url::to([
                                 'product/create',
                                 'parent_id' => $data['model']->id,

@@ -8,7 +8,7 @@ use yii\helpers\Html;
     'dataProvider' => $dataProvider,
     'buttons' => [
         'create' => [
-            'item' => [
+            'element' => [
                 'url' => Url::to(['create']),
             ],
         ],
@@ -19,7 +19,7 @@ use yii\helpers\Html;
             'attribute' => 'name',
             'format' => 'raw',
             'value' => function ($data) {
-                return Html::a($data->name, ['item/manager', 'menu_id' => $data->id]);
+                return Html::a($data->name, ['element/manager', 'menu_id' => $data->id]);
             }
         ],
         [

@@ -16,7 +16,7 @@ $this->setBreadcrumbs($data['breadcrumbs']);
             'group' => [
                 'url' => Url::to(['create', 'parent_id' => $data['id']]),
             ],
-            'item' => [
+            'element' => [
                 'url' => Url::to(['product/create', 'group_id' => $data['id']]),
             ],
         ],

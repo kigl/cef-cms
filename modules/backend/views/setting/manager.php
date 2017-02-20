@@ -5,7 +5,7 @@ use app\modules\admin\widgets\grid\GridView;
 
 <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'buttons' => ['create' => ['item']],
+        'buttons' => ['create' => ['element']],
         'columns' => [
             'module_id',
             'name',

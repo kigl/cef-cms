@@ -29,5 +29,3 @@ $this->setBreadcrumbs($data['breadcrumbs']);
     </div>
 
 <?= $this->render('_listViewProduct', ['data' => $data]); ?>
-
-<?= \app\modules\shop\widgets\frontend\test\Widget::widget();?>

@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 <?= GridView::widget([
 	'dataProvider' => $dataProvider,
-	'buttons' => ['create' => ['item']],
+	'buttons' => ['create' => ['element']],
 	'columns' => [
 		'name',
 		'id',

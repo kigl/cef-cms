@@ -97,7 +97,7 @@ class RbacService extends Object
             }
 
         } else {
-            //$this->manager->removeChildren($item);
+            //$this->manager->removeChildren($element);
         }
     }
 

@@ -8,7 +8,7 @@ use app\modules\user\helpers\StatusHelper;
 <?php
 echo GridView::widget([
     'dataProvider' => $dataProvider,
-    'buttons' => ['create' => ['item']],
+    'buttons' => ['create' => ['element']],
     'columns' => [
         'id',
         'login',

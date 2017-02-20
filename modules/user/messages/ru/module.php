@@ -16,7 +16,7 @@ return [
     'Login or email' => 'Логин или email',
     'Login' => 'Логин',
 	'Logout' => 'Выйти',
-    'Login menu item' => 'Войти',
+    'Login menu element' => 'Войти',
     'Login btn' => 'Войти',
 
 	'Message: password do not match' => 'Пароли не совпадают',

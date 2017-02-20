@@ -11,7 +11,7 @@ use yii\rbac\Item;
     'dataProvider' => $data['dataProvider'],
     'buttons' => [
         'create' => [
-            'item' => [
+            'element' => [
                 'url' => Url::to(['rbac/create']),
             ],
         ],

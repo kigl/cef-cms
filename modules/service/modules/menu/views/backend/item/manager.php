@@ -9,7 +9,7 @@ use yii\helpers\Html;
     'dataProvider' => $data['dataProvider'],
     'buttons' => [
         'create' => [
-            'item' => [
+            'element' => [
                 'url' => Url::to([
                     'create',
                     'menu_id' => $data['menuId'],
@@ -27,7 +27,7 @@ use yii\helpers\Html;
             'value' => function ($data) {
                 return Html::a(
                     Html::encode($data->name),
-                    ['item/manager', 'menu_id' => $data->menu_id, 'id' => $data->id]
+                    ['element/manager', 'menu_id' => $data->menu_id, 'id' => $data->id]
                 );
             }
         ],
@@ -42,7 +42,7 @@ use yii\helpers\Html;
             'format' => 'raw',
             'value' => function ($data) {
                 return \kartik\editable\Editable::widget([
-                    'name' => 'Item[sorting]',
+                    'name' => 'Element[sorting]',
                     'value' => $data->sorting,
                     'formOptions' => ['action' => ['edit-sorting', 'id' => $data->id]],
                 ]);

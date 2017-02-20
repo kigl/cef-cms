@@ -11,7 +11,7 @@ use yii\bootstrap\Modal;
 class GridView extends \kartik\grid\GridView
 {
     const TYPE_GROUP = 'group';
-    const TYPE_ITEM = 'item';
+    const TYPE_ITEM = 'element';
 
     public $dataProviderGroup;
 

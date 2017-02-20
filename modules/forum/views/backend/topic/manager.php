@@ -60,10 +60,10 @@ use app\modules\main\widgets\backend\grid\GridView;
 				/*
 				'buttons' => [
 					'update' => function ($url, $model, $key) {
-						return Html::a('<i class="glyphicon glyphicon-pencil"></i>', ['backend/update/system', 'id' => $model->id]);
+						return Html::a('<i class="glyphicon glyphicon-pencil"></i>', ['backend/update/infosystem', 'id' => $model->id]);
 					},
 					'delete' => function ($url, $model, $key) {
-						return Html::a('<i class="glyphicon glyphicon-trash"></i>', ['backend/delete/system', 'id' => $model->id], ['date-method' => 'POST', 'data-confirm' => Yii::t('main', 'question on delete file')]); 	
+						return Html::a('<i class="glyphicon glyphicon-trash"></i>', ['backend/delete/infosystem', 'id' => $model->id], ['date-method' => 'POST', 'data-confirm' => Yii::t('main', 'question on delete file')]);
 					}
 					*/
 				],

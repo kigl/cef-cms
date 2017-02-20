@@ -8,7 +8,7 @@ use yii\helpers\Html;
 <?= GridView::widget([
     'buttons' => [
         'create' => [
-            'item' => [
+            'element' => [
                 'url' => Url::to(['create']),
             ],
         ],

@@ -61,9 +61,9 @@ class Item extends \yii\db\ActiveRecord
             'url' => Yii::t('app', 'Url'),
             'visible' => Yii::t('app', 'Visible'),
             'sorting' => Yii::t('app', 'Sorting'),
-            'item_class' => Yii::t('service', 'CSS item class'),
-            'item_icon_class' => Yii::t('service', 'Item icon CSS class'),
-            'item_id' => Yii::t('service', 'Menu item id html'),
+            'item_class' => Yii::t('service', 'CSS element class'),
+            'item_icon_class' => Yii::t('service', 'Element icon CSS class'),
+            'item_id' => Yii::t('service', 'Menu element id html'),
             'link_class' => Yii::t('service', 'Link class'),
             'link_id' => Yii::t('service', 'Link id html'),
         ];

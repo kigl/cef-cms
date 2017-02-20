@@ -7,7 +7,7 @@ use app\modules\backend\widgets\grid\GridView;
 <?= GridView::widget([
     'buttons' => [
         'create' => [
-            'item' => [
+            'element' => [
                 'url' => Url::to(['create']),
             ],
         ],

@@ -27,7 +27,7 @@ class Image extends \app\modules\shop\models\base\Image
     {
         return [
             [
-                'class' => 'app\core\behaviors\file\ImageUpload',
+                'class' => 'app\core\behaviors\file\UploadImage',
                 'attribute' => 'name',
                 'path' => Yii::$app->getModule('shop')->getPublicPath() . '/images',
                 'pathUrl' => Yii::$app->getModule('shop')->getPublicPathUrl() . '/images',

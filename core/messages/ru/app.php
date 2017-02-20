@@ -30,6 +30,8 @@ return [
 
     'Icon css class' => 'CSS класс иконки',
     'Image' => 'Изображение',
+    'Image preview' => 'Предварительное изображение',
+    'Image content' => 'Картинка для содержания',
 
     'Parent id' => 'Id родителя',
 	'Position' => 'Позиция',
@@ -60,6 +62,8 @@ return [
     'Url' =>  'URL',
     'Use captcha' => 'Использовать captcha',
 
+    'Element on page' => 'Число элементов на странице',
+
     'Tab main' => 'Основные',
     'Tab description' => 'Описание',
     'Tab profile' => 'Профиль',
@@ -68,6 +72,7 @@ return [
     'Tab more properties' => 'Дополнительные свойства',
     'Tab more' => 'Дополнительные',
     'Tab images' => 'Изображения',
+    'Tab settings' => 'Настройки',
     'Type field text' => 'Text',
     'Type field checkbox' => 'Checkbox',
     'Type role' => 'Роль',
