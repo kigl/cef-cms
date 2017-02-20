@@ -41,7 +41,7 @@ class Widget extends \yii\base\Widget
                 ->select(['id', 'name', 'parent_id', 'alias'])
                 ->asArray()
                 ->all();
-
+            
             \Yii::$app->cache->set('treeGroup', $data, 3600 * 24 * 12, $dependency);
         }
 

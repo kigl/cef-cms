@@ -13,7 +13,9 @@ use app\modules\infosystem\widgets\backend\fieldUploadImage\Widget as FieldUploa
         <li><a href="#seo" data-toggle="tab"><?= Yii::t('app', 'Tab SEO'); ?></a></li>
     </ul>
 
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin([
+    'options' => ['enctype' => 'multipart/form-data'],
+]); ?>
 
 <?= $form->errorSummary($data['model']); ?>
 

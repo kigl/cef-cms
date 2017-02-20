@@ -34,8 +34,7 @@ return [
 		],
 		'urlManager' => [
 			'rules' => [
-			    '<infosystem>/g/<group:\w+>' => 'backend/infosystem/infosystem/test',
-                '<infosystem>/e/<element:\w+>' => 'backend/infosystem/infosystem/test',
+				['class' => \app\modules\infosystem\components\UrlRule::class],
 			],
 		],
 	],

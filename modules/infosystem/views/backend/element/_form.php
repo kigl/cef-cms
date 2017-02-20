@@ -100,7 +100,7 @@ use app\modules\infosystem\widgets\backend\tagEditor\TagEditor;
         </div>
 
         <div class="tab-pane" id="seo">
-            <legend><?= Yii::t('app', 'Form legend seo'); ?></legend>
+            <?= $form->field($data['model'], 'alias'); ?>
 
             <?= $form->field($data['model'], 'meta_title'); ?>
 
