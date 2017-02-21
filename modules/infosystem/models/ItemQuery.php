@@ -11,7 +11,7 @@ namespace app\modules\infosystem\models;
 
 use yii\db\ActiveQuery;
 
-class ElementQuery extends ActiveQuery
+class ItemQuery extends ActiveQuery
 {
     public function byId($id)
     {

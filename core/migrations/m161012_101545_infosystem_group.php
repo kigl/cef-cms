@@ -17,7 +17,7 @@ class m161012_101545_infosystem_group extends Migration
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
             'parent_id' => $this->integer(),
-            'infosystem_id' => $this->integer(),
+            'infosystem_id' => $this->string(100),
             'name' => $this->string(),
             'description' => $this->string(300),
             'content' => $this->text(),
@@ -31,6 +31,11 @@ class m161012_101545_infosystem_group extends Migration
 
         $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_description`;");
         $this->execute("ALTER TABLE {$this->tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
+
+        $this->createIndex('ix-infosystem_group-parent_id', $this->tableName, 'parent_id');
+        $this->createIndex('ix-infosystem_group-infosystem_id', $this->tableName, 'infosystem_id');
+        $this->createIndex('ix-infosystem_group-alias', $this->tableName, 'alias');
+
     }
 
     /**

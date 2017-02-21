@@ -12,13 +12,13 @@ namespace app\modules\infosystem\service\backend;
 use yii\data\ActiveDataProvider;
 use app\core\service\ModelService;
 use app\modules\infosystem\models\Group;
-use app\modules\infosystem\models\ElementSearch;
+use app\modules\infosystem\models\ItemSearch;
 
 class GroupModelService extends ModelService
 {
     public function actionManager()
     {
-        $searchModel = new ElementSearch();
+        $searchModel = new ItemSearch();
         $dataProvider = $searchModel->search($this->getData('get'));
 
 
@@ -77,7 +77,7 @@ class GroupModelService extends ModelService
         if ($model && $model->delete()) {
 
             foreach ($model->items as $item) {
-                $itemModelService = new ElementModelService();
+                $itemModelService = new ItemModelService();
                 $itemModelService->actionDelete($item->id);
             }
 

@@ -7,7 +7,7 @@ use app\modules\infosystem\components\TagBehavior;
 use app\modules\user\models\User;
 
 /**
- * This is the model class for table "mn_infosystem_element".
+ * This is the model class for table "mn_infosystem_item".
  *
  * @property integer $id
  * @property integer $group_id
@@ -30,7 +30,7 @@ use app\modules\user\models\User;
  * @property integer $create_time
  * @property integer $update_time
  */
-class Element extends \app\core\db\ActiveRecord  implements \app\modules\user\components\AuthorInterface
+class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\components\AuthorInterface
 {
     const STATUS_BLOCK = 0;
     const STATUS_ACTIVE = 1;
@@ -43,7 +43,7 @@ class Element extends \app\core\db\ActiveRecord  implements \app\modules\user\co
      */
     public static function tableName()
     {
-        return '{{%infosystem_element}}';
+        return '{{%infosystem_item}}';
     }
 
     /**
@@ -52,9 +52,10 @@ class Element extends \app\core\db\ActiveRecord  implements \app\modules\user\co
     public function rules()
     {
         return [
-            [['group_id', 'infosystem_id', 'status', 'sorting', 'user_id'], 'integer'],
+            [['name', 'infosystem_id'], 'required'],
+            [['infosystem_id'], 'string', 'max' => 100],
+            [['group_id', 'status', 'sorting', 'user_id'], 'integer'],
             [['date', 'date_start', 'date_end'], 'string'],
-            [['name'], 'required'],
             [['content'], 'string'],
             [['name', 'meta_title', 'meta_description'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 300],
@@ -99,7 +100,7 @@ class Element extends \app\core\db\ActiveRecord  implements \app\modules\user\co
 
     public static function find()
     {
-        return new ElementQuery(get_called_class());
+        return new ItemQuery(get_called_class());
     }
 
     public function getInfosystem()
@@ -171,6 +172,11 @@ class Element extends \app\core\db\ActiveRecord  implements \app\modules\user\co
             [
                 'class' => 'app\core\behaviors\UserId',
                 'attribute' => 'user_id',
+            ],
+            [
+                'class' => 'app\core\behaviors\GenerateAlias',
+                'text' => 'name',
+                'alias' => 'alias',
             ],
         ];
     }

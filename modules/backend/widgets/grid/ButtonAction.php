@@ -9,7 +9,7 @@ use yii\helpers\Html;
 class ButtonAction
 {
     const CREATE_BUTTONS_GROUP = 'group';
-    const CREATE_BUTTONS_ITEM = 'element';
+    const CREATE_BUTTONS_ITEM = 'item';
 
     public $containerTag = 'div';
 

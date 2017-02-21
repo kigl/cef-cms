@@ -1,6 +1,6 @@
 <?php
 /**
- * Class ManagerController
+ * Class ItemGroupController
  * @package app\modules\infosystem\controllers\frontend
  * @author Kirill Golodaev <kirillgolodaev@gmail.com>
  */
@@ -10,15 +10,15 @@ namespace app\modules\infosystem\controllers\frontend;
 
 
 use Yii;
-use app\modules\infosystem\service\frontend\GroupModelService;
 use app\modules\infosystem\components\FrontendController;
+use app\modules\infosystem\service\frontend\ItemModelService;
 
-class GroupController extends FrontendController
+class ItemController extends FrontendController
 {
     public function actionView($id, $alias, $infosystem_id)
     {
         $modelService = Yii::createObject([
-            'class' => GroupModelService::class,
+            'class' => ItemModelService::class,
             'data' => [
                 'get' => Yii::$app->request->getQueryParams(),
             ],
@@ -27,17 +27,17 @@ class GroupController extends FrontendController
 
         // Проверяем инфосистему и алиас
         if ($modelService->hasError($modelService::ERROR_NOT_MODEL_ALIAS)) {
-           return $this->redirect([
+            return $this->redirect([
                 'view',
                 'id' => $modelService->getData('model')->id,
                 'alias' => $modelService->getData('model')->alias,
                 'infosystem_id' => $modelService->getData('model')->infosystem_id
-                ], 302);
+            ], 302);
         }
 
         $viewFile = $modelService->getData('model')
             ->infosystem
-            ->template_group;
+            ->template_item;
 
         return $this->render($viewFile, ['data' => $modelService->getData()]);
     }

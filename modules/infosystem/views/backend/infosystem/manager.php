@@ -9,7 +9,7 @@ use app\modules\informationsystem\models\Group;
     'dataProvider' => $data['dataProvider'],
     'buttons' => [
         'create' => [
-            'element' => [
+            'item' => [
                 'url' => Url::to(['create']),
             ],
         ],

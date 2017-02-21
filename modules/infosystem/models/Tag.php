@@ -18,7 +18,7 @@ class Tag extends \app\core\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%infosystem_element_tag}}';
+        return '{{%infosystem_tag}}';
     }
 
     /**
@@ -50,14 +50,14 @@ class Tag extends \app\core\db\ActiveRecord
         return $this->hasOne(Infosystem::className(), ['id' => 'infosystem_id']);
     }
 
-    public function getElements()
+    public function getItems()
     {
-        return $this->hasMany(Element::className(), ['id' => 'element_id'])
-            ->viaTable(ElementTag::tableName(), ['tag_id' => 'id']);
+        return $this->hasMany(Item::className(), ['id' => 'item_id'])
+            ->viaTable(ItemTag::tableName(), ['tag_id' => 'id']);
     }
 
     public static function find()
     {
-        return new ElementQuery(get_called_class());
+        return new ItemQuery(get_called_class());
     }
 }

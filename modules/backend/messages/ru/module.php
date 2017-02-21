@@ -4,7 +4,7 @@ return [
 
 	'Attribute id menu' => 'Id меню',
 
-    'Button create element' => 'Добавить элемент',
+    'Button create item' => 'Добавить элемент',
     'Button create group' => 'Добавить группу',
     'Breadcrumbs root' => 'Root',
 

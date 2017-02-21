@@ -6,7 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use app\modules\infosystem\models\Tag;
-use app\modules\infosystem\models\ElementTag;
+use app\modules\infosystem\models\ItemTag;
 
 class TagBehavior extends \yii\base\Behavior
 {
@@ -64,7 +64,7 @@ class TagBehavior extends \yii\base\Behavior
             /**
              * Удаляем связи
              */
-            Yii::$app->db->createCommand()->delete(ElementTag::tableName(), ['tag_id' => $removeTag])
+            Yii::$app->db->createCommand()->delete(ItemTag::tableName(), ['tag_id' => $removeTag])
                 ->execute();
         }
 
@@ -75,7 +75,7 @@ class TagBehavior extends \yii\base\Behavior
             /**
              * Добавляем связи
              */
-            Yii::$app->db->createCommand()->batchInsert(ElementTag::tableName(), ['element_id', 'tag_id'], $result)
+            Yii::$app->db->createCommand()->batchInsert(ItemTag::tableName(), ['item_id', 'tag_id'], $result)
                 ->execute();
         }
     }
@@ -84,8 +84,8 @@ class TagBehavior extends \yii\base\Behavior
     {
         return Tag::find()
             ->alias('m')
-            ->leftJoin(ElementTag::tableName() . ' r', 'm.id = r.tag_id')
-            ->where('r.element_id = :id', [':id' => $this->owner->id])
+            ->leftJoin(ItemTag::tableName() . ' r', 'm.id = r.tag_id')
+            ->where('r.item_id = :id', [':id' => $this->owner->id])
             ->asArray()
             ->all();
     }

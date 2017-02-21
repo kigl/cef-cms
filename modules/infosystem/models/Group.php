@@ -39,8 +39,9 @@ class Group extends \app\core\db\ActiveRecord
     public function rules()
     {
         return [
-            ['name', 'required'],
-            [['parent_id', 'infosystem_id', 'user_id'], 'integer'],
+            [['name', 'infosystem_id'], 'required'],
+            [['infosystem_id'], 'string', 'max' => 100],
+            [['parent_id', 'user_id'], 'integer'],
             [['content'], 'string'],
             [['name', 'alias', 'meta_title'], 'string', 'max' => 255],
             [['description', 'meta_description'], 'string', 'max' => 300],
@@ -106,9 +107,9 @@ class Group extends \app\core\db\ActiveRecord
         return $this->hasMany(static::class, ['parent_id' => 'id']);
     }
 
-    public function getElements()
+    public function getItems()
     {
-        return $this->hasMany(Element::className(), ['group_id' => 'id']);
+        return $this->hasMany(Item::className(), ['group_id' => 'id']);
     }
 
     public function getInfosystem()

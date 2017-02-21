@@ -10,30 +10,16 @@ namespace app\modules\infosystem\service\frontend;
 
 
 use app\core\service\ModelService;
-use app\modules\infosystem\models\Group;
-use yii\data\ActiveDataProvider;
+use app\modules\infosystem\models\Item;
 
-class GroupModelService extends ModelService
+class ItemModelService extends ModelService
 {
     public function actionView()
     {
-        $model = Group::find()
+        $model = Item::find()
             ->with(['infosystem'])
             ->where(['id' => $this->getData('get', 'id')])
             ->one();
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $model->getItems(),
-            'pagination' => [
-                'pageSize' => $model->infosystem->item_on_page,
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'name' => SORT_ASC,
-                ],
-                'attributes' => ['id', 'name'],
-            ],
-        ]);
 
 
         if ($this->getData('get', 'alias') != $model->alias
@@ -45,7 +31,6 @@ class GroupModelService extends ModelService
 
         $this->setData([
             'model' => $model,
-            'dataProvider' => $dataProvider,
         ]);
     }
 }

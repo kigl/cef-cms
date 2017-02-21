@@ -1,6 +1,6 @@
 <?php
 /**
- * Class ElementModelService
+ * Class ItemModelService
  * @package app\modules\infosystem\service\backend
  * @author Kirill Golodaev <kirillgolodaev@gmail.com>
  */
@@ -8,14 +8,14 @@
 
 namespace app\modules\infosystem\service\backend;
 
-use app\modules\infosystem\models\Element;
+use app\modules\infosystem\models\Item;
 use app\core\service\ModelService;
 
-class ElementModelService extends ModelService
+class ItemModelService extends ModelService
 {
     public function actionCreate()
     {
-        $model = new Element;
+        $model = new Item;
         $model->infosystem_id = $this->getData('get', 'infosystem_id');
         $model->group_id = $this->getData('get', 'group_id');
 
@@ -30,7 +30,7 @@ class ElementModelService extends ModelService
 
     public function actionUpdate(array $params)
     {
-        $model = Element::find()
+        $model = Item::find()
             ->byId($params['get']['id'])
             ->one();
 
@@ -45,7 +45,7 @@ class ElementModelService extends ModelService
 
     public function actionDelete($id)
     {
-        $model = Element::findOne($id);
+        $model = Item::findOne($id);
 
         if ($model->delete()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_DELETE);

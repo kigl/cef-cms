@@ -15,6 +15,8 @@ use vova07\imperavi\Widget;
 
     <div class="tab-content">
         <div class="tab-pane active" id="main">
+            <?= $form->field($model, 'id'); ?>
+
             <?= $form->field($model, 'name'); ?>
 
             <?= $form->field($model, 'description')->textArea(); ?>
@@ -30,9 +32,9 @@ use vova07\imperavi\Widget;
         <div class="tab-pane" id="settings">
             <?= $form->field($model, 'template_group'); ?>
 
-            <?= $form->field($model, 'template_element'); ?>
+            <?= $form->field($model, 'template_item'); ?>
 
-            <?= $form->field($model, 'element_on_page'); ?>
+            <?= $form->field($model, 'item_on_page'); ?>
         </div>
     </div>
 <?php ActiveForm::end(); ?>

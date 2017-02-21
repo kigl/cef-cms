@@ -1,6 +1,6 @@
 <?php
 /**
- * Class ElementController
+ * Class ItemController
  * @package app\modules\infosystem\controllers\backend
  * @author Kirill Golodaev <kirillgolodaev@gmail.com>
  */
@@ -11,14 +11,14 @@ namespace app\modules\infosystem\controllers\backend;
 
 use Yii;
 use app\modules\infosystem\components\BackendController;
-use app\modules\infosystem\service\backend\ElementModelService;
+use app\modules\infosystem\service\backend\ItemModelService;
 
-class ElementController extends BackendController
+class ItemController extends BackendController
 {
     public function actionCreate($group_id = null, $infosystem_id)
     {
         $modelService = Yii::createObject([
-            'class' => ElementModelService::class,
+            'class' => ItemModelService::class,
             'data' => [
                 'post' => Yii::$app->request->post(),
                 'get' => Yii::$app->request->getQueryParams(),
@@ -39,7 +39,7 @@ class ElementController extends BackendController
 
     public function actionUpdate($id)
     {
-        $modelService = new ElementModelService();
+        $modelService = new ItemModelService();
         $modelService->actionUpdate([
             'post' => Yii::$app->request->post(),
             'get' => Yii::$app->request->getQueryParams(),
@@ -59,7 +59,7 @@ class ElementController extends BackendController
 
     public function actionDelete($id)
     {
-        $modelService = Yii::createObject(ElementModelService::class);
+        $modelService = Yii::createObject(ItemModelService::class);
         $modelService->actionDelete($id);
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_DELETE)) {

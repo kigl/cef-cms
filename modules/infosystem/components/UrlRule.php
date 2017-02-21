@@ -9,38 +9,88 @@
 namespace app\modules\infosystem\components;
 
 
-use app\modules\infosystem\models\Infosystem;
 use Yii;
+use yii\base\Object;
 use yii\caching\DbDependency;
-use yii\helpers\ArrayHelper;
 use yii\web\UrlRuleInterface;
+use app\modules\infosystem\models\Infosystem;
 
-class UrlRule implements UrlRuleInterface
+class UrlRule extends Object implements UrlRuleInterface
 {
+    const URL_NAME_GROUP = 'group';
+    const URL_NAME_ITEM = 'item';
+
     protected $cacheKey = 'infosystemCacheKeyUrlRule';
-    protected $groupRule = '/infosystem/group/view';
-    protected $elementRule = '/infosystem/element/view';
-    
+
+    protected $groupAction = 'infosystem/group/view';
+    protected $itemAction = 'infosystem/item/view';
+
     public function createUrl($manager, $route, $params)
     {
+
+        if ($route == $this->groupAction) {
+
+            $url = $params['infosystem_id'] . '/group/' . $params['id'] . '-' . $params['alias'];
+            unset($params['alias'], $params['infosystem_id'], $params['id']);
+
+            if ($params) {
+                $url.= '?' . http_build_query($params);
+            }
+            return $url;
+        } elseIf ($route == $this->itemAction) {
+
+            $url = $params['infosystem_id'] . '/item/' . $params['id'] . '-' . $params['alias'];
+            unset($params['alias'], $params['infosystem_id'], $params['id']);
+
+            if ($params) {
+                $url.= '?' . http_build_query($params);
+            }
+            return $url;
+        }
+
         return false;
     }
 
     public function parseRequest($manager, $request)
     {
-        $data = $this->getData();
-        
-        $pathInfo = explode('/', $request->getPathInfo());
-        if (array_key_exists($pathInfo[0], $data) && !empty($pathInfo[1])) {
-            if ($pathInfo[1] === 'group' && (isset($pathInfo[2]))) {
-                return [$this->groupRule, ['id' => $pathInfo[2]]];
+        $infosystem = $this->getInfosystems();
+        $itemUrl = explode('/', $request->getPathInfo());
+
+        $params = [];
+        $patternParseParams = '/\/(?<id>\d+)-(?<alias>\S+)/';
+
+        if (array_key_exists($itemUrl[0], $infosystem) && !empty($itemUrl[1])) {
+            if (($itemUrl[1] === self::URL_NAME_GROUP)
+                && preg_match($patternParseParams, $request->getPathInfo(), $params)
+            ) {
+
+                return [
+                    $this->groupAction,
+                    [
+                        'id' => $params['id'],
+                        'alias' => $params['alias'],
+                        'infosystem_id' => $itemUrl[0]
+                    ]
+                ];
+            } elseif (($itemUrl[1] === self::URL_NAME_ITEM)
+                && preg_match($patternParseParams, $request->getPathInfo(), $params)
+            ) {
+
+                return [
+                    $this->itemAction,
+                    [
+                        'id' => $params['id'],
+                        'alias' => $params['alias'],
+                        'infosystem_id' => $itemUrl[0]
+                    ]
+                ];
             }
         }
 
         return false;
     }
 
-    protected function getData()
+    protected function getInfosystems()
     {
         $depedency = new DbDependency([
             'sql' => 'SELECT MAX(update_time) FROM ' . Infosystem::tableName(),
@@ -49,7 +99,7 @@ class UrlRule implements UrlRuleInterface
         if (!$data = Yii::$app->cache->get($this->cacheKey)) {
             $data = Infosystem::find()
                 ->asArray()
-                ->indexBy('name')
+                ->indexBy('id')
                 ->all();
 
             Yii::$app->cache->set($this->cacheKey, $data, 3600 * 24 * 12, $depedency);

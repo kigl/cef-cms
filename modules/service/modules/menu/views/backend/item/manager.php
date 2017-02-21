@@ -42,7 +42,7 @@ use yii\helpers\Html;
             'format' => 'raw',
             'value' => function ($data) {
                 return \kartik\editable\Editable::widget([
-                    'name' => 'Element[sorting]',
+                    'name' => 'Item[sorting]',
                     'value' => $data->sorting,
                     'formOptions' => ['action' => ['edit-sorting', 'id' => $data->id]],
                 ]);

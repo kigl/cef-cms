@@ -42,7 +42,7 @@ class GroupController extends BackendController
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
             return $this->redirect([
                 'manager',
-                'id' => $modelService->getData('model')->id,
+                'id' => $modelService->getData('model')->parent_id,
                 'infosystem_id' => $modelService->getData('model')->infosystem_id,
             ]);
         }

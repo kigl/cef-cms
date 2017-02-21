@@ -31,16 +31,19 @@ class InfosystemModelService extends ModelService
     {
         $modelSystem = Infosystem::find()
             ->where(['id' => $id])
-            ->with(['itemGroups'])
+            ->with(['groups'])
             ->one();
 
         if ($modelSystem && $modelSystem->delete()) {
 
-            foreach ($modelSystem->elementGroups as $group) {
+            /**
+             * @todo пересмотреть удаление group и item
+             */
+            foreach ($modelSystem->groups as $group) {
                 Yii::createObject(GroupModelService::class)->actionDelete($group->id);
             }
 
-            $items = $modelSystem->getElements()
+            $items = $modelSystem->getItems()
                 ->all();
 
             foreach ($items as $item) {

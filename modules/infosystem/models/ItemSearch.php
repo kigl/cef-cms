@@ -5,7 +5,7 @@ namespace app\modules\infosystem\models;
 
 use yii\data\ActiveDataProvider;
 
-class ElementSearch extends Element
+class ItemSearch extends Item
 {
     public function rules()
     {
@@ -16,7 +16,7 @@ class ElementSearch extends Element
 
     public function search(array $params)
     {
-        $query = Element::find()
+        $query = Item::find()
             ->where(['group_id' => !empty($params['id']) ? $params['id'] : null])
             ->andWhere(['infosystem_id' => $params['infosystem_id']]);
 

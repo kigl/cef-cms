@@ -19,9 +19,9 @@ use app\core\helpers\Breadcrumbs;
                     'parent_id' => $data['id'],
                 ]),
             ],
-            'element' => [
+            'item' => [
                 'url' => Url::to([
-                    'element/create',
+                    'item/create',
                     'infosystem_id' => $data['infosystemId'],
                     'group_id' => $data['id'],
                 ]),
@@ -71,14 +71,14 @@ use app\core\helpers\Breadcrumbs;
             'buttons' => [
                 'update' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
-                            'element/update',
+                            'item/update',
                             'id' => $model->id
                         ]
                     );
                 },
                 'delete' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
-                        'element/delete',
+                        'item/delete',
                         'id' => $model->id
                     ],
                         ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'Question on delete file')]

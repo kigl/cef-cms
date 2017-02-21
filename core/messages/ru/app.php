@@ -62,7 +62,7 @@ return [
     'Url' =>  'URL',
     'Use captcha' => 'Использовать captcha',
 
-    'Element on page' => 'Число элементов на странице',
+    'Item on page' => 'Число элементов на странице',
 
     'Tab main' => 'Основные',
     'Tab description' => 'Описание',

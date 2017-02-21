@@ -64,7 +64,7 @@ class TagController extends BackendController
         $model = Tag::findOne($id);
 
         if ($model->delete()) {
-            //ElementTag::deleteAll("tag_id = {$model->id}");
+            //ItemTag::deleteAll("tag_id = {$model->id}");
 
             return $this->redirect(['manager', 'infosystem_id' => $model->infosystem_id]);
         }
