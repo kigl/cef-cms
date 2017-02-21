@@ -22,6 +22,9 @@ class ItemModelService extends ModelService
             'query' => Item::find()
                 ->where(['parent_id' => $this->getData('get', 'id')])
                 ->andWhere(['menu_id' => $this->getData('get', 'menu_id')]),
+            'sort' => [
+                'defaultOrder' => ['sorting' => SORT_ASC],
+            ],
         ]);
 
         $this->setData([

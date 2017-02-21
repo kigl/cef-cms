@@ -23,7 +23,9 @@ use yii\helpers\Url;
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+<?= \app\modules\service\modules\menu\widgets\frontend\menu\Widget::widget([
+        'menuId' => 1,
+]);?>
 <div class="container wrapper">
     <div class="panel panel-default">
         <div class="panel-heading">Верхний блок</div>
@@ -31,10 +33,7 @@ use yii\helpers\Url;
             <div class="top-block">
                 <div class="row">
                     <div class="col-md-12">
-                        <?= app\modules\service\modules\menu\widgets\frontend\menu\Widget::widget([
-                            'menuId' => 1,
-                            'options' => ['class' => 'list-inline pull-right'],
-                        ]);?>
+
                     </div>
                 </div>
             </div>

@@ -22,33 +22,29 @@ class UrlRule extends Object implements UrlRuleInterface
 
     protected $cacheKey = 'infosystemCacheKeyUrlRule';
 
-    protected $groupAction = 'infosystem/group/view';
-    protected $itemAction = 'infosystem/item/view';
+    protected $routeGroupAction = 'infosystem/group/view';
+    protected $routeItemAction = 'infosystem/item/view';
 
     public function createUrl($manager, $route, $params)
     {
 
-        if ($route == $this->groupAction) {
-
-            $url = $params['infosystem_id'] . '/group/' . $params['id'] . '-' . $params['alias'];
-            unset($params['alias'], $params['infosystem_id'], $params['id']);
-
-            if ($params) {
-                $url.= '?' . http_build_query($params);
-            }
-            return $url;
-        } elseIf ($route == $this->itemAction) {
-
-            $url = $params['infosystem_id'] . '/item/' . $params['id'] . '-' . $params['alias'];
-            unset($params['alias'], $params['infosystem_id'], $params['id']);
-
-            if ($params) {
-                $url.= '?' . http_build_query($params);
-            }
-            return $url;
+        if ($route == $this->routeGroupAction) {
+            $controller = self::URL_NAME_GROUP;
+        } elseIf ($route == $this->routeItemAction) {
+            $controller = self::URL_NAME_ITEM;
+        } else {
+            return false;
         }
 
-        return false;
+        $url = $params['infosystem_id'] . '/' . $controller .'/' . $params['id'] . '-' . $params['alias'];
+
+        unset($params['alias'], $params['infosystem_id'], $params['id']);
+
+        if (isset($params) && ($query = http_build_query($params)) != '') {
+            $url .= '?' . $query;
+        }
+
+        return $url;
     }
 
     public function parseRequest($manager, $request)
@@ -57,38 +53,35 @@ class UrlRule extends Object implements UrlRuleInterface
         $itemUrl = explode('/', $request->getPathInfo());
 
         $params = [];
-        $patternParseParams = '/\/(?<id>\d+)-(?<alias>\S+)/';
-
-        if (array_key_exists($itemUrl[0], $infosystem) && !empty($itemUrl[1])) {
-            if (($itemUrl[1] === self::URL_NAME_GROUP)
-                && preg_match($patternParseParams, $request->getPathInfo(), $params)
-            ) {
-
-                return [
-                    $this->groupAction,
-                    [
-                        'id' => $params['id'],
-                        'alias' => $params['alias'],
-                        'infosystem_id' => $itemUrl[0]
-                    ]
-                ];
-            } elseif (($itemUrl[1] === self::URL_NAME_ITEM)
-                && preg_match($patternParseParams, $request->getPathInfo(), $params)
-            ) {
-
-                return [
-                    $this->itemAction,
-                    [
-                        'id' => $params['id'],
-                        'alias' => $params['alias'],
-                        'infosystem_id' => $itemUrl[0]
-                    ]
-                ];
-            }
+        if (!array_key_exists($itemUrl[0], $infosystem) && empty($itemUrl[1] && empty($itemUrl[2]))) {
+            return false;
         }
 
-        return false;
+        /**
+         * @todo
+         * добавить условие для отображения всех групп если не заполнены $params[1,2]
+         */
+
+        if (preg_match('/(?<id>\d+)-(?<alias>\S+)/', $itemUrl[2], $params) === 0) {
+            return false;
+        }
+
+        if ($itemUrl[1] === self::URL_NAME_GROUP) {
+            $routeAction = $this->routeGroupAction;
+        } elseif ($itemUrl[1] === self::URL_NAME_ITEM) {
+            $routeAction = $this->routeItemAction;
+        }
+
+        return [
+            $routeAction,
+            [
+                'id' => $params['id'],
+                'alias' => $params['alias'],
+                'infosystem_id' => $itemUrl[0]
+            ]
+        ];
     }
+
 
     protected function getInfosystems()
     {

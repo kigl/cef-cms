@@ -129,15 +129,6 @@ return array (
       '@kartik/editable' => $vendorDir . '/kartik-v/yii2-editable',
     ),
   ),
-  'yiisoft/yii2-debug' => 
-  array (
-    'name' => 'yiisoft/yii2-debug',
-    'version' => '2.0.7.0',
-    'alias' => 
-    array (
-      '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug',
-    ),
-  ),
   'kartik-v/yii2-grid' => 
   array (
     'name' => 'kartik-v/yii2-grid',
@@ -172,6 +163,24 @@ return array (
     'alias' => 
     array (
       '@yii2mod/bxslider' => $vendorDir . '/yii2mod/yii2-bx-slider',
+    ),
+  ),
+  'kotchuprik/yii2-sortable-widgets' => 
+  array (
+    'name' => 'kotchuprik/yii2-sortable-widgets',
+    'version' => '2.0.2.0',
+    'alias' => 
+    array (
+      '@kotchuprik/sortable' => $vendorDir . '/kotchuprik/yii2-sortable-widgets',
+    ),
+  ),
+  'yiisoft/yii2-debug' => 
+  array (
+    'name' => 'yiisoft/yii2-debug',
+    'version' => '2.0.9.0',
+    'alias' => 
+    array (
+      '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug',
     ),
   ),
 );

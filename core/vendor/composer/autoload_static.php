@@ -32,6 +32,7 @@ class ComposerStaticInitd08a2b6f5e41e256fb611c05532ca1a7
         ),
         'k' => 
         array (
+            'kotchuprik\\sortable\\' => 20,
             'kartik\\touchspin\\' => 17,
             'kartik\\popover\\' => 15,
             'kartik\\plugins\\popover\\' => 23,
@@ -101,6 +102,10 @@ class ComposerStaticInitd08a2b6f5e41e256fb611c05532ca1a7
         'vova07\\imperavi\\' => 
         array (
             0 => __DIR__ . '/..' . '/vova07/yii2-imperavi-widget/src',
+        ),
+        'kotchuprik\\sortable\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kotchuprik/yii2-sortable-widgets',
         ),
         'kartik\\touchspin\\' => 
         array (

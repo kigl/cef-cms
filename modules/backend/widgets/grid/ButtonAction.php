@@ -45,7 +45,7 @@ class ButtonAction
         $iconPlus = '<i class="glyphicon glyphicon-plus"></i>';
         $linkDropdown = Html::a($iconPlus . " <b class='caret'></b>", '#', [
             'data-toggle' => 'dropdown',
-            'class' => 'dropdown-toggle btn btn-success btn-sm',
+            'class' => 'dropdown-toggle btn btn-success btn-xs',
         ]);
         $result = ['encodeLabels' => false];
 

@@ -26,6 +26,7 @@ class Widget extends \yii\base\Widget
         $data = $this->getModelsItem();
 
         if ($dataMenu = $this->createDataMenu($data)) {
+
             echo MenuWidget::widget([
                 'options' => ArrayHelper::merge($this->options, ['class' => $this->getModelMenu()->class]),
                 'activateParents' => true,
@@ -66,6 +67,7 @@ class Widget extends \yii\base\Widget
                 ];
             }
         }
+
         return $result;
     }
 

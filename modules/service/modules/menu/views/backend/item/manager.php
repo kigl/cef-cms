@@ -1,4 +1,4 @@
-    <?php
+<?php
 use app\modules\backend\widgets\grid\GridView;
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -9,7 +9,7 @@ use yii\helpers\Html;
     'dataProvider' => $data['dataProvider'],
     'buttons' => [
         'create' => [
-            'element' => [
+            'item' => [
                 'url' => Url::to([
                     'create',
                     'menu_id' => $data['menuId'],
@@ -18,7 +18,6 @@ use yii\helpers\Html;
             ],
         ]
     ],
-
     'columns' => [
         'id',
         [
@@ -27,7 +26,7 @@ use yii\helpers\Html;
             'value' => function ($data) {
                 return Html::a(
                     Html::encode($data->name),
-                    ['element/manager', 'menu_id' => $data->menu_id, 'id' => $data->id]
+                    ['item/manager', 'menu_id' => $data->menu_id, 'id' => $data->id]
                 );
             }
         ],

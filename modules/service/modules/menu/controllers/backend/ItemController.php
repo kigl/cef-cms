@@ -24,7 +24,7 @@ class ItemController extends Controller
                 'class' => EditAttribute::class,
                 'modelClass' => Item::class,
                 'attribute' => 'sorting',
-            ]
+            ],
         ];
     }
 

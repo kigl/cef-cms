@@ -27,7 +27,8 @@
         "kartik-v/yii2-editable": "^1.7",
         "kartik-v/yii2-widget-touchspin": "^1.2",
         "conquer/codemirror": "^2.0",
-        "yii2mod/yii2-bx-slider": "*"
+        "yii2mod/yii2-bx-slider": "*",
+        "kotchuprik/yii2-sortable-widgets": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

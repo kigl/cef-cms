@@ -25,12 +25,14 @@ class GridView extends \kartik\grid\GridView
     ];
 
     public $exportContainer = [
-        'class' => 'btn-group-sm'
+        'class' => 'btn-group-xs'
     ];
 
     public $panel = [
         'type' => 'default',
     ];
+
+    public $condensed = true;
 
     public $bordered = false;
 
