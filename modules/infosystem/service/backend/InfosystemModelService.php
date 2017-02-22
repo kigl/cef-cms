@@ -27,6 +27,44 @@ class InfosystemModelService extends ModelService
         ]);
     }
 
+    public function actionCreate()
+    {
+        $model = new Infosystem();
+
+        if ($model->load($this->getData('post')) && $model->save()) {
+            $this->hasExecutedAction(self::EXECUTED_ACTION_SAVE);
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $model->getProperties(),
+        ]);
+
+        $this->setData([
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionUpdate()
+    {
+        $model = Infosystem::find()
+            ->where(['id' => $this->getData('get', 'id')])
+            ->one();
+
+        if ($model->load($this->getData('post')) && $model->save()) {
+            $this->hasExecutedAction(self::EXECUTED_ACTION_SAVE);
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $model->getProperties(),
+        ]);
+
+        $this->setData([
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     public function actionDelete($id)
     {
         $modelSystem = Infosystem::find()

@@ -34,6 +34,13 @@ body {
 	padding: 0;
 }
 
+.alert-block {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	box-shadow: 0 0 15px 0px #dcdcdc;
+}
+
 .top .navbar{
 	margin: 0;
 	border: 0;

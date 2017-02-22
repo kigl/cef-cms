@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
+use kartik\file\FileInput;
 use app\modules\backend\widgets\ActiveForm;
 use app\modules\shop\models\Property;
 use app\modules\backend\widgets\grid\GridView;
@@ -18,7 +19,8 @@ use app\modules\backend\widgets\grid\GridView;
 </ul>
 
 <?php $form = ActiveForm::begin([
-    'enableClientValidation' => false
+    'enableClientValidation' => false,
+    'options' => ['enctype' => 'multipart/form-data'],
 ]); ?>
 
 <?= $form->errorSummary($data['model']); ?>
@@ -54,11 +56,13 @@ use app\modules\backend\widgets\grid\GridView;
     </div>
     <div class="tab-pane" id="seo">
         <?= $form->field($data['model'], 'alias'); ?>
-        <?= $form->field($data['model'], 'meta_title');?>
+        <?= $form->field($data['model'], 'meta_title'); ?>
         <?= $form->field($data['model'], 'meta_description'); ?>
     </div>
-     <div class="tab-pane" id="images">
-        <?= $form->field($data['model'], 'imageUpload[]')->fileInput(['multiple' => true]); ?>
+    <div class="tab-pane" id="images">
+        <?= $form->field($data['model'], 'imageUpload[]')->widget(FileInput::class, [
+            'options' => ['multiple' => true],
+        ]); ?>
         <div class="row">
             <?php foreach ($data['model']->images as $image) : ?>
                 <div class="col-md-3">
@@ -97,7 +101,7 @@ use app\modules\backend\widgets\grid\GridView;
                 'dataProvider' => $data['dataProvider'],
                 'buttons' => [
                     'create' => [
-                        'element' => [
+                        'item' => [
                             'url' => Url::to([
                                 'product/create',
                                 'parent_id' => $data['model']->id,

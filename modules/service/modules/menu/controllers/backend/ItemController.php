@@ -10,12 +10,12 @@ namespace app\modules\service\modules\menu\controllers\backend;
 
 
 use Yii;
+use app\modules\service\components\BackendController;
 use app\modules\service\modules\menu\models\Item;
-use app\modules\backend\components\Controller;
 use app\modules\service\modules\menu\service\ItemModelService;
 use app\core\actions\EditAttribute;
 
-class ItemController extends Controller
+class ItemController extends BackendController
 {
     public function actions()
     {

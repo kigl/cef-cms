@@ -53,7 +53,7 @@ class UrlRule extends Object implements UrlRuleInterface
         $itemUrl = explode('/', $request->getPathInfo());
 
         $params = [];
-        if (!array_key_exists($itemUrl[0], $infosystem) && empty($itemUrl[1] && empty($itemUrl[2]))) {
+        if (!array_key_exists($itemUrl[0], $infosystem) && empty($itemUrl[1]) && empty($itemUrl[2])) {
             return false;
         }
 

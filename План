@@ -16,26 +16,30 @@
 
 Добавить к информационным системам допольнительные свойства
 
-Добавить к информационным системам настройки
-
 Сделать восстановить пароль
 
 Аккордион меню для backend
 
-/-------------------------
 
-Infosystem
+infosystem дополнительные свойства к элементам
 
-Системы
+id, infosystem_id, name, required,
 
-Настройка
-    Елементов на страницы, шаблон для елемента, шаблон для группы
-    Дополнительные свойства для элементов
+id, item_id, property_id, value,
 
 
-Группы элементов
 
 
-Элементы
 
+
+"2017-02-22 13:44:18",admin,"Хук. Для товара 85f93b0a-3f71-11e2-b3d8-001517c56834 пришло 3 изображений",0,tkani-nitki.ru,http://tkani-nitki.ru/shop/1c/?type=catalog&mode=import&filename=import.xml,92.124.138.89
+
+"2017-02-22 13:44:18",admin,"Хук. Для товара 85f93b0a-3f71-11e2-b3d8-001517c56834 уже загружено 4 изображений",0,tkani-nitki.ru,http://tkani-nitki.ru/shop/1c/?type=catalog&mode=import&filename=import.xml,92.124.138.89
+
+
+"2017-02-22 14:00:04",admin,"Хук. Для товара 85f93b0a-3f71-11e2-b3d8-001517c56834 пришло 5 изображений",0,tkani-nitki.ru,http://tkani-nitki.ru/shop/1c/?type=catalog&mode=import&filename=import.xml,92.124.138.89
+"2017-02-22 14:00:04",admin,"Хук. Для товара 85f93b0a-3f71-11e2-b3d8-001517c56834 уже загружено 3 изображений",0,tkani-nitki.ru,http://tkani-nitki.ru/shop/1c/?type=catalog&mode=import&filename=import.xml,92.124.138.89
+
+"2017-02-22 14:03:15",admin,"Хук. Для товара 85f93b0a-3f71-11e2-b3d8-001517c56834 пришло 3 изображений",0,tkani-nitki.ru,http://tkani-nitki.ru/shop/1c/?type=catalog&mode=import&filename=import.xml,92.124.138.89
+"2017-02-22 14:03:15",admin,"Хук. Для товара 85f93b0a-3f71-11e2-b3d8-001517c56834 уже загружено 4 изображений",0,tkani-nitki.ru,http://tkani-nitki.ru/shop/1c/?type=catalog&mode=import&filename=import.xml,92.124.138.89
 

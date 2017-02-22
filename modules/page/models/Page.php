@@ -52,7 +52,7 @@ class Page extends \app\core\db\ActiveRecord implements SitemapModelInterface
     {
         return [
             'id' => Yii::t('app', 'Id'),
-            'name' => Yii::t('page', 'Name'),
+            'name' => Yii::t('app', 'Name'),
             'content' => Yii::t('app', 'Content'),
             'dynamicPage' => Yii::t('page', 'Dynamic page'),
             'alias' => Yii::t('app', 'Alias'),

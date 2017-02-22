@@ -76,19 +76,8 @@ class Infosystem extends \app\core\db\ActiveRecord
         return $this->hasMany(Item::className(), ['infosystem_id' => 'id']);
     }
 
-    public static function getSystem($id, $type = 'object')
+    public function getProperties()
     {
-        $model = self::find()->where('id = :id', [':id' => $id]);
-
-        if ($type === 'array') {
-            $model->asArray();
-        }
-
-        $result = $model->one();
-
-        if ($result) {
-            return $result;
-        }
-        return false;
+        return $this->hasMany(Property::className(), ['infosystem_id' => 'id']);
     }
 }

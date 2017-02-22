@@ -5,15 +5,13 @@ namespace app\modules\backend\widgets;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveFormAsset;
-use yii\db\ActiveRecord;
 
-class ActiveForm extends \yii\widgets\ActiveForm
+class ActiveForm extends \kartik\form\ActiveForm
 {
     public $fieldConfig = ['template' => "{label}\n{input}"];
 
-    public $defaultOptions = ['class' => 'well well-sm'];
+    public $defaultCss = 'well well-sm';
 
     public $errorSummaryCssClass = 'error-simmary alert alert-danger';
 
@@ -24,7 +22,9 @@ class ActiveForm extends \yii\widgets\ActiveForm
         }
         $content = ob_get_clean();
 
-        echo Html::beginForm($this->action, $this->method, ArrayHelper::merge($this->defaultOptions, $this->options));
+        Html::addCssClass($this->options, $this->defaultCss);
+
+        echo Html::beginForm($this->action, $this->method, $this->options);
         echo $content;
         if ($this->enableClientScript) {
             $id = $this->options['id'];
@@ -40,7 +40,6 @@ class ActiveForm extends \yii\widgets\ActiveForm
         $buttonSave = Html::submitButton(Yii::t('app', 'Button save'), ['class' => 'btn btn-success btn-sm']);
 
         echo Html::tag('div', $buttonSave, $options);
-
 
         echo Html::endForm();
     }

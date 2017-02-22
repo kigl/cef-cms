@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use kartik\file\FileInput;
 
 ?>
 <?php if ($model->getBehavior($widget->behaviorName)->fileExist()) : ?>
@@ -23,6 +24,9 @@ use yii\helpers\Html;
     <br/>
 <?php endif; ?>
 
-<?= Html::activeFileInput($model, $attribute); ?>
+<?= FileInput::widget([
+    'model' => $model,
+    'attribute' => $attribute,
+]) ?>
 
 

@@ -21,8 +21,19 @@ class GridView extends \kartik\grid\GridView
 
     public $toolbar = [
         '{buttons}',
-        '{export}',
+        //'{export}',
     ];
+
+    public $panelBeforeTemplate = '
+        <div class="pull-left">
+            <div class="btn-toolbar kv-grid-toolbar" role="toolbar">
+                {toolbar}
+            </div>  
+        </div>
+        {before}
+        <div class="clearfix"></div>
+        ';
+
 
     public $exportContainer = [
         'class' => 'btn-group-xs'
@@ -62,8 +73,7 @@ class GridView extends \kartik\grid\GridView
 
         parent::initColumns();
 
-       $this->initColumnsGroup();
-
+        $this->initColumnsGroup();
     }
 
     protected function initColumnsGroup()

@@ -6,8 +6,8 @@ use app\core\helpers\Breadcrumbs;
 
 ?>
 
-<?php echo GridView::widget([
-    'filterModel' => $data['searchModel'],
+<?=GridView::widget([
+    //'filterModel' => $data['searchModel'],
     'dataProvider' => $data['dataProvider'],
     'dataProviderGroup' => $data['groupDataProvider'],
     'buttons' => [

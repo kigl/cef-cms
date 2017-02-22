@@ -42,7 +42,9 @@ use app\modules\backend\widgets\menuTop\Widget as MenuTop;
                                     'activeItemTemplate' => "<li class=\"active\"><!--noindex-->{link}<!--/noindex--></li>",
                                 ]);*/
                                 ?>
+
                                 <?= Alert::widget(); ?>
+
                                 <?php if (isset($this->params['pageHeader'])) : ?>
                                     <div class="page-header">
                                         <h3><?php echo $this->params['pageHeader']; ?></h3>

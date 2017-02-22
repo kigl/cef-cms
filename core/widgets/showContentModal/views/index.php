@@ -13,6 +13,7 @@ use yii\helpers\ArrayHelper;
 ?>
 
 <?php
+
 $this->registerJs("
         $( function () {
             $('.show-in-modal').click(function (data) {

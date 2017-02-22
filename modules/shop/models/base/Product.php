@@ -59,24 +59,24 @@ class Product extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('shop', 'Id'),
+            'id' => Yii::t('app', 'Id'),
             'parent_id' => Yii::t('shop', 'Product parent id'),
             'group_id' => Yii::t('shop', 'Group id'),
-            'code' => Yii::t('shop', 'Code'),
+            'code' => Yii::t('app', 'Code'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
-            'sku' => Yii::t('shop', 'Depot'),
-            'price' => Yii::t('shop', 'Price'),
-            'status' => Yii::t('shop', 'Status'),
+            'sku' => Yii::t('app', 'Depot'),
+            'price' => Yii::t('app', 'Price'),
+            'status' => Yii::t('app', 'Status'),
             'user_id' => Yii::t('shop', 'User id'),
             'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta title'),
             'meta_description' => Yii::t('app', 'Meta description'),
             'create_time' => Yii::t('app', 'Create time'),
             'update_time' => Yii::t('app', 'Update time'),
-            'imageUpload' => Yii::t('shop', 'Image upload'),
-            'groupName' => Yii::t('shop', 'Group name'),
+            'imageUpload' => Yii::t('app', 'Image upload'),
+            //'groupName' => Yii::t('shop', 'Group name'),
         ];
     }
 }

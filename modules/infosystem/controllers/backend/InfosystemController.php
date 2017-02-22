@@ -15,23 +15,6 @@ use app\modules\infosystem\components\BackendController;
 
 class InfosystemController extends BackendController
 {
-    public function actions()
-    {
-        return [
-            'create' => [
-                'class' => 'app\core\actions\Create',
-                'modelClass' => '\app\modules\infosystem\models\Infosystem',
-                'view' => 'create',
-                'redirect' => ['manager'],
-            ],
-            'update' => [
-                'class' => 'app\core\actions\Update',
-                'modelClass' => '\app\modules\infosystem\models\Infosystem',
-                'view' => 'update',
-                'redirect' => ['manager'],
-            ],
-        ];
-    }
 
     public function actionManager()
     {
@@ -39,6 +22,41 @@ class InfosystemController extends BackendController
         $modelService->actionManager();
 
         return $this->render('manager', ['data' => $modelService->getData()]);
+    }
+
+    public function actionCreate()
+    {
+        $modelService = Yii::createObject([
+            'class' => InfosystemModelService::class,
+            'data' => [
+                'post' => Yii::$app->request->post(),
+            ],
+        ]);
+        $modelService->actionCreate();
+
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
+            return $this->redirect(['group/manager', 'infosystem_id' => $modelService->getData('model')->id]);
+        }
+
+        return $this->render('create', ['data' => $modelService->getData()]);
+    }
+
+    public function actionUpdate($id)
+    {
+        $modelService = Yii::createObject([
+            'class' => InfosystemModelService::class,
+            'data' => [
+                'get' => Yii::$app->request->getQueryParams(),
+                'post' => Yii::$app->request->post(),
+            ],
+        ]);
+        $modelService->actionUpdate();
+
+        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
+            return $this->redirect(['group/manager', 'infosystem_id' => $modelService->getData('model')->id]);
+        }
+
+        return $this->render('create', ['data' => $modelService->getData()]);
     }
 
     public function actionDelete($id)
@@ -51,10 +69,5 @@ class InfosystemController extends BackendController
         }
 
         return false;
-    }
-
-    public function actionTest($system, $group)
-    {
-        echo $system . $group;
     }
 }

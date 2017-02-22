@@ -23,9 +23,7 @@ use yii\helpers\Url;
 </head>
 <body>
 <?php $this->beginBody() ?>
-<?= \app\modules\service\modules\menu\widgets\frontend\menu\Widget::widget([
-        'menuId' => 1,
-]);?>
+
 <div class="container wrapper">
     <div class="panel panel-default">
         <div class="panel-heading">Верхний блок</div>

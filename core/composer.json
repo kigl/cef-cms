@@ -18,17 +18,16 @@
         "yiisoft/yii2": ">=2.0.5",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "vova07/yii2-imperavi-widget": "*",
         "yiisoft/yii2-jui": "^2.0",
-        "bower-asset/jquery-tag-editor": "*",
         "yiisoft/yii2-imagine": "^2.0",
-        "kartik-v/yii2-money": "*",
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-editable": "^1.7",
         "kartik-v/yii2-widget-touchspin": "^1.2",
-        "conquer/codemirror": "^2.0",
-        "yii2mod/yii2-bx-slider": "*",
-        "kotchuprik/yii2-sortable-widgets": "^2.0"
+        "kartik-v/yii2-widgets": "^3.4",
+        "kartik-v/yii2-icons": "^1.4",
+        "kartik-v/yii2-money": "*",
+        "vova07/yii2-imperavi-widget": "*",
+        "conquer/codemirror": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

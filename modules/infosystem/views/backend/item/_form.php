@@ -5,8 +5,6 @@ use app\modules\backend\widgets\ActiveForm;
 use app\modules\infosystem\widgets\backend\fieldUploadImage\Widget as FieldUploadImage;
 use app\modules\infosystem\widgets\backend\tagEditor\TagEditor;
 
-//$this->params['breadcrumbs'] = $breadcrumbs;
-//$this->params['breadcrumbs'][] = ['label' => $data['model']->name];
 ?>
 
     <ul class="nav nav-tabs">
