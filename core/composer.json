@@ -27,7 +27,8 @@
         "kartik-v/yii2-icons": "^1.4",
         "kartik-v/yii2-money": "*",
         "vova07/yii2-imperavi-widget": "*",
-        "conquer/codemirror": "^2.0"
+        "conquer/codemirror": "^2.0",
+        "bower-asset/jquery-tag-editor": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

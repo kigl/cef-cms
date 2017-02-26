@@ -53,7 +53,11 @@ class UrlRule extends Object implements UrlRuleInterface
         $itemUrl = explode('/', $request->getPathInfo());
 
         $params = [];
-        if (!array_key_exists($itemUrl[0], $infosystem) && empty($itemUrl[1]) && empty($itemUrl[2])) {
+        if (!array_key_exists($itemUrl[0], $infosystem)) {
+            return false;
+        }
+
+        if (empty($itemUrl[1]) && empty($itemUrl[2])) {
             return false;
         }
 
@@ -65,6 +69,8 @@ class UrlRule extends Object implements UrlRuleInterface
         if (preg_match('/(?<id>\d+)-(?<alias>\S+)/', $itemUrl[2], $params) === 0) {
             return false;
         }
+
+        $routeAction = '';
 
         if ($itemUrl[1] === self::URL_NAME_GROUP) {
             $routeAction = $this->routeGroupAction;

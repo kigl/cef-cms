@@ -11,14 +11,15 @@ use app\modules\infosystem\widgets\backend\tagEditor\TagEditor;
         <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
         <li><a href="#description" data-toggle="tab"><?= Yii::t('app', 'Tab description'); ?></a></li>
         <li><a href="#content" data-toggle="tab"><?= Yii::t('app', 'Tab content'); ?></a></li>
+        <li><a href="#properties" data-toggle="tab"><?= Yii::t('app', 'Tab properties'); ?></a></li>
         <li><a href="#seo" data-toggle="tab"><?= Yii::t('app', 'Tab SEO'); ?></a></li>
     </ul>
 
 <?php $form = ActiveForm::begin([
     'options' => ['enctype' => 'multipart/form-data'],
+    'enableClientValidation' => false,
 ]); ?>
-
-<?= $form->errorSummary($data['model']); ?>
+<?= $form->errorSummary(array_merge($data['itemProperties'], [$data['model']])); ?>
 
     <div class="tab-content">
 
@@ -48,16 +49,20 @@ use app\modules\infosystem\widgets\backend\tagEditor\TagEditor;
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <?= $form->field($data['model'], 'status')
                         ->dropDownList($data['model']->getStatusList()); ?>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <?= $form->field($data['model'], 'sorting'); ?>
                 </div>
-            </div>
 
-            <?= $form->field($data['model'], 'editorTag')->widget(TagEditor::className(), []); ?>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <?= $form->field($data['model'], 'editorTag')->widget(TagEditor::className()); ?>
+                </div>
+            </div>
         </div>
 
         <div class="tab-pane" id="description">
@@ -95,6 +100,13 @@ use app\modules\infosystem\widgets\backend\tagEditor\TagEditor;
                     'minHeight' => 400,
                 ],
             ]); ?>
+        </div>
+
+        <div class="tab-pane" id="properties">
+            <?php foreach ($data['itemProperties'] as $key => $property) : ?>
+                <?= $form->field($property, '[' . $key . ']value')
+                    ->label($data['properties'][$key]->name); ?>
+            <?php endforeach; ?>
         </div>
 
         <div class="tab-pane" id="seo">

@@ -75,7 +75,8 @@ class InfosystemModelService extends ModelService
         if ($modelSystem && $modelSystem->delete()) {
 
             /**
-             * @todo пересмотреть удаление group и item
+             * @todo
+             * пересмотреть удаление group и item
              */
             foreach ($modelSystem->groups as $group) {
                 Yii::createObject(GroupModelService::class)->actionDelete($group->id);

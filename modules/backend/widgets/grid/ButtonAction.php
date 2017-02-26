@@ -92,6 +92,8 @@ class ButtonAction
         return [
             'label' => $text,
             'url' => $action,
+            'linkOptions' => !empty($this->_buttons['create'][$type]['linkOptions'])
+                ? $this->_buttons['create'][$type]['linkOptions'] : null,
         ];
     }
 }

@@ -2,7 +2,6 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use app\modules\backend\widgets\grid\GridView;
-use app\modules\informationsystem\models\Group;
 ?>
 
 <?= GridView::widget([

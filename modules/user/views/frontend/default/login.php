@@ -19,6 +19,7 @@ $this->setPageHeader('Аутентификация пользователя');
                 <div class="panel-heading"><?= Yii::t('user', 'Authenticate'); ?></div>
                 <?php $form = ActiveForm::begin([
                     'type' => ActiveForm::TYPE_VERTICAL,
+                    'options' => ['data-pjax' => true],
                 ]); ?>
                 <div class="panel-body">
                     <?= $form->errorSummary($model, ['class' => 'alert alert-danger']); ?>

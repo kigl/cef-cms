@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
 use app\modules\backend\widgets\ActiveForm;
 use vova07\imperavi\Widget;
 
@@ -7,8 +8,8 @@ use vova07\imperavi\Widget;
 
     <ul class="nav nav-tabs">
         <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
-        <li><a href="#settings" data-toggle="tab"><?= Yii::t('app', 'Tab settings'); ?></a></li>
         <li><a href="#properties" data-toggle="tab"><?= Yii::t('app', 'Tab properties'); ?></a></li>
+        <li><a href="#settings" data-toggle="tab"><?= Yii::t('app', 'Tab settings'); ?></a></li>
     </ul>
 
 <?php $form = ActiveForm::begin(); ?>
@@ -31,14 +32,6 @@ use vova07\imperavi\Widget;
             ]); ?>
         </div>
 
-        <div class="tab-pane" id="settings">
-            <?= $form->field($data['model'], 'template_group'); ?>
-
-            <?= $form->field($data['model'], 'template_item'); ?>
-
-            <?= $form->field($data['model'], 'item_on_page'); ?>
-        </div>
-
         <div class="tab-pane" id="properties">
             <?php if (!empty($data['model']->id)) : ?>
                 <?= \app\modules\backend\widgets\grid\GridView::widget([
@@ -53,9 +46,32 @@ use vova07\imperavi\Widget;
                     'columns' => [
                         'id',
                         'name',
+                        [
+                            'headerOptions' => ['style' => 'width: 70px'],
+                            'class' => 'yii\grid\ActionColumn',
+                            'template' => '{update}  {delete}',
+                            'buttons' => [
+                                'update' => function ($url, $model, $key) {
+                                    return Html::a('<i class="glyphicon glyphicon-pencil"></i>', ['property/update', 'id' => $model->id]);
+                                },
+                                'delete' => function ($url, $model, $key) {
+                                    return Html::a('<i class="glyphicon glyphicon-trash"></i>', ['property/delete', 'id' => $model->id],
+                                        ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'question on delete file')]);
+                                }
+                            ],
+                        ]
                     ],
                 ]); ?>
             <?php endif; ?>
         </div>
+
+        <div class="tab-pane" id="settings">
+            <?= $form->field($data['model'], 'template_group'); ?>
+
+            <?= $form->field($data['model'], 'template_item'); ?>
+
+            <?= $form->field($data['model'], 'item_on_page'); ?>
+        </div>
+
     </div>
 <?php ActiveForm::end(); ?>

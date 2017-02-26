@@ -3,6 +3,7 @@
 namespace app\modules\infosystem\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%infosystem_item_property}}".
@@ -15,8 +16,14 @@ use Yii;
  * @property Item $item
  * @property Property $property
  */
-class ItemProperty extends \app\core\db\ActiveRecord
+class ItemProperty extends ActiveRecord
 {
+    /**
+     * Виртуальное поля, используется для валидации
+     * @var
+     */
+    public $requiredValue;
+
     /**
      * @inheritdoc
      */
@@ -31,6 +38,9 @@ class ItemProperty extends \app\core\db\ActiveRecord
     public function rules()
     {
         return [
+            ['value', 'required', 'when' => function ($model) {
+                return $model->requiredValue;
+            }],
             [['item_id', 'property_id'], 'integer'],
             [['value'], 'string', 'max' => 255],
         ];

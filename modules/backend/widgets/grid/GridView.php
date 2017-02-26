@@ -35,10 +35,6 @@ class GridView extends \kartik\grid\GridView
         ';
 
 
-    public $exportContainer = [
-        'class' => 'btn-group-xs'
-    ];
-
     public $panel = [
         'type' => 'default',
     ];
@@ -47,9 +43,7 @@ class GridView extends \kartik\grid\GridView
 
     public $bordered = false;
 
-
     public $summaryOptions = ['class' => 'summary pull-right'];
-
 
     public function renderSection($name)
     {

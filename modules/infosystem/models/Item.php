@@ -189,4 +189,9 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
             self::STATUS_DRAFT => Yii::t('app', 'Status draft'),
         ];
     }
+
+    public function getProperties()
+    {
+        return $this->hasMany(ItemProperty::className(), ['item_id' => 'id']);
+    }
 }

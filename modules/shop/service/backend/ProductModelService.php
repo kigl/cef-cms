@@ -110,7 +110,7 @@ class ProductModelService extends ModelService
 
     protected function init()
     {
-        $this->properties = $this->initProperties();
+        $this->initProperties();
         $this->image = $this->initImage();
     }
 
@@ -119,7 +119,7 @@ class ProductModelService extends ModelService
      */
     protected function initProperties()
     {
-        $property = $this->model->getProperties()
+        $this->properties = $this->model->getProperties()
             ->with('property')
             ->indexBy('property_id')
             ->all();
@@ -130,12 +130,10 @@ class ProductModelService extends ModelService
             ->all();
 
 
-        foreach (array_diff_key($allProperty, $property) as $pr) {
-            $property[$pr->id] = new ProductProperty();
-            $property[$pr->id]->property_id = $pr->id;
+        foreach (array_diff_key($allProperty, $this->properties) as $pr) {
+            $this->properties[$pr->id] = new ProductProperty();
+            $this->properties[$pr->id]->property_id = $pr->id;
         }
-
-        return $property;
     }
 
     /**
@@ -280,7 +278,7 @@ class ProductModelService extends ModelService
             }
         }
 
-        if ($success === false and $this->image) {
+        if ($success === false && $this->image) {
             $image = reset($this->image);
             $image->status = Image::STATUS_MAIN;
             $image->save(false);

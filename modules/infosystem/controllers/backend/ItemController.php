@@ -39,11 +39,14 @@ class ItemController extends BackendController
 
     public function actionUpdate($id)
     {
-        $modelService = new ItemModelService();
-        $modelService->actionUpdate([
-            'post' => Yii::$app->request->post(),
-            'get' => Yii::$app->request->getQueryParams(),
+        $modelService = Yii::createObject([
+            'class' => ItemModelService::class,
+            'data' => [
+                'post' => Yii::$app->request->post(),
+                'get' => Yii::$app->request->getQueryParams(),
+            ]
         ]);
+        $modelService->actionUpdate();
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
