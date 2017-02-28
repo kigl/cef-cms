@@ -18,16 +18,10 @@
 
 Аккордион меню для backend
 
+Универсальный модуль отзывов
+    привязка к модели
+Универсальный модуль отзывов для сайта, привязывается к модели (item_id)
 
+    id, parent_id, status, model_class, item_id, content, user_id, create_time, update_time,
 
-    "2017-02-22 13:44:18",admin,"Хук. Для товара 85f93b0a-3f71-11e2-b3d8-001517c56834 пришло 3 изображений",0,tkani-nitki.ru,http://tkani-nitki.ru/shop/1c/?type=catalog&mode=import&filename=import.xml,92.124.138.89
-
-"2017-02-22 13:44:18",admin,"Хук. Для товара 85f93b0a-3f71-11e2-b3d8-001517c56834 уже загружено 4 изображений",0,tkani-nitki.ru,http://tkani-nitki.ru/shop/1c/?type=catalog&mode=import&filename=import.xml,92.124.138.89
-
-
-"2017-02-22 14:00:04",admin,"Хук. Для товара 85f93b0a-3f71-11e2-b3d8-001517c56834 пришло 5 изображений",0,tkani-nitki.ru,http://tkani-nitki.ru/shop/1c/?type=catalog&mode=import&filename=import.xml,92.124.138.89
-"2017-02-22 14:00:04",admin,"Хук. Для товара 85f93b0a-3f71-11e2-b3d8-001517c56834 уже загружено 3 изображений",0,tkani-nitki.ru,http://tkani-nitki.ru/shop/1c/?type=catalog&mode=import&filename=import.xml,92.124.138.89
-
-"2017-02-22 14:03:15",admin,"Хук. Для товара 85f93b0a-3f71-11e2-b3d8-001517c56834 пришло 3 изображений",0,tkani-nitki.ru,http://tkani-nitki.ru/shop/1c/?type=catalog&mode=import&filename=import.xml,92.124.138.89
-"2017-02-22 14:03:15",admin,"Хук. Для товара 85f93b0a-3f71-11e2-b3d8-001517c56834 уже загружено 4 изображений",0,tkani-nitki.ru,http://tkani-nitki.ru/shop/1c/?type=catalog&mode=import&filename=import.xml,92.124.138.89
 
