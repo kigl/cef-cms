@@ -21,6 +21,7 @@ class Comment extends Model
     public function rules()
     {
         return [
+            ['content', 'required'],
             ['parent_id', 'integer'],
             ['content', 'string', 'max' => 400],
         ];

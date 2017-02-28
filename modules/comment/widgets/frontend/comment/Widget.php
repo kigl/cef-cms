@@ -31,6 +31,7 @@ class Widget extends \yii\base\Widget
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             $model->setAttributes($form->attributes);
             $model->save();
+            $form->content = null;
         }
 
         $models = Comment::find()
@@ -44,15 +45,7 @@ class Widget extends \yii\base\Widget
             'data' => [
                 'form' => $form,
                 'items' => $models,
-                'widget' => $this,
             ]
         ]);
-    }
-
-    public function recurcive(&$models, $parentId)
-    {
-        foreach ($models as $model) {
-
-        }
     }
 }

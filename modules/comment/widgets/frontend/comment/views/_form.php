@@ -7,7 +7,7 @@ use yii\helpers\Html;
 ])?>
 
 <?= $form->field($data['form'], 'parent_id')
-    ->hiddenInput(['value' => isset($data['model']) ? $data['model']->id : null])
+    ->hiddenInput(['value' => null, 'id' => 'kill'])
     ->label(''); ?>
 
 
