@@ -14,7 +14,7 @@ class Asset extends \yii\web\AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap\BootstrapPluginAsset',
-        //'kartik\icons\FontAwesomeAsset',
+        'kartik\icons\FontAwesomeAsset',
     ];
 }
 

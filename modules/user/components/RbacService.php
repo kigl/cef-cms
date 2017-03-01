@@ -33,14 +33,14 @@ class RbacService extends Object
     {
         if ($type == Role::TYPE_PERMISSION) {
             $item = $this->manager->createPermission($name);
-            $item->description = $description;
-            $item->ruleName = $ruleName;
+            $item->description = $description === '' ? null : $description;
+            $item->ruleName = $ruleName === '' ? null : $ruleName;
 
             return $item;
         } else {
             $item = $this->manager->createRole($name);
-            $item->description = $description;
-            $item->ruleName = $ruleName;
+            $item->description = $description === '' ? null : $description;
+            $item->ruleName = $ruleName === '' ? null : $ruleName;
 
             return $item;
         }

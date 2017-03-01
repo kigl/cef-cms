@@ -7,7 +7,7 @@ use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\widgets\ActiveFormAsset;
 
-class ActiveForm extends \kartik\form\ActiveForm
+class ActiveForm extends \yii\bootstrap\ActiveForm
 {
     public $fieldConfig = ['template' => "{label}\n{input}"];
 

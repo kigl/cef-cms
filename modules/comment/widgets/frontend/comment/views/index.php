@@ -1,18 +1,20 @@
 <?php
+use yii\helpers\Url;
+
 \app\modules\comment\widgets\frontend\comment\views\asset\Asset::register($this);
 ?>
 
-<script>
-    $(function () {
-        $('.link-answer').click(function () {
-            // сонтейнер комментария
-            commentItem = $(this).parent().parent().parent().parent().parent();
+<div class="page-header h3">
+    <?= Yii::t('comment', 'Header comment ({count})', ['count' => $data['count']]); ?>
+</div>
 
-            $('.container-answer-item-comment').html(commentItem.clone()).find('.comment-footer').remove();
-            $('#comment-input-parent_id').val(commentItem.find('input[type="hidden"]').val());
-        });
-    });
-</script>
+<?php
+/**
+ * @todo
+ * Добавить возможность редактировать комментария автору ?
+ * Вынести логику добавления в контроллер, добавить ajax
+ */
+?>
 
 <?= $this->render('_item', [
     'data' => $data,
@@ -21,9 +23,11 @@
 
 
 <?php if (!Yii::$app->user->isGuest) : ?>
-    <div class="well well-sm">
-        <a name="comment-anchor"></a>
-        <div class="container-answer-item-comment"></div>
-        <?= $this->render('_form', ['data' => $data]); ?>
-    </div>
+    <?= $this->render('_form', ['data' => $data]); ?>
+<?php else : ?>
+    <p class="alert alert-info">
+        <a href="<?= Url::to(['/user/default/login']) ?>" class="alert-link">Войдите</a> или <a
+                href="<?= Url::to(['/user/default/registration']) ?>" class="alert-link">зарегистрируйтесь</a> чтобы
+        оставить комментарий.
+    </p>
 <?php endif; ?>

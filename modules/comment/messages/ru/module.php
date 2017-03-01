@@ -4,4 +4,6 @@ return [
     'Module description' => 'Описание Комментарии',
 
     'Link answer' => 'ответить',
+
+    'Header comment ({count})' => 'Комментарии ({count})',
 ];

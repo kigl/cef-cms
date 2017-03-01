@@ -5,14 +5,14 @@ use app\core\widgets\Alert;
 
 ?>
 
-<?php \yii\widgets\Pjax::begin([
-    'id' => 'pjax-comment-form',
-]); ?>
-
 <?= Alert::widget(); ?>
 
 <?php $form = ActiveForm::begin([
-    'options' => ['data-pjax' => true],
+    'id' => 'comment-form',
+    'options' => [
+        'data-pjax' => true,
+        'class' => 'well well-sm'
+    ],
 ]);
 ?>
 
@@ -28,4 +28,3 @@ use app\core\widgets\Alert;
 <?= Html::submitButton(Yii::t('app', 'Button add'), ['class' => 'btn btn-primary btn-sm']); ?>
 
 <?php ActiveForm::end(); ?>
-<?php \yii\widgets\Pjax::end(); ?>

@@ -1,8 +1,7 @@
 <?php
 use yii\widgets\Pjax;
 use yii\helpers\Html;
-use kartik\form\ActiveForm;
-use kartik\icons\Icon;
+use yii\bootstrap\ActiveForm;
 
 $this->setPageHeader('Аутентификация пользователя');
 ?>
@@ -16,17 +15,12 @@ $this->setPageHeader('Аутентификация пользователя');
             <div class="panel panel-default">
                 <div class="panel-heading"><?= Yii::t('user', 'Authenticate'); ?></div>
                 <?php $form = ActiveForm::begin([
-                    'type' => ActiveForm::TYPE_VERTICAL,
                     'options' => ['data-pjax' => true],
                 ]); ?>
                 <div class="panel-body">
                     <?= $form->errorSummary($model, ['class' => 'alert alert-danger']); ?>
-                    <?= $form->field($model, 'login', [
-                        'addon' => ['prepend' => ['content' => Icon::show('user')]],
-                    ]); ?>
-                    <?= $form->field($model, 'password', [
-                            'addon' => ['prepend' => ['content' => Icon::show('lock')]]
-                    ])
+                    <?= $form->field($model, 'login'); ?>
+                    <?= $form->field($model, 'password')
                         ->passwordInput(); ?>
 
                     <div class="form-group">

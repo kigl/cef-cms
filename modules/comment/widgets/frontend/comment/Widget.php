@@ -25,7 +25,8 @@ class Widget extends \yii\base\Widget
         $model = new Comment([
             'model_class' => $this->modelClass,
             'item_id' => $this->itemId,
-            'status' => Comment::STATUS_DRAFT,
+            //'status' => Comment::STATUS_DRAFT,
+            'status' => Comment::STATUS_ACTIVE,
         ]);
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
@@ -35,10 +36,13 @@ class Widget extends \yii\base\Widget
             $form->content = null;
         }
 
+        $items = $this->getAllItems();
+
         return $this->render('index', [
             'data' => [
                 'form' => $form,
-                'items' => $this->getAllItems(),
+                'items' => $items,
+                'count' => count($items),
             ]
         ]);
     }

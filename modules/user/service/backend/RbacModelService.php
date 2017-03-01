@@ -52,6 +52,7 @@ class RbacModelService extends ModelService
                 $modelForm->description,
                 $modelForm->ruleName
             );
+
             $this->rbacService->manager->add($item);
             $this->rbacService->saveChild($modelForm, $item);
 

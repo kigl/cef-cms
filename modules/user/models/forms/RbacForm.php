@@ -5,7 +5,6 @@
  * @author Kirill Golodaev <kirillgolodaev@gmail.com>
  */
 
-
 namespace app\modules\user\models\forms;
 
 
@@ -15,7 +14,7 @@ use yii\helpers\ArrayHelper;
 use yii\rbac\Item;
 use yii\db\Query;
 use yii\rbac\Role;
-use app\core\session\Flash;
+use kartik\alert\Alert;
 
 class RbacForm extends Model
 {
@@ -36,7 +35,7 @@ class RbacForm extends Model
     public function init()
     {
         $this->on(self::EVENT_BEFORE_VALIDATE, function ($event) {
-            Yii::$app->session->setFlash(Flash::FLASH_SUCCESS, Yii::t('app', 'Created element'));
+            Yii::$app->session->setFlash(Alert::TYPE_SUCCESS, Yii::t('app', 'Created element'));
         });
 
         parent::init();

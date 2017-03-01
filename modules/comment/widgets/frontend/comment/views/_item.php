@@ -15,7 +15,7 @@ use yii\helpers\Html;
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="list-inline">
-                                <li><b><?= Html::encode($model->user->login); ?></b></li>
+                                <li><i class="fa fa-user"></i>&nbsp;<b><?= Html::encode($model->user->login); ?></b></li>
                                 <li><?= Yii::$app->formatter->asRelativeTime($model->create_time); ?></li>
                             </ul>
                         </div>
@@ -31,7 +31,7 @@ use yii\helpers\Html;
                         <div class="row">
                             <div class="col-md-12">
                                 <?php if (!Yii::$app->user->isGuest) : ?>
-                                    <a href="#comment-anchor" class="link-answer">
+                                    <a href="javascript:void(0);" class="link-answer">
                                         <?= Yii::t('comment', 'Link answer'); ?>
                                     </a>
                                 <?php endif; ?>

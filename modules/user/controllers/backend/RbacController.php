@@ -6,16 +6,24 @@
  * Time: 20:53
  */
 
+/**
+ * @todo
+ * Добавить rule object
+ */
+
 namespace app\modules\user\controllers\backend;
 
 
 use Yii;
-use yii\helpers\ArrayHelper;
 use app\modules\user\components\rbac\RbacService;
 use app\modules\user\service\backend\RbacViewService;
 use app\modules\user\components\BackendController;
 use app\modules\user\service\backend\RbacModelService;
 
+/**
+ * Class RbacController
+ * @package app\modules\user\controllers\backend
+ */
 class RbacController extends BackendController
 {
     public function actionManager()
