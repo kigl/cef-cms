@@ -1,0 +1,15 @@
+.comment-wrapper {
+    margin-left: 20px;
+}
+
+.comment-item {
+    margin-bottom: 10px;
+}
+
+.comment-detail {
+    overflow: hidden;
+}
+
+.container-answer-item-comment .comment-item {
+    margin-bottom: 0 !important;
+}

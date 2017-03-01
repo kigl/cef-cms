@@ -87,4 +87,18 @@ class Comment extends \app\core\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+    public function getAllStatus()
+    {
+        return [
+            self::STATUS_BLOCK => Yii::t('app', 'Status block'),
+            self::STATUS_ACTIVE => Yii::t('app', 'Status active'),
+            self::STATUS_DRAFT => Yii::t('app', 'Status draft'),
+        ];
+    }
+
+    public function getStatus($status)
+    {
+        return $this->getAllStatus()[$status];
+    }
 }

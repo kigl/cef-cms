@@ -1,23 +1,29 @@
+<?php
+\app\modules\comment\widgets\frontend\comment\views\asset\Asset::register($this);
+?>
+
 <script>
-    $( function () {
-        $('.test').click( function () {
-            loop = $(this).parent().parent();
-            //alert(loop.find('input[type="text"]').val());
-            $('.comment-item-comment').html(loop);
-            $('#kill').val(loop.find('input[type="text"]').val())
+    $(function () {
+        $('.link-answer').click(function () {
+            // сонтейнер комментария
+            commentItem = $(this).parent().parent().parent().parent().parent();
+
+            $('.container-answer-item-comment').html(commentItem.clone()).find('.comment-footer').remove();
+            $('#comment-input-parent_id').val(commentItem.find('input[type="hidden"]').val());
         });
     });
 </script>
 
 <?= $this->render('_item', [
-        'data' => $data,
-        'parentId' => null,
-    ]);?>
+    'data' => $data,
+    'parentId' => null,
+]); ?>
 
-<a name="comment"></a>
-<div class="comment-item-comment"></div>
-<?php
-if (!Yii::$app->user->isGuest) {
-    echo $this->render('_form', ['data' => $data]);
-}
-?>
+
+<?php if (!Yii::$app->user->isGuest) : ?>
+    <div class="well well-sm">
+        <a name="comment-anchor"></a>
+        <div class="container-answer-item-comment"></div>
+        <?= $this->render('_form', ['data' => $data]); ?>
+    </div>
+<?php endif; ?>

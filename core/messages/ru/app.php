@@ -3,7 +3,8 @@ return [
 	'Alias' => 'Алиас',
     'Author' => 'Автор',
 
-	'Button create' => 'Добавить',
+	'Button create' => 'Создать',
+    'Button add' => 'Добавить',
 	'Button save' => 'Сохранить',
 
     'Deleted element' => 'Элемент удален!',

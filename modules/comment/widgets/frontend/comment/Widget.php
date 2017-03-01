@@ -30,22 +30,26 @@ class Widget extends \yii\base\Widget
 
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             $model->setAttributes($form->attributes);
-            $model->save();
+            $model->save(false);
+
             $form->content = null;
         }
-
-        $models = Comment::find()
-            ->where(['model_class' => $this->modelClass])
-            //->andWhere(['status' => Comment::STATUS_ACTIVE])
-            ->andWhere(['item_id' => $this->itemId])
-            ->with('user')
-            ->all();
 
         return $this->render('index', [
             'data' => [
                 'form' => $form,
-                'items' => $models,
+                'items' => $this->getAllItems(),
             ]
         ]);
+    }
+
+    protected function getAllItems()
+    {
+        return Comment::find()
+            ->where(['model_class' => $this->modelClass])
+            ->andWhere(['status' => Comment::STATUS_ACTIVE])
+            ->andWhere(['item_id' => $this->itemId])
+            ->with('user')
+            ->all();
     }
 }

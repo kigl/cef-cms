@@ -1,5 +1,7 @@
 <?php
 return [
-    'Module name' => 'Информационные системы',
-    'Module description' => 'Описание информационные системы',
+    'Module name' => 'Комментарии',
+    'Module description' => 'Описание Комментарии',
+
+    'Link answer' => 'ответить',
 ];

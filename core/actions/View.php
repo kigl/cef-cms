@@ -9,23 +9,16 @@ namespace app\core\actions;
  	public $view = 'view';
  	
  	public $queryParamName = 'id';
-
- 	public $modelService;
-
- 	public $viewService;
  	
  	public function run()
  	{
-        $modelService = new $this->modelService;
-        $modelService->setRequestData([
-            'get' => Yii::$app->request->getQueryParams(),
-        ]);
-        $modelService->view();
+        $model = $this->loadModel(Yii::$app->request->getQueryParam($this->queryParamName));
 
-        $viewService = new $this->viewService;
-        $viewService->setData($modelService->getData());
+        if (Yii::$app->request->isAjax) {
+            return $this->controller->renderAjax($this->view, ['data' => ['model' => $model]]);
+        }
 
-		return $this->controller->render($this->view, ['data' => $viewService]);
+        return $this->controller->render($this->view, ['data' => ['model' => $model]]);
 	}
  }
 ?>

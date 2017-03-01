@@ -8,7 +8,7 @@ class Update extends Action
 {
 	public $returnUrl;
 
-	public $queryParam = 'id';
+    public $queryParamName = 'id';
 
 	public $view = 'update';
 
@@ -18,7 +18,7 @@ class Update extends Action
 
 	public function run()
 	{
-		$model = $this->loadModel(Yii::$app->request->getQueryParam($this->queryParam));
+		$model = $this->loadModel(Yii::$app->request->getQueryParam($this->queryParamName));
 		$model->scenario = $this->scenario;
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {

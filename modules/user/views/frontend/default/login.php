@@ -4,8 +4,6 @@ use yii\helpers\Html;
 use kartik\form\ActiveForm;
 use kartik\icons\Icon;
 
-Icon::map($this, Icon::FA);
-
 $this->setPageHeader('Аутентификация пользователя');
 ?>
 
