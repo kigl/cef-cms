@@ -3,7 +3,7 @@
 namespace app\modules\infosystem\models;
 
 use Yii;
-use app\modules\infosystem\components\TagBehavior;
+use app\modules\tag\components\TagBehavior;
 use app\modules\user\models\User;
 
 /**
@@ -146,6 +146,7 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
             ],*/
             [
                 'class' => TagBehavior::className(),
+                'relativeModelClass' => ItemTag::class,
             ],
             'convertDate' => [
                 'class' => 'app\core\behaviors\ConvertDate',

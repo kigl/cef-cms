@@ -6,7 +6,7 @@
  * Time: 20:27
  */
 
-namespace app\modules\infosystem\models;
+namespace app\modules\tag\models;
 
 
 use yii\db\ActiveQuery;

@@ -15,7 +15,6 @@ use yii\helpers\Html;
     ],
     'dataProvider' => $dataProvider,
     'columns' => [
-        'id',
         'name',
         [
             'attribute' => 'sorting',
@@ -28,6 +27,7 @@ use yii\helpers\Html;
                 ]);
             }
         ],
+        'id',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => \yii\grid\ActionColumn::className(),

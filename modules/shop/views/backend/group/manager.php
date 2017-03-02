@@ -31,19 +31,20 @@ $this->setBreadcrumbs($data['breadcrumbs']);
         ],
         [],
         'create_time:date',
+        'id',
         [
             'class' => \kartik\grid\ActionColumn::className(),
             'template' => "{update} {delete}",
         ],
     ],
     'columns' => [
-        'id',
         [
             'attribute' => 'name',
             'headerOptions' => ['style' => 'width: 50%'],
         ],
         'price:currency',
         'create_time:date',
+        'id',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => \kartik\grid\ActionColumn::className(),

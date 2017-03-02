@@ -14,7 +14,6 @@ use yii\helpers\Html;
         ],
     ],
     'columns' => [
-        'id',
         [
             'attribute' => 'name',
             'format' => 'raw',
@@ -22,6 +21,7 @@ use yii\helpers\Html;
                 return Html::a($data->name, ['item/manager', 'menu_id' => $data->id]);
             }
         ],
+        'id',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => \yii\grid\ActionColumn::className(),

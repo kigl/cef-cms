@@ -1,16 +1,17 @@
 <?php
 
-namespace app\modules\infosystem\components;
+namespace app\modules\tag\components;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
-use app\modules\infosystem\models\Tag;
-use app\modules\infosystem\models\ItemTag;
+use app\modules\tag\models\Tag;
 
 class TagBehavior extends \yii\base\Behavior
 {
     protected $_tags;
+
+    public $relativeModelClass;
 
     public function events()
     {
@@ -22,6 +23,8 @@ class TagBehavior extends \yii\base\Behavior
 
     public function afterSave()
     {
+        $relativeModelClass = $this->relativeModelClass;
+
         /**
          * старые теги элемента
          * @var array
@@ -41,7 +44,7 @@ class TagBehavior extends \yii\base\Behavior
                 $nt = Tag::findOne(['name' => $newTag]); // поиск тегов
                 if (!$nt) { // если тег не найден, то создаем его
                     $nt = new Tag;
-                    $nt->setAttributes(['name' => $newTag, 'infosystem_id' => $this->owner->infosystem_id]);
+                    $nt->setAttributes(['name' => $newTag]);
                     $nt->save();
                 }
 
@@ -64,7 +67,7 @@ class TagBehavior extends \yii\base\Behavior
             /**
              * Удаляем связи
              */
-            Yii::$app->db->createCommand()->delete(ItemTag::tableName(), ['tag_id' => $removeTag])
+            Yii::$app->db->createCommand()->delete($relativeModelClass::tableName(), ['tag_id' => $removeTag])
                 ->execute();
         }
 
@@ -75,16 +78,18 @@ class TagBehavior extends \yii\base\Behavior
             /**
              * Добавляем связи
              */
-            Yii::$app->db->createCommand()->batchInsert(ItemTag::tableName(), ['item_id', 'tag_id'], $result)
+            Yii::$app->db->createCommand()->batchInsert($relativeModelClass::tableName(), ['item_id', 'tag_id'], $result)
                 ->execute();
         }
     }
 
     public function getTags()
     {
+        $relativeModelClass = $this->relativeModelClass;
+
         return Tag::find()
             ->alias('m')
-            ->leftJoin(ItemTag::tableName() . ' r', 'm.id = r.tag_id')
+            ->leftJoin($relativeModelClass::tableName() . ' r', 'm.id = r.tag_id')
             ->where('r.item_id = :id', [':id' => $this->owner->id])
             ->asArray()
             ->all();

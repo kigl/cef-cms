@@ -37,6 +37,7 @@ use app\core\helpers\Breadcrumbs;
                     ['manager', 'id' => $data->id, 'infosystem_id' => $data->infosystem_id]);
             }
         ],
+        'id',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',
@@ -62,8 +63,8 @@ use app\core\helpers\Breadcrumbs;
     ],
 
     'columns' => [
-        'id',
         'name',
+        'id',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',

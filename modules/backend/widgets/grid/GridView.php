@@ -11,7 +11,7 @@ use yii\bootstrap\Modal;
 class GridView extends \kartik\grid\GridView
 {
     const TYPE_GROUP = 'group';
-    const TYPE_ITEM = 'element';
+    const TYPE_ITEM = 'item';
 
     public $dataProviderGroup;
 
@@ -43,6 +43,8 @@ class GridView extends \kartik\grid\GridView
 
     public $bordered = false;
 
+    public $hover = true;
+
     public $summaryOptions = ['class' => 'summary pull-right'];
 
     public function renderSection($name)
@@ -57,13 +59,12 @@ class GridView extends \kartik\grid\GridView
 
     protected function initColumns()
     {
-        /*
-         * @todo
-         */
         // добавляем колонку тип элемента
-        array_unshift($this->columns, $this->getColumnTypeItemAttribute());
-
-        $this->editColumnId($this->columns);
+        array_unshift(
+            $this->columns,
+            $this->getSerialColumn($this->columns),
+            $this->getColumnType(self::TYPE_ITEM)
+        );
 
         parent::initColumns();
 
@@ -73,13 +74,12 @@ class GridView extends \kartik\grid\GridView
     protected function initColumnsGroup()
     {
         if (!empty($this->columnsGroup)) {
-            /*
-             * @todo
-             */
-            // добавляем колонку тип элемента
-            array_unshift($this->columnsGroup, $this->getColumnTypeGroupAttribute());
-            // добавляем колонку id по умолчанию
-            array_unshift($this->columnsGroup, 'id');
+
+            array_unshift(
+                $this->columnsGroup,
+                $this->getSerialColumn($this->columnsGroup),
+                $this->getColumnType(self::TYPE_GROUP)
+            );
 
             foreach ($this->columnsGroup as $i => $column) {
                 if (is_string($column)) {
@@ -201,10 +201,23 @@ class GridView extends \kartik\grid\GridView
     }
 
     /**
+     * @return array
+     */
+    protected function getColumnType($type)
+    {
+        return [
+            'format' => 'raw',
+            'value' => function ($data) use ($type) {
+                return $this->getIconRow($type);
+            }
+        ];
+    }
+
+    /**
      * @param $type
      * @return string
      */
-    protected function getIconColumnType($type)
+    protected function getIconRow($type)
     {
         switch ($type) {
             case self::TYPE_GROUP :
@@ -216,44 +229,11 @@ class GridView extends \kartik\grid\GridView
         }
     }
 
-    /**
-     * @return array
-     */
-    protected function getColumnTypeItemAttribute()
+    protected function getSerialColumn()
     {
         return [
-            'format' => 'raw',
-            'headerOptions' => ['style' => 'width: 50px'],
-            'value' => function ($data) {
-                return $this->getIconColumnType(self::TYPE_ITEM);
-            }
+            'class' => 'yii\grid\SerialColumn',
+            'headerOptions' => ['style' => 'width: 50px;'],
         ];
-    }
-
-    protected function getColumnTypeGroupAttribute()
-    {
-        return [
-            'format' => 'raw',
-            'value' => function ($data) {
-                return $this->getIconColumnType(self::TYPE_GROUP);
-            }
-        ];
-    }
-
-    protected function editColumnId(&$columns)
-    {
-        $arrayFilter = array_filter($columns, function ($value) {
-            return $value === 'id';
-        });
-        $keyArrayFilter = key($arrayFilter);
-
-        if ($arrayFilter) {
-            unset($columns[$keyArrayFilter]);
-
-            array_unshift($columns, [
-                'attribute' => 'id',
-                'headerOptions' => ['style' => 'width: 50px;'],
-            ]);
-        }
     }
 }

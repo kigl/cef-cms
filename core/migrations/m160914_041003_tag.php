@@ -5,9 +5,9 @@ use yii\db\Migration;
 /**
  * Handles the creation for table `tag`.
  */
-class m160914_041003_infosystem_tag extends Migration
+class m160914_041003_tag extends Migration
 {
-    public $tableName = '{{%infosystem_tag}}';
+    public $tableName = '{{%tag}}';
 
     /**
      * @inheritdoc
@@ -16,13 +16,8 @@ class m160914_041003_infosystem_tag extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'infosystem_id' => $this->string(100),
             'name' => $this->string(),
         ]);
-
-        $this->createIndex('ix-infosystem_tag-infosystem_id', $this->tableName, 'infosystem_id');
-
-        $this->addForeignKey('fk-infosystem_tag-infosystem_id', $this->tableName, 'infosystem_id', '{{%infosystem}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     /**

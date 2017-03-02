@@ -6,7 +6,6 @@ use yii\helpers\Html;
 <?= GridView::widget([
     'dataProvider' => $data['dataProvider'],
     'columns' => [
-        'id',
         'model_class',
         [
             'attribute' => 'status',
@@ -25,6 +24,7 @@ use yii\helpers\Html;
         'user_id',
         'content',
         'create_time:dateTime',
+        'id',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\infosystem\models;
+namespace app\modules\tag\models;
 
 use Yii;
 
@@ -8,7 +8,6 @@ use Yii;
  * This is the model class for table "mn_tag".
  *
  * @property integer $id
- * @property integer infosystem_id
  * @property string $name
  */
 class Tag extends \app\core\db\ActiveRecord
@@ -18,7 +17,7 @@ class Tag extends \app\core\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%infosystem_tag}}';
+        return '{{%tag}}';
     }
 
     /**
@@ -28,7 +27,6 @@ class Tag extends \app\core\db\ActiveRecord
     {
         return [
             ['name', 'required'],
-            [['infosystem_id'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -41,23 +39,19 @@ class Tag extends \app\core\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'Tag id'),
             'name' => Yii::t('app', 'Tag name'),
-            'infosystem_id' => Yii::t('infosystem', 'id'),
         ];
     }
 
-    public function getInfosystem()
-    {
-        return $this->hasOne(Infosystem::className(), ['id' => 'infosystem_id']);
-    }
-
+    /*
     public function getItems()
     {
         return $this->hasMany(Item::className(), ['id' => 'item_id'])
             ->viaTable(ItemTag::tableName(), ['tag_id' => 'id']);
     }
+    */
 
     public static function find()
     {
-        return new ItemQuery(get_called_class());
+        return new TagQuery(get_called_class());
     }
 }

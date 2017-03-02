@@ -6,13 +6,13 @@
  * Time: 19:21
  */
 
-namespace app\modules\infosystem\service\backend;
+namespace app\modules\tag\service\backend;
 
 
 use Yii;
 use app\core\service\ModelService;
-use app\modules\infosystem\models\Tag;
-use app\modules\infosystem\models\TagSearch;
+use app\modules\tag\models\Tag;
+use app\modules\tag\models\TagSearch;
 
 
 class TagModelService extends ModelService

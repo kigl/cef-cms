@@ -15,7 +15,6 @@ use yii\helpers\Html;
     ],
     'dataProvider' => $data['dataProvider'],
     'columns' => [
-        'id',
         [
             'attribute' => 'name',
             'format' => 'raw',
@@ -30,6 +29,7 @@ use yii\helpers\Html;
                 return Html::a(Yii::t('app', 'Fields'), ['field/manager', 'form_id' => $data->id]);
             }
         ],
+        'id',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => \yii\grid\ActionColumn::className(),

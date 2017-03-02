@@ -7,8 +7,8 @@ use yii\helpers\Html;
 <?= GridView::widget([
     'dataProvider' => $data['dataProvider'],
     'columns' => [
-        'id',
         'create_time:datetime',
+        'id',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => \yii\grid\ActionColumn::className(),

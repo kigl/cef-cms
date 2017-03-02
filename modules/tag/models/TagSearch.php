@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\infosystem\models;
+namespace app\modules\tag\models;
 
 
 use yii\data\ActiveDataProvider;
@@ -15,8 +15,7 @@ class TagSearch extends Tag
 	
 	public function search(array $params)
 	{
-		$query = Tag::find()
-            ->with('infoSystem');
+		$query = Tag::find();
 		
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,

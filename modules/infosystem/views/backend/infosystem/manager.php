@@ -14,7 +14,6 @@ use app\modules\backend\widgets\grid\GridView;
         ],
     ],
     'columns' => [
-        'id',
         [
             'attribute' => 'name',
             'format' => 'raw',
@@ -26,6 +25,7 @@ use app\modules\backend\widgets\grid\GridView;
             }
         ],
         'create_time:date',
+        'id',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',

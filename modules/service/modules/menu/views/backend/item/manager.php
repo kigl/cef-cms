@@ -19,7 +19,6 @@ use yii\helpers\Html;
         ]
     ],
     'columns' => [
-        'id',
         [
             'attribute' => 'name',
             'format' => 'raw',
@@ -47,6 +46,7 @@ use yii\helpers\Html;
                 ]);
             }
         ],
+        'id',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => \yii\grid\ActionColumn::className(),

@@ -10,7 +10,6 @@ echo GridView::widget([
     'dataProvider' => $dataProvider,
     'buttons' => ['create' => ['element']],
     'columns' => [
-        'id',
         'login',
         [
             'attribute' => 'status',
@@ -20,6 +19,7 @@ echo GridView::widget([
                 },
         ],
         'email',
+        'id',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',

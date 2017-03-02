@@ -9,7 +9,7 @@ use yii\helpers\Url;
 	'buttons' => ['create' => ['element']],
 	'columns' => [
 		'name',
-		'id',
+        'id',
 		[
 			'headerOptions' => ['style' => 'width: 50px'],
 			'class' => 'yii\grid\ActionColumn',

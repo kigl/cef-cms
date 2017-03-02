@@ -6,16 +6,26 @@
  */
 
 
-namespace app\modules\infosystem\controllers\backend;
+namespace app\modules\tag\controllers\backend;
 
 
 use Yii;
-use app\modules\infosystem\components\BackendController;
-use app\modules\infosystem\models\Tag;
-use app\modules\infosystem\service\backend\TagModelService;
+use app\modules\tag\components\BackendController;
+use app\modules\tag\models\Tag;
+use app\modules\tag\service\backend\TagModelService;
 
-class TagController extends BackendController
+class DefaultController extends BackendController
 {
+    public function actionManager()
+    {
+        $modelService = Yii::createObject([
+            'class' => TagModelService::class,
+        ]);
+        $modelService->actionManager();
+
+        return $this->render('manager', ['data' => $modelService->getData()]);
+    }
+
     public function actionCreate()
     {
         $modelService = Yii::createObject([
@@ -52,11 +62,10 @@ class TagController extends BackendController
 
             return $this->redirect([
                 'manager',
-                'infosystem_id' => $modelService->getData('model')->infosystem_id,
             ]);
         }
 
-        return $this->render('tag', ['data' => $modelService->getData()]);
+        return $this->render('update', ['data' => $modelService->getData()]);
     }
 
     public function actionDelete($id)
@@ -66,7 +75,7 @@ class TagController extends BackendController
         if ($model->delete()) {
             //ItemTag::deleteAll("tag_id = {$model->id}");
 
-            return $this->redirect(['manager', 'infosystem_id' => $model->infosystem_id]);
+            return $this->redirect(['manager']);
         }
 
         return false;
