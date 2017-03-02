@@ -1,11 +1,9 @@
 <?php
-use kartik\form\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
-use app\core\widgets\Alert;
 
 ?>
 
-<?= Alert::widget(); ?>
 
 <?php $form = ActiveForm::begin([
     'id' => 'comment-form',

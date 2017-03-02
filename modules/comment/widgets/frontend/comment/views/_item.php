@@ -5,13 +5,12 @@ use yii\helpers\Html;
 
 <?php foreach ($data['items'] as $model) : ?>
     <?php if ($model->parent_id == $parentId) : ?>
-        <div class="comment-wrapper">
-            <div class="comment-item">
+            <div class="comment-item media">
                 <input type="hidden" value="<?= $model->id; ?>"/>
                 <div class="pull-left">
                     avatar
                 </div>
-                <div class="comment-detail container-fluid">
+                <div class="comment-detail media-body">
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="list-inline">
@@ -38,13 +37,12 @@ use yii\helpers\Html;
                             </div>
                         </div>
                     </div>
+
+                    <?= $this->render('_item', [
+                        'data' => $data,
+                        'parentId' => $model->id,
+                    ]) ?>
                 </div>
             </div>
-
-            <?= $this->render('_item', [
-                'data' => $data,
-                'parentId' => $model->id,
-            ]) ?>
-        </div>
     <?php endif; ?>
 <?php endforeach; ?>

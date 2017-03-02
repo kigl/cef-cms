@@ -3,7 +3,6 @@ $(function () {
     cloneCommentForm = commentForm.clone();
 
     $('.link-answer').click(function () {
-        // сонтейнер комментария
         linkAnswer = $(this);
         commentItem = linkAnswer.parent().parent().parent().parent().parent();
 

@@ -13,9 +13,9 @@ use app\core\widgets\showContentModal\Widget as ShowContentModal;
         <?= Html::csrfMetaTags() ?>
         <?php $this->head(); ?>
     </head>
-    <body class="height-all">
+    <body>
     <?php $this->beginBody(); ?>
-    <div class="container-fluid wrapper height-all">
+    <div class="container-fluid wrapper">
         <div class="height-all">
             <?= $content; ?>
         </div>

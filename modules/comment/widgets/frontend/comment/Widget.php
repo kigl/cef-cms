@@ -21,6 +21,12 @@ class Widget extends \yii\base\Widget
 
     public function run()
     {
+
+        /**
+         * @todo
+         * Добавить возможность редактировать комментария автору ?
+         */
+
         $form = new CommentForm();
         $model = new Comment([
             'model_class' => $this->modelClass,
@@ -34,6 +40,7 @@ class Widget extends \yii\base\Widget
             $model->save(false);
 
             $form->content = null;
+            $form->parent_id = null;
         }
 
         $items = $this->getAllItems();

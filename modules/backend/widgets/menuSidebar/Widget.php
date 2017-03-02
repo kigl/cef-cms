@@ -8,10 +8,9 @@ class Widget extends \yii\base\Widget
 {
 	public function run()
 	{
-		// присваеваем маасив меню
-		$menuModules = $this->getMenuModules();
-		
-		return $this->render('index', $menuModules);
+		return $this->render('index', [
+		    'data' => $this->getMenuModules(),
+            ]);
 	}
 	
 	/**

@@ -14,6 +14,7 @@ use yii\helpers\Html;
 abstract class Breadcrumbs extends \yii\widgets\Breadcrumbs
 {
     public $enableModuleItem = true;
+
     /**
      * @return array
      */
@@ -65,7 +66,7 @@ abstract class Breadcrumbs extends \yii\widgets\Breadcrumbs
             return false;
         }
 
-        return	 $this->renderItem([
+        return $this->renderItem([
             'label' => $module->getName(),
             'url' => [$url],
         ], $this->itemTemplate);

@@ -8,19 +8,10 @@ use yii\helpers\Url;
     <?= Yii::t('comment', 'Header comment ({count})', ['count' => $data['count']]); ?>
 </div>
 
-<?php
-/**
- * @todo
- * Добавить возможность редактировать комментария автору ?
- * Вынести логику добавления в контроллер, добавить ajax
- */
-?>
-
 <?= $this->render('_item', [
     'data' => $data,
     'parentId' => null,
 ]); ?>
-
 
 <?php if (!Yii::$app->user->isGuest) : ?>
     <?= $this->render('_form', ['data' => $data]); ?>

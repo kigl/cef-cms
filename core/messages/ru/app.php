@@ -29,6 +29,8 @@ return [
     'Message thank you' => 'Спасибо!',
     'Meta title' => 'Meta заголовок страницы',
     'Meta description' => 'Meta описание',
+    'Menu item content' => 'Контент',
+    'Menu item service' => 'Сервисы',
 
     'Icon css class' => 'CSS класс иконки',
     'Image' => 'Изображение',

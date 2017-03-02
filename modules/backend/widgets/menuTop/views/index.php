@@ -7,21 +7,8 @@ use yii\helpers\Html;
 
 <?php
 NavBar::begin([
-    'options' => ['class' => 'navbar navbar-inverse no-border-radius'],
+    'options' => ['class' => 'navbar navbar-inverse no-border-radius bg-theme no-border no-margin'],
     'innerContainerOptions' => ['class' => 'container-fluid'],
-]);
-
-echo Nav::widget([
-    'options' => ['class' => 'navbar-nav'],
-    'encodeLabels' => false,
-    'items' => [
-        [
-            'label' => '<i class="glyphicon glyphicon-cog"></i> Системные',
-            'items' => [
-                ['label' => 'Менеджер настроек', 'url' => ['/backend/setting/manager']],
-            ],
-        ],
-    ],
 ]);
 
 echo Nav::widget([

@@ -14,7 +14,7 @@ use app\modules\user\helpers\StatusHelper;
                 <?= Yii::t('app', 'Tab profile'); ?>
             </a>
         </li>
-        <li><a href="#field" data-toggle="tab"><?= Yii::t('app', 'Tab more properties'); ?></a></li>
+        <li><a href="#field" data-toggle="tab"><?= Yii::t('app', 'Tab properties'); ?></a></li>
         <li><a href="#role" data-toggle="tab"><?= Yii::t('user', 'Tab role');?></a></li>
     </ul>
 

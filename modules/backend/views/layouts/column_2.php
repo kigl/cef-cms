@@ -20,7 +20,7 @@ use app\modules\backend\widgets\menuTop\Widget as MenuTop;
     </div>
 
     <div class="row height-all">
-        <div class="col-md-2 sidebar padding-left-5 height-all bg-theme">
+        <div class="col-md-2 sidebar">
             <?= MenuSidebar::widget(); ?>
         </div>
         <div class="col-md-10 blackboard">

@@ -2,12 +2,12 @@
 use yii\widgets\Menu;
 
 ?>
-<div class="admin left-menu">
-	<?php
-	echo Menu::widget([
-		'options' => ['class' => 'nav nav-pills nav-stacked'],
-		'items' => $module,
-        'encodeLabels' => false,
-	]);
-	?>
-</div>
+
+<?php
+echo Menu::widget([
+    'options' => ['class' => 'sidebar-menu'],
+    'items' => $data,
+    'encodeLabels' => false,
+    'activateParents' => true,
+]);
+?>
