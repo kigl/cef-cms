@@ -1,12 +1,16 @@
 <?php
 
-namespace app\modules\main\widgets\backend\menuSidebar\assets;
+namespace app\modules\backend\widgets\menuSidebar\assets;
 
 class Asset extends \yii\web\AssetBundle
 {
-	public $sourcePath = '@app/modules/main/widgets/backend/menuSidebar/assets/bundle';
+	public $sourcePath = '@app/modules/backend/widgets/menuSidebar/assets/bundle';
 
 	public $css = [
 		'css/main.css',
 	];
+
+	public $js = [
+        'js/jQuery.tree.js',
+    ];
 }

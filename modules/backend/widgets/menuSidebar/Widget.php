@@ -2,12 +2,14 @@
 
 namespace app\modules\backend\widgets\menuSidebar;
 
+
 use Yii;
 
 class Widget extends \yii\base\Widget
 {
 	public function run()
 	{
+
 		return $this->render('index', [
 		    'data' => $this->getMenuModules(),
             ]);

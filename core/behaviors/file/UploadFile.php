@@ -25,8 +25,7 @@ class UploadFile extends \yii\base\Behavior
 	* @var 
 	*/		
 	public $name;
-	
-	public $deleteKey = 'deleteFile';
+
 	/**
 	* alias @app/temp
 	* @var 
@@ -52,7 +51,7 @@ class UploadFile extends \yii\base\Behavior
 		];
 	}
 
-	public function beforeSave()
+    public function beforeSave()
 	{
 		$instance = $this->owner->{$this->attribute};
 		// если загружаем файл
@@ -76,7 +75,7 @@ class UploadFile extends \yii\base\Behavior
 			$this->owner->{$this->attribute} = $this->getOldAttribute();
  		}	
  		// если $deleteKey активный, то удвляем файл
- 		if (Yii::$app->request->Post($this->deleteKey)) {
+ 		if (Yii::$app->request->Post($this->getDeleteKey())) {
 			$this->deleteFile();
 			$this->setDbAttribute(null);
 		}
@@ -210,4 +209,9 @@ class UploadFile extends \yii\base\Behavior
 		}
 		return false;
 	}
+
+	public function getDeleteKey()
+    {
+        return 'remove_' . $this->attribute;
+    }
 }

@@ -27,7 +27,6 @@ class UrlRule extends Object implements UrlRuleInterface
 
     public function createUrl($manager, $route, $params)
     {
-
         if ($route == $this->routeGroupAction) {
             $controller = self::URL_NAME_GROUP;
         } elseIf ($route == $this->routeItemAction) {
@@ -103,7 +102,6 @@ class UrlRule extends Object implements UrlRuleInterface
 
             Yii::$app->cache->set($this->cacheKey, $data, 3600 * 24 * 12, $depedency);
         }
-
         return $data;
     }
 }

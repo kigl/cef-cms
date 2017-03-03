@@ -10,7 +10,7 @@ use kartik\file\FileInput;
                 <div class="pull-right">
                     <label>
                         Удалить <input type="checkbox"
-                                       name="<?= $model->getBehavior($widget->behaviorName)->deleteKey ?>">
+                                       name="<?= $model->getBehavior($widget->behaviorName)->getDeleteKey() ?>">
                     </label>
                 </div>
             </div>

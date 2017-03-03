@@ -78,14 +78,12 @@ class Group extends \app\core\db\ActiveRecord
             'UploadImagePreview' => [
                 'class' => 'app\core\behaviors\file\UploadImage',
                 'attribute' => 'image_preview',
-                'deleteKey' => 'deleteImagePreview',
                 'path' => Yii::$app->getModule('infosystem')->getPublicPath() . '/images',
                 'pathUrl' => Yii::$app->getModule('infosystem')->getPublicPathUrl() . '/images',
             ],
             'UploadImageContent' => [
                 'class' => 'app\core\behaviors\file\UploadImage',
                 'attribute' => 'image_content',
-                'deleteKey' => 'deleteImageContent',
                 'path' => Yii::$app->getModule('infosystem')->getPublicPath() . '/images',
                 'pathUrl' => Yii::$app->getModule('infosystem')->getPublicPathUrl() . '/images',
             ],

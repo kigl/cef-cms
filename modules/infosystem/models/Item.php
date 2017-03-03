@@ -119,14 +119,14 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
             'UploadImagePreview' => [
                 'class' => 'app\core\behaviors\file\UploadImage',
                 'attribute' => 'image_preview',
-                'deleteKey' => 'deleteImagePreview',
+                //'deleteKey' => 'deleteImagePreview',
                 'path' => Yii::$app->getModule('infosystem')->getPublicPath() . '/images',
                 'pathUrl' => Yii::$app->getModule('infosystem')->getPublicPathUrl() . '/images',
             ],
             'UploadImageContent' => [
                 'class' => 'app\core\behaviors\file\UploadImage',
                 'attribute' => 'image_content',
-                'deleteKey' => 'deleteImageContent',
+                //'deleteKey' => 'deleteImageContent',
                 'path' => Yii::$app->getModule('infosystem')->getPublicPath() . '/images',
                 'pathUrl' => Yii::$app->getModule('infosystem')->getPublicPathUrl() . '/images',
             ],

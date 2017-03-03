@@ -35,7 +35,7 @@ class UploadImage extends \app\core\behaviors\file\UploadFile
 			$this->setDbAttribute($this->getOldAttribute());
 		}
 		// если $deleteKey активный, то удвляем файл
-		if (Yii::$app->request->Post($this->deleteKey)) {
+		if (Yii::$app->request->Post($this->getDeleteKey())) {
 			$this->deleteFile();
 			$this->deleteThumbnail();
 			$this->setDbAttribute(null);
