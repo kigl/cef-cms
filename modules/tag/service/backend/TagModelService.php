@@ -42,13 +42,13 @@ class TagModelService extends ModelService
         ]);
     }
     
-    public function actionUpdate(array $params)
+    public function actionUpdate()
     {
         $model = Tag::find()
-            ->byId($params['get']['id'])
+            ->byId($this->getData('get', 'id'))
             ->one();
 
-        if ($model->load($params['post']) && $model->save()) {
+        if ($model->load($this->getData('post')) && $model->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 

@@ -52,7 +52,7 @@ class Infosystem extends \app\core\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'Id'),
+            'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),

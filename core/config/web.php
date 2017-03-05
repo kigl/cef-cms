@@ -10,13 +10,11 @@ $config = [
     'sourceLanguage' => 'en-US',
 
     'vendorPath' => '@app/core/vendor',
-
-    'components' => include __DIR__ .'/components.php',
-
-    'params' => [
-        'icon-framework' => 'fa',
-    ],
 ];
+
+Yii::setAlias('app', $config['basePath']);
+
+$config['components'] = include __DIR__ .'/components.php';
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
@@ -30,7 +28,5 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
     ];
 }
-
-Yii::setAlias('app', $config['basePath']);
 
 return $config;

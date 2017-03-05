@@ -78,7 +78,11 @@ class ItemModelService extends ModelService
     {
         $post = $this->getData('post');
 
-        if ($this->model->load($post) && Model::loadMultiple($this->itemProperties, $post)) {
+        if ($this->itemProperties) {
+            Model::loadMultiple($this->itemProperties, $post);
+        }
+
+        if ($this->model->load($post)) {
             return true;
         }
 

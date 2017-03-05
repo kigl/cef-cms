@@ -51,7 +51,7 @@ class Page extends \app\core\db\ActiveRecord implements SitemapModelInterface
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'Id'),
+            'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'content' => Yii::t('app', 'Content'),
             'dynamicPage' => Yii::t('page', 'Dynamic page'),

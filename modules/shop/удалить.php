@@ -1,6 +1,6 @@
 <table width="100%" class="table-size">
     <tr>
-        <td colspan="3" align="center" class="td-1">Роста и размеры</td>
+        <td colspa72n="3" align="center" class="td-1">Роста и размеры</td>
     </tr>
     <tr id="tr-size">
         <td class="td-2">

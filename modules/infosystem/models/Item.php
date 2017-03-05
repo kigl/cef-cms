@@ -72,7 +72,7 @@ class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\compo
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'Id'),
+            'id' => Yii::t('app', 'ID'),
             'group_id' => Yii::t('infosystem', 'Group id'),
             'infosystem_id' => Yii::t('infosystem', 'Infosystem id'),
             'name' => Yii::t('app', 'Name'),

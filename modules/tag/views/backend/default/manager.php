@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use app\modules\backend\widgets\grid\GridView;
 
 ?>
-    <p class="alert alert-danger">Не закончнно</p>
+
 <?= GridView::widget([
     'buttons' => [
         'create' => [

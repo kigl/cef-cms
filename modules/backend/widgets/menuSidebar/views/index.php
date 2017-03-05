@@ -14,7 +14,7 @@ echo Menu::widget([
     'items' => [
         ['label' => Yii::t('app', 'Menu item content'), 'url' => '#', 'items' => $data['content']],
         ['label' => Yii::t('app', 'Menu item service'), 'url' => '#', 'items' => $data['service']],
-        ['label' => 'Не знаю', 'url' => '#', 'items' => $data['other']],
+        ['label' => 'Пользователи', 'url' => '#', 'items' => $data['other']],
     ],
     'encodeLabels' => false,
     'activateParents' => true,

@@ -59,7 +59,7 @@ class Product extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'Id'),
+            'id' => Yii::t('app', 'ID'),
             'parent_id' => Yii::t('shop', 'Product parent id'),
             'group_id' => Yii::t('shop', 'Group id'),
             'code' => Yii::t('app', 'Code'),

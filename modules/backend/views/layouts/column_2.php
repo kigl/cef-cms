@@ -51,16 +51,9 @@ use app\modules\backend\widgets\menuTop\Widget as MenuTop;
                                     </div>
                                 <?php endif; ?>
                                 
-                                <?php
-                                if (isset($this->params['toolbar'])) {
-                                    echo Menu::widget([
+                                <?= \app\modules\backend\widgets\toolbar\Widget::widget([
                                         'options' => ['class' => 'list-inline well well-sm'],
-                                        'encodeLabels' => false,
-                                        'linkTemplate' => '<a href="{url}" class="btn btn-default btn-sm">{label}</a>',
-                                        'items' => $this->params['toolbar'],
-                                    ]);
-                                }
-                                ?>
+                                ]);?>
                             </div>
                         </div>
                         <?= $content; ?>

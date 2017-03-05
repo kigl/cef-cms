@@ -16,5 +16,7 @@ class TagQuery extends ActiveQuery
     public function byId($id)
     {
         $this->where('id = :id', [':id' => $id]);
+
+        return $this;
     }
 }

@@ -37,18 +37,10 @@ class Tag extends \app\core\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'Tag id'),
-            'name' => Yii::t('app', 'Tag name'),
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
         ];
     }
-
-    /*
-    public function getItems()
-    {
-        return $this->hasMany(Item::className(), ['id' => 'item_id'])
-            ->viaTable(ItemTag::tableName(), ['tag_id' => 'id']);
-    }
-    */
 
     public static function find()
     {

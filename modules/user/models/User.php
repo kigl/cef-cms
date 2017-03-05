@@ -61,7 +61,7 @@ class User extends \app\core\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('user', 'Id'),
+            'id' => Yii::t('user', 'ID'),
             'login' => Yii::t('user', 'Login'),
             'surname' => Yii::t('user', 'Surname'),
             'name' => Yii::t('user', 'Name'),

@@ -12,6 +12,12 @@ return [
         ),
     ),
 
+    'configManager' => [
+        'class' => \app\core\components\ConfigManager::class,
+        'modulesPath' => '@app/modules',
+        'type' => \app\core\components\ConfigManager::CONFIG_TYPE_OTHER,
+    ],
+
     'formatter' => [
         'locale' => 'ru-Ru',
         'dateFormat' => 'long',
@@ -71,7 +77,7 @@ return [
     ],
     'mailer' => [
         'class' => 'yii\swiftmailer\Mailer',
-        'useFileTransport' => true,
+        //'useFileTransport' => true,
     ],
     'log' => [
         'traceLevel' => YII_DEBUG ? 3 : 0,
