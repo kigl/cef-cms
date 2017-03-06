@@ -9,7 +9,6 @@
 namespace app\core\widgets\pageHeader;
 
 use Yii;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 class Widget extends \yii\base\Widget
@@ -22,8 +21,10 @@ class Widget extends \yii\base\Widget
 
     public function run()
     {
+        Html::addCssClass($this->options, $this->defaultOptions);
+
         if ($this->text !== '') {
-            echo Html::tag('h1', $this->text, ArrayHelper::merge($this->defaultOptions, $this->options));
+            echo Html::tag('div', Html::tag('h4', $this->text), $this->options);
         }
     }
 }

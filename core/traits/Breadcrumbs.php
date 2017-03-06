@@ -22,38 +22,25 @@ trait Breadcrumbs
      *              ],
      *          ],
      *      ],
-     * 'group' => [
-     *      'id' => 12,
-     *      'modelClass' => 'ModelClass',
-     *      'enableRoot' => true,
-     *           'urlOptions' => [
-     *           'route' => 'controller/action',
-     *           'params' => [param_id, 'par_id'],
-     *           'queryParams' => [
-     *              'query' => 'views',
-     *              ],
-     *          ],
-     *      ],
-     * 'items' => [
-     *      ['label' => 'name'],
-     *      ],
      * ]);
      */
 
     public function buildBreadcrumb(array $params)
     {
         $groupItem = [];
-        $items = [];
+        //$items = [];
 
         if (array_key_exists('group', $params)) {
             $groupItem = $this->getLinksGroup($params['group']);
         }
 
-        if (array_key_exists('items', $params)) {
+        /*if (array_key_exists('items', $params)) {
             $items = $params['items'];
-        }
+        }*/
 
-        return ArrayHelper::merge($groupItem, $items);
+        //return ArrayHelper::merge($groupItem, $items);
+
+        return $groupItem;
     }
 
     protected function getLinksGroup($params = [])
@@ -96,7 +83,7 @@ trait Breadcrumbs
         }
         */
 
-        return $result ? $result : null;
+        return $result ? $result : [];
     }
 
     protected function getUrl($model, $route, $params = [])

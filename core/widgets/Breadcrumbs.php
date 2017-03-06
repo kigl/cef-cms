@@ -11,84 +11,40 @@ namespace app\core\widgets;
 use Yii;
 use yii\helpers\Html;
 
-abstract class Breadcrumbs extends \yii\widgets\Breadcrumbs
+class Breadcrumbs extends \yii\widgets\Breadcrumbs
 {
     public $enableModuleItem = true;
 
-    /**
-     * @return array
-     */
-    abstract public function getHiddenModules();
-
-    /**
-     * @return string
-     */
-    abstract public function getDefaultRouteModule();
-
-    abstract public function getLinks();
-
     public function run()
     {
-        $this->links = $this->getLinks();
-
-        if (empty($this->links)) {
-            return;
-        }
-        $links = [];
+        $items = [];
         if ($this->homeLink === null) {
-            $links[] = $this->renderItem([
+            $items[] = $this->renderItem([
                 'label' => Yii::t('app', 'Link name page main'),
                 'url' => Yii::$app->homeUrl,
             ], $this->itemTemplate);
         } elseif ($this->homeLink !== false) {
-            $links[] = $this->renderItem($this->homeLink, $this->itemTemplate);
+            $items[] = $this->renderItem($this->homeLink, $this->itemTemplate);
         }
 
-        $links[] = $this->enableModuleItem ? $this->getModuleItem() : null;
+        $items[] = $this->enableModuleItem ? $this->getModuleItem() : null;
 
         foreach ($this->links as $link) {
             if (!is_array($link)) {
-                $link = ['label' => $link];
+                $items[] = ['label' => $link];
             }
-            $links[] = $this->renderItem($link, isset($link['url']) ? $this->itemTemplate : $this->activeItemTemplate);
+            $items[] = $this->renderItem($link, isset($link['url']) ? $this->itemTemplate : $this->activeItemTemplate);
         }
-        echo Html::tag($this->tag, implode('', $links), $this->options);
+        echo Html::tag($this->tag, implode('', $items), $this->options);
     }
 
     protected function getModuleItem()
     {
-        $controller = Yii::$app->controller;
-        $module = $controller->module;
-        $url = $this->getDefaultRouteModule();
-
-
-        if (in_array($module->id, $this->getHiddenModules())) {
-            return false;
-        }
+        $module = Yii::$app->controller->module;
 
         return $this->renderItem([
             'label' => $module->getName(),
-            'url' => [$url],
+            'url' => [$module->defaultBackendRoute],
         ], $this->itemTemplate);
     }
-
-    /*
-    private function getHomeLink()
-    {
-        return [
-            'label' => Yii::t('app', 'Link name page main'),
-            'url' => $this->homeLinkUrl,
-        ];
-    }
-
-    private function getLinks()
-    {
-        return Yii::$app->views->getBreadcrumbs();
-    }
-
-    private function getActiveItemTemplate()
-    {
-        return "<li class=\"active\"><!--noindex-->{link}<!--/noindex--></li>";
-    }
-    */
 }

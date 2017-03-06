@@ -43,7 +43,7 @@ class User extends \app\core\db\ActiveRecord
     public function rules()
     {
         return [
-            [['login', 'email'], 'required'],
+            [['login', 'email', 'name'], 'required'],
             ['login', 'match', 'pattern' => '/^[a-z]+$/', 'message' => 'Символы от a-z'],
             [['surname', 'name', 'lastname', 'password', 'password_repeat'], 'string', 'max' => 255],
            // ['password', 'string', 'min' => 6],
@@ -61,19 +61,19 @@ class User extends \app\core\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('user', 'ID'),
-            'login' => Yii::t('user', 'Login'),
-            'surname' => Yii::t('user', 'Surname'),
-            'name' => Yii::t('user', 'Name'),
-            'lastname' => Yii::t('user', 'Lastname'),
-            'email' => Yii::t('user', 'Email'),
-            'password' => Yii::t('user', 'Password'),
-            'status' => Yii::t('user', 'Status'),
+            'id' => Yii::t('app', 'ID'),
+            'login' => Yii::t('app', 'Login'),
+            'surname' => Yii::t('app', 'Surname'),
+            'name' => Yii::t('app', 'Name user'),
+            'lastname' => Yii::t('app', 'Lastname'),
+            'email' => Yii::t('app', 'Email'),
+            'password' => Yii::t('app', 'Password'),
+            'status' => Yii::t('app', 'Status'),
             'rolePermission' => Yii::t('user', 'Role and permission'),
             'create_time' => Yii::t('app', 'Create time'),
             'update_time' => Yii::t('app', 'Update time'),
-            'ip' => Yii::t('user', 'Ip'),
-            'password_repeat' => Yii::t('user', 'Password repeat'),
+            'ip' => Yii::t('app', 'IP'),
+            'password_repeat' => Yii::t('app', 'Password repeat'),
         ];
     }
 

@@ -2,10 +2,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use app\modules\backend\widgets\grid\GridView;
-use app\modules\shop\models\Group;
-use app\core\helpers\Breadcrumbs;
 
-$this->setBreadcrumbs($data['breadcrumbs']);
 ?>
 
 <?= GridView::widget([

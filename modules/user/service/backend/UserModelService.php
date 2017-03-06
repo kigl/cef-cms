@@ -30,8 +30,10 @@ class UserModelService extends ModelService
         $this->rbacService = new RbacService();
     }
 
-    protected function init()
+    public function init()
     {
+        parent::init();
+
         $this->fields = $this->initFields();
     }
 

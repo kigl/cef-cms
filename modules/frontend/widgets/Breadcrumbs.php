@@ -9,43 +9,15 @@
 namespace app\modules\frontend\widgets;
 
 use Yii;
+use yii\base\Widget;
 use yii\helpers\Html;
 
-class Breadcrumbs extends \app\core\widgets\Breadcrumbs
+class Breadcrumbs extends Widget
 {
-
-    public function getHiddenModules()
+    public function run()
     {
-       return ['frontend'];
-    }
+        if ($this->view->params['breadcrumbs']) {
 
-    public function getDefaultRouteModule()
-    {
-        return Yii::$app->controller->module->defaultRoute;
+        }
     }
-
-    public function getLinks()
-    {
-        return Yii::$app->view->getBreadcrumbs();
-    }
-
-    /*
-    private function getHomeLink()
-    {
-        return [
-            'label' => Yii::t('app', 'Link name page main'),
-            'url' => $this->homeLinkUrl,
-        ];
-    }
-
-    private function getLinks()
-    {
-        return Yii::$app->views->getBreadcrumbs();
-    }
-
-    private function getActiveItemTemplate()
-    {
-        return "<li class=\"active\"><!--noindex-->{link}<!--/noindex--></li>";
-    }
-    */
 }

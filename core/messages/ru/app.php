@@ -2,6 +2,7 @@
 return [
 	'Alias' => 'Алиас',
     'Author' => 'Автор',
+	'Additional properties' => 'Дополнительные свойства',
 
 	'Button create' => 'Создать',
     'Button add' => 'Добавить',
@@ -64,18 +65,21 @@ return [
     'City' => 'Город',
     'Company' => 'Компания',
     'Comment' => 'Комментарии',
+    'Create: {data}' => 'Создание: {data}',
+    'Create' => 'Создание',
 
     'Visible' => 'Видим',
     'Video' => 'Видео',
 
     'Saved element' => 'Сохранено!',
 	'Sorting' => 'Сортировка',
-	'Submit send' => 'Отправить',
 	'Status' => 'Статус',
 	'Status block' => 'Заблокирован',
 	'Status active' => 'Активный',
 	'Status draft' => 'Черновик',
     'Sum' => 'Сумма',
+
+	'Edit: {data}' => 'Редактирование: {data}',
 
 	'Updated element' => 'Элемент обновлен!',
 	'Update time' => 'Дата обновления',
@@ -98,6 +102,7 @@ return [
     'Type field checkbox' => 'Checkbox',
     'Type role' => 'Роль',
     'Type permission' => 'Разрешение',
+    'Toolbar properties' => 'Дополнительные свойства',
 
     'Value' => 'Значение',
 

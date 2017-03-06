@@ -5,6 +5,8 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\rbac\Item;
 
+$this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Toolbar rbac')];
+
 ?>
 
 <?= GridView::widget([

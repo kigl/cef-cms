@@ -1,12 +1,14 @@
 <?php
 use yii\helpers\Url;
 use app\modules\backend\widgets\grid\GridView;
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Additional properties')];
 ?>
 
 <?= GridView::widget([
     'buttons' => [
         'create' => [
-            'element' => [
+            'item' => [
                 'url' => Url::to(['create']),
             ],
         ],

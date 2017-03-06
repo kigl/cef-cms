@@ -59,7 +59,7 @@ class Comment extends \app\core\db\ActiveRecord
             'item_id' => Yii::t('app', 'Item ID'),
             'content' => Yii::t('app', 'Content'),
             'status' => Yii::t('app', 'Status'),
-            'user_id' => Yii::t('app', 'User ID'),
+            'user_id' => Yii::t('app', 'Author'),
             'create_time' => Yii::t('app', 'Create time'),
             'update_time' => Yii::t('app', 'Update time'),
         ];

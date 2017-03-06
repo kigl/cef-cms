@@ -9,10 +9,11 @@
 namespace app\core\service;
 
 use Yii;
+use yii\base\Component;
 use yii\base\Exception;
 use yii\web\HttpException;
 
-abstract class ModelService implements ModelServiceInterface
+abstract class ModelService extends Component implements ModelServiceInterface
 {
     const ERROR_NOT_MODEL = 1;
     const ERROR_NOT_MODEL_ALIAS = 2;

@@ -6,7 +6,7 @@ use Yii;
 
 class Module extends \app\core\module\Module
 {
-	public $itemsPerPage = 10;
+	public $defaultBackendRoute = 'default/index';
 	
 	public static function getAllModules()
 	{

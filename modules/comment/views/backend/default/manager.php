@@ -1,6 +1,7 @@
 <?php
 use app\modules\backend\widgets\grid\GridView;
 use yii\helpers\Html;
+
 ?>
 
 <?= GridView::widget([
@@ -21,7 +22,14 @@ use yii\helpers\Html;
                 ]);
             }
         ],
-        'user_id',
+        [
+            'attribute' => 'user_id',
+            'format' => 'raw',
+            'value' => function ($model) {
+                return Html::a($model->user->login, ['/backend/user/default/view', 'id' => $model->user->id],
+                    ['class' => 'show-in-modal']);
+            }
+        ],
         'content',
         'create_time:dateTime',
         'id',
@@ -41,4 +49,4 @@ use yii\helpers\Html;
             ],
         ]
     ],
-]);?>
+]); ?>

@@ -9,7 +9,7 @@ use yii\jui\DatePicker;
  */
 class Module extends \app\core\module\Module
 {
-	public $defaultBackendRoute = 'manager/infosystem';
+	public $defaultBackendRoute = 'infosystem/manager';
 
 	public function init()
     {

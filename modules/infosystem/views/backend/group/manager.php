@@ -4,6 +4,7 @@ use yii\helpers\Url;
 use app\modules\backend\widgets\grid\GridView;
 use app\core\helpers\Breadcrumbs;
 
+$this->params['breadcrumbs'] = $data['breadcrumbs'];
 ?>
 
 <?=GridView::widget([
@@ -15,14 +16,14 @@ use app\core\helpers\Breadcrumbs;
             'group' => [
                 'url' => Url::to([
                     'create',
-                    'infosystem_id' => $data['infosystemId'],
+                    'infosystem_id' => $data['infosystem']->id,
                     'parent_id' => $data['id'],
                 ]),
             ],
             'item' => [
                 'url' => Url::to([
                     'item/create',
-                    'infosystem_id' => $data['infosystemId'],
+                    'infosystem_id' => $data['infosystem']->id,
                     'group_id' => $data['id'],
                 ]),
             ],

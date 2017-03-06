@@ -206,6 +206,7 @@ class GridView extends \kartik\grid\GridView
     protected function getColumnType($type)
     {
         return [
+            'headerOptions' => ['style' => 'width: 50px;'],
             'format' => 'raw',
             'value' => function ($data) use ($type) {
                 return $this->getIconRow($type);

@@ -8,14 +8,20 @@
 
 namespace app\modules\infosystem\service\backend;
 
+
+use yii\base\Model;
+use app\core\traits\Breadcrumbs;
 use app\modules\infosystem\models\Item;
 use app\core\service\ModelService;
 use app\modules\infosystem\models\ItemProperty;
 use app\modules\infosystem\models\Property;
-use yii\base\Model;
+use app\modules\infosystem\models\Infosystem;
+use app\modules\infosystem\models\Group;
 
 class ItemModelService extends ModelService
 {
+    use Breadcrumbs;
+
     protected $itemProperties;
 
     protected $properties;
@@ -28,6 +34,7 @@ class ItemModelService extends ModelService
             'infosystem_id' => $this->getData('get', 'infosystem_id'),
             'group_id' => $this->getData('get', 'group_id'),
         ]);
+        $infosystem = Infosystem::findOne($this->model->infosystem_id);
 
         $this->initProperties();
 
@@ -39,6 +46,7 @@ class ItemModelService extends ModelService
             'model' => $this->model,
             'itemProperties' => $this->itemProperties,
             'properties' => $this->properties,
+            'breadcrumbs' => $this->buildBreadcrumbs($infosystem, $this->model->group_id),
         ]);
     }
 
@@ -46,6 +54,7 @@ class ItemModelService extends ModelService
     {
         $this->model = Item::find()
             ->byId($this->getData('get', 'id'))
+            ->with('infosystem')
             ->one();
 
         $this->initProperties();
@@ -58,6 +67,7 @@ class ItemModelService extends ModelService
             'model' => $this->model,
             'itemProperties' => $this->itemProperties,
             'properties' => $this->properties,
+            'breadcrumbs' => $this->buildBreadcrumbs($this->model->infosystem, $this->model->group_id),
         ]);
     }
 
@@ -166,5 +176,23 @@ class ItemModelService extends ModelService
         foreach ($this->properties as $property) {
             $this->itemProperties[$property->id]->requiredValue = $property->required;
         }
+    }
+
+    protected function buildBreadcrumbs(Infosystem $infosystem, $group_id)
+    {
+        $breadcrumbs = $this->buildBreadcrumb([
+            'group' => [
+                'id' => $group_id,
+                'modelClass' => Group::class,
+                'urlOptions' => [
+                    'route' => '/backend/infosystem/group/manager',
+                    'params' => ['id', 'infosystem_id'],
+                ],
+            ],
+        ]);
+
+        array_unshift($breadcrumbs, ['label' => $infosystem->name, 'url' => ['group/manager', 'infosystem_id' => $infosystem->id]]);
+
+        return $breadcrumbs;
     }
 }

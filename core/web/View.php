@@ -12,8 +12,7 @@ class View extends \yii\web\View
 {
     private $metaDescription;
     private $metaKeywords;
-    private $pageHeader;
-    private $breadcrumbs = [];
+    private $pageHeader = '';
 
     public function setTitle($data)
     {
@@ -35,11 +34,6 @@ class View extends \yii\web\View
         $this->pageHeader = $data;
     }
 
-    public function setBreadcrumbs($data)
-    {
-        $this->breadcrumbs = $data;
-    }
-
     public function getTitle()
     {
         return $this->title;
@@ -58,11 +52,6 @@ class View extends \yii\web\View
     public function getPageHeader()
     {
         return $this->pageHeader;
-    }
-
-    public function getBreadcrumbs()
-    {
-        return $this->breadcrumbs;
     }
 
     public function getModule()

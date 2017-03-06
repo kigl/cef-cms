@@ -1,6 +1,6 @@
 <?php
 return [
-    'Module name' => 'Backend',
+    'Module name' => 'Главный модуль',
 
 	'Attribute id menu' => 'Id меню',
 

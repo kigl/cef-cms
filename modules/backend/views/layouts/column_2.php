@@ -30,7 +30,14 @@ use app\modules\backend\widgets\menuTop\Widget as MenuTop;
                         <div class="row">
                             <div class="col-md-12">
 
-                                <?= \app\modules\frontend\widgets\Breadcrumbs::widget(['enableModuleItem' => false]); ?>
+                                <?= \app\core\widgets\Breadcrumbs::widget([
+                                    'options' => ['class' => 'breadcrumb no-margin-bottom'],
+                                    'homeLink' => [
+                                        'label' => Yii::t('yii', 'Home'),
+                                        'url' => ['/backend/default/index']
+                                    ],
+                                    'links' => !empty($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []
+                                ]); ?>
 
                                 <?php
                                 /* echo Breadcrumbs::widget([
@@ -45,15 +52,14 @@ use app\modules\backend\widgets\menuTop\Widget as MenuTop;
 
                                 <?= Alert::widget(); ?>
 
-                                <?php if (isset($this->params['pageHeader'])) : ?>
-                                    <div class="page-header">
-                                        <h3><?php echo $this->params['pageHeader']; ?></h3>
-                                    </div>
-                                <?php endif; ?>
-                                
+                                <?= app\core\widgets\pageHeader\Widget::widget([
+                                    'text' => $this->getPageHeader(),
+                                    'options' => ['class' => 'margin-top-10'],
+                                ]); ?>
+
                                 <?= \app\modules\backend\widgets\toolbar\Widget::widget([
-                                        'options' => ['class' => 'list-inline well well-sm'],
-                                ]);?>
+                                    'options' => ['class' => 'list-inline well well-sm'],
+                                ]); ?>
                             </div>
                         </div>
                         <?= $content; ?>

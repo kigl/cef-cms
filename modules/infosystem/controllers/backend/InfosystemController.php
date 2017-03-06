@@ -56,7 +56,7 @@ class InfosystemController extends BackendController
             return $this->redirect(['group/manager', 'infosystem_id' => $modelService->getData('model')->id]);
         }
 
-        return $this->render('create', ['data' => $modelService->getData()]);
+        return $this->render('update', ['data' => $modelService->getData()]);
     }
 
     public function actionDelete($id)
