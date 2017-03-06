@@ -1,7 +1,7 @@
 <?php
 use app\modules\backend\widgets\grid\GridView;
 
-use yii\helpers\Url;
+$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'страниц']));
 ?>
 
 <?= GridView::widget([

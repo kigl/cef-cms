@@ -3,6 +3,8 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use app\modules\backend\widgets\grid\GridView;
 
+$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'групп и элементов']));
+$this->params['breadcrumbs'] = $data['breadcrumbs'];
 ?>
 
 <?= GridView::widget([
@@ -13,7 +15,7 @@ use app\modules\backend\widgets\grid\GridView;
             'group' => [
                 'url' => Url::to(['create', 'parent_id' => $data['id']]),
             ],
-            'element' => [
+            'item' => [
                 'url' => Url::to(['product/create', 'group_id' => $data['id']]),
             ],
         ],

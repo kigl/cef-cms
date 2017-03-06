@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Html;
 use app\modules\backend\widgets\grid\GridView;
-use app\modules\user\helpers\StatusHelper;
 
+$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'пользователей']));
 ?>
 
 <?php

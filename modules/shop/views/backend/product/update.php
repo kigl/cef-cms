@@ -1,23 +1,8 @@
 <?php
-use yii\helpers\ArrayHelper;
-use app\core\helpers\Breadcrumbs;
-use app\modules\shop\models\Group;
-/*
-$breadcrumbsGroup = Breadcrumbs::getLinksGroup(
-    $data->getGroupId(),
-    [
-        'modelClass' => Group::className(),
-        'urlOptions' => [
-            'route' => '/admin/shop/group/manager',
-            'queryGroupName' => 'parent_id',
-        ],
-    ]);
-$breadcrumbs = ArrayHelper::merge($breadcrumbsGroup, [
-    ['label' => $data->getName()],
-]);
+$this->setPageHeader(Yii::t('app', 'Edit: {data}', ['data' => $data['model']->name]));
+$this->params['breadcrumbs'] = $data['breadcrumbs'];
+$this->params['breadcrumbs'][] = ['label' => $data['model']->name];
 
-$this->setBreadcrumbs($breadcrumbs);
-*/
 ?>
 
 <?= $this->render('_form', ['data' => $data]);?>

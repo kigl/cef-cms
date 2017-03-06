@@ -2,7 +2,7 @@
 return [
     'toolbar' => [
         'shop' => [
-            ['label' => Yii::t('shop', 'Toolbar property'), 'url' => ['property/manager']],
+            ['label' => Yii::t('app', 'Toolbar properties'), 'url' => ['property/manager']],
             ['label' => Yii::t('shop', 'Toolbar order'), 'url' => ['order/manager']],
         ],
     ],

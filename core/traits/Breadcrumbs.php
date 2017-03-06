@@ -25,7 +25,7 @@ trait Breadcrumbs
      * ]);
      */
 
-    public function buildBreadcrumb(array $params)
+    public function buildBreadcrumbs(array $params)
     {
         $groupItem = [];
         //$items = [];
@@ -49,14 +49,6 @@ trait Breadcrumbs
         $breadcrumbs = $this->groupsDataRecursive($params['id'], $data);
         sort($breadcrumbs);
 
-        /*$root = [
-            'label' => Yii::t('app', 'Breadcrumbs root'),
-            'url' => [
-                $params['urlOptions']['route'],
-                //$config['urlOptions']['queryGroupName'] => null,
-            ],
-        ];*/
-
         $result = [];
         foreach ($breadcrumbs as $key => $model) {
             $result[$key] = [
@@ -71,8 +63,16 @@ trait Breadcrumbs
             }
         }
 
-        /*
-        if ($params['enableRoot'] === self::ROOT_GROUP) {
+
+        if (!empty($params['enableRoot']) && $params['enableRoot'] === true) {
+            $root = [
+                'label' => Yii::t('app', 'Breadcrumb root'),
+                'url' => [
+                    $params['urlOptions']['route'],
+                    'parent_id' => null,
+                ],
+            ];
+
             if (isset($params['urlOptions']['queryParams'])) {
                 $root['url'] = ArrayHelper::merge(
                     $root['url'],
@@ -81,7 +81,6 @@ trait Breadcrumbs
 
             array_unshift($result, $root);
         }
-        */
 
         return $result ? $result : [];
     }

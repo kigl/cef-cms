@@ -6,7 +6,7 @@ use yii\helpers\Html;
 use yii\rbac\Item;
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Toolbar rbac')];
-
+$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'ролей и привелегий']));
 ?>
 
 <?= GridView::widget([

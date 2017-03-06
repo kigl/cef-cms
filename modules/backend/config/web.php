@@ -5,6 +5,9 @@ return [
 			'class' => 'app\modules\backend\Module',
             'layout' => '@app/modules/backend/views/layouts/column_2',
 		],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module',
+        ]
 	],
 	
 	'components' => [

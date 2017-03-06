@@ -1,8 +1,5 @@
 <?php
 return [
-    'Alt' => 'Alt',
-    'Address' => 'Адрес',
-
     'Button add to cart' => 'В корзину',
     'Button refresh cart' => 'Пересчитать',
     'Button order' => 'Оформить заказ',
@@ -25,7 +22,6 @@ return [
 
     'Quick view product' => 'Быстрый просмотр',
 
-    'Toolbar property' => 'Свойства товара',
     'Toolbar order' => 'Заказы',
     'Tab order view detail' => 'Информация',
     'Tab order view items' => 'Состав заказа',

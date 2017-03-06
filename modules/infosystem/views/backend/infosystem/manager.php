@@ -3,6 +3,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use app\modules\backend\widgets\grid\GridView;
 
+$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'инфосистем']));
 ?>
 
 <?= GridView::widget([

@@ -24,3 +24,14 @@ body {
     padding: 15px;
     min-height: 600px;
 }
+
+.breadcrumb {
+    padding: 0 !important;
+    margin-bottom: 10px;
+}
+
+.page-header h1 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}

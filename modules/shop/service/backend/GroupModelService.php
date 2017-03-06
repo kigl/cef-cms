@@ -27,22 +27,11 @@ class GroupModelService extends ModelService
         $dataProviderProductSearch = new ProductSearch();
         $dataProviderProduct = $dataProviderProductSearch->search($this->getData('get'));
 
-        $breadcrumbs = $this->buildBreadcrumb([
-            'group' => [
-                'id' => $this->getData('get', 'id'),
-                'modelClass' => Group::class,
-                'urlOptions' => [
-                    'route' => '/backend/shop/group/manager',
-                    'params' => ['id',],
-                ],
-            ],
-        ]);
-
         $this->setData([
             'id' => $this->getData('get', 'id'),
             'dataProviderGroup' => $dataProviderGroup,
             'dataProviderProduct' => $dataProviderProduct,
-            'breadcrumbs' => $breadcrumbs,
+            'breadcrumbs' => $this->buildGroupBreadcrumbs($this->getData('get', 'id')),
         ]);
     }
 
@@ -58,6 +47,7 @@ class GroupModelService extends ModelService
 
         $this->setData([
             'model' => $model,
+            'breadcrumbs' => $this->buildGroupBreadcrumbs($this->getData('get', 'parent_id')),
         ]);
     }
 
@@ -72,6 +62,7 @@ class GroupModelService extends ModelService
 
         $this->setData([
             'model' => $model,
+            'breadcrumbs' => $this->buildGroupBreadcrumbs($this->getData('get', 'id')),
         ]);
     }
 
@@ -99,5 +90,22 @@ class GroupModelService extends ModelService
                 'model' => $model,
             ]);
         }
+    }
+
+    protected function buildGroupBreadcrumbs($groupId)
+    {
+        $breadcrumbs = $this->buildBreadcrumbs([
+            'group' => [
+                'id' => $groupId,
+                'modelClass' => Group::class,
+                //'enableRoot' => true,
+                'urlOptions' => [
+                    'route' => '/backend/shop/group/manager',
+                    'params' => ['id',],
+                ],
+            ],
+        ]);
+
+        return $breadcrumbs;
     }
 }

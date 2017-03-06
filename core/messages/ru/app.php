@@ -7,6 +7,7 @@ return [
 	'Button create' => 'Создать',
     'Button add' => 'Добавить',
 	'Button save' => 'Сохранить',
+    'Breadcrumb root' => 'root',
 
     'Deleted element' => 'Элемент удален!',
     'Description' => 'Описание',
@@ -27,6 +28,7 @@ return [
     'Not exist views: {views}' => 'Значение "{views}" не существует',
     'Not selected' => 'Не выбран',
 
+    'Manager: {data}' => 'Менеджер: {data}',
     'Message thank you' => 'Спасибо!',
     'Meta title' => 'Meta заголовок страницы',
     'Meta description' => 'Meta описание',

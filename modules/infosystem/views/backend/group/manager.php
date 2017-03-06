@@ -2,9 +2,9 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\modules\backend\widgets\grid\GridView;
-use app\core\helpers\Breadcrumbs;
 
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
+$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'груп и элементов']));
 ?>
 
 <?=GridView::widget([

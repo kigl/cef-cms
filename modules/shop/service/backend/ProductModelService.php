@@ -13,14 +13,17 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\web\UploadedFile;
+use app\core\traits\Breadcrumbs;
 use app\core\service\ModelService;
 use app\modules\shop\models\Product;
 use app\modules\shop\models\Image;
 use app\modules\shop\models\Property;
 use app\modules\shop\models\ProductProperty;
+use app\modules\shop\models\Group;
 
 class ProductModelService extends ModelService
 {
+    use Breadcrumbs;
     /**
      * @var Product
      */
@@ -44,7 +47,7 @@ class ProductModelService extends ModelService
             'query' => $this->model->getSubProducts(),
         ]);
 
-        $this->init();
+        $this->initialization();
 
         if ($this->load() && $this->save()) {
             
@@ -55,6 +58,7 @@ class ProductModelService extends ModelService
             'model' => $this->model,
             'properties' => $this->properties,
             'dataProvider' => $dataProvider,
+            'breadcrumbs' => $this->buildGroupBreadcrumbs($this->model->group_id),
         ]);
     }
 
@@ -68,7 +72,7 @@ class ProductModelService extends ModelService
             'query' => $this->model->getSubProducts(),
         ]);
 
-        $this->init();
+        $this->initialization();
 
         if ($this->load() and $this->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
@@ -78,6 +82,7 @@ class ProductModelService extends ModelService
             'model' => $this->model,
             'properties' => $this->properties,
             'dataProvider' => $dataProvider,
+            'breadcrumbs' => $this->buildGroupBreadcrumbs($this->model->group_id),
         ]);
     }
 
@@ -108,7 +113,7 @@ class ProductModelService extends ModelService
         return $success;
     }
 
-    protected function init()
+    public function initialization()
     {
         $this->initProperties();
         $this->image = $this->initImage();
@@ -283,5 +288,22 @@ class ProductModelService extends ModelService
             $image->status = Image::STATUS_MAIN;
             $image->save(false);
         }
+    }
+
+    protected function buildGroupBreadcrumbs($groupId)
+    {
+        $breadcrumbs = $this->buildBreadcrumbs([
+            'group' => [
+                'id' => $groupId,
+                'modelClass' => Group::class,
+                //'enableRoot' => true,
+                'urlOptions' => [
+                    'route' => '/backend/shop/group/manager',
+                    'params' => ['id',],
+                ],
+            ],
+        ]);
+
+        return $breadcrumbs;
     }
 }

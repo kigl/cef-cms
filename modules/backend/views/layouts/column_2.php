@@ -31,7 +31,7 @@ use app\modules\backend\widgets\menuTop\Widget as MenuTop;
                             <div class="col-md-12">
 
                                 <?= \app\core\widgets\Breadcrumbs::widget([
-                                    'options' => ['class' => 'breadcrumb no-margin-bottom'],
+                                    'options' => ['class' => 'breadcrumb'],
                                     'homeLink' => [
                                         'label' => Yii::t('yii', 'Home'),
                                         'url' => ['/backend/default/index']

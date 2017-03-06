@@ -19,10 +19,6 @@ return [
             'controllerNamespace' => 'app\modules\shop\controllers\frontend',
             'viewPath' => '@app/modules/shop/views/frontend',
         ],
-
-        'gridview' =>  [
-            'class' => '\kartik\grid\Module',
-        ]
     ],
 
     'components' => [

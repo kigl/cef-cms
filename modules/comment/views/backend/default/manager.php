@@ -2,6 +2,7 @@
 use app\modules\backend\widgets\grid\GridView;
 use yii\helpers\Html;
 
+$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'комментариев']));
 ?>
 
 <?= GridView::widget([

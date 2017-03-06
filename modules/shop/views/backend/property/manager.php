@@ -2,12 +2,14 @@
 use yii\helpers\Url;
 use app\modules\backend\widgets\grid\GridView;
 
+$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'дополнительных свойств']));
+$this->params['breadcrumbs'][] = ['label' => 'дополнительные свойства'];
 ?>
 
 <?= GridView::widget([
     'buttons' => [
         'create' => [
-            'element' => [
+            'item' => [
                 'url' => Url::to(['create']),
             ],
         ],
