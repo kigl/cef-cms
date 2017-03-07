@@ -12,7 +12,6 @@ return [
 				],
 			],
 		],
-		
 		'infosystem' => [
 			'class' => Module::className(),
 			'controllerNamespace' => 'app\modules\infosystem\controllers\frontend',

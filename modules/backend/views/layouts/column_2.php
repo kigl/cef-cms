@@ -56,10 +56,6 @@ use app\modules\backend\widgets\menuTop\Widget as MenuTop;
                                     'text' => $this->getPageHeader(),
                                     'options' => ['class' => 'margin-top-10'],
                                 ]); ?>
-
-                                <?= \app\modules\backend\widgets\toolbar\Widget::widget([
-                                    'options' => ['class' => 'list-inline well well-sm'],
-                                ]); ?>
                             </div>
                         </div>
                         <?= $content; ?>

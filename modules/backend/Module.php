@@ -6,8 +6,12 @@ use Yii;
 
 class Module extends \app\core\module\Module
 {
-	public $defaultBackendRoute = 'default/index';
-	
+    public $defaultBackendRoute = 'default/index';
+
+    public $controllerMap = [
+        'default' => 'app\modules\backend\controllers\DefaultController',
+    ];
+
 	public static function getAllModules()
 	{
 		$deletedModule = ['gii', 'debug'];

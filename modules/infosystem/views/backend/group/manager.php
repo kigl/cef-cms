@@ -3,11 +3,13 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use app\modules\backend\widgets\grid\GridView;
 
-$this->params['breadcrumbs'] = $data['breadcrumbs'];
-$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'груп и элементов']));
+$this->params['breadcrumbs'] = array_merge(
+    [['label' => 'Инфосистемы', 'url' => ['infosystem/manager']]],
+    $data['breadcrumbs']);
+$this->setPageHeader('Группы и элементы');
 ?>
 
-<?=GridView::widget([
+<?= GridView::widget([
     //'filterModel' => $data['searchModel'],
     'dataProvider' => $data['dataProvider'],
     'dataProviderGroup' => $data['groupDataProvider'],

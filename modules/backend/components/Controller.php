@@ -6,7 +6,7 @@ use yii\filters\AccessControl;
 
 abstract class Controller extends \yii\web\Controller
 {
-    public $defaultAction = 'manager';
+    public $defaultAction = 'index';
 
     public function behaviors()
     {

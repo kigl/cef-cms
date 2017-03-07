@@ -1,7 +1,9 @@
 <?php
 use app\modules\backend\widgets\grid\GridView;
 
-$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'страниц']));
+$this->setPageHeader('Cтраницы');
+$this->params['breadcrumbs'][] = ['label' => 'страницы'];
+
 ?>
 
 <?= GridView::widget([

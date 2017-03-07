@@ -46,7 +46,7 @@ class ItemModelService extends ModelService
             'model' => $this->model,
             'itemProperties' => $this->itemProperties,
             'properties' => $this->properties,
-            'breadcrumbs' => $this->buildBreadcrumbs($infosystem, $this->model->group_id),
+            'breadcrumbs' => $this->getBreadcrumbs($infosystem, $this->model->group_id),
         ]);
     }
 
@@ -67,7 +67,7 @@ class ItemModelService extends ModelService
             'model' => $this->model,
             'itemProperties' => $this->itemProperties,
             'properties' => $this->properties,
-            'breadcrumbs' => $this->buildBreadcrumbs($this->model->infosystem, $this->model->group_id),
+            'breadcrumbs' => $this->getBreadcrumbs($this->model->infosystem, $this->model->group_id),
         ]);
     }
 
@@ -178,9 +178,9 @@ class ItemModelService extends ModelService
         }
     }
 
-    protected function buildBreadcrumbs(Infosystem $infosystem, $group_id)
+    protected function getBreadcrumbs(Infosystem $infosystem, $group_id)
     {
-        $breadcrumbs = $this->buildBreadcrumb([
+        $breadcrumbs = $this->buildBreadcrumbs([
             'group' => [
                 'id' => $group_id,
                 'modelClass' => Group::class,

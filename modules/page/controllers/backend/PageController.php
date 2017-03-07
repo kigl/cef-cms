@@ -8,7 +8,7 @@ use app\modules\page\components\BackendController;
 use app\modules\page\models\Page;
 use vova07\imperavi\actions\GetAction;
 
-class DefaultController extends BackendController
+class PageController extends BackendController
 {
 
     public function actions()

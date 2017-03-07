@@ -16,6 +16,8 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+        $this->viewPath = '@app/modules/backend/views/default';
+
         return $this->render('index');
     }
 }

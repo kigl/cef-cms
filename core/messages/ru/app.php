@@ -105,6 +105,7 @@ return [
     'Type role' => 'Роль',
     'Type permission' => 'Разрешение',
     'Toolbar properties' => 'Дополнительные свойства',
+    'Toolbar manager {data}' => 'Менеджер {data}',
 
     'Value' => 'Значение',
 

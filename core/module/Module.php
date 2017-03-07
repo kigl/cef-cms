@@ -5,7 +5,7 @@ use Yii;
 
 abstract class Module extends \yii\base\Module implements ModuleInterface
 {
-	public $defaultBackendRoute = 'default';
+	public $defaultRoute = 'default';
 
 	public function getName()
 	{
