@@ -16,18 +16,18 @@ use yii\helpers\ArrayHelper;
 
 $this->registerJs("
         $( function () {
-            $('.show-in-modal').click(function (data) {
-                var url = $(this).attr('href');
+            $('.show-in-modal').click(function (event) {
                 var modal = $('.modal-body');
 
                 $('#show-content-modal').modal('show');
                 $.ajax({
-                    url: url,
+                    type: 'POST',
+                    url: $(this).attr('href'),
+                    async: false,
                     success: function (data) {
                         modal.html(data);
                     }
                 });
-
                 return false;
             });
         });"

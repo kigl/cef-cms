@@ -38,6 +38,10 @@ class InfosystemController extends BackendController
             return $this->redirect(['group/manager', 'infosystem_id' => $modelService->getData('model')->id]);
         }
 
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('create', ['data' => $modelService->getData()]);
+        }
+
         return $this->render('create', ['data' => $modelService->getData()]);
     }
 

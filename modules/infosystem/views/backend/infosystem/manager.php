@@ -3,8 +3,9 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use app\modules\backend\widgets\grid\GridView;
 
-$this->setPageHeader('Инфосистемы');
-$this->params['breadcrumbs'][] = ['label' => 'Инфосистемы'];
+$this->setTitle(Yii::t('infosystem', 'Infosystem'));
+$this->setPageHeader(Yii::t('infosystem', 'Infosystem'));
+$this->params['breadcrumbs'][] = ['label' => Yii::t('infosystem', 'Infosystem')];
 
 ?>
 

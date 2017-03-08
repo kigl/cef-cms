@@ -6,7 +6,7 @@ return [
 	'Template group' => 'Шаблон группы (название вида)',
 	'Template item' => 'Шаблон элемента (название вида)',
 
-	'Infosystem id' => 'Информационная система',
+    'Infosystem' => 'Инфосистемы',
 
     'Editor tag' => 'Теги',
 ];
