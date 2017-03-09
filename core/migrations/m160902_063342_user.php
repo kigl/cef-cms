@@ -15,6 +15,7 @@ class m160902_063342_user extends Migration
             'name' => $this->string(100),
             'lastname' => $this->string(100),
             'email' => $this->string(50),
+            'avatar' => $this->string(),
             'password' => $this->string(),
             'status' => $this->integer()->defaultValue(0),
             'ip' => $this->string(50),

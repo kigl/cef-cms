@@ -9,9 +9,11 @@
 namespace app\modules\service\service\menu;
 
 
-use app\core\traits\Breadcrumbs;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use app\modules\service\Module;
+use app\core\traits\Breadcrumbs;
+use app\modules\service\models\menu\Menu;
 use app\core\service\ModelService;
 use app\modules\service\models\menu\Item;
 
@@ -21,10 +23,11 @@ class ItemModelService extends ModelService
 
     public function actionManager()
     {
+        $menu = Menu::findOne($this->getData('get', 'menu_id'));
         $dataProvider = new ActiveDataProvider([
             'query' => Item::find()
                 ->where(['parent_id' => $this->getData('get', 'id')])
-                ->andWhere(['menu_id' => $this->getData('get', 'menu_id')]),
+                ->andWhere(['menu_id' => $menu->id]),
             'sort' => [
                 'defaultOrder' => ['sorting' => SORT_ASC],
             ],
@@ -32,9 +35,9 @@ class ItemModelService extends ModelService
 
         $this->setData([
             'dataProvider' => $dataProvider,
-            'menuId' => $this->getData('get', 'menu_id'),
+            'menuId' => $menu->id,
             'id' => $this->getData('get', 'id'),
-            'breadcrumbs' => $this->getMenuItemsBreadcrumbs($this->getData('get', 'id')),
+            'breadcrumbs' => $this->getItemsBreadcrumbs($menu, $this->getData('get', 'id')),
         ]);
     }
 
@@ -44,18 +47,24 @@ class ItemModelService extends ModelService
         $model->menu_id = $this->getData('get', 'menu_id');
         $model->parent_id = $this->getData('get', 'parent_id');
 
+        $menu = Menu::findOne($model->menu_id);
+
         if ($this->saveItem($model, $this->getData('post'))) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 
         $this->setData([
             'model' => $model,
+            'breadcrumbs' => $this->getItemsBreadcrumbs($menu, $model->parent_id),
         ]);
     }
 
     public function actionUpdate()
     {
-        $model = Item::findOne($this->getData('get', 'id'));
+        $model = Item::find()
+            ->with('menu')
+            ->where(['id' => $this->getData('get', 'id')])
+            ->one();
 
         if ($this->saveItem($model, $this->getData('post'))) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
@@ -63,6 +72,7 @@ class ItemModelService extends ModelService
 
         $this->setData([
             'model' => $model,
+            'breadcrumbs' => $this->getItemsBreadcrumbs($model->menu, $model->parent_id),
         ]);
     }
 
@@ -96,20 +106,23 @@ class ItemModelService extends ModelService
         ]);
     }
 
-    protected function getMenuItemsBreadcrumbs($itemId)
+    protected function getItemsBreadcrumbs(Menu $menu, $itemId)
     {
-        $breadcrumbs = $this->buildBreadcrumbs([
+        $breadcrumbs[] = ['label' => Module::t('Menu'), 'url' => ['menu/menu/manager']];
+        $breadcrumbs[] = ['label' => $menu->name, 'url' => ['manager', 'menu_id' => $menu->id]];
+
+        $items = $this->buildBreadcrumbs([
             'items' => [
                 'id' => $itemId,
                 'modelClass' => Item::class,
                 'urlOptions' => [
-                    'route' => '/backend/service/menu/item',
-                    'params' => ['id',],
+                    'route' => '/backend/service/menu/item/manager',
+                    'params' => ['id', 'menu_id'],
                 ],
             ],
         ]);
 
-        //array_unshift($breadcrumbs, ['label' => $infosystem->name, 'url' => ['manager', 'infosystem_id' => $infosystem->id]]);
+        $breadcrumbs = array_merge($breadcrumbs, $items);
 
         return $breadcrumbs;
     }

@@ -74,6 +74,11 @@ class Item extends \yii\db\ActiveRecord
         return $this->hasMany(self::className(), ['parent_id' => 'id']);
     }
 
+    public function getMenu()
+    {
+        return $this->hasOne(Menu::className(), ['id' => 'menu_id']);
+    }
+
     public function getStatusVisibleList()
     {
         return [

@@ -1,6 +1,6 @@
 <?php
 use app\modules\backend\widgets\ActiveForm;
-use app\modules\user\helpers\StatusHelper;
+use app\modules\backend\widgets\imageFormSUD\Widget as ImageFormWidget;
 
 ?>
     <ul class="nav nav-tabs">
@@ -18,27 +18,33 @@ use app\modules\user\helpers\StatusHelper;
         <li><a href="#role" data-toggle="tab"><?= Yii::t('user', 'Tab role');?></a></li>
     </ul>
 
-<?php $form = ActiveForm::begin(['id' => 'form']); ?>
+<?php $form = ActiveForm::begin([
+        'id' => 'form',
+        'options' => ['enctype' => 'multipart/form-data'],
+]); ?>
 
     <div class="tab-content well well-sm">
 
-        <?php echo $form->errorSummary($data['model'], ['class' => 'alert alert-danger']); ?>
+        <?= $form->errorSummary($data['model'], ['class' => 'alert alert-danger']); ?>
 
         <div class="tab-pane active" id="main">
-            <?php echo $form->field($data['model'], 'login'); ?>
-            <?php echo $form->field($data['model'], 'status')
+            <?= $form->field($data['model'], 'login'); ?>
+            <?= $form->field($data['model'], 'status')
                 ->dropDownList($data['model']->getStatusList()); ?>
 
-            <?php echo $form->field($data['model'], 'email'); ?>
+            <?= $form->field($data['model'], 'email'); ?>
 
-            <?php echo $form->field($data['model'], 'password')->passwordInput(['value' => '']); ?>
-            <?php echo $form->field($data['model'], 'password_repeat')->passwordInput(['value' => '']); ?>
+            <?= $form->field($data['model'], 'password')->passwordInput(['value' => '']); ?>
+            <?= $form->field($data['model'], 'password_repeat')->passwordInput(['value' => '']); ?>
         </div>
 
         <div class="tab-pane" id="profile">
-            <?php echo $form->field($data['model'], 'surname'); ?>
-            <?php echo $form->field($data['model'], 'name'); ?>
-            <?php echo $form->field($data['model'], 'lastname'); ?>
+            <?= $form->field($data['model'], 'avatar')->widget(ImageFormWidget::className(), [
+                    'behaviorName' => 'avatarUpload',
+            ]);?>
+            <?= $form->field($data['model'], 'surname'); ?>
+            <?= $form->field($data['model'], 'name'); ?>
+            <?= $form->field($data['model'], 'lastname'); ?>
         </div>
 
         <div class="tab-pane" id="field">

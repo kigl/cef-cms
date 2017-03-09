@@ -12,7 +12,7 @@ namespace app\modules\service\controllers\backend\form;
 use Yii;
 use app\modules\service\components\BackendController;
 use app\modules\service\models\form\Completed;;
-use app\modules\service\models\form\CompletedModelService;
+use app\modules\service\service\form\CompletedModelService;
 
 class CompletedController extends BackendController
 {

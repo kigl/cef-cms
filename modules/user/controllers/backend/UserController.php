@@ -56,7 +56,7 @@ class UserController extends BackendController
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 
-            return $this->redirect(['default/manager']);
+            return $this->redirect(['manager']);
         }
 
         return $this->render('update', ['data' => $modelService->getData()]);

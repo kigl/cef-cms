@@ -1,6 +1,7 @@
 <?php
 return [
 	'Authenticate' => 'Аутентификация',
+    'Avatar' => 'Аватар',
 
     'Create user' => 'Создание пользователя',
     'Create user property' => 'Создание свойства пользователя',
@@ -26,7 +27,7 @@ return [
 	'Rbac form child' => 'Дочерний элемент',
 	'Role and permission' => 'Роли и разрешения',
 
-    'Tab role' => 'Роли/привелегии',
+    'Tab role' => 'Роли и разрешения',
     'Tab personal data' => 'Персональные данные',
     'Toolbar users' => 'Пользователи',
     'Toolbar user properties' => 'Свойства пользователей',

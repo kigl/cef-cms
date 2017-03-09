@@ -6,32 +6,28 @@
         <td class="td-2">
             <table>
                 <tr>
+                    <td>128</td>
+                    <td>134</td>
+                    <td>128</td>
+                    <td>134</td>
+                    <td>140</td>
+                    <td>146</td>
+                    <td>146</td>
+                    <td>152</td>
                     <td>152</td>
                     <td>158</td>
-                    <td>158</td>
-                    <td>164</td>
-                    <td>164</td>
-                    <td>170</td>
-                    <td>164</td>
-                    <td>170</td>
-                    <td>164</td>
-                    <td>170</td>
-                    <td>164</td>
-                    <td>170</td>
                 </tr>
                 <tr>
+                    <td>60</td>
+                    <td>60</td>
+                    <td>64</td>
+                    <td>64</td>
+                    <td>68</td>
+                    <td>68</td>
+                    <td>72</td>
+                    <td>72</td>
                     <td>76</td>
                     <td>76</td>
-                    <td>80</td>
-                    <td>80</td>
-                    <td>84</td>
-                    <td>84</td>
-                    <td>88</td>
-                    <td>88</td>
-                    <td>92</td>
-                    <td>92</td>
-                    <td>96</td>
-                    <td>96</td>
                 </tr>
             </table>
         </td>

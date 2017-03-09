@@ -1,7 +1,9 @@
 <?php
-namespace app\modules\infosystem\widgets\backend\fieldUploadImage;
 
-class Widget extends \yii\bootstrap\Widget
+namespace app\modules\backend\widgets\imageFormSUD;
+
+
+class Widget extends \yii\base\Widget
 {
     public $model;
 
@@ -18,3 +20,4 @@ class Widget extends \yii\bootstrap\Widget
         ]);
     }
 }
+

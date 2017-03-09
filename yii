@@ -8,8 +8,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-use app\core\components\configManager\ConfigManager;
-use app\core\components\configManager\ConfigConsole;
+use app\core\components\ConfigManager;
 
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
@@ -22,9 +21,10 @@ $baseConfig = require(__DIR__ . '/core/config/console.php');
 // менеджер конфигураций
 $config = Yii::createObject([
     'class' => ConfigManager::className(),
-    'modulesPath' => Yii::getAlias('@app' . '/modules'),
-], [$baseConfig, new ConfigConsole()]);
+    'modulesPath' => '@app/modules',
+    'type' => ConfigManager::CONFIG_TYPE_CONSOLE,
+]);
 
-$application = new yii\console\Application($config->getConfig());
+$application = new yii\console\Application(array_merge_recursive($baseConfig, $config->getConfig()));
 $exitCode = $application->run();
 exit($exitCode);

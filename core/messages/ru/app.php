@@ -20,10 +20,12 @@ return [
     'Fields' => 'Поля',
     'Field' => 'Поле',
 
-    'LastName' => 'Отчество',
+    'Lastname' => 'Отчество',
     'Link name page main' => 'Главная',
 	'List view summary text: is' => 'из',
     'Login or password is incorrect' => 'Логин или пароль введены неверно!',
+    'Login' => 'Логин',
+    'Logout' => 'Выйти',
 
     'Name' => 'Имя / Наименование',
     'Not exist views: {views}' => 'Значение "{views}" не существует',
@@ -43,7 +45,10 @@ return [
     'Image preview' => 'Предварительное изображение',
     'Image content' => 'Картинка для содержания',
     'Image status' => 'Основное изображение',
+    'ID' => 'ID',
 
+    'Password' => 'Пароль',
+    'Password repeat' => 'Повторить пароль',
     'Parent id' => 'Id родителя',
 	'Position' => 'Позиция',
     'Property type string' => 'Строка',

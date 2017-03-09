@@ -1,6 +1,11 @@
 <?php
+use app\modules\service\Module;
 use app\modules\backend\widgets\grid\GridView;
 use yii\helpers\Html;
+
+$this->setTitle(Module::t('Completed forms'));
+$this->setPageHeader(Module::t('Completed forms'));
+$this->params['breadcrumbs'] = $data['breadcrumbs'];
 
 ?>
 

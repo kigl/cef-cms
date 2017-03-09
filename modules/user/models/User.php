@@ -4,6 +4,7 @@ namespace app\modules\user\models;
 
 
 
+use app\core\behaviors\file\UploadImage;
 use Yii;
 /**
  * This is the model class for table "mn_user".
@@ -14,6 +15,7 @@ use Yii;
  * @property string $name
  * @property string $lastname
  * @property string $email
+ * @property string $avatar
  * @property string $password
  * @property integer $status
  * @property integer $create_time
@@ -52,6 +54,7 @@ class User extends \app\core\db\ActiveRecord
             [['login', 'email'], 'unique'],
             [['status'], 'integer'],
             ['rolePermission', 'safe'],
+            ['avatar', 'image'],
         ];
     }
 
@@ -64,9 +67,10 @@ class User extends \app\core\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'login' => Yii::t('app', 'Login'),
             'surname' => Yii::t('app', 'Surname'),
-            'name' => Yii::t('app', 'Name user'),
+            'name' => Yii::t('app', 'Name'),
             'lastname' => Yii::t('app', 'Lastname'),
             'email' => Yii::t('app', 'Email'),
+            'avatar' => Yii::t('user', 'Avatar'),
             'password' => Yii::t('app', 'Password'),
             'status' => Yii::t('app', 'Status'),
             'rolePermission' => Yii::t('user', 'Role and permission'),
@@ -83,6 +87,12 @@ class User extends \app\core\db\ActiveRecord
             'userIp' => [
                 'class' => 'app\core\behaviors\UserIp',
                 'attribute' => 'ip',
+            ],
+            'avatarUpload' => [
+                'class' => UploadImage::className(),
+                'path' => Yii::$app->getModule('user')->getPublicPath() . '/avatars',
+                'pathUrl' => Yii::$app->getModule('user')->getPublicPathUrl() . '/avatars',
+                'attribute' => 'avatar',
             ],
         ];
     }
