@@ -20,6 +20,7 @@ return [
     'Fields' => 'Поля',
     'Field' => 'Поле',
 
+    'LastName' => 'Отчество',
     'Link name page main' => 'Главная',
 	'List view summary text: is' => 'из',
     'Login or password is incorrect' => 'Логин или пароль введены неверно!',
@@ -34,6 +35,8 @@ return [
     'Meta description' => 'Meta описание',
     'Menu item content' => 'Контент',
     'Menu item service' => 'Сервисы',
+    'Module: {data}' => 'Модуль: {data}',
+    'Module' => 'Модуль',
 
     'Icon css class' => 'CSS класс иконки',
     'Image' => 'Изображение',
@@ -80,6 +83,7 @@ return [
 	'Status active' => 'Активный',
 	'Status draft' => 'Черновик',
     'Sum' => 'Сумма',
+	'Surname' => 'Фамилия',
 
 	'Edit: {data}' => 'Редактирование: {data}',
 

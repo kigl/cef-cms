@@ -1,6 +1,8 @@
 <?php
-//$this->setTitle();
-$this->setPageHeader(Yii::t('app', 'Create {data}', ['data' => 'инфосистемы']));
-$this->params['breadcrumbs'][] = ['label' => 'Инфосистемы', 'url' => ['infosystem/manager']];
+use app\modules\infosystem\Module;
+
+$this->setTitle(Module::t('Create infosystem'));
+$this->setPageHeader(Module::t('Create infosystem'));
+$this->params['breadcrumbs'][] = ['label' => Module::t('Infosystems'), 'url' => ['infosystem/manager']];
 
 echo $this->render('_form', ['data' => $data]);

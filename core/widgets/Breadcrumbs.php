@@ -44,7 +44,7 @@ class Breadcrumbs extends \yii\widgets\Breadcrumbs
 
         return $this->renderItem([
             'label' => $module->getName(),
-            'url' => [$module->defaultBackendRoute],
+            'url' => [$module->defaultRoute],
         ], $this->itemTemplate);
     }
 }

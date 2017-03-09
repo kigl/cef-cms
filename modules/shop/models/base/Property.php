@@ -41,10 +41,10 @@ class Property extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('shop', 'Id'),
-            'name' => Yii::t('shop', 'Name'),
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
             'type' => Yii::t('shop', 'Property type'),
-            'required' => Yii::t('shop', 'Property required'),
+            'required' => Yii::t('app', 'Required'),
         ];
     }
 }

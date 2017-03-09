@@ -9,8 +9,9 @@
 namespace app\modules\shop\service\backend;
 
 
-use app\core\traits\Breadcrumbs;
 use Yii;
+use app\modules\shop\Module;
+use app\core\traits\Breadcrumbs;
 use app\core\service\ModelService;
 use app\modules\shop\models\Group;
 use app\modules\shop\models\GroupSearch;
@@ -105,6 +106,8 @@ class GroupModelService extends ModelService
                 ],
             ],
         ]);
+
+        array_unshift($breadcrumbs, ['label' => Module::t('Products'), 'url' => ['group/manager']]);
 
         return $breadcrumbs;
     }

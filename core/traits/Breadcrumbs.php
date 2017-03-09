@@ -10,7 +10,7 @@ trait Breadcrumbs
 {
     /**
      * $breadcrumbs = $this->buildBreadcrumb([
-     * 'group' => [
+     * 'items' => [
      *      'id' => 12,
      *      'modelClass' => 'ModelClass',
      *      'enableRoot' => true,
@@ -30,20 +30,14 @@ trait Breadcrumbs
         $groupItem = [];
         //$items = [];
 
-        if (array_key_exists('group', $params)) {
-            $groupItem = $this->getLinksGroup($params['group']);
+        if (array_key_exists('items', $params)) {
+            $groupItem = $this->getLinkItems($params['items']);
         }
-
-        /*if (array_key_exists('items', $params)) {
-            $items = $params['items'];
-        }*/
-
-        //return ArrayHelper::merge($groupItem, $items);
 
         return $groupItem;
     }
 
-    protected function getLinksGroup($params = [])
+    protected function getLinkItems($params = [])
     {
         $data = $this->getDbData($params['modelClass']);
         $breadcrumbs = $this->groupsDataRecursive($params['id'], $data);

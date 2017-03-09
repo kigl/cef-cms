@@ -11,11 +11,13 @@ use yii\widgets\Pjax;
     'options' => ['data-pjax' => true]
 ]); ?>
 
-<?= $form->field($model, 'name'); ?>
+<?= $form->errorSummary($data['model']);?>
 
-<?= $form->field($model, 'description'); ?>
+<?= $form->field($data['model'], 'name'); ?>
 
-<?= $form->field($model, 'required')->checkbox(); ?>
+<?= $form->field($data['model'], 'description'); ?>
+
+<?= $form->field($data['model'], 'required')->checkbox(); ?>
 
 <?php ActiveForm::end(); ?>
 <?php Pjax::end();?>

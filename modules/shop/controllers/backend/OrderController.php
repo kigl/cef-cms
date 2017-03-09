@@ -26,9 +26,7 @@ class OrderController extends BackendController
         $modelService = Yii::createObject(OrderModelService::class);
         $modelService->actionManager();
 
-        $viewService = (new OrderViewService())->setData($modelService->getData());
-
-        return $this->render('manager', ['data' => $viewService]);
+        return $this->render('manager', ['data' => $modelService->getData()]);
     }
 
     public function actionView($id)
@@ -36,12 +34,6 @@ class OrderController extends BackendController
         $modelService = Yii::createObject(OrderModelService::class);
         $modelService->actionView($id);
 
-        $viewService = (new OrderViewService())->setData($modelService->getData());
-
-        if (Yii::$app->request->isAjax) {
-            return $this->renderAjax('view', ['data' => $viewService]);
-        }
-
-        return $this->render('view', ['data' => $viewService]);
+        return $this->render('view', ['data' => $modelService->getData()]);
     }
 }

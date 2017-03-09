@@ -20,7 +20,7 @@ return [
 	'components' => [
 		'i18n' => [
 			'translations' => [
-				'page*' => [
+				'page' => [
 					'class'   => 'yii\i18n\PhpMessageSource',
 					'basePath'=> '@app/modules/page/messages',
 						'fileMap' => [

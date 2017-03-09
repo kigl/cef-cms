@@ -1,9 +1,11 @@
 <?php
 use yii\helpers\Url;
+use app\modules\shop\Module;
 use app\modules\backend\widgets\grid\GridView;
 
-$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'дополнительных свойств']));
-$this->params['breadcrumbs'][] = ['label' => 'дополнительные свойства'];
+$this->setTitle(Module::t('Product properties'));
+$this->setPageHeader(Module::t('Product properties'));
+$this->params['breadcrumbs'][] = ['label' => Module::t('Product properties')];
 ?>
 
 <?= GridView::widget([

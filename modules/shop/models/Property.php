@@ -20,8 +20,8 @@ class Property extends \app\modules\shop\models\base\Property
     public function getListType()
     {
         return [
-            self::TYPE_STRING => Yii::t('shop', 'Property type string'),
-            self::TYPE_CHECKBOX => Yii::t('shop', 'Property type checkbox'),
+            self::TYPE_STRING => Yii::t('app', 'Type field text'),
+            self::TYPE_CHECKBOX => Yii::t('app', 'Type field checkbox'),
         ];
     }
 }

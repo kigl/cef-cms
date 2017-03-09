@@ -36,7 +36,11 @@ class DefaultController extends Controller
     }
 	
 	public function actionLogin()
-	{		
+	{
+        /**
+         * @todo
+         * Перевести логику в сервис
+         */
 		$model = new LoginForm();
 
 		if (!Yii::$app->user->isGuest) {

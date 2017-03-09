@@ -3,7 +3,7 @@ return [
     'toolbar' => [
         'infosystem' => [
             [
-                'label' => Yii::t('app', 'Инфосистемы'),
+                'label' => Yii::t('infosystem', 'Toolbar infosystems'),
                 'url' => ['infosystem/manager']
             ],
         ],

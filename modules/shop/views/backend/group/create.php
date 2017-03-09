@@ -1,5 +1,8 @@
 <?php
-$this->setPageHeader(Yii::t('app', 'Create: {data}', ['data' => 'группы']));
+use app\modules\shop\Module;
+
+$this->setTitle(Module::t('Create group'));
+$this->setPageHeader(Module::t('Create group'));
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
 
 ?>

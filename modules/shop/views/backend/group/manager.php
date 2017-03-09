@@ -1,9 +1,11 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
+use app\modules\shop\Module;
 use app\modules\backend\widgets\grid\GridView;
 
-$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'групп и элементов']));
+$this->setTitle(Module::t('Products'));
+$this->setPageHeader(Module::t('Products'));
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
 ?>
 

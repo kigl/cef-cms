@@ -103,11 +103,11 @@ class GroupModelService extends ModelService
         ]);
     }
 
-    protected function buildGroupBreadcrumbs(Infosystem $infosystem, $group_id)
+    protected function buildGroupBreadcrumbs(Infosystem $infosystem, $groupId)
     {
         $breadcrumbs = $this->buildBreadcrumbs([
-            'group' => [
-                'id' => $group_id,
+            'items' => [
+                'id' => $groupId,
                 'modelClass' => Group::class,
                 'urlOptions' => [
                     'route' => '/backend/infosystem/group/manager',

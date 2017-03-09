@@ -1,6 +1,8 @@
 <?php
-$this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Toolbar rbac'), 'url' => ['rbac/manager']];
+use app\modules\user\Module;
 
-$this->setPageHeader(Yii::t('app', 'Create: {data}', ['data' => 'роли/привелегии']));
+$this->setTitle(Module::t('Create RBAC'));
+$this->setPageHeader(Module::t('Create RBAC'));
+$this->params['breadcrumbs'][] = ['label' => Module::t('RBAC'), 'url' => ['manager']];
 
 echo $this->render('_form', ['data' => $data]);?>

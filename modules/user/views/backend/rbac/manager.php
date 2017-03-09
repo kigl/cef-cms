@@ -1,12 +1,13 @@
 <?php
-use app\modules\backend\widgets\grid\GridView;
-use app\modules\user\helpers\StatusRbacHelper;
 use yii\helpers\Url;
 use yii\helpers\Html;
-use yii\rbac\Item;
+use app\modules\user\Module;
+use app\modules\backend\widgets\grid\GridView;
+use app\modules\user\helpers\StatusRbacHelper;
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Toolbar rbac')];
-$this->setPageHeader(Yii::t('app', 'Manager: {data}', ['data' => 'ролей и привелегий']));
+$this->setTitle(Module::t('RBAC'));
+$this->setPageHeader(Module::t('RBAC'));
+$this->params['breadcrumbs'][] = ['label' => Module::t('RBAC')];
 ?>
 
 <?= GridView::widget([

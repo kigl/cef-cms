@@ -2,6 +2,14 @@
 return [
 	'Authenticate' => 'Аутентификация',
 
+    'Create user' => 'Создание пользователя',
+    'Create user property' => 'Создание свойства пользователя',
+    'Create RBAC' => 'Создание RBAC',
+
+    'Edit user: {data}' => 'Редактирование пользователя: {data}',
+    'Edit user property: {data}' => 'Редактирование свойства: {data}',
+    'Edit RBAC: {data}' => 'Редактирование RBAC: {data}',
+
     'Menu personal area' => 'Личный кабинет',
 	'Module name' => 'Пользователи',
 	'Main data' => 'Основные данные',
@@ -20,7 +28,12 @@ return [
 
     'Tab role' => 'Роли/привелегии',
     'Tab personal data' => 'Персональные данные',
-    'Toolbar rbac' => 'Роли/привелегии',
+    'Toolbar users' => 'Пользователи',
+    'Toolbar user properties' => 'Свойства пользователей',
+    'Toolbar RBAC' => 'RBAC',
+
+    'Users' => 'Пользователи',
+    'User properties' => 'Свойства пользователей',
 
     'You have registered, use your email and password to access the site' => 'Вы зарегистрировались, используйте свой email и пароль для входа на сайт',
 ];

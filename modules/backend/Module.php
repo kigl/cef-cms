@@ -34,4 +34,9 @@ class Module extends \app\core\module\Module
 		}
 		return $result;
 	}
+
+    public static function t($message, $params = [])
+    {
+        return Yii::t(self::getInstance()->id, $message, $params);
+    }
 }

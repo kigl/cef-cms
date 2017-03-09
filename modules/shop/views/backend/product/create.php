@@ -1,7 +1,8 @@
 <?php
-use app\core\helpers\Breadcrumbs;
-use app\modules\shop\models\Group;
-$this->setPageHeader(Yii::t('app', 'Create: {data}', ['data' => 'продукт']));
+use app\modules\shop\Module;
+
+$this->setTitle(Module::t('Create product'));
+$this->setPageHeader(Module::t('Create product'));
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
 
 ?>

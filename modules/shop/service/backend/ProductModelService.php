@@ -13,6 +13,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\web\UploadedFile;
+use app\modules\shop\Module;
 use app\core\traits\Breadcrumbs;
 use app\core\service\ModelService;
 use app\modules\shop\models\Product;
@@ -303,6 +304,8 @@ class ProductModelService extends ModelService
                 ],
             ],
         ]);
+
+        array_unshift($breadcrumbs, ['label' => Module::t('Products'), 'url' => ['group/manager']]);
 
         return $breadcrumbs;
     }

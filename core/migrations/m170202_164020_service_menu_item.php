@@ -23,6 +23,9 @@ class m170202_164020_service_menu_item extends Migration
             'link_id' => $this->string(100),
         ]);
 
+        $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `link_id`;");
+        $this->execute("ALTER TABLE {$this->tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
+
         $this->createIndex('ix-menu_item-menu_id', $this->tableName, 'menu_id');
 
         $this->addForeignKey('fk-menu_item-menu_id', $this->tableName, 'menu_id', '{{%service_menu}}', 'id', 'CASCADE', 'CASCADE');

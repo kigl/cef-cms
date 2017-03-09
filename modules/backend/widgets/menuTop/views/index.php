@@ -17,7 +17,7 @@ echo Nav::widget([
     'items' => [
         [
             'label' => '<i class="glyphicon glyphicon-user"></i> ' . Html::encode(Yii::$app->user->identity->login),
-            'url' => ['/backend/user/default/update', 'id' => Yii::$app->user->identity->id]
+            'url' => ['/backend/user/user/update', 'id' => Yii::$app->user->identity->id]
         ],
         ['label' => Yii::t('user', 'Logout'), 'url' => ['/user/default/logout']],
     ],

@@ -1,8 +1,11 @@
 <?php
-$this->setPageHeader(Yii::t('app', 'Edit: {data}', ['data' => $data['model']->name]));
+use app\modules\infosystem\Module;
+
+$this->setTitle(Module::t('Edit group: {data}', ['data' => $data['model']->name]));
+$this->setPageHeader(Module::t('Edit group: {data}', ['data' => $data['model']->name]));
 
 $this->params['breadcrumbs'] = array_merge(
-    [['label' => 'Инфосистемы', 'url' => ['infosystem/manager']]],
+    [['label' => Module::t('Infosystems'), 'url' => ['infosystem/manager']]],
     $data['breadcrumbs']);
 
 echo $this->render('_form', ['data' => $data]);

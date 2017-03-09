@@ -1,11 +1,12 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
+use app\modules\infosystem\Module;
 use app\modules\backend\widgets\grid\GridView;
 
-$this->setTitle(Yii::t('infosystem', 'Infosystem'));
-$this->setPageHeader(Yii::t('infosystem', 'Infosystem'));
-$this->params['breadcrumbs'][] = ['label' => Yii::t('infosystem', 'Infosystem')];
+$this->setTitle(Module::t('Infosystems'));
+$this->setPageHeader(Module::t( 'Infosystems'));
+$this->params['breadcrumbs'][] = ['label' => Module::t( 'Infosystems')];
 
 ?>
 

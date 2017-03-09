@@ -1,8 +1,10 @@
 <?php
+use app\modules\page\Module;
 use app\modules\backend\widgets\grid\GridView;
 
-$this->setPageHeader('Cтраницы');
-$this->params['breadcrumbs'][] = ['label' => 'страницы'];
+$this->setTitle(Module::t('Pages'));
+$this->setPageHeader(Module::t('Pages'));
+$this->params['breadcrumbs'][] = ['label' => Module::t('Pages')];
 
 ?>
 
