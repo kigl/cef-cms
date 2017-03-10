@@ -57,6 +57,9 @@ class InfosystemModelService extends ModelService
 
         $dataProvider = new ActiveDataProvider([
             'query' => $model->getProperties(),
+            'sort' => [
+                'defaultOrder' => ['sorting' => SORT_ASC],
+            ],
         ]);
 
         $this->setData([

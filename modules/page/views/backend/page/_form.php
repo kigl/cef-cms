@@ -26,8 +26,8 @@ use conquer\codemirror\CodemirrorAsset;
             ->widget(Imperavi::className(), [
                 'settings' => [
                     'minHeight' => 400,
-                    'imageManagerJson' => Url::to(['/page/backend/default/images-get']),
-                    'imageUpload' => Url::to(['/page/backend/default/image-upload']),
+                    'imageManagerJson' => Url::to(['/backend/page/page/images-get']),
+                    'imageUpload' => Url::to(['/backend/page/page/image-upload']),
                     'plugins' => [
                         'imagemanager',
                         'fullscreen',

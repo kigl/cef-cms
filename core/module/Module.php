@@ -31,4 +31,9 @@ abstract class Module extends \yii\base\Module implements ModuleInterface
 	{
 		return $this->getAppPathUrl() . '/modules/' . $this->id . '/public';
 	}
+
+    public static function t($message, $params = [])
+    {
+        return Yii::t(self::getInstance()->id, $message, $params);
+    }
 }

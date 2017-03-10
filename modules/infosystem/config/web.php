@@ -9,6 +9,9 @@ return [
 					'class' => Module::className(),
 					'controllerNamespace' => 'app\modules\infosystem\controllers\backend',
 					'viewPath' => '@app/modules/infosystem/views/backend',
+                    'controllerMap' => [
+                        'default' => 'app\modules\backend\controllers\DefaultController',
+                    ],
 				],
 			],
 		],

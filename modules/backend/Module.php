@@ -6,12 +6,6 @@ use Yii;
 
 class Module extends \app\core\module\Module
 {
-    public $defaultBackendRoute = 'default/index';
-
-    public $controllerMap = [
-        'default' => 'app\modules\backend\controllers\DefaultController',
-    ];
-
 	public static function getAllModules()
 	{
 		$deletedModule = ['gii', 'debug'];
@@ -34,9 +28,4 @@ class Module extends \app\core\module\Module
 		}
 		return $result;
 	}
-
-    public static function t($message, $params = [])
-    {
-        return Yii::t(self::getInstance()->id, $message, $params);
-    }
 }

@@ -16,8 +16,5 @@ class Breadcrumbs extends Widget
 {
     public function run()
     {
-        if ($this->view->params['breadcrumbs']) {
-
-        }
     }
 }

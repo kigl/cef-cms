@@ -10,6 +10,9 @@ return [
                     'class' => Module::className(),
                     'controllerNamespace' => 'app\modules\shop\controllers\backend',
                     'viewPath' => '@app/modules/shop/views/backend',
+                    'controllerMap' => [
+                        'default' => 'app\modules\backend\controllers\DefaultController',
+                    ],
                 ],
             ],
         ],

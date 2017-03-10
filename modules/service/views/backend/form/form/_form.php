@@ -2,7 +2,9 @@
 use app\modules\backend\widgets\ActiveForm;
 ?>
 
-<?php $form = ActiveForm::begin();?>
+<?php $form = ActiveForm::begin([
+    'enableClientValidation' => false,
+]);?>
 
 <?= $form->errorSummary($model);?>
 

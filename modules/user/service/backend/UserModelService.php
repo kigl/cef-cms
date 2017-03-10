@@ -10,74 +10,60 @@ namespace app\modules\user\service\backend;
 
 
 use yii\base\Model;
-use yii\helpers\ArrayHelper;
 use app\core\service\ModelService;
 use app\modules\user\components\RbacService;
 use app\modules\user\models\User;
-use app\modules\user\models\Field;
-use app\modules\user\models\FieldRelation;
+use app\modules\user\models\Property;
+use app\modules\user\models\PropertyRelation;
 
 class UserModelService extends ModelService
 {
     protected $model;
 
-    protected $fields;
+    protected $properties;
 
     protected $rbacService;
 
-    public function __construct()
+    public function __construct(RbacService $rbacService, $config = [])
     {
-        $this->rbacService = new RbacService();
+        $this->rbacService = $rbacService;
+
+        parent::__construct($config);
     }
 
-    public function init()
-    {
-        parent::init();
-
-        $this->fields = $this->initFields();
-    }
-
-    public function actionCreate(array $params)
+    public function actionCreate()
     {
         $this->model = new User;
 
-        $this->init();
+        $this->initProperties();
 
-        if ($this->load($params) && $this->save()) {
+        if ($this->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 
         $this->setData([
             'model' => $this->model,
-            'fields' => $this->fields,
-            'roleListItem' => ArrayHelper::map(
-                $this->rbacService->getItems(),
-                'name', 'name', 'type'
-            )
+            'properties' => $this->properties,
         ]);
     }
 
-    public function actionUpdate(array $params)
+    public function actionUpdate()
     {
         $this->model = User::find()
-            ->byId($params['get']['id'])
+            ->byId($this->getData('get', 'id'))
             ->one();
 
         $this->model->rolePermission = array_keys($this->rbacService->manager->getAssignments($this->model->id));
 
-        $this->init();
+        $this->initProperties();
 
-        if ($this->load($params) && $this->save()) {
+        if ($this->save()) {
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 
         $this->setData([
             'model' => $this->model,
-            'fields' => $this->fields,
-            'roleListItem' => ArrayHelper::map(
-                $this->rbacService->getItems(),
-                'name', 'name', 'type'
-            )
+            'properties' => $this->properties,
         ]);
     }
 
@@ -90,69 +76,133 @@ class UserModelService extends ModelService
         ]);
     }
 
-    public function load(array $params)
+    public function load()
     {
-        $result = $this->model->load($params['post']);
-        Model::loadMultiple($this->fields, $params['post']);
+        $post = $this->getData('post');
 
-        return $result;
+        if ($this->properties) {
+            Model::loadMultiple($this->properties, $post);
+        }
+
+        return $this->model->load($post);
     }
 
-    public function save()
+    protected function validate($validate = true)
     {
-        $transaction = User::getDb()->beginTransaction();
+        if ($validate) {
+            if ($this->model->validate($validate) && $this->validateProperties($validate)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
+        return true;
+    }
+
+    /**
+     * Валидация свойств
+     * @param bool $validate
+     * @return bool
+     */
+    protected function validateProperties($validate = true)
+    {
+        if ($validate) {
+            $success = true;
+
+            foreach ($this->properties as $key => $property) {
+                if ($property->requiredValue && $property->value == '') {
+                    $property->validate();
+
+                    $success = false;
+                }
+            }
+
+            return $success;
+        }
+
+        return true;
+    }
+
+    public function save($validate = true)
+    {
         $success = false;
-        try {
-            $success = $this->model->save();
-            if ($success) {
-                $this->saveField();
+
+        if ($this->load() && $this->validate($validate)) {
+            if ($success = $this->model->save($validate)) {
+                $this->saveProperties($validate = true);
                 $this->rbacService->saveUserAssignment($this->model->rolePermission, $this->model->id);
             }
 
-            $transaction->commit();
-        } catch (\Exception $e) {
-            $transaction->rollBack();
-
-            throw $e;
+            return $success;
         }
 
         return $success;
     }
 
     /**
-     * @return array|\yii\db\ActiveRecord[]
+     * Сохранят свойства
      */
-    protected function initFields()
+    public function saveProperties($validate = true)
     {
-        $fieldRelation = $this->model
-            ->getFields()
-            ->with('field')
-            ->indexBy('field_id')
+        foreach ($this->properties as $property) {
+            $property->user_id = $this->model->id;
+
+            if (!empty($property->value)) {
+                $property->save($validate = true);
+            } else {
+                $property->delete();
+            }
+        }
+    }
+
+
+    /**
+     * Инициализирует свойства
+     */
+    protected function initProperties()
+    {
+        $this->properties = $this->model
+            ->getProperties()
+            ->indexBy('property_id')
             ->all();
 
-        $allField = Field::find()
+        $allProperties = Property::find()
             ->indexBy('id')
             ->all();
 
-        foreach (array_diff_key($allField, $fieldRelation) as $field) {
-            $fieldRelation[$field->id] = new FieldRelation();
-            $fieldRelation[$field->id]->field_id = $field->id;
+        foreach (array_diff_key($allProperties, $this->properties) as $property) {
+            $this->properties[$property->id] = new PropertyRelation([
+                'property_id' => $property->id,
+            ]);
         }
 
-        return $fieldRelation;
+        // присваеваем значения виртуальным полям (не сохраняются)
+        foreach ($allProperties as $property) {
+            $this->properties[$property->id]->name = $property->name;
+            $this->properties[$property->id]->requiredValue = $property->required;
+        }
+
+        $this->sortingProperties($this->properties, $allProperties);
     }
 
-    public function saveField()
+    /**
+     * Сортирует свойства
+     */
+    protected function sortingProperties(&$properties, $allProperties)
     {
-        foreach ($this->fields as $field) {
-            $field->user_id = $this->model->id;
-
-            if (!empty($field->value)) {
-                $field->save();
-            } else {
-                $field->delete();
-            }
+        $tmp = [];
+        foreach ($allProperties as $p) {
+            $tmp[$p->id] = $p->sorting;
         }
+
+        asort($tmp);
+
+        $tmp2 = [];
+        foreach ($tmp as $key => $value) {
+            $tmp2[$key] = $properties[$key];
+        }
+
+        $properties = $tmp2;
     }
 }

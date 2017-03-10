@@ -18,7 +18,7 @@ use app\core\widgets\pageHeader\Widget as PageHeader;
             <div class="panel panel-default">
                 <div class="panel-heading">Хлебные крошки</div>
                 <div class="panel-body">
-                    <?= \app\modules\frontend\widgets\Breadcrumbs::widget(['enableModuleItem' => false]); ?>
+                    <?= \app\modules\frontend\widgets\Breadcrumbs::widget(); ?>
                 </div>
             </div>
 

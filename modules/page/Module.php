@@ -5,7 +5,7 @@ namespace app\modules\page;
 /**
  * Page module definition class
  */
-class Module extends \app\modules\backend\Module
+class Module extends \app\core\module\Module
 {
     public function getDynamicPagePath()
     {

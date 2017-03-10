@@ -8,6 +8,11 @@ return [
                 'url' => ['property/manager'],
             ],
             ['label' => Yii::t('user', 'Toolbar RBAC'), 'url' => ['rbac/manager']],
+            [
+                'label' => Yii::t('app', 'Toolbar setting'),
+                'url' => ['default/setting'],
+                'options' => ['class' => 'pull-right']
+            ],
         ],
     ],
     'menu' => [

@@ -13,8 +13,8 @@ use yii\base\Model;
 use app\core\service\ModelService;
 use app\modules\user\components\rbac\RbacService;
 use app\modules\user\models\User;
-use app\modules\user\models\Field;
-use app\modules\user\models\FieldRelation;
+use app\modules\user\models\Property;
+use app\modules\user\models\PropertyRelation;
 use app\modules\user\models\forms\PasswordRestoreForm;
 use app\modules\user\models\forms\UserRegistrationForm;
 
@@ -130,10 +130,10 @@ class UserModelService extends ModelService
     public function initFields()
     {
         $fieldRelation = $this->model->getFields()->with('field')->indexBy('field_id')->all();
-        $allField = Field::find()->indexBy('id')->all();
+        $allField = Property::find()->indexBy('id')->all();
 
         foreach (array_diff_key($allField, $fieldRelation) as $field) {
-            $fieldRelation[$field->id] = new FieldRelation();
+            $fieldRelation[$field->id] = new PropertyRelation();
             $fieldRelation[$field->id]->field_id = $field->id;
         }
 

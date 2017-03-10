@@ -14,7 +14,7 @@ class m170206_120405_service_form_field extends Migration
             'name' => $this->string(),
             'description' => $this->string(),
             'type' => $this->integer(),
-            'required' => $this->integer(),
+            'required' => $this->integer()->defaultValue(0),
             'sorting' => $this->integer(),
         ]);
 

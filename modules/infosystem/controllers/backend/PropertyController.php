@@ -17,6 +17,17 @@ use app\modules\infosystem\models\Infosystem;
 class PropertyController extends BackendController
 {
 
+    public function actions()
+    {
+        return [
+            'sorting' => [
+                'class' => \kotchuprik\sortable\actions\Sorting::className(),
+                'query' => Property::find(),
+                'orderAttribute' => 'sorting',
+            ],
+        ];
+    }
+
     public function actionCreate($infosystem_id)
     {
         $model = new Property();

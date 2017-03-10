@@ -8,6 +8,9 @@ return [
                     'class' => \app\modules\tag\Module::class,
                     'controllerNamespace' => 'app\modules\tag\controllers\backend',
                     'viewPath' => '@app/modules/tag/views/backend',
+                    'controllerMap' => [
+                        'default' => 'app\modules\backend\controllers\DefaultController',
+                    ],
                 ],
             ],
         ],

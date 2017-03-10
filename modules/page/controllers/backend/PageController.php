@@ -28,14 +28,14 @@ class PageController extends BackendController
             ],
             'images-get' => [
                 'class' => 'vova07\imperavi\actions\GetAction',
-                'url' => Yii::$app->controller->module->getPublicPath() . '/images',
-                'path' => Yii::$app->controller->module->getPublicPathUrl() . '/images',
+                'url' => Yii::$app->controller->module->getPublicPathUrl() . '/images',
+                'path' => Yii::$app->controller->module->getPublicPath() . '/images',
                 'type' => GetAction::TYPE_IMAGES,
             ],
             'image-upload' => [
                 'class' => 'vova07\imperavi\actions\UploadAction',
-                'url' => Yii::$app->controller->module->getPublicPath() . '/images',
-                'path' => Yii::$app->controller->module->getPublicPathUrl() . '/images',
+                'url' => Yii::$app->controller->module->getPublicPathUrl() . '/images',
+                'path' => Yii::$app->controller->module->getPublicPath() . '/images',
             ],
         ];
     }

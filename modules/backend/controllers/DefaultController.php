@@ -3,6 +3,7 @@
 namespace app\modules\backend\controllers;
 
 
+use Yii;
 use app\modules\backend\components\Controller;
 
 /**
@@ -19,5 +20,20 @@ class DefaultController extends Controller
         $this->viewPath = '@app/modules/backend/views/default';
 
         return $this->render('index');
+    }
+
+    public function actionSetting()
+    {
+        $class = $this->settingModelClass;
+
+        if (!$model = $class::findOne(1)) {
+          $model = new $class;
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['default/index']);
+        }
+
+        return $this->render('/setting/index', ['data' => ['model' => $model]]);
     }
 }

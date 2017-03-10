@@ -8,6 +8,8 @@ abstract class Controller extends \yii\web\Controller
 {
     public $defaultAction = 'index';
 
+    public $settingModelClass;
+
     public function behaviors()
     {
         return [

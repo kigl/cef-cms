@@ -7,6 +7,9 @@ return [
                     'class' => 'app\modules\service\Module',
                     'controllerNamespace' => 'app\modules\service\controllers\backend',
                     'viewPath' => '@app/modules/service/views/backend',
+                    'controllerMap' => [
+                        'default' => 'app\modules\backend\controllers\DefaultController',
+                    ],
                 ],
             ],
         ],

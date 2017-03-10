@@ -7,6 +7,9 @@ return [
                     'class' => 'app\modules\comment\Module',
                     'controllerNamespace' => 'app\modules\comment\controllers\backend',
                     'viewPath' => '@app/modules/comment/views/backend',
+                    'controllerMap' => [
+                        'default' => 'app\modules\backend\controllers\DefaultController',
+                    ],
                 ],
             ],
         ],

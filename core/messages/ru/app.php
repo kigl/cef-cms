@@ -87,8 +87,11 @@ return [
 	'Status block' => 'Заблокирован',
 	'Status active' => 'Активный',
 	'Status draft' => 'Черновик',
+    'Status not active' => 'Не активирован',
     'Sum' => 'Сумма',
 	'Surname' => 'Фамилия',
+	'Settings module: {data}' => 'Настройки модуля: {data}',
+	'Settings' => 'Настройки',
 
 	'Edit: {data}' => 'Редактирование: {data}',
 
@@ -115,6 +118,7 @@ return [
     'Type permission' => 'Разрешение',
     'Toolbar properties' => 'Дополнительные свойства',
     'Toolbar manager {data}' => 'Менеджер {data}',
+    'Toolbar setting' => 'Настройки',
 
     'Value' => 'Значение',
 

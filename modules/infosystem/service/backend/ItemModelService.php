@@ -176,6 +176,28 @@ class ItemModelService extends ModelService
         foreach ($this->properties as $property) {
             $this->itemProperties[$property->id]->requiredValue = $property->required;
         }
+
+        $this->sortingProperties($this->itemProperties, $this->properties);
+    }
+
+    /**
+     * Сортирует свойства
+     */
+    protected function sortingProperties(&$properties, $allProperties)
+    {
+        $tmp = [];
+        foreach ($allProperties as $p) {
+            $tmp[$p->id] = $p->sorting;
+        }
+
+        asort($tmp);
+
+        $tmp2 = [];
+        foreach ($tmp as $key => $value) {
+            $tmp2[$key] = $properties[$key];
+        }
+
+        $properties = $tmp2;
     }
 
     protected function getBreadcrumbs(Infosystem $infosystem, $group_id)

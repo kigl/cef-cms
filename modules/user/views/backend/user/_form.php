@@ -15,17 +15,18 @@ use app\modules\backend\widgets\imageFormSUD\Widget as ImageFormWidget;
             </a>
         </li>
         <li><a href="#field" data-toggle="tab"><?= Yii::t('app', 'Tab properties'); ?></a></li>
-        <li><a href="#role" data-toggle="tab"><?= Yii::t('user', 'Tab role');?></a></li>
+        <li><a href="#role" data-toggle="tab"><?= Yii::t('user', 'Tab role'); ?></a></li>
     </ul>
 
 <?php $form = ActiveForm::begin([
-        'id' => 'form',
-        'options' => ['enctype' => 'multipart/form-data'],
+    'id' => 'form',
+    'options' => ['enctype' => 'multipart/form-data'],
+    'enableClientValidation' => false
 ]); ?>
 
     <div class="tab-content well well-sm">
 
-        <?= $form->errorSummary($data['model'], ['class' => 'alert alert-danger']); ?>
+        <?= $form->errorSummary(array_merge($data['properties'], [$data['model']])); ?>
 
         <div class="tab-pane active" id="main">
             <?= $form->field($data['model'], 'login'); ?>
@@ -40,22 +41,22 @@ use app\modules\backend\widgets\imageFormSUD\Widget as ImageFormWidget;
 
         <div class="tab-pane" id="profile">
             <?= $form->field($data['model'], 'avatar')->widget(ImageFormWidget::className(), [
-                    'behaviorName' => 'avatarUpload',
-            ]);?>
+                'behaviorName' => 'avatarUpload',
+            ]); ?>
             <?= $form->field($data['model'], 'surname'); ?>
             <?= $form->field($data['model'], 'name'); ?>
             <?= $form->field($data['model'], 'lastname'); ?>
         </div>
 
         <div class="tab-pane" id="field">
-            <?php foreach ($data['fields'] as $fr) : ?>
-                <?= $form->field($fr, '[' . $fr->field_id . ']value')->label($fr->field->name); ?>
+            <?php foreach ($data['properties'] as $property) : ?>
+                <?= $form->field($property, '[' . $property->property_id . ']value')->label($property->name); ?>
             <?php endforeach; ?>
         </div>
 
         <div class="tab-pane" id="role">
             <?= $form->field($data['model'], 'rolePermission')
-                ->dropDownList($data['roleListItem'], [
+                ->dropDownList($data['model']->getListRoleItem(), [
                     'prompt' => Yii::t('app', 'Not selected'),
                     'size' => 10,
                     'multiple' => 'multiple',
@@ -63,7 +64,7 @@ use app\modules\backend\widgets\imageFormSUD\Widget as ImageFormWidget;
                         '1' => ['label' => Yii::t('app', 'Type role')],
                         '2' => ['label' => Yii::t('app', 'Type permission')]
                     ],
-                ]);?>
+                ]); ?>
         </div>
     </div>
 <?php $form->end(); ?>

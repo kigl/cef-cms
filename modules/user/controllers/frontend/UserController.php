@@ -11,7 +11,7 @@ use app\modules\frontend\components\Controller;
 use app\modules\user\models\forms\LoginForm;
 use app\modules\user\service\frontend\UserModelService;
 
-class DefaultController extends Controller
+class UserController extends Controller
 {
 
     public function behaviors()

@@ -27,6 +27,11 @@ return [
 	'Rbac form child' => 'Дочерний элемент',
 	'Role and permission' => 'Роли и разрешения',
 
+    'Setting.register status' => 'Статус пользователя ??',
+    'Setting.register group' => 'Группа пользователя ??',
+    'Setting.avatar width' => 'Ширина аватарки',
+    'Setting.avatar height' => 'Высота аватарки',
+
     'Tab role' => 'Роли и разрешения',
     'Tab personal data' => 'Персональные данные',
     'Toolbar users' => 'Пользователи',

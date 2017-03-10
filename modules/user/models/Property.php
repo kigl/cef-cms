@@ -1,29 +1,27 @@
 <?php
 
-namespace app\modules\infosystem\models;
+namespace app\modules\user\models;
 
 use Yii;
+use app\core\db\ActiveRecord;
 
 /**
- * This is the model class for table "{{%infosystem_property}}".
+ * This is the model class for table "{{%user_field}}".
  *
  * @property integer $id
- * @property string $infosystem_id
  * @property string $name
- * @property string $description
- * @property integer $required
  *
- * @property ItemProperty[] $infosystemItemProperties
- * @property Infosystem $infosystem
+ * @property UserFieldRelation[] $userFieldRelations
+ * @property User[] $users
  */
-class Property extends \app\core\db\ActiveRecord
+class Property extends ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%infosystem_property}}';
+        return '{{%user_property}}';
     }
 
     /**
@@ -32,9 +30,7 @@ class Property extends \app\core\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'infosystem_id'], 'required'],
-            [['required'], 'integer'],
-            [['infosystem_id'], 'string', 'max' => 100],
+            [['sorting', 'required'], 'integer'],
             [['name', 'description'], 'string', 'max' => 255],
         ];
     }
@@ -46,7 +42,6 @@ class Property extends \app\core\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'infosystem_id' => Yii::t('app', 'Infosystem ID'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'sorting' => Yii::t('app', 'Sorting'),
@@ -68,25 +63,16 @@ class Property extends \app\core\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getInfosystemItemProperties()
+    public function getProperties()
     {
-        return $this->hasMany(ItemProperty::className(), ['property_id' => 'id']);
+        return $this->hasMany(PropertyRelation::className(), ['property_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getInfosystem()
+    public function getUsers()
     {
-        return $this->hasOne(Infosystem::className(), ['id' => 'infosystem_id']);
-    }
-
-    /**
-     * @inheritdoc
-     * @return PropertyQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new PropertyQuery(get_called_class());
+        return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('{{%user_property_relation}}', ['property_id' => 'id']);
     }
 }

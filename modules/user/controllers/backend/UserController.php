@@ -9,6 +9,7 @@ use app\modules\user\service\backend\UserModelService;
 use app\modules\user\components\BackendController;
 use app\modules\user\models\UserService;
 use app\modules\user\models\User;
+use yii\web\Response;
 
 class UserController extends BackendController
 {
@@ -17,7 +18,7 @@ class UserController extends BackendController
         return [
             'delete' => [
                 'class' => 'app\core\actions\Delete',
-                'model' => '\app\modules\user\models\User',
+                'modelClass' => '\app\modules\user\models\User',
             ],
         ];
     }
@@ -34,10 +35,14 @@ class UserController extends BackendController
 
     public function actionCreate()
     {
-        $modelService = Yii::createObject(UserModelService::class);
-        $modelService->actionCreate([
-            'post' => Yii::$app->request->post(),
+        $modelService = Yii::createObject([
+            'class' => UserModelService::class,
+            'data' => [
+                'get' => Yii::$app->request->getQueryParams(),
+                'post' => Yii::$app->request->post(),
+            ],
         ]);
+        $modelService->actionCreate();
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
             return $this->redirect(['manager']);
@@ -48,11 +53,14 @@ class UserController extends BackendController
 
     public function actionUpdate($id)
     {
-        $modelService = Yii::createObject(UserModelService::class);
-        $modelService->actionUpdate([
-            'get' => Yii::$app->request->getQueryParams(),
-            'post' => Yii::$app->request->post(),
+        $modelService = Yii::createObject([
+            'class' => UserModelService::class,
+            'data' => [
+                'get' => Yii::$app->request->getQueryParams(),
+                'post' => Yii::$app->request->post(),
+            ],
         ]);
+        $modelService->actionUpdate();
 
         if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_SAVE)) {
 

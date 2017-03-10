@@ -3,9 +3,10 @@
 namespace app\modules\user\models;
 
 
-
-use app\core\behaviors\file\UploadImage;
 use Yii;
+use yii\helpers\ArrayHelper;
+use app\modules\user\components\RbacService;
+use app\core\behaviors\file\UploadImage;
 /**
  * This is the model class for table "mn_user".
  *
@@ -27,6 +28,11 @@ class User extends \app\core\db\ActiveRecord
     const STATUS_ACTIVE = 1;
     const STATUS_NOT_ACTIVE = 2;
 
+    /**
+     * Виртуальное поле, не сохраняется в текущую db
+     * Используется для отображения ролей и сохраниния связей в authManager
+     * @var
+     */
     public $rolePermission;
 
     public $password_repeat;
@@ -116,22 +122,30 @@ class User extends \app\core\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFields()
+    public function getProperties()
     {
-        return $this->hasMany(FieldRelation::className(), ['user_id' => 'id']);
+        return $this->hasMany(PropertyRelation::className(), ['user_id' => 'id']);
     }
 
     public function getStatusList()
     {
         return [
-            self::STATUS_BLOCK => Yii::t('user', 'Status block'),
-            self::STATUS_ACTIVE => Yii::t('user', 'Status active'),
-            self::STATUS_NOT_ACTIVE => Yii::t('user', 'Status not active'),
+            self::STATUS_BLOCK => Yii::t('app', 'Status block'),
+            self::STATUS_ACTIVE => Yii::t('app', 'Status active'),
+            self::STATUS_NOT_ACTIVE => Yii::t('app', 'Status not active'),
         ];
     }
 
     public function getStatus($status)
     {
         return $this->getStatusList()[$status];
+    }
+
+    public function getListRoleItem()
+    {
+        return ArrayHelper::map(
+            (new RbacService())->getItems(),
+            'name', 'name', 'type'
+        );
     }
 }

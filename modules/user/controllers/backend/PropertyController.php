@@ -15,7 +15,7 @@ use app\modules\user\components\BackendController;
 use app\core\actions\Update;
 use app\core\actions\Create;
 use app\core\actions\Delete;
-use app\modules\user\models\Field;
+use app\modules\user\models\Property;
 
 class PropertyController extends BackendController
 {
@@ -24,15 +24,20 @@ class PropertyController extends BackendController
         return [
             'create' => [
                 'class' => Create::className(),
-                'modelClass' => Field::className(),
+                'modelClass' => Property::className(),
             ],
             'update' => [
                 'class' => Update::className(),
-                'modelClass' => Field::className(),
+                'modelClass' => Property::className(),
             ],
             'delete' => [
                 'class' => Delete::className(),
-                'modelClass' => Field::className(),
+                'modelClass' => Property::className(),
+            ],
+            'sorting' => [
+                'class' => \kotchuprik\sortable\actions\Sorting::className(),
+                'query' => Property::find(),
+                'orderAttribute' => 'sorting',
             ],
         ];
     }
@@ -40,7 +45,10 @@ class PropertyController extends BackendController
     public function actionManager()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Field::find(),
+            'query' => Property::find(),
+            'sort' => [
+                'defaultOrder' => ['sorting' => SORT_ASC],
+            ],
         ]);
 
         return $this->render('manager', [

@@ -41,15 +41,4 @@ class m160902_063342_user extends Migration
     {
         $this->dropTable($this->tableName);
     }
-
-    /*
-    // Use safeUp/safeDown to run migration code within a transaction
-    public function safeUp()
-    {
-    }
-
-    public function safeDown()
-    {
-    }
-    */
 }

@@ -43,9 +43,16 @@ use vova07\imperavi\Widget;
                             ],
                         ],
                     ],
+                    'rowOptions' => function ($model, $key, $index, $grid) {
+                        return ['data-sortable-id' => $model->id];
+                    },
                     'columns' => [
-                        'id',
                         'name',
+                        [
+                            'class' => \kotchuprik\sortable\grid\Column::className(),
+                        ],
+                        'sorting',
+                        'id',
                         [
                             'headerOptions' => ['style' => 'width: 70px'],
                             'class' => 'yii\grid\ActionColumn',
@@ -59,6 +66,12 @@ use vova07\imperavi\Widget;
                                         ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'question on delete file')]);
                                 }
                             ],
+                        ]
+                    ],
+                    'options' => [
+                        'data' => [
+                            'sortable-widget' => 1,
+                            'sortable-url' => \yii\helpers\Url::to(['property/sorting']),
                         ]
                     ],
                 ]); ?>
