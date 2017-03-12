@@ -4,6 +4,7 @@ return [
         'service' => [
             ['label' => Yii::t('service', 'Toolbar menu'), 'url' => ['/backend/service/menu/menu/manager']],
             ['label' => Yii::t('service', 'Toolbar forms'), 'url' => ['/backend/service/form/form/manager']],
+            ['label' => Yii::t('service', 'Toolbar lists'), 'url' => ['/backend/service/lists/list/manager']],
         ],
     ],
     'menu' => [

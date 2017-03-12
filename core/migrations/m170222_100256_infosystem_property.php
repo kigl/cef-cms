@@ -13,6 +13,7 @@ class m170222_100256_infosystem_property extends Migration
             'infosystem_id' => $this->string(100),
             'name' => $this->string(),
             'description' => $this->string(),
+            'type' => $this->integer(),
             'sorting' => $this->integer()->defaultValue(500),
             'required' => $this->integer(),
         ]);

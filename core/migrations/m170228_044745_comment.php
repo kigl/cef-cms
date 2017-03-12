@@ -23,6 +23,7 @@ class m170228_044745_comment extends Migration
 
         $this->createIndex('ix-comment-parent_id', $this->tableName, 'parent_id');
         $this->createIndex('ix-comment-model_class', $this->tableName, 'model_class');
+        $this->createIndex('ix-comment-item_id', $this->tableName, 'item_id');
         $this->createIndex('ix-comment-status', $this->tableName, 'status');
         $this->createIndex('ix-comment-user_id', $this->tableName, 'user_id');
 

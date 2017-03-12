@@ -15,7 +15,7 @@ class m170202_164020_service_menu_item extends Migration
             'name' => $this->string(),
             'url' => $this->string(),
             'visible' => $this->integer(),
-            'sorting' => $this->integer(),
+            'sorting' => $this->integer()->defaultValue(500),
             'item_class' => $this->string(100),
             'item_id' => $this->string(100),
             'item_icon_class' => $this->string(),

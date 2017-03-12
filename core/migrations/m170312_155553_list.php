@@ -2,9 +2,9 @@
 
 use yii\db\Migration;
 
-class m161028_041210_user_property extends Migration
+class m170312_155553_list extends Migration
 {
-    protected $tableName = '{{%user_property}}';
+    protected $tableName = '{{%list}}';
 
     public function up()
     {
@@ -12,12 +12,10 @@ class m161028_041210_user_property extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(),
             'description' => $this->string(),
-            'type' => $this->integer(),
-            'sorting' => $this->integer()->defaultValue(500),
-            'required' => $this->integer()->defaultValue(0),
         ]);
 
-        $this->createIndex('ix-property-name', $this->tableName, 'name');
+        $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `description`;");
+        $this->execute("ALTER TABLE {$this->tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
     }
 
     public function down()
