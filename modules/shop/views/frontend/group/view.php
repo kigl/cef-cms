@@ -6,8 +6,6 @@ use yii\helpers\HtmlPurifier;
 $this->setTitle($data['model']->name);
 $this->setMetaDescription($data['model']->meta_description);
 $this->setPageHeader($data['model']->name);
-
-$this->setBreadcrumbs($data['breadcrumbs']);
 ?>
 
     <div class="panel panel-default">

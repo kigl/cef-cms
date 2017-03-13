@@ -3,7 +3,7 @@
 namespace app\modules\shop\models;
 
 use Yii;
-use yii\helpers\ArrayHelper;
+use app\core\db\ActiveRecord;
 use app\core\behaviors\GenerateAlias;
 
 /**
@@ -20,8 +20,52 @@ use app\core\behaviors\GenerateAlias;
  * @property string $create_time
  * @property string $update_time
  */
-class Group extends \app\modules\shop\models\base\Group
+class Group extends ActiveRecord
 {
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%shop_group}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            ['name', 'required'],
+            [['parent_id', 'user_id'], 'integer'],
+            [['content'], 'string'],
+            [['create_time', 'update_time'], 'safe'],
+            [['name', 'description', 'image', 'image_small', 'alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'parent_id' => Yii::t('app', 'Parent id'),
+            'name' => Yii::t('app', 'Name'),
+            'description' => Yii::t('app', 'Description'),
+            'content' => Yii::t('app', 'Content'),
+            'image' => Yii::t('app', 'Image'),
+            'image_small' => Yii::t('app', 'Image Small'),
+            'user_id' => Yii::t('app', 'User ID'),
+            'alias' => Yii::t('app', 'Alias'),
+            'meta_title' => Yii::t('app', 'Meta title'),
+            'meta_description' => Yii::t('app', 'Meta description'),
+            'create_time' => Yii::t('app', 'Create Time'),
+            'update_time' => Yii::t('app', 'Update Time'),
+        ];
+    }
 
     public function behaviors()
     {

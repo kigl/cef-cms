@@ -17,8 +17,8 @@ namespace app\modules\shop\components\cart;
 use Yii;
 use yii\base\Component;
 use yii\data\ActiveDataProvider;
-use app\modules\shop\models\base\Cart as CartModel;
-use app\modules\shop\models\base\CartItem;
+use app\modules\shop\models\Cart as CartModel;
+use app\modules\shop\models\CartItem;
 
 class Cart extends Component implements CartInterface
 {

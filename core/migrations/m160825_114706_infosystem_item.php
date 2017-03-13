@@ -26,14 +26,14 @@ class m160825_114706_infosystem_item extends Migration
             //'video' => $this->string(),
             //'file' => $this->string(),
             'status' => $this->integer()->defaultValue(1),
-            'sorting' => $this->integer(),
+            'sorting' => $this->integer()->defaultValue(500),
             'user_id' => $this->integer(),
             'date' => $this->date(),
             'date_start' => $this->date(),
             'date_end' => $this->date(),
             'alias' => $this->string(),
             'meta_title' => $this->string(),
-            'meta_description' => $this->string(300),
+            'meta_description' => $this->string(),
         ]);
 
         $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_description`;");

@@ -5,7 +5,6 @@ namespace app\modules\shop\controllers\backend;
 
 use Yii;
 use app\modules\shop\service\backend\GroupModelService;
-use app\modules\shop\service\backend\GroupViewService;
 use app\modules\shop\components\BackendController;
 
 class GroupController extends BackendController

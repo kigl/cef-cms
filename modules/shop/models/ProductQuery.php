@@ -6,7 +6,7 @@
  */
 
 
-namespace app\modules\shop\models\query;
+namespace app\modules\shop\models;
 
 
 use yii\db\ActiveQuery;

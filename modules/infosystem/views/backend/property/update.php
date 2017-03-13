@@ -10,4 +10,4 @@ $this->params['breadcrumbs'][] = [
 ];
 $this->params['breadcrumbs'][] = ['label' => $data['model']->name];
 
-echo $this->render('_form', ['data' => $data]);
+echo $this->render('@app/modules/property/views/_form', ['data' => $data]);

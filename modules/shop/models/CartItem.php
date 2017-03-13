@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\models\base;
+namespace app\modules\shop\models;
 
 use Yii;
 
@@ -34,8 +34,6 @@ class CartItem extends \yii\db\ActiveRecord
         return [
             [['cart_id', 'product_id', 'qty'], 'integer'],
             [['price'], 'number'],
-            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
-            [['cart_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cart::className(), 'targetAttribute' => ['cart_id' => 'id']],
         ];
     }
 
@@ -45,7 +43,7 @@ class CartItem extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('shop', 'ID'),
+            'id' => Yii::t('app', 'ID'),
             'cart_id' => Yii::t('shop', 'Cart ID'),
             'product_id' => Yii::t('shop', 'Product ID'),
             'qty' => Yii::t('shop', 'Qty'),

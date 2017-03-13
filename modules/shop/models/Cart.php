@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\models\base;
+namespace app\modules\shop\models;
 
 use Yii;
 use app\modules\user\models\User;
@@ -31,7 +31,6 @@ class Cart extends \yii\db\ActiveRecord
     {
         return [
             [['user_id'], 'integer'],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 

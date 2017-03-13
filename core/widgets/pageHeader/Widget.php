@@ -24,7 +24,7 @@ class Widget extends \yii\base\Widget
         Html::addCssClass($this->options, $this->defaultOptions);
 
         if ($this->text !== '') {
-            echo Html::tag('div', Html::tag('h1', $this->text), $this->options);
+            echo Html::tag('div', Html::tag('h1', Html::encode($this->text)), $this->options);
         }
     }
 }

@@ -14,6 +14,7 @@ class m161030_134743_shop_product_image extends Migration
             'product_id' => $this->integer(),
             'name' => $this->string(),
             'status' => $this->integer()->defaultValue(0),
+            'sorting' => $this->integer()->defaultValue(500),
             'alt' => $this->string(),
         ]);
 

@@ -11,13 +11,48 @@ use app\core\db\ActiveRecord;
  * @property integer $id
  * @property string $name
  * @property integer $type
+ * @property integer $required
  */
-class Property extends \app\modules\shop\models\base\Property
+class Property extends ActiveRecord
 {
     const TYPE_STRING = 1;
     const TYPE_CHECKBOX = 2;
     const TYPE_TEXTAREA = 3;
     const TYPE_SELECT = 4;
+
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%shop_property}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            ['name', 'required'],
+            [['name'], 'string', 'max' => 255],
+            [['type', 'required'], 'integer'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'type' => Yii::t('app', 'Property type'),
+            'required' => Yii::t('app', 'Required'),
+        ];
+    }
 
     public function getListType()
     {

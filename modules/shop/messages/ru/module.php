@@ -4,6 +4,7 @@ return [
     'Button refresh cart' => 'Пересчитать',
     'Button order' => 'Оформить заказ',
 
+	'Main image' => 'Главное изоброжение',
 	'Module name' => 'Интеренет магазин',
 	'Module description' => 'Интеренет магазин',
 

@@ -5,8 +5,6 @@ use yii\helpers\HtmlPurifier;
 $this->setTitle($data['model']->meta_title);
 $this->setMetaDescription($data['model']->meta_description);
 $this->setPageHeader($data['model']->name);
-$this->setBreadcrumbs($data['breadcrumbs']);
-
 
 $this->params['groupId'] = $data['model']->group_id;
 ?>

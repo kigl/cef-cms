@@ -5,7 +5,6 @@ namespace app\modules\shop\controllers\backend;
 use Yii;
 use app\modules\shop\components\BackendController;
 use app\modules\shop\service\backend\ProductModelService;
-use app\modules\shop\service\backend\ProductViewService;
 
 class ProductController extends BackendController
 {

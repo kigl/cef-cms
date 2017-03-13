@@ -9,7 +9,8 @@ return [
 	'Button save' => 'Сохранить',
     'Breadcrumb root' => 'root',
 
-    'Deleted element' => 'Элемент удален!',
+    'Deleted item' => 'Элемент удален!',
+    'Delete image' => 'Удалить изоброжение',
     'Description' => 'Описание',
     'Depot' => 'Остаток',
     'Date' => 'Дата',
@@ -66,7 +67,7 @@ return [
 	'Required' => 'Обязательно для заполнения',
     'Region' => 'Регион',
 	
-	'Created element' => 'Элемент создан!',
+	'Created item' => 'Элемент создан!',
 	'Create time' => 'Дата создания',
     'Content' => 'Содержание',
     'CSS class' => 'CSS класс',
@@ -95,8 +96,9 @@ return [
 
 	'Edit: {data}' => 'Редактирование: {data}',
 
-	'Updated element' => 'Элемент обновлен!',
+	'Updated item' => 'Элемент обновлен!',
 	'Update time' => 'Дата обновления',
+    'Upload images' => 'Загрузка изображений',
     'Url' =>  'URL',
     'Use captcha' => 'Использовать captcha',
 

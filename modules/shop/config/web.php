@@ -49,10 +49,10 @@ return [
 
         'urlManager' => [
             'rules' => [
-                'shop/group/<id>/<alias>' => '/shop/group/view',
+                'shop/group/<id>-<alias>' => '/shop/group/view',
                 'shop/group/<id>' => '/shop/group/view',
                 'shop/search' => '/shop/product/search',
-                'shop/product/<id:\d+>/<alias>' => '/shop/product/view',
+                'shop/product/<id:\d+>-<alias>' => '/shop/product/view',
                 'shop/product/<id:\d+>' => '/shop/product/view',
                 'shop/cart' => '/shop/cart/index',
                 'shop/order' => '/shop/order/index',

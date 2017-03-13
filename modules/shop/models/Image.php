@@ -15,13 +15,49 @@ use app\core\db\ActiveRecord;
  * @property string $alt
  * @property string $create_time
  */
-class Image extends \app\modules\shop\models\base\Image
+class Image extends ActiveRecord
 {
+
     const STATUS_MAIN = 1;
     const STATUS_DEFAULT = 0;
-    const POST_STATUS_NAME = 'imageStatus';
+    const POST_NAME_STATUS = 'imageStatus';
 
     public $deleteKey;
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%shop_product_image}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['product_id', 'status', 'deleteKey'], 'integer'],
+            [['create_time'], 'safe'],
+            [['name', 'alt'], 'string', 'max' => 255],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'product_id' => Yii::t('shop', 'Product ID'),
+            'name' => Yii::t('app', 'Name'),
+            'status' => Yii::t('app', 'Status'),
+            'deleteKey' => Yii::t('app', 'Delete image'),
+            'alt' => Yii::t('app', 'Alt'),
+            'create_time' => Yii::t('app', 'Create time'),
+        ];
+    }
 
     public function behaviors()
     {

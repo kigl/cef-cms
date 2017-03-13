@@ -39,9 +39,9 @@ return [
         'urlManager' => [
             'rules' => [
                 'login' => '/user/user/login',
-                'registration' => '/user/default/registration',
-                'personal' => '/user/default/personal',
-                'logout' => '/user/default/logout',
+                'registration' => '/user/user/registration',
+                'personal' => '/user/user/personal',
+                'logout' => '/user/user/logout',
             ],
         ],
     ],

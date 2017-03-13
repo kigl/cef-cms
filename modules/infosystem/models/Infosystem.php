@@ -3,6 +3,7 @@
 namespace app\modules\infosystem\models;
 
 use Yii;
+use app\modules\property\models\Property;
 
 /**
  * This is the model class for table "mn_infosystem".

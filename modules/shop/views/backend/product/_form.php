@@ -6,6 +6,7 @@ use kartik\file\FileInput;
 use app\modules\backend\widgets\ActiveForm;
 use app\modules\shop\models\Property;
 use app\modules\backend\widgets\grid\GridView;
+use app\modules\shop\models\Image;
 
 ?>
 
@@ -23,8 +24,7 @@ use app\modules\backend\widgets\grid\GridView;
     'options' => ['enctype' => 'multipart/form-data'],
 ]); ?>
 
-<?= $form->errorSummary($data['model']); ?>
-<?= $form->errorSummary($data['properties']); ?>
+<?= $form->errorSummary(array_merge($data['properties'], [$data['model']]));?>
 
 <div class="tab-content">
     <div class="tab-pane active" id="main">
@@ -70,8 +70,8 @@ use app\modules\backend\widgets\grid\GridView;
                         <?= $form->field($image, '[' . $image->id . ']deleteKey')->checkbox(); ?>
                         <div class="form-group">
                             <label class="control-label">
-                                <?= Html::radio('imageStatus', $image->status, ['views' => $image->id]); ?>
-                                <?= Yii::t('shop', 'Image status') ?>
+                                <?= Html::radio(Image::POST_NAME_STATUS, $image->status, ['value' => $image->id]); ?>
+                                <?= Yii::t('shop', 'Main image') ?>
                             </label>
                         </div>
                         <?= $form->field($image, '[' . $image->id . ']alt'); ?>
@@ -152,7 +152,7 @@ use app\modules\backend\widgets\grid\GridView;
                     'attribute' => 'user_id',
                     'format' => 'raw',
                     'value' => Html::a($data['model']->user_id,
-                        ['/backend/user/default/view', 'id' => $data['model']->user_id]),
+                        ['/backend/user/user/view', 'id' => $data['model']->user_id]),
                 ],
             ],
         ]); ?>

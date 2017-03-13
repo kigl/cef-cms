@@ -11,7 +11,7 @@ namespace app\modules\shop\service\backend;
 
 use yii\data\ActiveDataProvider;
 use app\core\service\ModelService;
-use app\modules\shop\models\base\Order;
+use app\modules\shop\models\Order;
 
 class OrderModelService extends ModelService
 {

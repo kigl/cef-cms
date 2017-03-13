@@ -20,6 +20,7 @@ class m161025_155911_shop_product extends Migration
             'price' => $this->float(5,2)->defaultValue(0),
             'discount' => $this->float(),
             'status' => $this->integer()->defaultValue(1),
+            'sorting' => $this->integer()->defaultValue(500),
             'user_id' => $this->integer(),
             'alias' => $this->string(),
             'meta_title' => $this->string(),

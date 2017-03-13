@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\models\base;
+namespace app\modules\shop\models;
 
 use Yii;
 
@@ -12,7 +12,7 @@ use Yii;
  * @property integer $type
  * @property  integer $required
  *
- * @property ShopOrderFieldRelation[] $shopOrderFieldRelations
+ * @property OrderFieldRelation[] $shopOrderFieldRelations
  */
 class OrderField extends \yii\db\ActiveRecord
 {

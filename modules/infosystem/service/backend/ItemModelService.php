@@ -102,7 +102,7 @@ class ItemModelService extends ModelService
     protected function validate($validate = true)
     {
         if ($validate) {
-            if ($this->model->validate($validate) && $this->validateItemProperties($validate)) {
+            if ($this->model->validate($validate) && $this->validateProperties($validate)) {
                 return true;
             } else {
                 return false;
@@ -124,23 +124,21 @@ class ItemModelService extends ModelService
         return false;
     }
 
-    protected function validateItemProperties($validate = true)
+    protected function validateProperties($validate = true)
     {
+        $success = true;
+
         if ($validate) {
-            $success = true;
 
             foreach ($this->itemProperties as $key => $property) {
-                if ($property->requiredValue && $property->value == '') {
-                    $property->validate();
+                if (!$property->validate()) {
 
                     $success = false;
                 }
             }
-
-            return $success;
         }
 
-        return true;
+        return $success;
     }
 
     protected function saveItemProperties()

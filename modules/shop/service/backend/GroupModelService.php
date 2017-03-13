@@ -32,7 +32,7 @@ class GroupModelService extends ModelService
             'id' => $this->getData('get', 'id'),
             'dataProviderGroup' => $dataProviderGroup,
             'dataProviderProduct' => $dataProviderProduct,
-            'breadcrumbs' => $this->buildGroupBreadcrumbs($this->getData('get', 'id')),
+            'breadcrumbs' => $this->getBreadcrumbsItem($this->getData('get', 'id')),
         ]);
     }
 
@@ -48,7 +48,7 @@ class GroupModelService extends ModelService
 
         $this->setData([
             'model' => $model,
-            'breadcrumbs' => $this->buildGroupBreadcrumbs($this->getData('get', 'parent_id')),
+            'breadcrumbs' => $this->getBreadcrumbsItem($this->getData('get', 'parent_id')),
         ]);
     }
 
@@ -63,7 +63,7 @@ class GroupModelService extends ModelService
 
         $this->setData([
             'model' => $model,
-            'breadcrumbs' => $this->buildGroupBreadcrumbs($this->getData('get', 'id')),
+            'breadcrumbs' => $this->getBreadcrumbsItem($this->getData('get', 'id')),
         ]);
     }
 
@@ -93,10 +93,10 @@ class GroupModelService extends ModelService
         }
     }
 
-    protected function buildGroupBreadcrumbs($groupId)
+    protected function getBreadcrumbsItem($groupId)
     {
         $breadcrumbs = $this->buildBreadcrumbs([
-            'group' => [
+            'items' => [
                 'id' => $groupId,
                 'modelClass' => Group::class,
                 //'enableRoot' => true,

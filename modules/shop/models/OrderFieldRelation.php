@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\models\base;
+namespace app\modules\shop\models;
 
 use Yii;
 
@@ -11,8 +11,8 @@ use Yii;
  * @property integer $order_id
  * @property integer $field_id
  *
- * @property ShopOrderField $field
- * @property ShopOrder $order
+ * @property OrderField $field
+ * @property Order $order
  */
 class OrderFieldRelation extends \yii\db\ActiveRecord
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\models\base;
+namespace app\modules\shop\models;
 
 use Yii;
 
@@ -44,9 +44,9 @@ class OrderItem extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('shop', 'ID'),
+            'id' => Yii::t('app', 'ID'),
             'order_id' => Yii::t('shop', 'Order ID'),
-            'name' => Yii::t('shop', 'Name'),
+            'name' => Yii::t('app', 'Name'),
             'qty' => Yii::t('shop', 'Qty'),
             'price' => Yii::t('shop', 'Price'),
         ];

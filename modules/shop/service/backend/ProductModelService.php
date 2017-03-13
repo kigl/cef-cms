@@ -12,6 +12,7 @@ namespace app\modules\shop\service\backend;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 use app\modules\shop\Module;
 use app\core\traits\Breadcrumbs;
@@ -32,7 +33,7 @@ class ProductModelService extends ModelService
     /**
      * @var array
      */
-    protected $image;
+    protected $images;
     /**
      * @var array
      */
@@ -51,7 +52,7 @@ class ProductModelService extends ModelService
         $this->initialization();
 
         if ($this->load() && $this->save()) {
-            
+
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
 
@@ -59,7 +60,7 @@ class ProductModelService extends ModelService
             'model' => $this->model,
             'properties' => $this->properties,
             'dataProvider' => $dataProvider,
-            'breadcrumbs' => $this->buildGroupBreadcrumbs($this->model->group_id),
+            'breadcrumbs' => $this->getItemBreadcrumbs($this->model->group_id),
         ]);
     }
 
@@ -83,7 +84,7 @@ class ProductModelService extends ModelService
             'model' => $this->model,
             'properties' => $this->properties,
             'dataProvider' => $dataProvider,
-            'breadcrumbs' => $this->buildGroupBreadcrumbs($this->model->group_id),
+            'breadcrumbs' => $this->getItemBreadcrumbs($this->model->group_id),
         ]);
     }
 
@@ -117,7 +118,7 @@ class ProductModelService extends ModelService
     public function initialization()
     {
         $this->initProperties();
-        $this->image = $this->initImage();
+        $this->initImages();
     }
 
     /**
@@ -127,7 +128,6 @@ class ProductModelService extends ModelService
     {
         $this->properties = $this->model->getProperties()
             ->with('property')
-            ->indexBy('property_id')
             ->all();
 
 
@@ -139,6 +139,10 @@ class ProductModelService extends ModelService
         foreach (array_diff_key($allProperty, $this->properties) as $pr) {
             $this->properties[$pr->id] = new ProductProperty();
             $this->properties[$pr->id]->property_id = $pr->id;
+        }
+
+        foreach ($allProperty as $property) {
+            $this->properties[$property->id]->requiredValue = $property->required;
         }
     }
 
@@ -153,7 +157,7 @@ class ProductModelService extends ModelService
         $result = $this->model->load($post);
 
         Model::loadMultiple($this->properties, $post);
-        Model::loadMultiple($this->image, $post);
+        Model::loadMultiple($this->images, $post);
 
         return $result;
     }
@@ -173,8 +177,8 @@ class ProductModelService extends ModelService
         if ($this->validate()) {
             $this->model->save();
             $this->saveProperties();
-            $this->uploadImage();
-            $this->processImage();
+            $this->uploadImages();
+            $this->processImages();
 
             return true;
         }
@@ -185,12 +189,12 @@ class ProductModelService extends ModelService
     protected function validateProperties($validate = true)
     {
         $success = true;
+
         if ($validate) {
-            foreach ($this->properties as $property) {
-                if ($property->property->required && $property->value === '') {
-                    $property->addError(
-                        'value',
-                        Yii::t('yii', '{attribute} cannot be blank.', ['attribute' => Yii::t('shop', 'Properties')]));
+
+            foreach ($this->properties as $key => $property) {
+                $property->validate();
+                if (!$property->validate()) {
 
                     $success = false;
                 }
@@ -199,6 +203,7 @@ class ProductModelService extends ModelService
 
         return $success;
     }
+
 
     protected function saveProperties($validate = true)
     {
@@ -223,16 +228,14 @@ class ProductModelService extends ModelService
         return $success;
     }
 
-    protected function initImage()
+    protected function initImages()
     {
-        $images = $this->model->getImages()
+        $this->images = $this->model->getImages()
             ->indexBy('id')
             ->all();
-
-        return $images;
     }
 
-    public function uploadImage($attribute = 'imageUpload')
+    public function uploadImages($attribute = 'imageUpload')
     {
         $uploadedImages = UploadedFile::getInstances($this->model, $attribute);
 
@@ -242,30 +245,29 @@ class ProductModelService extends ModelService
             $image->name = $upload;
             $image->save(false);
 
-            $this->image[$image->id] = $image;
+            $this->images[$image->id] = $image;
         }
     }
 
-    protected function processImage()
+    protected function processImages()
     {
-        $imageStatus = (isset($this->data['post'][Image::POST_STATUS_NAME]))
-            ? (int)$this->data['post'][Image::POST_STATUS_NAME]
-            : null;
+        $imageStatus = ArrayHelper::getValue($this->getData('post'), Image::POST_NAME_STATUS);
 
-        if (is_array($this->image)) {
-            $img = $this->image;
-            foreach ($this->image as $key => $image) {
-                $img[$key] = $image;
+        if (is_array($this->images)) {
+            $images = $this->images;
+            foreach ($this->images as $key => $image) {
+                $images[$key] = $image;
+
                 if (!empty($image->deleteKey)) {
                     if ($image->delete()) {
-                        unset($img[$key]);
+                        unset($images[$key]);
                     }
                 } else {
-                    $image->status = ($imageStatus === $image->id) ? Image::STATUS_MAIN : Image::STATUS_DEFAULT;
+                    $image->status = ((int)$imageStatus === $image->id) ? Image::STATUS_MAIN : Image::STATUS_DEFAULT;
                     $image->save();
                 }
             }
-            $this->image = $img;
+            $this->images = $images;
         }
 
         // проверим и установим статус
@@ -278,23 +280,23 @@ class ProductModelService extends ModelService
     private function setStatusImage()
     {
         $success = false;
-        foreach ($this->image as $img) {
+        foreach ($this->images as $img) {
             if ($img->status === Image::STATUS_MAIN) {
                 $success = true;
             }
         }
 
-        if ($success === false && $this->image) {
-            $image = reset($this->image);
+        if ($success === false && $this->images) {
+            $image = reset($this->images);
             $image->status = Image::STATUS_MAIN;
             $image->save(false);
         }
     }
 
-    protected function buildGroupBreadcrumbs($groupId)
+    protected function getItemBreadcrumbs($groupId)
     {
         $breadcrumbs = $this->buildBreadcrumbs([
-            'group' => [
+            'items' => [
                 'id' => $groupId,
                 'modelClass' => Group::class,
                 //'enableRoot' => true,

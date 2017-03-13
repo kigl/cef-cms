@@ -43,22 +43,10 @@ class GroupModelService extends ModelService
             ],
         ]);
 
-        $breadcrumbs = $this->buildBreadcrumb([
-            'group' => [
-                'id' => $modelGroup->id,
-                'modelClass' => Group::class,
-                'urlOptions' => [
-                    'route' => '/shop/group/view',
-                    'params' => ['id', 'alias'],
-                ],
-            ],
-        ]);
-
         $this->setData([
             'model' => $modelGroup,
             'dataProvider' => $dataProviderProduct,
             'subGroups' => $modelGroup->subGroups,
-            'breadcrumbs' => $breadcrumbs,
         ]);
 
         /**@todo

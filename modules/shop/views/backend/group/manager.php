@@ -7,6 +7,7 @@ use app\modules\backend\widgets\grid\GridView;
 $this->setTitle(Module::t('Products'));
 $this->setPageHeader(Module::t('Products'));
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
+
 ?>
 
 <?= GridView::widget([

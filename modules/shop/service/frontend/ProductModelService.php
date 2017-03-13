@@ -36,7 +36,7 @@ class ProductModelService extends ModelService
             return;
         }
 
-        $breadcrumbs = $this->buildBreadcrumb([
+        /*$breadcrumbs = $this->buildBreadcrumbs([
             'group' => [
                 'id' => $this->model->group_id,
                 'modelClass' => Group::class,
@@ -48,14 +48,14 @@ class ProductModelService extends ModelService
             'items' => [
                 ['label' => $this->model->name],
             ],
-        ]);
+        ]);*/
 
         $this->setData([
             'model' => $this->model,
             'images' => $this->model->images,
             'properties' => ArrayHelper::map($this->model->properties, 'name', 'value'),
             'mainImage' => $this->model->mainImage,
-            'breadcrumbs' => $breadcrumbs,
+            //'breadcrumbs' => $breadcrumbs,
         ]);
 
         if ($alias == '') {
