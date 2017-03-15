@@ -1,6 +1,6 @@
 <?php
 
-use app\core\components\ConfigManager;
+//use app\core\components\ConfigManager;
 
 ini_set('display_errors', 1);
 ini_set('error_reporting', E_ALL); // E_ALL & ~E_NOTICE
@@ -8,20 +8,24 @@ ini_set('error_reporting', E_ALL); // E_ALL & ~E_NOTICE
 // comment out the following two lines when deployed to production
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
+define('ROOT_DIR', __DIR__);
 
-require(__DIR__ . '/core/vendor/autoload.php');
-require(__DIR__ . '/core/vendor/yiisoft/yii2/Yii.php');
+require(__DIR__ . '/vendor/autoload.php');
+require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
 
 // основная конфигурация
-$baseConfig = require(__DIR__ . '/core/config/web.php');
+$baseConfig = require(__DIR__ . '/config/web.php');
+$coreConfig = require ROOT_DIR . '/packagest/core/config/web.php';
+$backendConfig = require ROOT_DIR . '/packagest/backend/config/web.php';
+$userConfig = require ROOT_DIR . '/packagest/user/config/web.php';
+
+(new yii\web\Application(array_merge_recursive($baseConfig, $coreConfig, $backendConfig, $userConfig)))->run();
 
 // менеджер конфигураций
+/*
 $config = Yii::createObject([
     'class' => ConfigManager::class,
     'modulesPath' => '@app/modules',
     'type' => ConfigManager::CONFIG_TYPE_WEB,
 ]);
-
-(new yii\web\Application(
-    array_merge_recursive($config->getConfig(), $baseConfig)
-))->run();
+*/
