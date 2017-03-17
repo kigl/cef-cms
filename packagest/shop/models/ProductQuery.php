@@ -6,7 +6,7 @@
  */
 
 
-namespace app\modules\shop\models;
+namespace kigl\cef\module\shop\models;
 
 
 use yii\db\ActiveQuery;

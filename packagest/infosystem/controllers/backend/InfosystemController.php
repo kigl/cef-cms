@@ -6,12 +6,12 @@
  */
 
 
-namespace app\modules\infosystem\controllers\backend;
+namespace kigl\cef\module\infosystem\controllers\backend;
 
 
 use yii;
-use app\modules\infosystem\service\backend\InfosystemModelService;
-use app\modules\infosystem\components\BackendController;
+use kigl\cef\module\infosystem\service\backend\InfosystemModelService;
+use kigl\cef\module\infosystem\components\BackendController;
 
 class InfosystemController extends BackendController
 {

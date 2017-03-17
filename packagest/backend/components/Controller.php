@@ -6,8 +6,6 @@ use yii\filters\AccessControl;
 
 abstract class Controller extends \yii\web\Controller
 {
-    //public $layout = '@kigl/cef/module/backend/views'
-
     public $defaultAction = 'index';
 
     public function behaviors()

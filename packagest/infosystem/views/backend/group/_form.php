@@ -1,7 +1,7 @@
 <?php
-use app\modules\backend\widgets\ActiveForm;
+use kigl\cef\module\backend\widgets\ActiveForm;
 use vova07\imperavi\Widget;
-use app\modules\infosystem\widgets\backend\fieldUploadImage\Widget as FieldUploadImage;
+use kigl\cef\module\infosystem\widgets\backend\fieldUploadImage\Widget as FieldUploadImage;
 
 //$this->params['breadcrumbs'] = $breadcrumbs;
 ?>

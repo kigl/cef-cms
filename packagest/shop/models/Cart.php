@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace kigl\cef\module\shop\models;
 
 use Yii;
-use app\modules\user\models\User;
+use kigl\cef\module\user\models\User;
 
 /**
  * This is the model class for table "{{%shop_cart}}".

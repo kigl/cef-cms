@@ -5,7 +5,7 @@
  * Time: 13:05
  */
 
-namespace app\modules\shop\components\cart;
+namespace kigl\cef\module\shop\components\cart;
 
 
 interface CartInterface

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ecc4fc1181a58f06afd3ea6eb3ad1e94",
-    "content-hash": "d67096dbdff4354f14b414c25f56eb1c",
+    "hash": "62b6d44191e8655e1f4e6533d45c87c4",
+    "content-hash": "f8db7ea2db12a1cf9d98bc5fae1dc20b",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -2257,56 +2257,12 @@
             "time": "2014-11-09 19:54:17"
         },
         {
-            "name": "kigl/cef-backend",
-            "version": "1.0.0",
-            "dist": {
-                "type": "path",
-                "url": "packagest/backend",
-                "reference": "988b794629198c3739cd9734c05184505ff3c302",
-                "shasum": null
-            },
-            "require": {
-                "bower-asset/jquery-tag-editor": "^1.0",
-                "conquer/codemirror": "^2.0",
-                "kartik-v/yii2-editable": "^1.7",
-                "kartik-v/yii2-grid": "@dev",
-                "kartik-v/yii2-icons": "^1.4",
-                "kartik-v/yii2-money": "*",
-                "kartik-v/yii2-widget-touchspin": "^1.2",
-                "kartik-v/yii2-widgets": "^3.4",
-                "kigl/cef-core": "*",
-                "kotchuprik/yii2-sortable-widgets": "^2.0",
-                "vova07/yii2-imperavi-widget": "*"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "kigl\\cef\\module\\backend\\": ""
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "kirillglodaev",
-                    "email": "kirillgolodaev@gmail.com"
-                }
-            ],
-            "description": "CEFCMS module backend"
-        },
-        {
             "name": "kigl/cef-core",
             "version": "1.0.0",
             "dist": {
                 "type": "path",
                 "url": "packagest/core",
-                "reference": "f1146803fca8770e12c000bc06ca22d94ebd363b",
+                "reference": "c0431a11c8576a72640862aaf62fdbaf58163fe7",
                 "shasum": null
             },
             "require": {
@@ -2316,12 +2272,6 @@
                 "yiisoft/yii2-imagine": "^2.0",
                 "yiisoft/yii2-jui": "^2.0",
                 "yiisoft/yii2-swiftmailer": "*"
-            },
-            "require-dev": {
-                "yiisoft/yii2-codeception": "*",
-                "yiisoft/yii2-debug": "*",
-                "yiisoft/yii2-faker": "*",
-                "yiisoft/yii2-gii": "*"
             },
             "type": "yii2-extension",
             "extra": {
@@ -2351,7 +2301,7 @@
             "dist": {
                 "type": "path",
                 "url": "packagest/backend",
-                "reference": "8a76c82ea0c216d99873aaeb9ad2dc2127391808",
+                "reference": "60b417e9c493e858229260386bdcd6b6b59c5b9c",
                 "shasum": null
             },
             "require": {
@@ -2364,6 +2314,7 @@
                 "kartik-v/yii2-widget-touchspin": "^1.2",
                 "kartik-v/yii2-widgets": "^3.4",
                 "kigl/cef-core": "*",
+                "kigl/cef-module-user": "*",
                 "kotchuprik/yii2-sortable-widgets": "^2.0",
                 "vova07/yii2-imperavi-widget": "*"
             },
@@ -2383,11 +2334,216 @@
             ],
             "authors": [
                 {
-                    "name": "kirillglodaev",
+                    "name": "kirillgolodaev",
                     "email": "kirillgolodaev@gmail.com"
                 }
             ],
             "description": "CEF-CMS module backend"
+        },
+        {
+            "name": "kigl/cef-module-comment",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packagest/comment",
+                "reference": "2569553c40d063dfd7629be14a41b9ed5740d697",
+                "shasum": null
+            },
+            "require": {
+                "kigl/cef-module-backend": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kigl\\cef\\module\\comment\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "kirillgolodaev",
+                    "email": "kirillgolodaev@gmail.com"
+                }
+            ],
+            "description": "CEF-CMS module comments"
+        },
+        {
+            "name": "kigl/cef-module-infosystem",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packagest/infosystem",
+                "reference": "158d0977e24d2e101eee1803b8592d38901ba447",
+                "shasum": null
+            },
+            "require": {
+                "kigl/cef-module-backend": "*",
+                "kigl/cef-module-tag": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kigl\\cef\\module\\infosystem\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "kirillgolodaev",
+                    "email": "kirillgolodaev@gmail.com"
+                }
+            ],
+            "description": "CEF-CMS module information systems"
+        },
+        {
+            "name": "kigl/cef-module-page",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packagest/page",
+                "reference": "14ce9d76dc3ceee9af9a8bec7898766bffad78d9",
+                "shasum": null
+            },
+            "require": {
+                "kigl/cef-module-backend": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kigl\\cef\\module\\page\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "kirillgolodaev",
+                    "email": "kirillgolodaev@gmail.com"
+                }
+            ],
+            "description": "CEF-CMS module page"
+        },
+        {
+            "name": "kigl/cef-module-service",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packagest/service",
+                "reference": "baab32f51e081dd0667fe86226a3210f9b87e2d0",
+                "shasum": null
+            },
+            "require": {
+                "kigl/cef-module-backend": "*"
+            },
+            "type": "yii2-extencion",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kigl\\cef\\module\\service\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "kirillgolodaev",
+                    "email": "kirillgolodaev@gmail.com"
+                }
+            ],
+            "description": "CEF-CMS module service"
+        },
+        {
+            "name": "kigl/cef-module-shop",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packagest/shop",
+                "reference": "6d4413d5cc83cb724ae2476abee88eae8ae31e13",
+                "shasum": null
+            },
+            "require": {
+                "kigl/cef-module-backend": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kigl\\cef\\module\\service\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "kirillgolodaev",
+                    "email": "kirillgolodaev@gmail.com"
+                }
+            ],
+            "description": "CEF-CMS module shop"
+        },
+        {
+            "name": "kigl/cef-module-tag",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "packagest/tag",
+                "reference": "a19d08ba8fe576ba95cd548281b352690b7523af",
+                "shasum": null
+            },
+            "require": {
+                "kigl/cef-module-backend": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kigl\\cef\\module\\tag\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "kirillgolodaev",
+                    "email": "kirillgolodaev@gmail.com"
+                }
+            ],
+            "description": "CEF-CMS module tags"
         },
         {
             "name": "kigl/cef-module-user",

@@ -6,12 +6,11 @@
  * Time: 17:53
  */
 
-namespace app\modules\shop\components;
+namespace kigl\cef\module\shop\components;
 
 
-use app\modules\backend\components\Controller;
+use kigl\cef\module\backend\components\Controller;
 
 abstract class BackendController extends Controller
 {
-    public $layout = '@app/modules/shop/views/backend/layouts/index';
 }

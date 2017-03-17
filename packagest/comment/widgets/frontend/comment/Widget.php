@@ -6,12 +6,12 @@
  */
 
 
-namespace app\modules\comment\widgets\frontend\comment;
+namespace kigl\cef\module\comment\widgets\frontend\comment;
 
 
 use Yii;
-use app\modules\comment\widgets\frontend\comment\forms\Comment as CommentForm;
-use app\modules\comment\models\Comment;
+use kigl\cef\module\comment\widgets\frontend\comment\forms\Comment as CommentForm;
+use kigl\cef\module\comment\models\Comment;
 
 class Widget extends \yii\base\Widget
 {

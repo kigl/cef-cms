@@ -3,7 +3,7 @@
 
 ?>
 
-<?= \app\modules\comment\widgets\frontend\comment\Widget::widget([
+<?= \kigl\cef\module\comment\widgets\frontend\comment\Widget::widget([
     'modelClass' =>$data['model']->className(),
     'itemId' => $data['model']->id,
 ]);?>

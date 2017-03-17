@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\service\models\form;
+namespace kigl\cef\module\service\models\form;
 
 use Yii;
-use app\modules\user\models\User;
+use kigl\cef\module\user\models\User;
 
 /**
  * This is the model class for table "{{%service_form_completed}}".

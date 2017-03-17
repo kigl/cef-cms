@@ -6,16 +6,16 @@
  * Time: 19:50
  */
 
-namespace app\modules\service\controllers\backend\menu;
+namespace kigl\cef\module\service\controllers\backend\menu;
 
 
 use Yii;
 use yii\data\ActiveDataProvider;
-use app\modules\service\components\BackendController;
-use app\core\actions\Create;
-use app\core\actions\Update;
-use app\modules\service\service\MenuModelService;
-use app\modules\service\models\menu\Menu;
+use kigl\cef\module\service\components\BackendController;
+use kigl\cef\core\actions\Create;
+use kigl\cef\core\actions\Update;
+use kigl\cef\module\service\service\MenuModelService;
+use kigl\cef\module\service\models\menu\Menu;
 
 class MenuController extends BackendController
 {

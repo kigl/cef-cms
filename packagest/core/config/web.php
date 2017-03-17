@@ -6,17 +6,17 @@ return [
     'bootstrap' => ['log'],
 
     'components' => [
-        'i18n' => array(
-            'translations' => array(
-                'app' => array(
+        'i18n' => [
+            'translations' => [
+                'app' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@kigl/cef/core/messages',
-                    'fileMap' => array(
+                    'fileMap' => [
                         'app' => 'app.php',
-                    ),
-                ),
-            ),
-        ),
+                    ],
+                ],
+            ],
+        ],
 
         /*'configManager' => [
             'class' => \kigl\cef\core\components\ConfigManager::class,

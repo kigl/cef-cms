@@ -6,15 +6,15 @@
  */
 
 
-namespace app\modules\infosystem\service\backend;
+namespace kigl\cef\module\infosystem\service\backend;
 
 
 use yii\data\ActiveDataProvider;
-use app\core\traits\Breadcrumbs;
-use app\modules\infosystem\models\Infosystem;
-use app\core\service\ModelService;
-use app\modules\infosystem\models\Group;
-use app\modules\infosystem\models\ItemSearch;
+use kigl\cef\core\traits\Breadcrumbs;
+use kigl\cef\module\infosystem\models\Infosystem;
+use kigl\cef\core\service\ModelService;
+use kigl\cef\module\infosystem\models\Group;
+use kigl\cef\module\infosystem\models\ItemSearch;
 
 class GroupModelService extends ModelService
 {

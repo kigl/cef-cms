@@ -6,12 +6,12 @@
  */
 
 
-namespace app\modules\infosystem\controllers\backend;
+namespace kigl\cef\module\infosystem\controllers\backend;
 
 
 use Yii;
-use app\modules\infosystem\components\BackendController;
-use app\modules\infosystem\service\backend\GroupModelService;
+use kigl\cef\module\infosystem\components\BackendController;
+use kigl\cef\module\infosystem\service\backend\GroupModelService;
 
 class GroupController extends BackendController
 {

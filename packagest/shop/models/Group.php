@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace kigl\cef\module\shop\models;
 
 use Yii;
-use app\core\db\ActiveRecord;
-use app\core\behaviors\GenerateAlias;
+use kigl\cef\core\db\ActiveRecord;
+use kigl\cef\core\behaviors\GenerateAlias;
 
 /**
  * This is the model class for table "mn_shop_group".

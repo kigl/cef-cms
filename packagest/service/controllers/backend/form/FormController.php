@@ -6,16 +6,16 @@
  */
 
 
-namespace app\modules\service\controllers\backend\form;
+namespace kigl\cef\module\service\controllers\backend\form;
 
 
 use Yii;
-use app\modules\service\components\BackendController;
-use app\core\actions\Delete;
-use app\core\actions\Create;
-use app\core\actions\Update;
-use app\modules\service\models\form\Form;
-use app\modules\service\service\form\FormModelService;
+use kigl\cef\module\service\components\BackendController;
+use kigl\cef\core\actions\Delete;
+use kigl\cef\core\actions\Create;
+use kigl\cef\core\actions\Update;
+use kigl\cef\module\service\models\form\Form;
+use kigl\cef\module\service\service\form\FormModelService;
 
 class FormController extends BackendController
 {

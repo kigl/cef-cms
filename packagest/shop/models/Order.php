@@ -1,12 +1,12 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace kigl\cef\module\shop\models;
 
 
 use Yii;
-use app\core\behaviors\UserId;
-use app\core\db\ActiveRecord;
-use app\modules\user\models\User;
+use kigl\cef\core\behaviors\UserId;
+use kigl\cef\core\db\ActiveRecord;
+use kigl\cef\module\user\models\User;
 
 /**
  * This is the model class for table "{{%shop_order}}".

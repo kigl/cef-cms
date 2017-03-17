@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
-use app\modules\backend\widgets\ActiveForm;
+use kigl\cef\module\backend\widgets\ActiveForm;
 use vova07\imperavi\Widget;
 
 ?>

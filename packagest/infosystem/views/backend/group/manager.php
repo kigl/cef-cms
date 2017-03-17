@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\modules\infosystem\Module;
-use app\modules\backend\widgets\grid\GridView;
+use kigl\cef\module\infosystem\Module;
+use kigl\cef\module\backend\widgets\grid\GridView;
 
 $this->setTitle(Module::t('Group and item'));
 $this->setPageHeader(Module::t('Group and item'));

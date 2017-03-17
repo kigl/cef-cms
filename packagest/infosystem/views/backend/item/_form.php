@@ -1,9 +1,9 @@
 <?php
 use yii\jui\DatePicker;
 use vova07\imperavi\Widget;
-use app\modules\backend\widgets\ActiveForm;
-use app\modules\infosystem\widgets\backend\fieldUploadImage\Widget as FieldUploadImage;
-use app\modules\infosystem\widgets\backend\tagEditor\TagEditor;
+use kigl\cef\module\backend\widgets\ActiveForm;
+use kigl\cef\module\infosystem\widgets\backend\fieldUploadImage\Widget as FieldUploadImage;
+use kigl\cef\module\infosystem\widgets\backend\tagEditor\TagEditor;
 
 ?>
 

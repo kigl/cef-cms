@@ -6,11 +6,11 @@
  * Time: 18:01
  */
 
-namespace app\modules\shop\controllers\backend;
+namespace kigl\cef\module\shop\controllers\backend;
 
 use yii\data\ActiveDataProvider;
-use app\modules\shop\components\BackendController;
-use app\modules\shop\models\Property;
+use kigl\cef\module\shop\components\BackendController;
+use kigl\cef\module\shop\models\Property;
 
 class PropertyController extends BackendController
 {

@@ -1,5 +1,5 @@
 <?php
-use app\modules\service\Module;
+use kigl\cef\modules\service\Module;
 
 $this->setTitle(Module::t('Create form'));
 $this->setPageHeader(Module::t('Create form'));

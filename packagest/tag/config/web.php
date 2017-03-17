@@ -5,20 +5,20 @@ return [
         'backend' => [
             'modules' => [
                 'tag' => [
-                    'class' => \app\modules\tag\Module::class,
-                    'controllerNamespace' => 'app\modules\tag\controllers\backend',
-                    'viewPath' => '@app/modules/tag/views/backend',
+                    'class' => \kigl\cef\module\tag\Module::class,
+                    'controllerNamespace' => 'kigl\cef\module\tag\controllers\backend',
+                    'viewPath' => '@kigl/cef/module/tag/views/backend',
                     'controllerMap' => [
-                        'default' => 'app\modules\backend\controllers\DefaultController',
+                        'default' => 'kigl\cef\module\backend\controllers\DefaultController',
                     ],
                 ],
             ],
         ],
 
         'tag' => [
-            'class' => \app\modules\tag\Module::class,
-            'controllerNamespace' => 'app\modules\tag\controllers\frontend',
-            'viewPath' => '@app/modules/tag/views/frontend',
+            'class' => \kigl\cef\module\tag\Module::class,
+            'controllerNamespace' => 'kigl\cef\module\tag\controllers\frontend',
+            'viewPath' => '@kigl/cef/module/tag/views/frontend',
         ],
     ],
 
@@ -27,7 +27,7 @@ return [
             'translations' => [
                 'tag' => [
                     'class'   => 'yii\i18n\PhpMessageSource',
-                    'basePath'=> '@app/modules/tag/messages',
+                    'basePath'=> '@kigl/cef/module/tag/messages',
                     'fileMap' => [
                         'tag' => 'module.php',
                     ],

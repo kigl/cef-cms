@@ -1,5 +1,5 @@
 <?php
-use app\modules\backend\widgets\ActiveForm;
+use kigl\cef\module\backend\widgets\ActiveForm;
 use yii\widgets\Pjax;
 
 ?>

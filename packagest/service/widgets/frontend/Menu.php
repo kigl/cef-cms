@@ -6,14 +6,14 @@
  * Time: 16:34
  */
 
-namespace app\modules\service\widgets\frontend;
+namespace kigl\cef\module\service\widgets\frontend;
 
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\widgets\Menu as MenuWidget;
-use app\modules\service\models\menu\Menu as MenuModel;
-use app\modules\service\models\menu\Item;
+use kigl\cef\module\service\models\menu\Menu as MenuModel;
+use kigl\cef\module\service\models\menu\Item;
 
 class Menu extends \yii\base\Widget
 {

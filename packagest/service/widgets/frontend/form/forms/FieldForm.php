@@ -6,7 +6,7 @@
  */
 
 
-namespace app\modules\service\widgets\frontend\form\forms;
+namespace kigl\cef\module\service\widgets\frontend\form\forms;
 
 
 use Yii;

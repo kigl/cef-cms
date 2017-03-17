@@ -6,16 +6,16 @@
  * Time: 20:20
  */
 
-namespace app\modules\service\service\menu;
+namespace kigl\cef\module\service\service\menu;
 
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\service\Module;
-use app\core\traits\Breadcrumbs;
-use app\modules\service\models\menu\Menu;
-use app\core\service\ModelService;
-use app\modules\service\models\menu\Item;
+use kigl\cef\module\service\Module;
+use kigl\cef\core\traits\Breadcrumbs;
+use kigl\cef\module\service\models\menu\Menu;
+use kigl\cef\core\service\ModelService;
+use kigl\cef\module\service\models\menu\Item;
 
 class ItemModelService extends ModelService
 {

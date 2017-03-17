@@ -6,10 +6,10 @@
  * Time: 20:13
  */
 
-namespace app\modules\tag\components;
+namespace kigl\cef\module\tag\components;
 
 
-use app\modules\backend\components\Controller;
+use kigl\cef\module\backend\components\Controller;
 
 class BackendController extends Controller
 {

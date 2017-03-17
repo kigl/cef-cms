@@ -6,7 +6,7 @@
  */
 
 
-namespace app\modules\shop\widgets\frontend\cart;
+namespace kigl\cef\module\shop\widgets\frontend\cart;
 
 
 use Yii;

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\infosystem\models;
+namespace kigl\cef\module\infosystem\models;
 
 
 use Yii;
@@ -11,7 +11,7 @@ use Yii;
  * @property integer $model_id
  * @property integer $tag_id
  */
-class ItemTag extends \app\core\db\ActiveRecord
+class ItemTag extends \kigl\cef\core\db\ActiveRecord
 {
     /**
      * @inheritdoc

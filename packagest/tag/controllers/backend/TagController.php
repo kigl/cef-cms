@@ -6,13 +6,13 @@
  */
 
 
-namespace app\modules\tag\controllers\backend;
+namespace kigl\cef\module\tag\controllers\backend;
 
 
 use Yii;
-use app\modules\tag\components\BackendController;
-use app\modules\tag\models\Tag;
-use app\modules\tag\service\backend\TagModelService;
+use kigl\cef\module\tag\components\BackendController;
+use kigl\cef\module\tag\models\Tag;
+use kigl\cef\module\tag\service\backend\TagModelService;
 
 class TagController extends BackendController
 {

@@ -6,11 +6,11 @@
  */
 
 
-namespace app\modules\service\service;
+namespace kigl\cef\module\service\service;
 
 
-use app\core\service\ModelService;
-use app\modules\service\models\menu\Menu;
+use kigl\cef\core\service\ModelService;
+use kigl\cef\module\service\models\menu\Menu;
 
 class MenuModelService extends ModelService
 {

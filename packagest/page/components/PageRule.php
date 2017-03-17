@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\page\components;
+namespace kigl\cef\module\page\components;
 
 use Yii;
-use app\modules\page\models\Page;
+use kigl\cef\module\page\models\Page;
 
 class PageRule implements \yii\web\UrlRuleInterface
 {

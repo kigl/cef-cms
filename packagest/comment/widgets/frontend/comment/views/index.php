@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Url;
 
-\app\modules\comment\widgets\frontend\comment\views\asset\Asset::register($this);
+\kigl\cef\module\comment\widgets\frontend\comment\views\asset\Asset::register($this);
 ?>
 
 <div class="page-header h3">

@@ -1,5 +1,5 @@
 <?php
-use app\modules\service\Module;
+use kigl\cef\module\service\Module;
 
 $this->setTitle(Module::t('Edit menu item: {data}', ['data' => $data['model']->name]));
 $this->setPageHeader(Module::t('Edit menu item: {data}', ['data' => $data['model']->name]));

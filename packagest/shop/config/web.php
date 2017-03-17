@@ -1,6 +1,6 @@
 <?php
 
-use app\modules\shop\Module;
+use kigl\cef\module\shop\Module;
 
 return [
     'modules' => [
@@ -8,10 +8,10 @@ return [
             'modules' => [
                 'shop' => [
                     'class' => Module::className(),
-                    'controllerNamespace' => 'app\modules\shop\controllers\backend',
-                    'viewPath' => '@app/modules/shop/views/backend',
+                    'controllerNamespace' => 'kigl\cef\module\shop\controllers\backend',
+                    'viewPath' => '@kigl/cef/module/shop/views/backend',
                     'controllerMap' => [
-                        'default' => 'app\modules\backend\controllers\DefaultController',
+                        'default' => 'kigl\cef\module\backend\controllers\DefaultController',
                     ],
                 ],
             ],
@@ -19,8 +19,8 @@ return [
 
         'shop' => [
             'class' => Module::className(),
-            'controllerNamespace' => 'app\modules\shop\controllers\frontend',
-            'viewPath' => '@app/modules/shop/views/frontend',
+            'controllerNamespace' => 'kigl\cef\module\shop\controllers\frontend',
+            'viewPath' => '@kigl/cef/module/shop/views/frontend',
         ],
     ],
 
@@ -29,7 +29,7 @@ return [
             'translations' => [
                 'shop' => [
                     'class' => 'yii\i18n\phpMessageSource',
-                    'basePath' => '@app/modules/shop/messages',
+                    'basePath' => '@kigl/cef/module/shop/messages',
                     'fileMap' => [
                         'shop' => 'module.php',
                     ],

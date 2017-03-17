@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\shop\controllers\backend;
+namespace kigl\cef\module\shop\controllers\backend;
 
 use Yii;
-use app\modules\shop\components\BackendController;
-use app\modules\shop\service\backend\ProductModelService;
+use kigl\cef\module\shop\components\BackendController;
+use kigl\cef\module\shop\service\backend\ProductModelService;
 
 class ProductController extends BackendController
 {

@@ -6,14 +6,14 @@
  */
 
 
-namespace app\modules\shop\widgets\frontend\checkedProductProperties\asset;
+namespace kigl\cef\module\shop\widgets\frontend\checkedProductProperties\asset;
 
 
 use yii\web\AssetBundle;
 
 class Asset extends AssetBundle
 {
-    public $sourcePath = '@app/modules/shop/widgets/frontend/checkedProductProperties/asset/bundle';
+    public $sourcePath = '@kigl/cef/module/shop/widgets/frontend/checkedProductProperties/asset/bundle';
 
     public $css = ['css/style.css'];
 

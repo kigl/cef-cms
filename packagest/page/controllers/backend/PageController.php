@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\page\controllers\backend;
+namespace kigl\cef\module\page\controllers\backend;
 
 use Yii;
 use yii\data\ActiveDataProvider;
-use app\modules\page\components\BackendController;
-use app\modules\page\models\Page;
+use kigl\cef\module\page\components\BackendController;
+use kigl\cef\module\page\models\Page;
 use vova07\imperavi\actions\GetAction;
 
 class PageController extends BackendController

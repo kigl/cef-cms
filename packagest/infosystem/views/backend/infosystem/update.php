@@ -1,5 +1,5 @@
 <?php
-use app\modules\infosystem\Module;
+use kigl\cef\module\infosystem\Module;
 
 $this->setTitle(Module::t( 'Edit infosystem: {data}', ['data' => $data['model']->name]));
 $this->setPageHeader(Module::t( 'Edit infosystem: {data}', ['data' => $data['model']->name]));

@@ -1,5 +1,5 @@
 <?
-use app\modules\backend\widgets\ActiveForm;
+use kigl\cef\module\backend\widgets\ActiveForm;
 ?>
 
 <?php $form = ActiveForm::begin();?>

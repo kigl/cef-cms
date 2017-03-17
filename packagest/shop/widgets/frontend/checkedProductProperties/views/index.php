@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-\app\modules\shop\widgets\frontend\checkedProductProperties\asset\Asset::register($this);
+\kigl\cef\module\shop\widgets\frontend\checkedProductProperties\asset\Asset::register($this);
 
 $this->registerJs("
 $(function () {

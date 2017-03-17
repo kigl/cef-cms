@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Url;
-use app\modules\backend\widgets\ActiveForm;
+use kigl\cef\module\backend\widgets\ActiveForm;
 use vova07\imperavi\Widget as Imperavi;
 use conquer\codemirror\CodemirrorWidget;
 use conquer\codemirror\CodemirrorAsset;

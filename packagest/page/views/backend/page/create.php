@@ -1,5 +1,5 @@
 <?php
-use app\modules\page\Module;
+use kigl\cef\module\page\Module;
 
 $this->setTitle(Module::t('Create page'));
 $this->setPageHeader(Module::t('Create page'));

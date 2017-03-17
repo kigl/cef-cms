@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\infosystem\models;
+namespace kigl\cef\module\infosystem\models;
 
 
 use Yii;
@@ -23,7 +23,7 @@ use Yii;
  * @property integer $create_time
  * @property integer $update_time
  */
-class Group extends \app\core\db\ActiveRecord
+class Group extends \kigl\cef\core\db\ActiveRecord
 {
     /**
      * @inheritdoc

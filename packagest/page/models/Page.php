@@ -1,13 +1,13 @@
 <?php
 
-namespace app\modules\page\models;
+namespace kigl\cef\module\page\models;
 
 
 use Yii;
 use yii\helpers\Url;
-use app\core\behaviors\FillData;
-use app\core\behaviors\GenerateAlias;
-use app\core\components\sitemap\SitemapModelInterface;
+use kigl\cef\core\behaviors\FillData;
+use kigl\cef\core\behaviors\GenerateAlias;
+use kigl\cef\core\components\sitemap\SitemapModelInterface;
 /**
  * This is the model class for table "mn_page".
  *
@@ -20,7 +20,7 @@ use app\core\components\sitemap\SitemapModelInterface;
  * @property integer $create_time
  * @property integer $update_time
  */
-class Page extends \app\core\db\ActiveRecord implements SitemapModelInterface
+class Page extends \kigl\cef\core\db\ActiveRecord implements SitemapModelInterface
 {
     protected $dynamicPageData;
 

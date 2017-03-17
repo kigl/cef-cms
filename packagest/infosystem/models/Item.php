@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\infosystem\models;
+namespace kigl\cef\module\infosystem\models;
 
 use Yii;
-use app\modules\tag\components\TagBehavior;
-use app\modules\user\models\User;
+use kigl\cef\module\tag\components\TagBehavior;
+use kigl\cef\module\user\models\User;
 
 /**
  * This is the model class for table "mn_infosystem_item".
@@ -30,7 +30,7 @@ use app\modules\user\models\User;
  * @property integer $create_time
  * @property integer $update_time
  */
-class Item extends \app\core\db\ActiveRecord  implements \app\modules\user\components\AuthorInterface
+class Item extends \kigl\cef\core\db\ActiveRecord
 {
     const STATUS_BLOCK = 0;
     const STATUS_ACTIVE = 1;

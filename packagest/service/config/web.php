@@ -4,11 +4,11 @@ return [
         'backend' => [
             'modules' => [
                 'service' => [
-                    'class' => 'app\modules\service\Module',
-                    'controllerNamespace' => 'app\modules\service\controllers\backend',
-                    'viewPath' => '@app/modules/service/views/backend',
+                    'class' => 'kigl\cef\module\service\Module',
+                    'controllerNamespace' => 'kigl\cef\module\service\controllers\backend',
+                    'viewPath' => '@kigl/cef/module/service/views/backend',
                     'controllerMap' => [
-                        'default' => 'app\modules\backend\controllers\DefaultController',
+                        'default' => 'kigl\cef\module\backend\controllers\DefaultController',
                     ],
                 ],
             ],
@@ -20,7 +20,7 @@ return [
             'translations' => [
                 'service' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/modules/service/messages',
+                    'basePath' => '@kigl/cef/module/service/messages',
                     'fileMap' => [
                         'service' => 'module.php',
                     ],

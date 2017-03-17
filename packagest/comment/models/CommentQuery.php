@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\comment\models;
+namespace kigl\cef\module\comment\models;
 
 /**
  * This is the ActiveQuery class for [[Comment]].

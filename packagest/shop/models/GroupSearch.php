@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace kigl\cef\module\shop\models;
 
 use yii\data\ActiveDataProvider;
-use app\modules\shop\models\Group;
+use kigl\cef\module\shop\models\Group;
 
 class GroupSearch extends Group
 {

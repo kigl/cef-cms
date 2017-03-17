@@ -3,10 +3,10 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
 use kartik\file\FileInput;
-use app\modules\backend\widgets\ActiveForm;
-use app\modules\shop\models\Property;
-use app\modules\backend\widgets\grid\GridView;
-use app\modules\shop\models\Image;
+use kigl\cef\module\backend\widgets\ActiveForm;
+use kigl\cef\module\shop\models\Property;
+use kigl\cef\module\backend\widgets\grid\GridView;
+use kigl\cef\module\shop\models\Image;
 
 ?>
 

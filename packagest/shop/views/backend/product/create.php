@@ -1,5 +1,5 @@
 <?php
-use app\modules\shop\Module;
+use kigl\cef\module\shop\Module;
 
 $this->setTitle(Module::t('Create product'));
 $this->setPageHeader(Module::t('Create product'));

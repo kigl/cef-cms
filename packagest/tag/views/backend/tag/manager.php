@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
-use app\modules\tag\Module;
-use app\modules\backend\widgets\grid\GridView;
+use kigl\cef\module\tag\Module;
+use kigl\cef\module\backend\widgets\grid\GridView;
 
 $this->setTitle(Module::t('Tags'));
 $this->setPageHeader(Module::t('Tags'));

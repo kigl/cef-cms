@@ -11,14 +11,14 @@
  * лапшекод, много условных операторов, продумать структура, разнести обязаннасти
  */
 
-namespace app\modules\shop\components\cart;
+namespace kigl\cef\module\shop\components\cart;
 
 
 use Yii;
 use yii\base\Component;
 use yii\data\ActiveDataProvider;
-use app\modules\shop\models\Cart as CartModel;
-use app\modules\shop\models\CartItem;
+use kigl\cef\module\shop\models\Cart as CartModel;
+use kigl\cef\module\shop\models\CartItem;
 
 class Cart extends Component implements CartInterface
 {

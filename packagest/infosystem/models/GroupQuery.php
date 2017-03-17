@@ -6,7 +6,7 @@
  * Time: 16:23
  */
 
-namespace app\modules\infosystem\models;
+namespace kigl\cef\module\infosystem\models;
 
 
 use yii\db\ActiveQuery;

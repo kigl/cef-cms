@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\infosystem\models;
+namespace kigl\cef\module\infosystem\models;
 
 use Yii;
-use app\modules\property\models\Property;
+use kigl\cef\module\infosystem\models\Property;
 
 /**
  * This is the model class for table "mn_infosystem".
@@ -20,7 +20,7 @@ use app\modules\property\models\Property;
  * @property integer $create_time
  * @property integer $update_time
  */
-class Infosystem extends \app\core\db\ActiveRecord
+class Infosystem extends \kigl\cef\core\db\ActiveRecord
 {
     /**
      * @inheritdoc

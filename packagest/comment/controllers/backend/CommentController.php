@@ -6,15 +6,15 @@
  */
 
 
-namespace app\modules\comment\controllers\backend;
+namespace kiglcef\module\comment\controllers\backend;
 
 
 use yii\data\ActiveDataProvider;
-use app\core\actions\Delete;
-use app\core\actions\View;
-use app\modules\comment\components\BackendController;
-use app\modules\comment\models\Comment;
-use app\core\actions\EditAttribute;
+use kigl\cef\backend\module\actions\Delete;
+use kigl\cef\backend\module\actions\View;
+use kigl\cef\module\comment\components\BackendController;
+use kigl\cef\module\comment\models\Comment;
+use kigl\cef\modulebackend\actions\EditAttribute;
 
 class CommentController extends BackendController
 {

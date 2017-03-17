@@ -6,17 +6,17 @@
  */
 
 
-namespace app\modules\infosystem\service\backend;
+namespace kigl\cef\module\infosystem\service\backend;
 
 
 use yii\base\Model;
-use app\core\traits\Breadcrumbs;
-use app\modules\infosystem\models\Item;
-use app\core\service\ModelService;
-use app\modules\infosystem\models\ItemProperty;
-use app\modules\infosystem\models\Property;
-use app\modules\infosystem\models\Infosystem;
-use app\modules\infosystem\models\Group;
+use kigl\cef\core\traits\Breadcrumbs;
+use kigl\cef\module\infosystem\models\Item;
+use kigl\cef\core\service\ModelService;
+use kigl\cef\module\infosystem\models\ItemProperty;
+use kigl\cef\module\infosystem\models\Property;
+use kigl\cef\module\infosystem\models\Infosystem;
+use kigl\cef\module\infosystem\models\Group;
 
 class ItemModelService extends ModelService
 {

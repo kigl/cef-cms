@@ -4,19 +4,19 @@ return [
         'backend' => [
             'modules' => [
                 'comment' => [
-                    'class' => 'app\modules\comment\Module',
-                    'controllerNamespace' => 'app\modules\comment\controllers\backend',
-                    'viewPath' => '@app/modules/comment/views/backend',
+                    'class' => 'kigl\cef\module\comment\Module',
+                    'controllerNamespace' => 'kigl\cef\module\comment\controllers\backend',
+                    'viewPath' => '@kigl/cef/module/comment/views/backend',
                     'controllerMap' => [
-                        'default' => 'app\modules\backend\controllers\DefaultController',
+                        'default' => 'kigl\cef\module\backend\controllers\DefaultController',
                     ],
                 ],
             ],
         ],
         'comment' => [
-            'class' => 'app\modules\comment\Module',
-            'controllerNamespace' => 'app\modules\comment\controllers\frontend',
-            'viewPath' => '@app/modules/comment/views/frontend',
+            'class' => 'kigl\cef\module\comment\Module',
+            'controllerNamespace' => 'kigl\cef\module\comment\controllers\frontend',
+            'viewPath' => '@kigl/cef/module/comment/views/frontend',
         ],
     ],
 
@@ -25,7 +25,7 @@ return [
             'translations' => [
                 'comment' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/modules/comment/messages',
+                    'basePath' => '@kigl/cef/module/comment/messages',
                     'fileMap' => [
                         'comment' => 'module.php',
                     ],

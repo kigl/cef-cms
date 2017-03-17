@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\shop\controllers\backend;
+namespace kigl\cef\module\shop\controllers\backend;
 
 
 use Yii;
-use app\modules\shop\service\backend\GroupModelService;
-use app\modules\shop\components\BackendController;
+use kigl\cef\module\shop\service\backend\GroupModelService;
+use kigl\cef\module\shop\components\BackendController;
 
 class GroupController extends BackendController
 {

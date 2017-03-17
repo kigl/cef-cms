@@ -6,11 +6,11 @@
  * Time: 19:35
  */
 
-namespace app\modules\service\controllers\backend\lists;
+namespace kigl\cef\module\service\controllers\backend\lists;
 
 
-use app\modules\service\components\BackendController;
-use app\modules\service\models\lists\Item;
+use kigl\cef\module\service\components\BackendController;
+use kigl\cef\module\service\models\lists\Item;
 use yii\data\ActiveDataProvider;
 
 class ItemController extends BackendController

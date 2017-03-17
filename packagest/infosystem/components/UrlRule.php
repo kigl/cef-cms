@@ -6,14 +6,14 @@
  * Time: 20:26
  */
 
-namespace app\modules\infosystem\components;
+namespace kigl\cef\module\infosystem\components;
 
 
 use Yii;
 use yii\base\Object;
 use yii\caching\DbDependency;
 use yii\web\UrlRuleInterface;
-use app\modules\infosystem\models\Infosystem;
+use kigl\cef\module\infosystem\models\Infosystem;
 
 class UrlRule extends Object implements UrlRuleInterface
 {

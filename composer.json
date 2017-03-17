@@ -24,12 +24,42 @@
         },
         {
             "type": "path",
+            "url": "packagest/comment"
+        },
+        {
+            "type": "path",
+            "url": "packagest/shop"
+        },
+        {
+            "type": "path",
+            "url": "packagest/infosystem"
+        },
+        {
+            "type": "path",
+            "url": "packagest/page"
+        },
+        {
+            "type": "path",
+            "url": "packagest/tag"
+        },
+        {
+            "type": "path",
+            "url": "packagest/service"
+        },
+        {
+            "type": "path",
             "url": "packagest/user"
         }
     ],
-
     "require": {
-        "kigl/cef-module-backend": "*"
+        "kigl/cef-core": "^1.0",
+        "kigl/cef-module-user": "^1.0",
+        "kigl/cef-module-comment": "*",
+        "kigl/cef-module-infosystem": "*",
+        "kigl/cef-module-page": "*",
+        "kigl/cef-module-tag": "*",
+        "kigl/cef-module-shop": "*",
+        "kigl/cef-module-service": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

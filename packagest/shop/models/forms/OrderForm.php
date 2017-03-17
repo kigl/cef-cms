@@ -6,7 +6,7 @@
  */
 
 
-namespace app\modules\shop\models\forms;
+namespace kigl\cef\module\shop\models\forms;
 
 
 use Yii;

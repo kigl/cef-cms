@@ -6,16 +6,16 @@
  */
 
 
-namespace app\modules\infosystem\controllers\backend;
+namespace kigl\cef\module\infosystem\controllers\backend;
 
 
 use Yii;
 use yii\helpers\Url;
-use app\modules\infosystem\models\Item;
-use app\modules\property\actions\Create;
-use app\modules\infosystem\components\BackendController;
-use app\modules\property\models\Property;
-use app\modules\infosystem\models\Infosystem;
+use kigl\cef\module\infosystem\models\Item;
+use kigl\cef\module\property\actions\Create;
+use kigl\cef\module\infosystem\components\BackendController;
+use kigl\cef\module\infosystem\models\Property;
+use kigl\cef\module\infosystem\models\Infosystem;
 
 class PropertyController extends BackendController
 {

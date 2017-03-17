@@ -6,7 +6,7 @@
  */
 
 
-namespace app\modules\shop\widgets\frontend\treeGroup;
+namespace kigl\cef\module\shop\widgets\frontend\treeGroup;
 
 use app\modules\shop\models\Group;
 use yii\caching\DbDependency;

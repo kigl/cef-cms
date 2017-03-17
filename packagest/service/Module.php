@@ -6,10 +6,9 @@
  * Time: 15:21
  */
 
-namespace app\modules\service;
+namespace kigl\cef\module\service;
 
 
-class Module extends \app\core\module\Module
+class Module extends \kigl\cef\core\module\Module
 {
-
 }

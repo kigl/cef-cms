@@ -6,16 +6,16 @@
  */
 
 
-namespace app\modules\shop\service\backend;
+namespace kigl\cef\module\shop\service\backend;
 
 
 use Yii;
-use app\modules\shop\Module;
-use app\core\traits\Breadcrumbs;
-use app\core\service\ModelService;
-use app\modules\shop\models\Group;
-use app\modules\shop\models\GroupSearch;
-use app\modules\shop\models\ProductSearch;
+use kigl\cef\module\shop\Module;
+use kigl\cef\core\traits\Breadcrumbs;
+use kigl\cef\core\service\ModelService;
+use kigl\cef\module\shop\models\Group;
+use kigl\cef\module\shop\models\GroupSearch;
+use kigl\cef\module\shop\models\ProductSearch;
 
 class GroupModelService extends ModelService
 {

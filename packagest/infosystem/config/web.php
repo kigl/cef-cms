@@ -1,5 +1,5 @@
 <?php
-use app\modules\infosystem\Module;
+use kigl\cef\module\infosystem\Module;
 
 return [
 	'modules' => [
@@ -7,18 +7,18 @@ return [
 			'modules' => [
 				'infosystem' => [
 					'class' => Module::className(),
-					'controllerNamespace' => 'app\modules\infosystem\controllers\backend',
-					'viewPath' => '@app/modules/infosystem/views/backend',
+					'controllerNamespace' => 'kigl\cef\module\infosystem\controllers\backend',
+					'viewPath' => '@kigl/cef/module/infosystem/views/backend',
                     'controllerMap' => [
-                        'default' => 'app\modules\backend\controllers\DefaultController',
+                        'default' => 'kigl\cef\module\backend\controllers\DefaultController',
                     ],
 				],
 			],
 		],
 		'infosystem' => [
 			'class' => Module::className(),
-			'controllerNamespace' => 'app\modules\infosystem\controllers\frontend',
-			'viewPath' => '@app/modules/infosystem/views/frontend',
+			'controllerNamespace' => 'kigl\cef\module\infosystem\controllers\frontend',
+			'viewPath' => '@kigl/cef/module/infosystem/views/frontend',
 		],
 	],
 	
@@ -27,7 +27,7 @@ return [
 			'translations' => [
 				'infosystem' => [
 					'class'   => 'yii\i18n\PhpMessageSource',
-					'basePath'=> '@app/modules/infosystem/messages',
+					'basePath'=> '@kigl/cef/module/infosystem/messages',
 					'fileMap' => [
 						'infosystem' => 'module.php',
 					],
@@ -36,7 +36,7 @@ return [
 		],
 		'urlManager' => [
 			'rules' => [
-				['class' => \app\modules\infosystem\components\UrlRule::class],
+				['class' => \kigl\cef\module\infosystem\components\UrlRule::class],
 			],
 		],
 	],

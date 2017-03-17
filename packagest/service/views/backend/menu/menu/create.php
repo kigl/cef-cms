@@ -1,5 +1,5 @@
 <?php
-use app\modules\service\Module;
+use kigl\cef\module\service\Module;
 
 $this->setTitle(Module::t('Create menu'));
 $this->setPageHeader(Module::t('Create menu'));

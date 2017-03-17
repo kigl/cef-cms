@@ -6,14 +6,14 @@
  */
 
 
-namespace app\modules\service\service\form;
+namespace kigl\cef\module\service\service\form;
 
 
 use yii\data\ActiveDataProvider;
-use app\core\service\ModelService;
-use app\modules\service\Module;
-use app\modules\service\models\form\Completed;
-use app\modules\service\models\form\Form;
+use kigl\cef\core\service\ModelService;
+use kigl\cef\module\service\Module;
+use kigl\cef\module\service\models\form\Completed;
+use kigl\cef\module\service\models\form\Form;
 
 class CompletedModelService extends ModelService
 {

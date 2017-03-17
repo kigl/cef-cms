@@ -6,7 +6,7 @@
  * Time: 20:52
  */
 
-namespace app\modules\shop\service\backend;
+namespace kigl\cef\module\shop\service\backend;
 
 
 use Yii;
@@ -14,14 +14,14 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
-use app\modules\shop\Module;
-use app\core\traits\Breadcrumbs;
-use app\core\service\ModelService;
-use app\modules\shop\models\Product;
-use app\modules\shop\models\Image;
-use app\modules\shop\models\Property;
-use app\modules\shop\models\ProductProperty;
-use app\modules\shop\models\Group;
+use kigl\cef\module\shop\Module;
+use kigl\cef\core\traits\Breadcrumbs;
+use kigl\cef\core\service\ModelService;
+use kigl\cef\module\shop\models\Product;
+use kigl\cef\module\shop\models\Image;
+use kigl\cef\module\shop\models\Property;
+use kigl\cef\module\shop\models\ProductProperty;
+use kigl\cef\module\shop\models\Group;
 
 class ProductModelService extends ModelService
 {

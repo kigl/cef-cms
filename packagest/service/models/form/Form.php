@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\service\models\form;
+namespace kigl\cef\module\service\models\form;
 
 use Yii;
 

@@ -6,17 +6,14 @@
  * Time: 19:06
  */
 
-namespace app\modules\shop\controllers\backend;
+namespace kigl\cef\module\shop\controllers\backend;
 
 
 use Yii;
-use app\core\actions\Create;
-use app\core\actions\Delete;
-use app\core\actions\Update;
-use app\modules\shop\components\BackendController;
-use app\modules\shop\models\base\OrderField;
-use app\modules\shop\service\backend\OrderModelService;
-use app\modules\shop\service\backend\OrderViewService;
+use kigl\cef\module\shop\components\BackendController;
+use kigl\cef\module\shop\models\base\OrderField;
+use kigl\cef\module\shop\service\backend\OrderModelService;
+use kigl\cef\module\shop\service\backend\OrderViewService;
 
 class OrderController extends BackendController
 {

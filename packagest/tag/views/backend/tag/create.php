@@ -1,5 +1,5 @@
 <?php
-use app\modules\tag\Module;
+use kigl\cef\module\tag\Module;
 
 $this->setTitle(Module::t('Create tag'));
 $this->setPageHeader(Module::t('Create tag'));

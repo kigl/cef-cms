@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\infosystem\widgets\backend\fieldUploadImage;
+namespace kigl\cef\module\infosystem\widgets\backend\fieldUploadImage;
 
 class Widget extends \yii\bootstrap\Widget
 {

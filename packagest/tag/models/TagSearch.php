@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\tag\models;
+namespace kigl\cef\module\tag\models;
 
 
 use yii\data\ActiveDataProvider;

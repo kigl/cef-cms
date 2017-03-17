@@ -1,5 +1,5 @@
 <?php
-use app\modules\shop\Module;
+use kigl\cef\module\shop\Module;
 
 $this->setTitle(Module::t('Create group'));
 $this->setPageHeader(Module::t('Create group'));

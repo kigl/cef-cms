@@ -5,7 +5,10 @@ $config = [
 
     'defaultRoute' => 'site/index',
 
+    'vendorPath' => '@we/vendor',
+
     'components' => [
+
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=localhost;dbname=main2',

@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
-use app\modules\shop\Module;
-use app\modules\backend\widgets\grid\GridView;
+use kigl\cef\module\shop\Module;
+use kigl\cef\module\backend\widgets\grid\GridView;
 
 $this->setTitle(Module::t('Products'));
 $this->setPageHeader(Module::t('Products'));

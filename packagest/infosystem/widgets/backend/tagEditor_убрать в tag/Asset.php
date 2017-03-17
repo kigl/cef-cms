@@ -8,7 +8,7 @@
  *
  */
 
-namespace app\modules\infosystem\widgets\backend\tagEditor;
+namespace kigl\cef\module\infosystem\widgets\backend\tagEditor;
 
 use yii\web\AssetBundle;
 

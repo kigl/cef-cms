@@ -6,15 +6,15 @@
  */
 
 
-namespace app\modules\service\controllers\backend\form;
+namespace kigl\cef\module\service\controllers\backend\form;
 
 
 use Yii;
 use yii\data\ActiveDataProvider;
-use app\modules\service\components\BackendController;
-use app\core\actions\EditAttribute;
-use app\modules\service\service\form\FieldModelService;
-use app\modules\service\models\form\Field;
+use kigl\cef\module\service\components\BackendController;
+use kigl\cef\core\actions\EditAttribute;
+use kigl\cef\module\service\service\form\FieldModelService;
+use kigl\cef\module\service\models\form\Field;
 
 class FieldController extends BackendController
 {

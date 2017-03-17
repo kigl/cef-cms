@@ -6,10 +6,10 @@
  * Time: 17:53
  */
 
-namespace app\modules\comment\components;
+namespace kigl\cef\module\comment\components;
 
 
-use app\modules\backend\components\Controller;
+use kigl\cef\module\backend\components\Controller;
 
 abstract class BackendController extends Controller
 {

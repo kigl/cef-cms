@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Url;
 use yii\helpers\Html;
-use app\modules\infosystem\Module;
-use app\modules\backend\widgets\grid\GridView;
+use kigl\cef\module\infosystem\Module;
+use kigl\cef\module\backend\widgets\grid\GridView;
 
 $this->setTitle(Module::t('Infosystems'));
 $this->setPageHeader(Module::t( 'Infosystems'));

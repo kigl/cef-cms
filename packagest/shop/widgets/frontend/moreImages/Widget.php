@@ -6,7 +6,7 @@
  * Time: 21:42
  */
 
-namespace app\modules\shop\widgets\frontend\moreImages;
+namespace kigl\cef\module\shop\widgets\frontend\moreImages;
 
 
 class Widget extends \yii\base\Widget

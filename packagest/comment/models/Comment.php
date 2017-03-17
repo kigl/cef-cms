@@ -1,10 +1,11 @@
 <?php
 
-namespace app\modules\comment\models;
+namespace kigl\cef\module\comment\models;
 
-use app\core\behaviors\UserId;
-use app\modules\user\models\User;
+
 use Yii;
+use kigl\cef\core\behaviors\UserId;
+use kigl\cef\module\user\models\User;
 
 /**
  * This is the model class for table "{{%comment}}".
@@ -19,7 +20,7 @@ use Yii;
  * @property string $create_time
  * @property string $update_time
  */
-class Comment extends \app\core\db\ActiveRecord
+class Comment extends \kigl\cef\core\db\ActiveRecord
 {
 
     const STATUS_BLOCK = 0;

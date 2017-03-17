@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\infosystem;
+namespace kigl\cef\module\infosystem;
 
 
 /**
  * infosystem module definition class
  */
-class Module extends \app\core\module\Module
+class Module extends \kigl\cef\core\module\Module
 {
 }

@@ -4,19 +4,19 @@ return [
 		'backend' => [
 			'modules' => [
 				'page' => [
-					'class' => 'app\modules\page\Module',
-					'controllerNamespace' => 'app\modules\page\controllers\backend',
-					'viewPath' => '@app/modules/page/views/backend',
+					'class' => 'kigl\cef\module\page\Module',
+					'controllerNamespace' => 'kigl\cef\module\page\controllers\backend',
+					'viewPath' => '@kigl/cef/module/page/views/backend',
                     'controllerMap' => [
-                        'default' => 'app\modules\backend\controllers\DefaultController',
+                        'default' => 'kigl\cef\module\backend\controllers\DefaultController',
                     ],
 				],
 			],
 		],
 		'page' => [
-			'class' => 'app\modules\page\Module',
-			'controllerNamespace' => 'app\modules\page\controllers\frontend',
-			'viewPath' => '@app/modules/page/views/frontend',
+			'class' => 'kigl\cef\module\page\Module',
+			'controllerNamespace' => 'kigl\cef\module\page\controllers\frontend',
+			'viewPath' => '@kigl/ceg/module/page/views/frontend',
 		],
 	],
 	
@@ -25,7 +25,7 @@ return [
 			'translations' => [
 				'page' => [
 					'class'   => 'yii\i18n\PhpMessageSource',
-					'basePath'=> '@app/modules/page/messages',
+					'basePath'=> '@kigl/cef/module/page/messages',
 						'fileMap' => [
 							'page' => 'module.php',
 						],
@@ -34,13 +34,13 @@ return [
 		],
 		'urlManager' => [
 			'rules' => [
-				['class' => 'app\modules\page\components\PageRule'],
+				['class' => 'kigl\cef\module\page\components\PageRule'],
 			],
 		],
 
         'sitemap' => [
             'models' => [
-                \app\modules\page\models\Page::class,
+                \kigl\cef\module\page\models\Page::class,
             ],
         ],
 	],

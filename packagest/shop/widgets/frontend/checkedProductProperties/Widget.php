@@ -6,7 +6,7 @@
  */
 
 
-namespace app\modules\shop\widgets\frontend\checkedProductProperties;
+namespace kigl\cef\module\shop\widgets\frontend\checkedProductProperties;
 
 
 class Widget extends \yii\base\Widget

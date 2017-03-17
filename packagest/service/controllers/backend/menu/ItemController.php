@@ -6,14 +6,14 @@
  */
 
 
-namespace app\modules\service\controllers\backend\menu;
+namespace kigl\cef\module\service\controllers\backend\menu;
 
 
 use Yii;
-use app\modules\service\components\BackendController;
-use app\modules\service\models\menu\Item;
-use app\modules\service\service\menu\ItemModelService;
-use app\core\actions\EditAttribute;
+use kigl\cef\module\service\components\BackendController;
+use kigl\cef\module\service\models\menu\Item;
+use kigl\cef\module\service\service\menu\ItemModelService;
+use kigl\cef\core\actions\EditAttribute;
 
 class ItemController extends BackendController
 {

@@ -6,13 +6,13 @@
  */
 
 
-namespace app\modules\infosystem\service\backend;
+namespace kigl\cef\module\infosystem\service\backend;
 
 
 use Yii;
 use yii\data\ActiveDataProvider;
-use app\core\service\ModelService;
-use app\modules\infosystem\models\Infosystem;
+use kigl\cef\core\service\ModelService;
+use kigl\cef\module\infosystem\models\Infosystem;
 
 class InfosystemModelService extends ModelService
 {

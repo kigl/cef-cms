@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\comment;
+namespace kiglcef\module\comment;
 
 /**
  * reviews module definition class
  */
-class Module extends \app\core\module\Module
+class Module extends \kigl\cef\core\module\Module
 {
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\service\models\menu;
+namespace kigl\cef\module\service\models\menu;
 
 use Yii;
 

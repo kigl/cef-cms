@@ -6,12 +6,12 @@
  */
 
 
-namespace app\modules\service\service\form;
+namespace kigl\cef\module\service\service\form;
 
 
 use yii\data\ActiveDataProvider;
-use app\modules\service\models\form\Form;
-use app\core\service\ModelService;
+use kigl\cef\module\service\models\form\Form;
+use kigl\cef\core\service\ModelService;
 
 class FormModelService extends ModelService
 {

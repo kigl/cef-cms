@@ -6,12 +6,12 @@
  * Time: 19:09
  */
 
-namespace app\modules\shop\service\backend;
+namespace kigl\cef\module\shop\service\backend;
 
 
 use yii\data\ActiveDataProvider;
-use app\core\service\ModelService;
-use app\modules\shop\models\Order;
+use kigl\cef\core\service\ModelService;
+use kigl\cef\module\shop\models\Order;
 
 class OrderModelService extends ModelService
 {

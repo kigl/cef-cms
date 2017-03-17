@@ -6,13 +6,13 @@
  */
 
 
-namespace app\modules\service\controllers\backend\form;
+namespace kigl\cef\module\service\controllers\backend\form;
 
 
 use Yii;
-use app\modules\service\components\BackendController;
-use app\modules\service\models\form\Completed;;
-use app\modules\service\service\form\CompletedModelService;
+use kigl\cef\module\service\components\BackendController;
+use akigl\cef\module\service\models\form\Completed;;
+use kigl\cef\module\service\service\form\CompletedModelService;
 
 class CompletedController extends BackendController
 {

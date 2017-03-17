@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\infosystem\widgets\backend\tagEditor;
+namespace kigl\cef\module\infosystem\widgets\backend\tagEditor;
 
 use yii\widgets\InputWidget;
 use yii\helpers\Html;

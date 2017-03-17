@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\tag\components;
+namespace kigl\cef\module\tag\components;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
-use app\modules\tag\models\Tag;
+use akigl\cef\module\tag\models\Tag;
 
 class TagBehavior extends \yii\base\Behavior
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\service\models\lists;
+namespace kigl\cef\module\service\models\lists;
 
 use Yii;
 

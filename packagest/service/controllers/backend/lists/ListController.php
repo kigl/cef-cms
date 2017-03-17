@@ -6,12 +6,12 @@
  * Time: 19:25
  */
 
-namespace app\modules\service\controllers\backend\lists;
+namespace kigl\cef\module\service\controllers\backend\lists;
 
 
-use app\core\actions\Create;
-use app\modules\service\components\BackendController;
-use app\modules\service\models\lists\Lists;
+use kigl\ceg\core\actions\Create;
+use kigl\cef\module\service\components\BackendController;
+use kigl\cef\module\service\models\lists\Lists;
 use yii\data\ActiveDataProvider;
 
 class ListController extends BackendController

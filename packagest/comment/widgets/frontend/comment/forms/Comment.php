@@ -6,7 +6,7 @@
  */
 
 
-namespace app\modules\comment\widgets\frontend\comment\forms;
+namespace kigl\cef\module\comment\widgets\frontend\comment\forms;
 
 
 use Yii;

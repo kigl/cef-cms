@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\infosystem\models;
+namespace kigl\cef\module\infosystem\models;
 
 
 use yii\data\ActiveDataProvider;

@@ -1,14 +1,14 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace kigl\cef\module\shop\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
-use app\core\db\ActiveRecord;
-use app\core\behaviors\GenerateAlias;
-use app\core\behaviors\UserId;
-use app\modules\user\models\User;
+use kigl\cef\core\db\ActiveRecord;
+use kigl\cef\core\behaviors\GenerateAlias;
+use kigl\cef\core\behaviors\UserId;
+use kigl\cef\module\user\models\User;
 
 /**
  * This is the model class for table "mn_shop_product".

@@ -6,7 +6,7 @@
  * Time: 21:40
  */
 
-namespace app\modules\shop\widgets\frontend\searchProduct;
+namespace kigl\cef\module\shop\widgets\frontend\searchProduct;
 
 use Yii;
 

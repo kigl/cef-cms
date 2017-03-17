@@ -1,5 +1,5 @@
 <?php
-use app\modules\page\Module;
+use kigl\cef\module\page\Module;
 
 $this->setTitle(Module::t('Edit page: {data}', ['data' => $model->name]));
 $this->setPageHeader(Module::t('Edit page: {data}', ['data' => $model->name]));

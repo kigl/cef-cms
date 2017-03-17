@@ -1,6 +1,6 @@
 <?php
-use app\modules\service\Module;
-use app\modules\backend\widgets\grid\GridView;
+use kigl\cef\module\service\Module;
+use kigl\cef\module\backend\widgets\grid\GridView;
 use yii\helpers\Url;
 use yii\helpers\Html;
 

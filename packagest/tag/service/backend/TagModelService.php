@@ -6,13 +6,13 @@
  * Time: 19:21
  */
 
-namespace app\modules\tag\service\backend;
+namespace kigl\cef\module\tag\service\backend;
 
 
 use Yii;
-use app\core\service\ModelService;
-use app\modules\tag\models\Tag;
-use app\modules\tag\models\TagSearch;
+use kigl\cef\core\service\ModelService;
+use kigl\cef\module\tag\models\Tag;
+use kigl\cef\module\tag\models\TagSearch;
 
 
 class TagModelService extends ModelService

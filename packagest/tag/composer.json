@@ -1,0 +1,26 @@
+{
+    "name": "kigl/cef-module-tag",
+    "description": "CEF-CMS module tags",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "kirillgolodaev",
+            "email": "kirillgolodaev@gmail.com"
+        }
+    ],
+    "require": {
+        "kigl/cef-module-backend": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "kigl\\cef\\module\\tag\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

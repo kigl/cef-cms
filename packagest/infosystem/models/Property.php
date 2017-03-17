@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\infosystem\models;
+namespace kigl\cef\module\infosystem\models;
 
 use Yii;
 
@@ -16,7 +16,7 @@ use Yii;
  * @property ItemProperty[] $infosystemItemProperties
  * @property Infosystem $infosystem
  */
-class Property extends \app\core\db\ActiveRecord
+class Property extends \kigl\cef\core\db\ActiveRecord
 {
     /**
      * @inheritdoc

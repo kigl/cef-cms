@@ -1,6 +1,6 @@
 <?php
-use app\modules\page\Module;
-use app\modules\backend\widgets\grid\GridView;
+use kigl\cef\module\page\Module;
+use kigl\cef\module\backend\widgets\grid\GridView;
 
 $this->setTitle(Module::t('Pages'));
 $this->setPageHeader(Module::t('Pages'));

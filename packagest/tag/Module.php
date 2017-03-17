@@ -6,10 +6,10 @@
  * Time: 20:11
  */
 
-namespace app\modules\tag;
+namespace kigl\cef\module\tag;
 
 
-class Module extends \app\core\module\Module
+class Module extends \kigl\cef\core\module\Module
 {
 
 }

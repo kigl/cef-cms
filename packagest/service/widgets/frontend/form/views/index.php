@@ -2,7 +2,7 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\captcha\Captcha;
-use app\modules\service\modules\form\models\Field;
+use kigl\cef\module\service\models\form\Field;
 use yii\widgets\Pjax;
 
 ?>

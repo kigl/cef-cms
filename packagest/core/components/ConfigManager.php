@@ -101,7 +101,7 @@ class ConfigManager extends  \yii\base\Component
     /**
      * @return array
      */
-    protected function getAllModulesPath()
+    public function getAllModulesPath()
     {
         $scanPathModule = array_diff(scandir($this->getModulesPath()), ['.', '..']);
 
