@@ -1,17 +1,9 @@
 <?php
-
-Yii::setAlias('@tests', dirname(__DIR__) . '/tests/codeception');
-
 $config = [
-    'id' => 'main2-console',
-    'basePath' => dirname(dirname(__DIR__)),
     'bootstrap' => ['log'],
-    'controllerNamespace' => 'app\commands',
 
     'components' => [
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
+
         'log' => [
             'targets' => [
                 [
@@ -20,18 +12,10 @@ $config = [
                 ],
             ],
         ],
-        'db' => require(__DIR__ . '/db.php'),
+
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'defaultRoles' => ['guest'],
-        ],
-    ],
-    'params' => $params,
-
-    'controllerMap' => [
-        'migrate' => [
-            'class' => 'yii\console\controllers\MigrateController',
-            'migrationPath' => '@app/core/migrations',
         ],
     ],
 ];
@@ -43,7 +27,5 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
     ];
 }
-
-Yii::setAlias('app', $config['basePath']);
 
 return $config;

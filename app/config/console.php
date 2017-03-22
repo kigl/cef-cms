@@ -1,17 +1,24 @@
 <?php
-
-Yii::setAlias('@tests', dirname(__DIR__) . '/tests/codeception');
+Yii::setAlias('@webroot', ROOT_DIR);
 
 $config = [
     'id' => 'main2-console',
-    'basePath' => dirname(dirname(__DIR__)),
-    'bootstrap' => ['log'],
-    'controllerNamespace' => 'app\commands',
+    'basePath' => dirname(__DIR__),
+
+    'vendorPath' => '@webroot/vendor',
+
+    'modules' => [
+        'user' => [
+            'class' => 'kigl\cef\module\user\Module',
+            //'controllerNamespace' => 'kigl\cef\module\user\commands',
+        ],
+    ],
 
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+
         'log' => [
             'targets' => [
                 [
@@ -20,30 +27,10 @@ $config = [
                 ],
             ],
         ],
-        'db' => require(__DIR__ . '/db.php'),
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager',
-            'defaultRoles' => ['guest'],
-        ],
-    ],
-    'params' => $params,
 
-    'controllerMap' => [
-        'migrate' => [
-            'class' => 'yii\console\controllers\MigrateController',
-            'migrationPath' => '@app/core/migrations',
-        ],
+        'db' => require(__DIR__ . '/db.php'),
+
     ],
 ];
-
-if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-    ];
-}
-
-Yii::setAlias('app', $config['basePath']);
 
 return $config;
