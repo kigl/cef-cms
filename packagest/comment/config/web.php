@@ -10,9 +10,13 @@ return [
                     'controllerMap' => [
                         'default' => 'kigl\cef\module\backend\controllers\DefaultController',
                     ],
+                    'toolbar' => [
+                        ['label' => 'Комментарии', 'url' => ['comment/manager']]
+                    ],
                 ],
             ],
         ],
+
         'comment' => [
             'class' => 'kigl\cef\module\comment\Module',
             'controllerNamespace' => 'kigl\cef\module\comment\controllers\frontend',

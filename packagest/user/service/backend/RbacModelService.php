@@ -11,14 +11,13 @@ namespace kigl\cef\module\user\service\backend;
 
 use Yii;
 use yii\data\ArrayDataProvider;
-use kigl\cef\module\user\components\RbacService;
+use yii\base\Model;
 use kigl\cef\core\service\ModelService;
-use kigl\cef\module\user\models\forms\RbacForm;
+use kigl\cef\module\user\components\RbacService;
+use kigl\cef\module\user\models\forms\backend\RbacForm;
 
 class RbacModelService extends ModelService
 {
-    protected $manager;
-
     protected $rbacService;
 
     protected $items = null;
@@ -48,15 +47,9 @@ class RbacModelService extends ModelService
         ]);
 
         if ($modelForm->load($this->getData('post')) && $modelForm->validate()) {
-            $item = $this->rbacService->createItem(
-                $modelForm->type,
-                $modelForm->name,
-                $modelForm->description,
-                $modelForm->ruleName
-            );
-
+            $item = $this->createRBACItem($modelForm);
             $this->rbacService->manager->add($item);
-            $this->rbacService->saveChild($modelForm, $item);
+            $this->rbacService->saveChild($modelForm->child, $item);
 
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
@@ -81,14 +74,9 @@ class RbacModelService extends ModelService
         ]);
 
         if ($modelForm->load($this->getData('post')) && $modelForm->validate()) {
-            $newItem = $this->rbacService->createItem(
-                $modelForm->type,
-                $modelForm->name,
-                $modelForm->description,
-                $modelForm->ruleName
-            );
+            $newItem = $this->createRBACItem($modelForm);
             $this->rbacService->manager->update($item->name, $newItem);
-            $this->rbacService->saveChild($modelForm, $item);
+            $this->rbacService->saveChild($modelForm->child, $item);
 
             $this->setExecutedAction(self::EXECUTED_ACTION_SAVE);
         }
@@ -106,5 +94,15 @@ class RbacModelService extends ModelService
 
             $this->setExecutedAction(self::EXECUTED_ACTION_DELETE);
         }
+    }
+
+    protected function createRBACItem(Model $model)
+    {
+        return $this->rbacService->createItem(
+            $model->type,
+            $model->name,
+            $model->description,
+            $model->ruleName
+        );
     }
 }

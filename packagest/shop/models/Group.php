@@ -76,7 +76,7 @@ class Group extends ActiveRecord
                 'alias' => 'alias',
             ],
             [
-                'class' => 'app\core\behaviors\FillData',
+                'class' => 'kigl\cef\core\behaviors\FillData',
                 'attribute' => 'name',
                 'setAttribute' => 'meta_title',
             ],

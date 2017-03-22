@@ -10,6 +10,9 @@ return [
                     'controllerMap' => [
                         'default' => 'kigl\cef\module\backend\controllers\DefaultController',
                     ],
+                    'toolbar' => [
+                        ['label' => 'Страницы', 'url' => ['page/manager']],
+                    ],
 				],
 			],
 		],
@@ -37,11 +40,5 @@ return [
 				['class' => 'kigl\cef\module\page\components\PageRule'],
 			],
 		],
-
-        'sitemap' => [
-            'models' => [
-                \kigl\cef\module\page\models\Page::class,
-            ],
-        ],
 	],
 ];

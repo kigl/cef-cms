@@ -14,7 +14,7 @@ use yii\data\ActiveDataProvider;
 use kigl\cef\module\user\components\BackendController;
 use kigl\cef\module\backend\actions\Update;
 use kigl\cef\module\backend\actions\Create;
-use kigl\cef\module\backend\Delete;
+use kigl\cef\module\backend\actions\Delete;
 use kigl\cef\module\user\models\Property;
 
 class PropertyController extends BackendController

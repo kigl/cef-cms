@@ -240,9 +240,10 @@ class ProductModelService extends ModelService
         $uploadedImages = UploadedFile::getInstances($this->model, $attribute);
 
         foreach ($uploadedImages as $upload) {
-            $image = new Image();
-            $image->product_id = $this->model->id;
-            $image->name = $upload;
+            $image = new Image([
+                'product_id' => $this->model->id,
+                'name' => $upload
+            ]);
             $image->save(false);
 
             $this->images[$image->id] = $image;
@@ -254,20 +255,18 @@ class ProductModelService extends ModelService
         $imageStatus = ArrayHelper::getValue($this->getData('post'), Image::POST_NAME_STATUS);
 
         if (is_array($this->images)) {
-            $images = $this->images;
+
             foreach ($this->images as $key => $image) {
-                $images[$key] = $image;
 
                 if (!empty($image->deleteKey)) {
                     if ($image->delete()) {
-                        unset($images[$key]);
+                        unset($this->images[$key]);
                     }
                 } else {
                     $image->status = ((int)$imageStatus === $image->id) ? Image::STATUS_MAIN : Image::STATUS_DEFAULT;
                     $image->save();
                 }
             }
-            $this->images = $images;
         }
 
         // проверим и установим статус

@@ -6,7 +6,7 @@ namespace kigl\cef\module\user\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 use kigl\cef\module\user\components\RbacService;
-use kigl\cef\core\behaviors\file\UploadImage;
+use kigl\cef\core\behaviors\file\ActionImage;
 /**
  * This is the model class for table "mn_user".
  *
@@ -59,8 +59,8 @@ class User extends \kigl\cef\core\db\ActiveRecord
             ['email', 'email'],
             [['login', 'email'], 'unique'],
             [['status'], 'integer'],
-            ['rolePermission', 'safe'],
             ['avatar', 'image'],
+            ['rolePermission', 'safe'],
         ];
     }
 
@@ -91,13 +91,13 @@ class User extends \kigl\cef\core\db\ActiveRecord
     {
         return [
             'userIp' => [
-                'class' => 'app\core\behaviors\UserIp',
+                'class' => 'kigl\cef\core\behaviors\UserIp',
                 'attribute' => 'ip',
             ],
             'avatarUpload' => [
-                'class' => UploadImage::className(),
-                'path' => Yii::$app->getModule('user')->getPublicPath() . '/avatars',
-                'pathUrl' => Yii::$app->getModule('user')->getPublicPathUrl() . '/avatars',
+                'class' => ActionImage::className(),
+                'path' => '@webroot/public/uploads/user/avatars',
+                'pathUrl' => '@web/public/uploads/user/avatars',
                 'attribute' => 'avatar',
             ],
         ];

@@ -1,7 +1,9 @@
 <?php
 
-namespace kiglcef\module\comment;
+namespace kigl\cef\module\comment;
 
+
+use Yii;
 /**
  * reviews module definition class
  */

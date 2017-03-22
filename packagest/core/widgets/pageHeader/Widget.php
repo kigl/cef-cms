@@ -24,6 +24,10 @@ class Widget extends \yii\base\Widget
         Html::addCssClass($this->options, $this->defaultOptions);
 
         if ($this->text !== '') {
+            /**
+             * @todo
+             * Сделать управление заголовком (тэг)
+             */
             echo Html::tag('div', Html::tag('h1', Html::encode($this->text)), $this->options);
         }
     }

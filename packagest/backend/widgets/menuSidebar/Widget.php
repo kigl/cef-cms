@@ -12,7 +12,7 @@ class Widget extends \yii\base\Widget
     {
 
         return $this->render('index', [
-            'data' => []//Yii::$app->configManager->getConfig()['menu'],
+            //'data' => []//Yii::$app->configManager->getConfig()['menu'],
         ]);
     }
 }

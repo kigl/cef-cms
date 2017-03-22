@@ -2,6 +2,8 @@
 
 namespace kigl\cef\module\page;
 
+
+use Yii;
 /**
  * Page module definition class
  */

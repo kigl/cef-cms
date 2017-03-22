@@ -6,7 +6,7 @@
  * Time: 20:06
  */
 
-namespace app\core\actions;
+namespace kigl\cef\module\backend\actions;
 
 
 class EditAttribute extends Action

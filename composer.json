@@ -59,7 +59,8 @@
         "kigl/cef-module-page": "*",
         "kigl/cef-module-tag": "*",
         "kigl/cef-module-shop": "*",
-        "kigl/cef-module-service": "*"
+        "kigl/cef-module-service": "^1.0",
+        "kartik-v/yii2-mpdf": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

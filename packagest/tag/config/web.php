@@ -1,22 +1,24 @@
 <?php
-
 return [
     'modules' => [
         'backend' => [
             'modules' => [
                 'tag' => [
-                    'class' => \kigl\cef\module\tag\Module::class,
+                    'class' => 'kigl\cef\module\tag\Module',
                     'controllerNamespace' => 'kigl\cef\module\tag\controllers\backend',
                     'viewPath' => '@kigl/cef/module/tag/views/backend',
                     'controllerMap' => [
                         'default' => 'kigl\cef\module\backend\controllers\DefaultController',
+                    ],
+                    'toolbar' => [
+                        ['label' => 'Теги', 'url' => ['tag/manager']],
                     ],
                 ],
             ],
         ],
 
         'tag' => [
-            'class' => \kigl\cef\module\tag\Module::class,
+            'class' => 'kigl\cef\module\tag\Module',
             'controllerNamespace' => 'kigl\cef\module\tag\controllers\frontend',
             'viewPath' => '@kigl/cef/module/tag/views/frontend',
         ],

@@ -4,6 +4,7 @@ namespace kigl\cef\module\shop\models;
 
 use Yii;
 use kigl\cef\core\db\ActiveRecord;
+use kigl\cef\core\behaviors\file\ActionImage;
 
 /**
  * This is the model class for table "mn_shop_product_image".
@@ -63,10 +64,10 @@ class Image extends ActiveRecord
     {
         return [
             [
-                'class' => 'app\core\behaviors\file\UploadImage',
+                'class' => ActionImage::className(),
+                'path' => '@webroot/public/uploads/shop/product',
+                'pathUrl' => '@web/public/uploads/shop/product',
                 'attribute' => 'name',
-                'path' => Yii::$app->getModule('shop')->getPublicPath() . '/images',
-                'pathUrl' => Yii::$app->getModule('shop')->getPublicPathUrl() . '/images',
             ],
         ];
     }

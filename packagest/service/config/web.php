@@ -8,7 +8,14 @@ return [
                     'controllerNamespace' => 'kigl\cef\module\service\controllers\backend',
                     'viewPath' => '@kigl/cef/module/service/views/backend',
                     'controllerMap' => [
-                        'default' => 'kigl\cef\module\backend\controllers\DefaultController',
+                        'default' => [
+                            'class' => 'kigl\cef\module\backend\controllers\DefaultController',
+                        ],
+                    ],
+                    'toolbar' => [
+                        ['label' => 'Меню', 'url' => ['/backend/service/menu/menu/manager']],
+                        ['label' => 'Формы', 'url' => ['/backend/service/form/form/manager']],
+                        ['label' => 'Списки', 'url' => ['/backend/service/lists/list/manager']],
                     ],
                 ],
             ],

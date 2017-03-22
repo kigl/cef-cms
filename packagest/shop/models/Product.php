@@ -98,7 +98,7 @@ class Product extends ActiveRecord
                 'attribute' => 'user_id',
             ],
             [
-                'class' => 'app\core\behaviors\FillData',
+                'class' => 'kigl\cef\core\behaviors\FillData',
                 'attribute' => 'name',
                 'setAttribute' => 'meta_title',
             ],

@@ -29,23 +29,6 @@ class RbacService extends Object
         $this->manager = Yii::$app->authManager;
     }
 
-    public function createItem($type, $name, $description = null, $ruleName = null)
-    {
-        if ($type == Role::TYPE_PERMISSION) {
-            $item = $this->manager->createPermission($name);
-            $item->description = $description === '' ? null : $description;
-            $item->ruleName = $ruleName === '' ? null : $ruleName;
-
-            return $item;
-        } else {
-            $item = $this->manager->createRole($name);
-            $item->description = $description === '' ? null : $description;
-            $item->ruleName = $ruleName === '' ? null : $ruleName;
-
-            return $item;
-        }
-    }
-
     public function getItem($type, $name)
     {
         if ($type == Role::TYPE_ROLE) {
@@ -64,44 +47,54 @@ class RbacService extends Object
         return $this->items;
     }
 
-    public function saveChild(Model $model, Item $item)
+    public function createItem($type, $name, $description = null, $ruleName = null)
     {
-        if (is_array($model->child)) {
-            $childNames = array_keys($this->manager->getChildren($item->name));
+        if ($type == Role::TYPE_PERMISSION) {
+            $item = $this->manager->createPermission($name);
+            $item->description = $description === '' ? null : $description;
+            $item->ruleName = $ruleName === '' ? null : $ruleName;
 
-            // Удаляем
-            foreach (array_diff($childNames, $model->child) as $child) {
-                if ($this->manager->hasChild($item, $this->getItems()[$child])) {
-                    $this->manager->removeChild($item, $this->getItems()[$child]);
-                }
-            }
-
-            // Сохраняем
-            foreach (array_diff($model->child, $childNames) as $child) {
-
-                if (!empty($this->getItems()[$child])) { //если сужествует элемент
-                    $childItem = $this->getItems()[$child];
-
-                    if ($item->name != $childItem->name) { // если выбранное имя не равно текущему
-                        if ($item->type == Role::TYPE_ROLE) {
-                            $this->manager->addChild($item, $childItem);
-                        } elseif ($childItem->type == Role::TYPE_ROLE) {
-                            $this->manager->addChild($childItem, $item);
-                        } else { // если оба елемента являются разрешением
-                            $this->manager->addChild($item, $childItem);
-                        }
-                    }
-                } else { // если не существует обнуляем вывод дочерних элементов
-                    $model->child = null;
-                }
-            }
-
+            return $item;
         } else {
-            //$this->manager->removeChildren($element);
+            $item = $this->manager->createRole($name);
+            $item->description = $description === '' ? null : $description;
+            $item->ruleName = $ruleName === '' ? null : $ruleName;
+
+            return $item;
         }
     }
 
-    public function saveUserAssignment($rolePermission, $userId)
+    public function saveChild($children = [], Item $item)
+    {
+        $childNames = array_keys($this->manager->getChildren($item->name));
+
+        // Удаляем
+        foreach (array_diff($childNames, $children) as $child) {
+            if ($this->manager->hasChild($item, $this->getItems()[$child])) {
+                $this->manager->removeChild($item, $this->getItems()[$child]);
+            }
+        }
+
+        // Сохраняем
+        foreach (array_diff($children, $childNames) as $child) {
+
+            if (!empty($this->getItems()[$child])) { //если сужествует элемент
+                $childItem = $this->getItems()[$child];
+
+                if ($item->name != $childItem->name) { // если выбранное имя не равно текущему
+                    if ($item->type == Role::TYPE_ROLE) {
+                        $this->manager->addChild($item, $childItem);
+                    } elseif ($childItem->type == Role::TYPE_ROLE) {
+                        $this->manager->addChild($childItem, $item);
+                    } else { // если оба елемента являются разрешением
+                        $this->manager->addChild($item, $childItem);
+                    }
+                }
+            }
+        }
+    }
+
+    public function saveUserAssignment($rolePermission = [], $userId)
     {
         if (is_array($rolePermission)) {
             $items = array_keys($this->manager->getAssignments($userId));

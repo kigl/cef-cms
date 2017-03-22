@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core\actions;
+namespace kigl\cef\module\backend\actions;
 
 use Yii;
 

@@ -3,6 +3,7 @@
 namespace kigl\cef\module\infosystem;
 
 
+use Yii;
 /**
  * infosystem module definition class
  */

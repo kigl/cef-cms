@@ -6,7 +6,7 @@
  */
 
 
-namespace kiglcef\module\comment\controllers\backend;
+namespace kigl\cef\module\comment\controllers\backend;
 
 
 use yii\data\ActiveDataProvider;

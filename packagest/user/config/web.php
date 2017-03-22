@@ -12,8 +12,20 @@ return [
                             'class' => 'kigl\cef\module\backend\controllers\DefaultController',
                         ],
                     ],
+                    'toolbar' => [
+                        ['label' => 'Пользователи', 'url' => ['user/manager']],
+                        [
+                            'label' => 'Свойства пользователей',
+                            'url' => ['property/manager'],
+                        ],
+                        ['label' => 'Контроль доступа', 'url' => ['rbac/manager']],
+                    ],
                 ],
             ],
+        ],
+
+        'user' => [
+            'class' => 'kigl\cef\module\user\Module',
         ],
     ],
 
@@ -29,6 +41,7 @@ return [
                 ],
             ],
         ],
+
         'urlManager' => [
             'rules' => [
                 'login' => '/user/user/login',

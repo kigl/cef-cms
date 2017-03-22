@@ -16,12 +16,18 @@ $baseConfig = require(__DIR__ . '/app/config/web.php');
 $coreConfig = require ROOT_DIR . '/packagest/core/config/web.php';
 $backendConfig = require ROOT_DIR . '/packagest/backend/config/web.php';
 $userConfig = require ROOT_DIR . '/packagest/user/config/web.php';
+$shopConfig = require ROOT_DIR . '/packagest/shop/config/web.php';
+$commentConfig = require ROOT_DIR . '/packagest/comment/config/web.php';
+$infosystemConfig = require ROOT_DIR . '/packagest/infosystem/config/web.php';
+$serviceConfig = require ROOT_DIR . '/packagest/service/config/web.php';
+$pageConfig = require ROOT_DIR . '/packagest/page/config/web.php';
+$tagConfig = require ROOT_DIR . '/packagest/tag/config/web.php';
 
-$app = new yii\web\Application($baseConfig);
+$app = new yii\web\Application(array_merge_recursive($baseConfig, $coreConfig, $backendConfig, $userConfig, $shopConfig, $infosystemConfig, $serviceConfig, $pageConfig, $commentConfig, $tagConfig));
+$app->run();
 
 $config = Yii::createObject([
     'class' => ConfigManager::class,
     'modulesPath' => '@vendor/kigl',
     'type' => ConfigManager::CONFIG_TYPE_WEB,
 ]);
-

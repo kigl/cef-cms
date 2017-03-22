@@ -9,6 +9,8 @@
 namespace kigl\cef\module\service;
 
 
+use Yii;
+
 class Module extends \kigl\cef\core\module\Module
 {
 }

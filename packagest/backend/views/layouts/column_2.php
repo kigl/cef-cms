@@ -31,14 +31,14 @@ use kigl\cef\module\backend\widgets\menuTop\Widget as MenuTop;
                             <div class="col-md-12">
 
                                 <?php
-                                /* echo \app\modules\backend\Breadcrumbs::widget([
+                                 echo \kigl\cef\module\backend\widgets\Breadcrumbs::widget([
                                     'options' => ['class' => 'breadcrumb'],
                                     'homeLink' => [
                                         'label' => Yii::t('yii', 'Home'),
                                         'url' => ['/backend/default/index']
                                     ],
                                     'links' => !empty($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []
-                                ]); */?>
+                                ]);?>
 
                                 <?php
                                 /* echo Breadcrumbs::widget([

@@ -1,25 +1,42 @@
 <?php
+Yii::setAlias('@webroot', $_SERVER['DOCUMENT_ROOT']);
+
 $config = [
     'id' => 'main2',
     'basePath' => dirname(__DIR__),
-
     'defaultRoute' => 'site/index',
+    'vendorPath' => '@webroot/vendor',
+    'language' => 'ru-RU',
+    'sourceLanguage' => 'en-US',
 
-    'vendorPath' => '@we/vendor',
+    'modules' => require 'modules.php',
 
     'components' => [
 
-        'db' => [
-            'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=main2',
-            'username' => 'root',
-            'password' => '',
-            'charset' => 'utf8',
-            'tablePrefix' => 'mn_',
-            'enableSchemaCache' => true,
+        'errorHandler' => [
+            //'errorAction' => '/frontend/site/error',
+        ],
+
+        'user' => [
+            'loginUrl' => ['/user/user/login'],
+        ],
+
+        'formatter' => [
+            'locale' => 'ru-Ru',
+            'dateFormat' => 'long',
+            'defaultTimeZone' => 'Europe/Moscow',
+            'currencyCode' => 'RUB',
+        ],
+
+        'db' => require 'db.php',
+
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
         ],
     ],
 ];
+
+$config['components']['request']['cookieValidationKey'] = $config['id'];
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment

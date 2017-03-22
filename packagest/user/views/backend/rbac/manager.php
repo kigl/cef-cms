@@ -28,7 +28,11 @@ $this->params['breadcrumbs'][] = ['label' => Module::t('RBAC')];
         [
             'label' => Yii::t('user', 'Rbac form type'),
             'value' => function ($data) {
-                return StatusRbacHelper::getStatus($data->type);
+                /**
+                 * @todo
+                 * вынести в класс
+                 */
+                return $data->type == \yii\rbac\Role::TYPE_ROLE ? Yii::t('app', 'Type role') : Yii::t('app', 'Type permission');
             }
         ],
         [

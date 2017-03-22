@@ -1,2 +1,4 @@
 .idea/
 /vendor/
+/public/assets/
+/public/uploads/

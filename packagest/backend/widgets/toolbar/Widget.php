@@ -20,12 +20,12 @@ class Widget extends \yii\base\Widget
     {
         $config = [];//Yii::$app->configManager->getConfig()['toolbar'];
 
-        if (isset($config[Yii::$app->controller->module->id])) {
+        if ($items = Yii::$app->controller->module->toolbar) {
             echo Menu::widget([
                 'options' => $this->options,
                 'encodeLabels' => false,
                 'linkTemplate' => '<a href="{url}" class="btn btn-default btn-sm">{label}</a>',
-                'items' => $config[Yii::$app->controller->module->id],
+                'items' => $items,
             ]);
         }
     }

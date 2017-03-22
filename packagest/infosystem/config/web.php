@@ -1,22 +1,25 @@
 <?php
-use kigl\cef\module\infosystem\Module;
-
 return [
 	'modules' => [
 		'backend' => [
 			'modules' => [
 				'infosystem' => [
-					'class' => Module::className(),
+					'class' => 'kigl\cef\module\infosystem\Modul',
 					'controllerNamespace' => 'kigl\cef\module\infosystem\controllers\backend',
 					'viewPath' => '@kigl/cef/module/infosystem/views/backend',
                     'controllerMap' => [
                         'default' => 'kigl\cef\module\backend\controllers\DefaultController',
                     ],
+                    'toolbar' => [
+                        [
+                            'label' => 'Инфо-системы', 'url' => ['infosystem/manager']
+                        ],
+                    ],
 				],
 			],
 		],
 		'infosystem' => [
-			'class' => Module::className(),
+			'class' => 'kigl\cef\module\infosystem\Modul',
 			'controllerNamespace' => 'kigl\cef\module\infosystem\controllers\frontend',
 			'viewPath' => '@kigl/cef/module/infosystem/views/frontend',
 		],
@@ -34,6 +37,7 @@ return [
 				],			
 			],
 		],
+
 		'urlManager' => [
 			'rules' => [
 				['class' => \kigl\cef\module\infosystem\components\UrlRule::class],

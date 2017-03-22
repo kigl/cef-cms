@@ -7,6 +7,8 @@ abstract class Module extends \yii\base\Module implements ModuleInterface
 {
 	public $defaultRoute = 'default';
 
+	public $toolbar = [];
+
 	public function getName()
 	{
 		return Yii::t($this->id, 'Module name');

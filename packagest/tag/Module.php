@@ -9,7 +9,8 @@
 namespace kigl\cef\module\tag;
 
 
+use Yii;
+
 class Module extends \kigl\cef\core\module\Module
 {
-
 }

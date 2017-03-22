@@ -6,7 +6,7 @@ return [
             'layout' => '@kigl/cef/module/backend/views/layouts/column_2',
 		],
         'gridview' =>  [
-            'class' => '\kartik\grid\Module',
+            'class' => 'kartik\grid\Module',
         ]
 	],
 	

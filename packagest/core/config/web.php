@@ -1,8 +1,5 @@
 <?php
 return [
-    'language' => 'ru-RU',
-    'sourceLanguage' => 'en-US',
-
     'bootstrap' => ['log'],
 
     'components' => [
@@ -18,30 +15,8 @@ return [
             ],
         ],
 
-        /*'configManager' => [
-            'class' => \kigl\cef\core\components\ConfigManager::class,
-            'modulesPath' => '@app/modules',
-            'type' => \kigl\cef\core\components\ConfigManager::CONFIG_TYPE_OTHER,
-        ],*/
-
-        'formatter' => [
-            'locale' => 'ru-Ru',
-            'dateFormat' => 'long',
-            'defaultTimeZone' => 'Europe/Moscow',
-            'currencyCode' => 'RUB',
-        ],
-
         'request' => [
             'enableCsrfValidation' => true,
-            'cookieValidationKey' => 'main2',
-        ],
-
-        /*'sitemap' => [
-            'class' => \app\core\components\sitemap\Sitemap::class,
-        ],*/
-
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
         ],
 
         'view' => [
@@ -51,7 +26,7 @@ return [
         'assetManager' => [
             'basePath' => '@webroot/public/assets',
             'baseUrl' => '@web/public/assets',
-            'appendTimestamp' => false,
+            'appendTimestamp' => true,
             'bundles' => [
                 'yii\web\JqueryAsset' => [
                     'jsOptions' => ['position' => \yii\web\View::POS_HEAD],
@@ -59,24 +34,21 @@ return [
             ],
         ],
 
-        /*'user' => [
-            'identityClass' => 'app\modules\user\models\UserIdentity',
+        'user' => [
+            'identityClass' => 'kigl\cef\module\user\models\UserIdentity',
             'enableAutoLogin' => false,
-            'loginUrl' => ['/user/default/login'],
-        ],*/
+        ],
 
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'defaultRoles' => ['guest'],
         ],
 
-        'errorHandler' => [
-            //'errorAction' => '/frontend/site/error',
-        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             //'useFileTransport' => true,
         ],
+
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
