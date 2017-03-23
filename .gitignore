@@ -3,3 +3,5 @@
 /packagest/
 /public/assets/
 /public/uploads/
+/temp/
+composer.lock
