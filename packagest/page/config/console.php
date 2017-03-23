@@ -4,9 +4,10 @@ return [
         'page' => [
             'class' => 'kigl\cef\module\page\Module',
             'controllerMap' => [
-                'default' => [
-                    'class' => 'kigl\cef\core\commands\DefaultController',
-                ],
+                'migrate' => [
+                    'class' => 'yii\console\controllers\MigrateController',
+                    'migrationPath' => '@kigl/cef/module/page/migrations',
+                ]
             ],
         ],
     ],

@@ -8,14 +8,10 @@ $config = [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
+                    // ??? Куда вынести
                     'levels' => ['error', 'warning'],
                 ],
             ],
-        ],
-
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager',
-            'defaultRoles' => ['guest'],
         ],
     ],
 ];

@@ -1,15 +1,15 @@
 <?php
 $configs = [
     ROOT_DIR . '/app/config/web.php',
-    ROOT_DIR . '/packagest/core/config/web.php',
-    ROOT_DIR . '/packagest/backend/config/web.php',
-    ROOT_DIR . '/packagest/user/config/web.php',
-    ROOT_DIR . '/packagest/shop/config/web.php',
-    ROOT_DIR . '/packagest/comment/config/web.php',
-    ROOT_DIR . '/packagest/infosystem/config/web.php',
-    ROOT_DIR . '/packagest/service/config/web.php',
-    ROOT_DIR . '/packagest/page/config/web.php',
-    ROOT_DIR . '/packagest/tag/config/web.php',
+    ROOT_DIR . '/vendor/kigl/cef-core/config/web.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-backend/config/web.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-user/config/web.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-shop/config/web.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-comment/config/web.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-infosystem/config/web.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-service/config/web.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-page/config/web.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-tag/config/web.php',
 ];
 
 $result = [];

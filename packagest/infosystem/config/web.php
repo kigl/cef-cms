@@ -4,7 +4,7 @@ return [
 		'backend' => [
 			'modules' => [
 				'infosystem' => [
-					'class' => 'kigl\cef\module\infosystem\Modul',
+					'class' => 'kigl\cef\module\infosystem\Module',
 					'controllerNamespace' => 'kigl\cef\module\infosystem\controllers\backend',
 					'viewPath' => '@kigl/cef/module/infosystem/views/backend',
                     'controllerMap' => [

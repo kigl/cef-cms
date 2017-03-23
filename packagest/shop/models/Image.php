@@ -40,7 +40,8 @@ class Image extends ActiveRecord
         return [
             [['product_id', 'status', 'deleteKey'], 'integer'],
             [['create_time'], 'safe'],
-            [['name', 'alt'], 'string', 'max' => 255],
+            [['alt'], 'string', 'max' => 255],
+            ['name', 'image'],
         ];
     }
 

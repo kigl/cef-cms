@@ -1,4 +1,5 @@
 .idea/
 /vendor/
+/packagest/
 /public/assets/
 /public/uploads/

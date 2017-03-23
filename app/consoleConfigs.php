@@ -1,15 +1,15 @@
 <?php
 $configs = [
     ROOT_DIR . '/app/config/console.php',
-    //ROOT_DIR . '/packagest/core/config/console.php',
-    /*ROOT_DIR . '/packagest/backend/config/console.php',
-    ROOT_DIR . '/packagest/user/config/console.php',
-    ROOT_DIR . '/packagest/shop/config/console.php',
-    ROOT_DIR . '/packagest/comment/config/console.php',
-    ROOT_DIR . '/packagest/infosystem/config/console.php',
-    ROOT_DIR . '/packagest/service/config/console.php',
-    ROOT_DIR . '/packagest/page/config/console.php',*/
-    //ROOT_DIR . '/packagest/tag/config/console.php',
+    ROOT_DIR . '/vendor/kigl/cef-core/config/console.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-backend/config/console.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-user/config/console.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-shop/config/console.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-comment/config/console.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-infosystem/config/console.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-service/config/console.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-page/config/console.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-tag/config/console.php',
 ];
 
 $result = [];

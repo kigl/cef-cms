@@ -8,7 +8,6 @@ defined('YII_ENV') or define('YII_ENV', 'dev');
 require(ROOT_DIR . '/vendor/autoload.php');
 require(ROOT_DIR . '/vendor/yiisoft/yii2/Yii.php');
 
-
-$application = new yii\console\Application(require __DIR__ . '/app/config/console.php');
+$application = new yii\console\Application(require __DIR__ . '/app/consoleConfigs.php');
 $exitCode = $application->run();
 exit($exitCode);

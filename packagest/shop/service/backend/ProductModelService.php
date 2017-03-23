@@ -244,7 +244,7 @@ class ProductModelService extends ModelService
                 'product_id' => $this->model->id,
                 'name' => $upload
             ]);
-            $image->save(false);
+            $image->save();
 
             $this->images[$image->id] = $image;
         }
@@ -264,7 +264,7 @@ class ProductModelService extends ModelService
                     }
                 } else {
                     $image->status = ((int)$imageStatus === $image->id) ? Image::STATUS_MAIN : Image::STATUS_DEFAULT;
-                    $image->save();
+                    $image->save(false);
                 }
             }
         }

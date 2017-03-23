@@ -4,9 +4,10 @@ return [
         'comment' => [
             'class' => 'kigl\cef\module\comment\Module',
             'controllerMap' => [
-                'default' => [
-                    'class' => 'kigl\cef\core\commands\DefaultController',
-                ],
+                'migrate' => [
+                    'class' => 'yii\console\controllers\MigrateController',
+                    'migrationPath' => '@kigl/cef/module/comment/migrations',
+                ]
             ],
         ],
     ],

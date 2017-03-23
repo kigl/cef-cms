@@ -23,6 +23,7 @@ return [
             'class' => 'kigl\cef\core\web\View',
         ],
 
+        // ??? Куда вынести
         'assetManager' => [
             'basePath' => '@webroot/public/assets',
             'baseUrl' => '@web/public/assets',
@@ -34,6 +35,7 @@ return [
             ],
         ],
 
+        // ??? Куда вынести
         'user' => [
             'identityClass' => 'kigl\cef\module\user\models\UserIdentity',
             'enableAutoLogin' => false,
@@ -41,6 +43,7 @@ return [
 
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
+            // ??? Куда вынести
             'defaultRoles' => ['guest'],
         ],
 
@@ -49,6 +52,7 @@ return [
             //'useFileTransport' => true,
         ],
 
+        // ??? Куда вынести
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

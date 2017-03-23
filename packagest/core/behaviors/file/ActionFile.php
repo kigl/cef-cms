@@ -46,6 +46,11 @@ class ActionFile extends Behavior
 
     public function beforeValidate()
     {
+        // Если из вне присваеваем аттрибуту экземпляр класса UploadedFile
+        if ($this->getOwnerAttribute() instanceof UploadedFile) {
+            $this->uploadedFileInstance = $this->getOwnerAttribute();
+        }
+
         if ($instance = $this->getUploadedFileInstance()) {
             $this->setOwnerAttribute($instance);
         }
@@ -72,7 +77,7 @@ class ActionFile extends Behavior
 
     protected function uploadFile($path)
     {
-        $instance = $this->getOwnerAttribute();
+        $instance = $this->getUploadedFileInstance();
         if ($instance instanceof UploadedFile) {
             if (!is_dir($path)) {
                 mkdir($path);
@@ -138,7 +143,7 @@ class ActionFile extends Behavior
         return $this->name;
     }
 
-    protected function getUploadedFileInstance()
+    public function getUploadedFileInstance()
     {
         if (is_null($this->uploadedFileInstance)) {
             $this->uploadedFileInstance = UploadedFile::getInstance($this->owner, $this->attribute);
