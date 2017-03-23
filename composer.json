@@ -1,56 +1,9 @@
 {
-    "name": "yiisoft/yii2-app-basic",
-    "description": "Yii 2 Basic Project Template",
-    "keywords": ["yii2", "framework", "basic", "project template"],
-    "homepage": "http://www.yiiframework.com/",
+    "name": "kigl/cef-app",
+    "description": "CEF-CMS app",
     "type": "project",
-    "license": "BSD-3-Clause",
-    "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
-    },
+    "license": "MIT",
     "minimum-stability": "stable",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "packagest/core"
-        },
-        {
-            "type": "path",
-            "url": "packagest/backend"
-        },
-        {
-            "type": "path",
-            "url": "packagest/comment"
-        },
-        {
-            "type": "path",
-            "url": "packagest/shop"
-        },
-        {
-            "type": "path",
-            "url": "packagest/infosystem"
-        },
-        {
-            "type": "path",
-            "url": "packagest/page"
-        },
-        {
-            "type": "path",
-            "url": "packagest/tag"
-        },
-        {
-            "type": "path",
-            "url": "packagest/service"
-        },
-        {
-            "type": "path",
-            "url": "packagest/user"
-        }
-    ],
     "require": {
         "kigl/cef-core": "^1.0",
         "kigl/cef-module-user": "^1.0",
