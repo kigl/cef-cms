@@ -1,24 +1,16 @@
 {
-    "name": "kigl/cef-app",
-    "description": "CEF-CMS app",
+    "name": "kigl/cef-project",
+    "description": "CEF-CMS project",
     "type": "project",
     "license": "MIT",
     "minimum-stability": "stable",
     "require": {
-        "kigl/cef-core": "^1.0",
-        "kigl/cef-module-user": "^1.0",
         "kigl/cef-module-comment": "*",
         "kigl/cef-module-infosystem": "*",
         "kigl/cef-module-page": "*",
         "kigl/cef-module-tag": "*",
         "kigl/cef-module-shop": "*",
         "kigl/cef-module-service": "^1.0"
-    },
-    "require-dev": {
-        "yiisoft/yii2-codeception": "*",
-        "yiisoft/yii2-debug": "*",
-        "yiisoft/yii2-gii": "*",
-        "yiisoft/yii2-faker": "*"
     },
     "config": {
         "process-timeout": 1800
@@ -33,12 +25,12 @@
             "setPermission": [
                 {
                     "runtime": "0777",
-                    "web/assets": "0777",
+                    "public/assets": "0777",
                     "yii": "0755"
                 }
             ],
             "generateCookieValidationKey": [
-                "config/web.php"
+                "app/config/web.php"
             ]
         },
         "asset-installer-paths": {
@@ -47,3 +39,4 @@
         }
     }
 }
+
