@@ -2,7 +2,7 @@
 Yii::setAlias('@webroot', $_SERVER['DOCUMENT_ROOT']);
 
 $config = [
-    'id' => 'main2',
+    'id' => 'CEF-CMS',
     'basePath' => dirname(__DIR__),
     'defaultRoute' => 'site/index',
     'vendorPath' => '@webroot/vendor',
@@ -17,13 +17,9 @@ $config = [
             //'errorAction' => '/frontend/site/error',
         ],
 
-        'user' => [
-            'loginUrl' => ['/user/user/login'],
-        ],
-
         'formatter' => [
             'locale' => 'ru-Ru',
-            'dateFormat' => 'long',
+            'dateFormat' => 'dd.MM.yyyy',
             'defaultTimeZone' => 'Europe/Moscow',
             'currencyCode' => 'RUB',
         ],
@@ -34,10 +30,28 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
 
+        'user' => [
+            'identityClass' => 'app\models\User',
+            'enableAutoLogin' => false,
+            'loginUrl' => ['/user/user/login'],
+        ],
+
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
             'showScriptName' => false,
+        ],
+
+        'assetManager' => [
+            'basePath' => '@webroot/public/assets',
+            'baseUrl' => '@web/public/assets',
+            'appendTimestamp' => true,
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'jsOptions' => ['position' => \yii\web\View::POS_HEAD],
+                ],
+            ],
         ],
     ],
 ];

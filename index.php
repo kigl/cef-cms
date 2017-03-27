@@ -11,5 +11,5 @@ require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
 
 $config = require ROOT_DIR . '/app/webConfigs.php';
 
-$app = new yii\web\Application($config);
+$app = new \kigl\cef\core\web\Application($config);
 $app->run();

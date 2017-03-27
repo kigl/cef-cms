@@ -2,6 +2,6 @@
 /vendor/
 /packagest/
 /public/assets/
-/public/uploads/
+/public/upload/
 /temp/
 composer.lock
