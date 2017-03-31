@@ -9,7 +9,7 @@
 namespace app\models;
 
 
-use kigl\cef\module\user\models\UserIdentity;
+use kigl\cef\module\user\models\base\UserIdentity;
 
 class User extends UserIdentity
 {

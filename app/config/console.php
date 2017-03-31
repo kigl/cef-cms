@@ -8,19 +8,6 @@ $config = [
     'vendorPath' => '@webroot/vendor',
 
     'components' => [
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
-
-        'log' => [
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
-
         'db' => require(__DIR__ . '/db.php'),
 
     ],

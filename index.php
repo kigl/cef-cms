@@ -13,3 +13,4 @@ $config = require ROOT_DIR . '/app/webConfigs.php';
 
 $app = new \kigl\cef\core\web\Application($config);
 $app->run();
+

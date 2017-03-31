@@ -15,6 +15,6 @@ class SiteController extends Controller
 {
     public function actionIndex()
     {
-        echo 123;
+        echo 'SiteController ' . __NAMESPACE__;
     }
 }
