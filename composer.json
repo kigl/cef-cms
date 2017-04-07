@@ -10,8 +10,60 @@
         "kigl/cef-module-page": "*",
         "kigl/cef-module-tag": "*",
         "kigl/cef-module-shop": "*",
-        "kigl/cef-module-service": "^1.0"
+        "kigl/cef-module-menu": "^1.0",
+        "kigl/cef-module-lists": "^1.0",
+        "kigl/cef-module-form": "^1.0",
+        "yiisoft/yii2-debug": "^2.0",
+        "yiisoft/yii2-gii": "^2.0"
     },
+
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packagest/core"
+        },
+        {
+            "type": "path",
+            "url": "packagest/comment"
+        },
+        {
+            "type": "path",
+            "url": "packagest/backend"
+        },
+        {
+            "type": "path",
+            "url": "packagest/infosystem"
+        },
+        {
+            "type": "path",
+            "url": "packagest/user"
+        },
+        {
+            "type": "path",
+            "url": "packagest/shop"
+        },
+        {
+            "type": "path",
+            "url": "packagest/page"
+        },
+        {
+            "type": "path",
+            "url": "packagest/tag"
+        },
+        {
+            "type": "path",
+            "url": "packagest/form"
+        },
+        {
+            "type": "path",
+            "url": "packagest/menu"
+        },
+        {
+            "type": "path",
+            "url": "packagest/lists"
+        }
+    ],
+
     "config": {
         "process-timeout": 1800
     },
@@ -39,4 +91,3 @@
         }
     }
 }
-

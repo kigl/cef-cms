@@ -10,6 +10,7 @@ $configs = [
     ROOT_DIR . '/vendor/kigl/cef-module-service/config/web.php',
     ROOT_DIR . '/vendor/kigl/cef-module-page/config/web.php',
     ROOT_DIR . '/vendor/kigl/cef-module-tag/config/web.php',
+    ROOT_DIR . '/vendor/kigl/cef-module-form/config/web.php',
 ];
 
 $result = [];
