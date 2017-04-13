@@ -6,7 +6,7 @@
  */
 
 
-namespace app\modules\test\controllers;
+namespace app\kill\test\controllers;
 
 
 use yii\web\Controller;

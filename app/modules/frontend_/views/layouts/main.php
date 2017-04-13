@@ -38,24 +38,6 @@ use yii\helpers\Url;
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">Блок голова</div>
-        <div class="panel-body">
-            <div class="header-block">
-                <div class="row">
-                    <div class="col-md-8">
-                        <?= \app\modules\shop\widgets\frontend\searchProduct\Widget::widget(); ?>
-                    </div>
-                    <div class="col-md-offset-2 col-md-2">
-                        <?= \app\modules\shop\widgets\frontend\cart\Widget::widget([
-                                'urlPageCart' => Url::to(['/shop/cart/index']),
-                        ]); ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default">
         <div class="panel-heading">Блок контента</div>
         <div class="panel-body">
             <div class="content-block">
@@ -67,12 +49,6 @@ use yii\helpers\Url;
             </div>
         </div>
     </div>
-
-    <?= \app\core\widgets\showContentModal\widget::widget([
-            'options' => [
-                    'size' => \yii\bootstrap\Modal::SIZE_LARGE,
-            ],
-    ]); ?>
 
     <?php $this->endBody() ?>
 </body>

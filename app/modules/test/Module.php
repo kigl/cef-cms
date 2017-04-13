@@ -6,20 +6,10 @@
  */
 
 
-namespace app\modules\test;
+namespace app\kill\test;
 
 
-class Module extends \kigl\cef\core\module\Module
+class Module extends \yii\base\Module
 {
     const VERSION = '1.0.0.0';
-
-    public function getName()
-    {
-        return 'test';
-    }
-
-    public function getDescription()
-    {
-        return 'test';
-    }
 }
