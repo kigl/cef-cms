@@ -1,6 +1,2 @@
 .idea/
-/vendor/
-/public/assets/
-/public/upload/
-/temp/
 composer.lock
