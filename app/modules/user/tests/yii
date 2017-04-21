@@ -1,0 +1,6 @@
+#!/usr/bin/env php
+<?php
+include '_bootstrap.php';
+
+$exitCode = $app->run();
+exit($exitCode);

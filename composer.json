@@ -5,65 +5,32 @@
     "license": "MIT",
     "minimum-stability": "stable",
     "require": {
-        "kigl/cef-module-comment": "*",
-        "kigl/cef-module-infosystem": "*",
-        "kigl/cef-module-page": "*",
-        "kigl/cef-module-tag": "*",
-        "kigl/cef-module-shop": "*",
-        "kigl/cef-module-menu": "^1.0",
-        "kigl/cef-module-lists": "^1.0",
-        "kigl/cef-module-form": "^1.0",
+        "php": ">=5.6.0",
+        "yiisoft/yii2": ">=2.0.5",
+        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-swiftmailer": "*",
+        "yiisoft/yii2-jui": "^2.0",
+        "yiisoft/yii2-imagine": "^2.0",
         "yiisoft/yii2-debug": "^2.0",
-        "yiisoft/yii2-gii": "^2.0"
+        "yiisoft/yii2-gii": "^2.0",
+        "kartik-v/yii2-grid": "@dev",
+        "kartik-v/yii2-editable": "^1.7",
+        "kartik-v/yii2-widget-touchspin": "^1.2",
+        "kartik-v/yii2-widgets": "^3.4",
+        "kartik-v/yii2-icons": "^1.4",
+        "kartik-v/yii2-money": "*",
+        "kartik-v/yii2-mpdf": "^1.0",
+        "vova07/yii2-imperavi-widget": "*",
+        "conquer/codemirror": "^2.0",
+        "bower-asset/jquery-tag-editor": "^1.0",
+        "kotchuprik/yii2-sortable-widgets": "^2.0",
     },
-
-    "repositories": [
-        {
-            "type": "path",
-            "url": "packagest/core"
-        },
-        {
-            "type": "path",
-            "url": "packagest/comment"
-        },
-        {
-            "type": "path",
-            "url": "packagest/backend"
-        },
-        {
-            "type": "path",
-            "url": "packagest/infosystem"
-        },
-        {
-            "type": "path",
-            "url": "packagest/user"
-        },
-        {
-            "type": "path",
-            "url": "packagest/shop"
-        },
-        {
-            "type": "path",
-            "url": "packagest/page"
-        },
-        {
-            "type": "path",
-            "url": "packagest/tag"
-        },
-        {
-            "type": "path",
-            "url": "packagest/form"
-        },
-        {
-            "type": "path",
-            "url": "packagest/menu"
-        },
-        {
-            "type": "path",
-            "url": "packagest/lists"
-        }
-    ],
-
+    "require-dev": {
+        "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*"
+    },
     "config": {
         "process-timeout": 1800
     },

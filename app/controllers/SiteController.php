@@ -15,6 +15,6 @@ class SiteController extends Controller
 {
     public function actionIndex()
     {
-        echo 'SiteController ' . __NAMESPACE__;
+       return $this->render('index');
     }
 }

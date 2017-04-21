@@ -9,8 +9,8 @@ defined('YII_ENV') or define('YII_ENV', 'dev');
 require(__DIR__ . '/vendor/autoload.php');
 require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
 
-$config = require ROOT_DIR . '/app/webConfigs.php';
+$config = require ROOT_DIR . '/app/core/webConfigs.php';
 
-$app = new \kigl\cef\core\web\Application($config);
+$app = new \app\core\web\Application($config);
 $app->run();
 
