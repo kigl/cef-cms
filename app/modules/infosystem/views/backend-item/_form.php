@@ -1,9 +1,12 @@
 <?php
+use yii\bootstrap\Collapse;
 use yii\jui\DatePicker;
+use yii\helpers\Url;
 use vova07\imperavi\Widget;
 use app\modules\backend\widgets\ActiveForm;
 use app\modules\backend\widgets\actionImage\Widget as ActionImage;
 use app\modules\tag\widgets\backend\editor\Editor as TagEditor;
+use app\modules\infosystem\widgets\backend\DropDownListAllGroup;
 
 ?>
 
@@ -28,6 +31,20 @@ use app\modules\tag\widgets\backend\editor\Editor as TagEditor;
             <div class="row">
                 <div class="col-md-12">
                     <?= $form->field($data['model'], 'name'); ?>
+
+                    <?php echo Collapse::widget([
+                        'items' => [
+                            [
+                                'label' => Yii::t('app', 'Parent group'),
+                                'content' => $form->field($data['model'], 'group_id')
+                                    ->widget(DropDownListAllGroup::className(), [
+                                        'options' => ['size' => 10],
+                                        'modelClass' => \app\modules\infosystem\models\Group::className(),
+                                    ])
+                                    ->label(false),
+                            ],
+                        ]
+                    ]); ?>
                 </div>
             </div>
             <div class="row">
@@ -61,7 +78,7 @@ use app\modules\tag\widgets\backend\editor\Editor as TagEditor;
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <?= $form->field($data['model'], 'editorTag')->widget(TagEditor::className()); ?>
+                    <?= $form->field($data['model'], 'listTags')->widget(TagEditor::className()); ?>
                 </div>
             </div>
         </div>
@@ -97,10 +114,17 @@ use app\modules\tag\widgets\backend\editor\Editor as TagEditor;
 
             <?= $form->field($data['model'], 'content')->widget(Widget::className(), [
                 'settings' => [
-                    'lang' => 'ru',
                     'minHeight' => 400,
-                ],
+                    'deniedTags' => ['style'],
+                    'imageManagerJson' => Url::to(['images-get']),
+                    'imageUpload' => Url::to(['image-upload']),
+                    'plugins' => [
+                        'imagemanager',
+                        'fullscreen',
+                    ]
+                ]
             ]); ?>
+
         </div>
 
         <div class="tab-pane" id="properties">

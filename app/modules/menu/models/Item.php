@@ -81,8 +81,8 @@ class Item extends \yii\db\ActiveRecord
             'itemImage' => [
                 'class' => ActionImage::className(),
                 'attribute' => 'image',
-                'path' => '@webroot/public/upload/menu',
-                'pathUrl' => '@web/public/upload/menu',
+                'path' => '@webroot/public/uploads/menu',
+                'pathUrl' => '@web/public/uploads/menu',
             ],
         ];
     }

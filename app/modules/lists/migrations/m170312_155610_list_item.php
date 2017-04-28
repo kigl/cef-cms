@@ -11,7 +11,7 @@ class m170312_155610_list_item extends Migration
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
             'list_id' => $this->integer(),
-            'value' => $this->string()->unique(),
+            'value' => $this->string(),
         ]);
 
         $this->createIndex('ix-list_item-list_id', $this->tableName, 'list_id');

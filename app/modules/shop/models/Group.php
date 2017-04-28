@@ -76,14 +76,14 @@ class Group extends ActiveRecord
         return [
             'imagePreview' => [
                 'class' => ActionImage::className(),
-                'path' => '@webroot/public/upload/shop/group',
-                'pathUrl' => '@web/public/upload/shop/group',
+                'path' => '@webroot/public/uploads/shop/group',
+                'pathUrl' => '@web/public/uploads/shop/group',
                 'attribute' => 'image_1',
             ],
             'imageContent' => [
                 'class' => ActionImage::className(),
-                'path' => '@webroot/public/upload/shop/group',
-                'pathUrl' => '@web/public/upload/shop/group',
+                'path' => '@webroot/public/uploads/shop/group',
+                'pathUrl' => '@web/public/uploads/shop/group',
                 'attribute' => 'image_2',
             ],
         ];

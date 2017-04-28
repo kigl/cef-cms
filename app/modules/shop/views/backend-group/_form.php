@@ -1,6 +1,8 @@
 <?
 use app\modules\backend\widgets\ActiveForm;
 use app\modules\backend\widgets\actionImage\Widget as WidgetActionImage;
+use app\modules\shop\widgets\backend\DropDownListAllGroup;
+use yii\bootstrap\Collapse;
 
 ?>
 
@@ -12,7 +14,6 @@ use app\modules\backend\widgets\actionImage\Widget as WidgetActionImage;
     <li><a href="#other" data-toggle="tab"><?= Yii::t('app', 'Tab more'); ?></a></li>
 </ul>
 
-
 <?php $form = ActiveForm::begin([
     'options' => ['enctype' => 'multipart/form-data'],
 ]); ?>
@@ -21,9 +22,17 @@ use app\modules\backend\widgets\actionImage\Widget as WidgetActionImage;
 
 <div class="tab-content">
     <div class="tab-pane active" id="main">
-        <div class="row">
-            <div class="col-md-12"><?= $form->field($data['model'], 'name') ?></div>
-        </div>
+        <?= $form->field($data['model'], 'name') ?>
+        <?php echo Collapse::widget([
+            'items' => [
+                [
+                    'label' => Yii::t('app', 'Parent group'),
+                    'content' => $form->field($data['model'], 'parent_id')
+                        ->widget(DropDownListAllGroup::className(), ['options' => ['size' => 10]])
+                        ->label(false),
+                ],
+            ]
+        ]); ?>
     </div>
     <div class="tab-pane" id="description">
         <?= $form->field($data['model'], 'image_1')->widget(WidgetActionImage::className(), [

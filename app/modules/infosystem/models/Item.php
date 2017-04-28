@@ -16,7 +16,6 @@ use app\modules\user\models\User;
  * @property string $content
  * @property string $image_1
  * @property string $image_2
- * @property string $file
  * @property integer $status
  * @property integer $sorting
  * @property integer $user_id
@@ -35,8 +34,6 @@ class Item extends \app\core\db\ActiveRecord
     const STATUS_ACTIVE = 1;
     const STATUS_DRAFT = 2;
 
-    protected $_tags;
-
     /**
      * @inheritdoc
      */
@@ -54,12 +51,8 @@ class Item extends \app\core\db\ActiveRecord
             [['name', 'infosystem_id'], 'required'],
             [['infosystem_id'], 'string', 'max' => 100],
             [['group_id', 'status', 'sorting', 'user_id'], 'integer'],
-            [['date', 'date_start', 'date_end'], 'string'],
-            [['content'], 'string'],
+            [['description', 'content', 'date', 'date_start', 'date_end'], 'string'],
             [['name', 'meta_title', 'meta_description'], 'string', 'max' => 255],
-            [['description'], 'string', 'max' => 300],
-            //['video', 'file', 'extensions' => ['mp4']],
-            //['file', 'file'], // video
         ];
     }
 
@@ -78,8 +71,6 @@ class Item extends \app\core\db\ActiveRecord
             'content' => Yii::t('app', 'Content'),
             'image_1' => Yii::t('app', 'Image'),
             'image_2' => Yii::t('app', 'Image'),
-            //'video' => Yii::t('app', 'Video'),
-            //'file' => Yii::t('app', 'File'),
             'editorTag' => Yii::t('infosystem', 'Editor tag'),
             'status' => Yii::t('app', 'Status'),
             'sorting' => Yii::t('app', 'Sorting'),
@@ -101,14 +92,14 @@ class Item extends \app\core\db\ActiveRecord
             'imagePreview' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
                 'attribute' => 'image_1',
-                'path' => '@webroot/public/upload/infosystem',
-                'pathUrl' => '@web/public/upload/infosystem',
+                'path' => '@webroot/public/uploads/infosystem',
+                'pathUrl' => '@web/public/uploads/infosystem',
             ],
             'imageContent' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
                 'attribute' => 'image_2',
-                'path' => '@webroot/public/upload/infosystem',
-                'pathUrl' => '@web/public/upload/infosystem',
+                'path' => '@webroot/public/uploads/infosystem',
+                'pathUrl' => '@web/public/uploads/infosystem',
             ],
         ];
     }
@@ -126,14 +117,25 @@ class Item extends \app\core\db\ActiveRecord
     public function getStatusList()
     {
         return [
-            self::STATUS_BLOCK => Yii::t('app', 'Status block'),
             self::STATUS_ACTIVE => Yii::t('app', 'Status active'),
             self::STATUS_DRAFT => Yii::t('app', 'Status draft'),
+            self::STATUS_BLOCK => Yii::t('app', 'Status block'),
         ];
     }
 
     public function getProperties()
     {
         return $this->hasMany(ItemProperty::className(), ['item_id' => 'id']);
+    }
+
+    public function getItemTags()
+    {
+        return $this->hasMany(ItemTag::className(), ['item_id' => 'id']);
+    }
+
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+            ->via('itemTags');
     }
 }

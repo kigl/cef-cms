@@ -10,6 +10,7 @@ namespace app\modules\infosystem\models\backend\service;
 
 
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 use app\modules\infosystem\Module;
 use app\core\service\ModelService;
 use app\core\traits\Breadcrumbs;
@@ -17,7 +18,6 @@ use app\modules\infosystem\models\backend\Item;
 use app\modules\infosystem\models\backend\ItemProperty;
 use app\modules\infosystem\models\backend\Property;
 use app\modules\infosystem\models\backend\Infosystem;
-use app\modules\infosystem\models\backend\Group;
 
 class ItemModelService extends ModelService
 {
@@ -50,18 +50,14 @@ class ItemModelService extends ModelService
             'breadcrumbs' => $this->getBreadcrumbs($infosystem, $this->model->group_id),
         ]);
 
-        if ($this->save()) {
-            return true;
-        }
-
-        return false;
+        return $this->save();
     }
 
     public function actionUpdate()
     {
         $this->model = Item::find()
             ->byId($this->getData('get', 'id'))
-            ->with('infosystem')
+            ->with(['infosystem'])
             ->one();
 
         if (!$this->model) {
@@ -78,12 +74,7 @@ class ItemModelService extends ModelService
                 $this->model->name),
         ]);
 
-        if ($this->save()) {
-
-            return true;
-        }
-
-        return false;
+        return $this->save();
     }
 
     public function actionDelete($id)
@@ -99,6 +90,31 @@ class ItemModelService extends ModelService
         ]);
 
         return $this->model->delete();
+    }
+
+    protected function initProperties()
+    {
+        $this->itemProperties = $this->model->getProperties()
+            ->indexBy('property_id')
+            ->all();
+
+        $this->properties = Property::find()
+            ->where(['infosystem_id' => $this->model->infosystem_id])
+            ->indexBy('id')
+            ->all();
+
+        foreach (array_diff_key($this->properties, $this->itemProperties) as $property) {
+            $this->itemProperties[$property->id] = new ItemProperty([
+                'property_id' => $property->id,
+            ]);
+        }
+
+        // присваеваем виртуальному полю значение
+        foreach ($this->properties as $property) {
+            $this->itemProperties[$property->id]->requiredValue = $property->required;
+        }
+
+        $this->sortingProperties($this->itemProperties, $this->properties);
     }
 
     protected function load()
@@ -129,18 +145,6 @@ class ItemModelService extends ModelService
         return true;
     }
 
-    protected function save($validate = true)
-    {
-        if ($this->load() && $this->validate($validate)) {
-            $this->model->save();
-            $this->saveItemProperties();
-
-            return true;
-        }
-
-        return false;
-    }
-
     protected function validateProperties($validate = true)
     {
         $success = true;
@@ -158,6 +162,32 @@ class ItemModelService extends ModelService
         return $success;
     }
 
+    protected function save($validate = true)
+    {
+        if ($this->load() && $this->validate($validate)) {
+            $this->saveTags();
+            $this->model->save();
+            $this->saveItemProperties();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function saveTags()
+    {
+        $tagsOnSave = $this->model->getRuntimeTags();
+
+        $oldTags = ArrayHelper::getColumn($this->model->tags, 'name');
+
+        $newTags = array_diff($tagsOnSave, $oldTags);
+
+        $removeTags = array_diff($oldTags, $tagsOnSave);
+
+
+    }
+
     protected function saveItemProperties()
     {
         foreach ($this->itemProperties as $property) {
@@ -168,31 +198,6 @@ class ItemModelService extends ModelService
                 $property->delete();
             }
         }
-    }
-
-    protected function initProperties()
-    {
-        $this->itemProperties = $this->model->getProperties()
-            ->indexBy('property_id')
-            ->all();
-
-        $this->properties = Property::find()
-            ->where(['infosystem_id' => $this->model->infosystem_id])
-            ->indexBy('id')
-            ->all();
-
-        foreach (array_diff_key($this->properties, $this->itemProperties) as $property) {
-            $this->itemProperties[$property->id] = new ItemProperty([
-                'property_id' => $property->id,
-            ]);
-        }
-
-        // присваеваем виртуальному полю значение
-        foreach ($this->properties as $property) {
-            $this->itemProperties[$property->id]->requiredValue = $property->required;
-        }
-
-        $this->sortingProperties($this->itemProperties, $this->properties);
     }
 
     /**
@@ -220,7 +225,7 @@ class ItemModelService extends ModelService
         $breadcrumbs = $this->buildBreadcrumbs([
             'items' => [
                 'id' => $groupId,
-                'modelClass' => Group::class,
+                'modelClass' => \app\modules\infosystem\models\Group::className(),
                 'urlOptions' => [
                     'route' => 'backend-group/manager',
                     'params' => ['id', 'infosystem_id'],

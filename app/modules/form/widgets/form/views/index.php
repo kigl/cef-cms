@@ -26,8 +26,9 @@ if ($data['widget']->pjax) {
     'options' => ArrayHelper::merge($data['widget']->options, ['data-pjax' => true]),
 ]); ?>
     <div class="panel panel-default">
-        <div class="panel-heading"><?= Html::encode($data['model']->description); ?></div>
+        <div class="panel-heading"><?= Html::encode($data['model']->name); ?></div>
         <div class="panel-body">
+            <p class="panel-description"><?= Html::encode($data['model']->description); ?></p>
 
             <?php if (Yii::$app->session->hasFlash(Widget::FLASH_FORM_COMPLETED)) : ?>
                 <div class="alert alert-success">
@@ -50,6 +51,11 @@ if ($data['widget']->pjax) {
                                 <?php if ($f->type === Field::TYPE_TEXT) : ?>
                                     <?= $form->field($data['fields'][$index], '[' . $index . ']value')
                                         ->textInput(['placeholder' => $f->description])
+                                        ->label($f->name); ?>
+
+                                <?php elseif ($f->type === Field::TYPE_TEXTAREA) : ?>
+                                    <?= $form->field($data['fields'][$index], '[' . $index . ']value')
+                                        ->textarea(['placeholder' => $f->description])
                                         ->label($f->name); ?>
 
                                 <?php elseif ($f->type === Field::TYPE_CHECKBOX) : ?>

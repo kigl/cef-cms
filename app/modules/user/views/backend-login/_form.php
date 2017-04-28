@@ -26,12 +26,6 @@ $this->setTitle('Аутентификация пользователя');
             <?= $form->field($data['form'], 'password')
                 ->passwordInput(); ?>
 
-            <div class="form-group">
-                @TODO
-                <?= Html::a(Yii::t('user', 'Forgot your password?'),
-                    ['/user/default/password-restore']); ?>
-            </div>
-
             <?= Html::submitButton(Yii::t('app', 'Login'), ['class' => 'btn btn-primary']) ?>
 
             <?php $form->end(); ?>

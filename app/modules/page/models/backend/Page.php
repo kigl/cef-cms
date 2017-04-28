@@ -6,6 +6,7 @@ namespace app\modules\page\models\backend;
 use Yii;
 use app\core\behaviors\FillData;
 use app\core\behaviors\GenerateAlias;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "mn_page".
@@ -21,6 +22,13 @@ use app\core\behaviors\GenerateAlias;
  */
 class Page extends \app\modules\page\models\Page
 {
+    public function rules()
+    {
+        return ArrayHelper::merge(parent::rules(), [
+            ['template', 'default', 'value' => 'view'],
+        ]);
+    }
+
     public function behaviors()
     {
         return [

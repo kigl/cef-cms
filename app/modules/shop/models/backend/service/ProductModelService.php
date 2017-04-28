@@ -262,7 +262,8 @@ class ProductModelService extends ModelService
 
             foreach ($this->images as $key => $image) {
 
-                if (!empty($image->deleteKey)) {
+                if ($image->deleteKey) {
+                    echo $image->deleteKey;
                     if ($image->delete()) {
                         unset($this->images[$key]);
                     }
@@ -271,6 +272,7 @@ class ProductModelService extends ModelService
                     $image->save(false);
                 }
             }
+
         }
 
         // проверим и установим статус

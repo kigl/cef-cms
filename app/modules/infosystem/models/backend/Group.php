@@ -33,6 +33,8 @@ class Group extends \app\modules\infosystem\models\Group
     {
         return ArrayHelper::merge(parent::rules(), [
             [['image_1', 'image_2'], 'file', 'extensions' => ['jpg', 'png', 'gif']],
+            ['parent_id', 'compare', 'compareAttribute' => 'id', 'operator' => '!='],
+            ['sorting', 'default', 'value' => 500],
         ]);
     }
 
@@ -60,5 +62,12 @@ class Group extends \app\modules\infosystem\models\Group
     public function getInfosystem()
     {
         return $this->hasOne(Infosystem::className(), ['id' => 'infosystem_id']);
+    }
+
+    public static function getSortingAttribute()
+    {
+        $attributes = ['id', 'name', 'create_time', 'update_time'];
+
+        return array_combine($attributes, $attributes);
     }
 }

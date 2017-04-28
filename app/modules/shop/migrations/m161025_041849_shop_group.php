@@ -10,7 +10,7 @@ class m161025_041849_shop_group extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'parent_id' => $this->integer()->defaultValue(0),
+            'parent_id' => $this->integer(),
             'name' => $this->string()->notNull(),
             'description' => $this->string(),
             'content' => $this->text(),

@@ -59,7 +59,7 @@ class BackendProductController extends Controller
 
         if ($modelService->actionDelete($id)) {
 
-            return $this->redirect(['group/manager', 'parent_id' => $modelService->getData('groupId')]);
+            return $this->redirect(['backend-group/manager', 'parent_id' => $modelService->getData('groupId')]);
         }
 
         return false;

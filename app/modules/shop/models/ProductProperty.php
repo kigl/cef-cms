@@ -3,7 +3,6 @@
 namespace app\modules\shop\models;
 
 use Yii;
-use app\core\db\ActiveRecord;
 
 /**
  * This is the model class for table "mn_shop_product_property".
@@ -13,7 +12,7 @@ use app\core\db\ActiveRecord;
  * @property integer $property_id
  * @property string $value
  */
-class ProductProperty extends ActiveRecord
+class ProductProperty extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -25,6 +25,7 @@ class Field extends \yii\db\ActiveRecord
     const TYPE_CHECKBOX = 2;
     const TYPE_RADIO = 3;
     const TYPE_SELECT = 4;
+    const TYPE_TEXTAREA = 5;
 
     /**
      * @inheritdoc
@@ -90,6 +91,7 @@ class Field extends \yii\db\ActiveRecord
     {
         return [
             self::TYPE_TEXT => Yii::t('app', 'Type field text'),
+            self::TYPE_TEXTAREA => Yii::t('app', 'Type field textarea'),
             self::TYPE_CHECKBOX => Yii::t('app', 'Type field checkbox'),
             self::TYPE_RADIO => Yii::t('app', 'Type field radio'),
             self::TYPE_SELECT => Yii::t('app', 'Type field select'),

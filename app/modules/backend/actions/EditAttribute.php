@@ -11,7 +11,7 @@ namespace app\modules\backend\actions;
 
 class EditAttribute extends Action
 {
-    public $attribute;
+    public $attribute = 'sorting';
 
     public function run()
     {

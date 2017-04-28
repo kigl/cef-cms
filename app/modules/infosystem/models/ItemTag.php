@@ -41,4 +41,9 @@ class ItemTag extends \app\core\db\ActiveRecord
             'tag_id' => Yii::t('main', 'Tag ID'),
         ];
     }
+
+    public function getTag()
+    {
+        return $this->hasOne(Tag::className(), ['id' => 'tag_id']);
+    }
 }

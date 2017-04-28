@@ -9,14 +9,14 @@
 namespace app\modules\infosystem\models\backend\service;
 
 
-use yii\data\ActiveDataProvider;
+use app\modules\infosystem\models\Item;
+use yii\data\ArrayDataProvider;
+use yii\web\HttpException;
 use app\modules\infosystem\Module;
 use app\core\traits\Breadcrumbs;
 use app\core\service\ModelService;
 use app\modules\infosystem\models\backend\Infosystem;
 use app\modules\infosystem\models\backend\Group;
-use app\modules\infosystem\models\backend\ItemSearch;
-use yii\web\HttpException;
 
 class GroupModelService extends ModelService
 {
@@ -24,21 +24,27 @@ class GroupModelService extends ModelService
 
     public function actionManager()
     {
-        $searchModel = new ItemSearch();
-        $dataProvider = $searchModel->search($this->getData('get'));
         $infosystem = Infosystem::findOne($this->getData('get', 'infosystem_id'));
 
+        $groups = Group::find()
+            ->where(['parent_id' => $this->getData('get', 'id'), 'infosystem_id' => $this->getData('get', 'infosystem_id')])
+            ->asArray()
+            ->all();
 
-        $groupDataProvider = new ActiveDataProvider([
-            'query' => Group::find()
-                ->parentId($this->getData('get', 'id'))
-                ->infosystemId($this->getData('get', 'infosystem_id')),
-        ]);
+        $items = Item::find()
+            ->where(['group_id' => $this->getData('get', 'id'), 'infosystem_id' => $this->getData('get', 'infosystem_id')])
+            ->asArray()
+            ->all();
+
+        $dataProvider = (new ArrayDataProvider([
+            'allModels' => array_merge($groups, $items),
+            'sort' => [
+                'attributes' => ['name', 'date'],
+            ],
+        ]));
 
         $this->setData([
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'groupDataProvider' => $groupDataProvider,
             'infosystem' => $infosystem,
             'breadcrumbs' => $this->buildGroupBreadcrumbs($infosystem, $this->getData('get', 'id')),
             'id' => $this->getData('get', 'id'),
@@ -125,7 +131,7 @@ class GroupModelService extends ModelService
         $breadcrumbs = $this->buildBreadcrumbs([
             'items' => [
                 'id' => $groupId,
-                'modelClass' => Group::class,
+                'modelClass' => \app\modules\infosystem\models\Group::className(),
                 'urlOptions' => [
                     'route' => 'backend-group/manager',
                     'params' => ['id', 'infosystem_id'],

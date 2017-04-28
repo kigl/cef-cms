@@ -1,7 +1,9 @@
 <?php
-use app\modules\backend\widgets\grid\GridView;
-use yii\helpers\Url;
 use yii\helpers\Html;
+use app\modules\lists\Module;
+use app\modules\backend\widgets\grid\GridView;
+
+$this->setPageHeader(Module::t('Lists'));
 
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
 

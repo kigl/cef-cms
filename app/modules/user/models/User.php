@@ -78,8 +78,8 @@ class User extends \app\core\db\ActiveRecord
         return [
             'avatarUpload' => [
                 'class' => ActionImage::className(),
-                'path' => '@webroot/public/upload/user',
-                'pathUrl' => '@web/public/upload/user',
+                'path' => '@webroot/public/uploads/user',
+                'pathUrl' => '@web/public/uploads/user',
                 'attribute' => 'avatar',
             ],
         ];

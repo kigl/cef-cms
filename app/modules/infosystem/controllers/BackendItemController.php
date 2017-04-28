@@ -10,11 +10,35 @@ namespace app\modules\infosystem\controllers;
 
 
 use Yii;
+use vova07\imperavi\actions\GetAction;
 use app\modules\backend\controllers\Controller;
 use app\modules\infosystem\models\backend\service\ItemModelService;
+use app\modules\backend\actions\EditAttribute;
+use app\modules\infosystem\models\backend\Item;
 
 class BackendItemController extends Controller
 {
+    public function actions()
+    {
+        return [
+            'edit-sorting' => [
+                'class' => EditAttribute::class,
+                'modelClass' => Item::class,
+            ],
+            'images-get' => [
+                'class' => 'vova07\imperavi\actions\GetAction',
+                'url' => Yii::getAlias('@web/public/uploads/infosystem/content'),
+                'path' => Yii::getAlias('@webroot/public/uploads/infosystem/content'),
+                'type' => GetAction::TYPE_IMAGES,
+            ],
+            'image-upload' => [
+                'class' => 'vova07\imperavi\actions\UploadAction',
+                'url' => Yii::getAlias('@web/public/uploads/infosystem/content'),
+                'path' => Yii::getAlias('@webroot/public/uploads/infosystem/content'),
+            ],
+        ];
+    }
+
     public function actionCreate($group_id = null, $infosystem_id)
     {
         $modelService = Yii::createObject([

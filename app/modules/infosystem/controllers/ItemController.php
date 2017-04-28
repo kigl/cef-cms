@@ -10,9 +10,8 @@ namespace app\modules\infosystem\controllers;
 
 
 use Yii;
-use app\modules\infosystem\components\FrontendController;
-use app\modules\infosystem\service\frontend\ItemModelService;
-use yii\base\Controller;
+use yii\web\Controller;
+use app\modules\infosystem\service\ItemModelService;
 
 class ItemController extends Controller
 {

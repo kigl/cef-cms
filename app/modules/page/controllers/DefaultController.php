@@ -16,6 +16,6 @@ class DefaultController extends Controller
     {
         $model = Page::findOne($id);
 
-        return $this->render('view', ['model' => $model]);
+        return $this->render($model->template, ['model' => $model]);
     }
 }

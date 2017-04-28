@@ -1,0 +1,1 @@
+<?= \app\widgets\collectionsBox\Widget::widget();?>

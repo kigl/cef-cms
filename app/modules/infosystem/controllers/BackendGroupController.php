@@ -10,11 +10,23 @@ namespace app\modules\infosystem\controllers;
 
 
 use Yii;
+use app\modules\backend\actions\EditAttribute;
 use app\modules\backend\controllers\Controller;
 use app\modules\infosystem\models\backend\service\GroupModelService;
+use app\modules\infosystem\models\backend\Group;
 
 class BackendGroupController extends Controller
 {
+    public function actions()
+    {
+        return [
+            'edit-sorting' => [
+                'class' => EditAttribute::class,
+                'modelClass' => Group::class,
+            ],
+        ];
+    }
+
     public function actionManager($id = null, $infosystem_id)
     {
         $modelService = Yii::createObject([

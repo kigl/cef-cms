@@ -60,7 +60,7 @@ class BackendGroupController extends Controller
 
         if ($modelService->actionDelete($id)) {
 
-            return $this->redirect(['group/manager', 'id' => $modelService->getData('model')->parent_id]);
+            return $this->redirect(['backend-group/manager', 'id' => $modelService->getData('model')->parent_id]);
         }
 
         return false;

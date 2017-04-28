@@ -12,6 +12,7 @@ class m160902_081826_page extends Migration
 				'id' => $this->primaryKey(),
 				'name' => $this->string(),
 				'content' => $this->text(),
+				'template' => $this->string(),
 				'alias' => $this->string(),
 				'meta_title' => $this->string(),
 				'meta_description' => $this->string(),

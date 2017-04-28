@@ -26,7 +26,8 @@ use vova07\imperavi\Widget as Imperavi;
             ->widget(Imperavi::className(), [
                 'settings' => [
                     'minHeight' => 400,
-                    'deniedTags' => ['style'],
+                    'deniedTags' => [],
+                    'replaceDivs' => false,
                     'imageManagerJson' => Url::to(['page/images-get']),
                     'imageUpload' => Url::to(['image-upload']),
                     'plugins' => [
@@ -49,6 +50,8 @@ use vova07\imperavi\Widget as Imperavi;
         <?= $form->field($model, 'meta_description')->textarea(); ?>
     </div>
     <div class="tab-pane" id="other">
+        <?= $form->field($model, 'template'); ?>
+
         <?= \yii\widgets\DetailView::widget([
             'model' => $model,
             'attributes' => [

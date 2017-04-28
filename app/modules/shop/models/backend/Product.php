@@ -69,4 +69,9 @@ class Product extends \app\modules\shop\models\Product
             ->indexBy('property_id');
     }
 
+    public function getImages()
+    {
+        return $this->hasMany(Image::className(), ['product_id' => 'id']);
+    }
+
 }

@@ -25,10 +25,14 @@ return [
     'Fields' => 'Поля',
     'Field' => 'Поле',
 
+    'Group on page' => 'Число групп на странице',
+
     'Lastname' => 'Отчество',
     'Link name page main' => 'Главная',
 	'List view summary text: is' => 'из',
     'List' => 'Список',
+    'List attributes' => 'Список аттрибутов',
+    'List fields' => 'Список полей',
     'Login or password is incorrect' => 'Логин или пароль введены неверно!',
     'Login' => 'Логин',
     'Logout' => 'Выйти',
@@ -55,7 +59,9 @@ return [
 
     'Password' => 'Пароль',
     'Password repeat' => 'Повторить пароль',
-    'Parent id' => 'Id родителя',
+    'Parent id' => 'ID родителя',
+	'Parent' => 'Родитель',
+    'Parent group' => 'Родительская группа',
 	'Position' => 'Позиция',
     'Property type string' => 'Строка',
     'Property type checkbox' => 'Чекбокс',
@@ -66,11 +72,13 @@ return [
     'Phone' => 'Телефон',
     'Price' => 'Цена',
 
+	'Field' => 'Поле',
 	'Field type' => 'Тип поля',
 	'File' => 'Файл',
 
 	'Required' => 'Обязательно для заполнения',
     'Region' => 'Регион',
+	'Root' => 'Корень',
 	
 	'Created item' => 'Элемент создан!',
 	'Create time' => 'Дата создания',
@@ -120,6 +128,7 @@ return [
     'Tab images' => 'Изображения',
     'Tab settings' => 'Настройки',
     'Tab other' => 'Дополнительные',
+    'Type' => 'Тип',
     'Type field text' => 'text',
     'Type field checkbox' => 'checkbox',
     'Type field textarea' => 'textarea',

@@ -1,0 +1,181 @@
+.no-padding{padding:0 !important}.no-padding-bottom{padding-bottom:0 !important}.no-padding-top{padding-top:0 !important}.no-padding-left{padding-left:0 !important}.no-padding-right{padding-right:0 !important}.padding-5{padding:5px !important}.padding-10{padding:10px !important}.padding-20{padding:20px !important}.padding-30{padding:30px !important}.padding-40{padding:40px !important}.padding-50{padding:50px !important}.padding-left-5{padding-left:5px !important}.padding-left-10{padding-left:10px !important}.padding-left-20{padding-left:20px !important}.padding-left-30{padding-left:30px !important}.padding-left-40{padding-left:40px !important}.padding-left-50{padding-left:50px !important}.padding-top-5{padding-top:5px !important}.padding-top-10{padding-top:10px !important}.padding-top-20{padding-top:20px !important}.padding-top-30{padding-top:30px !important}.padding-top-40{padding-top:40px !important}.padding-top-50{padding-top:50px !important}.padding-right-5{padding-right:5px !important}.padding-right-10{padding-right:10px !important}.padding-right-20{padding-right:20px !important}.padding-right-30{padding-right:30px !important}.padding-right-40{padding-right:40px !important}.padding-right-50{padding-right:50px !important}.padding-bottom-5{padding-bottom:5px !important}.padding-bottom-10{padding-bottom:10px !important}.padding-bottom-20{padding-bottom:20px !important}.padding-bottom-30{padding-bottom:30px !important}.padding-bottom-40{padding-bottom:40px !important}.padding-bottom-50{padding-bottom:50px !important}.no-margin{margin:0 !important}.no-margin-bottom{margin-bottom:0 !important}.no-margin-top{margin-top:0 !important}.no-margin-left{margin-left:0 !important}.no-margin-right{margin-right:0 !important}.margin-5{margin:5px !important}.margin-10{margin:10px !important}.margin-20{margin:20px !important}.margin-30{margin:30px !important}.margin-40{margin:40px !important}.margin-50{margin:50px !important}.margin-left-5{margin-left:5px !important}.margin-left-10{margin-left:10px !important}.margin-left-20{margin-left:20px !important}.margin-left-30{margin-left:30px !important}.margin-left-40{margin-left:40px !important}.margin-left-50{margin-left:50px !important}.margin-top-5{margin-top:5px !important}.margin-top-10{margin-top:10px !important}.margin-top-20{margin-top:20px !important}.margin-top-30{margin-top:30px !important}.margin-top-40{margin-top:40px !important}.margin-top-50{margin-top:50px !important}.margin-right-5{margin-right:5px !important}.margin-right-10{margin-right:10px !important}.margin-right-20{margin-right:20px !important}.margin-right-30{margin-right:30px !important}.margin-right-40{margin-right:40px !important}.margin-right-50{margin-right:50px !important}.margin-bottom-5{margin-bottom:5px !important}.margin-bottom-10{margin-bottom:10px !important}.margin-bottom-20{margin-bottom:20px !important}.margin-bottom-30{margin-bottom:30px !important}.margin-bottom-40{margin-bottom:40px !important}.margin-bottom-50{margin-bottom:50px !important}.height-all{height: 100% !important;}.no-border-radius{border-radius: 0 !important;}.clear-both{clear: both !important;}.width-all{width: 100% !important;}.no-border{border: 0 !important;}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #000 !important;
+}
+
+.border-default {
+    border-color: #333;
+}
+
+.border-dashed {
+    border-style: dashed;
+}
+
+.border-bottom {
+    border-bottom: 1px;
+}
+
+.page-header{
+    position: relative;
+    padding-bottom: 0px !important;
+    margin: 20px 0 !important;
+    border-bottom: 3px solid #eee !important;
+}
+
+.page-header::before {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    height: 3px;
+    left: 0;
+    width: 200px;
+    z-index: 1;
+}
+
+.page-header::before {
+    background-color: #ffbc09;
+}
+
+.breadcrumb {
+    background-color: transparent !important;
+    padding: 8px 0 !important;
+    margin-bottom: 0 !important;
+    color: #999;
+}
+
+.breadcrumb a {
+    color: #fff;
+}
+
+.content {
+    background: #fff;
+    padding: 20px;
+}
+
+.content.container-fluid {
+    margin: 0;
+}
+
+blockquote {
+    position: relative;
+    width: 80%;
+    margin: 25px auto !important;
+    background: url(blockquoteIcon.jpg)no-repeat center 15px;
+    padding: 70px 0 10px 0 !important;
+    text-align: center;
+    border-top: 4px solid;
+    border-bottom: 4px solid;
+    border-left: 0px solid !important;
+    border-color: #eee;
+}
+
+blockquote::after, blockquote::before {
+    position: absolute;
+    width:26%;
+    height: 4px;
+    background: #ffbc09;
+}
+
+blockquote::before {
+    top: -4px;
+}
+
+blockquote::after {
+    bottom: -4px;
+}
+
+blockquote::after, blockquote::before {
+    left: 37%;
+}
+
+/* Header menu */
+.header-menu a {
+    font-size: 83%;
+    font-weight: bold;
+    color: #999;
+    border-bottom: 2px solid transparent;
+    background: transparent !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.header-menu a:hover {
+    color: #ffbc09;
+    border-color: #ffbc09;
+}
+
+.header-menu > li {
+    position: relative;
+}
+
+.header-menu > li > ul {
+    display: none;
+    position: absolute;
+    top: 36px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
+    list-style: none;
+    text-align: center;
+    background: #ffbc09;
+    z-index: 999;
+}
+
+.header-menu > li:hover > ul {
+    display: block;
+}
+
+.header-menu > li > ul a:hover, .header-menu > li > ul a {
+    color: #000;
+    line-height: 30px;
+}
+/* End header menu */
+
+/* Journal */
+.journal-article-list .journal-article__header a{
+    color: #000;
+}
+
+.journal-article-list .left .journal-content, .journal-article-list .right .journal-image {
+    float: left;
+}
+
+.journal-article-list .right .journal-content, .journal-article-list .left .journal-image {
+    float: right;
+}
+
+.journal-group-block {
+    position: relative;
+}
+
+.journal-group-block .journal-group__header, .journal-group-list .journal-group__header {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.62);
+    padding: 10px 0;
+}
+
+.journal-group-list .journal-group__header a, .journal-group-block .journal-group__header {
+    color: #fff;
+}
+
+.journal-group-list .journal-group__image, .journal-group-block .journal-group__image {
+    width: 100%;
+}
+/* End journal */
+
+/* Footer */
+.footer, .footer a {
+    color: #7b7b7b;
+}
+
+.footer a {
+    font-weight:bold;
+}

@@ -34,7 +34,7 @@ class Item extends \yii\db\ActiveRecord
         return [
             ['value', 'required'],
             [['list_id'], 'integer'],
-            ['value', 'unique'],
+            ['value', 'unique', 'targetAttribute' => ['value', 'list_id']],
             [['value'], 'string', 'max' => 255],
         ];
     }

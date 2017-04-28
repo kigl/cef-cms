@@ -86,6 +86,10 @@ class Menu extends \yii\base\Widget
             return null;
         }
 
+        if (substr($url, '0', '1') === '#') {
+            return $url;
+        }
+
         if (substr($url, '0', '7') === 'http://') {
             return $url;
         }

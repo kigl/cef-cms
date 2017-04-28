@@ -58,20 +58,17 @@ class ActionFile extends Behavior
 
     public function beforeSave()
     {
+        if (Yii::$app->request->Post($this->getDeleteKey())) {
+            $this->deleteFile();
+            $this->setOwnerAttribute(null);
+        }
+
         if ($this->uploadFile($this->getPath())) {
             if (!$this->owner->isNewRecord) {
                 $this->deleteFile();
             }
         } elseif (!$this->owner->isNewRecord) {
             $this->setOwnerAttribute($this->getOldAttribute());
-        }
-
-        /**
-         * @todo
-         */
-        if (Yii::$app->request->Post($this->getDeleteKey())) {
-            $this->deleteFile();
-            $this->setOwnerAttribute(null);
         }
     }
 

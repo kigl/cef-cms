@@ -2,6 +2,7 @@
 
 namespace app\core\traits;
 
+
 use Yii;
 use yii\caching\DbDependency;
 use yii\helpers\ArrayHelper;
@@ -14,10 +15,10 @@ trait Breadcrumbs
      *      'id' => 12,
      *      'modelClass' => 'ModelClass',
      *      'enableRoot' => true,
-     *           'urlOptions' => [
-     *           'route' => 'controller/action',
-     *           'params' => [param_id, 'par_id'],
-     *           'queryParams' => [
+     *      'urlOptions' => [
+     *          'route' => 'controller/action',
+     *          'params' => [param_id, 'par_id'],
+     *          'queryParams' => [
      *              'query' => 'views',
      *              ],
      *          ],
@@ -28,7 +29,6 @@ trait Breadcrumbs
     public function buildBreadcrumbs(array $params)
     {
         $groupItem = [];
-        //$items = [];
 
         if (array_key_exists('items', $params)) {
             $groupItem = $this->getLinkItems($params['items']);
@@ -41,7 +41,8 @@ trait Breadcrumbs
     {
         $data = $this->getDbData($params['modelClass']);
         $breadcrumbs = $this->groupsDataRecursive($params['id'], $data);
-        sort($breadcrumbs);
+
+        krsort($breadcrumbs);
 
         $result = [];
         foreach ($breadcrumbs as $key => $model) {
@@ -92,7 +93,7 @@ trait Breadcrumbs
         return $result;
     }
 
-    public function groupsDataRecursive($id, &$data)
+    protected function groupsDataRecursive($id, &$data)
     {
         $result = [];
         foreach ($data as $item) {
@@ -107,22 +108,18 @@ trait Breadcrumbs
         return $result;
     }
 
-    public function getDbData($modelClass)
+    protected function getDbData($modelClass)
     {
         $cacheKey = $modelClass;
-
+        $duration = 3600 * 24 * 12;
         $dependency = new DbDependency([
             'sql' => 'SELECT MAX([[update_time]]) FROM ' . $modelClass::tableName(),
         ]);
 
-        if (!$data = \Yii::$app->cache->get($cacheKey)) {
-            $data = $modelClass::find()
+        return Yii::$app->cache->getOrSet($cacheKey, function () use ($modelClass){
+            return $modelClass::find()
                 ->asArray()
                 ->all();
-
-            Yii::$app->cache->set($cacheKey, $data, 3600 * 24 * 12, $dependency);
-        }
-
-        return $data;
+        }, $duration, $dependency);
     }
 }

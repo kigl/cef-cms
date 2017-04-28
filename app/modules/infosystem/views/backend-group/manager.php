@@ -10,9 +10,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
 ?>
 
 <?= GridView::widget([
-    //'filterModel' => $data['searchModel'],
     'dataProvider' => $data['dataProvider'],
-    'dataProviderGroup' => $data['groupDataProvider'],
     'checkboxColumn' => true,
     'buttons' => [
         'create' => [
@@ -40,64 +38,48 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
             ],
         ],
     ],
-    'columnsGroup' => [
+    'columns' => [
         [
             'attribute' => 'name',
+            'label' => Yii::t('app', 'Name'),
             'format' => 'raw',
             'value' => function ($data) {
-                return Html::a($data->name,
-                    ['manager', 'id' => $data->id, 'infosystem_id' => $data->infosystem_id]);
+                return array_key_exists('group_id', $data) ?
+                    $data['name'] :
+                    Html::a($data['name'], ['manager', 'infosystem_id' => $data['infosystem_id'], 'id' => $data['id']]);
             }
         ],
-        'id',
         [
-            'headerOptions' => ['style' => 'width: 70px'],
-            'class' => 'yii\grid\ActionColumn',
-            'template' => "{update} {delete}",
-            'buttons' => [
-                'update' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
-                            'update',
-                            'id' => $model->id
-                        ]
-                    );
-                },
-                'delete' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
-                        'delete',
-                        'id' => $model->id
-                    ],
-                        ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'question on delete file')]
-                    );
-                }
-            ],
-        ]
-    ],
-
-    'columns' => [
-        'name',
-        'id',
+            'attribute' => 'date',
+            'label' => Yii::t('app', 'Date'),
+            'format' => 'date',
+        ],
+        [
+            'attribute' => 'sorting',
+            'label' => Yii::t('app', 'Sorting'),
+            'format' => 'raw',
+            'value' => function ($data) {
+                return \kartik\editable\Editable::widget([
+                    'name' => 'Item[sorting]',
+                    'value' => $data['sorting'],
+                    'formOptions' => ['action' => ['backend-item/edit-sorting', 'id' => $data['id']]],
+                ]);
+            }
+        ],
+        [
+            'attribute' => 'id',
+            'label' => Yii::t('app', 'ID'),
+        ],
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',
             'template' => '{update} {delete}',
-            'buttons' => [
-                'update' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
-                            'backend-item/update',
-                            'id' => $model->id
-                        ]
-                    );
-                },
-                'delete' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
-                        'backend-item/delete',
-                        'id' => $model->id
-                    ],
-                        ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'Question on delete file')]
-                    );
-                }
-            ],
+            'controller' => 'loop',
+            'urlCreator' => function ($action, $model, $key, $index) {
+                return array_key_exists('group_id', $model) ?
+                    Url::to(["backend-item/{$action}", 'id' => $model['id']]) :
+                    Url::to(["{$action}", 'id' => $model['id']]);
+            }
         ]
     ],
 ]); ?>

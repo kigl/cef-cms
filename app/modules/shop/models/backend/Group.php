@@ -29,6 +29,7 @@ class Group extends \app\modules\shop\models\Group
     {
         return ArrayHelper::merge(parent::rules(), [
             [['image_1', 'image_2'], 'image', 'extensions' => ['jpg']],
+            ['parent_id', 'compare', 'compareAttribute' => 'id', 'operator' => '!='],
         ]);
     }
 

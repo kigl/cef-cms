@@ -65,8 +65,8 @@ class Image extends ActiveRecord
         return [
             [
                 'class' => ActionImage::className(),
-                'path' => '@webroot/public/upload/shop',
-                'pathUrl' => '@web/public/upload/shop',
+                'path' => '@webroot/public/uploads/shop/product',
+                'pathUrl' => '@web/public/uploads/shop/product',
                 'attribute' => 'name',
             ],
         ];

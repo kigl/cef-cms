@@ -12,6 +12,7 @@ return [
 
     'Edit page: {data}' => 'Редактировние страницы: {data}',
 
+    'Template' => 'Шаблон (название файла)',
     'Toolbar pages' => 'Страницы',
     'Tab dynamic data' => 'Динамические данные',
 ];
