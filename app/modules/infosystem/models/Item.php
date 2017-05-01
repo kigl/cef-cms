@@ -16,8 +16,10 @@ use app\modules\user\models\User;
  * @property string $content
  * @property string $image_1
  * @property string $image_2
+ * @property string $file
  * @property integer $status
  * @property integer $sorting
+ * @property integer $counter
  * @property integer $user_id
  * @property integer $date
  * @property integer $date_start
@@ -53,6 +55,7 @@ class Item extends \app\core\db\ActiveRecord
             [['group_id', 'status', 'sorting', 'user_id'], 'integer'],
             [['description', 'content', 'date', 'date_start', 'date_end'], 'string'],
             [['name', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+            ['file', 'file'],
         ];
     }
 
@@ -66,14 +69,14 @@ class Item extends \app\core\db\ActiveRecord
             'group_id' => Yii::t('infosystem', 'Group id'),
             'infosystem_id' => Yii::t('infosystem', 'Infosystem id'),
             'name' => Yii::t('app', 'Name'),
-            'tag_list' => Yii::t('infosystem', 'Tags'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
             'image_1' => Yii::t('app', 'Image'),
             'image_2' => Yii::t('app', 'Image'),
-            'editorTag' => Yii::t('infosystem', 'Editor tag'),
+            'file' => Yii::t('app', 'File'),
             'status' => Yii::t('app', 'Status'),
             'sorting' => Yii::t('app', 'Sorting'),
+            'counter' => Yii::t('infosystem', 'Counter'),
             'user_id' => Yii::t('app', 'User id'),
             'date' => Yii::t('app', 'Date'),
             'date_start' => Yii::t('app', 'Date start'),
@@ -92,14 +95,20 @@ class Item extends \app\core\db\ActiveRecord
             'imagePreview' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
                 'attribute' => 'image_1',
-                'path' => '@webroot/public/uploads/infosystem',
-                'pathUrl' => '@web/public/uploads/infosystem',
+                'path' => '@webroot/public/uploads/infosystem/images',
+                'pathUrl' => '@web/public/uploads/infosystem/images',
             ],
             'imageContent' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
                 'attribute' => 'image_2',
-                'path' => '@webroot/public/uploads/infosystem',
-                'pathUrl' => '@web/public/uploads/infosystem',
+                'path' => '@webroot/public/uploads/infosystem/images',
+                'pathUrl' => '@web/public/uploads/infosystem/images',
+            ],
+            'file' => [
+                'class' => 'app\core\behaviors\file\ActionFile',
+                'attribute' => 'file',
+                'path' => '@webroot/public/uploads/infosystem/files',
+                'pathUrl' => '@web/public/uploads/infosystem/files',
             ],
         ];
     }

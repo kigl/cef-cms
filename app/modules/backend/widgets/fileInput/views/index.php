@@ -1,5 +1,4 @@
 <?php
-use yii\helpers\Html;
 use kartik\file\FileInput;
 
 ?>
@@ -14,11 +13,13 @@ use kartik\file\FileInput;
                     </label>
                 </div>
             </div>
-            <?= Html::a(
-                Html::img($model->getBehavior($widget->behaviorName)->getFileUrl(), ['style' => 'width: 200px']),
-                $model->getBehavior($widget->behaviorName)->getFileUrl(),
-                ['target' => '_blanck']
-            ); ?>
+            <a href="<?= $model->getBehavior($widget->behaviorName)->getFileUrl(); ?>">
+                <?php if (getimagesize($model->getBehavior($widget->behaviorName)->getFilePath())) : ?>
+                    <img src="<?= $model->getBehavior($widget->behaviorName)->getFileUrl() ?>" style="width: 200px">
+                <?php else : ?>
+                    <?= $model->getBehavior($widget->behaviorName)->getOwnerAttribute(); ?>
+                <?php endif; ?>
+            </a>
         </div>
     </div>
     <br/>

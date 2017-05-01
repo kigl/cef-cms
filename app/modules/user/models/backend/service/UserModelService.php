@@ -16,9 +16,8 @@ use app\modules\user\components\RbacService;
 use app\modules\user\models\backend\User;
 use app\modules\user\models\backend\Property;
 use app\modules\user\models\backend\PropertyRelation;
-use app\modules\user\models\forms\frontend\LoginForm;
+use app\modules\user\models\backend\forms\LoginForm;
 use app\modules\user\models\UserIdentity;
-use yii\web\HttpException;
 
 class UserModelService extends ModelService
 {

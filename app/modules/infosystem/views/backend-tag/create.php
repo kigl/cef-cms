@@ -1,5 +1,5 @@
 <?php
-use app\modules\tag\Module;
+use app\modules\infosystem\Module;
 
 $this->setTitle(Module::t('Create tag'));
 $this->setPageHeader(Module::t('Create tag'));

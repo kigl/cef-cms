@@ -1,6 +1,6 @@
 <?php
 use app\modules\backend\widgets\ActiveForm;
-use app\modules\backend\widgets\actionImage\Widget as ActionImage;
+use app\modules\backend\widgets\fileInput\Widget as ActionImage;
 
 ?>
     <ul class="nav nav-tabs">

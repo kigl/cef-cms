@@ -47,6 +47,9 @@ abstract class ModelService extends Component implements ModelServiceInterface
     {
         if (isset($value)) {
             if (isset($this->data[$key][$value])) {
+                if ($this->data[$key][$value] === '') {
+                    return null;
+                }
                 return $this->data[$key][$value];
             } else {
                 return null;

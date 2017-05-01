@@ -76,6 +76,8 @@ class ActionFile extends Behavior
     {
         $instance = $this->getUploadedFileInstance();
         if ($instance instanceof UploadedFile) {
+
+            $path = $path . DIRECTORY_SEPARATOR . $this->getNameDir($this->getName());
             if (!is_dir($path)) {
                 mkdir($path, 0777, true);
             }
@@ -93,10 +95,9 @@ class ActionFile extends Behavior
 
     public function deleteFile()
     {
-        $pathFile = $this->getPath() . DIRECTORY_SEPARATOR . $this->getOldAttribute();
-
-        if (is_file($pathFile)) {
-            @unlink($pathFile);
+        $file = $this->getFilePath();
+        if (is_file($file)) {
+            @unlink($file);
         }
     }
 
@@ -112,12 +113,16 @@ class ActionFile extends Behavior
 
     public function getFileUrl()
     {
-        return $this->getPathUrl() . '/' . $this->getOldAttribute();
+        $attribute = $this->getOldAttribute();
+
+        return $this->getPathUrl() . '/' . $this->getNameDir($attribute) . '/' . $attribute;
     }
 
-    protected function getFilePath()
+    public function getFilePath()
     {
-        return $this->getPath() . DIRECTORY_SEPARATOR . $this->getOldAttribute();
+        $attribute = $this->getOldAttribute();
+
+        return $this->getPath() . DIRECTORY_SEPARATOR . $this->getNameDir($attribute) . DIRECTORY_SEPARATOR . $attribute;
     }
 
     protected function getOldAttribute()
@@ -125,7 +130,7 @@ class ActionFile extends Behavior
         return (isset($this->owner->oldAttributes[$this->attribute])) ? $this->owner->oldAttributes[$this->attribute] : '';
     }
 
-    protected function getOwnerAttribute()
+    public function getOwnerAttribute()
     {
         return $this->owner->{$this->attribute};
     }
@@ -147,6 +152,11 @@ class ActionFile extends Behavior
         }
 
         return $this->uploadedFileInstance;
+    }
+
+    protected function getNameDir($string = '', $length =1)
+    {
+        return substr($string, 0, $length);
     }
 
     public function fileExist()

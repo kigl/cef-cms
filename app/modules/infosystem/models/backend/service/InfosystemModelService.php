@@ -12,7 +12,6 @@ namespace app\modules\infosystem\models\backend\service;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\HttpException;
-use app\core\service\ModelService;
 use app\modules\infosystem\models\backend\Group;
 use app\modules\infosystem\models\backend\Item;
 use app\modules\infosystem\models\backend\Infosystem;

@@ -1,7 +1,6 @@
 <?php
-use yii\helpers\Url;
 use yii\helpers\Html;
-use app\modules\tag\Module;
+use app\modules\infosystem\Module;
 use app\modules\backend\widgets\grid\GridView;
 
 $this->setTitle(Module::t('Tags'));
@@ -24,7 +23,6 @@ $this->params['breadcrumbs'][] = ['label' => Module::t('Tags')];
     ],
     'checkboxColumn' => true,
     'dataProvider' => $data['dataProvider'],
-    //'filterModel' => $data['searchModel'],
     'columns' => [
         'id',
         'name',

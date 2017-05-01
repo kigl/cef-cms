@@ -1,6 +1,6 @@
 <?
 use app\modules\backend\widgets\ActiveForm;
-use app\modules\backend\widgets\actionImage\Widget as WidgetActionImage;
+use app\modules\backend\widgets\fileInput\Widget as WidgetActionImage;
 use app\modules\shop\widgets\backend\DropDownListAllGroup;
 use yii\bootstrap\Collapse;
 

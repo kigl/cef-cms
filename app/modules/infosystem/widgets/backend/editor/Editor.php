@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\tag\widgets\backend\editor;
+namespace app\modules\infosystem\widgets\backend\editor;
 
 
 use yii\widgets\InputWidget;

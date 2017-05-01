@@ -44,6 +44,7 @@ class Item extends \app\modules\infosystem\models\Item
             [['image_1', 'image_2'], 'file', 'extensions' => ['jpg', 'png', 'gif']],
             ['listTags', 'safe'],
             ['sorting', 'default', 'value' => 500],
+            ['status', 'default', 'value' => 1],
         ]);
     }
 
@@ -55,10 +56,6 @@ class Item extends \app\modules\infosystem\models\Item
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-            /*[
-                'class' => TagBehavior::className(),
-                'relativeModelClass' => ItemTag::class,
-            ],*/
             'convertDate' => [
                 'class' => 'app\core\behaviors\ConvertDate',
                 'attribute' => 'date',
@@ -107,7 +104,8 @@ class Item extends \app\modules\infosystem\models\Item
 
     public function setListTags($tags)
     {
-        $this->_runtimeTags = explode(',', $tags);
+        $this->_runtimeTags = empty($tags) ? [] : explode(',', $tags);
+
     }
 
     public function getListTags()

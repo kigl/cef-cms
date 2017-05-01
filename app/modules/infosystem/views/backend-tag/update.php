@@ -1,5 +1,5 @@
 <?php
-use app\modules\tag\Module;
+use app\modules\infosystem\Module;
 
 $this->setTitle(Module::t('Edit tag: {data}', ['data' => $data['model']->name]));
 $this->setPageHeader(Module::t('Edit tag: {data}', ['data' => $data['model']->name]));

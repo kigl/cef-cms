@@ -2,7 +2,7 @@
 use yii\bootstrap\Collapse;
 use app\modules\backend\widgets\ActiveForm;
 use vova07\imperavi\Widget;
-use app\modules\backend\widgets\actionImage\Widget as WidgetActionImage;
+use app\modules\backend\widgets\fileInput\Widget as WidgetActionImage;
 use app\modules\infosystem\widgets\backend\DropDownListAllGroup;
 
 $this->params['breadcrumbs'] = $data['breadcrumbs'];

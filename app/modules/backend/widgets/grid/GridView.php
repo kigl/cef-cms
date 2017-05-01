@@ -14,8 +14,6 @@ class GridView extends \kartik\grid\GridView
     const TYPE_GROUP = 'group';
     const TYPE_ITEM = 'item';
 
-    public $columnsGroup;
-
     public $buttons = [];
 
     public $buttonOptions = [];

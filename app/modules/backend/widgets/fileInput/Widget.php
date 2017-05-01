@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\backend\widgets\actionImage;
+namespace app\modules\backend\widgets\fileInput;
 
 class Widget extends \yii\bootstrap\Widget
 {

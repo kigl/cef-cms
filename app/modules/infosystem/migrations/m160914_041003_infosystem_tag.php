@@ -5,9 +5,9 @@ use yii\db\Migration;
 /**
  * Handles the creation for table `tag`.
  */
-class m160914_041003_tag extends Migration
+class m160914_041003_infosystem_tag extends Migration
 {
-    public $tableName = '{{%tag}}';
+    public $tableName = '{{%infosystem_tag}}';
 
     /**
      * @inheritdoc

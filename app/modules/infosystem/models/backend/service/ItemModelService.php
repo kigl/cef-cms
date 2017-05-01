@@ -9,20 +9,19 @@
 namespace app\modules\infosystem\models\backend\service;
 
 
+use Yii;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
-use app\modules\infosystem\Module;
-use app\core\service\ModelService;
-use app\core\traits\Breadcrumbs;
+use yii\web\HttpException;
 use app\modules\infosystem\models\backend\Item;
 use app\modules\infosystem\models\backend\ItemProperty;
 use app\modules\infosystem\models\backend\Property;
 use app\modules\infosystem\models\backend\Infosystem;
+use app\modules\infosystem\models\backend\Tag;
+use app\modules\infosystem\models\ItemTag;
 
 class ItemModelService extends ModelService
 {
-    use Breadcrumbs;
-
     protected $itemProperties;
 
     protected $properties;
@@ -47,7 +46,7 @@ class ItemModelService extends ModelService
             'model' => $this->model,
             'itemProperties' => $this->itemProperties,
             'properties' => $this->properties,
-            'breadcrumbs' => $this->getBreadcrumbs($infosystem, $this->model->group_id),
+            'breadcrumbs' => $this->getItemsBreadcrumb($infosystem, $this->model->group_id),
         ]);
 
         return $this->save();
@@ -70,7 +69,7 @@ class ItemModelService extends ModelService
             'model' => $this->model,
             'itemProperties' => $this->itemProperties,
             'properties' => $this->properties,
-            'breadcrumbs' => $this->getBreadcrumbs($this->model->infosystem, $this->model->group_id,
+            'breadcrumbs' => $this->getItemsBreadcrumb($this->model->infosystem, $this->model->group_id,
                 $this->model->name),
         ]);
 
@@ -165,9 +164,18 @@ class ItemModelService extends ModelService
     protected function save($validate = true)
     {
         if ($this->load() && $this->validate($validate)) {
-            $this->saveTags();
-            $this->model->save();
-            $this->saveItemProperties();
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                $this->model->save();
+                $this->saveTags();
+                $this->saveItemProperties();
+
+                $transaction->commit();
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+
+                throw $e;
+            }
 
             return true;
         }
@@ -179,13 +187,43 @@ class ItemModelService extends ModelService
     {
         $tagsOnSave = $this->model->getRuntimeTags();
 
-        $oldTags = ArrayHelper::getColumn($this->model->tags, 'name');
+        $allTags = Tag::find()
+            ->select(['id', 'name'])
+            ->indexBy('name')
+            ->asArray()
+            ->all();
 
-        $newTags = array_diff($tagsOnSave, $oldTags);
+        $itemTags = ArrayHelper::map($this->model->tags, 'id', 'name');
 
-        $removeTags = array_diff($oldTags, $tagsOnSave);
+        $newItemTags = array_diff($tagsOnSave, $itemTags);
 
+        if ($newItemTags) {
 
+            $itemTag = [];
+            foreach ($newItemTags as $tagName) {
+                if (!isset($allTags[$tagName])) {
+                    $tag = new Tag([
+                        'name' => (string)$tagName,
+                    ]);
+                    $tag->save(false);
+
+                    $itemTag[] = [$this->model->id, $tag->id];
+                } else {
+                    $itemTag[] = [$this->model->id, $allTags[$tagName]['id']];
+                }
+            }
+
+            Yii::$app->db->createCommand()
+                ->batchInsert(ItemTag::tableName(), ['item_id', 'tag_id'], $itemTag)
+                ->execute();
+        }
+
+        $removeTags = array_flip(array_diff($itemTags, $tagsOnSave));
+
+        if ($removeTags) {
+            Yii::$app->db->createCommand()->delete(ItemTag::tableName(), ['tag_id' => $removeTags])
+                ->execute();
+        }
     }
 
     protected function saveItemProperties()
@@ -218,31 +256,5 @@ class ItemModelService extends ModelService
         }
 
         $properties = $tmp2;
-    }
-
-    protected function getBreadcrumbs($infosystem, $groupId, $currentItemName = null)
-    {
-        $breadcrumbs = $this->buildBreadcrumbs([
-            'items' => [
-                'id' => $groupId,
-                'modelClass' => \app\modules\infosystem\models\Group::className(),
-                'urlOptions' => [
-                    'route' => 'backend-group/manager',
-                    'params' => ['id', 'infosystem_id'],
-                ],
-            ],
-        ]);
-
-        array_unshift(
-            $breadcrumbs,
-            ['label' => Module::t('Infosystems'), 'url' => ['backend-infosystem/manager']],
-            ['label' => $infosystem->name, 'url' => ['backend-group/manager', 'infosystem_id' => $infosystem->id]]
-        );
-
-        if ($currentItemName) {
-            array_push($breadcrumbs, ['label' => $currentItemName]);
-        }
-
-        return $breadcrumbs;
     }
 }

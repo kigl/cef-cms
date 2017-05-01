@@ -9,19 +9,14 @@
 namespace app\modules\infosystem\models\backend\service;
 
 
-use app\modules\infosystem\models\Item;
 use yii\data\ArrayDataProvider;
 use yii\web\HttpException;
-use app\modules\infosystem\Module;
-use app\core\traits\Breadcrumbs;
-use app\core\service\ModelService;
+use app\modules\infosystem\models\Item;
 use app\modules\infosystem\models\backend\Infosystem;
 use app\modules\infosystem\models\backend\Group;
 
 class GroupModelService extends ModelService
 {
-    use Breadcrumbs;
-
     public function actionManager()
     {
         $infosystem = Infosystem::findOne($this->getData('get', 'infosystem_id'));
@@ -46,21 +41,21 @@ class GroupModelService extends ModelService
         $this->setData([
             'dataProvider' => $dataProvider,
             'infosystem' => $infosystem,
-            'breadcrumbs' => $this->buildGroupBreadcrumbs($infosystem, $this->getData('get', 'id')),
+            'breadcrumbs' => $this->getItemsBreadcrumb($infosystem, $this->getData('get', 'id')),
             'id' => $this->getData('get', 'id'),
         ]);
     }
 
     public function actionCreate()
     {
-        $model = new Group;
-        $model->parent_id = $this->getData('get', 'parent_id');
-        $model->infosystem_id = $this->getData('get', 'infosystem_id');
-        $infosystem = Infosystem::findOne($this->getData('get', 'infosystem_id'));
+        $model = new Group([
+            'parent_id' => $this->getData('get', 'parent_id'),
+            'infosystem_id' => $this->getData('get', 'infosystem_id'),
+        ]);
 
         $this->setData([
             'model' => $model,
-            'breadcrumbs' => $this->buildGroupBreadcrumbs($infosystem, $model->parent_id),
+            'breadcrumbs' => $this->getItemsBreadcrumb($model->infosystem, $model->parent_id),
         ]);
 
         if ($model->load($this->getData('post')) && $model->save()) {
@@ -84,7 +79,7 @@ class GroupModelService extends ModelService
 
         $this->setData([
             'model' => $model,
-            'breadcrumbs' => $this->buildGroupBreadcrumbs($model->infosystem, $model->id, $model->name),
+            'breadcrumbs' => $this->getItemsBreadcrumb($model->infosystem, $model->id, $model->name),
         ]);
 
         if ($model->load($this->getData('post')) && $model->save()) {
@@ -124,27 +119,5 @@ class GroupModelService extends ModelService
         }
 
         return false;
-    }
-
-    protected function buildGroupBreadcrumbs(Infosystem $infosystem, $groupId, $currentItemName = null)
-    {
-        $breadcrumbs = $this->buildBreadcrumbs([
-            'items' => [
-                'id' => $groupId,
-                'modelClass' => \app\modules\infosystem\models\Group::className(),
-                'urlOptions' => [
-                    'route' => 'backend-group/manager',
-                    'params' => ['id', 'infosystem_id'],
-                ],
-            ],
-        ]);
-
-        array_unshift(
-            $breadcrumbs,
-            ['label' => Module::t('Infosystems'), 'url' => ['backend-infosystem/manager']],
-            ['label' => $infosystem->name, 'url' => ['backend-group/manager', 'infosystem_id' => $infosystem->id]]
-        );
-
-        return $breadcrumbs;
     }
 }

@@ -4,9 +4,10 @@ use yii\jui\DatePicker;
 use yii\helpers\Url;
 use vova07\imperavi\Widget;
 use app\modules\backend\widgets\ActiveForm;
-use app\modules\backend\widgets\actionImage\Widget as ActionImage;
-use app\modules\tag\widgets\backend\editor\Editor as TagEditor;
+use app\modules\backend\widgets\fileInput\Widget as ActionImage;
+use app\modules\infosystem\widgets\backend\editor\Editor as TagEditor;
 use app\modules\infosystem\widgets\backend\DropDownListAllGroup;
+use app\modules\infosystem\Module;
 
 ?>
 
@@ -14,7 +15,9 @@ use app\modules\infosystem\widgets\backend\DropDownListAllGroup;
         <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
         <li><a href="#description" data-toggle="tab"><?= Yii::t('app', 'Tab description'); ?></a></li>
         <li><a href="#content" data-toggle="tab"><?= Yii::t('app', 'Tab content'); ?></a></li>
-        <li><a href="#properties" data-toggle="tab"><?= Yii::t('app', 'Tab properties'); ?></a></li>
+        <?php if ($data['itemProperties']) : ?>
+            <li><a href="#properties" data-toggle="tab"><?= Yii::t('app', 'Tab properties'); ?></a></li>
+        <?php endif; ?>
         <li><a href="#seo" data-toggle="tab"><?= Yii::t('app', 'Tab SEO'); ?></a></li>
         <li><a href="#other" data-toggle="tab"><?= Yii::t('app', 'Tab other'); ?></a></li>
     </ul>
@@ -78,9 +81,16 @@ use app\modules\infosystem\widgets\backend\DropDownListAllGroup;
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <?= $form->field($data['model'], 'listTags')->widget(TagEditor::className()); ?>
+                    <?= $form->field($data['model'], 'listTags')
+                        ->widget(TagEditor::className())
+                        ->label(Module::t('Tags')); ?>
                 </div>
             </div>
+
+            <?= $form->field($data['model'], 'file')
+                ->widget(ActionImage::className(), [
+                    'behaviorName' => 'file',
+                ]); ?>
         </div>
 
         <div class="tab-pane" id="description">
@@ -120,7 +130,6 @@ use app\modules\infosystem\widgets\backend\DropDownListAllGroup;
                     'imageUpload' => Url::to(['image-upload']),
                     'plugins' => [
                         'imagemanager',
-                        'fullscreen',
                     ]
                 ]
             ]); ?>
@@ -147,6 +156,7 @@ use app\modules\infosystem\widgets\backend\DropDownListAllGroup;
                 'model' => $data['model'],
                 'attributes' => [
                     'id',
+                    'counter',
                     'user_id'
                 ],
             ]); ?>

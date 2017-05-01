@@ -13,6 +13,7 @@ return [
     'Create group' => 'Создание группы',
     'Create item' => 'Создание элемента',
     'Create property' => 'Создание свойства',
+    'Counter' => 'Количество просмотров',
 
     'Edit infosystem: {data}' => 'Редактирование инфосистемы: {data}',
     'Edit group: {data}' => 'Редактирование группы: {data}',
@@ -31,6 +32,5 @@ return [
     'Group and item' => 'Группы и элементы',
 
     'Toolbar infosystems' => 'Инфосистемы',
-
-    'Editor tag' => 'Теги',
+    'Tags' => 'Метки',
 ];
