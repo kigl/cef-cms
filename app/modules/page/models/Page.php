@@ -13,6 +13,7 @@ use app\core\components\sitemap\SitemapModelInterface;
  * @property integer $id
  * @property string $name
  * @property string $content
+ * @property integer $indexing
  * @property string $template
  * @property string $alias
  * @property string $meta_title
@@ -22,7 +23,11 @@ use app\core\components\sitemap\SitemapModelInterface;
  */
 class Page extends \app\core\db\ActiveRecord implements SitemapModelInterface
 {
+    const INDEXING_YES = 1;
+    const INDEXING_NO = 0;
+
     protected $dynamicData;
+
     /**
      * @inheritdoc
      */
@@ -38,6 +43,7 @@ class Page extends \app\core\db\ActiveRecord implements SitemapModelInterface
     {
         return [
             [['name'], 'required'],
+            ['indexing', 'integer'],
             [['content', 'dynamicData'], 'string'],
             [['name', 'template', 'alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],
         ];
@@ -52,6 +58,7 @@ class Page extends \app\core\db\ActiveRecord implements SitemapModelInterface
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
             'content' => Yii::t('app', 'Content'),
+            'indexing' => Yii::t('app', 'Indexing'),
             'template' => Yii::t('page', 'Template'),
             'dynamicData' => Yii::t('page', 'Dynamic data'),
             'alias' => Yii::t('app', 'Alias'),
@@ -65,12 +72,13 @@ class Page extends \app\core\db\ActiveRecord implements SitemapModelInterface
     public function getModelItems()
     {
         return self::find()
+            ->where(['indexing' => self::INDEXING_YES])
             ->all();
     }
 
     public function getModelItemUrl()
     {
-        return Url::to(['/page/default/view', 'id' => $this->id]);
+        return Url::to(['/page/default/view', 'id' => $this->id], true);
     }
 
     public function getDynamicDataFilePathUrl()

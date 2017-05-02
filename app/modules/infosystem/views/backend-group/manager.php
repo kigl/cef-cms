@@ -11,7 +11,6 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
 
 <?= GridView::widget([
     'dataProvider' => $data['dataProvider'],
-    'checkboxColumn' => true,
     'buttons' => [
         'create' => [
             'group' => [
@@ -39,6 +38,15 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
         ],
     ],
     'columns' => [
+        [
+            'class' => \yii\grid\CheckboxColumn::className(),
+            'checkboxOptions' => function ($data) {
+                return [
+                    'value' => $data['id'],
+                    'group' => array_key_exists('group_id', $data) ? false : true,
+                ];
+            }
+        ],
         [
             'attribute' => 'name',
             'label' => Yii::t('app', 'Name'),

@@ -2,6 +2,7 @@
 use app\modules\form\Module;
 use app\modules\backend\widgets\grid\GridView;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->setTitle(Module::t('Form fields'));
 $this->setPageHeader(Module::t('Form fields'));
@@ -28,43 +29,26 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
             ],
         ],
     ],
-    'dataProviderGroup' => $data['dataProviderGroup'],
     'dataProvider' => $data['dataProvider'],
-    'columnsGroup' => [
+    'columns' => [
         [
             'attribute' => 'name',
-            'format' => 'raw',
-            'value' => function ($model) {
-                return Html::a($model->name, ['manager', 'form_id' => $model->form_id, 'id' => $model->id]);
-            }
-        ],
-        [
-            'attribute' => 'sorting',
+            'label' => Yii::t('app', 'Name'),
             'format' => 'raw',
             'value' => function ($data) {
-                return \kartik\editable\Editable::widget([
-                    'name' => 'Group[sorting]',
-                    'value' => $data->sorting,
-                    'formOptions' => ['action' => ['edit-sorting', 'id' => $data->id]],
-                ]);
-            }
+                return array_key_exists('parent_id', $data) ?
+                    Html::a($data['name'], ['manager', 'id' => $data['id'], 'form_id' => $data['form_id']]) :
+                    $data['name'];
+            },
         ],
-        'id',
-        [
-            'class' => \yii\grid\ActionColumn::className(),
-            'template' => "{update} {delete}",
-        ]
-    ],
-    'columns' => [
-        'name',
         [
             'attribute' => 'sorting',
             'format' => 'raw',
             'value' => function ($data) {
                 return \kartik\editable\Editable::widget([
                     'name' => 'Field[sorting]',
-                    'value' => $data->sorting,
-                    'formOptions' => ['action' => ['backend-field/edit-sorting', 'id' => $data->id]],
+                    'value' => $data['sorting'],
+                    'formOptions' => ['action' => ['backend-field/edit-sorting', 'id' => $data['id']]],
                 ]);
             }
         ],

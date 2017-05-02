@@ -13,6 +13,7 @@ use app\modules\form\models\Field;
 use yii\data\ActiveDataProvider;
 use app\modules\form\models\backend\Form;
 use app\modules\form\models\backend\Group;
+use yii\data\ArrayDataProvider;
 
 class GroupModelService extends Service
 {
@@ -21,22 +22,24 @@ class GroupModelService extends Service
         $formId = $this->getData('get', 'form_id');
         $groupId = $this->getData('get', 'id');
 
-        $dataProviderGroup = new ActiveDataProvider([
-            'query' => Group::find()
-                ->where(['form_id' => $formId])
-                ->andWhere(['parent_id' => $groupId])
-        ]);
+        $group = Group::find()
+            ->where(['form_id' => $formId, 'parent_id' => $groupId])
+            ->asArray()
+            ->all();
 
-        $dataProvider = new ActiveDataProvider([
-            'query' => Field::find()
-                ->where(['form_id' => $formId])
-                ->andWhere(['group_id' => $groupId])
+
+        $items = Field::find()
+            ->where(['form_id' => $formId, 'group_id' => $groupId])
+            ->asArray()
+            ->all();
+
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => array_merge($items, $group),
         ]);
 
         $form = Form::findOne($formId);
 
         $this->setData([
-            'dataProviderGroup' => $dataProviderGroup,
             'dataProvider' => $dataProvider,
             'breadcrumbs' => $this->getItemsBreadcrumb($form, $groupId),
         ]);

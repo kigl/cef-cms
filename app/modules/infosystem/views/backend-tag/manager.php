@@ -9,6 +9,7 @@ $this->params['breadcrumbs'][] = ['label' => Module::t('Tags')];
 ?>
 
 <?= GridView::widget([
+    'dataProvider' => $data['dataProvider'],
     'buttons' => [
         'create' => [
             'item' => [
@@ -21,9 +22,10 @@ $this->params['breadcrumbs'][] = ['label' => Module::t('Tags')];
             ],
         ],
     ],
-    'checkboxColumn' => true,
-    'dataProvider' => $data['dataProvider'],
     'columns' => [
+        [
+            'class' => \yii\grid\CheckboxColumn::className(),
+        ],
         'id',
         'name',
         [

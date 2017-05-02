@@ -4,6 +4,7 @@ namespace app\modules\infosystem\models;
 
 
 use Yii;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "mn_infosystem_group".
@@ -16,6 +17,7 @@ use Yii;
  * @property string $content
  * @property string $image_1
  * @property string $image_2
+ * @property integer $status
  * @property integer $user_id
  * @property string $alias
  * @property string $meta_title
@@ -25,6 +27,10 @@ use Yii;
  */
 class Group extends \app\core\db\ActiveRecord
 {
+
+    const STATUS_BLOCK = 0;
+    const STATUS_ACTIVE = 1;
+
     /**
      * @inheritdoc
      */
@@ -63,6 +69,8 @@ class Group extends \app\core\db\ActiveRecord
             'content' => Yii::t('app', 'Content'),
             'image_1' => Yii::t('app', 'Image'),
             'image_2' => Yii::t('app', 'Image'),
+            'sorting' => Yii::t('app', 'Sorting'),
+            'status' => Yii::t('app', 'Status'),
             'user_id' => Yii::t('app', 'User ID'),
             'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta Title'),
@@ -78,14 +86,14 @@ class Group extends \app\core\db\ActiveRecord
             'imagePreview' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
                 'attribute' => 'image_1',
-                'path' => '@webroot/public/uploads/infosystem',
-                'pathUrl' => '@web/public/uploads/infosystem',
+                'path' => '@webroot/public/uploads/infosystem/images',
+                'pathUrl' => '@web/public/uploads/infosystem/images',
             ],
             'imageContent' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
                 'attribute' => 'image_2',
-                'path' => '@webroot/public/uploads/infosystem',
-                'pathUrl' => '@web/public/uploads/infosystem',
+                'path' => '@webroot/public/uploads/infosystem/images',
+                'pathUrl' => '@web/public/uploads/infosystem/images',
             ],
         ];
     }
@@ -103,5 +111,32 @@ class Group extends \app\core\db\ActiveRecord
     public function getInfosystem()
     {
         return $this->hasOne(Infosystem::className(), ['id' => 'infosystem_id']);
+    }
+
+    public function getStatusList()
+    {
+        return [
+            self::STATUS_ACTIVE => Yii::t('app', 'Status active'),
+            self::STATUS_BLOCK => Yii::t('app', 'Status block'),
+        ];
+    }
+
+    public function getModelItems()
+    {
+        return self::find()
+            ->where(['status' => self::STATUS_ACTIVE])
+            ->joinWith(['infosystem as info'], true, 'LEFT JOIN')
+            ->where(['info.indexing' => Infosystem::INDEXING_YES])
+            ->all();
+    }
+
+    public function getModelItemUrl()
+    {
+        return Url::to([
+            '/infosystem/group/view',
+            'id' => $this->id,
+            'alias' => $this->alias,
+            'infosystem_id' => $this->infosystem_id
+        ], true);
     }
 }

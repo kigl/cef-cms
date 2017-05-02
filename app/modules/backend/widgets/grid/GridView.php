@@ -4,6 +4,7 @@ namespace app\modules\backend\widgets\grid;
 
 
 use Yii;
+use yii\base\Model;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\grid\DataColumn;
@@ -22,8 +23,6 @@ class GridView extends \kartik\grid\GridView
         '{buttons}',
         //'{export}',
     ];
-
-    public $checkboxColumn = false;
 
     public $panelBeforeTemplate = '
         <div class="pull-left">
@@ -48,7 +47,8 @@ class GridView extends \kartik\grid\GridView
 
     public $summaryOptions = ['class' => 'summary pull-right'];
 
-    public function run() {
+    public function run()
+    {
         GridViewAsset::register($this->getView());
 
         parent::run();
@@ -66,13 +66,6 @@ class GridView extends \kartik\grid\GridView
 
     protected function initColumns()
     {
-        if ($this->checkboxColumn) {
-            array_unshift($this->columns, [
-                'class' => CheckboxItemColumn::className(),
-                'headerOptions' => ['style' => 'width: 50px'],
-            ]);
-        }
-
         array_unshift($this->columns, $this->getSerialColumn());
 
         // добавляем стиль, если есть коллонка id

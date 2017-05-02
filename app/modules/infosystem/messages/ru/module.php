@@ -1,6 +1,6 @@
 <?php
 return [
-    'Does not exist ({attribute}) in the list of attributes' => '({attribute}) не выбран в списке аттрибутов',
+    'Does not exist ({field}) in the list of fields' => '({field}) не выбран в списке полей',
 
 	'Module name' => 'Информационные системы',
 	'Module description' => 'Описание информационные системы',
@@ -20,11 +20,11 @@ return [
     'Edit item: {data}' => 'Редактирование элемента: {data}',
     'Edit property: {data}' => 'Редактирование свойства: {data}',
     'Sorting type group' => 'Тип сортировки групп',
-    'Sorting attribute group' => 'Аттрибут сортировки групп',
-    'Sorting list attribute group' => 'Список аттрибутов для сортировки групп',
+    'Sorting field group' => 'Поле сортировки групп',
+    'Sorting list field group' => 'Список полей для сортировки групп',
     'Sorting type item' => 'Тип сортировки элементов',
-    'Sorting attribute item' => 'Аттрибут сортировки элементов',
-    'Sorting list attribute item' => 'Список аттрибутов для сортировки элементов',
+    'Sorting field item' => 'Поле сортировки элементов',
+    'Sorting list field item' => 'Список полей для сортировки элементов',
 
     'Infosystem' => 'Инфосистема',
     'Infosystems' => 'Инфосистемы',

@@ -24,6 +24,7 @@ class m161012_101545_infosystem_group extends Migration
             'image_1' => $this->string(),
             'image_2' => $this->string(),
             'sorting' => $this->integer()->defaultValue(500),
+            'status' => $this->integer(),
             'user_id' => $this->integer(),
             'alias' => $this->string(),
             'meta_title' => $this->string(),

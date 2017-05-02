@@ -4,6 +4,7 @@ namespace app\modules\infosystem\models;
 
 use Yii;
 use app\modules\user\models\User;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "mn_infosystem_item".
@@ -50,9 +51,9 @@ class Item extends \app\core\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'infosystem_id'], 'required'],
+            [['name', 'infosystem_id', 'date'], 'required'],
             [['infosystem_id'], 'string', 'max' => 100],
-            [['group_id', 'status', 'sorting', 'user_id'], 'integer'],
+            [['group_id', 'status', 'sorting', 'user_id', 'counter'], 'integer'],
             [['description', 'content', 'date', 'date_start', 'date_end'], 'string'],
             [['name', 'meta_title', 'meta_description'], 'string', 'max' => 255],
             ['file', 'file'],
@@ -146,5 +147,24 @@ class Item extends \app\core\db\ActiveRecord
     {
         return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
             ->via('itemTags');
+    }
+
+    public function getModelItems()
+    {
+        return self::find()
+            ->where(['status' => self::STATUS_ACTIVE])
+            ->joinWith(['infosystem as info'], true, 'LEFT JOIN')
+            ->where(['info.indexing' => Infosystem::INDEXING_YES])
+            ->all();
+    }
+
+    public function getModelItemUrl()
+    {
+        return Url::to([
+            '/infosystem/item/view',
+            'id' => $this->id,
+            'alias' => $this->alias,
+            'infosystem_id' => $this->infosystem_id
+        ], true);
     }
 }

@@ -27,6 +27,9 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
                 <div class="col-md-12">
                     <?= $form->field($data['model'], 'name'); ?>
 
+                    <?= $form->field($data['model'], 'status')
+                        ->dropDownList($data['model']->getStatusList()); ?>
+
                     <?php echo Collapse::widget([
                         'items' => [
                             [

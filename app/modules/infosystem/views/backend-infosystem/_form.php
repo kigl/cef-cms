@@ -39,7 +39,6 @@ use vova07\imperavi\Widget;
             <?php if (!empty($data['model']->id)) : ?>
                 <?= \app\modules\backend\widgets\grid\GridView::widget([
                     'dataProvider' => $data['dataProvider'],
-                    'checkboxColumn' => true,
                     'buttons' => [
                         'create' => [
                             'item' => [
@@ -56,6 +55,9 @@ use vova07\imperavi\Widget;
                         return ['data-sortable-id' => $model->id];
                     },
                     'columns' => [
+                        [
+                            'class' => \yii\grid\CheckboxColumn::className(),
+                        ],
                         'name',
                         [
                             'class' => \kotchuprik\sortable\grid\Column::className(),
@@ -94,6 +96,8 @@ use vova07\imperavi\Widget;
         </div>
 
         <div class="tab-pane" id="settings">
+            <?= $form->field($data['model'], 'indexing')->checkbox();?>
+
             <?= $form->field($data['model'], 'template'); ?>
 
             <?= $form->field($data['model'], 'template_group'); ?>
@@ -107,13 +111,13 @@ use vova07\imperavi\Widget;
                         ->dropDownList($data['model']->getSortingTyps()); ?>
                 </div>
                 <div class="col-md-3">
-                    <?= $form->field($data['model'], 'sorting_attribute_group')
+                    <?= $form->field($data['model'], 'sorting_field_group')
                         ->dropDownList(Group::getSortingAttribute()); ?>
                 </div>
                 <div class="col-md-4">
-                    <?= $form->field($data['model'], 'sortingListAttributeGroup')
+                    <?= $form->field($data['model'], 'sortingListFieldGroup')
                         ->dropDownList(Group::getSortingAttribute(), ['multiple' => true])
-                        ->label(Module::t('Sorting list attribute group')); ?>
+                        ->label(Module::t('Sorting list field group')); ?>
                 </div>
             </div>
 
@@ -124,13 +128,13 @@ use vova07\imperavi\Widget;
                         ->dropDownList($data['model']->getSortingTyps()); ?>
                 </div>
                 <div class="col-md-3">
-                    <?= $form->field($data['model'], 'sorting_attribute_item')
+                    <?= $form->field($data['model'], 'sorting_field_item')
                         ->dropDownList(Item::getSortingAttribute()); ?>
                 </div>
                 <div class="col-md-4">
-                    <?= $form->field($data['model'], 'sortingListAttributeItem')
+                    <?= $form->field($data['model'], 'sortingListFieldItem')
                         ->dropDownList(Item::getSortingAttribute(), ['multiple' => true])
-                        ->label(Module::t('Sorting list attribute item')); ?>
+                        ->label(Module::t('Sorting list field item')); ?>
                 </div>
             </div>
 

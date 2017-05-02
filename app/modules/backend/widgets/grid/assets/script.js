@@ -2,21 +2,20 @@ $(function () {
     var buttonItemDelete = $('.selection-item-delete'),
         buttonGroupDelete = $('.selection-group-delete'),
         gridViewCssClass = '.grid-view',
-        itemKeys = [],
-        groupKeys = [];
+        keys = [];
 
 
     buttonItemDelete.click(function (event) {
         event.preventDefault();
 
         if (confirmDelete()) {
-            buttonItemDelete.closest(gridViewCssClass).find('input[name="selectionItem[]"]:checked').each(function (index, el) {
-                itemKeys.push($(el).val());
+            $(this).closest(gridViewCssClass).find('input[name="selection[]"]:checked').each(function (index, el) {
+                if ($(el).attr('group') === undefined) {
+                    keys.push($(el).val());
+                }
             });
 
-            console.log(itemKeys);
-
-            ajaxKeys($(this), itemKeys);
+            ajaxKeys($(this), keys);
         }
     });
 
@@ -24,11 +23,13 @@ $(function () {
         event.preventDefault();
 
         if (confirmDelete()) {
-            buttonItemDelete.closest(gridViewCssClass).find('input[name="selectionGroup[]"]:checked').each(function (index, el) {
-                groupKeys.push($(el).val());
+            $(this).closest(gridViewCssClass).find('input[name="selection[]"]:checked').each(function (index, el) {
+                if ($(el).attr('group') !== undefined) {
+                    keys.push($(el).val());
+                }
             });
 
-            ajaxKeys($(this), groupKeys);
+            ajaxKeys($(this), keys);
         }
     });
 
@@ -48,7 +49,6 @@ $(function () {
     function confirmDelete() {
         var text = 'Удалить элемент?';
 
-        return confirm(text)
+        return confirm(text);
     }
-
 });

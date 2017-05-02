@@ -17,8 +17,15 @@ class ItemModelService extends ModelService
     {
         $model = Item::find()
             ->with(['infosystem'])
-            ->where(['id' => $this->getData('get', 'id')])
+            ->where(['id' => $this->getData('get', 'id'), 'status' => Item::STATUS_ACTIVE])
             ->one();
+
+        if (!$model) {
+
+            return false;
+        }
+
+        $model->updateCounters(['counter' => 1]);
 
         if ($this->getData('get', 'alias') != $model->alias
             || $this->getData('get', 'infosystem_id') != $model->infosystem_id
@@ -31,5 +38,7 @@ class ItemModelService extends ModelService
             'model' => $model,
             'breadcrumbs' => $this->getItemsBreadcrumb($model->infosystem, $model->group_id, $model->name),
         ]);
+
+        return true;
     }
 }

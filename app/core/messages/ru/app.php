@@ -21,6 +21,8 @@ return [
     'Date start' => 'Дата начала',
     'Date end' => 'Дата окончания',
 
+    'Indexing' => 'Индексация',
+
     'Form legend seo' => 'SEO',
     'Fields' => 'Поля',
     'Field' => 'Поле',

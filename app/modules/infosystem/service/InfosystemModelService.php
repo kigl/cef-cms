@@ -22,29 +22,37 @@ class InfosystemModelService extends ModelService
 
         $dataProviderGroup = new ActiveDataProvider([
             'query' => Group::find()
-                ->where(['infosystem_id' => $model->id, 'parent_id' => null,]),
+                ->where([
+                    'infosystem_id' => $model->id,
+                    'parent_id' => null,
+                    'status' => Group::STATUS_ACTIVE,
+                ]),
             'pagination' => [
                 'pageSize' => $model->group_on_page,
             ],
             'sort' => [
                 'defaultOrder' => [
-                    $model->sorting_attribute_group => $model->sorting_type_group,
+                    $model->sorting_field_group => $model->sorting_type_group,
                 ],
-                'attributes' => $model->getSortingListAttributeItem(),
+                'attributes' => $model->getSortingListFieldGroup(),
             ],
         ]);
 
         $dataProviderItem = new ActiveDataProvider([
             'query' => Item::find()
-                ->where(['infosystem_id' => $model->id, 'group_id' => null]),
+                ->where([
+                    'infosystem_id' => $model->id,
+                    'group_id' => null,
+                    'status' => Item::STATUS_ACTIVE,
+                ]),
             'pagination' => [
                 'pageSize' => $model->item_on_page,
             ],
             'sort' => [
                 'defaultOrder' => [
-                    $model->sorting_attribute_item => $model->sorting_type_item,
+                    $model->sorting_field_item => $model->sorting_type_item,
                 ],
-                'attributes' => $model->getSortingListAttributeItem(),
+                'attributes' => $model->getSortingListFieldItem(),
             ],
         ]);
 

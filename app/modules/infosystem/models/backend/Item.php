@@ -44,7 +44,7 @@ class Item extends \app\modules\infosystem\models\Item
             [['image_1', 'image_2'], 'file', 'extensions' => ['jpg', 'png', 'gif']],
             ['listTags', 'safe'],
             ['sorting', 'default', 'value' => 500],
-            ['status', 'default', 'value' => 1],
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
         ]);
     }
 

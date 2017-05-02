@@ -9,9 +9,7 @@ $this->setPageHeader(Module::t('Items'));
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
 
 echo GridView::widget([
-    //'id' => 'test',
     'dataProvider' => $data['dataProvider'],
-    'checkboxColumn' => true,
     'buttons' => [
         'create' => [
             'item' => [
@@ -26,6 +24,9 @@ echo GridView::widget([
         ],
     ],
     'columns' => [
+        [
+            'class' => \yii\grid\CheckboxColumn::className(),
+        ],
         'value',
         'id',
         [
@@ -53,29 +54,3 @@ echo GridView::widget([
     ],
 ]);
 ?>
-
-<button id="press">press</button>
-<script>
-    $(function () {
-        var button = $('.selected-delete');
-
-
-        button.click(function () {
-            var keys = $('.grid-view').yiiGridView('getSelectedRows');
-
-            console.log(button.closest('.grid-view').yiiGridView('getSelectedRows'));
-
-            return false;
-/*
-            $.ajax({
-                type: 'POST',
-                data: {'checkbox': keys},
-                url: '/site/test',
-                success: function (data) {
-                 console.log(data);
-                }
-            });
-            */
-        });
-      });
-</script>

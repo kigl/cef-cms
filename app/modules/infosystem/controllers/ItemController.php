@@ -23,7 +23,10 @@ class ItemController extends Controller
                 'get' => Yii::$app->request->getQueryParams(),
             ],
         ]);
-        $modelService->actionView();
+
+        if (!$modelService->actionView()) {
+            return $this->redirect(!empty(Yii::$app->request->referrer) ? Yii::$app->request->referrer : $this->goHome());
+        }
 
         // Проверяем инфосистему и алиас
         if ($modelService->hasError($modelService::ERROR_NOT_MODEL_ALIAS)) {

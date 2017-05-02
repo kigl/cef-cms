@@ -35,6 +35,7 @@ class Group extends \app\modules\infosystem\models\Group
             [['image_1', 'image_2'], 'file', 'extensions' => ['jpg', 'png', 'gif']],
             ['parent_id', 'compare', 'compareAttribute' => 'id', 'operator' => '!='],
             ['sorting', 'default', 'value' => 500],
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
         ]);
     }
 

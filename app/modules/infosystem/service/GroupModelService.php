@@ -11,6 +11,7 @@ namespace app\modules\infosystem\service;
 
 use yii\data\ActiveDataProvider;
 use app\modules\infosystem\models\Group;
+use app\modules\infosystem\models\Item;
 
 class GroupModelService extends ModelService
 {
@@ -22,15 +23,16 @@ class GroupModelService extends ModelService
             ->one();
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $model->getItems(),
+            'query' => $model->getItems()
+                ->where(['status' => Item::STATUS_ACTIVE]),
             'pagination' => [
                 'pageSize' => $model->infosystem->item_on_page,
             ],
             'sort' => [
                 'defaultOrder' => [
-                    $model->infosystem->sorting_attribute_item => $model->infosystem->sorting_type_item,
+                    $model->infosystem->sorting_field_item => $model->infosystem->sorting_type_item,
                 ],
-                'attributes' => $model->infosystem->getSortingListAttributeItem(),
+                'attributes' => $model->infosystem->getSortingListFieldItem(),
             ],
         ]);
 

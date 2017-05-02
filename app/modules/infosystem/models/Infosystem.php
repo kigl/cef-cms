@@ -12,17 +12,18 @@ use Yii;
  * @property string $name
  * @property string $description
  * @property string $content
+ * @property integer $indexing
  * @property integer $group_on_page
  * @property integer $item_on_page
  * @property string $template
  * @property string $template_group
  * @property string $template_item
  * @property integer $sorting_type_gruop
- * @property integer $sorting_attribute_gruop
- * @property string $sorting_list_attribute_group
+ * @property integer $sorting_field_gruop
+ * @property string $sorting_list_field_group
  * @property integer $sorting_type_item
- * @property integer $sorting_attribute_item
- * @property string $sorting_list_attribute_item
+ * @property integer $sorting_field_item
+ * @property string $sorting_list_field_item
  * @property string $meta_title
  * @property string $meta_description
  * @property integer $create_time
@@ -30,6 +31,8 @@ use Yii;
  */
 class Infosystem extends \app\core\db\ActiveRecord
 {
+    const INDEXING_NO = 0;
+    const INDEXING_YES = 1;
     /**
      * @inheritdoc
      */
@@ -45,9 +48,9 @@ class Infosystem extends \app\core\db\ActiveRecord
     {
         return [
             [['name', 'id'], 'required'],
-            [['id', 'sorting_attribute_group', 'sorting_attribute_item'], 'string', 'max' => 100],
+            [['id', 'sorting_field_group', 'sorting_field_item'], 'string', 'max' => 100],
             ['id', 'unique'],
-            [['group_on_page', 'item_on_page', 'sorting_type_group', 'sorting_type_item'], 'integer'],
+            [['indexing', 'group_on_page', 'item_on_page', 'sorting_type_group', 'sorting_type_item'], 'integer'],
             [['content'], 'string'],
             [
                 [
@@ -55,8 +58,8 @@ class Infosystem extends \app\core\db\ActiveRecord
                     'template',
                     'template_group',
                     'template_item',
-                    'sorting_list_attribute_group',
-                    'sorting_list_attribute_item'
+                    'sorting_list_field_group',
+                    'sorting_list_field_item'
                 ],
                 'string',
                 'max' => 255
@@ -75,17 +78,18 @@ class Infosystem extends \app\core\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
+            'indexing' => Yii::t('app', 'Indexing'),
             'group_on_page' => Yii::t('app', 'Group on page'),
             'item_on_page' => Yii::t('app', 'Item on page'),
             'template' => Yii::t('infosystem', 'Template'),
             'template_group' => Yii::t('infosystem', 'Template group'),
             'template_item' => Yii::t('infosystem', 'Template item'),
             'sorting_type_group' => Yii::t('infosystem', 'Sorting type group'),
-            'sorting_attribute_group' => Yii::t('infosystem', 'Sorting attribute group'),
-            'sorting_list_attribute_group' => Yii::t('infosystem', 'Sorting list attribute group'),
+            'sorting_field_group' => Yii::t('infosystem', 'Sorting field group'),
+            'sorting_list_field_group' => Yii::t('infosystem', 'Sorting list field group'),
             'sorting_type_item' => Yii::t('infosystem', 'Sorting type item'),
-            'sorting_attribute_item' => Yii::t('infosystem', 'Sorting attribute item'),
-            'sorting_list_attribute_item' => Yii::t('infosystem', 'Sorting list attribute item'),
+            'sorting_field_item' => Yii::t('infosystem', 'Sorting field item'),
+            'sorting_list_field_item' => Yii::t('infosystem', 'Sorting list field item'),
             'meta_title' => Yii::t('app', 'Meta title'),
             'meta_description' => Yii::t('app', 'Meta description'),
             'create_time' => Yii::t('app', 'Create time'),
@@ -108,13 +112,13 @@ class Infosystem extends \app\core\db\ActiveRecord
         return $this->hasMany(Property::className(), ['infosystem_id' => 'id']);
     }
 
-    public function getSortingListAttributeGroup()
+    public function getSortingListFieldGroup()
     {
-        return array_values((array)json_decode($this->sorting_list_attribute_group));
+        return array_values((array)json_decode($this->sorting_list_field_group));
     }
 
-    public function getSortingListAttributeItem()
+    public function getSortingListFieldItem()
     {
-        return array_values((array)json_decode($this->sorting_list_attribute_item));
+        return array_values((array)json_decode($this->sorting_list_field_item));
     }
 }

@@ -14,31 +14,32 @@ class Infosystem extends \app\modules\infosystem\models\Infosystem
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
+            ['indexing', 'default', 'value' => self::INDEXING_YES],
             [['template', 'template_group', 'template_item'], 'default', 'value' => 'view'],
             [['group_on_page', 'item_on_page'], 'default', 'value' => '30'],
             [['sorting_type_group', 'sorting_type_item'], 'default', 'value' => SORT_ASC],
-            [['sorting_attribute_group', 'sorting_attribute_item'], 'default', 'value' => 'id'],
+            [['sorting_field_group', 'sorting_field_item'], 'default', 'value' => 'id'],
             [
-                'sorting_attribute_group',
-                'validateExistAttributeInList',
-                'params' => ['listAttribute' => 'sortingListAttributeGroup']
+                'sorting_field_group',
+                'validateExistFieldInList',
+                'params' => ['listFields' => 'sortingListFieldGroup']
             ],
             [
-                'sorting_attribute_item',
-                'validateExistAttributeInList',
-                'params' => ['listAttribute' => 'sortingListAttributeItem']
+                'sorting_field_item',
+                'validateExistFieldInList',
+                'params' => ['listFields' => 'sortingListFieldItem']
             ],
-            [['sortingListAttributeGroup', 'sortingListAttributeItem'], 'safe'],
+            [['sortingListFieldGroup', 'sortingListFieldItem'], 'safe'],
         ]);
     }
 
-    public function validateExistAttributeInList($attribute, $params)
+    public function validateExistFieldInList($attribute, $params)
     {
-        if (!array_key_exists($this->{$attribute}, array_flip($this->{$params['listAttribute']}))) {
+        if (!array_key_exists($this->{$attribute}, array_flip($this->{$params['listFields']}))) {
             $this->addError(
                 $attribute,
-                Yii::t('infosystem', 'Does not exist ({attribute}) in the list of attributes',
-                    ['attribute' => $this->{$attribute}])
+                Yii::t('infosystem', 'Does not exist ({field}) in the list of fields',
+                    ['field' => $this->{$attribute}])
             );
         }
     }
@@ -56,13 +57,13 @@ class Infosystem extends \app\modules\infosystem\models\Infosystem
         ];
     }
 
-    public function setSortingListAttributeGroup($value)
+    public function setSortingListFieldGroup($value)
     {
-        $this->sorting_list_attribute_group = json_encode($value);
+        $this->sorting_list_field_group = json_encode($value);
     }
 
-    public function setSortingListAttributeItem($value)
+    public function setSortingListFieldItem($value)
     {
-        $this->sorting_list_attribute_item = json_encode((array)$value);
+        $this->sorting_list_field_item = json_encode((array)$value);
     }
 }

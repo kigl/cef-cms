@@ -26,6 +26,7 @@ class Page extends \app\modules\page\models\Page
     {
         return ArrayHelper::merge(parent::rules(), [
             ['template', 'default', 'value' => 'view'],
+            ['indexing', 'default', 'value' => self::INDEXING_YES],
         ]);
     }
 
