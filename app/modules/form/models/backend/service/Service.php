@@ -24,7 +24,6 @@ class Service extends ModelService
             'items' => [
                 'id' => $groupId,
                 'modelClass' => Group::class,
-                //'enableRoot' => true,
                 'urlOptions' => [
                     'route' => 'backend-group/manager',
                     'params' => ['form_id', 'id'],

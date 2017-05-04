@@ -12,7 +12,7 @@ namespace app\modules\infosystem\controllers;
 use Yii;
 use vova07\imperavi\actions\GetAction;
 use app\modules\backend\controllers\Controller;
-use app\modules\infosystem\models\backend\service\ItemModelService;
+use app\modules\infosystem\service\backend\ItemModelService;
 use app\modules\backend\actions\EditAttribute;
 use app\modules\infosystem\models\backend\Item;
 

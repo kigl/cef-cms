@@ -24,7 +24,7 @@ return [
     'components' => [
         'urlManager' => [
             'rules' => [
-                ['class' => \app\modules\infosystem\components\UrlRule::class],
+                ['class' => \app\modules\infosystem\components\urlRules\UrlRule::class],
             ],
         ],
     ],

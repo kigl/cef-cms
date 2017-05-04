@@ -48,11 +48,6 @@ class Item extends \app\modules\infosystem\models\Item
         ]);
     }
 
-    public static function find()
-    {
-        return new ItemQuery(get_called_class());
-    }
-
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [

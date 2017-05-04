@@ -55,11 +55,6 @@ class Group extends \app\modules\infosystem\models\Group
         ]);
     }
 
-    public static function find()
-    {
-        return new GroupQuery(get_called_class());
-    }
-
     public function getInfosystem()
     {
         return $this->hasOne(Infosystem::className(), ['id' => 'infosystem_id']);

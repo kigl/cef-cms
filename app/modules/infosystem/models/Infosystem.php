@@ -18,6 +18,7 @@ use Yii;
  * @property string $template
  * @property string $template_group
  * @property string $template_item
+ * @property string $template_tag
  * @property integer $sorting_type_gruop
  * @property integer $sorting_field_gruop
  * @property string $sorting_list_field_group
@@ -58,6 +59,7 @@ class Infosystem extends \app\core\db\ActiveRecord
                     'template',
                     'template_group',
                     'template_item',
+                    'template_tag',
                     'sorting_list_field_group',
                     'sorting_list_field_item'
                 ],
@@ -84,6 +86,7 @@ class Infosystem extends \app\core\db\ActiveRecord
             'template' => Yii::t('infosystem', 'Template'),
             'template_group' => Yii::t('infosystem', 'Template group'),
             'template_item' => Yii::t('infosystem', 'Template item'),
+            'template_tag' => Yii::t('infosystem', 'Template tag'),
             'sorting_type_group' => Yii::t('infosystem', 'Sorting type group'),
             'sorting_field_group' => Yii::t('infosystem', 'Sorting field group'),
             'sorting_list_field_group' => Yii::t('infosystem', 'Sorting list field group'),

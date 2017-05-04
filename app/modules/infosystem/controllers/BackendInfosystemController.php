@@ -10,7 +10,7 @@ namespace app\modules\infosystem\controllers;
 
 
 use yii;
-use app\modules\infosystem\models\backend\service\InfosystemModelService;
+use app\modules\infosystem\service\backend\InfosystemModelService;
 use app\modules\backend\controllers\Controller;
 
 class BackendInfosystemController extends Controller

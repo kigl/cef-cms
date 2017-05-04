@@ -104,6 +104,7 @@ use vova07\imperavi\Widget;
 
             <?= $form->field($data['model'], 'template_item'); ?>
 
+            <?= $form->field($data['model'], 'template_tag'); ?>
 
             <div class="row">
                 <div class="col-md-3">

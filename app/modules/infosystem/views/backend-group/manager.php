@@ -10,6 +10,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
 ?>
 
 <?= GridView::widget([
+    'filterModel' => $data['searchModel'],
     'dataProvider' => $data['dataProvider'],
     'buttons' => [
         'create' => [
@@ -61,6 +62,11 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
             'attribute' => 'date',
             'label' => Yii::t('app', 'Date'),
             'format' => 'date',
+            'filter' => \yii\jui\DatePicker::widget([
+                'model' => $data['searchModel'],
+                'attribute' => 'date',
+                'options' => ['class' => 'form-control'],
+            ]),
         ],
         [
             'attribute' => 'sorting',

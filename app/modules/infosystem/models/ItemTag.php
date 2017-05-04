@@ -46,4 +46,9 @@ class ItemTag extends \app\core\db\ActiveRecord
     {
         return $this->hasOne(Tag::className(), ['id' => 'tag_id']);
     }
+
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id']);
+    }
 }

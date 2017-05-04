@@ -9,14 +9,16 @@
 namespace app\modules\infosystem\service;
 
 
+use yii\data\ActiveDataProvider;
 use app\modules\infosystem\models\Item;
+use app\modules\infosystem\models\Infosystem;
 
 class ItemModelService extends ModelService
 {
-    public function actionView()
+    public function view()
     {
         $model = Item::find()
-            ->with(['infosystem'])
+            ->with(['infosystem', 'tags'])
             ->where(['id' => $this->getData('get', 'id'), 'status' => Item::STATUS_ACTIVE])
             ->one();
 
@@ -40,5 +42,25 @@ class ItemModelService extends ModelService
         ]);
 
         return true;
+    }
+
+    public function itemsTag()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Item::find()
+                ->joinWith(['tags as tag'], true)
+                ->where(['tag.name' => $this->getData('get', 'name')]),
+        ]);
+
+        $infosystem = Infosystem::findOne(['id' => $this->getData('get', 'infosystem_id')]);
+
+        if (!$infosystem) {
+            $this->setError(self::ERROR_NOT_MODEL);
+        }
+
+        $this->setData([
+            'model' => $infosystem,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }

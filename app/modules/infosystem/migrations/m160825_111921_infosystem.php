@@ -19,6 +19,7 @@ class m160825_111921_infosystem extends Migration
             'template' => $this->string(),
             'template_group' => $this->string(),
             'template_item' => $this->string(),
+            'template_tag' => $this->string(),
             'sorting_type_group' => $this->integer(),
             'sorting_field_group' => $this->string(100),
             'sorting_list_field_group' => $this->string(),

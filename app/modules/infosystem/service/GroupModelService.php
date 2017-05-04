@@ -24,10 +24,13 @@ class GroupModelService extends ModelService
 
         $dataProvider = new ActiveDataProvider([
             'query' => $model->getItems()
+                ->with('tags')
                 ->where(['status' => Item::STATUS_ACTIVE]),
+
             'pagination' => [
                 'pageSize' => $model->infosystem->item_on_page,
             ],
+
             'sort' => [
                 'defaultOrder' => [
                     $model->infosystem->sorting_field_item => $model->infosystem->sorting_type_item,

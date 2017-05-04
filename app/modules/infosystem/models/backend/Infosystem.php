@@ -15,7 +15,7 @@ class Infosystem extends \app\modules\infosystem\models\Infosystem
     {
         return ArrayHelper::merge(parent::rules(), [
             ['indexing', 'default', 'value' => self::INDEXING_YES],
-            [['template', 'template_group', 'template_item'], 'default', 'value' => 'view'],
+            [['template', 'template_group', 'template_item', 'template_tag'], 'default', 'value' => 'view'],
             [['group_on_page', 'item_on_page'], 'default', 'value' => '30'],
             [['sorting_type_group', 'sorting_type_item'], 'default', 'value' => SORT_ASC],
             [['sorting_field_group', 'sorting_field_item'], 'default', 'value' => 'id'],

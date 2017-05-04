@@ -11,7 +11,7 @@ namespace app\modules\infosystem\controllers;
 
 use Yii;
 use app\modules\backend\controllers\Controller;
-use app\modules\infosystem\models\backend\service\TagModelService;
+use app\modules\infosystem\service\backend\TagModelService;
 use app\modules\infosystem\models\backend\Tag;
 
 class BackendTagController extends Controller

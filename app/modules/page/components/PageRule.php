@@ -51,15 +51,13 @@ class PageRule implements \yii\web\UrlRuleInterface
                 'sql' => 'SELECT MAX(update_time) FROM ' . Page::tableName(),
             ]);
 
-            if (!$this->data = Yii::$app->cache->get($this->cacheKey)) {
-                $this->data = Page::find()
+            $this->data = Yii::$app->cache->getOrSet($this->cacheKey, function () {
+                return Page::find()
                     ->indexBy('id')
                     ->select(['id', 'alias'])
                     ->asArray()
                     ->all();
-
-                Yii::$app->cache->set($this->cacheKey, $this->data, null, $depedency);
-            }
+            }, null, $depedency);
         }
 
         return $this->data;
