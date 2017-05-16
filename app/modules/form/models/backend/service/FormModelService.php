@@ -10,7 +10,6 @@ namespace app\modules\form\models\backend\service;
 
 
 use yii\data\ActiveDataProvider;
-use app\core\service\ModelService;
 use app\modules\form\models\backend\Form;
 
 class FormModelService extends ModelService
@@ -23,6 +22,7 @@ class FormModelService extends ModelService
 
         $this->setData([
             'dataProvider' => $dataProvider,
+            'breadcrumbs' => $this->getItemsBreadcrumb()
         ]);
     }
 }

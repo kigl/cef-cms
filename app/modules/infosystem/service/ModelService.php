@@ -24,6 +24,7 @@ class ModelService extends \app\core\service\ModelService
             $breadcrumbs = $this->buildBreadcrumbs([
                 'items' => [
                     'id' => $groupId,
+                    'selectField' => ['id', 'parent_id', 'name', 'infosystem_id', 'alias'],
                     'modelClass' => Group::className(),
                     'urlOptions' => [
                         'route' => '/infosystem/group/view',

@@ -12,6 +12,8 @@ return [
 
     'Name hide' => 'Скрыть имя',
 
+    'Parent ID' => 'Родитель',
+
     'Create menu' => 'Создание меню',
     'Create menu item' => 'Создание пункта',
     'CSS class menu' => 'CSS класс',

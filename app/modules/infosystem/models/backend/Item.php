@@ -17,8 +17,8 @@ use yii\helpers\ArrayHelper;
  * @property string $name
  * @property string $description
  * @property string $content
- * @property string $image_1
- * @property string $image_2
+ * @property string $image_description
+ * @property string $image_content
  * @property integer $status
  * @property integer $sorting
  * @property integer $user_id
@@ -41,10 +41,22 @@ class Item extends \app\modules\infosystem\models\Item
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['image_1', 'image_2'], 'file', 'extensions' => ['jpg', 'png', 'gif']],
-            ['listTags', 'safe'],
+            [['image_description', 'image_content'], 'image', 'extensions' => ['jpg', 'png', 'gif']],
             ['sorting', 'default', 'value' => 500],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            [
+                ['image_description'],
+                'image',
+                'maxWidth' => $this->infosystem->max_width_image_description_item,
+                'maxHeight' => $this->infosystem->max_height_image_description_item
+            ],
+            [
+                ['image_content'],
+                'image',
+                'maxWidth' => $this->infosystem->max_width_image_content_item,
+                'maxHeight' => $this->infosystem->max_height_image_content_item
+            ],
+            ['listTags', 'safe'],
         ]);
     }
 
@@ -85,7 +97,7 @@ class Item extends \app\modules\infosystem\models\Item
         ]);
     }
 
-    public function getProperties()
+    public function getItemProperties()
     {
         return $this->hasMany(ItemProperty::className(), ['item_id' => 'id']);
     }

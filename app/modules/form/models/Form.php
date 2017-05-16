@@ -37,7 +37,7 @@ class Form extends \yii\db\ActiveRecord
             [['email_from', 'email_curator'], 'required', 'when' => function ($model) {
                 return $model->send_email_curator;
             }],
-            [['name', 'description'], 'required'],
+            [['name'], 'required'],
             [['captcha', 'send_email_curator'], 'integer'],
             [['name', 'description', 'email_curator'], 'string', 'max' => 255],
         ];

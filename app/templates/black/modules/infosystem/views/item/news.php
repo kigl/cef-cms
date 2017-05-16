@@ -20,8 +20,8 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <?php if ($data['model']->getBehavior('imagePreview')->fileExist()) : ?>
-                        <img src="<?= $data['model']->getBehavior('imagePreview')->getFileUrl(); ?>"/>
+                    <?php if ($data['model']->getBehavior('imageDescription')->fileExist()) : ?>
+                        <img src="<?= $data['model']->getBehavior('imageDescription')->getFileUrl(); ?>"/>
                     <?php endif; ?>
                 </div>
             </div>

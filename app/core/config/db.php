@@ -1,7 +1,7 @@
 <?php
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=main2',
+    'dsn' => 'mysql:host=localhost;dbname=new_anomoda',
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8',

@@ -8,10 +8,9 @@
 
 namespace app\modules\infosystem\controllers;
 
-
-use app\modules\infosystem\service\InfosystemModelService;
 use Yii;
-use yii\web\Controller;
+use app\controllers\Controller;
+use app\modules\infosystem\service\InfosystemModelService;
 
 class InfosystemController extends Controller
 {

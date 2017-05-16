@@ -26,8 +26,13 @@ return [
     'Form legend seo' => 'SEO',
     'Fields' => 'Поля',
     'Field' => 'Поле',
+    'Field type' => 'Тип поля',
+    'File' => 'Файл',
 
     'Group on page' => 'Число групп на странице',
+    'Group' => 'Группа',
+
+    'Header comment ({count})' => 'Комментарии ({count})',
 
     'Lastname' => 'Отчество',
     'Link name page main' => 'Главная',
@@ -38,6 +43,7 @@ return [
     'Login or password is incorrect' => 'Логин или пароль введены неверно!',
     'Login' => 'Логин',
     'Logout' => 'Выйти',
+    'Link answer' => 'ответить',
 
     'Name' => 'Имя / Наименование',
     'Not exist views: {views}' => 'Значение "{views}" не существует',
@@ -74,10 +80,6 @@ return [
     'Phone' => 'Телефон',
     'Price' => 'Цена',
 
-	'Field' => 'Поле',
-	'Field type' => 'Тип поля',
-	'File' => 'Файл',
-
 	'Required' => 'Обязательно для заполнения',
     'Region' => 'Регион',
 	'Root' => 'Корень',
@@ -93,6 +95,7 @@ return [
     'Comment' => 'Комментарии',
     'Create: {data}' => 'Создание: {data}',
     'Create' => 'Создание',
+    'Comment added and waiting for moderation' => 'Комментарий добавлен и ожидает модерации',
 
     'Visible' => 'Видим',
     'Video' => 'Видео',

@@ -21,8 +21,8 @@ class m161012_101545_infosystem_group extends Migration
             'name' => $this->string(),
             'description' => $this->string(300),
             'content' => $this->text(),
-            'image_1' => $this->string(),
-            'image_2' => $this->string(),
+            'image_description' => $this->string(),
+            'image_content' => $this->string(),
             'sorting' => $this->integer()->defaultValue(500),
             'status' => $this->integer(),
             'user_id' => $this->integer(),
@@ -37,6 +37,7 @@ class m161012_101545_infosystem_group extends Migration
         $this->createIndex('ix-infosystem_group-parent_id', $this->tableName, 'parent_id');
         $this->createIndex('ix-infosystem_group-infosystem_id', $this->tableName, 'infosystem_id');
         $this->createIndex('ix-infosystem_group-alias', $this->tableName, 'alias');
+        $this->createIndex('ix-infosystem_group-update_time', $this->tableName, 'update_time');
 
     }
 

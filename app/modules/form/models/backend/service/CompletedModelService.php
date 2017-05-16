@@ -10,8 +10,6 @@ namespace app\modules\form\models\backend\service;
 
 
 use yii\data\ActiveDataProvider;
-use app\core\service\ModelService;
-use app\modules\form\Module;
 use app\modules\form\models\backend\Completed;
 use app\modules\form\models\backend\Form;
 
@@ -35,21 +33,25 @@ class CompletedModelService extends ModelService
     {
         $model = Completed::find()
             ->where(['id' => $this->getData('get', 'id')])
-            ->with(['fieldsValue.field', 'form'])
+            ->with(['fieldsValue.field.group', 'form'])
             ->one();
+
+        $fieldsGroup = [];
+        foreach ($model->fieldsValue as $key => $fieldValue) {
+            if ($fieldValue->field->group) {
+                $fieldsGroup[$fieldValue->field->group->sorting][$fieldValue->field->group->name][$fieldValue->field->sorting][$key] = $fieldValue->value;
+            } else {
+                $fieldsGroup[$fieldValue->field->sorting]['none'][$fieldValue->field->sorting][$key] = $fieldValue->value;
+            }
+        }
+
+        ksort($fieldsGroup);
 
         $this->setData([
             'model' => $model,
-            'breadcrumbs' => $this->getItemsBreadcrumb($model->form, \Yii::$app->formatter->asDateTime($model->create_time)),
+            'fieldsGroup' => $fieldsGroup,
+            'breadcrumbs' => $this->getItemsBreadcrumb($model->form, null,
+                \Yii::$app->formatter->asDateTime($model->create_time)),
         ]);
-    }
-
-    protected function getItemsBreadcrumb($form, $dateTime = null)
-    {
-        return [
-            ['label' => Module::t('Forms'), 'url' => ['backend-form/manager']],
-            ['label' => $form->name, 'url' => ['backend-completed/manager', 'form_id' => $form->id]],
-            ['label' => $dateTime],
-        ];
     }
 }

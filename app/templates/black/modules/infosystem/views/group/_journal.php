@@ -1,31 +1,32 @@
 <?php
 use yii\helpers\Html;
-use yii\helpers\Url;
+use app\modules\infosystem\widgets\ListTags;
 
 ?>
 
 <div class="row">
     <div class="col-md-6 journal-content">
-        <h2 class="journal-article__header margin-top-40">
-            <?= Html::a($model->name, [
-                '/infosystem/item/view',
-                'id' => $model->id,
-                'alias' => $model->alias,
-                'infosystem_id' => $model->infosystem_id
-            ]) ?>
-        </h2>
-        <p><b><?= Yii::$app->formatter->asDate($model->date, 'long'); ?></b></p>
-        <p class="journal-article__description"><?= $model->description; ?></p>
+        <div class="margin-top-20 padding-10">
+            <h2 class="journal-article__header">
+                <a href="<?= $model->getModelItemUrl(); ?>"><?= Html::encode($model->name); ?></a>
+            </h2>
+            <div>
+                <ul class="list-inline">
+                    <li>
+                        <b><?= Yii::$app->formatter->asDate($model->date, 'long'); ?></b>
+                    </li>
+                    <li>
+                        <?= ListTags::widget(['tags' => $model->tags, 'infosystemId' => $model->infosystem_id]); ?>
+                    </li>
+                </ul>
+            </div>
+            <p class="journal-article__description"><?= $model->description; ?></p>
+        </div>
     </div>
     <div class="col-md-6 journal-image">
-        <?php if ($model->getBehavior('imagePreview')->fileExist()) : ?>
-            <a href="<?= Url::to([
-                '/infosystem/item/view',
-                'id' => $model->id,
-                'alias' => $model->alias,
-                'infosystem_id' => $model->infosystem_id
-            ]) ?>">
-                <img src="<?= $model->getBehavior('imagePreview')->getFileUrl(); ?>" style="width: 100%"
+        <?php if ($model->getBehavior('imageDescription')->fileExist()) : ?>
+            <a href="<?= $model->getModelItemUrl(); ?>">
+                <img src="<?= $model->getBehavior('imageDescription')->getFileUrl(); ?>" style="width: 100%"
                      class="journal-article__image"/>
             </a>
         <?php endif; ?>

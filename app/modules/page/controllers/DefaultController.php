@@ -7,8 +7,9 @@
 
 namespace app\modules\page\controllers;
 
+
 use app\modules\page\models\Page;
-use yii\web\Controller;
+use app\controllers\Controller;
 
 class DefaultController extends Controller
 {

@@ -39,10 +39,16 @@ use vova07\imperavi\Widget as Imperavi;
             ]); ?>
     </div>
     <div class="tab-pane" id="dynamicData">
-        <?= $form->field($model, 'dynamicData')->textarea([
-            'rows' => 20,
-        ]); ?>
+        <?= $form->field($model, 'dynamicData')->widget(
+            'trntv\aceeditor\AceEditor',
+            [
+                'mode'=>'php', // programing language mode. Default "html"
+                'theme'=>'chrome', // editor theme. Default "github"
+                'containerOptions' => ['style' => 'width: 100%; min-height: 600px;'],
+            ]
+        );?>
     </div>
+
     <div class="tab-pane" id="seo">
         <?= $form->field($model, 'alias'); ?>
 

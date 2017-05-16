@@ -96,7 +96,7 @@ use vova07\imperavi\Widget;
         </div>
 
         <div class="tab-pane" id="settings">
-            <?= $form->field($data['model'], 'indexing')->checkbox();?>
+            <?= $form->field($data['model'], 'indexing')->checkbox(); ?>
 
             <?= $form->field($data['model'], 'template'); ?>
 
@@ -143,6 +143,39 @@ use vova07\imperavi\Widget;
             <?= $form->field($data['model'], 'group_on_page'); ?>
 
             <?= $form->field($data['model'], 'item_on_page'); ?>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <?= $form->field($data['model'], 'max_width_image_description_group'); ?>
+                </div>
+                <div class="col-md-6">
+                    <?= $form->field($data['model'], 'max_height_image_description_group'); ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <?= $form->field($data['model'], 'max_width_image_content_group'); ?>
+                </div>
+                <div class="col-md-6">
+                    <?= $form->field($data['model'], 'max_height_image_content_group'); ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <?= $form->field($data['model'], 'max_width_image_description_item'); ?>
+                </div>
+                <div class="col-md-6">
+                    <?= $form->field($data['model'], 'max_height_image_description_item'); ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <?= $form->field($data['model'], 'max_width_image_content_item'); ?>
+                </div>
+                <div class="col-md-6">
+                    <?= $form->field($data['model'], 'max_height_image_content_item'); ?>
+                </div>
+            </div>
         </div>
 
     </div>

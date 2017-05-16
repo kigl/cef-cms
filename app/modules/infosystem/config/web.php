@@ -12,7 +12,7 @@ return [
             'toolbar' => [
                 'main' => [
                     [
-                        'label' => 'Инфо-системы',
+                        'label' => 'Инфосистемы',
                         'url' => ['backend-infosystem/manager']
                     ],
                     ['label' => 'Метки', 'url' => ['backend-tag/manager']],

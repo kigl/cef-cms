@@ -9,6 +9,7 @@
 namespace app\modules\infosystem\widgets;
 
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\bootstrap\Carousel;
 use app\modules\infosystem\models\Item;
@@ -47,6 +48,8 @@ class Slide extends \yii\base\Widget
     protected function getImages()
     {
         $models = $this->getItems();
+
+        ArrayHelper::multisort($models, 'sorting');
 
         $result = [];
 

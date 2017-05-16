@@ -10,7 +10,17 @@ $this->params['breadcrumbs'][] = ['label' => Module::t('Comments')];
 
 <?= GridView::widget([
     'dataProvider' => $data['dataProvider'],
+    'buttons' => [
+        'delete' => [
+            'item' => [
+                'url' => ['backend-comment/selection-delete'],
+            ],
+        ],
+    ],
     'columns' => [
+        [
+            'class' => \yii\grid\CheckboxColumn::className(),
+        ],
         'model_class',
         [
             'attribute' => 'status',

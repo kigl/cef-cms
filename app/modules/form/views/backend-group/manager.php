@@ -1,8 +1,9 @@
 <?php
-use app\modules\form\Module;
-use app\modules\backend\widgets\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\modules\form\Module;
+use app\modules\backend\widgets\grid\GridView;
+use app\modules\form\models\Field;
 
 $this->setTitle(Module::t('Form fields'));
 $this->setPageHeader(Module::t('Form fields'));
@@ -42,6 +43,23 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
             },
         ],
         [
+            'attribute' => 'required',
+            'label' => Yii::t('app', 'Required'),
+            'format' => 'raw',
+            'value' => function ($data) {
+                return array_key_exists('required', $data) ?
+                    Html::checkbox('required', $data['required'], ['disabled' => 'disabled']) :
+                    null;
+            },
+        ],
+        [
+            'attribute' => 'type',
+            'label' => Yii::t('app', 'Field type'),
+            'value' => function ($data) {
+                return array_key_exists('type', $data) ? Field::getNameFieldType($data['type']) : null;
+            }
+        ],
+        [
             'attribute' => 'sorting',
             'format' => 'raw',
             'value' => function ($data) {
@@ -58,6 +76,11 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
             'class' => \yii\grid\ActionColumn::className(),
             'controller' => 'backend-field',
             'template' => "{update} {delete}",
+            'urlCreator' => function ($action, $model, $key, $index) {
+                return array_key_exists('group_id', $model) ?
+                    Url::to(["backend-field/{$action}", 'id' => $model['id']]) :
+                    Url::to(["backend-group/{$action}", 'id' => $model['id']]);
+            }
         ],
     ],
 ]); ?>

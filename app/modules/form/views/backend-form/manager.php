@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 $this->setTitle(Module::t('Forms'));
 $this->setPageHeader(Module::t('Forms'));
-$this->params['breadcrumbs'][] = ['label' => Module::t('Forms')];
+$this->params['breadcrumbs'] = $data['breadcrumbs'];
 
 ?>
 

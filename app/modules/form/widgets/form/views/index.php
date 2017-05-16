@@ -40,6 +40,7 @@ if ($data['widget']->pjax) {
 
             <?php foreach ($data['groupFields'] as $group) : ?>
                 <?php foreach ($group as $name => $fields) : ?>
+                    <?php ksort($fields); ?>
                     <?php if ($name != 'none') : ?>
                         <fieldset>
                         <legend><?= $name; ?></legend>

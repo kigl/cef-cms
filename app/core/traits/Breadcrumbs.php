@@ -13,6 +13,7 @@ trait Breadcrumbs
      * $breadcrumbs = $this->buildBreadcrumb([
      * 'items' => [
      *      'id' => 12,
+     *      'selectField' => ['id', 'name', 'group_id', 'parent_id']
      *      'modelClass' => 'ModelClass',
      *      'enableRoot' => true,
      *      'urlOptions' => [
@@ -39,7 +40,8 @@ trait Breadcrumbs
 
     protected function getLinkItems($params = [])
     {
-        $data = $this->getDbData($params['modelClass']);
+        $selectField = isset($params['selectField']) ? $params['selectField'] : [];
+        $data = $this->getDbData($params['modelClass'], $selectField);
         $breadcrumbs = $this->groupsDataRecursive($params['id'], $data);
 
         krsort($breadcrumbs);
@@ -108,16 +110,17 @@ trait Breadcrumbs
         return $result;
     }
 
-    protected function getDbData($modelClass)
+    protected function getDbData($modelClass, $selectField = [])
     {
         $cacheKey = $modelClass;
         $duration = 3600 * 24 * 12;
         $dependency = new DbDependency([
-            'sql' => 'SELECT MAX([[update_time]]) FROM ' . $modelClass::tableName(),
+            'sql' => 'SELECT [[update_time]] FROM ' . $modelClass::tableName() . ' ORDER BY [[update_time]] DESC LIMIT 1',
         ]);
 
-        return Yii::$app->cache->getOrSet($cacheKey, function () use ($modelClass){
+        return Yii::$app->cache->getOrSet($cacheKey, function () use ($modelClass, $selectField){
             return $modelClass::find()
+                ->select($selectField)
                 ->asArray()
                 ->all();
         }, $duration, $dependency);

@@ -10,8 +10,9 @@ namespace app\modules\user\controllers;
 
 
 use Yii;
+use yii\widgets\ActiveForm;
 use app\core\web\Controller;
-use app\modules\user\models\backend\service\UserModelService;
+use app\modules\user\models\backend\forms\LoginForm;
 
 class BackendLoginController extends Controller
 {
@@ -19,15 +20,20 @@ class BackendLoginController extends Controller
 
     public function actionIndex()
     {
-        $modelService = Yii::createObject([
-            'class' => UserModelService::className(),
-            'data' => ['post' => Yii::$app->request->post()]
-        ]);
+        $form = new LoginForm();
 
-        if ($modelService->actionLogin()) {
-            return $this->goBack();
+        if ($form->load(Yii::$app->request->post())) {
+
+            if (Yii::$app->request->isAjax) {
+
+                return json_encode(ActiveForm::validate($form));
+            } elseif ($form->validate()) {
+
+                Yii::$app->user->login($form->getUser());
+                return $this->goBack();
+            }
         }
 
-        return $this->render('_form', ['data' => $modelService->getData()]);
+        return $this->render('_form', ['data' => ['form' => $form]]);
     }
 }

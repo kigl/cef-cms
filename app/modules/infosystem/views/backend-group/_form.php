@@ -3,7 +3,7 @@ use yii\bootstrap\Collapse;
 use app\modules\backend\widgets\ActiveForm;
 use vova07\imperavi\Widget;
 use app\modules\backend\widgets\fileInput\Widget as WidgetActionImage;
-use app\modules\infosystem\widgets\backend\DropDownListAllGroup;
+use app\modules\infosystem\widgets\backend\DropDownListItems;
 
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
 ?>
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
                             [
                                 'label' => Yii::t('app', 'Parent group'),
                                 'content' => $form->field($data['model'], 'parent_id')
-                                    ->widget(DropDownListAllGroup::className(), ['options' => ['size' => 10]])
+                                    ->widget(DropDownListItems::className(), ['options' => ['size' => 10]])
                                     ->label(false),
                             ],
                         ]
@@ -46,9 +46,9 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
         <div class="tab-pane" id="description">
             <div class="row">
                 <div class="col-md-12">
-                    <?= $form->field($data['model'], 'image_1')
+                    <?= $form->field($data['model'], 'image_description')
                         ->widget(WidgetActionImage::className(), [
-                            'behaviorName' => 'imagePreview',
+                            'behaviorName' => 'imageDescription',
                         ]); ?>
                 </div>
             </div>
@@ -63,7 +63,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
         <div class="tab-pane" id="content">
             <div class="row">
                 <div class="col-md-12">
-                    <?= $form->field($data['model'], 'image_2')
+                    <?= $form->field($data['model'], 'image_content')
                         ->widget(WidgetActionImage::className(), [
                             'behaviorName' => 'imageContent',
                         ]); ?>

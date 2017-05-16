@@ -16,8 +16,11 @@ return [
 	'Main data' => 'Основные данные',
 
     'Login or email' => 'Логин или email',
+    'Login is not valid' => 'Логин не верен',
 
 	'Message: password do not match' => 'Пароли не совпадают',
+
+    'Password is incorrect' => 'Пароль не верен',
 
 	'Rbac status role' => 'Роль',
 	'Rbac status permission' => 'Действие',
@@ -26,11 +29,13 @@ return [
 	'Rbac form description' => 'Описание',
 	'Rbac form child' => 'Дочерний элемент',
 	'Role and permission' => 'Роли и разрешения',
+    'Rule name' => 'Название правила',
 
     'Setting.register status' => 'Статус пользователя ??',
     'Setting.register group' => 'Группа пользователя ??',
     'Setting.avatar width' => 'Ширина аватарки',
     'Setting.avatar height' => 'Высота аватарки',
+    'Symbols "a-zA-Z0-9_-"' => 'Символы "a-zA-Z0-9_-"',
 
     'Tab role' => 'Роли и разрешения',
     'Tab personal data' => 'Персональные данные',

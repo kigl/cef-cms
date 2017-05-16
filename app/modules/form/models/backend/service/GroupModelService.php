@@ -9,13 +9,13 @@
 namespace app\modules\form\models\backend\service;
 
 
+use yii\data\ArrayDataProvider;
 use app\modules\form\models\Field;
-use yii\data\ActiveDataProvider;
 use app\modules\form\models\backend\Form;
 use app\modules\form\models\backend\Group;
-use yii\data\ArrayDataProvider;
+use yii\helpers\ArrayHelper;
 
-class GroupModelService extends Service
+class GroupModelService extends ModelService
 {
     public function actionManager()
     {
@@ -33,8 +33,10 @@ class GroupModelService extends Service
             ->asArray()
             ->all();
 
+        ArrayHelper::multisort($items, 'sorting');
+
         $dataProvider = new ArrayDataProvider([
-            'allModels' => array_merge($items, $group),
+            'allModels' => array_merge($group, $items),
         ]);
 
         $form = Form::findOne($formId);

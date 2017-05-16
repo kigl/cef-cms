@@ -16,7 +16,7 @@ namespace app\modules\user\controllers;
 
 use Yii;
 use app\modules\backend\controllers\Controller;
-use app\modules\user\models\backend\service\RbacModelService;
+use app\modules\user\service\backend\RbacModelService;
 
 /**
  * Class RbacController

@@ -37,7 +37,7 @@
 
 <div class="container-info">
     <div class="container">
-        <div class="row margin-top-30">
+        <div class="row margin-top-50">
             <div class="col-md-4">
                 <div class="f36 clr">Почему именно мы?</div>
                 <p>Мы сами создаём одежду по принципам красоты и достаточности, покупаем и носим её сами, делаем это
@@ -59,10 +59,10 @@
 
 <hr/>
 
-<h2 class="text-center margin-top-30">Всё разнообразие женской одежды в одном месте</h2>
+<h2 class="text-center margin-top-50">Всё разнообразие женской одежды в одном месте</h2>
 
 <div class="container">
-    <div class="row margin-top-30">
+    <div class="row margin-top-50">
         <div class="col-md-3 text-center">
             <b class="clr h2">5 000</b>
             <br/>
@@ -87,14 +87,14 @@
 </div>
 
 <div class="container">
-    <div class="row margin-top-30">
+    <div class="row margin-top-50">
         <div class="col-md-12 text-center">
             <img src="/public/images/promo_mai.jpg" alt="">
         </div>
     </div>
 </div>
 
-<div class="container margin-top-30">
+<div class="container margin-top-50">
     <div class="row">
         <div class="col-md-12">
             <p class="help-block">
@@ -174,7 +174,8 @@
                 <li>оказание помощи в приобретении торгового оборудования;</li>
                 <li>обучающие материалы для успешного ведения бизнеса.</li>
             </ul>
-            <h2>Мы предусмотрели 3 формата работы франшизы АНО</h2>
+
+            <h2 class="margin-top-50">Мы предусмотрели 3 формата работы франшизы АНО</h2>
             <table class="table table-striped table-bordered">
                 <tbody>
                 <tr>
@@ -230,7 +231,7 @@
                 Волгоград Новосибирск, и др.
             </p>
 
-            <div class="row">
+            <div class="row margin-top-50">
                 <div class="col-md-12">
                     <div style="position: relative">
                         <style>
@@ -279,7 +280,7 @@
                 </div>
             </div>
 
-            <h2>Франшиза женской одежды</h2>
+            <h2 class="margin-top-50">Франшиза женской одежды</h2>
             <ul class="list-inline text-center">
                 <li>
                     <img src="/public/uploads/page/58f9e5fe872e4.jpg">

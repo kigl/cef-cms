@@ -15,8 +15,8 @@ use yii\helpers\Url;
  * @property string $name
  * @property string $description
  * @property string $content
- * @property string $image_1
- * @property string $image_2
+ * @property string $image_description
+ * @property string $image_content
  * @property string $file
  * @property integer $status
  * @property integer $sorting
@@ -67,13 +67,13 @@ class Item extends \app\core\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'group_id' => Yii::t('infosystem', 'Group id'),
+            'group_id' => Yii::t('app', 'Group'),
             'infosystem_id' => Yii::t('infosystem', 'Infosystem id'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
-            'image_1' => Yii::t('app', 'Image'),
-            'image_2' => Yii::t('app', 'Image'),
+            'image_description' => Yii::t('app', 'Image'),
+            'image_content' => Yii::t('app', 'Image'),
             'file' => Yii::t('app', 'File'),
             'status' => Yii::t('app', 'Status'),
             'sorting' => Yii::t('app', 'Sorting'),
@@ -93,15 +93,15 @@ class Item extends \app\core\db\ActiveRecord
     public function behaviors()
     {
         return [
-            'imagePreview' => [
+            'imageDescription' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
-                'attribute' => 'image_1',
+                'attribute' => 'image_description',
                 'path' => '@webroot/public/uploads/infosystem/images',
                 'pathUrl' => '@web/public/uploads/infosystem/images',
             ],
             'imageContent' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
-                'attribute' => 'image_2',
+                'attribute' => 'image_content',
                 'path' => '@webroot/public/uploads/infosystem/images',
                 'pathUrl' => '@web/public/uploads/infosystem/images',
             ],
@@ -133,9 +133,17 @@ class Item extends \app\core\db\ActiveRecord
         ];
     }
 
+    public function getItemProperties()
+    {
+        return $this->hasMany(ItemProperty::className(), ['item_id' => 'id'])
+            ->indexBy('property_id');
+    }
+
     public function getProperties()
     {
-        return $this->hasMany(ItemProperty::className(), ['item_id' => 'id']);
+        return $this->hasMany(Property::className(), ['id' => 'property_id'])
+            ->via('itemProperties')
+            ->indexBy('id');
     }
 
     public function getItemTags()

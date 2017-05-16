@@ -2,12 +2,21 @@
 return [
     'Does not exist ({field}) in the list of fields' => '({field}) не выбран в списке полей',
 
-	'Module name' => 'Информационные системы',
-	'Module description' => 'Описание информационные системы',
+    'Module name' => 'Информационные системы',
+    'Module description' => 'Описание информационные системы',
+    'Max width image description group' => 'Максимальная ширина картинки в описании группы',
+    'Max height image description group' => 'Максимальная высота картинки в описании группы',
+    'Max width image content group' => 'Максимальная ширина картинки в содержании группы',
+    'Max height image content group' => 'Максимальная высота картинки в содержании группы',
+    'Max width image description item' => 'Максимальная ширина картинки в описании элемента',
+    'Max height image description item' => 'Максимальная высота картинки в описании элемента',
+    'Max width image content item' => 'Максимальная ширина картинки в содержании элемента',
+    'Max height image content item' => 'Максимальная высота картинки в содержании элемента',
+
 
     'Template' => 'Шаблон инфосистемы (название файла)',
-	'Template group' => 'Шаблон группы (название файла)',
-	'Template item' => 'Шаблон элемента (название файла)',
+    'Template group' => 'Шаблон группы (название файла)',
+    'Template item' => 'Шаблон элемента (название файла)',
     'Template tag' => 'Шаблон метки (название файла)',
 
     'Create infosystem' => 'Создание инфосистемы',

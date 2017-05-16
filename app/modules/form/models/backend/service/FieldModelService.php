@@ -12,7 +12,7 @@ namespace app\modules\form\models\backend\service;
 use app\modules\form\models\backend\Form;
 use app\modules\form\models\backend\Field;
 
-class FieldModelService extends Service
+class FieldModelService extends ModelService
 {
     public function actionCreate()
     {
@@ -54,16 +54,5 @@ class FieldModelService extends Service
         }
 
         return false;
-    }
-
-    protected function getItemsBreadcrumb($form, $groupId = null, $currentName = null)
-    {
-        $breadcrumbs = parent::getItemsBreadcrumb($form, $groupId);
-
-        if ($currentName) {
-            $breadcrumbs[] = ['label' => $currentName];
-        }
-
-        return $breadcrumbs;
     }
 }

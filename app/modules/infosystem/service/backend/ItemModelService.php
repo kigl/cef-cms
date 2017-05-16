@@ -93,7 +93,7 @@ class ItemModelService extends ModelService
 
     protected function initProperties()
     {
-        $this->itemProperties = $this->model->getProperties()
+        $this->itemProperties = $this->model->getItemProperties()
             ->indexBy('property_id')
             ->all();
 

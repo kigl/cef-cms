@@ -29,7 +29,7 @@ class ActionFile extends Behavior
     /**
      * @var
      */
-    protected $uploadedFileInstance = null;
+    protected $_uploadedFileInstance = null;
 
     /**
      * @return array
@@ -40,7 +40,7 @@ class ActionFile extends Behavior
             ActiveRecord::EVENT_BEFORE_VALIDATE => 'beforeValidate',
             ActiveRecord::EVENT_BEFORE_INSERT => 'beforeSave',
             ActiveRecord::EVENT_BEFORE_UPDATE => 'beforeSave',
-            ActiveRecord::EVENT_BEFORE_DELETE => 'deleteFile',
+            ActiveRecord::EVENT_BEFORE_DELETE => 'beforeDelete',
         ];
     }
 
@@ -48,7 +48,7 @@ class ActionFile extends Behavior
     {
         // Если из вне присваеваем аттрибуту экземпляр класса UploadedFile
         if ($this->getOwnerAttribute() instanceof UploadedFile) {
-            $this->uploadedFileInstance = $this->getOwnerAttribute();
+            $this->_uploadedFileInstance = $this->getOwnerAttribute();
         }
 
         if ($instance = $this->getUploadedFileInstance()) {
@@ -59,28 +59,47 @@ class ActionFile extends Behavior
     public function beforeSave()
     {
         if (Yii::$app->request->Post($this->getDeleteKey())) {
-            $this->deleteFile();
+            $this->deleteFile($this->getFilePath());
             $this->setOwnerAttribute(null);
         }
 
-        if ($this->uploadFile($this->getPath())) {
+        if ($this->uploadFile($this->getTempPath()) && $this->saveFile($this->getPath())) {
+
+            $this->deleteFile($this->getTempFilePath());
+
             if (!$this->owner->isNewRecord) {
-                $this->deleteFile();
+                $this->deleteFile($this->getFilePath());
             }
         } elseif (!$this->owner->isNewRecord) {
             $this->setOwnerAttribute($this->getOldAttribute());
         }
     }
 
+    public function beforeDelete()
+    {
+        return $this->deleteFile($this->getFilePath());
+    }
+
+    protected function saveFile($path)
+    {
+        $path = $path . DIRECTORY_SEPARATOR . $this->getNameDir($this->getOwnerAttribute());
+
+        if (!is_dir($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        return $this->saveTempFile($path);
+    }
+
+    protected function saveTempFile($path)
+    {
+        return copy($this->getTempFilePath(), $path . DIRECTORY_SEPARATOR . $this->getOwnerAttribute());
+    }
+
     protected function uploadFile($path)
     {
         $instance = $this->getUploadedFileInstance();
         if ($instance instanceof UploadedFile) {
-
-            $path = $path . DIRECTORY_SEPARATOR . $this->getNameDir($this->getName());
-            if (!is_dir($path)) {
-                mkdir($path, 0777, true);
-            }
 
             $nameExtension = $this->getName() . '.' . $instance->getExtension();
             $file = $path . DIRECTORY_SEPARATOR . $nameExtension;
@@ -93,12 +112,23 @@ class ActionFile extends Behavior
         return false;
     }
 
-    public function deleteFile()
+    protected function deleteFile($file)
     {
-        $file = $this->getFilePath();
         if (is_file($file)) {
-            @unlink($file);
+            return unlink($file);
         }
+
+        return false;
+    }
+
+    protected function getTempPath()
+    {
+        return Yii::$app->tempPath;
+    }
+
+    protected function getTempFilePath()
+    {
+        return $this->getTempPath() . DIRECTORY_SEPARATOR . $this->getOwnerAttribute();
     }
 
     public function getPath()
@@ -130,7 +160,7 @@ class ActionFile extends Behavior
         return (isset($this->owner->oldAttributes[$this->attribute])) ? $this->owner->oldAttributes[$this->attribute] : '';
     }
 
-    public function getOwnerAttribute()
+    protected function getOwnerAttribute()
     {
         return $this->owner->{$this->attribute};
     }
@@ -145,16 +175,16 @@ class ActionFile extends Behavior
         return $this->name;
     }
 
-    public function getUploadedFileInstance()
+    protected function getUploadedFileInstance()
     {
-        if (is_null($this->uploadedFileInstance)) {
-            $this->uploadedFileInstance = UploadedFile::getInstance($this->owner, $this->attribute);
+        if (is_null($this->_uploadedFileInstance)) {
+            $this->_uploadedFileInstance = UploadedFile::getInstance($this->owner, $this->attribute);
         }
 
-        return $this->uploadedFileInstance;
+        return $this->_uploadedFileInstance;
     }
 
-    protected function getNameDir($string = '', $length =1)
+    protected function getNameDir($string = '', $length = 1)
     {
         return substr($string, 0, $length);
     }

@@ -43,11 +43,11 @@ class RbacForm extends Model
 
     public function validatorType($attribute)
     {
-        if ($this->$attribute == Item::TYPE_ROLE) {
-            $this->$attribute = Item::TYPE_ROLE;
+        if ($this->{$attribute} == Item::TYPE_ROLE) {
+            $this->{$attribute} = Item::TYPE_ROLE;
         } else {
-            if ($this->$attribute == Item::TYPE_PERMISSION) {
-                $this->$attribute = Item::TYPE_PERMISSION;
+            if ($this->{$attribute} == Item::TYPE_PERMISSION) {
+                $this->{$attribute} = Item::TYPE_PERMISSION;
             } else {
                 $this->addError($attribute, Yii::t('user', 'Rbac form error message type'));
             }
@@ -61,6 +61,7 @@ class RbacForm extends Model
             'child' => Yii::t('user', 'Rbac form child'),
             'type' => Yii::t('user', 'Rbac form type'),
             'description' => Yii::t('user', 'Rbac form description'),
+            'ruleName' => Yii::t('user', 'Rule name'),
         ];
     }
 
@@ -74,9 +75,14 @@ class RbacForm extends Model
         $query = new Query;
         $query->from('{{%auth_item}}')
             ->orderBy(['type' => SORT_ASC])
-            ->select(['name', 'type']);
+            ->select(['name', 'type'])
+            ->indexBy('name');
 
-        return ArrayHelper::map($query->all(), 'name', 'name', 'type');
+        $result = $query->all();
+
+        unset($result[$this->name]);
+
+        return ArrayHelper::map($result, 'name', 'name', 'type');
     }
 
     public function getListType()

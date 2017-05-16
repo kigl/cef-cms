@@ -6,10 +6,6 @@ use yii\bootstrap\ActiveForm;
 $this->setTitle('Аутентификация пользователя');
 ?>
 
-<?php Pjax::begin([
-    'enablePushState' => false,
-    'id' => 'user-auth'
-]); ?>
     <div class="login-box">
         <div class="login-logo">
             <a href="../../index2.html">Logo</a>
@@ -19,9 +15,10 @@ $this->setTitle('Аутентификация пользователя');
             <p class="login-box-msg"><?= Yii::t('user', 'Authenticate'); ?></p>
 
             <?php $form = ActiveForm::begin([
-                'options' => ['data-pjax' => true],
+                'enableAjaxValidation' => true,
+                'validateOnChange' => false,
+                'validateOnBlur' => false,
             ]); ?>
-            <?= $form->errorSummary($data['form'], ['class' => 'alert alert-danger']); ?>
             <?= $form->field($data['form'], 'login'); ?>
             <?= $form->field($data['form'], 'password')
                 ->passwordInput(); ?>
@@ -32,4 +29,3 @@ $this->setTitle('Аутентификация пользователя');
 
         </div>
     </div>
-<?php Pjax::end(); ?>

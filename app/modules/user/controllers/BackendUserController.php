@@ -6,7 +6,7 @@ namespace app\modules\user\controllers;
 use Yii;
 use yii\data\ActiveDataProvider;
 use app\modules\backend\controllers\Controller;
-use app\modules\user\models\backend\service\UserModelService;
+use app\modules\user\service\backend\UserModelService;
 use app\modules\user\models\backend\User;
 
 class BackendUserController extends Controller

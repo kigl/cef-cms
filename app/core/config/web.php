@@ -13,9 +13,18 @@ $config = [
 
     'modules' => require 'modules.php',
 
-    'layout' => '@app/templates/flat/layouts/column_2.php',
+    'layout' => '@app/templates/black/layouts/column_1.php',
 
     'components' => [
+
+        'sitemap' => [
+            'class' => \app\core\components\sitemap\Sitemap::className(),
+            'models' => [
+                \app\modules\infosystem\models\Item::className(),
+                \app\modules\infosystem\models\Group::className(),
+                \app\modules\page\models\Page::className(),
+            ],
+        ],
 
         'i18n' => [
             'translations' => [
@@ -52,9 +61,12 @@ $config = [
 
         'db' => require 'db.php',
 
+
         'cache' => [
             'class' => 'yii\caching\FileCache',
+            //'class' => \yii\caching\DummyCache::class,
         ],
+
 
         'user' => [
             'identityClass' => 'app\modules\user\models\UserIdentity',
@@ -65,11 +77,11 @@ $config = [
         'view' => [
             'class' => 'app\core\web\View',
             'theme' => [
-                'basePath' => '@app/templates/flat',
-                'baseUrl' => '@web/templates/flat',
+                'basePath' => '@app/templates/black',
+                'baseUrl' => '@web/app/templates/black',
                 'pathMap' => [
-                    '@app/views' => '@app/templates/flat',
-                    '@app/modules' => '@app/templates/flat/modules',
+                    '@app/views' => '@app/templates/black/views',
+                    '@app/modules' => '@app/templates/black/modules',
                 ],
             ],
         ],

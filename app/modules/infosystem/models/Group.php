@@ -15,8 +15,8 @@ use yii\helpers\Url;
  * @property string $name
  * @property string $description
  * @property string $content
- * @property string $image_1
- * @property string $image_2
+ * @property string $image_description
+ * @property string $image_content
  * @property integer $status
  * @property integer $user_id
  * @property string $alias
@@ -51,7 +51,6 @@ class Group extends \app\core\db\ActiveRecord
             [['content'], 'string'],
             [['name', 'alias', 'meta_title'], 'string', 'max' => 255],
             [['description', 'meta_description'], 'string', 'max' => 300],
-            [['image_1', 'image_2'], 'file', 'extensions' => ['jpg', 'png', 'gif']],
         ];
     }
 
@@ -63,12 +62,12 @@ class Group extends \app\core\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'parent_id' => Yii::t('app', 'Parent ID'),
-            //'infosystem_id' => Yii::t('infosystem', 'Infosystem ID'),
+            'infosystem_id' => Yii::t('infosystem', 'Infosystem ID'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
-            'image_1' => Yii::t('app', 'Image'),
-            'image_2' => Yii::t('app', 'Image'),
+            'image_description' => Yii::t('app', 'Image'),
+            'image_content' => Yii::t('app', 'Image'),
             'sorting' => Yii::t('app', 'Sorting'),
             'status' => Yii::t('app', 'Status'),
             'user_id' => Yii::t('app', 'User ID'),
@@ -83,15 +82,15 @@ class Group extends \app\core\db\ActiveRecord
     public function behaviors()
     {
         return [
-            'imagePreview' => [
+            'imageDescription' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
-                'attribute' => 'image_1',
+                'attribute' => 'image_description',
                 'path' => '@webroot/public/uploads/infosystem/images',
                 'pathUrl' => '@web/public/uploads/infosystem/images',
             ],
             'imageContent' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
-                'attribute' => 'image_2',
+                'attribute' => 'image_content',
                 'path' => '@webroot/public/uploads/infosystem/images',
                 'pathUrl' => '@web/public/uploads/infosystem/images',
             ],

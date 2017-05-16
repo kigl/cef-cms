@@ -4,6 +4,7 @@ namespace app\modules\infosystem\models;
 
 
 use Yii;
+use app\modules\infosystem\Module;
 
 /**
  * This is the model class for table "mn_infosystem".
@@ -19,6 +20,14 @@ use Yii;
  * @property string $template_group
  * @property string $template_item
  * @property string $template_tag
+ * @property string $max_width_images_description_group
+ * @property string $max_height_image_description_group
+ * @property string $max_width_images_content_group
+ * @property string $max_height_image_content_group
+ * @property string $max_width_images_description_item
+ * @property string $max_height_image_description_item
+ * @property string $max_width_images_content_item
+ * @property string $max_height_image_content_item
  * @property integer $sorting_type_gruop
  * @property integer $sorting_field_gruop
  * @property string $sorting_list_field_group
@@ -34,6 +43,7 @@ class Infosystem extends \app\core\db\ActiveRecord
 {
     const INDEXING_NO = 0;
     const INDEXING_YES = 1;
+
     /**
      * @inheritdoc
      */
@@ -51,7 +61,24 @@ class Infosystem extends \app\core\db\ActiveRecord
             [['name', 'id'], 'required'],
             [['id', 'sorting_field_group', 'sorting_field_item'], 'string', 'max' => 100],
             ['id', 'unique'],
-            [['indexing', 'group_on_page', 'item_on_page', 'sorting_type_group', 'sorting_type_item'], 'integer'],
+            [
+                [
+                    'indexing',
+                    'group_on_page',
+                    'item_on_page',
+                    'sorting_type_group',
+                    'sorting_type_item',
+                    'max_width_image_description_group',
+                    'max_height_image_description_group',
+                    'max_width_image_content_group',
+                    'max_height_image_content_group',
+                    'max_width_image_description_item',
+                    'max_height_image_description_item',
+                    'max_width_image_content_item',
+                    'max_height_image_content_item',
+                ],
+                'integer'
+            ],
             [['content'], 'string'],
             [
                 [
@@ -87,6 +114,14 @@ class Infosystem extends \app\core\db\ActiveRecord
             'template_group' => Yii::t('infosystem', 'Template group'),
             'template_item' => Yii::t('infosystem', 'Template item'),
             'template_tag' => Yii::t('infosystem', 'Template tag'),
+            'max_width_image_description_group' => Yii::t('infosystem', 'Max width image description group'),
+            'max_height_image_description_group' => Yii::t('infosystem', 'Max height image description group'),
+            'max_width_image_content_group' => Yii::t('infosystem', 'Max width image content group'),
+            'max_height_image_content_group' => Yii::t('infosystem', 'Max height image content group'),
+            'max_width_image_description_item' => Yii::t('infosystem', 'Max width image description item'),
+            'max_height_image_description_item' => Yii::t('infosystem', 'Max height image description item'),
+            'max_width_image_content_item' => Yii::t('infosystem', 'Max width image content item'),
+            'max_height_image_content_item'=> Yii::t('infosystem', 'Max height image content item'),
             'sorting_type_group' => Yii::t('infosystem', 'Sorting type group'),
             'sorting_field_group' => Yii::t('infosystem', 'Sorting field group'),
             'sorting_list_field_group' => Yii::t('infosystem', 'Sorting list field group'),

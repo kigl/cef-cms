@@ -18,7 +18,6 @@ class ItemModelService extends ModelService
     public function view()
     {
         $model = Item::find()
-            ->with(['infosystem', 'tags'])
             ->where(['id' => $this->getData('get', 'id'), 'status' => Item::STATUS_ACTIVE])
             ->one();
 
@@ -49,6 +48,7 @@ class ItemModelService extends ModelService
         $dataProvider = new ActiveDataProvider([
             'query' => Item::find()
                 ->joinWith(['tags as tag'], true)
+                ->with('properties')
                 ->where(['tag.name' => $this->getData('get', 'name')]),
         ]);
 

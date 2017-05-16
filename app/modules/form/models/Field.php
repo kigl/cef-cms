@@ -98,8 +98,8 @@ class Field extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getNameFieldType($type)
+    public static function getNameFieldType($type)
     {
-        return $this->getListFieldType()[$type];
+        return (new self)->getListFieldType()[$type];
     }
 }

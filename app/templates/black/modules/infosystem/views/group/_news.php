@@ -16,8 +16,8 @@ use yii\helpers\Url;
         </a>
     </h2>
     <div class="img-thumbnail">
-        <?php if ($model->getBehavior('imagePreview')->fileExist()) : ?>
-            <img src="<?= $model->getBehavior('imagePreview')->getFileUrl(); ?>" style="width: 100%"/>
+        <?php if ($model->getBehavior('imageDescription')->fileExist()) : ?>
+            <img src="<?= $model->getBehavior('imageDescription')->getFileUrl(); ?>" style="width: 100%"/>
         <?php endif; ?>
     </div>
 </div>

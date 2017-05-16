@@ -24,7 +24,7 @@ class GroupModelService extends ModelService
 
         $dataProvider = new ActiveDataProvider([
             'query' => $model->getItems()
-                ->with('tags')
+                ->with(['tags', 'properties'])
                 ->where(['status' => Item::STATUS_ACTIVE]),
 
             'pagination' => [

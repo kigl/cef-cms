@@ -9,6 +9,7 @@
 namespace app\modules\comment\controllers;
 
 
+use Yii;
 use yii\data\ActiveDataProvider;
 use app\modules\backend\controllers\Controller;
 use app\modules\backend\actions\Delete;
@@ -49,5 +50,17 @@ class BackendCommentController extends Controller
                 'dataProvider' => $dataProvider,
             ]
         ]);
+    }
+
+    public function actionSelectionDelete()
+    {
+        if ($keys = Yii::$app->request->post('selection')) {
+
+            Comment::deleteAll(['id' => $keys]);
+
+            return true;
+        }
+
+        return false;
     }
 }

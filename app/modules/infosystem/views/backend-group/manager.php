@@ -61,6 +61,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
         [
             'attribute' => 'date',
             'label' => Yii::t('app', 'Date'),
+            'headerOptions' => ['style' => 'width: 20%'],
             'format' => 'date',
             'filter' => \yii\jui\DatePicker::widget([
                 'model' => $data['searchModel'],
@@ -71,6 +72,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
         [
             'attribute' => 'sorting',
             'label' => Yii::t('app', 'Sorting'),
+            'headerOptions' => ['style' => 'width: 10%'],
             'format' => 'raw',
             'value' => function ($data) {
                 return \kartik\editable\Editable::widget([
@@ -83,6 +85,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
         [
             'attribute' => 'id',
             'label' => Yii::t('app', 'ID'),
+            'headerOptions' => ['style' => 'width: 5%'],
         ],
         [
             'headerOptions' => ['style' => 'width: 70px'],

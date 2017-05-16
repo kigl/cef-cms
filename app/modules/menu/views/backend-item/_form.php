@@ -1,6 +1,8 @@
 <?php
 use app\modules\backend\widgets\ActiveForm;
 use app\modules\backend\widgets\fileInput\Widget as ActionImage;
+use app\modules\menu\widgets\backend\DropDownListItems;
+
 ?>
 
 <ul class="nav nav-tabs">
@@ -21,7 +23,10 @@ use app\modules\backend\widgets\fileInput\Widget as ActionImage;
     <div class="tab-pane active" id="main">
         <?= $form->field($data['model'], 'name'); ?>
 
-        <?= $form->field($data['model'], 'name_hide')->checkbox();?>
+        <?= $form->field($data['model'], 'parent_id')
+            ->widget(DropDownListItems::class, []); ?>
+
+        <?= $form->field($data['model'], 'name_hide')->checkbox(); ?>
 
         <?= $form->field($data['model'], 'url')
             ->hint('Пример: module/controller/action?param=name'); ?>

@@ -65,6 +65,10 @@ class RbacService extends Object
 
     public function saveChild($children = [], Item $item)
     {
+        if (!$children) {
+            return false;
+        }
+
         $childNames = array_keys($this->manager->getChildren($item->name));
 
         // Удаляем
@@ -77,20 +81,21 @@ class RbacService extends Object
         // Сохраняем
         foreach (array_diff($children, $childNames) as $child) {
 
-            if (!empty($this->getItems()[$child])) { //если сужествует элемент
+            if (!empty($this->getItems()[$child])) { //если существует элемент
                 $childItem = $this->getItems()[$child];
 
-                if ($item->name != $childItem->name) { // если выбранное имя не равно текущему
-                    if ($item->type == Role::TYPE_ROLE) {
-                        $this->manager->addChild($item, $childItem);
-                    } elseif ($childItem->type == Role::TYPE_ROLE) {
-                        $this->manager->addChild($childItem, $item);
-                    } else { // если оба елемента являются разрешением
-                        $this->manager->addChild($item, $childItem);
-                    }
+                if ($item->type == Role::TYPE_ROLE) {
+                    $this->manager->addChild($item, $childItem);
+                } elseif ($childItem->type == Role::TYPE_ROLE) {
+                    $this->manager->addChild($childItem, $item);
+                } else { // если оба елемента являются разрешением
+                    $this->manager->addChild($item, $childItem);
                 }
+
             }
         }
+
+        return true;
     }
 
     public function saveUserAssignment($rolePermission = [], $userId)

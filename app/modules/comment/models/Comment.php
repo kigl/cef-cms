@@ -4,7 +4,7 @@ namespace app\modules\comment\models;
 
 
 use Yii;
-use kigl\cef\module\user\models\base\User;
+use app\modules\user\models\User;
 
 /**
  * This is the model class for table "{{%comment}}".
@@ -25,6 +25,7 @@ class Comment extends \app\core\db\ActiveRecord
     const STATUS_BLOCK = 0;
     const STATUS_ACTIVE = 1;
     const STATUS_DRAFT = 2;
+    const STATUS_NEW = 3;
 
     /**
      * @inheritdoc
@@ -65,6 +66,16 @@ class Comment extends \app\core\db\ActiveRecord
         ];
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'app\core\behaviors\UserId',
+                'attribute' => 'user_id',
+            ],
+        ];
+    }
+
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
@@ -76,6 +87,7 @@ class Comment extends \app\core\db\ActiveRecord
             self::STATUS_BLOCK => Yii::t('app', 'Status block'),
             self::STATUS_ACTIVE => Yii::t('app', 'Status active'),
             self::STATUS_DRAFT => Yii::t('app', 'Status draft'),
+            self::STATUS_NEW => Yii::t('app', 'Status new'),
         ];
     }
 

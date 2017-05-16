@@ -17,7 +17,7 @@ use app\modules\backend\widgets\ActiveForm;
 
 <?= $form->field($data['model'], 'child')
     ->dropDownList($data['model']->getItems(), [
-        'prompt' => Yii::t('app', 'Not selected'),
+        'prompt' => Yii::t('yii', '(not set)'),
         'size' => 10,
         'multiple' => 'multiple',
         'groups' => [

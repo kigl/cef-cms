@@ -59,7 +59,7 @@ class Item extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'parent_id' => Yii::t('app', 'Parent id'),
+            'parent_id' => Yii::t('menu', 'Parent ID'),
             'menu_id' => Yii::t('menu', 'Menu ID'),
             'name' => Yii::t('app', 'Name'),
             'name_hide' => Yii::t('menu', 'Name hide'),

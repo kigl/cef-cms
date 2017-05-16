@@ -72,7 +72,7 @@ class GridView extends \kartik\grid\GridView
         if ($keyId = array_search('id', $this->columns)) {
             $this->columns[$keyId] = [
                 'attribute' => 'id',
-                'headerOptions' => ['style' => 'width: 80px'],
+                'headerOptions' => ['style' => 'width: 5%'],
             ];
         }
 
