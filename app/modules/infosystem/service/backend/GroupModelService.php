@@ -10,6 +10,7 @@ namespace app\modules\infosystem\service\backend;
 
 
 use yii\data\ArrayDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\HttpException;
 use app\modules\infosystem\models\Item;
 use app\modules\infosystem\models\backend\Infosystem;
@@ -48,8 +49,11 @@ class GroupModelService extends ModelService
             $items->andFilterWhere(["date(date)" => $searchModel->date]);
         }
 
+        $items = $items->all();
+        ArrayHelper::multisort($items, 'sorting');
+
         $dataProvider = (new ArrayDataProvider([
-            'allModels' => array_merge($groups->all(), $items->all()),
+            'allModels' => array_merge($groups->all(), $items),
             'sort' => [
                 'attributes' => ['id', 'name', 'date', 'sorting'],
             ],

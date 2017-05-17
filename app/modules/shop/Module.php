@@ -8,5 +8,5 @@ namespace app\modules\shop;
  */
 class Module extends \app\core\module\Module
 {
-    const VERSION = '1.0.0.01';
+    const VERSION = '1.0.0';
 }

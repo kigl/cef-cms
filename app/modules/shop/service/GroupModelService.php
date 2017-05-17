@@ -6,7 +6,7 @@
  */
 
 
-namespace kigl\module\shop\models\service\frontend;
+namespace kigl\module\shop\service;
 
 
 use yii\data\ActiveDataProvider;

@@ -31,6 +31,14 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
             }
         ],
         [
+            'attribute' => 'active',
+            'label' => Yii::t('app', 'Active'),
+            'format' => 'raw',
+            'value' => function ($data) {
+                return Html::checkbox('Active', $data->active, ['disabled' => 'disabled']);
+            }
+        ],
+        [
             'attribute' => 'visible',
             'value' => function ($data) {
                 return $data->getStatusVisible($data->visible);

@@ -3,6 +3,7 @@ return [
 	'Alias' => 'Алиас',
     'Author' => 'Автор',
 	'Additional properties' => 'Дополнительные свойства',
+    'Active' => 'Активный',
 
 	'Button create' => 'Создать',
     'Button add' => 'Добавить',
@@ -21,7 +22,7 @@ return [
     'Date start' => 'Дата начала',
     'Date end' => 'Дата окончания',
 
-    'Indexing' => 'Индексация',
+    'Indexing' => 'Индексировать',
 
     'Form legend seo' => 'SEO',
     'Fields' => 'Поля',

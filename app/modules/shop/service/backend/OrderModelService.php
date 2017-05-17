@@ -6,7 +6,7 @@
  * Time: 19:09
  */
 
-namespace app\modules\shop\models\backend\service;
+namespace app\modules\shop\service\backend;
 
 
 use yii\data\ActiveDataProvider;

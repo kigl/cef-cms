@@ -6,7 +6,7 @@
  * Time: 20:52
  */
 
-namespace app\modules\shop\models\backend\service;
+namespace app\modules\shop\service\backend;
 
 
 use yii\base\Model;

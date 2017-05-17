@@ -3,7 +3,7 @@ $configs = [
     ROOT_DIR . '/app/core/config/web.php',
     ROOT_DIR . '/app/modules/backend/config/web.php',
     ROOT_DIR . '/app/modules/user/config/web.php',
-   // ROOT_DIR . '/app/modules/shop/config/web.php',
+    ROOT_DIR . '/app/modules/shop/config/web.php',
     ROOT_DIR . '/app/modules/comment/config/web.php',
     ROOT_DIR . '/app/modules/infosystem/config/web.php',
     ROOT_DIR . '/app/modules/page/config/web.php',

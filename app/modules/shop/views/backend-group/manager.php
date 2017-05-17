@@ -12,11 +12,9 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
 ?>
 
 <?= GridView::widget([
-    'dataProviderGroup' => $data['dataProviderGroup'],
-    'dataProvider' => $data['dataProviderProduct'],
-    'filterModel' => $data['searchModel'],
+    'dataProvider' => $data['dataProvider'],
+    //'filterModel' => $data['searchModel'],
     'filterPosition' => GridView::FILTER_POS_BODY,
-    'checkboxColumn' => true,
     'buttons' => [
         'create' => [
             'group' => [
@@ -35,26 +33,17 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
             ],
         ],
     ],
-    'columnsGroup' => [
-        [
-            'attribute' => 'name',
-            'format' => 'raw',
-            'value' => function ($data) {
-                return Html::a(Html::encode($data->name), ['manager', 'id' => $data->id]);
-            }
-        ],
-        [],
-        'create_time:date',
-        'id',
-        [
-            'class' => \yii\grid\ActionColumn::className(),
-            'template' => "{update} {delete}",
-        ],
-    ],
     'columns' => [
         [
             'attribute' => 'name',
+            'label' => Yii::t('app', 'Name'),
+            'format' => 'raw',
             'headerOptions' => ['style' => 'width: 50%'],
+            'value' => function ($data) {
+                return array_key_exists('parent_id', $data) ?
+                    Html::a($data['name'], ['manager', 'id' => $data['id']]) :
+                    $data['name'];
+            }
         ],
         'price:currency',
         [
@@ -75,14 +64,14 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
                 'update' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
                             'backend-product/update',
-                            'id' => $model->id
+                            'id' => $model['id']
                         ]
                     );
                 },
                 'delete' => function ($url, $model, $key) {
                     return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
                         'backend-product/delete',
-                        'id' => $model->id
+                        'id' => $model['id']
                     ],
                         ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'Question on delete file')]
                     );

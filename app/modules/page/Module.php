@@ -11,7 +11,7 @@ use yii\base\ErrorException;
  */
 class Module extends \app\core\module\Module
 {
-    const VERSION = '1.0.0.01';
+    const VERSION = '1.0.1';
 
     protected $_dynamicDataPath = null;
 

@@ -57,6 +57,7 @@ $config = [
             'dateFormat' => 'dd.MM.yyyy',
             'defaultTimeZone' => 'Europe/Moscow',
             'currencyCode' => 'RUB',
+            'nullDisplay' => '',
         ],
 
         'db' => require 'db.php',

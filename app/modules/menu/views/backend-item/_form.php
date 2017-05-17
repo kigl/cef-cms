@@ -26,6 +26,9 @@ use app\modules\menu\widgets\backend\DropDownListItems;
         <?= $form->field($data['model'], 'parent_id')
             ->widget(DropDownListItems::class, []); ?>
 
+        <?= $form->field($data['model'], 'active')
+            ->checkbox(); ?>
+
         <?= $form->field($data['model'], 'name_hide')->checkbox(); ?>
 
         <?= $form->field($data['model'], 'url')

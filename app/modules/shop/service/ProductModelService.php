@@ -6,7 +6,7 @@
  */
 
 
-namespace app\modules\shop\models\service\frontend;
+namespace app\modules\shop\service;
 
 
 use yii\data\ActiveDataProvider;

@@ -30,16 +30,9 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
                     <?= $form->field($data['model'], 'status')
                         ->dropDownList($data['model']->getStatusList()); ?>
 
-                    <?php echo Collapse::widget([
-                        'items' => [
-                            [
-                                'label' => Yii::t('app', 'Parent group'),
-                                'content' => $form->field($data['model'], 'parent_id')
-                                    ->widget(DropDownListItems::className(), ['options' => ['size' => 10]])
-                                    ->label(false),
-                            ],
-                        ]
-                    ]); ?>
+                    <?= $form->field($data['model'], 'parent_id')
+                        ->widget(DropDownListItems::className())
+                        ->label(Yii::t('app', 'Parent group')); ?>
                 </div>
             </div>
         </div>

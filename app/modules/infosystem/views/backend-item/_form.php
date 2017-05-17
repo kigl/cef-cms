@@ -30,14 +30,32 @@ use app\modules\infosystem\Module;
     <div class="tab-content">
 
         <div class="tab-pane active" id="main">
-            <div class="row">
-                <div class="col-md-12">
-                    <?= $form->field($data['model'], 'name'); ?>
 
+            <div class="row">
+                <div class="col-md-6">
+                    <?= $form->field($data['model'], 'name'); ?>
+                </div>
+                <div class="col-md-6">
+
+                    <?= $form->field($data['model'], 'listTags')
+                        ->widget(TagEditor::className())
+                        ->label(Module::t('Tags')); ?>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
                     <?= $form->field($data['model'], 'group_id')
                         ->widget(DropDownListItems::className(), [
                             'modelClass' => \app\modules\infosystem\models\Group::className(),
                         ]); ?>
+                </div>
+                <div class="col-md-4">
+                    <?= $form->field($data['model'], 'status')
+                        ->dropDownList($data['model']->getStatusList()); ?>
+                </div>
+                <div class="col-md-4">
+                    <?= $form->field($data['model'], 'sorting'); ?>
                 </div>
             </div>
             <div class="row">
@@ -60,27 +78,13 @@ use app\modules\infosystem\Module;
             </div>
 
             <div class="row">
-                <div class="col-md-3">
-                    <?= $form->field($data['model'], 'status')
-                        ->dropDownList($data['model']->getStatusList()); ?>
-                </div>
-                <div class="col-md-3">
-                    <?= $form->field($data['model'], 'sorting'); ?>
-                </div>
-
-            </div>
-            <div class="row">
                 <div class="col-md-6">
-                    <?= $form->field($data['model'], 'listTags')
-                        ->widget(TagEditor::className())
-                        ->label(Module::t('Tags')); ?>
+                    <?= $form->field($data['model'], 'file')
+                        ->widget(ActionImage::className(), [
+                            'behaviorName' => 'file',
+                        ]); ?>
                 </div>
             </div>
-
-            <?= $form->field($data['model'], 'file')
-                ->widget(ActionImage::className(), [
-                    'behaviorName' => 'file',
-                ]); ?>
         </div>
 
         <div class="tab-pane" id="description">

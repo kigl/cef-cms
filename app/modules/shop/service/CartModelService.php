@@ -6,7 +6,7 @@
  */
 
 
-namespace kigl\cef\module\shop\models\service\frontend;
+namespace kigl\cef\module\shop\service;
 
 
 use Yii;

@@ -6,9 +6,10 @@
  */
 
 
-namespace app\modules\shop\models\backend\service;
+namespace app\modules\shop\service\backend;
 
 
+use app\modules\shop\models\backend\SearchModel;
 use Yii;
 use app\modules\shop\Module;
 use app\core\traits\Breadcrumbs;
@@ -16,6 +17,7 @@ use app\core\service\ModelService;
 use app\modules\shop\models\backend\Group;
 use app\modules\shop\models\backend\GroupSearch;
 use app\modules\shop\models\backend\ProductSearch;
+use yii\data\ArrayDataProvider;
 
 class GroupModelService extends ModelService
 {
@@ -23,16 +25,20 @@ class GroupModelService extends ModelService
 
     public function actionManager()
     {
-        $dataProviderSearch = new GroupSearch();
-        $dataProviderGroup = $dataProviderSearch->search($this->getData('get'));
-        $dataProviderProductSearch = new ProductSearch();
-        $dataProviderProduct = $dataProviderProductSearch->search($this->getData('get'));
+        $search = new SearchModel();
+
+        $group = Group::find()
+            ->where(['parent_id' => $this->getData('get', 'id')])
+            ->asArray();
+
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => $group->all(),
+        ]);
 
         $this->setData([
             'id' => $this->getData('get', 'id'),
-            'searchModel' => $dataProviderProductSearch,
-            'dataProviderGroup' => $dataProviderGroup,
-            'dataProviderProduct' => $dataProviderProduct,
+            'searchModel' => $search,
+            'dataProvider' => $dataProvider,
             'breadcrumbs' => $this->getBreadcrumbsItem($this->getData('get', 'id')),
         ]);
     }

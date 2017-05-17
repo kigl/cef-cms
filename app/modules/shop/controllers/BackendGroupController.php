@@ -3,10 +3,9 @@
 namespace app\modules\shop\controllers;
 
 
-use app\modules\shop\models\backend\Group;
 use Yii;
 use app\modules\backend\controllers\Controller;
-use app\modules\shop\models\backend\service\GroupModelService;
+use app\modules\shop\service\backend\GroupModelService;
 
 class BackendGroupController extends Controller
 {
