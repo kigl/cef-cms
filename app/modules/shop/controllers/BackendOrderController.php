@@ -11,7 +11,7 @@ namespace app\modules\shop\controllers;
 
 use Yii;
 use app\modules\backend\controllers\Controller;
-use app\modules\shop\models\backend\service\OrderModelService;
+use app\modules\shop\service\backend\OrderModelService;
 
 class BackendOrderController extends Controller
 {

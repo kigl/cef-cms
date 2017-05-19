@@ -11,6 +11,7 @@ $configs = [
     ROOT_DIR . '/app/modules/form/config/console.php',
     ROOT_DIR . '/app/modules/menu/config/console.php',
     ROOT_DIR . '/app/modules/lists/config/console.php',
+    ROOT_DIR . '/app/modules/site/config/console.php',
 ];
 
 $result = [];

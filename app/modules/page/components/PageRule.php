@@ -21,7 +21,11 @@ class PageRule implements \yii\web\UrlRuleInterface
             $models = $this->getData();
 
             if (key_exists($params['id'], $models)) {
-                return $models[$params['id']]['alias'];
+
+                if ($models[$params['id']]['site_id'] == Yii::$app->site->id) {
+
+                    return $models[$params['id']]['alias'];
+                }
             }
         }
 
@@ -36,7 +40,7 @@ class PageRule implements \yii\web\UrlRuleInterface
 
             foreach ($this->getData() as $model) {
 
-                if ($model['alias'] == $pathInfo) {
+                if ($model['alias'] == $pathInfo && $model['site_id'] == Yii::$app->site->getId()) {
                     return [$this->requestPage, ['id' => $model['id']]];
                 }
             }
@@ -54,7 +58,7 @@ class PageRule implements \yii\web\UrlRuleInterface
             $this->data = Yii::$app->cache->getOrSet($this->cacheKey, function () {
                 return Page::find()
                     ->indexBy('id')
-                    ->select(['id', 'alias'])
+                    ->select(['id', 'alias', 'site_id'])
                     ->asArray()
                     ->all();
             }, null, $depedency);

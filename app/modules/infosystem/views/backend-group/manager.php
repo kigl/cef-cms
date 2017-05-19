@@ -91,7 +91,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',
             'template' => '{update} {delete}',
-            'controller' => 'loop',
+
             'urlCreator' => function ($action, $model, $key, $index) {
                 return array_key_exists('group_id', $model) ?
                     Url::to(["backend-item/{$action}", 'id' => $model['id']]) :

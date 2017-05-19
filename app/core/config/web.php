@@ -15,6 +15,8 @@ $config = [
 
     'layout' => '@app/templates/black/layouts/column_1.php',
 
+    'bootstrap' => ['site'],
+
     'components' => [
 
         'sitemap' => [
@@ -62,7 +64,6 @@ $config = [
 
         'db' => require 'db.php',
 
-
         'cache' => [
             'class' => 'yii\caching\FileCache',
             //'class' => \yii\caching\DummyCache::class,
@@ -75,15 +76,14 @@ $config = [
             'loginUrl' => ['/user/user/login'],
         ],
 
+        'site' => [
+            'class' => 'app\modules\site\components\Site',
+        ],
+
         'view' => [
             'class' => 'app\core\web\View',
             'theme' => [
-                'basePath' => '@app/templates/black',
-                'baseUrl' => '@web/app/templates/black',
-                'pathMap' => [
-                    '@app/views' => '@app/templates/black/views',
-                    '@app/modules' => '@app/templates/black/modules',
-                ],
+                'class' => 'app\modules\site\components\Template',
             ],
         ],
 

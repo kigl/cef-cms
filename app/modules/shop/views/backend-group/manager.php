@@ -13,7 +13,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
 
 <?= GridView::widget([
     'dataProvider' => $data['dataProvider'],
-    //'filterModel' => $data['searchModel'],
+    'filterModel' => $data['searchModel'],
     'filterPosition' => GridView::FILTER_POS_BODY,
     'buttons' => [
         'create' => [
@@ -35,48 +35,57 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
     ],
     'columns' => [
         [
+            'class' => \yii\grid\CheckboxColumn::className(),
+            'headerOptions' => ['style' => 'width: 3%'],
+            'checkboxOptions' => function ($data) {
+                return [
+                    'value' => $data['id'],
+                    'group' => array_key_exists('group_id', $data) ? false : true,
+                ];
+            }
+        ],
+        [
             'attribute' => 'name',
             'label' => Yii::t('app', 'Name'),
             'format' => 'raw',
             'headerOptions' => ['style' => 'width: 50%'],
             'value' => function ($data) {
-                return array_key_exists('parent_id', $data) ?
-                    Html::a($data['name'], ['manager', 'id' => $data['id']]) :
-                    $data['name'];
+                return array_key_exists('group_id', $data) ?
+                    $data['name'] :
+                    Html::a($data['name'], ['manager', 'id' => $data['id']]);
             }
         ],
-        'price:currency',
+        [
+            'attribute' => 'price',
+            'label' => Yii::t('app','Price'),
+            'format' => 'currency',
+            'headerOptions' => ['style' => 'width: 15%'],
+        ],
         [
             'attribute' => 'create_time',
+            'label' => Yii::t('app', 'Create time'),
             'format' => 'date',
+            'headerOptions' => ['style' => 'width: 15%'],
             'filter' => \yii\jui\DatePicker::widget([
                 'model' => $data['searchModel'],
                 'attribute' => 'create_time',
                 'options' => ['class' => 'form-control'],
             ]),
         ],
-        'id',
         [
-            'headerOptions' => ['style' => 'width: 70px'],
+            'attribute' => 'id',
+            'label' => Yii::t('app', 'ID'),
+            'headerOptions' => ['style' => 'width: 5%'],
+        ],
+        [
+            'headerOptions' => ['style' => 'width: 5%'],
             'class' => \yii\grid\ActionColumn::className(),
             'template' => "{update} {delete}",
-            'buttons' => [
-                'update' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-pencil"></i>', [
-                            'backend-product/update',
-                            'id' => $model['id']
-                        ]
-                    );
-                },
-                'delete' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-trash"></i>', [
-                        'backend-product/delete',
-                        'id' => $model['id']
-                    ],
-                        ['date-method' => 'POST', 'data-confirm' => Yii::t('app', 'Question on delete file')]
-                    );
-                }
-            ],
+            'urlCreator' => function ($action, $model, $key, $index) {
+                return array_key_exists('parent_id', $model) && array_key_exists('group_id', $model) ?
+                    Url::to(["backend-product/" . $action, 'id' => $model['id']]) :
+                    Url::to(["{$action}", 'id' => $model['id']]);
+            }
         ],
     ],
 ]); ?>

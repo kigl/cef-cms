@@ -21,6 +21,7 @@ return [
     'Date' => 'Дата',
     'Date start' => 'Дата начала',
     'Date end' => 'Дата окончания',
+    'Domain' => 'Домен',
 
     'Indexing' => 'Индексировать',
 
@@ -146,6 +147,7 @@ return [
     'Toolbar manager {data}' => 'Менеджер {data}',
     'Toolbar setting' => 'Настройки',
     'The user model class is not assigned' => 'Класс модели пользователя не присвоен',
+    'Template' => 'Шаблон',
 
     'Value' => 'Значение',
 

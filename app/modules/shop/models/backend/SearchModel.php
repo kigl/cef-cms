@@ -24,6 +24,16 @@ class SearchModel extends Model
         return [
             [['id'], 'integer'],
             [['name', 'create_time'], 'string', 'max' => 255],
+            ['create_time', 'date', 'format' => 'yyyy-MM-dd'],
         ];
+    }
+
+    public function beforeValidate()
+    {
+        if ($this->create_time !== '' && $this->create_time != null) {
+            $this->create_time = \Yii::$app->formatter->asDate($this->create_time, 'yyyy-MM-dd');
+        }
+
+        return parent::beforeValidate();
     }
 }

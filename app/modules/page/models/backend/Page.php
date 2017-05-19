@@ -46,6 +46,13 @@ class Page extends \app\modules\page\models\Page
         ];
     }
 
+    public function beforeSave($insert)
+    {
+        $this->site_id = Yii::$app->site->getId();
+
+        return parent::beforeSave($insert);
+    }
+
     public function afterSave($insert, $changedAttributes)
     {
         $this->saveViewFile();

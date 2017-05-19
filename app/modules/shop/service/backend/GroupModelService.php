@@ -9,6 +9,7 @@
 namespace app\modules\shop\service\backend;
 
 
+use app\modules\shop\models\backend\Product;
 use app\modules\shop\models\backend\SearchModel;
 use Yii;
 use app\modules\shop\Module;
@@ -31,8 +32,25 @@ class GroupModelService extends ModelService
             ->where(['parent_id' => $this->getData('get', 'id')])
             ->asArray();
 
+        $product = Product::find()
+            ->where(['group_id' => $this->getData('get', 'id')])
+            ->andWhere('parent_id IS NULL')
+            ->asArray();
+
+        if ($search->load($this->getData('get')) && $search->validate()) {
+            $group->filterWhere(['like', 'name', $search->name]);
+            $group->andFilterWhere(['id' => $search->id]);
+            $group->andFilterWhere(["date(create_time)" => $search->create_time]);
+            $product->filterWhere(['like', 'name', $search->name]);
+            $product->andFilterWhere(['id' => $search->id]);
+            $product->andFilterWhere(["date(create_time)" => $search->create_time]);
+        }
+
         $dataProvider = new ArrayDataProvider([
-            'allModels' => $group->all(),
+            'allModels' => array_merge($group->all(), $product->all()),
+            'sort' => [
+                'attributes' => ['name', 'price', 'create_time', 'id'],
+            ],
         ]);
 
         $this->setData([

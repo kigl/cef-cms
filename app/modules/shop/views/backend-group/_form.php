@@ -1,8 +1,7 @@
-<?
+<?php
 use app\modules\backend\widgets\ActiveForm;
 use app\modules\backend\widgets\fileInput\Widget as WidgetActionImage;
 use app\modules\shop\widgets\backend\DropDownListAllGroup;
-use yii\bootstrap\Collapse;
 
 ?>
 
@@ -23,16 +22,10 @@ use yii\bootstrap\Collapse;
 <div class="tab-content">
     <div class="tab-pane active" id="main">
         <?= $form->field($data['model'], 'name') ?>
-        <?php echo Collapse::widget([
-            'items' => [
-                [
-                    'label' => Yii::t('app', 'Parent group'),
-                    'content' => $form->field($data['model'], 'parent_id')
-                        ->widget(DropDownListAllGroup::className(), ['options' => ['size' => 10]])
-                        ->label(false),
-                ],
-            ]
-        ]); ?>
+
+        <?= $form->field($data['model'], 'parent_id')
+            ->widget(DropDownListAllGroup::className())
+            ->label(Yii::t('app', 'Parent group')); ?>
     </div>
     <div class="tab-pane" id="description">
         <?= $form->field($data['model'], 'image_1')->widget(WidgetActionImage::className(), [

@@ -4,28 +4,33 @@ use yii\db\Migration;
 
 class m160902_081826_page extends Migration
 {
-	public $tableName = '{{%page}}';
+	protected $_tableName = '{{%page}}';
 	
     public function up()
     {
-			$this->createTable($this->tableName, [
+			$this->createTable($this->_tableName, [
 				'id' => $this->primaryKey(),
 				'name' => $this->string(),
 				'content' => $this->text(),
 				'indexing' => $this->integer(),
 				'template' => $this->string(),
+				'site_id' => $this->integer(),
 				'alias' => $this->string(),
 				'meta_title' => $this->string(),
 				'meta_description' => $this->string(),
 			]);
 
-        $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_description`;");
-        $this->execute("ALTER TABLE {$this->tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
+        $this->execute("ALTER TABLE {$this->_tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_description`;");
+        $this->execute("ALTER TABLE {$this->_tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
+
+        $this->createIndex('ix-page-site_id', $this->_tableName, 'site_id');
+
+        $this->addForeignKey('fk-page-site_id', $this->_tableName, 'site_id', '{{%site}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()
     {
-			$this->dropTable($this->tableName);
+			$this->dropTable($this->_tableName);
     }
 
     /*

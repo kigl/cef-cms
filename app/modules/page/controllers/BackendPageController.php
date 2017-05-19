@@ -5,10 +5,11 @@ namespace app\modules\page\controllers;
 
 use Yii;
 use yii\data\ActiveDataProvider;
+use app\modules\backend\controllers\Controller;
 use app\modules\page\models\backend\Page;
 use vova07\imperavi\actions\GetAction;
 
-class BackendPageController extends BackendController
+class BackendPageController extends Controller
 {
 
     public function actions()
@@ -43,7 +44,8 @@ class BackendPageController extends BackendController
     public function actionManager()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Page::find(),
+            'query' => Page::find()
+                ->where(['site_id' => Yii::$app->site->getId()])
         ]);
 
         return $this->render('manager', ['dataProvider' => $dataProvider]);

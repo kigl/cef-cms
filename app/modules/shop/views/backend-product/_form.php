@@ -8,6 +8,7 @@ use app\modules\shop\models\backend\Property;
 use app\modules\backend\widgets\grid\GridView;
 use app\modules\shop\models\backend\Image;
 use app\modules\lists\widgets\DropDownItems;
+use app\core\widgets\DropDownLIstItems;
 
 ?>
 
@@ -15,7 +16,10 @@ use app\modules\lists\widgets\DropDownItems;
     <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
     <li><a href="#content" data-toggle="tab"><?= Yii::t('app', 'Tab content'); ?></a></li>
     <li><a href="#images" data-toggle="tab"><?= Yii::t('app', 'Tab images'); ?></a></li>
-    <li><a href="#property" data-toggle="tab"><?= Yii::t('app', 'Tab properties') ?></a></li>
+
+    <?php if ($data['productProperties']) : ?>
+        <li><a href="#property" data-toggle="tab"><?= Yii::t('app', 'Tab properties') ?></a></li>
+    <?php endif; ?>
 
     <?php if (is_null($data['model']->parent_id) && !$data['model']->isNewRecord) : ?>
         <li><a href="#modifications" data-toggle="tab"><?= Yii::t('shop', 'Tab modifications'); ?></a></li>
@@ -40,17 +44,30 @@ use app\modules\lists\widgets\DropDownItems;
             <div class="col-md-12"><?= $form->field($data['model'], 'name'); ?></div>
         </div>
         <div class="row">
-            <div class="col-md-3"><?= $form->field($data['model'], 'code'); ?></div>
-            <div class="col-md-3"><?= $form->field($data['model'], 'price')
+            <div class="col-md-6">
+                <?= $form->field($data['model'], 'group_id')
+                    ->widget(DropDownLIstItems::className(), [
+                        'modelClass' => \app\modules\shop\models\Group::className(),
+                    ])
+                    ->label(Yii::t('app', 'Group')); ?>
+            </div>
+            <div class="col-md-3">
+                <?= $form->field($data['model'], 'code'); ?>
+            </div>
+            <div class="col-md-3">
+                <?= $form->field($data['model'],
+                    'status')->dropDownList($data['model']->getListStatus()); ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><?= $form->field($data['model'], 'price')
                     ->widget(\kartik\money\MaskMoney::className(), [
                         'pluginOptions' => [
                             'prefix' => 'RUR ',
                         ]
                     ]); ?>
             </div>
-            <div class="col-md-3"><?= $form->field($data['model'], 'sku'); ?></div>
-            <div class="col-md-3"><?= $form->field($data['model'],
-                    'status')->dropDownList($data['model']->getListStatus()); ?></div>
+            <div class="col-md-6"><?= $form->field($data['model'], 'sku'); ?></div>
         </div>
 
         <?= $form->field($data['model'], 'description')->textarea(); ?>

@@ -4,11 +4,7 @@ namespace app\modules\backend\widgets\grid;
 
 
 use Yii;
-use yii\base\Model;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
-use yii\grid\DataColumn;
-use yii\bootstrap\Modal;
 
 class GridView extends \kartik\grid\GridView
 {
@@ -97,7 +93,7 @@ class GridView extends \kartik\grid\GridView
     {
         return [
             'class' => 'yii\grid\SerialColumn',
-            'headerOptions' => ['style' => 'width: 50px;'],
+            'headerOptions' => ['style' => 'width: 3%;'],
         ];
     }
 }

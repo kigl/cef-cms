@@ -12,6 +12,8 @@ $configs = [
     ROOT_DIR . '/app/modules/menu/config/web.php',
     ROOT_DIR . '/app/modules/lists/config/web.php',
     ROOT_DIR . '/app/modules/tool/config/web.php',
+    ROOT_DIR . '/app/modules/template/config/web.php',
+    ROOT_DIR . '/app/modules/site/config/web.php',
 ];
 
 $result = [];

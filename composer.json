@@ -44,7 +44,7 @@
         "yii\\composer\\Installer::postCreateProject": {
             "setPermission": [
                 {
-                    "runtime": "0777",
+                    "app/runtime": "0777",
                     "public/assets": "0777",
                     "yii": "0755"
                 }
