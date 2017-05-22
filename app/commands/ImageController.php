@@ -10,7 +10,7 @@ namespace app\commands;
 
 
 use Yii;
-use app\modules\infosystem\models\Item;
+use app\modules\infosystems\models\Item;
 use yii\console\Controller;
 
 class ImageController extends Controller

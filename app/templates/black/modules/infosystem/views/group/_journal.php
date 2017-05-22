@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-use app\modules\infosystem\widgets\ListTags;
+use app\modules\infosystems\widgets\ListTags;
 
 ?>
 

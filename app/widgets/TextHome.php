@@ -9,7 +9,7 @@
 namespace app\widgets;
 
 
-use app\modules\infosystem\models\Item;
+use app\modules\infosystems\models\Item;
 use yii\base\Widget;
 
 class TextHome extends Widget

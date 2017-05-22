@@ -3,7 +3,7 @@
 namespace app\modules\form\models\backend;
 
 use Yii;
-use app\modules\user\models\base\User;
+use app\modules\users\models\base\User;
 
 /**
  * This is the model class for table "{{%service_form_completed}}".

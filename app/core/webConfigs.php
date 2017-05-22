@@ -2,18 +2,18 @@
 $configs = [
     ROOT_DIR . '/app/core/config/web.php',
     ROOT_DIR . '/app/modules/backend/config/web.php',
-    ROOT_DIR . '/app/modules/user/config/web.php',
+    ROOT_DIR . '/app/modules/users/config/web.php',
     ROOT_DIR . '/app/modules/shop/config/web.php',
     ROOT_DIR . '/app/modules/comment/config/web.php',
-    ROOT_DIR . '/app/modules/infosystem/config/web.php',
-    ROOT_DIR . '/app/modules/page/config/web.php',
+    ROOT_DIR . '/app/modules/infosystems/config/web.php',
+    ROOT_DIR . '/app/modules/pages/config/web.php',
     ROOT_DIR . '/app/modules/tag/config/web.php',
     ROOT_DIR . '/app/modules/form/config/web.php',
     ROOT_DIR . '/app/modules/menu/config/web.php',
     ROOT_DIR . '/app/modules/lists/config/web.php',
-    ROOT_DIR . '/app/modules/tool/config/web.php',
+    ROOT_DIR . '/app/modules/tools/config/web.php',
     ROOT_DIR . '/app/modules/template/config/web.php',
-    ROOT_DIR . '/app/modules/site/config/web.php',
+    ROOT_DIR . '/app/modules/sites/config/web.php',
 ];
 
 $result = [];

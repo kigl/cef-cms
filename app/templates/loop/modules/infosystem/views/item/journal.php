@@ -21,7 +21,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
                             <b><?= Yii::$app->formatter->asDate($data['model']->date, 'long'); ?></b>
                         </li>
                         <li>
-                            <?= \app\modules\infosystem\widgets\ListTags::widget([
+                            <?= \app\modules\infosystems\widgets\ListTags::widget([
                                 'tags' => $data['model']->tags,
                                 'infosystemId' => $data['model']->infosystem_id
                             ]) ?>
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
                 </div>
             </div>
 
-            <?= app\modules\infosystem\widgets\SimilarItem::widget([
+            <?= app\modules\infosystems\widgets\SimilarItem::widget([
                 'infosystemId' => $data['model']->infosystem_id,
                 'currentItemId' => $data['model']->id,
                 'headerText' => 'Похожие статьи',

@@ -13,8 +13,6 @@ $config = [
 
     'modules' => require 'modules.php',
 
-    'layout' => '@app/templates/black/layouts/column_1.php',
-
     'bootstrap' => ['site'],
 
     'components' => [
@@ -22,9 +20,9 @@ $config = [
         'sitemap' => [
             'class' => \app\core\components\sitemap\Sitemap::className(),
             'models' => [
-                \app\modules\infosystem\models\Item::className(),
-                \app\modules\infosystem\models\Group::className(),
-                \app\modules\page\models\Page::className(),
+                \app\modules\infosystems\models\Item::className(),
+                \app\modules\infosystems\models\Group::className(),
+                \app\modules\pages\models\Page::className(),
             ],
         ],
 
@@ -47,7 +45,6 @@ $config = [
 
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            //'useFileTransport' => true,
         ],
 
         'errorHandler' => [
@@ -71,19 +68,19 @@ $config = [
 
 
         'user' => [
-            'identityClass' => 'app\modules\user\models\UserIdentity',
+            'identityClass' => 'app\modules\users\models\UserIdentity',
             'enableAutoLogin' => false,
-            'loginUrl' => ['/user/user/login'],
+            'loginUrl' => ['/users/user/login'],
         ],
 
         'site' => [
-            'class' => 'app\modules\site\components\Site',
+            'class' => 'app\modules\sites\components\Site',
         ],
 
         'view' => [
             'class' => 'app\core\web\View',
             'theme' => [
-                'class' => 'app\modules\site\components\Template',
+                'class' => 'app\modules\sites\components\Template',
             ],
         ],
 

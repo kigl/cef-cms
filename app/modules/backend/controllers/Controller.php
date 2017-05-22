@@ -21,7 +21,7 @@ abstract class Controller extends \yii\web\Controller
          * @todo
          * подумать, вынести из контроллера
          */
-        Yii::configure(Yii::$app->user, ['loginUrl' => ['/user/backend-login/index']]);
+        Yii::configure(Yii::$app->user, ['loginUrl' => ['/users/backend-login/index']]);
     }
 
     public function behaviors()

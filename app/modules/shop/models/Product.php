@@ -5,7 +5,7 @@ namespace app\modules\shop\models;
 
 use Yii;
 use app\core\db\ActiveRecord;
-use app\modules\user\models\User;
+use app\modules\users\models\User;
 
 /**
  * This is the model class for table "mn_shop_product".

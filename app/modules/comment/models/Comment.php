@@ -4,7 +4,7 @@ namespace app\modules\comment\models;
 
 
 use Yii;
-use app\modules\user\models\User;
+use app\modules\users\models\User;
 
 /**
  * This is the model class for table "{{%comment}}".

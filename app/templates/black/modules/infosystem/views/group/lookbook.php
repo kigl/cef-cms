@@ -26,7 +26,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
                         margin: 0 auto;
                     }
                 </style>
-                <?= \app\modules\infosystem\widgets\Slide::widget([
+                <?= \app\modules\infosystems\widgets\Slide::widget([
                     'groupId' => $data['model']->id,
                     'options' => ['class' => 'slide'],
                 ]); ?>
