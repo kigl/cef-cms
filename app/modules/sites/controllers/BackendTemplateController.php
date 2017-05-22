@@ -39,4 +39,11 @@ class BackendTemplateController extends Controller
 
         return $this->render('manager', ['data' => ['dataProvider' => $dataProvider]]);
     }
+
+    public function actionListLayout()
+    {
+        $templateId = '';
+
+
+    }
 }

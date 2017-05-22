@@ -12,7 +12,6 @@ class m170519_041890_template extends Migration
             'id' => $this->string(),
             'name' => $this->string(),
             'description' => $this->string(500),
-            'layout' => $this->string(),
             'version' => $this->string(),
         ]);
 

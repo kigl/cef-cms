@@ -15,6 +15,7 @@ class m170519_041900_site extends Migration
             'description' => $this->text(),
             'robots_txt' => $this->text(),
             'template_id' => $this->string(),
+            'layout' => $this->string(),
             'active' => $this->integer(),
         ]);
 

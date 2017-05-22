@@ -13,6 +13,7 @@ use Yii;
  * @property string $description
  * @property string $robots_txt
  * @property string $template_id
+ * @property string $layout
  * @property integer $active
  */
 class Site extends \yii\db\ActiveRecord
@@ -37,7 +38,7 @@ class Site extends \yii\db\ActiveRecord
             [['domain', 'template_id', 'name'], 'required'],
             [['description', 'robots_txt'], 'string'],
             [['active'], 'integer'],
-            [['domain', 'name', 'template_id'], 'string', 'max' => 255],
+            [['domain', 'name', 'template_id', 'layout'], 'string', 'max' => 255],
         ];
     }
 
@@ -53,6 +54,7 @@ class Site extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'robots_txt' => Yii::t('app', 'Robots Txt'),
             'template_id' => Yii::t('app', 'Template'),
+            'layout' => Yii::t('app', 'Layout'),
             'active' => Yii::t('app', 'Active'),
         ];
     }
