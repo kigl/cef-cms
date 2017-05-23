@@ -17,6 +17,7 @@ class m160914_041003_infosystem_tag extends Migration
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
             'name' => $this->string(),
+            'site_id' => $this->integer(),
         ]);
     }
 

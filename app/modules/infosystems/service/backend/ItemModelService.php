@@ -44,6 +44,7 @@ class ItemModelService extends ModelService
 
         $this->setData([
             'model' => $this->model,
+            'tags' => Tag::find()->asArray()->all(),
             'itemProperties' => $this->itemProperties,
             'properties' => $this->properties,
             'breadcrumbs' => $this->getItemsBreadcrumb($infosystem, $this->model->group_id),
@@ -68,6 +69,7 @@ class ItemModelService extends ModelService
         $this->setData([
             'model' => $this->model,
             'itemProperties' => $this->itemProperties,
+            'tags' => Tag::find()->asArray()->all(),
             'properties' => $this->properties,
             'breadcrumbs' => $this->getItemsBreadcrumb($this->model->infosystem, $this->model->group_id,
                 $this->model->name),
@@ -187,30 +189,14 @@ class ItemModelService extends ModelService
     {
         $tagsOnSave = $this->model->getRuntimeTags();
 
-        $allTags = Tag::find()
-            ->select(['id', 'name'])
-            ->indexBy('name')
-            ->asArray()
-            ->all();
+        $itemTags = ArrayHelper::getColumn($this->model->tags, 'id');
 
-        $itemTags = ArrayHelper::map($this->model->tags, 'id', 'name');
-
-        $newItemTags = array_diff($tagsOnSave, $itemTags);
-
-        if ($newItemTags) {
+        if ($newItemTags = array_diff($tagsOnSave, $itemTags)) {
 
             $itemTag = [];
-            foreach ($newItemTags as $tagName) {
-                if (!isset($allTags[$tagName])) {
-                    $tag = new Tag([
-                        'name' => (string)$tagName,
-                    ]);
-                    $tag->save(false);
+            foreach ($newItemTags as $id) {
 
-                    $itemTag[] = [$this->model->id, $tag->id];
-                } else {
-                    $itemTag[] = [$this->model->id, $allTags[$tagName]['id']];
-                }
+                $itemTag[] = [$this->model->id, $id];
             }
 
             Yii::$app->db->createCommand()
@@ -218,9 +204,8 @@ class ItemModelService extends ModelService
                 ->execute();
         }
 
-        $removeTags = array_flip(array_diff($itemTags, $tagsOnSave));
 
-        if ($removeTags) {
+        if ($removeTags = array_diff($itemTags, $tagsOnSave)) {
             Yii::$app->db->createCommand()->delete(ItemTag::tableName(), ['tag_id' => $removeTags])
                 ->execute();
         }

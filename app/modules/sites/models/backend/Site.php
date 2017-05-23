@@ -15,10 +15,8 @@ class Site extends \app\modules\sites\models\Site
 {
     public function getTemplateList()
     {
-        $model = Template::find()
-            ->select(['id'])
-            ->all();
+        $theme = \Yii::$app->view->theme;
 
-        return ArrayHelper::map($model, 'id', 'id');
+        return array_combine(array_flip($theme->getTemplatesList()), array_flip($theme->getTemplatesList()));
     }
 }

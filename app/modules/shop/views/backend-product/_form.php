@@ -8,7 +8,7 @@ use app\modules\shop\models\backend\Property;
 use app\modules\backend\widgets\grid\GridView;
 use app\modules\shop\models\backend\Image;
 use app\modules\lists\widgets\DropDownItems;
-use app\core\widgets\DropDownLIstItems;
+use app\core\widgets\DropDownTreeItems;
 
 ?>
 
@@ -46,7 +46,7 @@ use app\core\widgets\DropDownLIstItems;
         <div class="row">
             <div class="col-md-6">
                 <?= $form->field($data['model'], 'group_id')
-                    ->widget(DropDownLIstItems::className(), [
+                    ->widget(DropDownTreeItems::className(), [
                         'modelClass' => \app\modules\shop\models\Group::className(),
                     ])
                     ->label(Yii::t('app', 'Group')); ?>

@@ -16,6 +16,7 @@ class m170222_100256_infosystem_property extends Migration
             'type' => $this->integer(),
             'sorting' => $this->integer()->defaultValue(500),
             'required' => $this->integer(),
+            'site_id' => $this->integer(),
         ]);
 
         $this->createIndex('ix-infosystem_property-infosystem_id', $this->tableName, 'infosystem_id');

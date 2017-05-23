@@ -35,7 +35,6 @@ class BackendTagController extends Controller
                 'get' => Yii::$app->request->getQueryParams(),
             ]
         ]);
-        $modelService->create();
 
         if ($modelService->create()) {
 

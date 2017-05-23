@@ -8,7 +8,7 @@ use vova07\imperavi\Widget as Imperavi;
 <ul class="nav nav-tabs">
     <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
     <li><a href="#content" data-toggle="tab"><?= Yii::t('app', 'Tab content'); ?></a></li>
-    <li><a href="#dynamicData" data-toggle="tab"><?= Yii::t('page', 'Tab dynamic data'); ?></a></li>
+    <li><a href="#dynamicData" data-toggle="tab"><?= Yii::t('pages', 'Tab dynamic data'); ?></a></li>
     <li><a href="#seo" data-toggle="tab"><?= Yii::t('app', 'Tab SEO'); ?></a></li>
     <li><a href="#settings" data-toggle="tab"><?= Yii::t('app', 'Tab settings'); ?></a></li>
     <li><a href="#other" data-toggle="tab"><?= Yii::t('app', 'Tab other'); ?></a></li>

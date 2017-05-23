@@ -1,11 +1,12 @@
 <?php
 use yii\jui\DatePicker;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+use kartik\widgets\Select2;
 use vova07\imperavi\Widget;
 use app\modules\backend\widgets\ActiveForm;
 use app\modules\backend\widgets\fileInput\Widget as ActionImage;
-use app\modules\infosystems\widgets\backend\editor\Editor as TagEditor;
-use app\modules\infosystems\widgets\backend\DropDownListItems;
+use app\modules\infosystems\widgets\backend\DropDownTreeItems;
 use app\modules\infosystems\Module;
 
 ?>
@@ -37,16 +38,18 @@ use app\modules\infosystems\Module;
                 </div>
                 <div class="col-md-6">
 
-                    <?= $form->field($data['model'], 'listTags')
-                        ->widget(TagEditor::className())
-                        ->label(Module::t('Tags')); ?>
+                    <?= $form->field($data['model'], 'listTags')->widget(Select2::classname(), [
+                        'data' => ArrayHelper::map($data['tags'], 'id', 'name'),
+                        'options' => ['placeholder' => Module::t('Select a tags') , 'multiple' => true],
+                    ])->label(Module::t('Tags')); ?>
+
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4">
                     <?= $form->field($data['model'], 'group_id')
-                        ->widget(DropDownListItems::className(), [
+                        ->widget(DropDownTreeItems::className(), [
                             'modelClass' => \app\modules\infosystems\models\Group::className(),
                         ]); ?>
                 </div>

@@ -1,7 +1,7 @@
 <?php
 use app\modules\backend\widgets\ActiveForm;
 use app\modules\backend\widgets\fileInput\Widget as WidgetActionImage;
-use app\modules\shop\widgets\backend\DropDownListAllGroup;
+use app\core\widgets\DropDownTreeItems;
 
 ?>
 
@@ -24,7 +24,7 @@ use app\modules\shop\widgets\backend\DropDownListAllGroup;
         <?= $form->field($data['model'], 'name') ?>
 
         <?= $form->field($data['model'], 'parent_id')
-            ->widget(DropDownListAllGroup::className())
+            ->widget(DropDownTreeItems::className())
             ->label(Yii::t('app', 'Parent group')); ?>
     </div>
     <div class="tab-pane" id="description">

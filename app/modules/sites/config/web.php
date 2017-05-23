@@ -11,7 +11,7 @@ return [
             'toolbar' => [
                 'main' => [
                     ['label' => 'Сайты', 'url' => ['backend-site/manager']],
-                    ['label' => 'Шаблоны', 'url' => ['backend-template/manager']],
+                    //['label' => 'Шаблоны', 'url' => ['backend-template/manager']],
                 ],
             ],
         ],

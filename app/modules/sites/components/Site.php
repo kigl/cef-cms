@@ -20,6 +20,8 @@ class Site extends Component implements BootstrapInterface
 
     protected $_templateId;
 
+    protected $_layout;
+
     public function bootstrap($app)
     {
         $domain = Yii::$app->request->hostName;
@@ -28,16 +30,15 @@ class Site extends Component implements BootstrapInterface
 
             $this->_id = $model->id;
             $this->_templateId = $model->template_id;
+            $this->_layout = $model->layout;
 
-        } /*else {
-            throw new ErrorException('No site with domain: '. $domain .' or inactive', 500);
-        }*/
+        }
     }
 
     protected function getSiteModel($domain)
     {
         return SiteModel::find()
-            ->select(['id', 'template_id'])
+            ->select(['id', 'template_id', 'layout'])
             ->where(['domain' => $domain, 'active' => SiteModel::ACTIVE])
             ->one();
     }
@@ -52,8 +53,8 @@ class Site extends Component implements BootstrapInterface
         return $this->_templateId;
     }
 
-    public function setId($id)
+    public function getLayout()
     {
-        $this->_id = $id;
+        return $this->_layout;
     }
 }

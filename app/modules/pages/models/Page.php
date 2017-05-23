@@ -15,6 +15,7 @@ use app\core\components\sitemap\SitemapModelInterface;
  * @property string $content
  * @property integer $indexing
  * @property string $template
+ * @property integer $site_id
  * @property string $alias
  * @property string $meta_title
  * @property string $meta_description
@@ -43,7 +44,7 @@ class Page extends \app\core\db\ActiveRecord implements SitemapModelInterface
     {
         return [
             [['name'], 'required'],
-            ['indexing', 'integer'],
+            [['indexing', 'site_id'], 'integer'],
             [['content', 'dynamicData'], 'string'],
             [['name', 'template', 'alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],
         ];
@@ -59,8 +60,8 @@ class Page extends \app\core\db\ActiveRecord implements SitemapModelInterface
             'name' => Yii::t('app', 'Name'),
             'content' => Yii::t('app', 'Content'),
             'indexing' => Yii::t('app', 'Indexing'),
-            'template' => Yii::t('page', 'Template'),
-            'dynamicData' => Yii::t('page', 'Dynamic data'),
+            'template' => Yii::t('pages', 'Template'),
+            'dynamicData' => Yii::t('pages', 'Dynamic data'),
             'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta title'),
             'meta_description' => Yii::t('app', 'Meta description'),

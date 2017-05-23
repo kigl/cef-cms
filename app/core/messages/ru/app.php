@@ -37,6 +37,7 @@ return [
     'Header comment ({count})' => 'Комментарии ({count})',
 
     'Lastname' => 'Отчество',
+    'Layout' => 'Макет',
     'Link name page main' => 'Главная',
 	'List view summary text: is' => 'из',
     'List' => 'Список',

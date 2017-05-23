@@ -15,6 +15,7 @@ use app\modules\infosystems\service\ItemModelService;
 
 class ItemController extends Controller
 {
+
     public function actionView($id, $alias, $infosystem_id)
     {
         $modelService = Yii::createObject([

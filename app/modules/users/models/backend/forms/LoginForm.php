@@ -25,7 +25,7 @@ class LoginForm extends Model
                 'login',
                 'match',
                 'pattern' => '/^[a-zA-Z0-9_-]+$/',
-                'message' => Yii::t('user', 'Symbols "a-zA-Z0-9_-"'),
+                'message' => Yii::t('users', 'Symbols "a-zA-Z0-9_-"'),
             ],
             ['login', 'validateUserLogin'],
             ['password', 'validateUserPassword'],
@@ -37,7 +37,7 @@ class LoginForm extends Model
         $user = $this->getUser();
 
         if (!$user) {
-            $this->addError($attribute, Yii::t('user', 'Login is not valid'));
+            $this->addError($attribute, Yii::t('users', 'Login is not valid'));
         }
     }
 
@@ -46,7 +46,7 @@ class LoginForm extends Model
         $user = $this->getUser();
 
         if ($user && !Yii::$app->security->validatePassword($this->password, $user->password)) {
-            $this->addError($attribute, Yii::t('user', 'Password is incorrect'));
+            $this->addError($attribute, Yii::t('users', 'Password is incorrect'));
         }
     }
 

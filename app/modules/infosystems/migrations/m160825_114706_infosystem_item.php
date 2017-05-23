@@ -28,6 +28,7 @@ class m160825_114706_infosystem_item extends Migration
             'status' => $this->integer(),
             'sorting' => $this->integer(),
             'counter' => $this->integer()->defaultValue(0),
+            'site_id' => $this->integer(),
             'user_id' => $this->integer(),
             'date' => $this->dateTime(),
             'date_start' => $this->dateTime(),

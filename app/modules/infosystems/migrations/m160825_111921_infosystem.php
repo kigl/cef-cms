@@ -13,6 +13,7 @@ class m160825_111921_infosystem extends Migration
             'name' => $this->string()->notNull(),
             'description' => $this->string(),
             'content' => $this->text(),
+            'site_id' => $this->integer(),
             'indexing' => $this->integer(),
             'group_on_page' => $this->integer(),
             'item_on_page' => $this->integer(),

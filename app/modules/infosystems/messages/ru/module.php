@@ -29,12 +29,14 @@ return [
     'Edit group: {data}' => 'Редактирование группы: {data}',
     'Edit item: {data}' => 'Редактирование элемента: {data}',
     'Edit property: {data}' => 'Редактирование свойства: {data}',
+
     'Sorting type group' => 'Тип сортировки групп',
     'Sorting field group' => 'Поле сортировки групп',
     'Sorting list field group' => 'Список полей для сортировки групп',
     'Sorting type item' => 'Тип сортировки элементов',
     'Sorting field item' => 'Поле сортировки элементов',
     'Sorting list field item' => 'Список полей для сортировки элементов',
+    'Select a tags' => 'Выберите метки',
 
     'Infosystem' => 'Инфосистема',
     'Infosystems' => 'Инфосистемы',

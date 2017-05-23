@@ -17,7 +17,7 @@ use yii\base\UnknownClassException;
 use yii\base\Widget;
 use yii\caching\DbDependency;
 
-class DropDownLIstItems extends Widget
+class DropDownTreeItems extends Widget
 {
     public $model;
 

@@ -49,7 +49,7 @@ class RbacForm extends Model
             if ($this->{$attribute} == Item::TYPE_PERMISSION) {
                 $this->{$attribute} = Item::TYPE_PERMISSION;
             } else {
-                $this->addError($attribute, Yii::t('user', 'Rbac form error message type'));
+                $this->addError($attribute, Yii::t('users', 'Rbac form error message type'));
             }
         }
     }

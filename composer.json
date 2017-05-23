@@ -21,7 +21,6 @@
         "kartik-v/yii2-money": "*",
         "kartik-v/yii2-mpdf": "^1.0",
         "vova07/yii2-imperavi-widget": "*",
-        "bower-asset/jquery-tag-editor": "^1.0",
         "kotchuprik/yii2-sortable-widgets": "^2.0",
         "trntv/yii2-aceeditor": "^2.0",
         "mihaildev/yii2-elfinder": "*"

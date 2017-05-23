@@ -12,7 +12,7 @@ namespace app\modules\infosystems\widgets\backend;
 use Yii;
 use yii\caching\DbDependency;
 
-class DropDownListItems extends \app\core\widgets\DropDownLIstItems
+class DropDownTreeItems extends \app\core\widgets\DropDownTreeItems
 {
     protected function getAllItems()
     {

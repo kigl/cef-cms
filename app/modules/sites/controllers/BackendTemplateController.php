@@ -9,6 +9,7 @@
 namespace app\modules\sites\controllers;
 
 
+use Yii;
 use yii\data\ActiveDataProvider;
 use app\modules\backend\actions\Create;
 use app\modules\backend\actions\Update;
@@ -17,33 +18,24 @@ use app\modules\sites\models\backend\Template;
 
 class BackendTemplateController extends Controller
 {
-    public function actions()
+    public function actionLayoutsList()
     {
-        return [
-            'create' => [
-                'class' => Create::className(),
-                'modelClass' => Template::className(),
-            ],
-            'update' => [
-                'class' => Update::className(),
-                'modelClass' => Template::className(),
-            ],
-        ];
-    }
+        $themeComponent = Yii::$app->view->theme;
 
-    public function actionManager()
-    {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Template::find()
-        ]);
+        if ($post = Yii::$app->request->post('depdrop_all_params')['template_id']) {
 
-        return $this->render('manager', ['data' => ['dataProvider' => $dataProvider]]);
-    }
+            if ($themeComponent->existTemplate($post)) {
 
-    public function actionListLayout()
-    {
-        $templateId = '';
+                $result = [];
+                foreach ($themeComponent->getLayoutsList($post, false) as $name => $path) {
+                    $result[] = ['id' => $name, 'name' => $name];
+                }
 
+                echo json_encode(['output' => $result, 'selected' => '']);
+                return;
+            }
+        }
 
+        echo json_encode(['output' => '', 'selected' => '']);
     }
 }

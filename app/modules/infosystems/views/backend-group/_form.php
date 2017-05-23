@@ -3,7 +3,7 @@ use yii\bootstrap\Collapse;
 use app\modules\backend\widgets\ActiveForm;
 use vova07\imperavi\Widget;
 use app\modules\backend\widgets\fileInput\Widget as WidgetActionImage;
-use app\modules\infosystems\widgets\backend\DropDownListItems;
+use app\modules\infosystems\widgets\backend\DropDownTreeItems;
 
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
 ?>
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
                         ->dropDownList($data['model']->getStatusList()); ?>
 
                     <?= $form->field($data['model'], 'parent_id')
-                        ->widget(DropDownListItems::className())
+                        ->widget(DropDownTreeItems::className())
                         ->label(Yii::t('app', 'Parent group')); ?>
                 </div>
             </div>

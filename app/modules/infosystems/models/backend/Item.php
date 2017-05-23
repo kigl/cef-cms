@@ -111,14 +111,15 @@ class Item extends \app\modules\infosystems\models\Item
 
     public function setListTags($tags)
     {
-        $this->_runtimeTags = empty($tags) ? [] : explode(',', $tags);
-
+        $this->_runtimeTags = empty($tags) ? [] : $tags;
     }
+
 
     public function getListTags()
     {
-        return implode(',', ArrayHelper::getColumn($this->tags, 'name'));
+        return ArrayHelper::getColumn($this->tags, 'id');
     }
+
 
     public function getRuntimeTags()
     {

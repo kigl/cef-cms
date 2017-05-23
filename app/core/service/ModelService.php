@@ -8,25 +8,17 @@
 
 namespace app\core\service;
 
-use Yii;
+
 use yii\base\Component;
-use yii\base\Exception;
-use yii\web\HttpException;
 
 abstract class ModelService extends Component implements ModelServiceInterface
 {
     const ERROR_NOT_MODEL = 1;
     const ERROR_NOT_MODEL_ALIAS = 2;
 
-    const EXECUTED_ACTION_VALIDATE = 1;
-    const EXECUTED_ACTION_SAVE = 2;
-    const EXECUTED_ACTION_DELETE = 3;
-
     public $data = [];
 
-    protected $error;
-
-    protected $executedActions = [];
+    protected $_error;
 
     /**
      * @param array $data
@@ -69,7 +61,7 @@ abstract class ModelService extends Component implements ModelServiceInterface
     {
         if (!key_exists($name, $this->data)) {
             return false;
-        } elseif (($data !== null) and (!key_exists($data, $this->data[$name]))) {
+        } elseif (($data !== null) && (!key_exists($data, $this->data[$name]))) {
             return false;
         }
 
@@ -78,21 +70,11 @@ abstract class ModelService extends Component implements ModelServiceInterface
 
     protected function setError($constError)
     {
-        $this->error = $constError;
+        $this->_error = $constError;
     }
 
     public function hasError($constError)
     {
-        return $this->error === $constError ? true : false;
-    }
-
-    public function setExecutedAction($action)
-    {
-        $this->executedActions[] = $action;
-    }
-
-    public function hasExecutedAction($action)
-    {
-        return in_array($action, $this->executedActions);
+        return $this->_error === $constError;
     }
 }
