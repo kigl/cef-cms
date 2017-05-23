@@ -16,7 +16,7 @@ class ModelService extends \app\core\service\ModelService
 {
     use Breadcrumbs;
 
-    protected function getItemsBreadcrumb($modelInfosystem, $groupId = null, $itemName = null)
+    protected function getItemsBreadcrumb($infosystemModel, $groupId = null, $itemName = null)
     {
         $breadcrumbs = [];
 
@@ -28,7 +28,7 @@ class ModelService extends \app\core\service\ModelService
                     'modelClass' => Group::className(),
                     'urlOptions' => [
                         'route' => '/infosystem/group/view',
-                        'params' => ['id', 'alias', 'infosystem_id']
+                        'params' => ['id', 'alias', 'infosystem_code']
                     ],
                 ],
             ]);
@@ -36,7 +36,7 @@ class ModelService extends \app\core\service\ModelService
 
         array_unshift(
             $breadcrumbs,
-            ['label' => $modelInfosystem->name, 'url' => ['/infosystem/infosystem/view', 'id' => $modelInfosystem->id]]
+            ['label' => $infosystemModel->name, 'url' => ['/infosystem/infosystem/view', 'id' => $infosystemModel->id]]
         );
 
         if ($itemName) {

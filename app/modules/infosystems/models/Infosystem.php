@@ -10,9 +10,11 @@ use app\modules\infosystems\Module;
  * This is the model class for table "mn_infosystems".
  *
  * @property string $id
+ * @property string $code
  * @property string $name
  * @property string $description
  * @property string $content
+ * @property string $site_id
  * @property integer $indexing
  * @property integer $group_on_page
  * @property integer $item_on_page
@@ -58,9 +60,8 @@ class Infosystem extends \app\core\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'id'], 'required'],
-            [['id', 'sorting_field_group', 'sorting_field_item'], 'string', 'max' => 100],
-            ['id', 'unique'],
+            [['name'], 'required'],
+            [['sorting_field_group', 'sorting_field_item'], 'string', 'max' => 100],
             [
                 [
                     'indexing',
@@ -82,6 +83,7 @@ class Infosystem extends \app\core\db\ActiveRecord
             [['content'], 'string'],
             [
                 [
+                    'code',
                     'name',
                     'template',
                     'template_group',
@@ -104,6 +106,7 @@ class Infosystem extends \app\core\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'code' => Yii::t('app', 'Code'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),

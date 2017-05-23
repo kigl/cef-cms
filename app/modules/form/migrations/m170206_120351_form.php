@@ -13,6 +13,7 @@ class m170206_120351_form extends Migration
             'name' => $this->string(),
             'description' => $this->string(),
             'captcha' => $this->integer(),
+            'site_id' => $this->integer(),
             'email_from' => $this->string(),
             'email_curator' => $this->string(),
             'send_email_curator' => $this->integer(),

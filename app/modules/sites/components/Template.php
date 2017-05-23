@@ -14,6 +14,8 @@ use yii\base\ErrorException;
 
 class Template extends \yii\base\Theme
 {
+    const DEFAULT_TEMPLATE = 'main';
+
     public $templatesPath = '@app/templates';
     public $templatesUrl = '@web/templates';
 
@@ -25,21 +27,25 @@ class Template extends \yii\base\Theme
 
         $siteComponent = Yii::$app->site;
 
-        $this->_currentTemplateSite = $siteComponent->getTemplateId();
-
-        if (!$this->existTemplate($this->_currentTemplateSite)) {
-            throw new ErrorException('No exist template: ' . $this->_currentTemplateSite, 500);
+        if (!$this->_currentTemplateSite = $siteComponent->getTemplateId()) {
+            $this->_currentTemplateSite = self::DEFAULT_TEMPLATE;
         }
 
-        $this->setBasePath($this->getTemplatePath($this->_currentTemplateSite, true));
-        $this->setBaseUrl($this->getTemplatePath($this->_currentTemplateSite, true, true));
+        if ($this->existTemplate($this->_currentTemplateSite)) {
 
-        $this->pathMap = [
-            '@app/views' => $this->getTemplatePath($this->_currentTemplateSite, true) . '/views',
-            '@app/modules' => $this->getTemplatePath($this->_currentTemplateSite, true) . '/modules',
-        ];
+            $this->setBasePath($this->getTemplatePath($this->_currentTemplateSite, true));
+            $this->setBaseUrl($this->getTemplatePath($this->_currentTemplateSite, true, true));
 
-        Yii::$app->layout = $this->getLayoutPath($this->_currentTemplateSite, $siteComponent->getLayout(), true);
+            $this->pathMap = [
+                '@app/views' => $this->getTemplatePath($this->_currentTemplateSite, true) . '/views',
+                '@app/modules' => $this->getTemplatePath($this->_currentTemplateSite, true) . '/modules',
+            ];
+
+            if ($layout = $siteComponent->getLayout()) {
+
+                Yii::$app->layout = $this->getLayoutPath($this->_currentTemplateSite, $layout, true);
+            }
+        }
     }
 
     public function getTemplatesPath($alias = false, $url = false)

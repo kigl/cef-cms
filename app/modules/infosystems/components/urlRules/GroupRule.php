@@ -26,9 +26,9 @@ class GroupRule extends Rule
 
         $url .= $params['infosystem_id'] . '/' . $this->urlItemName . '/' . $params['id'] . '-' . $params['alias'];
 
-        unset($params['alias'], $params['infosystem_id'], $params['id']);
+        unset($params['alias'], $params['infosystem_code'], $params['id']);
 
-        return $this->builUrl($url, $params);
+        return $this->buildUrl($url, $params);
     }
 
     public function parseRequest($routeItem)
@@ -51,7 +51,7 @@ class GroupRule extends Rule
             [
                 'id' => $params['id'],
                 'alias' => $params['alias'],
-                'infosystem_id' => $routeItem[0]
+                'infosystem_code' => $routeItem[0]
             ]
         ];
     }

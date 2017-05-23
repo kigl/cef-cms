@@ -21,6 +21,11 @@ $this->params['breadcrumbs'][] = ['label' => Module::t( 'Infosystems')];
     ],
     'columns' => [
         [
+            'attribute' => 'code',
+            'label' => Yii::t('app', 'Code'),
+            'headerOptions' => ['style' => 'width: 10%'],
+        ],
+        [
             'attribute' => 'name',
             'format' => 'raw',
             'value' => function ($data) {

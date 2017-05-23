@@ -27,7 +27,7 @@ class ItemRule extends Rule
 
         unset($params['alias'], $params['infosystem_id'], $params['id']);
 
-        return $this->builUrl($url, $params);
+        return $this->buildUrl($url, $params);
     }
 
     public function parseRequest($routeItem)

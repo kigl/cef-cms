@@ -27,7 +27,7 @@ class InfosystemRule extends Rule
 
         unset($params['id']);
 
-        return $this->builUrl($url, $params);
+        return $this->buildUrl($url, $params);
     }
 
     public function parseRequest($routeItem)

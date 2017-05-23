@@ -91,7 +91,7 @@ return [
 	'Create time' => 'Дата создания',
     'Content' => 'Содержание',
     'CSS class' => 'CSS класс',
-    'Code' => 'Артикул',
+    'Code' => 'Код',
     'Country' => 'Страна',
     'City' => 'Город',
     'Company' => 'Компания',

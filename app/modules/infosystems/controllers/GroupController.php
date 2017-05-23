@@ -25,13 +25,12 @@ class GroupController extends Controller
         ]);
         $modelService->actionView();
 
-        // Проверяем инфосистему и алиас
         if ($modelService->hasError($modelService::ERROR_NOT_MODEL_ALIAS)) {
            return $this->redirect([
                 'view',
                 'id' => $modelService->getData('model')->id,
                 'alias' => $modelService->getData('model')->alias,
-                'infosystem_id' => $modelService->getData('model')->infosystem_id
+                'infosystem_id' => $modelService->getData('model')->infosystem->code
                 ], 302);
         }
 

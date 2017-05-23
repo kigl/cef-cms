@@ -12,8 +12,6 @@ namespace app\modules\infosystems\service\backend;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\HttpException;
-use app\modules\infosystems\models\backend\Group;
-use app\modules\infosystems\models\backend\Item;
 use app\modules\infosystems\models\backend\Infosystem;
 
 class InfosystemModelService extends ModelService
@@ -23,7 +21,8 @@ class InfosystemModelService extends ModelService
     public function manager()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => infosystem::find(),
+            'query' => infosystem::find()
+                ->where(['site_id' => Yii::$app->site->getId()]),
         ]);
 
         $this->setData([

@@ -21,7 +21,7 @@ use vova07\imperavi\Widget;
 
     <div class="tab-content">
         <div class="tab-pane active" id="main">
-            <?= $form->field($data['model'], 'id'); ?>
+            <?= $form->field($data['model'], 'code'); ?>
 
             <?= $form->field($data['model'], 'name'); ?>
 
@@ -109,7 +109,7 @@ use vova07\imperavi\Widget;
             <div class="row">
                 <div class="col-md-3">
                     <?= $form->field($data['model'], 'sorting_type_group')
-                        ->dropDownList($data['model']->getSortingTyps()); ?>
+                        ->dropDownList($data['model']->getSortingTypes()); ?>
                 </div>
                 <div class="col-md-3">
                     <?= $form->field($data['model'], 'sorting_field_group')
@@ -126,7 +126,7 @@ use vova07\imperavi\Widget;
             <div class="row">
                 <div class="col-md-3">
                     <?= $form->field($data['model'], 'sorting_type_item')
-                        ->dropDownList($data['model']->getSortingTyps()); ?>
+                        ->dropDownList($data['model']->getSortingTypes()); ?>
                 </div>
                 <div class="col-md-3">
                     <?= $form->field($data['model'], 'sorting_field_item')

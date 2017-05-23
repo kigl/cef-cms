@@ -18,9 +18,9 @@ class Site extends Component implements BootstrapInterface
 {
     protected $_id;
 
-    protected $_templateId;
+    protected $_templateId = null;
 
-    protected $_layout;
+    protected $_layout = null;
 
     public function bootstrap($app)
     {

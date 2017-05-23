@@ -17,7 +17,7 @@ abstract class Rule
 
     protected $urlItemName = '';
 
-    protected function builUrl($url = '', $params)
+    protected function buildUrl($url = '', $params)
     {
         if ($query = http_build_query($params)) {
             $url .= '?' . $query;

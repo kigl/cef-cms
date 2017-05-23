@@ -27,6 +27,7 @@ echo GridView::widget([
         ],
         'name',
         'template_id',
+        'id',
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',

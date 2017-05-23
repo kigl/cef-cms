@@ -18,10 +18,6 @@ class m170519_041900_site extends Migration
             'layout' => $this->string(),
             'active' => $this->integer(),
         ]);
-
-        $this->createIndex('ix-site-template_id', $this->_tableName, 'template_id');
-
-        $this->addForeignKey('fk-site-template_id', $this->_tableName, 'template_id', '{{%template}}', 'id', 'SET NULL', 'CASCADE');
     }
 
     public function down()

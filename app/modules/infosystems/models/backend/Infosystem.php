@@ -63,7 +63,7 @@ class Infosystem extends \app\modules\infosystems\models\Infosystem
         }
     }
 
-    public function getSortingTyps()
+    public function getSortingTypes()
     {
         return [
             SORT_ASC => Yii::t('app', 'ASC'),
@@ -79,5 +79,12 @@ class Infosystem extends \app\modules\infosystems\models\Infosystem
     public function setSortingListFieldItem($value)
     {
         $this->sorting_list_field_item = json_encode((array)$value);
+    }
+
+    public function beforeSave($insert)
+    {
+        $this->site_id = Yii::$app->site->getId();
+
+        return parent::beforeSave($insert);
     }
 }

@@ -28,9 +28,7 @@ class ItemModelService extends ModelService
 
         $model->updateCounters(['counter' => 1]);
 
-        if ($this->getData('get', 'alias') != $model->alias
-            || $this->getData('get', 'infosystem_id') != $model->infosystem_id
-        ) {
+        if ($this->getData('get', 'alias') != $model->alias) {
 
             $this->setError(self::ERROR_NOT_MODEL_ALIAS);
         }

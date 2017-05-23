@@ -17,7 +17,7 @@ class m160825_114706_infosystem_item extends Migration
         $this->createTable($this->_tableName, [
             'id' => $this->primaryKey(),
             'group_id' => $this->integer(),
-            'infosystem_id' => $this->string(100),
+            'infosystem_id' => $this->integer(),
             'name' => $this->string()->notNull(),
             'description' => $this->text(),
             'content' => $this->text(),
@@ -28,7 +28,6 @@ class m160825_114706_infosystem_item extends Migration
             'status' => $this->integer(),
             'sorting' => $this->integer(),
             'counter' => $this->integer()->defaultValue(0),
-            'site_id' => $this->integer(),
             'user_id' => $this->integer(),
             'date' => $this->dateTime(),
             'date_start' => $this->dateTime(),

@@ -46,8 +46,7 @@ class Group extends \app\core\db\ActiveRecord
     {
         return [
             [['name', 'infosystem_id'], 'required'],
-            [['infosystem_id'], 'string', 'max' => 100],
-            [['parent_id', 'user_id', 'sorting'], 'integer'],
+            [['infosystem_id', 'parent_id', 'user_id', 'sorting'], 'integer'],
             [['content'], 'string'],
             [['name', 'alias', 'meta_title'], 'string', 'max' => 255],
             [['description', 'meta_description'], 'string', 'max' => 300],

@@ -27,7 +27,7 @@ class TagRule extends Rule
 
         unset($params['infosystem_id'], $params['name']);
 
-        return $this->builUrl($url, $params);
+        return $this->buildUrl($url, $params);
     }
 
     public function parseRequest($routeItem)

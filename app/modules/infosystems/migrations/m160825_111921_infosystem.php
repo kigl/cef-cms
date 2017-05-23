@@ -4,12 +4,13 @@ use yii\db\Migration;
 
 class m160825_111921_infosystem extends Migration
 {
-    public $tableName = '{{%infosystem}}';
+    protected $_tableName = '{{%infosystem}}';
 
     public function up()
     {
-        $this->createTable($this->tableName, [
-            'id' => $this->string(100),
+        $this->createTable($this->_tableName, [
+            'id' => $this->primaryKey(),
+            'code' => $this->string(),
             'name' => $this->string()->notNull(),
             'description' => $this->string(),
             'content' => $this->text(),
@@ -40,15 +41,17 @@ class m160825_111921_infosystem extends Migration
             'meta_description' => $this->string(),
         ]);
 
-        $this->addPrimaryKey('infosystem_id', $this->tableName, 'id');
+        $this->execute("ALTER TABLE {$this->_tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_description`;");
+        $this->execute("ALTER TABLE {$this->_tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
 
-        $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_description`;");
-        $this->execute("ALTER TABLE {$this->tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
+        $this->createIndex('ix-infosystem-site_id', $this->_tableName, 'site_id');
+
+        $this->addForeignKey('fk-infosystem-site_id', $this->_tableName, 'site_id', '{{%site}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()
     {
-        $this->dropTable($this->tableName);
+        $this->dropTable($this->_tableName);
 
         return false;
     }

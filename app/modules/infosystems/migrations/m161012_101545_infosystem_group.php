@@ -17,7 +17,7 @@ class m161012_101545_infosystem_group extends Migration
         $this->createTable($this->_tableName, [
             'id' => $this->primaryKey(),
             'parent_id' => $this->integer(),
-            'infosystem_id' => $this->string(100),
+            'infosystem_id' => $this->integer(),
             'name' => $this->string(),
             'description' => $this->string(300),
             'content' => $this->text(),
@@ -25,7 +25,6 @@ class m161012_101545_infosystem_group extends Migration
             'image_content' => $this->string(),
             'sorting' => $this->integer()->defaultValue(500),
             'status' => $this->integer(),
-            'site_id' => $this->integer(),
             'user_id' => $this->integer(),
             'alias' => $this->string(),
             'meta_title' => $this->string(),

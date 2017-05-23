@@ -15,13 +15,6 @@ use app\core\widgets\Alert;
                     </a>
                 </div>
             </div>
-            <div class="row margin-top-20">
-                <div class="col-md-12">
-                    <?= \app\modules\menu\widgets\Menu::widget([
-                        'menuId' => 1,
-                    ]); ?>
-                </div>
-            </div>
         </div>
     </div>
     <div class="margin-top-10">

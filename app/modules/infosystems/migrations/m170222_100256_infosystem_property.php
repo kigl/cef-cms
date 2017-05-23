@@ -10,7 +10,7 @@ class m170222_100256_infosystem_property extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'infosystem_id' => $this->string(100),
+            'infosystem_id' => $this->integer(),
             'name' => $this->string(),
             'description' => $this->string(),
             'type' => $this->integer(),
