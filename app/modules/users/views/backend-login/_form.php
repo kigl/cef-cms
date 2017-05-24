@@ -6,26 +6,30 @@ use yii\bootstrap\ActiveForm;
 $this->setTitle('Аутентификация пользователя');
 ?>
 
-    <div class="login-box">
-        <div class="login-logo">
-            <a href="../../index2.html">Logo</a>
-        </div>
-        <!-- /.login-logo -->
-        <div class="login-box-body">
-            <p class="login-box-msg"><?= Yii::t('users', 'Authenticate'); ?></p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <?= Yii::t('users', 'Authenticate'); ?>
+                </div>
+                <div class="panel-body">
+                    <?php $form = ActiveForm::begin([
+                        'enableAjaxValidation' => true,
+                        'validateOnChange' => false,
+                        'validateOnBlur' => false,
+                    ]); ?>
+                    <?= $form->field($data['form'], 'login'); ?>
+                    <?= $form->field($data['form'], 'password')
+                        ->passwordInput(); ?>
 
-            <?php $form = ActiveForm::begin([
-                'enableAjaxValidation' => true,
-                'validateOnChange' => false,
-                'validateOnBlur' => false,
-            ]); ?>
-            <?= $form->field($data['form'], 'login'); ?>
-            <?= $form->field($data['form'], 'password')
-                ->passwordInput(); ?>
+                </div>
+                <div class="panel-footer">
+                    <?= Html::submitButton(Yii::t('app', 'Login'), ['class' => 'btn btn-primary']) ?>
 
-            <?= Html::submitButton(Yii::t('app', 'Login'), ['class' => 'btn btn-primary']) ?>
-
-            <?php $form->end(); ?>
-
+                </div>
+                <?php $form->end(); ?>
+            </div>
         </div>
     </div>
+</div>

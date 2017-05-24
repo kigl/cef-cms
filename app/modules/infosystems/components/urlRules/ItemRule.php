@@ -15,7 +15,7 @@ class ItemRule extends Rule
 
     protected $routeAction = 'infosystems/item/view';
 
-    public function getUrl($route, $params)
+    public function getUrl($route, $params, $infosystems = [])
     {
         if ($route !== $this->routeAction) {
             return false;
@@ -23,14 +23,16 @@ class ItemRule extends Rule
 
         $url = '';
 
-        $url .= $params['infosystem_id'] . '/' . $this->urlItemName . '/' . $params['id'] . '-' . $params['alias'];
+        $infosystemCode = $infosystems[$params['infosystem_id']];
+
+        $url .= $infosystemCode . '/' . $this->urlItemName . '/' . $params['id'] . '-' . $params['alias'];
 
         unset($params['alias'], $params['infosystem_id'], $params['id']);
 
         return $this->buildUrl($url, $params);
     }
 
-    public function parseRequest($routeItem)
+    public function parseRequest($routeItem, $infosystems = [])
     {
         if (empty($routeItem[1]) && empty($routeItem[2])) {
             return false;
@@ -51,7 +53,7 @@ class ItemRule extends Rule
             [
                 'id' => $params['id'],
                 'alias' => $params['alias'],
-                'infosystem_id' => $routeItem[0]
+                'infosystem_id' => array_search($routeItem[0], $infosystems)
             ]
         ];
     }

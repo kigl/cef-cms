@@ -13,7 +13,7 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
 
     public $defaultCss = 'well well-sm';
 
-    public $errorSummaryCssClass = 'error-simmary alert alert-danger';
+    public $errorSummaryCssClass = 'error-summary alert alert-danger';
 
     public function run()
     {

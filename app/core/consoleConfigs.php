@@ -8,7 +8,7 @@ $configs = [
     ROOT_DIR . '/app/modules/infosystems/config/console.php',
     ROOT_DIR . '/app/modules/pages/config/console.php',
     ROOT_DIR . '/app/modules/tag/config/console.php',
-    ROOT_DIR . '/app/modules/form/config/console.php',
+    ROOT_DIR . '/app/modules/forms/config/console.php',
     ROOT_DIR . '/app/modules/menu/config/console.php',
     ROOT_DIR . '/app/modules/lists/config/console.php',
     ROOT_DIR . '/app/modules/sites/config/console.php',

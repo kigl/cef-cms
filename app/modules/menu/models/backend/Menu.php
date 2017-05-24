@@ -3,14 +3,15 @@
 namespace app\modules\menu\models\backend;
 
 
-/**
- * This is the model class for table "{{%menu}}".
- *
- * @property integer $id
- * @property string $name
- * @property string $class
- * @property string $attribute_id
- */
+use Yii;
+
 class Menu extends \app\modules\menu\models\Menu
 {
+
+    public function beforeSave($insert)
+    {
+        $this->site_id = Yii::$app->site->getId();
+
+        return parent::beforeSave($insert);
+    }
 }

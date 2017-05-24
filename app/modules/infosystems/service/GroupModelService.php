@@ -9,6 +9,7 @@
 namespace app\modules\infosystems\service;
 
 
+use Yii;
 use yii\data\ActiveDataProvider;
 use app\modules\infosystems\models\Group;
 use app\modules\infosystems\models\Item;
@@ -18,9 +19,15 @@ class GroupModelService extends ModelService
     public function actionView()
     {
         $model = Group::find()
-            ->with(['infosystem'])
-            ->where(['id' => $this->getData('get', 'id')])
+            ->alias('g')
+            ->joinWith(['infosystem as i'])
+            ->where(['g.id' => $this->getData('get', 'id'), 'i.site_id' => Yii::$app->site->getId()])
             ->one();
+
+        if (!$model) {
+
+            return false;
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $model->getItems()
@@ -49,5 +56,7 @@ class GroupModelService extends ModelService
             'dataProvider' => $dataProvider,
             'breadcrumbs' => $this->getItemsBreadcrumb($model->infosystem, $model->id),
         ]);
+
+        return true;
     }
 }

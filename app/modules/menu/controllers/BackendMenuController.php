@@ -14,7 +14,7 @@ use yii\data\ActiveDataProvider;
 use app\modules\backend\controllers\Controller;
 use app\modules\backend\actions\Create;
 use app\modules\backend\actions\Update;
-use app\modules\menu\models\backend\service\MenuModelService;
+use app\modules\menu\service\backend\MenuModelService;
 use app\modules\menu\models\backend\Menu;
 
 class BackendMenuController extends Controller
@@ -37,7 +37,8 @@ class BackendMenuController extends Controller
     public function actionManager()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Menu::find(),
+            'query' => Menu::find()
+                ->where(['site_id' => Yii::$app->site->getId()]),
         ]);
 
         return $this->render('manager', ['dataProvider' => $dataProvider]);
@@ -46,9 +47,8 @@ class BackendMenuController extends Controller
     public function actionDelete($id)
     {
         $modelService = Yii::createObject(MenuModelService::class);
-        $modelService->actionDelete($id);
 
-        if ($modelService->hasExecutedAction($modelService::EXECUTED_ACTION_DELETE)) {
+        if ($modelService->delete($id)) {
             return $this->redirect(['manager']);
         }
     }

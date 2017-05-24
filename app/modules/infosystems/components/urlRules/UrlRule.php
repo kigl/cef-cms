@@ -10,20 +10,11 @@ namespace app\modules\infosystems\components\urlRules;
 
 
 use Yii;
-use yii\caching\DbDependency;
 use yii\web\UrlRuleInterface;
-use app\modules\infosystems\models\Infosystem;
 
-class UrlRule implements UrlRuleInterface
+class UrlRule extends Rule implements UrlRuleInterface
 {
-    protected $cacheKey = 'infosystemCache';
-
     protected $rules = [];
-
-    public function __construct()
-    {
-        $this->init();
-    }
 
     public function init()
     {
@@ -50,7 +41,7 @@ class UrlRule implements UrlRuleInterface
     {
         $routeItem = explode('/', $request->getPathInfo());
 
-        if (!array_key_exists($routeItem[0], $this->getInfosystems())) {
+        if (!$this->hasInfosystemCode($routeItem[0])) {
             return false;
         }
 
@@ -61,21 +52,5 @@ class UrlRule implements UrlRuleInterface
         }
 
         return false;
-    }
-
-    protected function getInfosystems()
-    {
-        $depedency = new DbDependency([
-            'sql' => 'SELECT MAX(update_time) FROM ' . Infosystem::tableName(),
-        ]);
-
-        $duration = 3600 * 24 * 12;
-
-        return Yii::$app->cache->getOrSet($this->cacheKey, function () {
-            return Infosystem::find()
-                ->asArray()
-                ->indexBy('id')
-                ->all();
-        }, $duration, $depedency);
     }
 }

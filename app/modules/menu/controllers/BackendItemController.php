@@ -12,7 +12,7 @@ namespace app\modules\menu\controllers;
 use Yii;
 use app\modules\backend\controllers\Controller;
 use app\modules\menu\models\backend\Item;
-use app\modules\menu\models\backend\service\ItemModelService;
+use app\modules\menu\service\backend\ItemModelService;
 use app\modules\backend\actions\EditAttribute;
 
 class BackendItemController extends Controller
@@ -35,7 +35,7 @@ class BackendItemController extends Controller
                     'get' => Yii::$app->request->getQueryParams()
                 ]
             );
-        $modelService->actionManager();
+        $modelService->manager();
 
         return $this->render('manager', ['data' => $modelService->getData()]);
     }
@@ -48,7 +48,7 @@ class BackendItemController extends Controller
             'post' => Yii::$app->request->post(),
         ]);
 
-        if ($modelService->actionCreate()) {
+        if ($modelService->create()) {
             return $this->redirect([
                 'manager',
                 'menu_id' => $modelService->getData('model')->menu_id,
@@ -67,7 +67,7 @@ class BackendItemController extends Controller
                 'post' => Yii::$app->request->post(),
             ]);
 
-        if ($modelService->actionUpdate()) {
+        if ($modelService->update()) {
             return $this->redirect([
                 'manager',
                 'menu_id' => $modelService->getData('model')->menu_id,
@@ -82,7 +82,7 @@ class BackendItemController extends Controller
     {
         $modelService = YiI::createObject(ItemModelService::class);
 
-        if ($modelService->actionDelete($id)) {
+        if ($modelService->delete($id)) {
             return $this->redirect([
                 'manager',
                 'menu_id' => $modelService->getData('model')->menu_id,

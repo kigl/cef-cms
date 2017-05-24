@@ -10,11 +10,11 @@ class m160902_081826_page extends Migration
     {
 			$this->createTable($this->_tableName, [
 				'id' => $this->primaryKey(),
+                'site_id' => $this->integer(),
 				'name' => $this->string(),
 				'content' => $this->text(),
 				'indexing' => $this->integer(),
 				'template' => $this->string(),
-				'site_id' => $this->integer(),
 				'alias' => $this->string(),
 				'meta_title' => $this->string(),
 				'meta_description' => $this->string(),

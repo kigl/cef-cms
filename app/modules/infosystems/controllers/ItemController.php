@@ -25,6 +25,10 @@ class ItemController extends Controller
             ],
         ]);
 
+        if (!$modelService->view()) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
         // Проверяем инфосистему и алиас
         if ($modelService->hasError($modelService::ERROR_NOT_MODEL_ALIAS)) {
             return $this->redirect([
@@ -49,7 +53,9 @@ class ItemController extends Controller
             'data' => ['get' => Yii::$app->request->getQueryParams()],
         ]);
 
-        $modelService->itemsTag();
+        if (!$modelService->itemsTag()) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
 
         $viewFile = $modelService->getData('model')
             ->template_tag;

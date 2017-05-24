@@ -79,12 +79,12 @@ class Page extends \app\core\db\ActiveRecord implements SitemapModelInterface
 
     public function getModelItemUrl()
     {
-        return Url::to(['/page/default/view', 'id' => $this->id], true);
+        return Url::to(['/pages/default/view', 'id' => $this->id], true);
     }
 
     public function getDynamicDataFilePathUrl()
     {
-        return $file = Yii::$app->controller->module->dynamicDataPath . '/pageId_' . $this->id . '.php';
+        return $file = Yii::$app->getModule('pages')->dynamicDataPath . '/pageId_' . $this->id . '.php';
     }
 
     public function getDynamicData()

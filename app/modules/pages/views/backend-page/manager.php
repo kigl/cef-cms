@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = ['label' => Module::t('Pages')];
     ],
     'columns' => [
         'name',
+        'alias',
         'id',
         [
             'headerOptions' => ['style' => 'width: 50px'],

@@ -15,9 +15,9 @@ Asset::register($this);
         <?= Html::csrfMetaTags() ?>
         <?php $this->head(); ?>
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body>
     <?php $this->beginBody(); ?>
-    <div class="container-fluid wrapper no-padding ">
+    <div>
         <?= $content; ?>
     </div>
     <?= ShowContentModal::widget([

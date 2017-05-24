@@ -23,7 +23,9 @@ class InfosystemController extends Controller
             ],
         ]);
 
-        $modelService->view();
+        if (!$modelService->view()) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
 
         $viewFile = $modelService->getData('model')
             ->template;

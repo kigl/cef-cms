@@ -30,8 +30,6 @@ class Item extends \yii\db\ActiveRecord
     const STATUS_VISIBLE_ALL = 0;
     const STATUS_VISIBLE_GUEST = 1;
     const STATUS_VISIBLE_NOT_GUEST = 2;
-    const ACTIVE = 1;
-    const NOT_ACTIVE = 0;
 
     /**
      * @inheritdoc

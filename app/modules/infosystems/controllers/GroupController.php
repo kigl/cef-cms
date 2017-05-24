@@ -23,14 +23,18 @@ class GroupController extends Controller
                 'get' => Yii::$app->request->getQueryParams(),
             ],
         ]);
-        $modelService->actionView();
+
+        if (!$modelService->actionView()) {
+
+            return $this->redirect(Yii::$app->request->referrer);
+        }
 
         if ($modelService->hasError($modelService::ERROR_NOT_MODEL_ALIAS)) {
            return $this->redirect([
                 'view',
                 'id' => $modelService->getData('model')->id,
                 'alias' => $modelService->getData('model')->alias,
-                'infosystem_id' => $modelService->getData('model')->infosystem->code
+                'infosystem_id' => $modelService->getData('model')->infosystem->id
                 ], 302);
         }
 

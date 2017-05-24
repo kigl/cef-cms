@@ -9,6 +9,6 @@
 namespace app\modules\pages\controllers;
 
 
-class BackendDefaultController extends \app\modules\backend\controllers\DefaultController
+class BackendDefaultController extends \app\modules\backend\controllers\BackendDefaultController
 {
 }

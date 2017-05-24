@@ -95,4 +95,11 @@ class Comment extends \app\core\db\ActiveRecord
     {
         return $this->getAllStatus()[$status];
     }
+
+    public function beforeDelete()
+    {
+        $this->site_id = Yii::$app->site->getId();
+
+        return parent::beforeDelete();
+    }
 }

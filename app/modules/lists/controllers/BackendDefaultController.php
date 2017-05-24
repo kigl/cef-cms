@@ -9,9 +9,7 @@
 namespace app\modules\lists\controllers;
 
 
-use app\modules\backend\controllers\DefaultController;
-
-class BackendDefaultController extends DefaultController
+class BackendDefaultController extends \app\modules\backend\controllers\BackendDefaultController
 {
 
 }

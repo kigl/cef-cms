@@ -8,12 +8,6 @@ class Asset extends \yii\web\AssetBundle
 
     public $css = [
         'css/main.css',
-        'css/AdminLTE.css',
-        'css/_all-skins.css',
-    ];
-
-    public $js = [
-        'js/app.js',
     ];
 
     public $depends = [

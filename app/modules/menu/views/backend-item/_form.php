@@ -1,7 +1,7 @@
 <?php
 use app\modules\backend\widgets\ActiveForm;
 use app\modules\backend\widgets\fileInput\Widget as ActionImage;
-use app\modules\menu\widgets\backend\DropDownListItems;
+use app\modules\menu\widgets\backend\DropDownTreeItems;
 
 ?>
 
@@ -23,13 +23,13 @@ use app\modules\menu\widgets\backend\DropDownListItems;
     <div class="tab-pane active" id="main">
         <?= $form->field($data['model'], 'name'); ?>
 
+        <?= $form->field($data['model'], 'name_hide')->checkbox(); ?>
+
         <?= $form->field($data['model'], 'parent_id')
-            ->widget(DropDownListItems::class, []); ?>
+            ->widget(DropDownTreeItems::class, []); ?>
 
         <?= $form->field($data['model'], 'active')
             ->checkbox(); ?>
-
-        <?= $form->field($data['model'], 'name_hide')->checkbox(); ?>
 
         <?= $form->field($data['model'], 'url')
             ->hint('Пример: module/controller/action?param=name'); ?>

@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  * @property string $class
  * @property string $attribute_id
+ * @property integer$site_id
  */
 class Menu extends \yii\db\ActiveRecord
 {
@@ -29,6 +30,7 @@ class Menu extends \yii\db\ActiveRecord
     {
         return [
             ['name', 'required'],
+            [['site_id'], 'integer'],
             [['name', 'class', 'attribute_id'], 'string', 'max' => 100],
         ];
     }
@@ -43,6 +45,7 @@ class Menu extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'class' => Yii::t('menu', 'CSS class menu'),
             'attribute_id' => Yii::t('menu', 'Attribute id menu'),
+            'site_id' => Yii::t('app', 'Site ID'),
         ];
     }
 

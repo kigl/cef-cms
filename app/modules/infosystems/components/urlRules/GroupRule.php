@@ -9,24 +9,28 @@
 namespace app\modules\infosystems\components\urlRules;
 
 
+use Yii;
+
 class GroupRule extends Rule
 {
-    protected $urlItemName = 'group';
+    protected $_urlItemName = 'group';
 
-    protected $routeAction = 'infosystems/group/view';
+    protected $_routeAction = 'infosystems/group/view';
 
     public function getUrl($route, $params)
     {
-        if ($route !== $this->routeAction) {
+        if ($route !== $this->_routeAction) {
 
             return false;
         }
 
+        $infosystemCode = $this->getInfosystemCode($params['infosystem_id']);
+
         $url = '';
 
-        $url .= $params['infosystem_id'] . '/' . $this->urlItemName . '/' . $params['id'] . '-' . $params['alias'];
+        $url .= $infosystemCode . '/' . $this->_urlItemName . '/' . $params['id'] . '-' . $params['alias'];
 
-        unset($params['alias'], $params['infosystem_code'], $params['id']);
+        unset($params['alias'], $params['infosystem_id'], $params['id']);
 
         return $this->buildUrl($url, $params);
     }
@@ -37,7 +41,7 @@ class GroupRule extends Rule
             return false;
         }
 
-        if ($routeItem[1] !== $this->urlItemName) {
+        if ($routeItem[1] !== $this->_urlItemName) {
             return false;
         }
 
@@ -47,11 +51,11 @@ class GroupRule extends Rule
         }
 
         return [
-            $this->routeAction,
+            $this->_routeAction,
             [
                 'id' => $params['id'],
                 'alias' => $params['alias'],
-                'infosystem_code' => $routeItem[0]
+                'infosystem_id' => $this->getInfosystemId($routeItem[0])
             ]
         ];
     }

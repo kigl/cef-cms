@@ -9,6 +9,7 @@
 namespace app\modules\infosystems\service;
 
 
+use Yii;
 use yii\data\ActiveDataProvider;
 use app\modules\infosystems\models\Infosystem;
 use app\modules\infosystems\models\Group;
@@ -18,7 +19,14 @@ class InfosystemModelService extends ModelService
 {
     public function view()
     {
-        $model = Infosystem::findOne(['id' => $this->getData('get', 'id')]);
+        $model = Infosystem::findOne([
+            'id' => $this->getData('get', 'id'),
+            'site_id' => Yii::$app->site->getId(),
+            ]);
+
+        if (!$model) {
+            return false;
+        }
 
         $dataProviderGroup = new ActiveDataProvider([
             'query' => Group::find()

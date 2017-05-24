@@ -42,7 +42,8 @@ class BackendCommentController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Comment::find()
-                ->with('user'),
+                ->with('user')
+                ->where(['site_id' => Yii::$app->site->getId()])
         ]);
 
         return $this->render('manager', [

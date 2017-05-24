@@ -9,6 +9,7 @@
 namespace app\modules\infosystems\service;
 
 
+use Yii;
 use yii\data\ActiveDataProvider;
 use app\modules\infosystems\models\Item;
 use app\modules\infosystems\models\Infosystem;
@@ -18,7 +19,10 @@ class ItemModelService extends ModelService
     public function view()
     {
         $model = Item::find()
-            ->where(['id' => $this->getData('get', 'id'), 'status' => Item::STATUS_ACTIVE])
+            ->alias('it')
+            ->joinWith(['infosystem as inf'])
+            ->where(['it.id' => $this->getData('get', 'id'), 'it.status' => Item::STATUS_ACTIVE])
+            ->andWhere(['inf.site_id' => Yii::$app->site->getId()])
             ->one();
 
         if (!$model) {
@@ -50,15 +54,21 @@ class ItemModelService extends ModelService
                 ->where(['tag.name' => $this->getData('get', 'name')]),
         ]);
 
-        $infosystem = Infosystem::findOne(['id' => $this->getData('get', 'infosystem_id')]);
+        $infosystem = Infosystem::findOne([
+            'id' => $this->getData('get', 'infosystem_id'),
+            'site_id' => Yii::$app->site->getId(),
+        ]);
 
         if (!$infosystem) {
-            $this->setError(self::ERROR_NOT_MODEL);
+
+            return false;
         }
 
         $this->setData([
             'model' => $infosystem,
             'dataProvider' => $dataProvider,
         ]);
+
+        return true;
     }
 }

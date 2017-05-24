@@ -8,25 +8,12 @@ use app\core\behaviors\FillData;
 use app\core\behaviors\GenerateAlias;
 use yii\helpers\ArrayHelper;
 
-/**
- * This is the model class for table "mn_page".
- *
- * @property integer $id
- * @property string $name
- * @property string $content
- * @property string $alias
- * @property string $meta_title
- * @property string $meta_description
- * @property integer $create_time
- * @property integer $update_time
- */
 class Page extends \app\modules\pages\models\Page
 {
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
             ['template', 'default', 'value' => 'view'],
-            ['indexing', 'default', 'value' => self::INDEXING_YES],
         ]);
     }
 

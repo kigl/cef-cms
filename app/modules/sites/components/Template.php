@@ -27,24 +27,21 @@ class Template extends \yii\base\Theme
 
         $siteComponent = Yii::$app->site;
 
-        if (!$this->_currentTemplateSite = $siteComponent->getTemplateId()) {
+        if (!$this->existTemplate($this->_currentTemplateSite)) {
             $this->_currentTemplateSite = self::DEFAULT_TEMPLATE;
         }
 
-        if ($this->existTemplate($this->_currentTemplateSite)) {
+        $this->setBasePath($this->getTemplatePath($this->_currentTemplateSite, true));
+        $this->setBaseUrl($this->getTemplatePath($this->_currentTemplateSite, true, true));
 
-            $this->setBasePath($this->getTemplatePath($this->_currentTemplateSite, true));
-            $this->setBaseUrl($this->getTemplatePath($this->_currentTemplateSite, true, true));
+        $this->pathMap = [
+            '@app/views' => $this->getTemplatePath($this->_currentTemplateSite, true) . '/views',
+            '@app/modules' => $this->getTemplatePath($this->_currentTemplateSite, true) . '/modules',
+        ];
 
-            $this->pathMap = [
-                '@app/views' => $this->getTemplatePath($this->_currentTemplateSite, true) . '/views',
-                '@app/modules' => $this->getTemplatePath($this->_currentTemplateSite, true) . '/modules',
-            ];
+        if ($layout = $siteComponent->getLayout()) {
 
-            if ($layout = $siteComponent->getLayout()) {
-
-                Yii::$app->layout = $this->getLayoutPath($this->_currentTemplateSite, $layout, true);
-            }
+            Yii::$app->layout = $this->getLayoutPath($this->_currentTemplateSite, $layout, true);
         }
     }
 

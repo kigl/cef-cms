@@ -28,7 +28,7 @@ class ModelService extends \app\core\service\ModelService
                     'modelClass' => Group::className(),
                     'urlOptions' => [
                         'route' => '/infosystem/group/view',
-                        'params' => ['id', 'alias', 'infosystem_code']
+                        'params' => ['id', 'alias', 'infosystem_id']
                     ],
                 ],
             ]);

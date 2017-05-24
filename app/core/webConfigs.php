@@ -8,7 +8,7 @@ $configs = [
     ROOT_DIR . '/app/modules/infosystems/config/web.php',
     ROOT_DIR . '/app/modules/pages/config/web.php',
     ROOT_DIR . '/app/modules/tag/config/web.php',
-    ROOT_DIR . '/app/modules/form/config/web.php',
+    ROOT_DIR . '/app/modules/forms/config/web.php',
     ROOT_DIR . '/app/modules/menu/config/web.php',
     ROOT_DIR . '/app/modules/lists/config/web.php',
     ROOT_DIR . '/app/modules/tools/config/web.php',
