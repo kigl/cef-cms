@@ -22,12 +22,14 @@ return [
     'Create infosystem' => 'Создание инфосистемы',
     'Create group' => 'Создание группы',
     'Create item' => 'Создание элемента',
+    'Create tag' => 'Создание метки',
     'Create property' => 'Создание свойства',
     'Counter' => 'Количество просмотров',
 
     'Edit infosystem: {data}' => 'Редактирование инфосистемы: {data}',
     'Edit group: {data}' => 'Редактирование группы: {data}',
     'Edit item: {data}' => 'Редактирование элемента: {data}',
+    'Edit tag: {data}' => 'Редактирование метки: {data}',
     'Edit property: {data}' => 'Редактирование свойства: {data}',
 
     'Sorting type group' => 'Тип сортировки групп',

@@ -52,8 +52,7 @@ class Item extends \app\core\db\ActiveRecord
     {
         return [
             [['name', 'infosystem_id', 'date'], 'required'],
-            [['infosystem_id'], 'string', 'max' => 100],
-            [['group_id', 'status', 'sorting', 'user_id', 'counter'], 'integer'],
+            [['infosystem_id', 'group_id', 'status', 'sorting', 'user_id', 'counter'], 'integer'],
             [['description', 'content', 'date', 'date_start', 'date_end'], 'string'],
             [['name', 'meta_title', 'meta_description'], 'string', 'max' => 255],
             ['file', 'file'],

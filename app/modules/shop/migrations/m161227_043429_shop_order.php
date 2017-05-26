@@ -10,8 +10,9 @@ class m161227_043429_shop_order extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
+            'shop_id' => $this->integer(),
             'status' => $this->integer()->defaultValue(0),
-            'sum' => $this->float(6, 2),
+            'sum' => $this->decimal(12, 2),
             'user_id' => $this->integer(),
             'country' => $this->string(),
             'region' => $this->string(),

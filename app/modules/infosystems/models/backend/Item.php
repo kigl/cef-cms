@@ -8,29 +8,6 @@ use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 
-/**
- * This is the model class for table "mn_infosystem_item".
- *
- * @property integer $id
- * @property integer $group_id
- * @property string $infosystem_id
- * @property string $name
- * @property string $description
- * @property string $content
- * @property string $image_description
- * @property string $image_content
- * @property integer $status
- * @property integer $sorting
- * @property integer $user_id
- * @property integer $date
- * @property integer $date_start
- * @property integer $date_end
- * @property string $alias
- * @property string $meta_title
- * @property string $meta_description
- * @property integer $create_time
- * @property integer $update_time
- */
 class Item extends \app\modules\infosystems\models\Item
 {
     protected $_runtimeTags;

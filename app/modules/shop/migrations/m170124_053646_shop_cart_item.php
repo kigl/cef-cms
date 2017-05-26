@@ -13,7 +13,7 @@ class m170124_053646_shop_cart_item extends Migration
             'cart_id' => $this->integer(),
             'product_id' => $this->integer(),
             'qty' => $this->integer()->defaultValue(0),
-            'price' => $this->float(5, 2),
+            'price' => $this->decimal(12, 2),
         ]);
 
         $this->createIndex('ix-order_product-cart_id', $this->tableName, 'cart_id');

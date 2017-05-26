@@ -96,84 +96,101 @@ use vova07\imperavi\Widget;
         </div>
 
         <div class="tab-pane" id="settings">
-            <?= $form->field($data['model'], 'indexing')->checkbox(); ?>
 
-            <?= $form->field($data['model'], 'template'); ?>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#main-settings" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
+                <li><a href="#templates" data-toggle="tab"><?= Yii::t('app', 'Tab templates'); ?></a></li>
+                <li><a href="#sorting" data-toggle="tab"><?= Yii::t('app', 'Tab sorting'); ?></a></li>
+                <li><a href="#formats" data-toggle="tab"><?= Yii::t('app', 'Tab formats'); ?></a></li>
+            </ul>
 
-            <?= $form->field($data['model'], 'template_group'); ?>
+            <div class="tab-content well">
+                <div class="tab-pane active" id="main-settings">
+                    <?= $form->field($data['model'], 'indexing')->checkbox(); ?>
 
-            <?= $form->field($data['model'], 'template_item'); ?>
+                    <?= $form->field($data['model'], 'group_on_page'); ?>
 
-            <?= $form->field($data['model'], 'template_tag'); ?>
+                    <?= $form->field($data['model'], 'item_on_page'); ?>
+                </div>
 
-            <div class="row">
-                <div class="col-md-3">
-                    <?= $form->field($data['model'], 'sorting_type_group')
-                        ->dropDownList($data['model']->getSortingTypes()); ?>
-                </div>
-                <div class="col-md-3">
-                    <?= $form->field($data['model'], 'sorting_field_group')
-                        ->dropDownList(Group::getSortingAttribute()); ?>
-                </div>
-                <div class="col-md-4">
-                    <?= $form->field($data['model'], 'sortingListFieldGroup')
-                        ->dropDownList(Group::getSortingAttribute(), ['multiple' => true])
-                        ->label(Module::t('Sorting list field group')); ?>
-                </div>
-            </div>
+                <div class="tab-pane" id="templates">
 
+                    <?= $form->field($data['model'], 'template'); ?>
 
-            <div class="row">
-                <div class="col-md-3">
-                    <?= $form->field($data['model'], 'sorting_type_item')
-                        ->dropDownList($data['model']->getSortingTypes()); ?>
-                </div>
-                <div class="col-md-3">
-                    <?= $form->field($data['model'], 'sorting_field_item')
-                        ->dropDownList(Item::getSortingAttribute()); ?>
-                </div>
-                <div class="col-md-4">
-                    <?= $form->field($data['model'], 'sortingListFieldItem')
-                        ->dropDownList(Item::getSortingAttribute(), ['multiple' => true])
-                        ->label(Module::t('Sorting list field item')); ?>
-                </div>
-            </div>
+                    <?= $form->field($data['model'], 'template_group'); ?>
 
+                    <?= $form->field($data['model'], 'template_item'); ?>
 
-            <?= $form->field($data['model'], 'group_on_page'); ?>
+                    <?= $form->field($data['model'], 'template_tag'); ?>
+                </div>
 
-            <?= $form->field($data['model'], 'item_on_page'); ?>
+                <div class="tab-pane" id="sorting">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <?= $form->field($data['model'], 'sorting_type_group')
+                                ->dropDownList($data['model']->getSortingTypes()); ?>
+                        </div>
+                        <div class="col-md-3">
+                            <?= $form->field($data['model'], 'sorting_field_group')
+                                ->dropDownList(Group::getSortingAttribute()); ?>
+                        </div>
+                        <div class="col-md-4">
+                            <?= $form->field($data['model'], 'sortingListFieldGroup')
+                                ->dropDownList(Group::getSortingAttribute(), ['multiple' => true])
+                                ->label(Module::t('Sorting list field group')); ?>
+                        </div>
+                    </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <?= $form->field($data['model'], 'max_width_image_description_group'); ?>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <?= $form->field($data['model'], 'sorting_type_item')
+                                ->dropDownList($data['model']->getSortingTypes()); ?>
+                        </div>
+                        <div class="col-md-3">
+                            <?= $form->field($data['model'], 'sorting_field_item')
+                                ->dropDownList(Item::getSortingAttribute()); ?>
+                        </div>
+                        <div class="col-md-4">
+                            <?= $form->field($data['model'], 'sortingListFieldItem')
+                                ->dropDownList(Item::getSortingAttribute(), ['multiple' => true])
+                                ->label(Module::t('Sorting list field item')); ?>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <?= $form->field($data['model'], 'max_height_image_description_group'); ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <?= $form->field($data['model'], 'max_width_image_content_group'); ?>
-                </div>
-                <div class="col-md-6">
-                    <?= $form->field($data['model'], 'max_height_image_content_group'); ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <?= $form->field($data['model'], 'max_width_image_description_item'); ?>
-                </div>
-                <div class="col-md-6">
-                    <?= $form->field($data['model'], 'max_height_image_description_item'); ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <?= $form->field($data['model'], 'max_width_image_content_item'); ?>
-                </div>
-                <div class="col-md-6">
-                    <?= $form->field($data['model'], 'max_height_image_content_item'); ?>
+
+                <div class="tab-pane" id="formats">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?= $form->field($data['model'], 'max_width_image_description_group'); ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($data['model'], 'max_height_image_description_group'); ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?= $form->field($data['model'], 'max_width_image_content_group'); ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($data['model'], 'max_height_image_content_group'); ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?= $form->field($data['model'], 'max_width_image_description_item'); ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($data['model'], 'max_height_image_description_item'); ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?= $form->field($data['model'], 'max_width_image_content_item'); ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($data['model'], 'max_height_image_content_item'); ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

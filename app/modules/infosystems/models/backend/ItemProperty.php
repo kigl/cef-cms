@@ -5,17 +5,6 @@ namespace app\modules\infosystems\models\backend;
 
 use yii\helpers\ArrayHelper;
 
-/**
- * This is the model class for table "{{%infosystem_item_property}}".
- *
- * @property integer $id
- * @property integer $item_id
- * @property integer $property_id
- * @property string $value
- *
- * @property Item $item
- * @property Property $property
- */
 class ItemProperty extends \app\modules\infosystems\models\ItemProperty
 {
     /**

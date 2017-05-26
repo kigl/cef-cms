@@ -11,11 +11,11 @@ return [
             'class' => 'app\modules\shop\Module',
             'toolbar' => [
                 'main' => [
-                    ['label' => 'Товары', 'url' => ['backend-group/manager']],
-                    ['label' => 'Заказы', 'url' => ['backend-order/manager']],
+                    ['label' => 'Интернет-магазины', 'url' => ['backend-shop/manager']],
                 ],
                 'group' => [
                     ['label' => 'Свойства товаров', 'url' => ['backend-property/manager']],
+                    ['label' => 'Заказы', 'url' => ['backend-order/manager']],
                 ],
             ],
         ],

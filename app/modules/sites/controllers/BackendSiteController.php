@@ -10,6 +10,7 @@ namespace app\modules\sites\controllers;
 
 
 use app\modules\backend\actions\Create;
+use app\modules\backend\actions\Delete;
 use app\modules\backend\actions\Update;
 use yii\data\ActiveDataProvider;
 use app\modules\sites\models\backend\Site;
@@ -26,6 +27,10 @@ class BackendSiteController extends Controller
             ],
             'update' => [
                 'class' => Update::className(),
+                'modelClass' => Site::className(),
+            ],
+            'delete' => [
+                'class' => Delete::className(),
                 'modelClass' => Site::className(),
             ],
         ];

@@ -17,9 +17,6 @@ class m170202_163953_menu extends Migration
         ]);
 
         $this->createIndex('ix-menu-name', $this->_tableName, 'name');
-        $this->createIndex('ix-menu-site_id', $this->_tableName, 'site_id');
-
-        $this->addForeignKey('fk-menu-site_id', $this->_tableName, 'site_id', '{{%site}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()

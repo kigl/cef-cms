@@ -17,6 +17,6 @@ class Site extends \app\modules\sites\models\Site
     {
         $theme = \Yii::$app->view->theme;
 
-        return array_combine(array_flip($theme->getTemplatesList()), array_flip($theme->getTemplatesList()));
+        return array_combine(array_flip($theme->getTemplates()), array_flip($theme->getTemplates()));
     }
 }

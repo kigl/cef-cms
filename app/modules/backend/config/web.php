@@ -24,4 +24,12 @@ return [
             'class' => 'kartik\grid\Module',
         ]
 	],
+
+    'components' => [
+        'urlManager' => [
+            'rules' => [
+                'backend' => '/backend/backend-default',
+            ],
+        ],
+    ],
 ];

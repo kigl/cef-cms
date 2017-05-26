@@ -24,8 +24,6 @@ class m160902_081826_page extends Migration
         $this->execute("ALTER TABLE {$this->_tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
 
         $this->createIndex('ix-page-site_id', $this->_tableName, 'site_id');
-
-        $this->addForeignKey('fk-page-site_id', $this->_tableName, 'site_id', '{{%site}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()

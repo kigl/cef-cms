@@ -1,11 +1,11 @@
 <?php
 use yii\helpers\Html;
+use app\modules\shop\Module;
 use app\modules\backend\widgets\grid\GridView;
-use app\modules\sites\Module;
 
-$this->setTitle(Module::t('Sites'));
-$this->setPageHeader(Module::t('Sites'));
-$this->params['breadcrumbs'][] = ['label' => Module::t('Sites'), 'url' => 'manager'];
+$this->setTitle(Module::t('Shops'));
+$this->setPageHeader(Module::t('Shops'));
+$this->params['breadcrumbs'] = $data['breadcrumbs'];
 
 echo GridView::widget([
     'buttons' => [
@@ -17,10 +17,14 @@ echo GridView::widget([
     ],
     'dataProvider' => $data['dataProvider'],
     'columns' => [
-        'domain',
-        'name',
-        'template_id',
-        'id',
+        'code',
+        [
+            'attribute' => 'name',
+            'format' => 'raw',
+            'value' => function ($model) {
+                return Html::a($model->name, ['backend-group/manager', 'shop_id' => $model->id]);
+            }
+        ],
         [
             'headerOptions' => ['style' => 'width: 70px'],
             'class' => 'yii\grid\ActionColumn',

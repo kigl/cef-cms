@@ -21,9 +21,8 @@ class m170206_120351_form extends Migration
 
         $this->execute("ALTER TABLE {$this->_tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `send_email_curator`;");
 
-        $this->createIndex('ix-comment-site_id', $this->_tableName, 'site_id');
+        $this->createIndex('ix-form-site_id', $this->_tableName, 'site_id');
 
-        $this->addForeignKey('fk-comment-site_id', $this->_tableName, 'site_id', '{{%site}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()

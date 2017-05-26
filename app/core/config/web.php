@@ -62,8 +62,8 @@ $config = [
         'db' => require 'db.php',
 
         'cache' => [
-            //'class' => 'yii\caching\FileCache',
-            'class' => \yii\caching\DummyCache::class,
+            'class' => 'yii\caching\FileCache',
+            //'class' => \yii\caching\DummyCache::class,
         ],
 
 

@@ -27,7 +27,7 @@ class BackendTemplateController extends Controller
             if ($themeComponent->existTemplate($post)) {
 
                 $result = [];
-                foreach ($themeComponent->getLayoutsList($post, false) as $name => $path) {
+                foreach ($themeComponent->getLayouts($post, false) as $name => $path) {
                     $result[] = ['id' => $name, 'name' => $name];
                 }
 

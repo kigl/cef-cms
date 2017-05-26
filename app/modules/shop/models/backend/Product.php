@@ -7,22 +7,6 @@ use yii\helpers\ArrayHelper;
 use app\core\behaviors\GenerateAlias;
 use app\core\behaviors\UserId;
 
-/**
- * This is the model class for table "mn_shop_product".
- *
- * @property integer $id
- * @property integer $parent_id
- * @property integer $group_id
- * @property string $code
- * @property string $name
- * @property string $description
- * @property string $content
- * @property integer $sku
- * @property string $price
- * @property integer $user_id
- * @property string $create_time
- * @property string $update_time
- */
 class Product extends \app\modules\shop\models\Product
 {
     public $imageUpload;
@@ -73,5 +57,4 @@ class Product extends \app\modules\shop\models\Product
     {
         return $this->hasMany(Image::className(), ['product_id' => 'id']);
     }
-
 }

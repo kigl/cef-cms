@@ -10,6 +10,7 @@ class m161227_051943_shop_cart extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
+            'shop_id' => $this->integer(),
             'user_id' => $this->integer(),
         ]);
 

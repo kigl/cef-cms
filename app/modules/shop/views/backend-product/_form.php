@@ -41,7 +41,12 @@ use app\core\widgets\DropDownTreeItems;
 <div class="tab-content">
     <div class="tab-pane active" id="main">
         <div class="row">
-            <div class="col-md-12"><?= $form->field($data['model'], 'name'); ?></div>
+            <div class="col-md-2">
+                <?= $form->field($data['model'], 'active')->checkbox(); ?>
+            </div>
+            <div class="col-md-10">
+                <?= $form->field($data['model'], 'name'); ?>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -51,12 +56,8 @@ use app\core\widgets\DropDownTreeItems;
                     ])
                     ->label(Yii::t('app', 'Group')); ?>
             </div>
-            <div class="col-md-3">
-                <?= $form->field($data['model'], 'code'); ?>
-            </div>
-            <div class="col-md-3">
-                <?= $form->field($data['model'],
-                    'status')->dropDownList($data['model']->getListStatus()); ?>
+            <div class="col-md-6">
+                <?= $form->field($data['model'], 'vendor_code'); ?>
             </div>
         </div>
         <div class="row">
@@ -140,6 +141,7 @@ use app\core\widgets\DropDownTreeItems;
                         'item' => [
                             'url' => Url::to([
                                 'backend-product/create',
+                                'shop_id' => $data['model']->shop->id,
                                 'parent_id' => $data['model']->id,
                             ]),
                         ],

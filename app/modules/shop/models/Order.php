@@ -12,6 +12,7 @@ use app\modules\users\models\User;
  * This is the model class for table "{{%shop_order}}".
  *
  * @property integer $id
+ * @property integer $shop_id
  * @property integer $status
  * @property integer $user_id
  * @property string $create_time
@@ -40,7 +41,8 @@ class Order extends ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'user_id', 'postcode'], 'integer'],
+            [['shop_id'], 'required'],
+            [['shop_id', 'status', 'user_id', 'postcode'], 'integer'],
             ['sum', 'safe'],
             [['country', 'region', 'city', 'address', 'company', 'phone', 'comment'], 'string', 'max' => 255],
         ];
@@ -53,6 +55,7 @@ class Order extends ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'shop_id' => Yii::t('app', 'Shop ID'),
             'status' => Yii::t('app', 'Status'),
             'user_id' => Yii::t('app', 'User id'),
             'sum' => Yii::t('shop', 'Sum'),

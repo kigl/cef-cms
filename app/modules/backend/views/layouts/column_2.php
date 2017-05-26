@@ -20,7 +20,7 @@ use app\modules\backend\widgets\topMenu\Widget as MenuTop;
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="sidebar">
                     <?= MenuSidebar::widget([
                         'options' => ['class' => 'sidebar-menu list-group'],
@@ -29,7 +29,7 @@ use app\modules\backend\widgets\topMenu\Widget as MenuTop;
                     ]); ?>
                 </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div class="content-bar">
                     <?= Breadcrumbs::widget([
                         'options' => ['class' => 'content-bar__breadcrumb breadcrumb'],

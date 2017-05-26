@@ -18,10 +18,14 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
     'buttons' => [
         'create' => [
             'group' => [
-                'url' => Url::to(['create', 'parent_id' => $data['id']]),
+                'url' => Url::to(['create', 'shop_id' => $data['get']['shop_id'], 'parent_id' => $data['id']]),
             ],
             'item' => [
-                'url' => Url::to(['backend-product/create', 'group_id' => $data['id']]),
+                'url' => Url::to([
+                    'backend-product/create',
+                    'shop_id' => $data['get']['shop_id'],
+                    'group_id' => $data['id']
+                ]),
             ],
         ],
         'delete' => [
@@ -48,16 +52,24 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
             'attribute' => 'name',
             'label' => Yii::t('app', 'Name'),
             'format' => 'raw',
-            'headerOptions' => ['style' => 'width: 50%'],
+            'headerOptions' => ['style' => 'width: 45%'],
             'value' => function ($data) {
                 return array_key_exists('group_id', $data) ?
                     $data['name'] :
-                    Html::a($data['name'], ['manager', 'id' => $data['id']]);
+                    Html::a($data['name'], ['manager', 'id' => $data['id'], 'shop_id' => $data['shop_id']]);
+            }
+        ],
+        [
+            'attribute' => 'active',
+            'label' => Yii::t('app', 'Active'),
+            'format' => 'raw',
+            'value' => function ($data) {
+                    return Html::checkbox('Active', $data['active'], ['disabled' => 'disabled']);
             }
         ],
         [
             'attribute' => 'price',
-            'label' => Yii::t('app','Price'),
+            'label' => Yii::t('app', 'Price'),
             'format' => 'currency',
             'headerOptions' => ['style' => 'width: 15%'],
         ],

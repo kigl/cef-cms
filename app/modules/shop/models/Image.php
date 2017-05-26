@@ -37,6 +37,7 @@ class Image extends ActiveRecord
     public function rules()
     {
         return [
+            [['product_id'], 'required'],
             [['product_id', 'status'], 'integer'],
             [['create_time'], 'safe'],
             [['alt'], 'string', 'max' => 255],

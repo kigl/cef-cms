@@ -5,11 +5,11 @@ use yii\db\Migration;
 class m161030_134743_shop_product_image extends Migration
 {
 
-    protected $tableName = '{{%shop_product_image}}';
+    protected $_tableName = '{{%shop_product_image}}';
 
     public function up()
     {
-        $this->createTable($this->tableName, [
+        $this->createTable($this->_tableName, [
             'id' => $this->primaryKey(),
             'product_id' => $this->integer(),
             'name' => $this->string(),
@@ -18,24 +18,13 @@ class m161030_134743_shop_product_image extends Migration
             'alt' => $this->string(),
         ]);
 
-        $this->execute("ALTER TABLE {$this->tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `alt`;");
+        $this->execute("ALTER TABLE {$this->_tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `alt`;");
 
-        $this->createIndex('ix-product_image-product_id', $this->tableName, 'product_id');
+        $this->createIndex('ix-product_image-product_id', $this->_tableName, 'product_id');
     }
 
     public function down()
     {
-        $this->dropTable($this->tableName);
+        $this->dropTable($this->_tableName);
     }
-
-    /*
-    // Use safeUp/safeDown to run migration code within a transaction
-    public function safeUp()
-    {
-    }
-
-    public function safeDown()
-    {
-    }
-    */
 }

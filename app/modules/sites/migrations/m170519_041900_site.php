@@ -16,7 +16,6 @@ class m170519_041900_site extends Migration
             'robots_txt' => $this->text(),
             'template_id' => $this->string(),
             'layout' => $this->string(),
-            'active' => $this->integer(),
         ]);
     }
 
@@ -24,15 +23,4 @@ class m170519_041900_site extends Migration
     {
         $this->dropTable($this->_tableName);
     }
-
-    /*
-    // Use safeUp/safeDown to run migration code within a transaction
-    public function safeUp()
-    {
-    }
-
-    public function safeDown()
-    {
-    }
-    */
 }

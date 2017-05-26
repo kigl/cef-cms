@@ -9,7 +9,7 @@ use app\modules\shop\service\backend\ProductModelService;
 
 class BackendProductController extends Controller
 {
-    public function actionCreate($group_id = null, $parent_id = null)
+    public function actionCreate($shop_id, $group_id = null, $parent_id = null)
     {
         $modelService = Yii::createObject([
             'class' => ProductModelService::class,
@@ -19,7 +19,7 @@ class BackendProductController extends Controller
             ],
         ]);
 
-        if ($modelService->actionCreate()) {
+        if ($modelService->create()) {
 
             return $this->redirect(['backend-product/update', 'id' => $modelService->getData('model')->id]);
         }
@@ -41,7 +41,7 @@ class BackendProductController extends Controller
             ],
         ]);
 
-        if ($modelService->actionUpdate()) {
+        if ($modelService->update()) {
 
             return $this->redirect(['backend-product/update', 'id' => $modelService->getData('model')->id]);
         }
@@ -57,7 +57,7 @@ class BackendProductController extends Controller
     {
         $modelService = new ProductModelService();
 
-        if ($modelService->actionDelete($id)) {
+        if ($modelService->delete($id)) {
 
             return $this->redirect(['backend-group/manager', 'parent_id' => $modelService->getData('groupId')]);
         }

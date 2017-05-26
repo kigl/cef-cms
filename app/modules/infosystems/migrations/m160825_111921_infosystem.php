@@ -45,8 +45,6 @@ class m160825_111921_infosystem extends Migration
         $this->execute("ALTER TABLE {$this->_tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
 
         $this->createIndex('ix-infosystem-site_id', $this->_tableName, 'site_id');
-
-        $this->addForeignKey('fk-infosystem-site_id', $this->_tableName, 'site_id', '{{%site}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()

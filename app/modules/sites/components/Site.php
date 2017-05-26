@@ -18,9 +18,9 @@ class Site extends Component implements BootstrapInterface
 {
     protected $_id;
 
-    protected $_templateId = null;
+    protected $_templateId;
 
-    protected $_layout = null;
+    protected $_layout;
 
     public function bootstrap($app)
     {
@@ -31,7 +31,6 @@ class Site extends Component implements BootstrapInterface
             $this->_id = $model->id;
             $this->_templateId = $model->template_id;
             $this->_layout = $model->layout;
-
         }
     }
 
@@ -39,7 +38,7 @@ class Site extends Component implements BootstrapInterface
     {
         return SiteModel::find()
             ->select(['id', 'template_id', 'layout'])
-            ->where(['domain' => $domain, 'active' => SiteModel::ACTIVE])
+            ->where(['domain' => $domain,])
             ->one();
     }
 
@@ -50,11 +49,11 @@ class Site extends Component implements BootstrapInterface
 
     public function getTemplateId()
     {
-        return $this->_templateId;
+        return isset($this->_templateId) ? $this->_templateId : null;
     }
 
     public function getLayout()
     {
-        return $this->_layout;
+        return isset($this->_layout) ? $this->_layout : null;
     }
 }

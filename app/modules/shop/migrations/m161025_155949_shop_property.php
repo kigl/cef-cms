@@ -10,6 +10,7 @@ class m161025_155949_shop_property extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
+            'shop_id' => $this->integer(),
             'name' => $this->string(),
             'description' => $this->string(),
             'type' => $this->integer(),

@@ -21,21 +21,29 @@ use app\core\widgets\DropDownTreeItems;
 
 <div class="tab-content">
     <div class="tab-pane active" id="main">
-        <?= $form->field($data['model'], 'name') ?>
-
+        <div class="row">
+            <div class="col-md-2">
+                <?= $form->field($data['model'], 'active')->checkbox(); ?>
+            </div>
+            <div class="col-md-10">
+                <?= $form->field($data['model'], 'name') ?>
+            </div>
+        </div>
         <?= $form->field($data['model'], 'parent_id')
             ->widget(DropDownTreeItems::className())
             ->label(Yii::t('app', 'Parent group')); ?>
     </div>
+
     <div class="tab-pane" id="description">
-        <?= $form->field($data['model'], 'image_1')->widget(WidgetActionImage::className(), [
+        <?= $form->field($data['model'], 'image_preview')->widget(WidgetActionImage::className(), [
             'behaviorName' => 'imagePreview',
         ]) ?>
         <?= $form->field($data['model'], 'description')->textarea(); ?>
     </div>
+
     <div class="tab-pane" id="content">
-        <?= $form->field($data['model'], 'image_2')->widget(WidgetActionImage::className(), [
-            'behaviorName' => 'imageContent',
+        <?= $form->field($data['model'], 'image')->widget(WidgetActionImage::className(), [
+            'behaviorName' => 'image',
         ]) ?>
         <?= $form->field($data['model'], 'content')->widget(\vova07\imperavi\Widget::className(), [
             'settings' => [
@@ -43,6 +51,7 @@ use app\core\widgets\DropDownTreeItems;
             ],
         ]); ?>
     </div>
+    
     <div class="tab-pane" id="seo">
         <?= $form->field($data['model'], 'alias'); ?>
 

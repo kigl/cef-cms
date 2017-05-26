@@ -13,21 +13,31 @@ use app\modules\users\models\User;
  * @property integer $id
  * @property integer $parent_id
  * @property integer $group_id
- * @property string $code
+ * @property integer $shop_id
+ * @property integer $producer_id
+ * @property string $vendor_code
  * @property string $name
  * @property string $description
  * @property string $content
+ * @property integer $weight
  * @property integer $sku
  * @property string $price
+ * @property integer $discount
+ * @property integer $length
+ * @property integer $width
+ * @property integer $height
+ * @property integer $active
+ * @property integer $sorting
  * @property integer $user_id
+ * @property string $alias
+ * @property string $meta_title
+ * @property string $meta_description
+ * @property string $meta_keyword
  * @property string $create_time
  * @property string $update_time
  */
 class Product extends ActiveRecord
 {
-
-    const STATUS_ACTIVE = 1;
-    const STATUS_BLOCK = 0;
 
     /**
      * @inheritdoc
@@ -43,11 +53,15 @@ class Product extends ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['group_id', 'sku', 'status', 'user_id'], 'integer'],
+            [['shop_id', 'name'], 'required'],
+            [['shop_id', 'group_id', 'producer_id', 'sku', 'active', 'sorting', 'user_id'], 'integer'],
             [['content'], 'string'],
-            [['price'], 'number'],
-            [['code', 'name', 'description', 'alias', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+            [['weight', 'price', 'discount', 'length', 'width', 'height'], 'number'],
+            [
+                ['vendor_code', 'name', 'description', 'alias', 'meta_title', 'meta_description', 'meta_keyword'],
+                'string',
+                'max' => 255
+            ],
         ];
     }
 
@@ -60,41 +74,35 @@ class Product extends ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'parent_id' => Yii::t('shop', 'Product parent id'),
             'group_id' => Yii::t('shop', 'Group id'),
-            'code' => Yii::t('app', 'Code'),
+            'shop_id' => Yii::t('shop', 'Shop ID'),
+            'producer_id' => Yii::t('shop', 'Producer ID'),
+            'vendor_code' => Yii::t('app', 'Vendor code'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
+            'weight' => Yii::t('app', 'Weight'),
             'sku' => Yii::t('app', 'Depot'),
             'price' => Yii::t('app', 'Price'),
-            'status' => Yii::t('app', 'Status'),
+            'discount' => Yii::t('shop', 'Discount'),
+            'length' => Yii::t('app', 'Length'),
+            'width' => Yii::t('app', 'Width'),
+            'height' => Yii::t('app', 'Height'),
+            'active' => Yii::t('app', 'Active'),
+            'sorting' => Yii::t('app', 'Sorting'),
             'user_id' => Yii::t('shop', 'User id'),
             'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta title'),
             'meta_description' => Yii::t('app', 'Meta description'),
+            'meta_keyword' => Yii::t('app', 'Meta keywords'),
             'create_time' => Yii::t('app', 'Create time'),
             'update_time' => Yii::t('app', 'Update time'),
             'imageUpload' => Yii::t('app', 'Upload images'),
         ];
     }
 
-    /**
-     * @return array
-     */
-    public function getListStatus()
+    public function getShop()
     {
-        return [
-            self::STATUS_ACTIVE => Yii::t('app', 'Status active'),
-            self::STATUS_BLOCK => Yii::t('app', 'Status block'),
-        ];
-    }
-
-    /**
-     * @param $key
-     * @return mixed
-     */
-    public function getStatus($status)
-    {
-        return $this->getListStatus()[$status];
+        return $this->hasOne(Shop::className(), ['id' => 'shop_id']);
     }
 
     public function getGroup()

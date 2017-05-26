@@ -9,6 +9,7 @@ use app\modules\users\models\User;
  * This is the model class for table "{{%shop_cart}}".
  *
  * @property integer $id
+ * @property integer $shop_id
  * @property integer $user_id
  *
  * @property User $user
@@ -30,7 +31,8 @@ class Cart extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id'], 'integer'],
+            [['shop_id'], 'required'],
+            [['shop_id', 'user_id'], 'integer'],
         ];
     }
 
@@ -40,8 +42,9 @@ class Cart extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('shop', 'ID'),
-            'user_id' => Yii::t('shop', 'User ID'),
+            'id' => Yii::t('app', 'ID'),
+            'shop_id' => Yii::t('shop', 'Shop ID'),
+            'user_id' => Yii::t('app', 'User ID'),
         ];
     }
 

@@ -9,32 +9,35 @@
 namespace app\modules\shop\service\backend;
 
 
+use Yii;
+use yii\data\ArrayDataProvider;
+use yii\web\HttpException;
+use app\modules\shop\models\backend\Shop;
 use app\modules\shop\models\backend\Product;
 use app\modules\shop\models\backend\SearchModel;
-use Yii;
-use app\modules\shop\Module;
-use app\core\traits\Breadcrumbs;
-use app\core\service\ModelService;
 use app\modules\shop\models\backend\Group;
-use app\modules\shop\models\backend\GroupSearch;
-use app\modules\shop\models\backend\ProductSearch;
-use yii\data\ArrayDataProvider;
 
 class GroupModelService extends ModelService
 {
-    use Breadcrumbs;
-
-    public function actionManager()
+    public function manager()
     {
         $search = new SearchModel();
 
+        $shop = Shop::findOne(['id' => $this->getData('get', 'shop_id')]);
+
+        if (!$shop) {
+            throw new HttpException(500, 'Not shop model');
+        }
+
         $group = Group::find()
             ->where(['parent_id' => $this->getData('get', 'id')])
+            ->andWhere(['shop_id' => $shop->id])
             ->asArray();
 
         $product = Product::find()
             ->where(['group_id' => $this->getData('get', 'id')])
             ->andWhere('parent_id IS NULL')
+            ->andWhere(['shop_id' => $shop->id])
             ->asArray();
 
         if ($search->load($this->getData('get')) && $search->validate()) {
@@ -49,7 +52,7 @@ class GroupModelService extends ModelService
         $dataProvider = new ArrayDataProvider([
             'allModels' => array_merge($group->all(), $product->all()),
             'sort' => [
-                'attributes' => ['name', 'price', 'create_time', 'id'],
+                'attributes' => ['name', 'price', 'active', 'create_time', 'id'],
             ],
         ]);
 
@@ -57,46 +60,63 @@ class GroupModelService extends ModelService
             'id' => $this->getData('get', 'id'),
             'searchModel' => $search,
             'dataProvider' => $dataProvider,
-            'breadcrumbs' => $this->getBreadcrumbsItem($this->getData('get', 'id')),
+            'breadcrumbs' => $this->getBreadcrumbs($shop, $this->getData('get', 'id')),
         ]);
+
+        return true;
     }
 
-    public function actionCreate()
+    public function create()
     {
-        $model = new Group;
-        $model->parent_id = $this->getData('get', 'parent_id');
+        $shop = Shop::findOne(['id' => $this->getData('get', 'shop_id')]);
+
+        if (!$shop) {
+            throw new HttpException(500, 'Not shop model');
+        }
+
+        $model = new Group([
+            'parent_id' => $this->getData('get', 'parent_id'),
+            'shop_id' => $shop->id,
+        ]);
 
         $this->setData([
             'model' => $model,
-            'breadcrumbs' => $this->getBreadcrumbsItem($this->getData('get', 'parent_id')),
+            'breadcrumbs' => $this->getBreadcrumbs($shop, $this->getData('get', 'parent_id')),
         ]);
 
-        if ($model->load($this->getData('post')) and $model->save()) {
+        if ($model->load($this->getData('post'))) {
 
-            return true;
+            return $model->save();
         }
 
         return false;
     }
 
-    public function actionUpdate()
+    public function update()
     {
-        $model = Group::findOne($this->getData('get', 'id'));
+        $model = Group::find()
+            ->with('shop')
+            ->where(['id' => $this->getData('get', 'id')])
+            ->one();
+
+        if (!$model || !$model->shop) {
+            throw new HttpException(500, 'Not model');
+        }
 
         $this->setData([
             'model' => $model,
-            'breadcrumbs' => $this->getBreadcrumbsItem($this->getData('get', 'id')),
+            'breadcrumbs' => $this->getBreadcrumbs($model->shop, $this->getData('get', 'id')),
         ]);
 
-        if ($model->load($this->getData('post')) and $model->save()) {
+        if ($model->load($this->getData('post'))) {
 
-            return true;
+            return $model->save();
         }
 
         return false;
     }
 
-    public function actionDelete($id)
+    public function delete($id)
     {
         $model = Group::find()
             ->where([Group::tableName() . '.id' => $id])
@@ -111,7 +131,7 @@ class GroupModelService extends ModelService
 
             // рекурсивно удаляем вложенные группы
             foreach ($model->subGroups as $group) {
-                $this->actionDelete($group->id);
+                $this->delete($group->id);
             }
 
             $this->setData([
@@ -122,24 +142,5 @@ class GroupModelService extends ModelService
         }
 
         return false;
-    }
-
-    protected function getBreadcrumbsItem($groupId)
-    {
-        $breadcrumbs = $this->buildBreadcrumbs([
-            'items' => [
-                'id' => $groupId,
-                'modelClass' => Group::class,
-                //'enableRoot' => true,
-                'urlOptions' => [
-                    'route' => 'backend-group/manager',
-                    'params' => ['id',],
-                ],
-            ],
-        ]);
-
-        array_unshift($breadcrumbs, ['label' => Module::t('Products'), 'url' => ['backend-group/manager']]);
-
-        return $breadcrumbs;
     }
 }

@@ -12,19 +12,16 @@ namespace app\modules\shop\service\backend;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
+use yii\web\HttpException;
 use yii\web\UploadedFile;
-use app\modules\shop\Module;
-use app\core\traits\Breadcrumbs;
-use app\core\service\ModelService;
+use app\modules\shop\models\backend\Shop;
 use app\modules\shop\models\backend\Product;
 use app\modules\shop\models\backend\Image;
 use app\modules\shop\models\backend\Property;
 use app\modules\shop\models\backend\ProductProperty;
-use app\modules\shop\models\backend\Group;
 
 class ProductModelService extends ModelService
 {
-    use Breadcrumbs;
     /**
      * @var Product
      */
@@ -40,9 +37,16 @@ class ProductModelService extends ModelService
 
     protected $properties;
 
-    public function actionCreate()
+    public function create()
     {
+        $shop = Shop::findOne(['id' => $this->data['get']['shop_id']]);
+
+        if (!$shop) {
+            throw new HttpException(500, 'No shop model');
+        }
+
         $this->model = new Product([
+            'shop_id' => $shop->id,
             'group_id' => $this->getData('get', 'group_id'),
             'parent_id' => $this->getData('get', 'parent_id'),
         ]);
@@ -53,22 +57,27 @@ class ProductModelService extends ModelService
             'model' => $this->model,
             'properties' => $this->properties,
             'productProperties' => $this->productProperties,
-            'breadcrumbs' => $this->getItemBreadcrumbs($this->model->group_id),
+            'breadcrumbs' => $this->getBreadcrumbs($shop, $this->model->group_id),
         ]);
 
-        if ($this->load() && $this->save()) {
+        if ($this->load()) {
 
-            return true;
+            return $this->save();
         }
 
         return false;
     }
 
-    public function actionUpdate()
+    public function update()
     {
         $this->model = Product::find()
+            ->with('shop')
             ->where(['id' => $this->getData('get', 'id')])
             ->one();
+
+        if (!$this->model || !$this->model->shop) {
+            throw new HttpException(500, 'No model');
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $this->model->getProductModifications(),
@@ -81,20 +90,21 @@ class ProductModelService extends ModelService
             'properties' => $this->properties,
             'productProperties' => $this->productProperties,
             'dataProvider' => $dataProvider,
-            'breadcrumbs' => $this->getItemBreadcrumbs(
+            'breadcrumbs' => $this->getBreadcrumbs(
+                $this->model->shop,
                 $this->model->group_id,
                 $this->model->name,
                 $this->model->parent_id),
         ]);
 
-        if ($this->load() && $this->save()) {
-            return true;
+        if ($this->load()) {
+            return $this->save();
         }
 
         return false;
     }
 
-    public function actionDelete($id)
+    public function delete($id)
     {
         $model = Product::find()
             ->where(['id' => $id])
@@ -296,43 +306,5 @@ class ProductModelService extends ModelService
             $image->status = Image::STATUS_MAIN;
             $image->save(false);
         }
-    }
-
-    protected function getItemBreadcrumbs($groupId, $currentItemName = null, $productParentId = null)
-    {
-
-        $group = $this->buildBreadcrumbs([
-            'items' => [
-                'id' => $groupId,
-                'modelClass' => Group::class,
-                //'enableRoot' => true,
-                'urlOptions' => [
-                    'route' => 'backend-group/manager',
-                    'params' => ['id',],
-                ],
-            ],
-        ]);
-
-        $productModification = $this->buildBreadcrumbs([
-            'items' => [
-                'id' => $productParentId,
-                'modelClass' => Product::class,
-                //'enableRoot' => true,
-                'urlOptions' => [
-                    'route' => 'backend-product/update',
-                    'params' => ['id',],
-                ],
-            ],
-        ]);
-
-        $breadcrumbs = array_merge_recursive($group, $productModification);
-
-        array_unshift($breadcrumbs, ['label' => Module::t('Products'), 'url' => ['backend-group/manager']]);
-
-        if ($currentItemName) {
-            array_push($breadcrumbs, ['label' => $currentItemName]);
-        }
-
-        return $breadcrumbs;
     }
 }

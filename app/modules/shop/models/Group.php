@@ -12,12 +12,18 @@ use app\core\behaviors\file\ActionImage;
  *
  * @property integer $id
  * @property integer $group_id
+ * @property integer $shop_id
  * @property string $name
  * @property string $description
  * @property string $content
+ * @property string $image_preview
  * @property string $image
- * @property string $image_small
+ * @property integer $sorting
+ * @property integer $active
  * @property integer $user_id
+ * @property string $alias
+ * @property string $meta_title
+ * @property string $meta_description
  * @property string $create_time
  * @property string $update_time
  */
@@ -38,8 +44,8 @@ class Group extends ActiveRecord
     public function rules()
     {
         return [
-            ['name', 'required'],
-            [['parent_id', 'user_id'], 'integer'],
+            [['shop_id', 'name'], 'required'],
+            [['parent_id','shop_id','active', 'sorting', 'user_id'], 'integer'],
             [['content'], 'string'],
             [
                 ['name', 'description', 'alias', 'meta_title', 'meta_description'],
@@ -57,11 +63,14 @@ class Group extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'parent_id' => Yii::t('app', 'Parent id'),
+            'shop_id' => Yii::t('shop', 'Shop ID'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
-            'image_1' => Yii::t('app', 'Image'),
-            'image_2' => Yii::t('app', 'Image'),
+            'image_preview' => Yii::t('app', 'Image'),
+            'image' => Yii::t('app', 'Image'),
+            'sorting' => Yii::t('app', 'sorting'),
+            'active' => Yii::t('app', 'Active'),
             'user_id' => Yii::t('app', 'User ID'),
             'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta title'),
@@ -78,15 +87,20 @@ class Group extends ActiveRecord
                 'class' => ActionImage::className(),
                 'path' => '@webroot/public/uploads/shop/group',
                 'pathUrl' => '@web/public/uploads/shop/group',
-                'attribute' => 'image_1',
+                'attribute' => 'image_preview',
             ],
-            'imageContent' => [
+            'image' => [
                 'class' => ActionImage::className(),
                 'path' => '@webroot/public/uploads/shop/group',
                 'pathUrl' => '@web/public/uploads/shop/group',
-                'attribute' => 'image_2',
+                'attribute' => 'image',
             ],
         ];
+    }
+
+    public function getShop()
+    {
+        return $this->hasOne(Shop::className(), ['id' => 'shop_id']);
     }
 
     public function getProducts()

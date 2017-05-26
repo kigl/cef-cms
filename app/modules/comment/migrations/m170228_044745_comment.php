@@ -25,7 +25,6 @@ class m170228_044745_comment extends Migration
         $this->createIndex('ix-comment-site_id', $this->_tableName, 'site_id');
         $this->createIndex('ix-comment-user_id', $this->_tableName, 'user_id');
 
-        $this->addForeignKey('fk-comment-site_id', $this->_tableName, 'site_id', '{{%site}}', 'id', 'CASCADE', 'CASCADE');
         $this->addForeignKey('fk-comment-user_id', $this->_tableName, 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
     }
 

@@ -10,18 +10,19 @@ use app\modules\shop\service\backend\GroupModelService;
 class BackendGroupController extends Controller
 {
 
-    public function actionManager($id = null)
+    public function actionManager($shop_id, $id = null)
     {
         $modelService = Yii::createObject(GroupModelService::class)
             ->setData([
                 'get' => Yii::$app->request->getQueryParams(),
             ]);
-        $modelService->actionManager();
+
+        $modelService->manager();
 
         return $this->render('manager', ['data' => $modelService->getData()]);
     }
 
-    public function actionCreate($parent_id = null)
+    public function actionCreate($shop_id, $parent_id = null)
     {
         $modelService = Yii::createObject(GroupModelService::class);
         $modelService->setData([
@@ -29,9 +30,13 @@ class BackendGroupController extends Controller
             'get' => Yii::$app->request->getQueryParams(),
         ]);
 
-        if ($modelService->actionCreate()) {
+        if ($modelService->create()) {
 
-            return $this->redirect(['manager', 'id' => $modelService->getData('model')->parent_id]);
+            return $this->redirect([
+                'manager',
+                'id' => $modelService->getData('model')->parent_id,
+                'shop_id' => $modelService->getData('model')->shop_id,
+            ]);
         }
 
         return $this->render('create', ['data' => $modelService->getData()]);
@@ -45,9 +50,13 @@ class BackendGroupController extends Controller
             'get' => Yii::$app->request->getQueryParams(),
         ]);
 
-        if ($modelService->actionUpdate()) {
+        if ($modelService->update()) {
 
-            return $this->redirect(['manager', 'id' => $modelService->getData('model')->parent_id]);
+            return $this->redirect([
+                'manager',
+                'id' => $modelService->getData('model')->parent_id,
+                'shop_id' => $modelService->getData('model')->shop_id,
+            ]);
         }
 
         return $this->render('update', ['data' => $modelService->getData()]);
@@ -57,9 +66,13 @@ class BackendGroupController extends Controller
     {
         $modelService = new GroupModelService();
 
-        if ($modelService->actionDelete($id)) {
+        if ($modelService->delete($id)) {
 
-            return $this->redirect(['backend-group/manager', 'id' => $modelService->getData('model')->parent_id]);
+            return $this->redirect([
+                'backend-group/manager',
+                'id' => $modelService->getData('model')->parent_id,
+                'shop_id' => $modelService->getData('model')->shop_id,
+            ]);
         }
 
         return false;

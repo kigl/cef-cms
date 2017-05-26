@@ -14,7 +14,9 @@ use yii\base\ErrorException;
 
 class Template extends \yii\base\Theme
 {
-    const DEFAULT_TEMPLATE = 'main';
+    public $defaultTemplate = 'main';
+
+    public $defaultLayout = 'main';
 
     public $templatesPath = '@app/templates';
     public $templatesUrl = '@web/templates';
@@ -27,8 +29,10 @@ class Template extends \yii\base\Theme
 
         $siteComponent = Yii::$app->site;
 
+        $this->_currentTemplateSite = $siteComponent->getTemplateId();
+
         if (!$this->existTemplate($this->_currentTemplateSite)) {
-            $this->_currentTemplateSite = self::DEFAULT_TEMPLATE;
+            $this->_currentTemplateSite = $this->defaultTemplate;
         }
 
         $this->setBasePath($this->getTemplatePath($this->_currentTemplateSite, true));
@@ -39,10 +43,12 @@ class Template extends \yii\base\Theme
             '@app/modules' => $this->getTemplatePath($this->_currentTemplateSite, true) . '/modules',
         ];
 
-        if ($layout = $siteComponent->getLayout()) {
+        if (!$layout = $siteComponent->getLayout()) {
 
-            Yii::$app->layout = $this->getLayoutPath($this->_currentTemplateSite, $layout, true);
+            $layout = $this->defaultLayout;
         }
+
+        Yii::$app->layout = $this->getLayoutPath($this->_currentTemplateSite, $layout, true);
     }
 
     public function getTemplatesPath($alias = false, $url = false)
@@ -54,17 +60,12 @@ class Template extends \yii\base\Theme
 
     public function getTemplatePath($templateId, $alias = false, $url = false)
     {
-        return $this->getTemplatesList($alias, $url)[$templateId];
+        $templates = $this->getTemplates();
+
+        return isset($templates[$templateId]) ? $templates[$templateId] : null;
     }
 
-    public function getLayoutsPath($templateId, $alias = false, $url = false)
-    {
-        $separator = $alias ? '/' : DIRECTORY_SEPARATOR;
-
-        return $this->getTemplatePath($templateId, $alias, $url) . $separator . 'layouts';
-    }
-
-    public function getTemplatesList($alias = false, $url = false)
+    public function getTemplates($alias = false, $url = false)
     {
         $path = $this->getTemplatesPath();
 
@@ -91,7 +92,21 @@ class Template extends \yii\base\Theme
         return $result;
     }
 
-    public function getLayoutsList($templateId, $extension = true, $alias = false, $url = false)
+    public function getLayoutsPath($templateId, $alias = false, $url = false)
+    {
+        $separator = $alias ? '/' : DIRECTORY_SEPARATOR;
+
+        return $this->getTemplatePath($templateId, $alias, $url) . $separator . 'layouts';
+    }
+
+    public function getLayoutPath($templateId, $layout, $alias = false)
+    {
+        $layouts = $this->getLayouts($templateId, false, $alias);
+
+        return isset($layouts[$layout]) ? $layouts[$layout] : null;
+    }
+
+    public function getLayouts($templateId, $extension = true, $alias = false, $url = false)
     {
         $path = $this->getLayoutsPath($templateId);
 
@@ -114,13 +129,8 @@ class Template extends \yii\base\Theme
         return $result;
     }
 
-    public function getLayoutPath($templateId, $layout, $alias = false)
-    {
-        return $this->getLayoutsList($templateId, false, $alias)[$layout];
-    }
-
     public function existTemplate($templateId)
     {
-        return array_key_exists($templateId, $this->getTemplatesList());
+        return array_key_exists($templateId, $this->getTemplates());
     }
 }
