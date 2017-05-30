@@ -6,7 +6,7 @@ namespace app\modules\shop\models\backend;
 use app\core\behaviors\GenerateAlias;
 use yii\helpers\ArrayHelper;
 
-class Group extends \app\modules\shop\models\Group
+class ProductGroup extends \app\modules\shop\models\ProductGroup
 {
     /**
      * @inheritdoc

@@ -14,6 +14,19 @@ return [
     'Button delete group' => 'Удалить группу',
     'Breadcrumb root' => 'root',
 
+    'Created item' => 'Элемент создан!',
+    'Create time' => 'Дата создания',
+    'Content' => 'Содержание',
+    'CSS class' => 'CSS класс',
+    'Code' => 'Код',
+    'Country' => 'Страна',
+    'City' => 'Город',
+    'Company' => 'Компания',
+    'Comment' => 'Комментарии',
+    'Create: {data}' => 'Создание: {data}',
+    'Create' => 'Создание',
+    'Comment added and waiting for moderation' => 'Комментарий добавлен и ожидает модерации',
+
     'Deleted item' => 'Элемент удален!',
     'Delete image' => 'Удалить изоброжение',
     'Description' => 'Описание',
@@ -23,7 +36,7 @@ return [
     'Date end' => 'Дата окончания',
     'Domain' => 'Домен',
 
-    'Indexing' => 'Индексировать',
+    'Edit: {data}' => 'Редактирование: {data}',
 
     'Form legend seo' => 'SEO',
     'Fields' => 'Поля',
@@ -35,6 +48,13 @@ return [
     'Group' => 'Группа',
 
     'Header comment ({count})' => 'Комментарии ({count})',
+
+    'Icon css class' => 'CSS класс иконки',
+    'Image' => 'Изображение',
+    'Image status' => 'Основное изображение',
+    'ID' => 'ID',
+    'Indexing' => 'Индексировать',
+    'Item on page' => 'Число элементов на странице',
 
     'Lastname' => 'Отчество',
     'Layout' => 'Макет',
@@ -48,25 +68,21 @@ return [
     'Logout' => 'Выйти',
     'Link answer' => 'ответить',
 
-    'Name' => 'Имя / Наименование',
-    'Not exist views: {views}' => 'Значение "{views}" не существует',
-    'Not selected' => 'Не выбран',
-    'Not required' => 'Необязательное',
-    'No' => 'Нет',
-
     'Manager: {data}' => 'Менеджер: {data}',
     'Message thank you' => 'Спасибо!',
-    'Meta title' => 'Meta заголовок страницы',
-    'Meta description' => 'Meta описание',
+    'Meta title' => 'SEO заголовок страницы',
+    'Meta description' => 'SEO описание',
+    'Meta keywords' => ' SEO клучевые слова',
     'Menu item content' => 'Контент',
     'Menu item service' => 'Сервисы',
     'Module: {data}' => 'Модуль: {data}',
     'Module' => 'Модуль',
 
-    'Icon css class' => 'CSS класс иконки',
-    'Image' => 'Изображение',
-    'Image status' => 'Основное изображение',
-    'ID' => 'ID',
+    'Name' => 'Имя / Наименование',
+    'Not exist views: {views}' => 'Значение "{views}" не существует',
+    'Not selected' => 'Не выбран',
+    'Not required' => 'Необязательное',
+    'No' => 'Нет',
 
     'Password' => 'Пароль',
     'Password repeat' => 'Повторить пароль',
@@ -83,48 +99,25 @@ return [
     'Phone' => 'Телефон',
     'Price' => 'Цена',
 
+    'Question on delete file' => 'Удалить элемент?',
+    'Qty' => 'Количество',
+
 	'Required' => 'Обязательно для заполнения',
     'Region' => 'Регион',
 	'Root' => 'Корень',
-	
-	'Created item' => 'Элемент создан!',
-	'Create time' => 'Дата создания',
-    'Content' => 'Содержание',
-    'CSS class' => 'CSS класс',
-    'Code' => 'Код',
-    'Country' => 'Страна',
-    'City' => 'Город',
-    'Company' => 'Компания',
-    'Comment' => 'Комментарии',
-    'Create: {data}' => 'Создание: {data}',
-    'Create' => 'Создание',
-    'Comment added and waiting for moderation' => 'Комментарий добавлен и ожидает модерации',
-
-    'Visible' => 'Видим',
-    'Video' => 'Видео',
 
     'Saved element' => 'Сохранено!',
-	'Sorting' => 'Сортировка',
-	'Status' => 'Статус',
-	'Status block' => 'Заблокирован',
-	'Status active' => 'Активный',
-	'Status draft' => 'Черновик',
+    'Sorting' => 'Сортировка',
+    'Status' => 'Статус',
+    'Status block' => 'Заблокирован',
+    'Status active' => 'Активный',
+    'Status draft' => 'Черновик',
     'Status not active' => 'Не активирован',
     'Sum' => 'Сумма',
-	'Surname' => 'Фамилия',
-	'Submit send' => 'Отправить',
-	'Settings module: {data}' => 'Настройки модуля: {data}',
-	'Settings' => 'Настройки',
-
-	'Edit: {data}' => 'Редактирование: {data}',
-
-	'Updated item' => 'Элемент обновлен!',
-	'Update time' => 'Дата обновления',
-    'Upload images' => 'Загрузка изображений',
-    'Url' =>  'URL',
-    'Use captcha' => 'Использовать captcha',
-
-    'Item on page' => 'Число элементов на странице',
+    'Surname' => 'Фамилия',
+    'Submit send' => 'Отправить',
+    'Settings module: {data}' => 'Настройки модуля: {data}',
+    'Settings' => 'Настройки',
 
     'Tab main' => 'Основные',
     'Tab description' => 'Описание',
@@ -153,10 +146,17 @@ return [
     'The user model class is not assigned' => 'Класс модели пользователя не присвоен',
     'Template' => 'Шаблон',
 
+    'Updated item' => 'Элемент обновлен!',
+    'Update time' => 'Дата обновления',
+    'Upload images' => 'Загрузка изображений',
+    'Url' =>  'URL',
+    'Use captcha' => 'Использовать captcha',
+
+    'Visible' => 'Видим',
+    'Video' => 'Видео',
     'Value' => 'Значение',
 
-    'Yes' => 'Да',
+    'Weight' => 'Вес',
 
-    'Question on delete file' => 'Удалить элемент?',
-    'Qty' => 'Количество',
+    'Yes' => 'Да',
 ];

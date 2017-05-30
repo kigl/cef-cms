@@ -3,6 +3,7 @@
 namespace app\modules\shop\models\backend;
 
 
+use app\modules\shop\Module;
 use yii\helpers\ArrayHelper;
 use app\core\behaviors\GenerateAlias;
 use app\core\behaviors\UserId;
@@ -10,6 +11,7 @@ use app\core\behaviors\UserId;
 class Product extends \app\modules\shop\models\Product
 {
     public $imageUpload;
+    public $test;
 
     /**
      * @inheritdoc
@@ -17,8 +19,14 @@ class Product extends \app\modules\shop\models\Product
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['price', 'sku'], 'default', 'value' => 0],
-            ['imageUpload', 'image', 'maxFiles' => 5],
+            [['price', 'discount', 'weight', 'length', 'width', 'height', 'sku'], 'default', 'value' => 0],
+            [
+                'imageUpload',
+                'image',
+                'maxFiles' => Module::MAX_UPLOAD_FILES,
+                'maxWidth' => $this->shop->max_width_image_product,
+                'maxHeight' => $this->shop->max_height_image_product
+            ],
         ]);
     }
 
@@ -49,7 +57,7 @@ class Product extends \app\modules\shop\models\Product
 
     public function getProperties()
     {
-        return $this->hasMany(ProductProperty::className(), ['product_id' => 'id'])
+        return $this->hasMany(PropertyProduct::className(), ['product_id' => 'id'])
             ->indexBy('property_id');
     }
 

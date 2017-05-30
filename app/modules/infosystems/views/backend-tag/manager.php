@@ -5,7 +5,7 @@ use app\modules\backend\widgets\grid\GridView;
 
 $this->setTitle(Module::t('Tags'));
 $this->setPageHeader(Module::t('Tags'));
-$this->params['breadcrumbs'][] = ['label' => Module::t('Tags')];
+$this->params['breadcrumbs'] = $data['breadcrumbs'];
 ?>
 
 <?= GridView::widget([

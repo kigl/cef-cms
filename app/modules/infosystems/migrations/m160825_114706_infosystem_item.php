@@ -21,13 +21,13 @@ class m160825_114706_infosystem_item extends Migration
             'name' => $this->string()->notNull(),
             'description' => $this->text(),
             'content' => $this->text(),
-            'image_description' => $this->string(),
-            'image_content' => $this->string(),
+            'image_preview' => $this->string(),
+            'image' => $this->string(),
             //'video' => $this->string(),
             'file' => $this->string(),
             'status' => $this->integer(),
             'sorting' => $this->integer(),
-            'counter' => $this->integer()->defaultValue(0),
+            'counter' => $this->integer(),
             'user_id' => $this->integer(),
             'date' => $this->dateTime(),
             'date_start' => $this->dateTime(),
@@ -35,9 +35,10 @@ class m160825_114706_infosystem_item extends Migration
             'alias' => $this->string(),
             'meta_title' => $this->string(),
             'meta_description' => $this->string(),
+            'meta_keyword' => $this->string(),
         ]);
 
-        $this->execute("ALTER TABLE {$this->_tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_description`;");
+        $this->execute("ALTER TABLE {$this->_tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_keyword`;");
         $this->execute("ALTER TABLE {$this->_tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
 
         $this->createIndex('ix-infosystem_item-group_id', $this->_tableName, 'group_id');

@@ -10,11 +10,21 @@ namespace app\modules\shop\service\backend;
 
 
 use Yii;
+use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
+use app\core\traits\Breadcrumbs;
+use app\modules\shop\Module;
+use app\modules\shop\models\backend\ProductGroup;
+use app\modules\shop\models\backend\Product;
 use app\modules\shop\models\backend\Shop;
+use app\modules\shop\models\backend\Measure;
 
-class ShopModelService extends ModelService
+class ShopModelService extends \app\core\service\ModelService
 {
+
+    use Breadcrumbs;
+
     public function manager()
     {
         $dataProvider = new ActiveDataProvider([
@@ -36,6 +46,7 @@ class ShopModelService extends ModelService
 
         $this->setData([
             'model' => $model,
+            'listMeasure' => $this->getListMeasure(),
             'breadcrumbs' => $this->getBreadcrumbs(),
         ]);
 
@@ -53,6 +64,7 @@ class ShopModelService extends ModelService
 
         $this->setData([
             'model' => $model,
+            'listMeasure' => $this->getListMeasure(),
             'breadcrumbs' => $this->getBreadcrumbs(),
         ]);
 
@@ -62,5 +74,63 @@ class ShopModelService extends ModelService
         }
 
         return false;
+    }
+
+    public function delete($id)
+    {
+        $model = Shop::findOne($id);
+
+        if ($model->delete()) {
+            $products = Product::find()
+                ->where(['shop_id' => $model->id])
+                ->andWhere(['parent_id' => null])
+                ->all();
+
+            foreach ($products as $product) {
+                Yii::createObject(ProductModelService::className())
+                    ->delete($product->id);
+            }
+
+            $groups = ProductGroup::find()
+                ->where(['shop_id' => $model->id])
+                ->andWhere(['parent_id' => null])
+                ->all();
+
+            foreach ($groups as $group) {
+                Yii::createObject(GroupModelService::className())
+                    ->delete($group->id);
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function getBreadcrumbs(Model $shop = null, $data = null)
+    {
+        $breadcrumbs = [];
+
+        $breadcrumbs[] = ['label' => Module::t('Shops'), 'url' => ['backend-shop/manager']];
+
+        if ($shop) {
+            $breadcrumbs[] = ['label' => $shop->name, 'url' => ['backend-group/manager', 'shop_id' => $shop->id]];
+        }
+
+        if ($data) {
+           $breadcrumbs[] = ['label' => $data];
+        }
+
+        return $breadcrumbs;
+    }
+
+    protected function getListMeasure()
+    {
+        $measure = Measure::find()
+            ->where(['site_id' => Yii::$app->site->getId()])
+            ->asArray()
+            ->all();
+
+        return ArrayHelper::map($measure, 'id', 'name');
     }
 }

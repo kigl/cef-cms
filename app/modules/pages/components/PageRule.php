@@ -13,7 +13,7 @@ class PageRule implements \yii\web\UrlRuleInterface
 
     protected $cacheKey = 'pageCacheKey';
 
-    protected $data = null;
+    protected $_data = null;
 
     public function createUrl($manager, $route, $params)
     {
@@ -50,12 +50,12 @@ class PageRule implements \yii\web\UrlRuleInterface
 
     protected function getData()
     {
-        if (is_null($this->data)) {
+        if (is_null($this->_data)) {
             $depedency = new DbDependency([
                 'sql' => 'SELECT MAX(update_time) FROM ' . Page::tableName(),
             ]);
 
-            $this->data = Yii::$app->cache->getOrSet($this->cacheKey, function () {
+            $this->_data = Yii::$app->cache->getOrSet($this->cacheKey, function () {
                 return Page::find()
                     ->indexBy('id')
                     ->select(['id', 'alias', 'site_id'])
@@ -64,6 +64,6 @@ class PageRule implements \yii\web\UrlRuleInterface
             }, null, $depedency);
         }
 
-        return $this->data;
+        return $this->_data;
     }
 }

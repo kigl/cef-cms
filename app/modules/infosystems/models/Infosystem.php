@@ -13,6 +13,7 @@ use app\modules\infosystems\Module;
  * @property string $code
  * @property string $name
  * @property string $description
+ * @property string $image
  * @property string $content
  * @property string $site_id
  * @property integer $indexing
@@ -22,14 +23,14 @@ use app\modules\infosystems\Module;
  * @property string $template_group
  * @property string $template_item
  * @property string $template_tag
- * @property string $max_width_images_description_group
- * @property string $max_height_image_description_group
- * @property string $max_width_images_content_group
- * @property string $max_height_image_content_group
- * @property string $max_width_images_description_item
- * @property string $max_height_image_description_item
- * @property string $max_width_images_content_item
- * @property string $max_height_image_content_item
+ * @property string $max_width_images_preview_group
+ * @property string $max_height_image_preview_group
+ * @property string $max_width_images_group
+ * @property string $max_height_image_group
+ * @property string $max_width_images_preview_item
+ * @property string $max_height_image_preview_item
+ * @property string $max_width_images_item
+ * @property string $max_height_image_item
  * @property integer $sorting_type_gruop
  * @property integer $sorting_field_gruop
  * @property string $sorting_list_field_group
@@ -38,6 +39,7 @@ use app\modules\infosystems\Module;
  * @property string $sorting_list_field_item
  * @property string $meta_title
  * @property string $meta_description
+ * @property string $meta_keyword
  * @property integer $create_time
  * @property integer $update_time
  */
@@ -61,7 +63,6 @@ class Infosystem extends \app\core\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['sorting_field_group', 'sorting_field_item'], 'string', 'max' => 100],
             [
                 [
                     'indexing',
@@ -69,18 +70,19 @@ class Infosystem extends \app\core\db\ActiveRecord
                     'item_on_page',
                     'sorting_type_group',
                     'sorting_type_item',
-                    'max_width_image_description_group',
-                    'max_height_image_description_group',
-                    'max_width_image_content_group',
-                    'max_height_image_content_group',
-                    'max_width_image_description_item',
-                    'max_height_image_description_item',
-                    'max_width_image_content_item',
-                    'max_height_image_content_item',
+                    'max_width_image_preview_group',
+                    'max_height_image_preview_group',
+                    'max_width_image_group',
+                    'max_height_image_group',
+                    'max_width_image_preview_item',
+                    'max_height_image_preview_item',
+                    'max_width_image_item',
+                    'max_height_image_item',
                 ],
                 'integer'
             ],
             [['content'], 'string'],
+            ['image', 'image'],
             [
                 [
                     'code',
@@ -89,13 +91,18 @@ class Infosystem extends \app\core\db\ActiveRecord
                     'template_group',
                     'template_item',
                     'template_tag',
+                    'sorting_field_group',
                     'sorting_list_field_group',
-                    'sorting_list_field_item'
+                    'sorting_field_item',
+                    'sorting_list_field_item',
+                    'meta_title',
+                    'meta_description',
+                    'meta_keyword',
                 ],
                 'string',
                 'max' => 255
             ],
-            [['description'], 'string', 'max' => 300],
+            [['description'], 'string', 'max' => 500],
         ];
     }
 
@@ -109,6 +116,7 @@ class Infosystem extends \app\core\db\ActiveRecord
             'code' => Yii::t('app', 'Code'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
+            'image' => Yii::t('app', 'Image'),
             'content' => Yii::t('app', 'Content'),
             'indexing' => Yii::t('app', 'Indexing'),
             'group_on_page' => Yii::t('app', 'Group on page'),
@@ -117,14 +125,14 @@ class Infosystem extends \app\core\db\ActiveRecord
             'template_group' => Yii::t('infosystems', 'Template group'),
             'template_item' => Yii::t('infosystems', 'Template item'),
             'template_tag' => Yii::t('infosystems', 'Template tag'),
-            'max_width_image_description_group' => Yii::t('infosystems', 'Max width image description group'),
-            'max_height_image_description_group' => Yii::t('infosystems', 'Max height image description group'),
-            'max_width_image_content_group' => Yii::t('infosystems', 'Max width image content group'),
-            'max_height_image_content_group' => Yii::t('infosystems', 'Max height image content group'),
-            'max_width_image_description_item' => Yii::t('infosystems', 'Max width image description item'),
-            'max_height_image_description_item' => Yii::t('infosystems', 'Max height image description item'),
-            'max_width_image_content_item' => Yii::t('infosystems', 'Max width image content item'),
-            'max_height_image_content_item'=> Yii::t('infosystems', 'Max height image content item'),
+            'max_width_image_preview_group' => Yii::t('infosystems', 'Max width image preview group'),
+            'max_height_image_preview_group' => Yii::t('infosystems', 'Max height image preview group'),
+            'max_width_image_group' => Yii::t('infosystems', 'Max width image group'),
+            'max_height_image_group' => Yii::t('infosystems', 'Max height image group'),
+            'max_width_image_preview_item' => Yii::t('infosystems', 'Max width image preview item'),
+            'max_height_image_preview_item' => Yii::t('infosystems', 'Max height image preview item'),
+            'max_width_image_item' => Yii::t('infosystems', 'Max width image item'),
+            'max_height_image_item'=> Yii::t('infosystems', 'Max height image item'),
             'sorting_type_group' => Yii::t('infosystems', 'Sorting type group'),
             'sorting_field_group' => Yii::t('infosystems', 'Sorting field group'),
             'sorting_list_field_group' => Yii::t('infosystems', 'Sorting list field group'),
@@ -133,8 +141,21 @@ class Infosystem extends \app\core\db\ActiveRecord
             'sorting_list_field_item' => Yii::t('infosystems', 'Sorting list field item'),
             'meta_title' => Yii::t('app', 'Meta title'),
             'meta_description' => Yii::t('app', 'Meta description'),
+            'meta_keyword' => Yii::t('app', 'Meta keywords'),
             'create_time' => Yii::t('app', 'Create time'),
             'update_time' => Yii::t('app', 'Update time'),
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'app\core\behaviors\file\ActionImage',
+                'attribute' => 'image',
+                'path' => '@webroot/public/uploads/infosystems/infosystem/images',
+                'pathUrl' => '@web/public/uploads/infosystems/infosystem/images',
+            ],
         ];
     }
 

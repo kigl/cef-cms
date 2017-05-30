@@ -31,18 +31,15 @@ use app\modules\infosystems\Module;
     <div class="tab-content">
 
         <div class="tab-pane active" id="main">
-
             <div class="row">
                 <div class="col-md-6">
                     <?= $form->field($data['model'], 'name'); ?>
                 </div>
                 <div class="col-md-6">
-
                     <?= $form->field($data['model'], 'listTags')->widget(Select2::classname(), [
                         'data' => ArrayHelper::map($data['tags'], 'id', 'name'),
-                        'options' => ['placeholder' => Module::t('Select a tags') , 'multiple' => true],
+                        'options' => ['placeholder' => Module::t('Select a tags'), 'multiple' => true],
                     ])->label(Module::t('Tags')); ?>
-
                 </div>
             </div>
 
@@ -61,6 +58,7 @@ use app\modules\infosystems\Module;
                     <?= $form->field($data['model'], 'sorting'); ?>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-4">
                     <?= $form->field($data['model'], 'date')
@@ -91,14 +89,10 @@ use app\modules\infosystems\Module;
         </div>
 
         <div class="tab-pane" id="description">
-            <div class="row">
-                <div class="col-md-12">
-                    <?= $form->field($data['model'], 'image_description')
-                        ->widget(ActionImage::className(), [
-                            'behaviorName' => 'imageDescription',
-                        ]); ?>
-                </div>
-            </div>
+            <?= $form->field($data['model'], 'image_preview')
+                ->widget(ActionImage::className(), [
+                    'behaviorName' => 'imagePreview',
+                ]); ?>
 
             <?= $form->field($data['model'], 'description')->widget(Widget::className(), [
                 'settings' => [
@@ -109,15 +103,10 @@ use app\modules\infosystems\Module;
         </div>
 
         <div class="tab-pane" id="content">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <?= $form->field($data['model'], 'image_content')
-                        ->widget(ActionImage::className(), [
-                            'behaviorName' => 'imageContent',
-                        ]); ?>
-                </div>
-            </div>
+            <?= $form->field($data['model'], 'image')
+                ->widget(ActionImage::className(), [
+                    'behaviorName' => 'image',
+                ]); ?>
 
             <?= $form->field($data['model'], 'content')->widget(Widget::className(), [
                 'settings' => [
@@ -142,10 +131,9 @@ use app\modules\infosystems\Module;
 
         <div class="tab-pane" id="seo">
             <?= $form->field($data['model'], 'alias'); ?>
-
             <?= $form->field($data['model'], 'meta_title'); ?>
-
             <?= $form->field($data['model'], 'meta_description')->textarea(); ?>
+            <?= $form->field($data['model'], 'meta_keyword'); ?>
         </div>
 
         <div class="tab-pane" id="other">
@@ -153,8 +141,8 @@ use app\modules\infosystems\Module;
                 'model' => $data['model'],
                 'attributes' => [
                     'id',
+                    'user_id',
                     'counter',
-                    'user_id'
                 ],
             ]); ?>
         </div>

@@ -10,14 +10,15 @@ namespace app\modules\shop\service\backend;
 
 
 use Yii;
+use yii\base\Model;
 use yii\data\ArrayDataProvider;
 use yii\web\HttpException;
 use app\modules\shop\models\backend\Shop;
 use app\modules\shop\models\backend\Product;
 use app\modules\shop\models\backend\SearchModel;
-use app\modules\shop\models\backend\Group;
+use app\modules\shop\models\backend\ProductGroup;
 
-class GroupModelService extends ModelService
+class GroupModelService extends ShopModelService
 {
     public function manager()
     {
@@ -29,7 +30,7 @@ class GroupModelService extends ModelService
             throw new HttpException(500, 'Not shop model');
         }
 
-        $group = Group::find()
+        $group = ProductGroup::find()
             ->where(['parent_id' => $this->getData('get', 'id')])
             ->andWhere(['shop_id' => $shop->id])
             ->asArray();
@@ -58,6 +59,7 @@ class GroupModelService extends ModelService
 
         $this->setData([
             'id' => $this->getData('get', 'id'),
+            'shop_id' => $shop->id,
             'searchModel' => $search,
             'dataProvider' => $dataProvider,
             'breadcrumbs' => $this->getBreadcrumbs($shop, $this->getData('get', 'id')),
@@ -74,13 +76,14 @@ class GroupModelService extends ModelService
             throw new HttpException(500, 'Not shop model');
         }
 
-        $model = new Group([
+        $model = new ProductGroup([
             'parent_id' => $this->getData('get', 'parent_id'),
             'shop_id' => $shop->id,
         ]);
 
         $this->setData([
             'model' => $model,
+            'shop_id' => $shop->id,
             'breadcrumbs' => $this->getBreadcrumbs($shop, $this->getData('get', 'parent_id')),
         ]);
 
@@ -94,7 +97,7 @@ class GroupModelService extends ModelService
 
     public function update()
     {
-        $model = Group::find()
+        $model = ProductGroup::find()
             ->with('shop')
             ->where(['id' => $this->getData('get', 'id')])
             ->one();
@@ -105,7 +108,8 @@ class GroupModelService extends ModelService
 
         $this->setData([
             'model' => $model,
-            'breadcrumbs' => $this->getBreadcrumbs($model->shop, $this->getData('get', 'id')),
+            'shop_id' => $model->shop->id,
+            'breadcrumbs' => $this->getBreadcrumbs($model->shop, $this->getData('get', 'id'), $model->name),
         ]);
 
         if ($model->load($this->getData('post'))) {
@@ -118,15 +122,16 @@ class GroupModelService extends ModelService
 
     public function delete($id)
     {
-        $model = Group::find()
-            ->where([Group::tableName() . '.id' => $id])
+        $model = ProductGroup::find()
+            ->where([ProductGroup::tableName() . '.id' => $id])
             ->with(['products', 'subGroups'])
             ->one();
 
         if ($model && $model->delete()) {
 
             foreach ($model->products as $product) {
-                Yii::createObject(ProductModelService::class)->actionDelete($product->id);
+                Yii::createObject(ProductModelService::class)
+                    ->delete($product->id);
             }
 
             // рекурсивно удаляем вложенные группы
@@ -142,5 +147,32 @@ class GroupModelService extends ModelService
         }
 
         return false;
+    }
+
+    protected function getBreadcrumbs(Model $shop = null, $groupId = null, $data = null)
+    {
+        $breadcrumbs = parent::getBreadcrumbs($shop, null);
+
+        $groups = $this->buildBreadcrumbs([
+            'items' => [
+                'id' => $groupId,
+                'modelClass' => ProductGroup::class,
+                //'enableRoot' => true,
+                'urlOptions' => [
+                    'route' => 'backend-group/manager',
+                    'params' => ['id', 'shop_id'],
+                ],
+            ],
+        ]);
+
+        if ($groups) {
+            $breadcrumbs = array_merge($breadcrumbs, $groups);
+        }
+
+        if ($data) {
+            $breadcrumbs[] = ['label' => $data];
+        }
+
+        return $breadcrumbs;
     }
 }

@@ -2,10 +2,8 @@
 
 namespace app\modules\infosystems\models\backend;
 
-use Yii;
-use app\modules\tag\components\TagBehavior;
-use yii\behaviors\AttributeBehavior;
-use yii\db\ActiveRecord;
+
+use app\modules\infosystems\Module;
 use yii\helpers\ArrayHelper;
 
 class Item extends \app\modules\infosystems\models\Item
@@ -18,20 +16,20 @@ class Item extends \app\modules\infosystems\models\Item
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['image_description', 'image_content'], 'image', 'extensions' => ['jpg', 'png', 'gif']],
-            ['sorting', 'default', 'value' => 500],
+            [['image_preview', 'image'], 'image', 'extensions' => ['jpg', 'png', 'gif']],
+            ['sorting', 'default', 'value' => Module::DEFAULT_SORTING],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             [
-                ['image_description'],
+                ['image_preview'],
                 'image',
-                'maxWidth' => $this->infosystem->max_width_image_description_item,
-                'maxHeight' => $this->infosystem->max_height_image_description_item
+                'maxWidth' => $this->infosystem->max_width_image_preview_item,
+                'maxHeight' => $this->infosystem->max_height_image_preview_item
             ],
             [
-                ['image_content'],
+                ['image'],
                 'image',
-                'maxWidth' => $this->infosystem->max_width_image_content_item,
-                'maxHeight' => $this->infosystem->max_height_image_content_item
+                'maxWidth' => $this->infosystem->max_width_image_item,
+                'maxHeight' => $this->infosystem->max_height_image_item
             ],
             ['listTags', 'safe'],
         ]);

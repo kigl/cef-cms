@@ -2,7 +2,10 @@
 
 namespace app\modules\shop\models;
 
+
+use app\core\db\ActiveRecord;
 use Yii;
+use app\core\behaviors\UserId;
 
 /**
  * This is the model class for table "{{%shop}}".
@@ -14,30 +17,40 @@ use Yii;
  * @property string $description
  * @property string $content
  * @property string $image
+ * @property integer $product_weight_measure_id
+ * @property integer $product_size_measure_id
  * @property integer $group_on_page
  * @property integer $product_on_page
  * @property string $template
  * @property string $template_group
  * @property string $template_product
- * @property integer $max_width_image_preview_group
- * @property integer $max_height_image_preview_group
- * @property integer $max_width_image_group
- * @property integer $max_height_image_group
- * @property integer $max_width_image_product
- * @property integer $max_height_image_product
- * @property integer $sorting_type_group
- * @property string $sorting_field_group
- * @property string $sorting_list_field_group
- * @property integer $sorting_type_product
- * @property string $sorting_field_product
- * @property string $sorting_list_field_product
+ * @property integer $group_image_preview_max_width
+ * @property integer $group_image_preview_max_height
+ * @property integer $group_image_max_width
+ * @property integer $group_image_max_height
+ * @property integer $product_image_preview_max_width
+ * @property integer $product_image_preview_max_height
+ * @property integer $product_image_max_width
+ * @property integer $product_image_max_height
+ * @property integer $group_sorting_type
+ * @property string $group_sorting_field
+ * @property string $group_sorting_list_field
+ * @property integer $product_sorting_type
+ * @property string $product_sorting_field
+ * @property string $product_sorting_list_field
+ * @property integer $user_id
  * @property string $meta_title
  * @property string $meta_description
  * @property string $meta_keyword
  * @property string $create_time
  * @property string $update_time
+ *
+ * @property ShopMeasure $productSizeMeasure
+ * @property ShopMeasure $productWeightMeasure
+ * @property ShopPrice[] $shopPrices
+ * @property ShopWarehouse[] $shopWarehouses
  */
-class Shop extends \yii\db\ActiveRecord
+class Shop extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -55,25 +68,22 @@ class Shop extends \yii\db\ActiveRecord
         return [
             [
                 [
-                    'code',
-                    'name',
-                    'sorting_list_field_group',
-                    'sorting_list_field_product',
-                ],
-                'required'
-            ],
-            [
-                [
+                    'site_id',
+                    'product_weight_measure_id',
+                    'product_size_measure_id',
                     'group_on_page',
                     'product_on_page',
-                    'max_width_image_preview_group',
-                    'max_height_image_preview_group',
-                    'max_width_image_group',
-                    'max_height_image_group',
-                    'max_width_image_product',
-                    'max_height_image_product',
-                    'sorting_type_group',
-                    'sorting_type_product'
+                    'group_image_preview_max_width',
+                    'group_image_preview_max_height',
+                    'group_image_max_width',
+                    'group_image_max_height',
+                    'product_image_preview_max_width',
+                    'product_image_preview_max_height',
+                    'product_image_max_width',
+                    'product_image_max_height',
+                    'group_sorting_type',
+                    'product_sorting_type',
+                    'user_id'
                 ],
                 'integer'
             ],
@@ -82,21 +92,21 @@ class Shop extends \yii\db\ActiveRecord
                 [
                     'code',
                     'name',
-                    'image',
                     'template',
                     'template_group',
                     'template_product',
-                    'sorting_field_group',
-                    'sorting_list_field_group',
-                    'sorting_field_product',
-                    'sorting_list_field_product',
+                    'group_sorting_field',
+                    'group_sorting_list_field',
+                    'product_sorting_field',
+                    'product_sorting_list_field',
                     'meta_title',
-                    'meta_keyword',
+                    'meta_description',
+                    'meta_keyword'
                 ],
                 'string',
                 'max' => 255
             ],
-            [['description', 'meta_description'], 'string', 'max' => 500],
+            [['description'], 'string', 'max' => 500],
         ];
     }
 
@@ -113,28 +123,57 @@ class Shop extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
             'image' => Yii::t('app', 'Image'),
-            'group_on_page' => Yii::t('app', 'Group on page'),
-            'product_on_page' => Yii::t('shop', 'Product on page'),
+            'product_weight_measure_id' => Yii::t('shop', 'Product Weight Measure ID'),
+            'product_size_measure_id' => Yii::t('shop', 'Product Size Measure ID'),
+            'group_on_page' => Yii::t('shop', 'Group On Page'),
+            'product_on_page' => Yii::t('shop', 'Product On Page'),
             'template' => Yii::t('app', 'Template'),
-            'template_group' => Yii::t('shop', 'Template group'),
-            'template_product' => Yii::t('shop', 'Template product'),
-            'max_width_image_preview_group' => Yii::t('shop', 'Max width image preview group'),
-            'max_height_image_preview_group' => Yii::t('shop', 'Max height image preview group'),
-            'max_width_image_group' => Yii::t('shop', 'Max width image group'),
-            'max_height_image_group' => Yii::t('shop', 'Max height image group'),
-            'max_width_image_product' => Yii::t('shop', 'Max width image product'),
-            'max_height_image_product' => Yii::t('shop', 'Max height image product'),
-            'sorting_type_group' => Yii::t('shop', 'Sorting type group'),
-            'sorting_field_group' => Yii::t('shop', 'Sorting field group'),
-            'sorting_list_field_group' => Yii::t('shop', 'Sorting list field group'),
-            'sorting_type_product' => Yii::t('shop', 'Sorting type product'),
-            'sorting_field_product' => Yii::t('shop', 'Sorting field product'),
-            'sorting_list_field_product' => Yii::t('shop', 'Sorting list field product'),
-            'meta_title' => Yii::t('app', 'Meta title'),
-            'meta_description' => Yii::t('app', 'Meta description'),
-            'meta_keyword' => Yii::t('app', 'Meta keywords'),
-            'create_time' => Yii::t('app', 'Create time'),
-            'update_time' => Yii::t('app', 'Update time'),
+            'template_group' => Yii::t('shop', 'Template Group'),
+            'template_product' => Yii::t('shop', 'Template Product'),
+            'group_image_preview_max_width' => Yii::t('shop', 'Group Image Preview Max Width'),
+            'group_image_preview_max_height' => Yii::t('shop', 'Group Image Preview Max Height'),
+            'group_image_max_width' => Yii::t('shop', 'Group Image Max Width'),
+            'group_image_max_height' => Yii::t('shop', 'Group Image Max Height'),
+            'product_image_preview_max_width' => Yii::t('shop', 'Product Image Preview Max Width'),
+            'product_image_preview_max_height' => Yii::t('shop', 'Product Image Preview Max Height'),
+            'product_image_max_width' => Yii::t('shop', 'Product Image Max Width'),
+            'product_image_max_height' => Yii::t('shop', 'Product Image Max Height'),
+            'group_sorting_type' => Yii::t('shop', 'Group Sorting Type'),
+            'group_sorting_field' => Yii::t('shop', 'Group Sorting Field'),
+            'group_sorting_list_field' => Yii::t('shop', 'Group Sorting List Field'),
+            'product_sorting_type' => Yii::t('shop', 'Product Sorting Type'),
+            'product_sorting_field' => Yii::t('shop', 'Product Sorting Field'),
+            'product_sorting_list_field' => Yii::t('shop', 'Product Sorting List Field'),
+            'user_id' => Yii::t('app', 'User ID'),
+            'meta_title' => Yii::t('app', 'Meta Title'),
+            'meta_description' => Yii::t('app', 'Meta Description'),
+            'meta_keyword' => Yii::t('app', 'Meta Keyword'),
+            'create_time' => Yii::t('app', 'Create Time'),
+            'update_time' => Yii::t('app', 'Update Time'),
         ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'app\core\behaviors\file\ActionImage',
+                'attribute' => 'image',
+                'path' => '@webroot/public/uploads/shop/shop/images',
+                'pathUrl' => '@web/public/uploads/shop/shop/images',
+            ],
+            [
+                'class' => UserId::className(),
+                'attribute' => 'user_id',
+            ],
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getWarehouses()
+    {
+        return $this->hasMany(Warehouse::className(), ['shop_id' => 'id']);
     }
 }

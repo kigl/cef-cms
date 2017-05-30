@@ -8,7 +8,7 @@
 
 namespace kigl\cef\module\shop\widgets\frontend\treeGroup;
 
-use app\modules\shop\models\Group;
+use app\modules\shop\models\ProductGroup;
 use yii\caching\DbDependency;
 use yii\widgets\Menu;
 
@@ -33,11 +33,11 @@ class Widget extends \yii\base\Widget
     private function getModelsGroup()
     {
         $dependency = new DbDependency([
-            'sql' => "SELECT MAX(update_time) FROM" . Group::tableName(),
+            'sql' => "SELECT MAX(update_time) FROM" . ProductGroup::tableName(),
         ]);
 
         if (!$data = \Yii::$app->cache->get('treeGroup')) {
-            $data = Group::find()
+            $data = ProductGroup::find()
                 ->select(['id', 'name', 'parent_id', 'alias'])
                 ->asArray()
                 ->all();

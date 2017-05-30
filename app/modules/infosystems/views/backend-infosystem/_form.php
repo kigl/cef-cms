@@ -5,28 +5,38 @@ use app\modules\infosystems\Module;
 use app\modules\infosystems\models\backend\Group;
 use app\modules\infosystems\models\backend\Item;
 use app\modules\backend\widgets\ActiveForm;
+use app\modules\backend\widgets\fileInput\Widget as ActionImage;
 use vova07\imperavi\Widget;
 
 ?>
 
     <ul class="nav nav-tabs">
         <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
+        <li><a href="#content" data-toggle="tab"><?= Yii::t('app', 'Tab content'); ?></a></li>
         <li><a href="#properties" data-toggle="tab"><?= Yii::t('app', 'Tab properties'); ?></a></li>
+        <li><a href="#seo" data-toggle="tab"><?= Yii::t('app', 'Tab SEO'); ?></a></li>
         <li><a href="#settings" data-toggle="tab"><?= Yii::t('app', 'Tab settings'); ?></a></li>
+        <li><a href="#other" data-toggle="tab"><?= Yii::t('app', 'Tab other'); ?></a></li>
     </ul>
 
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin([
+    'options' => ['enctype' => 'multipart/form-data'],
+]); ?>
 
 <?php echo $form->errorSummary($data['model']); ?>
 
     <div class="tab-content">
         <div class="tab-pane active" id="main">
             <?= $form->field($data['model'], 'code'); ?>
-
             <?= $form->field($data['model'], 'name'); ?>
-
             <?= $form->field($data['model'], 'description')->textArea(); ?>
+        </div>
 
+        <div class="tab-pane" id="content">
+            <?= $form->field($data['model'], 'image')
+                ->widget(ActionImage::className(), [
+                    'behaviorName' => 'image',
+                ]); ?>
             <?= $form->field($data['model'], 'content')->widget(Widget::className(), [
                 'settings' => [
                     'lang' => 'ru',
@@ -95,8 +105,13 @@ use vova07\imperavi\Widget;
             <?php endif; ?>
         </div>
 
-        <div class="tab-pane" id="settings">
+        <div class="tab-pane" id="seo">
+            <?= $form->field($data['model'], 'meta_title'); ?>
+            <?= $form->field($data['model'], 'meta_description')->textarea(); ?>
+            <?= $form->field($data['model'], 'meta_keyword'); ?>
+        </div>
 
+        <div class="tab-pane" id="settings">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#main-settings" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
                 <li><a href="#templates" data-toggle="tab"><?= Yii::t('app', 'Tab templates'); ?></a></li>
@@ -107,20 +122,15 @@ use vova07\imperavi\Widget;
             <div class="tab-content well">
                 <div class="tab-pane active" id="main-settings">
                     <?= $form->field($data['model'], 'indexing')->checkbox(); ?>
-
                     <?= $form->field($data['model'], 'group_on_page'); ?>
-
                     <?= $form->field($data['model'], 'item_on_page'); ?>
                 </div>
 
                 <div class="tab-pane" id="templates">
 
                     <?= $form->field($data['model'], 'template'); ?>
-
                     <?= $form->field($data['model'], 'template_group'); ?>
-
                     <?= $form->field($data['model'], 'template_item'); ?>
-
                     <?= $form->field($data['model'], 'template_tag'); ?>
                 </div>
 
@@ -161,38 +171,47 @@ use vova07\imperavi\Widget;
                 <div class="tab-pane" id="formats">
                     <div class="row">
                         <div class="col-md-6">
-                            <?= $form->field($data['model'], 'max_width_image_description_group'); ?>
+                            <?= $form->field($data['model'], 'max_width_image_preview_group'); ?>
                         </div>
                         <div class="col-md-6">
-                            <?= $form->field($data['model'], 'max_height_image_description_group'); ?>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <?= $form->field($data['model'], 'max_width_image_content_group'); ?>
-                        </div>
-                        <div class="col-md-6">
-                            <?= $form->field($data['model'], 'max_height_image_content_group'); ?>
+                            <?= $form->field($data['model'], 'max_height_image_preview_group'); ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <?= $form->field($data['model'], 'max_width_image_description_item'); ?>
+                            <?= $form->field($data['model'], 'max_width_image_group'); ?>
                         </div>
                         <div class="col-md-6">
-                            <?= $form->field($data['model'], 'max_height_image_description_item'); ?>
+                            <?= $form->field($data['model'], 'max_height_image_group'); ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <?= $form->field($data['model'], 'max_width_image_content_item'); ?>
+                            <?= $form->field($data['model'], 'max_width_image_preview_item'); ?>
                         </div>
                         <div class="col-md-6">
-                            <?= $form->field($data['model'], 'max_height_image_content_item'); ?>
+                            <?= $form->field($data['model'], 'max_height_image_preview_item'); ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <?= $form->field($data['model'], 'max_width_image_item'); ?>
+                        </div>
+                        <div class="col-md-6">
+                            <?= $form->field($data['model'], 'max_height_image_item'); ?>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="tab-pane" id="other">
+            <?= \yii\widgets\DetailView::widget([
+                'model' => $data['model'],
+                'attributes' => [
+                    'id',
+                ],
+            ]); ?>
         </div>
 
     </div>

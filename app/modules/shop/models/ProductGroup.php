@@ -8,7 +8,6 @@ use app\core\db\ActiveRecord;
 use app\core\behaviors\file\ActionImage;
 
 /**
- * This is the model class for table "mn_shop_group".
  *
  * @property integer $id
  * @property integer $group_id
@@ -27,7 +26,7 @@ use app\core\behaviors\file\ActionImage;
  * @property string $create_time
  * @property string $update_time
  */
-class Group extends ActiveRecord
+class ProductGroup extends ActiveRecord
 {
 
     /**
@@ -35,7 +34,7 @@ class Group extends ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%shop_group}}';
+        return '{{%shop_product_group}}';
     }
 
     /**

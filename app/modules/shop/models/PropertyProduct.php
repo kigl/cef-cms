@@ -12,14 +12,14 @@ use Yii;
  * @property integer $property_id
  * @property string $value
  */
-class ProductProperty extends \yii\db\ActiveRecord
+class PropertyProduct extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%shop_product_property}}';
+        return '{{%shop_property_product}}';
     }
 
     /**

@@ -7,15 +7,12 @@
 
 
 namespace app\modules\shop\controllers;
-;
-use app\modules\shop\models\Product;
+
 use Yii;
-use app\modules\shop\components\FrontendController;
-use app\modules\shop\service\frontend\ProductModelService;
-use app\modules\shop\service\frontend\ProductViewService;
-use yii\base\Controller;
+use yii\web\Controller;
 use yii\web\HttpException;
 use yii\web\Response;
+use app\modules\shop\models\Product;
 
 class ProductController extends Controller
 {
@@ -34,8 +31,10 @@ class ProductController extends Controller
         echo json_encode($result);
     }
 
-    public function actionView($id, $alias = '')
+    public function actionView($id, $shop_id, $alias = '')
     {
+        echo get_called_class(); exit;
+
         $modelService = new ProductModelService();
         $modelService->view($id, $alias);
 

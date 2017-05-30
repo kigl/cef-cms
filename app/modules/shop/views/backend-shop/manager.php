@@ -6,6 +6,7 @@ use app\modules\backend\widgets\grid\GridView;
 $this->setTitle(Module::t('Shops'));
 $this->setPageHeader(Module::t('Shops'));
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
+$this->params['toolbar'] = $this->module->toolbar['shop'];
 
 echo GridView::widget([
     'buttons' => [

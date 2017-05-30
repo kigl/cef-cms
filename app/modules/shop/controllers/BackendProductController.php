@@ -71,7 +71,7 @@ class BackendProductController extends Controller
             $modelService = new ProductModelService();
 
             foreach ($keys as $key) {
-                $modelService->actionDelete($key);
+                $modelService->delete($key);
             }
         }
     }

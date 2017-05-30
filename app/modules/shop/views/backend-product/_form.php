@@ -52,7 +52,7 @@ use app\core\widgets\DropDownTreeItems;
             <div class="col-md-6">
                 <?= $form->field($data['model'], 'group_id')
                     ->widget(DropDownTreeItems::className(), [
-                        'modelClass' => \app\modules\shop\models\Group::className(),
+                        'modelClass' => \app\modules\shop\models\ProductGroup::className(),
                     ])
                     ->label(Yii::t('app', 'Group')); ?>
             </div>
@@ -61,14 +61,34 @@ use app\core\widgets\DropDownTreeItems;
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6"><?= $form->field($data['model'], 'price')
+            <div class="col-md-3">
+                <?= $form->field($data['model'], 'price')
                     ->widget(\kartik\money\MaskMoney::className(), [
                         'pluginOptions' => [
                             'prefix' => 'RUR ',
                         ]
                     ]); ?>
             </div>
-            <div class="col-md-6"><?= $form->field($data['model'], 'sku'); ?></div>
+            <div class="col-md-3">
+                <?= $form->field($data['model'], 'discount'); ?>
+            </div>
+            <div class="col-md-3">
+                <?= $form->field($data['model'], 'sku'); ?>
+            </div>
+            <div class="col-md-3">
+                <?= $form->field($data['model'], 'weight'); ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <?= $form->field($data['model'], 'length'); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($data['model'], 'width'); ?>
+            </div>
+            <div class="col-md-4">
+                <?= $form->field($data['model'], 'height'); ?>
+            </div>
         </div>
 
         <?= $form->field($data['model'], 'description')->textarea(); ?>
@@ -185,6 +205,7 @@ use app\core\widgets\DropDownTreeItems;
         <?= $form->field($data['model'], 'alias'); ?>
         <?= $form->field($data['model'], 'meta_title'); ?>
         <?= $form->field($data['model'], 'meta_description'); ?>
+        <?= $form->field($data['model'], 'meta_keyword'); ?>
     </div>
 
     <div class="tab-pane" id="other">

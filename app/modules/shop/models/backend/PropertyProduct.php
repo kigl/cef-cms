@@ -5,7 +5,7 @@ namespace app\modules\shop\models\backend;
 
 use yii\helpers\ArrayHelper;
 
-class ProductProperty extends \app\modules\shop\models\ProductProperty
+class PropertyProduct extends \app\modules\shop\models\PropertyProduct
 {
     public $name;
 

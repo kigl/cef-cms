@@ -4,11 +4,11 @@ use yii\db\Migration;
 
 class m161025_155949_shop_property extends Migration
 {
-    protected $tableName = '{{%shop_property}}';
+    protected $_tableName = '{{%shop_property}}';
 
     public function up()
     {
-        $this->createTable($this->tableName, [
+        $this->createTable($this->_tableName, [
             'id' => $this->primaryKey(),
             'shop_id' => $this->integer(),
             'name' => $this->string(),
@@ -19,12 +19,12 @@ class m161025_155949_shop_property extends Migration
             'list_id' => $this->integer(),
         ]);
 
-        $this->createIndex('ix-property-name', $this->tableName, 'name');
+        $this->createIndex('ix-property-name', $this->_tableName, 'name');
     }
 
     public function down()
     {
-        $this->dropTable($this->tableName);
+        $this->dropTable($this->_tableName);
     }
 
     /*

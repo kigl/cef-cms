@@ -56,4 +56,15 @@ class BackendShopController extends Controller
 
         return $this->render('update', ['data' => $modelService->getData()]);
     }
+
+    public function actionDelete($id)
+    {
+        $modelService = Yii::createObject(ShopModelService::className());
+
+        if ($modelService->delete($id)) {
+            return $this->redirect(['manager']);
+        }
+
+        return null;
+    }
 }

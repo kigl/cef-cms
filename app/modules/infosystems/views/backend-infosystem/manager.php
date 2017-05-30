@@ -6,7 +6,8 @@ use app\modules\backend\widgets\grid\GridView;
 
 $this->setTitle(Module::t('Infosystems'));
 $this->setPageHeader(Module::t( 'Infosystems'));
-$this->params['breadcrumbs'][] = ['label' => Module::t( 'Infosystems')];
+$this->params['breadcrumbs'] = $data['breadcrumbs'];
+$this->params['toolbar'] = $this->module->toolbar['infosystems'];
 
 ?>
 

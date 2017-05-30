@@ -5,6 +5,7 @@ namespace app\modules\infosystems\models\backend;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use app\modules\infosystems\Module;
 
 class Group extends \app\modules\infosystems\models\Group
 {
@@ -14,21 +15,21 @@ class Group extends \app\modules\infosystems\models\Group
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['image_description', 'image_content'], 'image', 'extensions' => ['jpg', 'png', 'gif']],
+            [['image_preview', 'image'], 'image', 'extensions' => ['jpg', 'png', 'gif']],
             ['parent_id', 'compare', 'compareAttribute' => 'id', 'operator' => '!='],
-            ['sorting', 'default', 'value' => 500],
+            ['sorting', 'default', 'value' => Module::DEFAULT_SORTING],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             [
-                ['image_description'],
+                ['image_preview'],
                 'image',
-                'maxWidth' => $this->infosystem->max_width_image_description_group,
-                'maxHeight' => $this->infosystem->max_height_image_description_group
+                'maxWidth' => $this->infosystem->max_width_image_preview_group,
+                'maxHeight' => $this->infosystem->max_height_image_preview_group
             ],
             [
-                ['image_content'],
+                ['image'],
                 'image',
-                'maxWidth' => $this->infosystem->max_width_image_content_group,
-                'maxHeight' => $this->infosystem->max_height_image_content_group
+                'maxWidth' => $this->infosystem->max_width_image_group,
+                'maxHeight' => $this->infosystem->max_height_image_group
             ],
         ]);
     }

@@ -9,10 +9,12 @@
 namespace app\modules\infosystems\service\backend;
 
 
+use app\modules\infosystems\Module;
+use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\modules\infosystems\models\backend\Tag;
 
-class TagModelService extends ModelService
+class TagModelService extends InfosystemModelService
 {
     public function manager()
     {
@@ -21,6 +23,7 @@ class TagModelService extends ModelService
         ]);
         $this->setData([
             'dataProvider' => $dataProvider,
+            'breadcrumbs' => $this->getBreadcrumbs()
         ]);
     }
 
@@ -30,6 +33,7 @@ class TagModelService extends ModelService
 
         $this->setData([
             'model' => $model,
+            'breadcrumbs' => $this->getBreadcrumbs(),
         ]);
 
         if ($model->load($this->getData('post')) and $model->save()) {
@@ -47,6 +51,7 @@ class TagModelService extends ModelService
 
         $this->setData([
             'model' => $model,
+            'breadcrumbs' => $this->getBreadcrumbs(null, $model->name),
         ]);
 
         if ($model->load($this->getData('post')) && $model->save()) {
@@ -54,5 +59,18 @@ class TagModelService extends ModelService
         }
 
         return false;
+    }
+
+    protected function getBreadcrumbs(Model $infosystem = null, $data = null)
+    {
+        $breadcrumbs = parent::getBreadcrumbs($infosystem, null);
+
+        $breadcrumbs[] = ['label' => Module::t('Tags'), 'url' => 'backend-tag/manager'];
+
+        if ($data) {
+            $breadcrumbs[] = ['label' => $data];
+        }
+
+        return $breadcrumbs;
     }
 }

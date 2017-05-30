@@ -1,6 +1,6 @@
 <?php
 use app\core\helpers\Breadcrumbs;
-use app\modules\shop\models\Group;
+use app\modules\shop\models\ProductGroup;
 use yii\helpers\HtmlPurifier;
 
 $this->setTitle($data['model']->name);

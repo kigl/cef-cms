@@ -1,6 +1,6 @@
 <?php
 use app\modules\backend\widgets\ActiveForm;
-use app\modules\backend\widgets\fileInput\Widget as WidgetActionImage;
+use app\modules\backend\widgets\fileInput\Widget as FileInput;
 use app\core\widgets\DropDownTreeItems;
 
 ?>
@@ -35,14 +35,14 @@ use app\core\widgets\DropDownTreeItems;
     </div>
 
     <div class="tab-pane" id="description">
-        <?= $form->field($data['model'], 'image_preview')->widget(WidgetActionImage::className(), [
+        <?= $form->field($data['model'], 'image_preview')->widget(FileInput::className(), [
             'behaviorName' => 'imagePreview',
         ]) ?>
         <?= $form->field($data['model'], 'description')->textarea(); ?>
     </div>
 
     <div class="tab-pane" id="content">
-        <?= $form->field($data['model'], 'image')->widget(WidgetActionImage::className(), [
+        <?= $form->field($data['model'], 'image')->widget(FileInput::className(), [
             'behaviorName' => 'image',
         ]) ?>
         <?= $form->field($data['model'], 'content')->widget(\vova07\imperavi\Widget::className(), [

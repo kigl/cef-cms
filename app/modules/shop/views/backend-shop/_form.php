@@ -1,6 +1,7 @@
 <?php
 use app\modules\backend\widgets\ActiveForm;
 use app\modules\backend\widgets\fileInput\Widget as FileInput;
+use vova07\imperavi\Widget;
 
 ?>
 
@@ -10,23 +11,30 @@ use app\modules\backend\widgets\fileInput\Widget as FileInput;
     <li><a href="#settings" data-toggle="tab"><?= Yii::t('app', 'Tab settings'); ?></a></li>
 </ul>
 
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin([
+    'options' => ['enctype' => 'multipart/form-data'],
+]); ?>
 
 <?= $form->errorSummary($data['model']); ?>
 
 <div class="tab-content">
     <div class="tab-pane active" id="main">
         <?= $form->field($data['model'], 'code'); ?>
-
         <?= $form->field($data['model'], 'name'); ?>
-
         <?= $form->field($data['model'], 'description')->textarea(); ?>
     </div>
+
     <div class="tab-pane" id="content">
-        <?php //= $form->field($data['model'], 'image')->widget(FileInput::className()); ?>
+        <?= $form->field($data['model'], 'image')->widget(FileInput::className(), [
+            'behaviorName' => 'image',
+        ]) ?>
 
-        <?= $form->field($data['model'], 'content')->textarea(); ?>
-
+        <?= $form->field($data['model'], 'content')->widget(Widget::className(), [
+            'settings' => [
+                'minHeight' => 400,
+                'deniedTags' => ['style'],
+            ]
+        ]); ?>
     </div>
 
     <div class="tab-pane" id="settings">
@@ -38,66 +46,73 @@ use app\modules\backend\widgets\fileInput\Widget as FileInput;
         </ul>
         <div class="tab-content well">
             <div class="tab-pane active" id="settings-main">
+                <?= $form->field($data['model'], 'product_weight_measure_id')->dropDownList($data['listMeasure']); ?>
+                <?= $form->field($data['model'], 'product_size_measure_id')->dropDownList($data['listMeasure']); ?>
                 <?= $form->field($data['model'], 'group_on_page'); ?>
-
                 <?= $form->field($data['model'], 'product_on_page'); ?>
             </div>
+
             <div class="tab-pane" id="settings-templates">
-
                 <?= $form->field($data['model'], 'template'); ?>
-
                 <?= $form->field($data['model'], 'template_group'); ?>
-
                 <?= $form->field($data['model'], 'template_product'); ?>
             </div>
             <div class="tab-pane" id="settings-formats">
 
                 <div class="row">
                     <div class="col-md-6">
-                        <?= $form->field($data['model'], 'max_width_image_preview_group'); ?>
+                        <?= $form->field($data['model'], 'group_image_preview_max_width'); ?>
                     </div>
                     <div class="col-md-6">
-                        <?= $form->field($data['model'], 'max_height_image_preview_group'); ?>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <?= $form->field($data['model'], 'max_width_image_group'); ?>
-                    </div>
-                    <div class="col-md-6">
-                        <?= $form->field($data['model'], 'max_height_image_group'); ?>
+                        <?= $form->field($data['model'], 'group_image_preview_max_height'); ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <?= $form->field($data['model'], 'max_width_image_product'); ?>
+                        <?= $form->field($data['model'], 'group_image_max_width'); ?>
                     </div>
                     <div class="col-md-6">
-                        <?= $form->field($data['model'], 'max_height_image_product'); ?>
+                        <?= $form->field($data['model'], 'group_image_max_height'); ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <?= $form->field($data['model'], 'product_image_preview_max_width'); ?>
+                    </div>
+                    <div class="col-md-6">
+                        <?= $form->field($data['model'], 'product_image_preview_max_height'); ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <?= $form->field($data['model'], 'product_image_max_width'); ?>
+                    </div>
+                    <div class="col-md-6">
+                        <?= $form->field($data['model'], 'product_image_max_height'); ?>
                     </div>
                 </div>
             </div>
             <div class="tab-pane" id="settings-sorting">
                 <div class="row">
                     <div class="col-md-4">
-                        <?= $form->field($data['model'], 'sorting_type_group'); ?>
+                        <?= $form->field($data['model'], 'group_sorting_type'); ?>
                     </div>
                     <div class="col-md-4">
-                        <?= $form->field($data['model'], 'sorting_field_group'); ?>
+                        <?= $form->field($data['model'], 'group_sorting_field'); ?>
                     </div>
                     <div class="col-md-4">
-                        <?= $form->field($data['model'], 'sorting_list_field_group'); ?>
+                        <?= $form->field($data['model'], 'group_sorting_list_field'); ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <?= $form->field($data['model'], 'sorting_type_product'); ?>
+                        <?= $form->field($data['model'], 'product_sorting_type'); ?>
                     </div>
                     <div class="col-md-4">
-                        <?= $form->field($data['model'], 'sorting_field_product'); ?>
+                        <?= $form->field($data['model'], 'product_sorting_field'); ?>
                     </div>
                     <div class="col-md-4">
-                        <?= $form->field($data['model'], 'sorting_list_field_product'); ?>
+                        <?= $form->field($data['model'], 'product_sorting_list_field'); ?>
                     </div>
                 </div>
             </div>
@@ -106,9 +121,7 @@ use app\modules\backend\widgets\fileInput\Widget as FileInput;
 
     <div class="tab-pane" id="seo">
         <?= $form->field($data['model'], 'meta_title'); ?>
-
         <?= $form->field($data['model'], 'meta_description'); ?>
-
         <?= $form->field($data['model'], 'meta_keyword'); ?>
     </div>
 </div>

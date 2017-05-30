@@ -14,14 +14,13 @@ class m161025_155911_shop_product extends Migration
             'group_id' => $this->integer(),
             'shop_id' => $this->integer(),
             'producer_id' => $this->integer(),
+            'measure_id' => $this->integer(),
             'vendor_code' => $this->string(),
             'name' => $this->string()->notNull(),
-            'description' => $this->string(),
+            'description' => $this->string(500),
             'content' => $this->text(),
             'weight' => $this->decimal(8, 2),
-            'sku' => $this->integer()->defaultValue(0),
-            'price' => $this->decimal(12,2)->defaultValue(0),
-            'discount' => $this->decimal(),
+            'discount' => $this->decimal(8, 2),
             'length' => $this->decimal(12, 2),
             'width' => $this->decimal(12, 2),
             'height' => $this->decimal(12,2),
@@ -42,15 +41,4 @@ class m161025_155911_shop_product extends Migration
     {
         $this->dropTable($this->_tableName);
     }
-
-    /*
-    // Use safeUp/safeDown to run migration code within a transaction
-    public function safeUp()
-    {
-    }
-
-    public function safeDown()
-    {
-    }
-    */
 }

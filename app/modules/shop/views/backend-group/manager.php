@@ -6,8 +6,14 @@ use app\modules\backend\widgets\grid\GridView;
 
 $this->setTitle(Module::t('Products'));
 $this->setPageHeader(Module::t('Products'));
-$this->params['toolbar'] = $this->module->toolbar['group'];
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
+$this->params['toolbar'] = [
+    ['label' => 'Цены', 'url' => ['backend-price/manager', 'shop_id' => $data['shop_id']]],
+    ['label' => 'Производители', 'url' => ['backend-producer/manager', 'shop_id' => $data['shop_id']]],
+    ['label' => 'Склады', 'url' => ['backend-warehouse/manager', 'shop_id' => $data['shop_id']]],
+    ['label' => 'Свойства товаров', 'url' => ['backend-property/manager', 'shop_id' => $data['shop_id']]],
+    ['label' => 'Заказы', 'url' => ['backend-order/manager', 'shop_id' => $data['shop_id']]]
+];
 
 ?>
 
@@ -64,7 +70,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
             'label' => Yii::t('app', 'Active'),
             'format' => 'raw',
             'value' => function ($data) {
-                    return Html::checkbox('Active', $data['active'], ['disabled' => 'disabled']);
+                return Html::checkbox('Active', $data['active'], ['disabled' => 'disabled']);
             }
         ],
         [

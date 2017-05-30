@@ -2,16 +2,16 @@
 
 use yii\db\Migration;
 
-class m161025_160030_shop_product_property extends Migration
+class m161025_160030_shop_property_product extends Migration
 {
-    protected $tableName = '{{%shop_product_property}}';
+    protected $tableName = '{{%shop_property_product}}';
 
     public function up()
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'product_id' => $this->integer(),
             'property_id' => $this->integer(),
+            'product_id' => $this->integer(),
             'value' => $this->string(),
         ]);
 

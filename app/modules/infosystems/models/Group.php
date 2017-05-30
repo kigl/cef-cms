@@ -15,13 +15,14 @@ use yii\helpers\Url;
  * @property string $name
  * @property string $description
  * @property string $content
- * @property string $image_description
- * @property string $image_content
+ * @property string $image_preview
+ * @property string $image
  * @property integer $status
  * @property integer $user_id
  * @property string $alias
  * @property string $meta_title
  * @property string $meta_description
+ * @property string $meta_keyword
  * @property integer $create_time
  * @property integer $update_time
  */
@@ -48,8 +49,8 @@ class Group extends \app\core\db\ActiveRecord
             [['name', 'infosystem_id'], 'required'],
             [['infosystem_id', 'parent_id', 'user_id', 'sorting'], 'integer'],
             [['content'], 'string'],
-            [['name', 'alias', 'meta_title'], 'string', 'max' => 255],
-            [['description', 'meta_description'], 'string', 'max' => 300],
+            [['name', 'alias', 'meta_title', 'meta_description', 'meta_keyword'], 'string', 'max' => 255],
+            [['description'], 'string', 'max' => 500],
         ];
     }
 
@@ -65,14 +66,15 @@ class Group extends \app\core\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
-            'image_description' => Yii::t('app', 'Image'),
-            'image_content' => Yii::t('app', 'Image'),
+            'image_preview' => Yii::t('app', 'Image'),
+            'image' => Yii::t('app', 'Image'),
             'sorting' => Yii::t('app', 'Sorting'),
             'status' => Yii::t('app', 'Status'),
             'user_id' => Yii::t('app', 'User ID'),
             'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta Title'),
             'meta_description' => Yii::t('app', 'Meta Description'),
+            'meta_keyword' => Yii::t('app', 'Meta keyword'),
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
         ];
@@ -81,17 +83,17 @@ class Group extends \app\core\db\ActiveRecord
     public function behaviors()
     {
         return [
-            'imageDescription' => [
+            'imagePreview' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
-                'attribute' => 'image_description',
-                'path' => '@webroot/public/uploads/infosystem/images',
-                'pathUrl' => '@web/public/uploads/infosystem/images',
+                'attribute' => 'image_preview',
+                'path' => '@webroot/public/uploads/infosystems/group/images',
+                'pathUrl' => '@web/public/uploads/infosystems/group/images',
             ],
-            'imageContent' => [
+            'image' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
-                'attribute' => 'image_content',
-                'path' => '@webroot/public/uploads/infosystem/images',
-                'pathUrl' => '@web/public/uploads/infosystem/images',
+                'attribute' => 'image',
+                'path' => '@webroot/public/uploads/infosystems/group/images',
+                'pathUrl' => '@web/public/uploads/infosystems/group/images',
             ],
         ];
     }
@@ -131,7 +133,7 @@ class Group extends \app\core\db\ActiveRecord
     public function getModelItemUrl()
     {
         return Url::to([
-            '/infosystem/group/view',
+            '/infosystems/group/view',
             'id' => $this->id,
             'alias' => $this->alias,
             'infosystem_id' => $this->infosystem_id

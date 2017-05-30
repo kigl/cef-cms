@@ -20,7 +20,7 @@ use app\modules\infosystems\models\backend\Infosystem;
 use app\modules\infosystems\models\backend\Tag;
 use app\modules\infosystems\models\ItemTag;
 
-class ItemModelService extends ModelService
+class ItemModelService extends GroupModelService
 {
     protected $itemProperties;
 
@@ -47,7 +47,7 @@ class ItemModelService extends ModelService
             'tags' => Tag::find()->asArray()->all(),
             'itemProperties' => $this->itemProperties,
             'properties' => $this->properties,
-            'breadcrumbs' => $this->getItemsBreadcrumb($infosystem, $this->model->group_id),
+            'breadcrumbs' => $this->getBreadcrumbs($infosystem, $this->model->group_id),
         ]);
 
         return $this->save();
@@ -71,7 +71,7 @@ class ItemModelService extends ModelService
             'itemProperties' => $this->itemProperties,
             'tags' => Tag::find()->asArray()->all(),
             'properties' => $this->properties,
-            'breadcrumbs' => $this->getItemsBreadcrumb($this->model->infosystem, $this->model->group_id,
+            'breadcrumbs' => $this->getBreadcrumbs($this->model->infosystem, $this->model->group_id,
                 $this->model->name),
         ]);
 
@@ -93,7 +93,7 @@ class ItemModelService extends ModelService
         return $this->model->delete();
     }
 
-    protected function initProperties()
+    private function initProperties()
     {
         $this->itemProperties = $this->model->getItemProperties()
             ->indexBy('property_id')
@@ -118,7 +118,7 @@ class ItemModelService extends ModelService
         $this->sortingProperties($this->itemProperties, $this->properties);
     }
 
-    protected function load()
+    private function load()
     {
         $post = $this->getData('post');
 
@@ -133,7 +133,7 @@ class ItemModelService extends ModelService
         return false;
     }
 
-    protected function validate($validate = true)
+    private function validate($validate = true)
     {
         if ($validate) {
             if ($this->model->validate($validate) && $this->validateProperties($validate)) {
@@ -146,7 +146,7 @@ class ItemModelService extends ModelService
         return true;
     }
 
-    protected function validateProperties($validate = true)
+    private function validateProperties($validate = true)
     {
         $success = true;
 
@@ -163,7 +163,7 @@ class ItemModelService extends ModelService
         return $success;
     }
 
-    protected function save($validate = true)
+    private function save($validate = true)
     {
         if ($this->load() && $this->validate($validate)) {
             $transaction = Yii::$app->db->beginTransaction();
@@ -185,7 +185,7 @@ class ItemModelService extends ModelService
         return false;
     }
 
-    protected function saveTags()
+    private function saveTags()
     {
         $tagsOnSave = $this->model->getRuntimeTags();
 
@@ -211,7 +211,7 @@ class ItemModelService extends ModelService
         }
     }
 
-    protected function saveItemProperties()
+    private function saveItemProperties()
     {
         foreach ($this->itemProperties as $property) {
             if ($property->value != '') {
@@ -226,7 +226,7 @@ class ItemModelService extends ModelService
     /**
      * Сортирует свойства
      */
-    protected function sortingProperties(&$properties, $allProperties)
+    private function sortingProperties(&$properties, $allProperties)
     {
         $tmp = [];
         foreach ($allProperties as $p) {

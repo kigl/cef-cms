@@ -15,6 +15,8 @@ return [
                         'label' => 'Инфосистемы',
                         'url' => ['backend-infosystem/manager']
                     ],
+                ],
+                'infosystems' => [
                     ['label' => 'Метки', 'url' => ['backend-tag/manager']],
                 ],
             ],

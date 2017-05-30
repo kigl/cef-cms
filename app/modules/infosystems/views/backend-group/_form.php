@@ -13,6 +13,7 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
         <li><a href="#description" data-toggle="tab"><?= Yii::t('app', 'Tab description'); ?></a></li>
         <li><a href="#content" data-toggle="tab"><?= Yii::t('app', 'Tab content'); ?></a></li>
         <li><a href="#seo" data-toggle="tab"><?= Yii::t('app', 'Tab SEO'); ?></a></li>
+        <li><a href="#other" data-toggle="tab"><?= Yii::t('app', 'Tab other'); ?></a></li>
     </ul>
 
 <?php $form = ActiveForm::begin([
@@ -36,16 +37,12 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="description">
-            <div class="row">
-                <div class="col-md-12">
-                    <?= $form->field($data['model'], 'image_description')
-                        ->widget(WidgetActionImage::className(), [
-                            'behaviorName' => 'imageDescription',
-                        ]); ?>
-                </div>
-            </div>
 
+        <div class="tab-pane" id="description">
+            <?= $form->field($data['model'], 'image_preview')
+                ->widget(WidgetActionImage::className(), [
+                    'behaviorName' => 'imagePreview',
+                ]); ?>
             <?= $form->field($data['model'], 'description')->widget(Widget::className(), [
                 'settings' => [
                     'lang' => 'ru',
@@ -53,17 +50,12 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
                 ],
             ]); ?>
         </div>
+
         <div class="tab-pane" id="content">
-            <div class="row">
-                <div class="col-md-12">
-                    <?= $form->field($data['model'], 'image_content')
-                        ->widget(WidgetActionImage::className(), [
-                            'behaviorName' => 'imageContent',
-                        ]); ?>
-                </div>
-            </div>
-
-
+            <?= $form->field($data['model'], 'image')
+                ->widget(WidgetActionImage::className(), [
+                    'behaviorName' => 'image',
+                ]); ?>
             <?= $form->field($data['model'], 'content')->widget(Widget::className(), [
                 'settings' => [
                     'lang' => 'ru',
@@ -71,12 +63,21 @@ $this->params['breadcrumbs'] = $data['breadcrumbs'];
                 ],
             ]); ?>
         </div>
+
         <div class="tab-pane" id="seo">
             <?= $form->field($data['model'], 'alias'); ?>
-
             <?= $form->field($data['model'], 'meta_title'); ?>
-
             <?= $form->field($data['model'], 'meta_description')->textArea(); ?>
+            <?= $form->field($data['model'], 'meta_keyword'); ?>
+        </div>
+
+        <div class="tab-pane" id="other">
+            <?= \yii\widgets\DetailView::widget([
+                'model' => $data['model'],
+                'attributes' => [
+                    'id',
+                ],
+            ]); ?>
         </div>
 
     </div>

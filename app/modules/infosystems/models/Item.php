@@ -15,8 +15,8 @@ use yii\helpers\Url;
  * @property string $name
  * @property string $description
  * @property string $content
- * @property string $image_description
- * @property string $image_content
+ * @property string $image_preview
+ * @property string $image
  * @property string $file
  * @property integer $status
  * @property integer $sorting
@@ -28,6 +28,7 @@ use yii\helpers\Url;
  * @property string $alias
  * @property string $meta_title
  * @property string $meta_description
+ * @property string $meta_keyword
  * @property integer $create_time
  * @property integer $update_time
  */
@@ -54,7 +55,7 @@ class Item extends \app\core\db\ActiveRecord
             [['name', 'infosystem_id', 'date'], 'required'],
             [['infosystem_id', 'group_id', 'status', 'sorting', 'user_id', 'counter'], 'integer'],
             [['description', 'content', 'date', 'date_start', 'date_end'], 'string'],
-            [['name', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+            [['name', 'meta_title', 'meta_description', 'meta_keyword'], 'string', 'max' => 255],
             ['file', 'file'],
         ];
     }
@@ -71,8 +72,8 @@ class Item extends \app\core\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
-            'image_description' => Yii::t('app', 'Image'),
-            'image_content' => Yii::t('app', 'Image'),
+            'image_preview' => Yii::t('app', 'Image'),
+            'image' => Yii::t('app', 'Image'),
             'file' => Yii::t('app', 'File'),
             'status' => Yii::t('app', 'Status'),
             'sorting' => Yii::t('app', 'Sorting'),
@@ -84,6 +85,7 @@ class Item extends \app\core\db\ActiveRecord
             'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta title'),
             'meta_description' => Yii::t('app', 'Meta description'),
+            'meta_keyword' => Yii::t('app', 'Meta keywords'),
             'create_time' => Yii::t('app', 'Create time'),
             'update_time' => Yii::t('app', 'Update time'),
         ];
@@ -92,15 +94,15 @@ class Item extends \app\core\db\ActiveRecord
     public function behaviors()
     {
         return [
-            'imageDescription' => [
+            'imagePreview' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
-                'attribute' => 'image_description',
+                'attribute' => 'image_preview',
                 'path' => '@webroot/public/uploads/infosystem/images',
                 'pathUrl' => '@web/public/uploads/infosystem/images',
             ],
-            'imageContent' => [
+            'image' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
-                'attribute' => 'image_content',
+                'attribute' => 'image',
                 'path' => '@webroot/public/uploads/infosystem/images',
                 'pathUrl' => '@web/public/uploads/infosystem/images',
             ],
@@ -168,7 +170,7 @@ class Item extends \app\core\db\ActiveRecord
     public function getModelItemUrl()
     {
         return Url::to([
-            '/infosystem/item/view',
+            '/infosystems/item/view',
             'id' => $this->id,
             'alias' => $this->alias,
             'infosystem_id' => $this->infosystem_id

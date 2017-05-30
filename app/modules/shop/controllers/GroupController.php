@@ -17,8 +17,11 @@ use app\modules\shop\service\frontend\GroupViewService;
 
 class GroupController extends Controller
 {
-    public function actionView($id, $alias = '')
+    public function actionView($id, $shop_id, $alias = '')
     {
+        echo get_called_class();
+        var_dump(Yii::$app->request->getQueryParams()); exit;
+
         $modelService = new GroupModelService();
         $modelService->setData([
             'get' => Yii::$app->request->getQueryParams(),

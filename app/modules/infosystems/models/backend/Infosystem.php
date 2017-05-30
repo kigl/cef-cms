@@ -5,6 +5,8 @@ namespace app\modules\infosystems\models\backend;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use app\modules\pages\models\Page;
+use app\modules\shop\models\Shop;
 use app\modules\infosystems\Module;
 
 class Infosystem extends \app\modules\infosystems\models\Infosystem
@@ -15,6 +17,18 @@ class Infosystem extends \app\modules\infosystems\models\Infosystem
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
+            [
+                'code',
+                'unique',
+                'targetClass' => Page::className(),
+                'targetAttribute' => 'alias',
+            ],
+            [
+                'code',
+                'unique',
+                'targetClass' => Shop::className(),
+                'targetAttribute' => 'code',
+            ],
             ['indexing', 'default', 'value' => self::INDEXING_YES],
             [
                 ['template', 'template_group', 'template_item', 'template_tag'],
@@ -26,14 +40,14 @@ class Infosystem extends \app\modules\infosystems\models\Infosystem
             [['sorting_field_group', 'sorting_field_item'], 'default', 'value' => Module::DEFAULT_SORTING_FIELD],
             [
                 [
-                    'max_width_image_description_group',
-                    'max_height_image_description_group',
-                    'max_width_image_content_group',
-                    'max_height_image_content_group',
-                    'max_width_image_description_item',
-                    'max_height_image_description_item',
-                    'max_width_image_content_item',
-                    'max_height_image_content_item',
+                    'max_width_image_preview_group',
+                    'max_height_image_preview_group',
+                    'max_width_image_group',
+                    'max_height_image_group',
+                    'max_width_image_preview_item',
+                    'max_height_image_preview_item',
+                    'max_width_image_item',
+                    'max_height_image_item',
                 ],
                 'default',
                 'value' => Module::MAX_WIDTH_HEIGHT_IMAGE

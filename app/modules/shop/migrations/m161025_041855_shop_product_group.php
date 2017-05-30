@@ -2,9 +2,9 @@
 
 use yii\db\Migration;
 
-class m161025_041849_shop_group extends Migration
+class m161025_041855_shop_product_group extends Migration
 {
-    protected $_tableName = '{{%shop_group}}';
+    protected $_tableName = '{{%shop_product_group}}';
 
     public function up()
     {
@@ -13,7 +13,7 @@ class m161025_041849_shop_group extends Migration
             'parent_id' => $this->integer(),
             'shop_id' => $this->integer(),
             'name' => $this->string()->notNull(),
-            'description' => $this->string(),
+            'description' => $this->string(500),
             'content' => $this->text(),
             'image_preview' => $this->string(),
             'image' => $this->string(),

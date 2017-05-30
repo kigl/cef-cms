@@ -4,12 +4,16 @@ return [
     'Button refresh cart' => 'Пересчитать',
     'Button order' => 'Оформить заказ',
 
-    'Max width image preview group' => 'Максимальная ширина изображение предварительного просмотра группы',
-    'Max height image preview group' => 'Максимальная высота изображение предварительного просмотра группы',
-    'Max width image group' => 'Максимальная ширина изображение группы',
-    'Max height image group' => 'Максимальная высота изображение группы',
-    'Max width image product' => 'Максимальная ширина изображение товара',
-    'Max height image product' => 'Максимальная высота изображение товара',
+    'Discount' => 'Скидка',
+
+    'Max width image preview group' => 'Максимальная ширина изображения предварительного просмотра группы',
+    'Max height image preview group' => 'Максимальная высота изображения предварительного просмотра группы',
+    'Max width image group' => 'Максимальная ширина изображения группы',
+    'Max height image group' => 'Максимальная высота изображения группы',
+    'Max width image preview product' => 'Максимальная ширина изображения предварительного просмотра товара',
+    'Max height image preview product' => 'Максимальная высота изображения предварительного просмотра товара',
+    'Max width image product' => 'Максимальная ширина изображения товара',
+    'Max height image product' => 'Максимальная высота изображения товара',
 	'Main image' => 'Главное изоброжение',
 	'Module name' => 'Интеренет магазин',
 	'Module description' => 'Интеренет магазин',
@@ -24,6 +28,10 @@ return [
     'Edit group: {data}' => 'Редактирование группы: {data}',
     'Edit product: {data}' => 'Редактирование товара: {data}',
     'Edit product property: {data}' => 'Редактирование свойства товара: {data}',
+
+    'Height' => 'Высота упаковки',
+
+    'Length' => 'Длина упаковки',
 
     'Page header cart' => 'Корзина',
 	'Product relation' => 'Модификация для товара',
@@ -45,6 +53,8 @@ return [
 
     'User id' => 'Идентификатор пользователя',
 
+    'Orders' => 'Заказы',
+
     'Quick view product' => 'Быстрый просмотр',
 
     'Template group' => 'Шаблон (название файла) группы',
@@ -54,8 +64,10 @@ return [
     'Toolbar order' => 'Заказы',
     'Tab order view detail' => 'Информация',
     'Tab order view items' => 'Состав заказа',
-	'Tab modifications' => 'Модификации',
+    'Tab modifications' => 'Модификации',
     'Text  price' => 'Цена: ',
 
-    'Orders' => 'Заказы',
+    'Vendor code' => 'Артикул',
+
+    'Width' => 'Ширина упаковки',
 ];

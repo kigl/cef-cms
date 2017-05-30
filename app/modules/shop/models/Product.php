@@ -76,7 +76,7 @@ class Product extends ActiveRecord
             'group_id' => Yii::t('shop', 'Group id'),
             'shop_id' => Yii::t('shop', 'Shop ID'),
             'producer_id' => Yii::t('shop', 'Producer ID'),
-            'vendor_code' => Yii::t('app', 'Vendor code'),
+            'vendor_code' => Yii::t('shop', 'Vendor code'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
@@ -84,9 +84,9 @@ class Product extends ActiveRecord
             'sku' => Yii::t('app', 'Depot'),
             'price' => Yii::t('app', 'Price'),
             'discount' => Yii::t('shop', 'Discount'),
-            'length' => Yii::t('app', 'Length'),
-            'width' => Yii::t('app', 'Width'),
-            'height' => Yii::t('app', 'Height'),
+            'length' => Yii::t('shop', 'Length'),
+            'width' => Yii::t('shop', 'Width'),
+            'height' => Yii::t('shop', 'Height'),
             'active' => Yii::t('app', 'Active'),
             'sorting' => Yii::t('app', 'Sorting'),
             'user_id' => Yii::t('shop', 'User id'),
@@ -107,7 +107,7 @@ class Product extends ActiveRecord
 
     public function getGroup()
     {
-        return $this->hasOne(Group::className(), ['id' => 'group_id']);
+        return $this->hasOne(ProductGroup::className(), ['id' => 'group_id']);
     }
 
     public function getUser()
@@ -120,7 +120,7 @@ class Product extends ActiveRecord
      */
     public function getProperties()
     {
-        return $this->hasMany(ProductProperty::className(), ['product_id' => 'id'])
+        return $this->hasMany(PropertyProduct::className(), ['product_id' => 'id'])
             ->indexBy('property_id');
     }
 

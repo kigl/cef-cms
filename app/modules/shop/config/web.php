@@ -13,10 +13,17 @@ return [
                 'main' => [
                     ['label' => 'Интернет-магазины', 'url' => ['backend-shop/manager']],
                 ],
-                'group' => [
-                    ['label' => 'Свойства товаров', 'url' => ['backend-property/manager']],
-                    ['label' => 'Заказы', 'url' => ['backend-order/manager']],
+                'shop' => [
+                    ['label' => 'Еденицы измерения', 'url' => ['backend-measure/manager']],
                 ],
+            ],
+        ],
+    ],
+
+    'components' => [
+        'urlManager' => [
+            'rules' => [
+                ['class' => \app\modules\shop\components\urlRules\UrlRule::class],
             ],
         ],
     ],
