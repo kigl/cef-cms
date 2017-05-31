@@ -10,9 +10,9 @@ class m161025_155950_shop_warehouse_product extends Migration
     {
         $this->createTable($this->_tableName, [
             'id' => $this->primaryKey(),
-            'warehouse_id' => $this->integer(),
-            'product_id' => $this->integer(),
-            'value' => $this->decimal(8,1)->defaultValue(0),
+            'warehouse_id' => $this->integer()->notNull(),
+            'product_id' => $this->integer()->notNull(),
+            'value' => $this->decimal(12,2)->notNull(),
         ]);
 
         $this->createIndex('ix-warehouse_warehouse_id', $this->_tableName, 'warehouse_id');

@@ -10,10 +10,10 @@ use Yii;
  * @property integer $id
  * @property integer $warehouse_id
  * @property integer $product_id
- * @property string $value
+ * @property number $value
  *
- * @property ShopProduct $product
- * @property ShopWarehouse $warehouse
+ * @property Product $product
+ * @property Warehouse $warehouse
  */
 class WarehouseProduct extends \yii\db\ActiveRecord
 {
@@ -33,8 +33,6 @@ class WarehouseProduct extends \yii\db\ActiveRecord
         return [
             [['warehouse_id', 'product_id'], 'integer'],
             [['value'], 'number'],
-            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => ShopProduct::className(), 'targetAttribute' => ['product_id' => 'id']],
-            [['warehouse_id'], 'exist', 'skipOnError' => true, 'targetClass' => ShopWarehouse::className(), 'targetAttribute' => ['warehouse_id' => 'id']],
         ];
     }
 

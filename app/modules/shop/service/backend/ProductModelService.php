@@ -15,6 +15,8 @@ use yii\helpers\ArrayHelper;
 use yii\web\HttpException;
 use yii\web\UploadedFile;
 use app\modules\shop\models\backend\Shop;
+use app\modules\shop\models\Warehouse;
+use app\modules\shop\models\backend\WarehouseProduct;
 use app\modules\shop\models\backend\Product;
 use app\modules\shop\models\backend\Image;
 use app\modules\shop\models\backend\Property;
@@ -37,6 +39,10 @@ class ProductModelService extends GroupModelService
 
     protected $_properties;
 
+    protected $_warehouses;
+
+    protected $_warehouseProduct;
+
     public function create()
     {
         $shop = Shop::findOne(['id' => $this->data['get']['shop_id']]);
@@ -55,6 +61,10 @@ class ProductModelService extends GroupModelService
 
         $this->setData([
             'model' => $this->_model,
+            'shop' => $shop,
+            'warehouses' => $this->_warehouses,
+            'warehouseProduct' => $this->_warehouseProduct,
+            'listMeasure' => $this->getListMeasure(),
             'properties' => $this->_properties,
             'productProperties' => $this->_productProperties,
             'breadcrumbs' => $this->getBreadcrumbs($shop, $this->_model->group_id),
@@ -71,7 +81,6 @@ class ProductModelService extends GroupModelService
     public function update()
     {
         $this->_model = Product::find()
-            ->with('shop')
             ->where(['id' => $this->getData('get', 'id')])
             ->one();
 
@@ -83,13 +92,22 @@ class ProductModelService extends GroupModelService
             'query' => $this->_model->getProductModifications(),
         ]);
 
+        $dataProviderPacking = new ActiveDataProvider([
+            'query' => $this->_model->getPacking(),
+        ]);
+
         $this->initialization();
 
         $this->setData([
             'model' => $this->_model,
+            'shop' => $this->_model->shop,
             'properties' => $this->_properties,
             'productProperties' => $this->_productProperties,
+            'warehouses' => $this->_warehouses,
+            'warehouseProduct' => $this->_warehouseProduct,
+            'listMeasure' => $this->getListMeasure(),
             'dataProvider' => $dataProvider,
+            'dataProviderPacking' => $dataProviderPacking,
             'breadcrumbs' => $this->getBreadcrumbs(
                 $this->_model->shop,
                 $this->_model->group_id,
@@ -133,6 +151,7 @@ class ProductModelService extends GroupModelService
 
     private function initialization()
     {
+        $this->initWarehouse();
         $this->initProperties();
         $this->initImages();
     }
@@ -172,6 +191,7 @@ class ProductModelService extends GroupModelService
             $this->_model->imageUpload = UploadedFile::getInstances($this->_model, 'imageUpload');
         }
 
+        Model::loadMultiple($this->_warehouseProduct, $post);
         Model::loadMultiple($this->_productProperties, $post);
         Model::loadMultiple($this->_images, $post);
 
@@ -191,6 +211,7 @@ class ProductModelService extends GroupModelService
     {
         if ($this->validate($validate)) {
             $this->_model->save($validate);
+            $this->saveWarehouse();
             $this->saveProperties();
             $this->uploadImages();
             $this->processImages();
@@ -308,6 +329,36 @@ class ProductModelService extends GroupModelService
         }
     }
 
+    private function initWarehouse()
+    {
+        $this->_warehouseProduct = $this->_model->getWarehouseProduct()
+            ->indexBy('warehouse_id')
+            ->all();
+
+        $this->_warehouses = Warehouse::find()
+            ->where(['shop_id' => $this->_model->shop_id])
+            ->indexBy('id')
+            ->all();
+
+        foreach (array_diff_key($this->_warehouses, $this->_warehouseProduct) as $warehouse) {
+            $this->_warehouseProduct[$warehouse->id] = new WarehouseProduct([
+                'warehouse_id' => $warehouse->id,
+                'product_id' => $this->_model->id,
+            ]);
+        }
+    }
+
+    private function saveWarehouse()
+    {
+        foreach ($this->_warehouseProduct as $warehouseProduct) {
+            if ($warehouseProduct->value !== '') {
+                $warehouseProduct->save();
+            } else {
+                $warehouseProduct->delete();
+            }
+        }
+    }
+
     protected function getBreadcrumbs(Model $shop = null, $groupId = null, $productId = null, $data = null)
     {
         $breadcrumbs = parent::getBreadcrumbs($shop, $groupId);
@@ -316,7 +367,6 @@ class ProductModelService extends GroupModelService
             'items' => [
                 'id' => $productId,
                 'modelClass' => Product::class,
-                //'enableRoot' => true,
                 'urlOptions' => [
                     'route' => 'backend-product/update',
                     'params' => ['id',],

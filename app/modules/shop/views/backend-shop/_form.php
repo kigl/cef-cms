@@ -46,8 +46,8 @@ use vova07\imperavi\Widget;
         </ul>
         <div class="tab-content well">
             <div class="tab-pane active" id="settings-main">
-                <?= $form->field($data['model'], 'product_weight_measure_id')->dropDownList($data['listMeasure']); ?>
-                <?= $form->field($data['model'], 'product_size_measure_id')->dropDownList($data['listMeasure']); ?>
+                <?= $form->field($data['model'], 'weight_measure_id')->dropDownList($data['listMeasure']); ?>
+                <?= $form->field($data['model'], 'size_packing_measure_id')->dropDownList($data['listMeasure']); ?>
                 <?= $form->field($data['model'], 'group_on_page'); ?>
                 <?= $form->field($data['model'], 'product_on_page'); ?>
             </div>
@@ -73,14 +73,6 @@ use vova07\imperavi\Widget;
                     </div>
                     <div class="col-md-6">
                         <?= $form->field($data['model'], 'group_image_max_height'); ?>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <?= $form->field($data['model'], 'product_image_preview_max_width'); ?>
-                    </div>
-                    <div class="col-md-6">
-                        <?= $form->field($data['model'], 'product_image_preview_max_height'); ?>
                     </div>
                 </div>
                 <div class="row">

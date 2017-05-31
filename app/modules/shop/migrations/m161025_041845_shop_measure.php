@@ -10,10 +10,10 @@ class m161025_041845_shop_measure extends Migration
     {
         $this->createTable($this->_tableName, [
             'id' => $this->primaryKey(),
-            'site_id' => $this->integer(),
-            'name' => $this->string(),
-            'description' => $this->string(),
+            'site_id' => $this->integer()->notNull(),
             'code' => $this->string(),
+            'short_name' => $this->string()->notNull(),
+            'name' => $this->string()->notNull(),
         ]);
 
         $this->createIndex('ix-measure-site_id', $this->_tableName, 'site_id');

@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Measure
+ * Class WarehouseProduct
  * @package app\modules\shop\models\backend
  * @author Kirill Golodaev <kirillgolodaev@gmail.com>
  */
@@ -9,22 +9,14 @@
 namespace app\modules\shop\models\backend;
 
 
-use Yii;
 use yii\helpers\ArrayHelper;
 
-class Measure extends \app\modules\shop\models\Measure
+class WarehouseProduct extends \app\modules\shop\models\WarehouseProduct
 {
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['short_name', 'name'], 'required'],
+            [['warehouse_id', 'product_id', 'value'], 'required'],
         ]);
-    }
-
-    public function beforeSave($insert)
-    {
-        $this->site_id = Yii::$app->site->getId();
-
-        return parent::beforeSave($insert);
     }
 }

@@ -11,7 +11,6 @@ use app\core\behaviors\UserId;
 class Product extends \app\modules\shop\models\Product
 {
     public $imageUpload;
-    public $test;
 
     /**
      * @inheritdoc
@@ -19,13 +18,13 @@ class Product extends \app\modules\shop\models\Product
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['price', 'discount', 'weight', 'length', 'width', 'height', 'sku'], 'default', 'value' => 0],
+            [['shop_id', 'name'], 'required'],
             [
                 'imageUpload',
                 'image',
                 'maxFiles' => Module::MAX_UPLOAD_FILES,
-                'maxWidth' => $this->shop->max_width_image_product,
-                'maxHeight' => $this->shop->max_height_image_product
+                'maxWidth' => $this->shop->product_image_max_width,
+                'maxHeight' => $this->shop->product_image_max_height
             ],
         ]);
     }

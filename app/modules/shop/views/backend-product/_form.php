@@ -9,6 +9,7 @@ use app\modules\backend\widgets\grid\GridView;
 use app\modules\shop\models\backend\Image;
 use app\modules\lists\widgets\DropDownItems;
 use app\core\widgets\DropDownTreeItems;
+use app\modules\shop\Module;
 
 ?>
 
@@ -25,6 +26,7 @@ use app\core\widgets\DropDownTreeItems;
         <li><a href="#modifications" data-toggle="tab"><?= Yii::t('shop', 'Tab modifications'); ?></a></li>
     <?php endif; ?>
 
+    <li><a href="#packing" data-toggle="tab"><?= Yii::t('shop', 'Tab packing'); ?></a></li>
     <li><a href="#seo" data-toggle="tab"><?= Yii::t('app', 'Tab SEO'); ?></a></li>
     <li><a href="#other" data-toggle="tab"><?= Yii::t('app', 'Tab more'); ?></a></li>
 </ul>
@@ -62,21 +64,12 @@ use app\core\widgets\DropDownTreeItems;
         </div>
         <div class="row">
             <div class="col-md-3">
-                <?= $form->field($data['model'], 'price')
-                    ->widget(\kartik\money\MaskMoney::className(), [
-                        'pluginOptions' => [
-                            'prefix' => 'RUR ',
-                        ]
-                    ]); ?>
+                <?= $form->field($data['model'], 'weight')
+                    ->label(Yii::t('app', 'Weight ({data})', ['data' => $data['shop']->weightMeasure->short_name])); ?>
             </div>
             <div class="col-md-3">
-                <?= $form->field($data['model'], 'discount'); ?>
-            </div>
-            <div class="col-md-3">
-                <?= $form->field($data['model'], 'sku'); ?>
-            </div>
-            <div class="col-md-3">
-                <?= $form->field($data['model'], 'weight'); ?>
+                <?= $form->field($data['model'], 'measure_id')
+                    ->dropDownList($data['listMeasure']); ?>
             </div>
         </div>
         <div class="row">
@@ -90,9 +83,13 @@ use app\core\widgets\DropDownTreeItems;
                 <?= $form->field($data['model'], 'height'); ?>
             </div>
         </div>
-
         <?= $form->field($data['model'], 'description')->textarea(); ?>
 
+        <legend><?= Module::t('Warehouses'); ?></legend>
+        <?php foreach ($data['warehouseProduct'] as $warehouseProduct) : ?>
+            <?= $form->field($warehouseProduct, "[$warehouseProduct->warehouse_id]value")
+                ->label($data['warehouses'][$warehouseProduct->warehouse_id]->name); ?>
+        <?php endforeach; ?>
     </div>
 
     <div class="tab-pane" id="content">
@@ -152,6 +149,24 @@ use app\core\widgets\DropDownTreeItems;
         <?php endforeach; ?>
     </div>
 
+    <div class="tab-pane" id="packing">
+        <?= GridView::widget([
+            'buttons' => [
+                'create' => [
+                    'item' => [
+                        'url' => ['backend-packing/create', 'product_id' => $data['model']->id],
+                    ],
+                ],
+            ],
+            'dataProvider' => $data['dataProviderPacking'],
+            'columns' => [
+                'name',
+                'main',
+                'value',
+            ],
+        ]); ?>
+    </div>
+
     <div class="tab-pane" id="modifications">
         <?php if (is_null($data['model']->parent_id) && !$data['model']->isNewRecord) : ?>
             <?= GridView::widget([
@@ -169,7 +184,6 @@ use app\core\widgets\DropDownTreeItems;
                 ],
                 'columns' => [
                     'name',
-                    'price:currency',
                     'id',
                     [
                         'headerOptions' => ['style' => 'width: 70px'],

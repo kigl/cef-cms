@@ -58,7 +58,7 @@ $this->params['toolbar'] = [
             'attribute' => 'name',
             'label' => Yii::t('app', 'Name'),
             'format' => 'raw',
-            'headerOptions' => ['style' => 'width: 45%'],
+            'headerOptions' => ['style' => 'width: 55%'],
             'value' => function ($data) {
                 return array_key_exists('group_id', $data) ?
                     $data['name'] :
@@ -72,12 +72,6 @@ $this->params['toolbar'] = [
             'value' => function ($data) {
                 return Html::checkbox('Active', $data['active'], ['disabled' => 'disabled']);
             }
-        ],
-        [
-            'attribute' => 'price',
-            'label' => Yii::t('app', 'Price'),
-            'format' => 'currency',
-            'headerOptions' => ['style' => 'width: 15%'],
         ],
         [
             'attribute' => 'create_time',

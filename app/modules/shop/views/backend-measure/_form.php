@@ -6,8 +6,10 @@ use app\modules\backend\widgets\ActiveForm;
 
 <?php $form = ActiveForm::begin(); ?>
 
-<?= $form->field($data['model'], 'name'); ?>
-<?= $form->field($data['model'], 'description')->textarea(); ?>
+<?= $form->errorSummary($data['model']); ?>
+
 <?= $form->field($data['model'], 'code'); ?>
+<?= $form->field($data['model'], 'short_name'); ?>
+<?= $form->field($data['model'], 'name'); ?>
 
 <?php ActiveForm::end(); ?>

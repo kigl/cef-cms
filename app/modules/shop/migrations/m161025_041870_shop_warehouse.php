@@ -10,8 +10,8 @@ class m161025_041870_shop_warehouse extends Migration
     {
         $this->createTable($this->_tableName, [
             'id' => $this->primaryKey(),
-            'shop_id' => $this->integer(),
-            'name' => $this->string(),
+            'shop_id' => $this->integer()->notNull(),
+            'name' => $this->string()->notNull(),
             'description' => $this->string(500),
             'country_id' => $this->integer(),
             'region_id' => $this->integer(),

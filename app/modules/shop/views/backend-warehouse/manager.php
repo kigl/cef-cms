@@ -1,26 +1,24 @@
 <?php
-use app\modules\shop\Module;
 use app\modules\backend\widgets\grid\GridView;
+use app\modules\shop\Module;
 
-$message = Module::t('Measure');
+$text = Module::t('Warehouses');
 
-$this->setTitle($message);
-$this->setPageHeader($message);
+$this->setTitle($text);
+$this->setPageHeader($text);
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
 
 echo GridView::widget([
     'buttons' => [
         'create' => [
             'item' => [
-                'url' => ['create'],
+                'url' => ['create', 'shop_id' => $data['shop_id']],
             ],
         ],
     ],
     'dataProvider' => $data['dataProvider'],
     'columns' => [
         'name',
-        'short_name',
-        'code',
         'id',
         [
             'class' => \yii\grid\ActionColumn::className(),

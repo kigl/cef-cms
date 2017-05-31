@@ -21,6 +21,7 @@ class Shop extends \app\modules\shop\models\Shop
     {
         return ArrayHelper::merge(parent::rules(), [
             [['code', 'name'], 'required'],
+            ['code', 'match', 'pattern' => '/^[a-z]+$/'],
             [
                 'code',
                 'unique',

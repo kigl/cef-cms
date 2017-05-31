@@ -14,20 +14,18 @@ use app\modules\users\models\User;
  * @property integer $parent_id
  * @property integer $group_id
  * @property integer $shop_id
- * @property integer $producer_id
+ * @property integer $active
+ * @property integer $sorting
+ * @property string $code
  * @property string $vendor_code
  * @property string $name
  * @property string $description
  * @property string $content
- * @property integer $weight
- * @property integer $sku
- * @property string $price
- * @property integer $discount
- * @property integer $length
- * @property integer $width
- * @property integer $height
- * @property integer $active
- * @property integer $sorting
+ * @property integer $measure_id
+ * @property number $weight
+ * @property number $length
+ * @property number $width
+ * @property number $height
  * @property integer $user_id
  * @property string $alias
  * @property string $meta_title
@@ -53,12 +51,20 @@ class Product extends ActiveRecord
     public function rules()
     {
         return [
-            [['shop_id', 'name'], 'required'],
-            [['shop_id', 'group_id', 'producer_id', 'sku', 'active', 'sorting', 'user_id'], 'integer'],
+            [['shop_id', 'group_id', 'active', 'sorting', 'measure_id', 'user_id'], 'integer'],
             [['content'], 'string'],
-            [['weight', 'price', 'discount', 'length', 'width', 'height'], 'number'],
+            [['weight', 'length', 'width', 'height'], 'number'],
             [
-                ['vendor_code', 'name', 'description', 'alias', 'meta_title', 'meta_description', 'meta_keyword'],
+                [
+                    'code',
+                    'vendor_code',
+                    'name',
+                    'description',
+                    'alias',
+                    'meta_title',
+                    'meta_description',
+                    'meta_keyword'
+                ],
                 'string',
                 'max' => 255
             ],
@@ -75,20 +81,18 @@ class Product extends ActiveRecord
             'parent_id' => Yii::t('shop', 'Product parent id'),
             'group_id' => Yii::t('shop', 'Group id'),
             'shop_id' => Yii::t('shop', 'Shop ID'),
-            'producer_id' => Yii::t('shop', 'Producer ID'),
+            'active' => Yii::t('app', 'Active'),
+            'sorting' => Yii::t('app', 'Sorting'),
+            'code' => Yii::t('app', 'Code'),
             'vendor_code' => Yii::t('shop', 'Vendor code'),
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
+            'measure_id' => Yii::t('shop', 'Measure ID'),
             'weight' => Yii::t('app', 'Weight'),
-            'sku' => Yii::t('app', 'Depot'),
-            'price' => Yii::t('app', 'Price'),
-            'discount' => Yii::t('shop', 'Discount'),
             'length' => Yii::t('shop', 'Length'),
             'width' => Yii::t('shop', 'Width'),
             'height' => Yii::t('shop', 'Height'),
-            'active' => Yii::t('app', 'Active'),
-            'sorting' => Yii::t('app', 'Sorting'),
             'user_id' => Yii::t('shop', 'User id'),
             'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta title'),
@@ -145,5 +149,20 @@ class Product extends ActiveRecord
     {
         return $this->hasOne(Image::className(), ['product_id' => 'id'])
             ->where(['status' => Image::STATUS_MAIN]);
+    }
+
+    public function getWarehouseProduct()
+    {
+        return $this->hasMany(WarehouseProduct::className(), ['product_id' => 'id']);
+    }
+
+    public function getMeasure()
+    {
+        return $this->hasOne(Measure::className(), ['id' => 'measure_id']);
+    }
+
+    public function getPacking()
+    {
+        return $this->hasMany(Packing::className(), ['product_id' => 'id']);
     }
 }

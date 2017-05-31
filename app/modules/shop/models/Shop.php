@@ -17,8 +17,8 @@ use app\core\behaviors\UserId;
  * @property string $description
  * @property string $content
  * @property string $image
- * @property integer $product_weight_measure_id
- * @property integer $product_size_measure_id
+ * @property integer $weight_measure_id
+ * @property integer $size_packing_measure_id
  * @property integer $group_on_page
  * @property integer $product_on_page
  * @property string $template
@@ -28,8 +28,6 @@ use app\core\behaviors\UserId;
  * @property integer $group_image_preview_max_height
  * @property integer $group_image_max_width
  * @property integer $group_image_max_height
- * @property integer $product_image_preview_max_width
- * @property integer $product_image_preview_max_height
  * @property integer $product_image_max_width
  * @property integer $product_image_max_height
  * @property integer $group_sorting_type
@@ -45,10 +43,10 @@ use app\core\behaviors\UserId;
  * @property string $create_time
  * @property string $update_time
  *
- * @property ShopMeasure $productSizeMeasure
- * @property ShopMeasure $productWeightMeasure
- * @property ShopPrice[] $shopPrices
- * @property ShopWarehouse[] $shopWarehouses
+ * @property Measure $productSizeMeasure
+ * @property Measure $productWeightMeasure
+ * @property Price[] $shopPrices
+ * @property Warehouse[] $shopWarehouses
  */
 class Shop extends ActiveRecord
 {
@@ -69,16 +67,14 @@ class Shop extends ActiveRecord
             [
                 [
                     'site_id',
-                    'product_weight_measure_id',
-                    'product_size_measure_id',
+                    'weight_measure_id',
+                    'size_packing_measure_id',
                     'group_on_page',
                     'product_on_page',
                     'group_image_preview_max_width',
                     'group_image_preview_max_height',
                     'group_image_max_width',
                     'group_image_max_height',
-                    'product_image_preview_max_width',
-                    'product_image_preview_max_height',
                     'product_image_max_width',
                     'product_image_max_height',
                     'group_sorting_type',
@@ -123,7 +119,7 @@ class Shop extends ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
             'image' => Yii::t('app', 'Image'),
-            'product_weight_measure_id' => Yii::t('shop', 'Product Weight Measure ID'),
+            'weight_measure_id' => Yii::t('shop', 'Product Weight Measure ID'),
             'product_size_measure_id' => Yii::t('shop', 'Product Size Measure ID'),
             'group_on_page' => Yii::t('shop', 'Group On Page'),
             'product_on_page' => Yii::t('shop', 'Product On Page'),
@@ -134,8 +130,6 @@ class Shop extends ActiveRecord
             'group_image_preview_max_height' => Yii::t('shop', 'Group Image Preview Max Height'),
             'group_image_max_width' => Yii::t('shop', 'Group Image Max Width'),
             'group_image_max_height' => Yii::t('shop', 'Group Image Max Height'),
-            'product_image_preview_max_width' => Yii::t('shop', 'Product Image Preview Max Width'),
-            'product_image_preview_max_height' => Yii::t('shop', 'Product Image Preview Max Height'),
             'product_image_max_width' => Yii::t('shop', 'Product Image Max Width'),
             'product_image_max_height' => Yii::t('shop', 'Product Image Max Height'),
             'group_sorting_type' => Yii::t('shop', 'Group Sorting Type'),
@@ -175,5 +169,15 @@ class Shop extends ActiveRecord
     public function getWarehouses()
     {
         return $this->hasMany(Warehouse::className(), ['shop_id' => 'id']);
+    }
+
+    public function getWeightMeasure()
+    {
+        return $this->hasOne(Measure::className(), ['id' => 'weight_measure_id']);
+    }
+
+    public function getSizePackingMeasure()
+    {
+        return $this->hasOne(Measure::className(), ['id' => 'size_packing_measure_id']);
     }
 }

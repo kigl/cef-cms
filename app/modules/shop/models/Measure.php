@@ -11,8 +11,8 @@ use app\modules\sites\models\backend\Site;
  *
  * @property integer $id
  * @property integer $site_id
+ * @property string $short_name
  * @property string $name
- * @property string $description
  * @property string $code
  *
  * @property Shop[] $shops
@@ -36,7 +36,7 @@ class Measure extends \yii\db\ActiveRecord
     {
         return [
             [['site_id'], 'integer'],
-            [['name', 'description', 'code'], 'string', 'max' => 255],
+            [['name', 'short_name', 'code'], 'string', 'max' => 255],
         ];
     }
 
@@ -48,8 +48,8 @@ class Measure extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'site_id' => Yii::t('app', 'Site ID'),
+            'short_name' => Yii::t('app', 'Short name'),
             'name' => Yii::t('app', 'Name'),
-            'description' => Yii::t('app', 'Description'),
             'code' => Yii::t('app', 'Code'),
         ];
     }
