@@ -1,31 +1,25 @@
 <?php
-/**
- * Class BackendProducerGroupController
- * @package app\modules\shop\controllers
- * @author Kirill Golodaev <kirillgolodaev@gmail.com>
- */
-
 
 namespace app\modules\shop\controllers;
 
 
 use Yii;
-use app\modules\shop\service\backend\ProducerGroupModelService;
 use app\modules\backend\controllers\Controller;
+use app\modules\shop\service\backend\ProductGroupModelService;
 
-class BackendProducerGroupController extends Controller
+class BackendProductGroupController extends Controller
 {
-    protected $_modelService;
+    private $_modelService;
 
     public function init()
     {
         parent::init();
 
         $this->_modelService = Yii::createObject([
-            'class' => ProducerGroupModelService::className(),
+            'class' => ProductGroupModelService::className(),
             'data' => [
+                'post' => Yii::$app->request->post(),
                 'get' => Yii::$app->request->getQueryParams(),
-                'post' => YiI::$app->request->post(),
             ],
         ]);
     }
@@ -40,10 +34,11 @@ class BackendProducerGroupController extends Controller
     public function actionCreate($shop_id, $parent_id = null)
     {
         if ($this->_modelService->create()) {
+
             return $this->redirect([
                 'manager',
-                'shop_id' => $this->_modelService->data['model']->shop_id,
-                'id' => $this->_modelService->data['model']->parent_id
+                'id' => $this->_modelService->getData('model')->parent_id,
+                'shop_id' => $this->_modelService->getData('model')->shop_id,
             ]);
         }
 
@@ -53,10 +48,11 @@ class BackendProducerGroupController extends Controller
     public function actionUpdate($id)
     {
         if ($this->_modelService->update()) {
+
             return $this->redirect([
                 'manager',
-                'shop_id' => $this->_modelService->data['model']->shop_id,
-                'id' => $this->_modelService->data['model']->parent_id
+                'id' => $this->_modelService->getData('model')->parent_id,
+                'shop_id' => $this->_modelService->getData('model')->shop_id,
             ]);
         }
 
@@ -65,6 +61,25 @@ class BackendProducerGroupController extends Controller
 
     public function actionDelete($id)
     {
+        if ($this->_modelService->delete($id)) {
 
+            return $this->redirect([
+                'manager',
+                'id' => $this->_modelService->getData('model')->parent_id,
+                'shop_id' => $this->_modelService->getData('model')->shop_id,
+            ]);
+        }
+
+        return false;
+    }
+
+    public function actionSelectionDelete()
+    {
+        if ($keys = Yii::$app->request->post('selection')) {
+
+            foreach ($keys as $key) {
+                $this->_modelService->delete($key);
+            }
+        }
     }
 }

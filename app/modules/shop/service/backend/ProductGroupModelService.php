@@ -18,8 +18,10 @@ use app\modules\shop\models\backend\Product;
 use app\modules\shop\models\backend\SearchModel;
 use app\modules\shop\models\backend\ProductGroup;
 
-class GroupModelService extends ShopModelService
+class ProductGroupModelService extends ShopModelService
 {
+    private $_model;
+
     public function manager()
     {
         $search = new SearchModel();
@@ -76,74 +78,78 @@ class GroupModelService extends ShopModelService
             throw new HttpException(500, 'Not shop model');
         }
 
-        $model = new ProductGroup([
+        $this->_model = new ProductGroup([
             'parent_id' => $this->getData('get', 'parent_id'),
             'shop_id' => $shop->id,
         ]);
 
         $this->setData([
-            'model' => $model,
+            'model' => $this->_model,
             'shop_id' => $shop->id,
             'breadcrumbs' => $this->getBreadcrumbs($shop, $this->getData('get', 'parent_id')),
         ]);
 
-        if ($model->load($this->getData('post'))) {
-
-            return $model->save();
-        }
-
-        return false;
+        return $this->save();
     }
 
     public function update()
     {
-        $model = ProductGroup::find()
+        $this->_model = ProductGroup::find()
             ->with('shop')
             ->where(['id' => $this->getData('get', 'id')])
             ->one();
 
-        if (!$model || !$model->shop) {
+        if (!$this->_model || !$this->_model->shop) {
             throw new HttpException(500, 'Not model');
         }
 
         $this->setData([
-            'model' => $model,
-            'shop_id' => $model->shop->id,
-            'breadcrumbs' => $this->getBreadcrumbs($model->shop, $this->getData('get', 'id'), $model->name),
+            'model' => $this->_model,
+            'shop_id' => $this->_model->shop->id,
+            'breadcrumbs' => $this->getBreadcrumbs($this->_model->shop, $this->getData('get', 'id'), $this->_model->name),
         ]);
 
-        if ($model->load($this->getData('post'))) {
-
-            return $model->save();
-        }
-
-        return false;
+        return $this->save();
     }
 
     public function delete($id)
     {
-        $model = ProductGroup::find()
+        $this->_model = ProductGroup::find()
             ->where([ProductGroup::tableName() . '.id' => $id])
             ->with(['products', 'subGroups'])
             ->one();
 
-        if ($model && $model->delete()) {
+        if ($this->_model && $this->_model->delete()) {
 
-            foreach ($model->products as $product) {
+            foreach ($this->_model->products as $product) {
                 Yii::createObject(ProductModelService::class)
                     ->delete($product->id);
             }
 
             // рекурсивно удаляем вложенные группы
-            foreach ($model->subGroups as $group) {
+            foreach ($this->_model->subGroups as $group) {
                 $this->delete($group->id);
             }
 
             $this->setData([
-                'model' => $model,
+                'model' => $this->_model,
             ]);
 
             return true;
+        }
+
+        return false;
+    }
+
+    private function load()
+    {
+        return $this->_model->load($this->getData('post'));
+    }
+
+    private function save($validate = true)
+    {
+        if ($this->load()) {
+            return $this->_model->save($validate);
         }
 
         return false;
@@ -159,7 +165,7 @@ class GroupModelService extends ShopModelService
                 'modelClass' => ProductGroup::class,
                 //'enableRoot' => true,
                 'urlOptions' => [
-                    'route' => 'backend-group/manager',
+                    'route' => 'backend-product-group/manager',
                     'params' => ['id', 'shop_id'],
                 ],
             ],

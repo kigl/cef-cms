@@ -10,6 +10,7 @@ use app\core\db\ActiveRecord;
  * This is the model class for table "mn_shop_property".
  *
  * @property integer $id
+ * @property integer $shop_id
  * @property string $name
  * @property integer $type
  * @property integer $required
@@ -36,9 +37,8 @@ class Property extends ActiveRecord
     public function rules()
     {
         return [
-            ['name', 'required'],
             [['name'], 'string', 'max' => 255],
-            [['type', 'required', 'list_id'], 'integer'],
+            [['shop_id', 'type', 'required', 'list_id'], 'integer'],
         ];
     }
 
@@ -56,6 +56,11 @@ class Property extends ActiveRecord
             'sorting' => Yii::t('app', 'Sorting'),
             'required' => Yii::t('app', 'Required'),
         ];
+    }
+
+    public function getShop()
+    {
+        return $this->hasOne(Shop::className(), ['id' => 'shop_id']);
     }
 
     public function getListType()

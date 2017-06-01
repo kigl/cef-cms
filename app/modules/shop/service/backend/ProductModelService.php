@@ -24,12 +24,12 @@ use app\modules\shop\models\backend\Image;
 use app\modules\shop\models\backend\Property;
 use app\modules\shop\models\backend\PropertyProduct;
 
-class ProductModelService extends GroupModelService
+class ProductModelService extends ProductGroupModelService
 {
     /**
      * @var Product
      */
-    protected $_model;
+    private $_model;
     /**
      * @var array
      */

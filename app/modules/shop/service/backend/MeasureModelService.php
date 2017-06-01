@@ -17,6 +17,8 @@ use app\modules\shop\models\backend\Measure;
 
 class MeasureModelService extends ShopModelService
 {
+    private $_model;
+
     public function manager()
     {
         $dataProvider = new ActiveDataProvider([
@@ -32,33 +34,37 @@ class MeasureModelService extends ShopModelService
 
     public function create()
     {
-        $model = new Measure();
+        $this->_model = new Measure();
 
         $this->setData([
-            'model' => $model,
+            'model' => $this->_model,
             'breadcrumbs' => $this->getBreadcrumbs(),
         ]);
 
-        if ($model->load($this->getData('post'))) {
-
-            return $model->save();
-        }
-
-        return false;
+        return $this->save();
     }
 
     public function update()
     {
-        $model = Measure::findOne($this->getData('get', 'id'));
+        $this->_model = Measure::findOne($this->getData('get', 'id'));
 
         $this->setData([
-            'model' => $model,
-            'breadcrumbs' => $this->getBreadcrumbs(null, $model->name),
+            'model' => $this->_model,
+            'breadcrumbs' => $this->getBreadcrumbs(null, $this->_model->name),
         ]);
 
-        if ($model->load($this->getData('post'))) {
+        return $this->save();
+    }
 
-            return $model->save();
+    private function load()
+    {
+        return $this->_model->load($this->getData('post'));
+    }
+
+    private function save()
+    {
+        if ($this->load()) {
+            return $this->_model->save();
         }
 
         return false;
@@ -68,7 +74,7 @@ class MeasureModelService extends ShopModelService
     {
         $breadcrumbs = parent::getBreadcrumbs();
 
-        $breadcrumbs[] = ['label' => Module::t('Measure'), 'url' => ['manager']];
+        $breadcrumbs[] = ['label' => Module::t('Measures'), 'url' => ['manager']];
 
         if ($data) {
             $breadcrumbs[] = ['label' => $data];

@@ -3,8 +3,8 @@
 namespace app\modules\shop\models\backend;
 
 
-use app\core\behaviors\GenerateAlias;
 use yii\helpers\ArrayHelper;
+use app\core\behaviors\GenerateAlias;
 
 class ProductGroup extends \app\modules\shop\models\ProductGroup
 {

@@ -13,8 +13,10 @@ use yii\web\HttpException;
 use app\modules\shop\models\backend\Packing;
 use app\modules\shop\models\backend\Product;
 
-class PackingModelService extends GroupModelService
+class PackingModelService extends ProductModelService
 {
+    private $_model;
+
     public function create()
     {
         $product = Product::findOne($this->data['get']['product_id']);
@@ -23,41 +25,51 @@ class PackingModelService extends GroupModelService
             throw new HttpException(500);
         }
 
-        $model = new Packing([
+        $this->_model = new Packing([
             'product_id' => $product->id,
         ]);
 
         $this->setData([
-            'model' => $model,
+            'model' => $this->_model,
             'product_id' => $product->id,
             'measureList' => $this->getMeasureList(),
-            'breadcrumbs' => $this->getBreadcrumbs($product->shop, $product->group_id),
+            'breadcrumbs' => $this->getBreadcrumbs($product->shop, $product->group_id, $product->id),
         ]);
 
-        if ($model->load($this->getData('post'))) {
-            return $model->save();
-        }
-
-        return false;
+        return $this->save();
     }
 
     public function update()
     {
-        $model = Packing::findOne($this->data['get']['id']);
+        $this->_model = Packing::findOne($this->data['get']['id']);
 
-        if (!$model) {
+        if (!$this->_model) {
             throw new HttpException(500);
         }
 
         $this->setData([
-            'model' => $model,
-            'product_id' => $model->product->id,
+            'model' => $this->_model,
+            'product_id' => $this->_model->product->id,
             'measureList' => $this->getMeasureList(),
-            'breadcrumbs' => $this->getBreadcrumbs($model->product->shop, $model->name),
+            'breadcrumbs' => $this->getBreadcrumbs(
+                $this->_model->product->shop,
+                $this->_model->product->group_id,
+                $this->_model->product->id,
+                $this->_model->name),
         ]);
 
-        if ($model->load($this->getData('post'))) {
-            return $model->save();
+        return $this->save();
+    }
+
+    private function load()
+    {
+        return $this->_model->load($this->getData('post'));
+    }
+
+    private function save()
+    {
+        if ($this->load()) {
+            return $this->_model->save();
         }
 
         return false;

@@ -18,6 +18,8 @@ use app\modules\shop\models\backend\Warehouse;
 
 class WarehouseModelService extends ShopModelService
 {
+    private $_model;
+
     public function manager()
     {
         $shop = Shop::findOne($this->data['get']['shop_id']);
@@ -46,18 +48,18 @@ class WarehouseModelService extends ShopModelService
             throw new HttpException(500);
         }
 
-        $model = new Warehouse([
+        $this->_model = new Warehouse([
             'shop_id' => $shop->id,
         ]);
 
         $this->setData([
-            'model' => $model,
+            'model' => $this->_model,
             'breadcrumbs' => $this->getBreadcrumbs($shop),
             'shop_id' => $shop->id,
         ]);
 
-        if ($model->load($this->getData('post'))) {
-            return $model->save();
+        if ($this->_model->load($this->getData('post'))) {
+            return $this->_model->save();
         }
 
         return false;
@@ -65,7 +67,7 @@ class WarehouseModelService extends ShopModelService
 
     public function update()
     {
-        $model = Warehouse::find()
+        $this->_model = Warehouse::find()
             ->where(['id' => $this->data['get']['id']])
             ->one();
 
@@ -74,13 +76,27 @@ class WarehouseModelService extends ShopModelService
         }
 
         $this->setData([
-            'model' => $model,
-            'breadcrumbs' => $this->getBreadcrumbs($model->shop, $model->name),
-            'shop_id' => $model->shop->id
+            'model' => $this->_model,
+            'breadcrumbs' => $this->getBreadcrumbs($this->_model->shop, $this->_model->name),
+            'shop_id' => $this->_model->shop->id
         ]);
 
-        if ($model->load($this->getData('post'))) {
-            return $model->shop;
+        if ($this->_model->load($this->getData('post'))) {
+            return $this->_model->shop;
+        }
+
+        return false;
+    }
+
+    private function load()
+    {
+        return $this->_model->load($this->getData('post'));
+    }
+
+    private function save($validate = true)
+    {
+        if ($this->load()) {
+            return $this->_model->save($validate);
         }
 
         return false;

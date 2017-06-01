@@ -42,12 +42,14 @@ class ProducerGroupModelService extends ShopModelService
             ->all();
 
         $dataProvider = new ArrayDataProvider([
-            'allModels' => array_merge($groups, $producers)
+            'allModels' => array_merge($groups, $producers),
+            'sort' => [
+                'attributes' => ['name', 'sorting', 'id'],
+            ],
         ]);
 
         $this->setData([
             'dataProvider' => $dataProvider,
-            'shop' => $shop,
             'breadcrumbs' => $this->getBreadcrumbs($shop, $this->getData('get', 'id')),
             'shop_id' => $shop->id,
             'id' => $this->getData('get', 'id'),
@@ -69,9 +71,7 @@ class ProducerGroupModelService extends ShopModelService
 
         $this->setData([
             'model' => $this->_model,
-            'shop' => $shop,
             'breadcrumbs' => $this->getBreadcrumbs($shop, $this->_model->parent_id),
-            'shop_id' => $shop->id,
         ]);
 
         return $this->save();
@@ -87,9 +87,7 @@ class ProducerGroupModelService extends ShopModelService
 
         $this->setData([
             'model' => $this->_model,
-            'shop' => $this->_model->shop,
             'breadcrumbs' => $this->getBreadcrumbs($this->_model->shop, $this->_model->id, $this->_model->name),
-            'shop_id' => $this->_model->shop_id,
         ]);
 
         return $this->save();

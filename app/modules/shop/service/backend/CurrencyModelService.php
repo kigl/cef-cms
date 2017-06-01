@@ -14,9 +14,12 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\web\HttpException;
 use app\modules\shop\models\backend\Currency;
+use app\modules\shop\Module;
 
 class CurrencyModelService extends ShopModelService
 {
+    private $_model;
+
     public function manager()
     {
         $dataProvider = new ActiveDataProvider([
@@ -32,35 +35,41 @@ class CurrencyModelService extends ShopModelService
 
     public function create()
     {
-        $model = new Currency();
+        $this->_model = new Currency();
 
         $this->setData([
-            'model' => $model,
+            'model' => $this->_model,
             'breadcrumbs' => $this->getBreadcrumbs(),
         ]);
 
-        if ($model->load($this->getData('post'))) {
-            return $model->save();
-        }
-
-        return false;
+        return $this->save();
     }
 
     public function update()
     {
-        $model = Currency::findOne($this->data['get']['id']);
+        $this->_model = Currency::findOne($this->data['get']['id']);
 
-        if (!$model) {
+        if (!$this->_model) {
             throw new HttpException(500);
         }
 
         $this->setData([
-            'model' => $model,
-            'breadcrumbs' => $this->getBreadcrumbs(null, $model->name),
+            'model' => $this->_model,
+            'breadcrumbs' => $this->getBreadcrumbs(null, $this->_model->name),
         ]);
 
-        if ($model->load($this->getData('post'))) {
-            return $model->save();
+        return $this->save();
+    }
+
+    private function load()
+    {
+        return $this->_model->load($this->getData('post'));
+    }
+
+    private function save()
+    {
+        if ($this->load()) {
+            return $this->_model->save();
         }
 
         return false;
@@ -70,7 +79,7 @@ class CurrencyModelService extends ShopModelService
     {
         $items = parent::getBreadcrumbs($shop, null);
 
-        $items[] = ['label' => Yii::t('app', 'Currency'), 'url' => ['manager']];
+        $items[] = ['label' => Module::t('Currencies'), 'url' => ['manager']];
 
         if ($data) {
             $items[] = ['label' => $data];

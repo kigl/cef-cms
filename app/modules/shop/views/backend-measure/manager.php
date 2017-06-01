@@ -2,7 +2,7 @@
 use app\modules\shop\Module;
 use app\modules\backend\widgets\grid\GridView;
 
-$message = Module::t('Measure');
+$message = Module::t('Measures');
 
 $this->setTitle($message);
 $this->setPageHeader($message);

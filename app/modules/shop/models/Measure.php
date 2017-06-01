@@ -4,6 +4,7 @@ namespace app\modules\shop\models;
 
 
 use Yii;
+use app\core\db\ActiveRecord;
 use app\modules\sites\models\backend\Site;
 
 /**
@@ -19,7 +20,7 @@ use app\modules\sites\models\backend\Site;
  * @property Shop[] $shops0
  * @property Site $site
  */
-class Measure extends \yii\db\ActiveRecord
+class Measure extends ActiveRecord
 {
     /**
      * @inheritdoc

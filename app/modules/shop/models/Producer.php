@@ -41,7 +41,7 @@ use app\core\behaviors\file\ActionImage;
  *
  * @property Product[] $shopProducts
  */
-class Producer extends \yii\db\ActiveRecord
+class Producer extends \app\core\db\ActiveRecord
 {
     /**
      * @inheritdoc

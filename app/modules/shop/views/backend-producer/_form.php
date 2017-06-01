@@ -1,7 +1,10 @@
 <?php
-use app\modules\backend\widgets\ActiveForm;
-use app\modules\backend\widgets\fileInput\Widget as FileInput;
+use yii\widgets\DetailView;
 use vova07\imperavi\Widget as Imperavi;
+use app\modules\backend\widgets\ActiveForm;
+use app\core\widgets\DropDownTreeItems;
+use app\modules\backend\widgets\fileInput\Widget as FileInput;
+use app\modules\shop\models\ProducerGroup;
 
 ?>
 
@@ -12,6 +15,7 @@ use vova07\imperavi\Widget as Imperavi;
     <li><a href="#contactDetails" data-toggle="tab"><?= Yii::t('app', 'Contact details'); ?></a></li>
     <li><a href="#bankDetails" data-toggle="tab"><?= Yii::t('app', 'Bank details'); ?></a></li>
     <li><a href="#seo" data-toggle="tab"><?= Yii::t('app', 'SEO'); ?></a></li>
+    <li><a href="#other" data-toggle="tab"><?= Yii::t('app', 'Other'); ?></a></li>
 </ul>
 
 <?php $form = ActiveForm::begin([
@@ -23,7 +27,11 @@ use vova07\imperavi\Widget as Imperavi;
 <div class="tab-content">
     <div class="tab-pane active" id="main">
         <?= $form->field($data['model'], 'name'); ?>
-        <?= $form->field($data['model'], 'group_id'); ?>
+        <?= $form->field($data['model'], 'group_id')
+            ->widget(DropDownTreeItems::className(), [
+                'modelClass' => ProducerGroup::className(),
+            ])
+            ->label(Yii::t('app', 'Group')); ?>
         <?= $form->field($data['model'], 'sorting'); ?>
     </div>
     <div class="tab-pane" id="description">
@@ -61,9 +69,18 @@ use vova07\imperavi\Widget as Imperavi;
         <?= $form->field($data['model'], 'bank_address'); ?>
     </div>
     <div class="tab-pane" id="seo">
+        <?= $form->field($data['model'], 'alias'); ?>
         <?= $form->field($data['model'], 'meta_title'); ?>
         <?= $form->field($data['model'], 'meta_description')->textarea(); ?>
         <?= $form->field($data['model'], 'meta_keyword'); ?>
+    </div>
+    <div class="tab-pane" id="other">
+        <?= DetailView::widget([
+            'model' => $data['model'],
+            'attributes' => [
+                'id'
+            ],
+        ]); ?>
     </div>
 </div>
 

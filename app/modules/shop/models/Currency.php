@@ -2,7 +2,9 @@
 
 namespace app\modules\shop\models;
 
+
 use Yii;
+use app\core\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%shop_currency}}".
@@ -15,7 +17,7 @@ use Yii;
  *
  * @property Shop[] $shops
  */
-class Currency extends \yii\db\ActiveRecord
+class Currency extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -43,10 +45,10 @@ class Currency extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'short_name' => Yii::t('app', 'Short Name'),
+            'short_name' => Yii::t('app', 'Short name'),
             'name' => Yii::t('app', 'Name'),
             'code' => Yii::t('app', 'Code'),
-            'exchange_rate' => Yii::t('app', 'Exchange Rate'),
+            'exchange_rate' => Yii::t('shop', 'Exchange rate'),
         ];
     }
 

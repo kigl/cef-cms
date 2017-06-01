@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 use app\modules\backend\widgets\grid\GridView;
 use app\modules\shop\Module;
 
@@ -16,14 +17,14 @@ echo GridView::widget([
                 'url' => [
                     'create',
                     'shop_id' => $data['shop_id'],
-                    'parent_id' => isset($data['id']) ? $data['id'] : null
+                    'parent_id' => $data['id']
                 ]
             ],
             'item' => [
                 'url' => [
                     'backend-producer/create',
                     'shop_id' => $data['shop_id'],
-                    'group_id' => isset($data['id']) ? $data['id'] : null
+                    'group_id' => $data['id']
                 ],
             ],
         ],
@@ -32,6 +33,7 @@ echo GridView::widget([
     'columns' => [
         [
             'attribute' => 'name',
+            'label' => Yii::t('app', 'Name'),
             'format' => 'raw',
             'value' => function ($model) use ($data) {
                 return array_key_exists('group_id', $model) ?
@@ -39,10 +41,22 @@ echo GridView::widget([
                     Html::a($model['name'], ['manager', 'shop_id' => $data['shop_id'], 'id' => $model['id']]);
             }
         ],
-        'id',
+        [
+            'attribute' => 'sorting',
+            'label' => Yii::t('app', 'Sorting'),
+        ],
+        [
+            'attribute' => 'id',
+            'label' => Yii::t('app', 'ID'),
+        ],
         [
             'class' => \yii\grid\ActionColumn::className(),
             'template' => '{update} {delete}',
+            'urlCreator' => function ($action, $model, $key, $index) {
+                return  array_key_exists('group_id', $model) ?
+                    Url::to(["backend-producer/" . $action, 'id' => $model['id']]) :
+                    Url::to([$action, 'id' => $model['id']]);
+            }
         ],
     ],
 ]);

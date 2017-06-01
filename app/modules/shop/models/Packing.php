@@ -22,7 +22,7 @@ use Yii;
  * @property Packing[] $packings
  * @property Product $product
  */
-class Packing extends \yii\db\ActiveRecord
+class Packing extends \app\core\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -68,14 +68,6 @@ class Packing extends \yii\db\ActiveRecord
     public function getMeasure()
     {
         return $this->hasOne(Measure::className(), ['id' => 'measure_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getParent()
-    {
-        return $this->hasOne(Packing::className(), ['id' => 'parent_id']);
     }
 
     /**

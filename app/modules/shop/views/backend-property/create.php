@@ -1,11 +1,10 @@
 <?php
 use app\modules\shop\Module;
 
-$this->setTitle(Module::t('Create product property'));
-$this->setPageHeader(Module::t('Create product property'));
-$this->params['breadcrumbs'] = [
-    ['label' => Module::t('Products'), 'url' => ['backend-group/manager']],
-    ['label' => Module::t('Product properties')],
-];
+$text = Module::t('Create product property');
 
-echo $this->render('_form', ['model' => $model]);?>
+$this->setTitle($text);
+$this->setPageHeader(Module::t('Create product property'));
+$this->params['breadcrumbs'] = $data['breadcrumbs'];
+
+echo $this->render('_form', ['data' => $data]);

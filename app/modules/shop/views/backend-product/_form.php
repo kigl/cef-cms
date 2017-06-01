@@ -159,21 +159,28 @@ use app\modules\shop\Module;
     </div>
 
     <div class="tab-pane" id="packing">
-        <?= GridView::widget([
-            'buttons' => [
-                'create' => [
-                    'item' => [
-                        'url' => ['backend-packing/create', 'product_id' => $data['model']->id],
+        <?php if (!$data['model']->isNewRecord) {
+            echo GridView::widget([
+                'buttons' => [
+                    'create' => [
+                        'item' => [
+                            'url' => ['backend-packing/create', 'product_id' => $data['model']->id],
+                        ],
                     ],
                 ],
-            ],
-            'dataProvider' => $data['dataProviderPacking'],
-            'columns' => [
-                'name',
-                'main',
-                'value',
-            ],
-        ]); ?>
+                'dataProvider' => $data['dataProviderPacking'],
+                'columns' => [
+                    'name',
+                    'main',
+                    'value',
+                    [
+                        'class' => \yii\grid\ActionColumn::className(),
+                        'template' => '{update} {delete}',
+                        'controller' => 'backend-packing'
+                    ],
+                ],
+            ]);
+        } ?>
     </div>
 
     <div class="tab-pane" id="modifications">

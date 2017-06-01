@@ -23,6 +23,7 @@ use app\modules\shop\models\backend\Currency;
 
 class ShopModelService extends \app\core\service\ModelService
 {
+    private $_model;
 
     use Breadcrumbs;
 
@@ -43,68 +44,72 @@ class ShopModelService extends \app\core\service\ModelService
 
     public function create()
     {
-        $model = new Shop();
+        $this->_model = new Shop();
 
         $this->setData([
-            'model' => $model,
+            'model' => $this->_model,
             'measureList' => $this->getMeasureList(),
             'currencyList' => $this->getCurrencyList(),
             'breadcrumbs' => $this->getBreadcrumbs(),
         ]);
 
-        if ($model->load($this->getData('post'))) {
-
-            return $model->save();
-        }
-
-        return false;
+        return $this->save();
     }
 
     public function update()
     {
-        $model = Shop::findOne($this->getData('get', 'id'));
+        $this->_model = Shop::findOne($this->getData('get', 'id'));
 
         $this->setData([
-            'model' => $model,
+            'model' => $this->_model,
             'measureList' => $this->getMeasureList(),
             'currencyList' => $this->getCurrencyList(),
             'breadcrumbs' => $this->getBreadcrumbs(),
         ]);
 
-        if ($model->load($this->getData('post'))) {
+        return $this->save();
+    }
 
-            return $model->save();
+    public function delete($id)
+    {
+        $this->_model = Shop::findOne($id);
+
+        if ($this->_model->delete()) {
+            $products = Product::find()
+                ->where(['shop_id' => $this->_model->id])
+                ->andWhere(['parent_id' => null])
+                ->all();
+
+            foreach ($products as $product) {
+                Yii::createObject(ProductModelServiceProduct::className())
+                    ->delete($product->id);
+            }
+
+            $groups = ProductGroup::find()
+                ->where(['shop_id' => $this->_model->id])
+                ->andWhere(['parent_id' => null])
+                ->all();
+
+            foreach ($groups as $group) {
+                Yii::createObject(ProductGroupModelService::className())
+                    ->delete($group->id);
+            }
+
+            return true;
         }
 
         return false;
     }
 
-    public function delete($id)
+    private function load()
     {
-        $model = Shop::findOne($id);
+        return $this->_model->load($this->getData('post'));
+    }
 
-        if ($model->delete()) {
-            $products = Product::find()
-                ->where(['shop_id' => $model->id])
-                ->andWhere(['parent_id' => null])
-                ->all();
-
-            foreach ($products as $product) {
-                Yii::createObject(ProductModelService::className())
-                    ->delete($product->id);
-            }
-
-            $groups = ProductGroup::find()
-                ->where(['shop_id' => $model->id])
-                ->andWhere(['parent_id' => null])
-                ->all();
-
-            foreach ($groups as $group) {
-                Yii::createObject(GroupModelService::className())
-                    ->delete($group->id);
-            }
-
-            return true;
+    private function save($validate = true)
+    {
+        if ($this->load()) {
+            return $this->_model->save($validate);
         }
 
         return false;
@@ -117,7 +122,7 @@ class ShopModelService extends \app\core\service\ModelService
         $breadcrumbs[] = ['label' => Module::t('Shops'), 'url' => ['backend-shop/manager']];
 
         if ($shop) {
-            $breadcrumbs[] = ['label' => $shop->name, 'url' => ['backend-group/manager', 'shop_id' => $shop->id]];
+            $breadcrumbs[] = ['label' => $shop->name, 'url' => ['backend-product-group/manager', 'shop_id' => $shop->id]];
         }
 
         if ($data) {

@@ -6,20 +6,20 @@ use app\modules\lists\widgets\DropDownLists;
 
 <?php $form = ActiveForm::begin(); ?>
 
-<?= $form->errorSummary($model); ?>
+<?= $form->errorSummary($data['model']); ?>
 
-<?= $form->field($model, 'name'); ?>
+<?= $form->field($data['model'], 'name'); ?>
 
-<?= $form->field($model, 'description')->textarea(); ?>
+<?= $form->field($data['model'], 'description')->textarea(); ?>
 
-<?= $form->field($model, 'type')->dropDownList($model->getListType(), ['id' => 'input-type']); ?>
+<?= $form->field($data['model'], 'type')->dropDownList($data['model']->getListType(), ['id' => 'input-type']); ?>
 
-<?= $form->field($model, 'list_id', ['options' => ['id' => 'list_id', 'class' => 'form-group']])
+<?= $form->field($data['model'], 'list_id', ['options' => ['id' => 'list_id', 'class' => 'form-group']])
     ->widget(DropDownLists::className(), ['options' => ['class' => 'form-control']]); ?>
 
-<?= $form->field($model, 'sorting'); ?>
+<?= $form->field($data['model'], 'sorting'); ?>
 
-<?= $form->field($model, 'required')->checkbox(); ?>
+<?= $form->field($data['model'], 'required')->checkbox(); ?>
 
 <?php ActiveForm::end(); ?>
 

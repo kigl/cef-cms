@@ -93,7 +93,7 @@ return [
     'Module: {data}' => 'Модуль: {data}',
     'Module' => 'Модуль',
 
-    'Name' => 'Имя / Наименование',
+    'Name' => 'Имя / наименование',
     'Not exist views: {views}' => 'Значение "{views}" не существует',
     'Not selected' => 'Не выбран',
     'Not required' => 'Необязательное',
@@ -101,6 +101,7 @@ return [
 
     'Okpo' => 'ОКПО',
     'Okved' => 'ОКВЕД',
+    'Other' => 'Другое',
 
     'Password' => 'Пароль',
     'Password repeat' => 'Повторить пароль',
@@ -140,6 +141,7 @@ return [
     'Sizes' => 'Размеры',
     'Site' => 'Сайт',
     'SEO' => 'SEO',
+    'Short name' => 'Короткое имя / наименование',
 
     'Tab main' => 'Основные',
     'Tab description' => 'Описание',

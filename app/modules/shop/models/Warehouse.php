@@ -19,7 +19,7 @@ use Yii;
  * @property Shop $shop
  * @property WarehouseProduct[] $shopWarehouseProducts
  */
-class Warehouse extends \yii\db\ActiveRecord
+class Warehouse extends \app\core\db\ActiveRecord
 {
     /**
      * @inheritdoc

@@ -2,7 +2,9 @@
 
 namespace app\modules\shop\models;
 
+
 use Yii;
+use app\core\behaviors\file\ActionImage;
 
 /**
  * This is the model class for table "{{%shop_producer_group}}".
@@ -23,7 +25,7 @@ use Yii;
  * @property string $create_time
  * @property string $update_time
  */
-class ProducerGroup extends \yii\db\ActiveRecord
+class ProducerGroup extends \app\core\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -43,7 +45,7 @@ class ProducerGroup extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['create_time', 'update_time'], 'safe'],
             [
-                ['name', 'image_preview', 'image', 'alias', 'meta_title', 'meta_description', 'meta_keyword'],
+                ['name', 'alias', 'meta_title', 'meta_description', 'meta_keyword'],
                 'string',
                 'max' => 255
             ],
@@ -63,7 +65,7 @@ class ProducerGroup extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
-            'image_preview' => Yii::t('app', 'Image Preview'),
+            'image_preview' => Yii::t('app', 'Image preview'),
             'image' => Yii::t('app', 'Image'),
             'sorting' => Yii::t('app', 'Sorting'),
             'alias' => Yii::t('app', 'Alias'),
@@ -73,5 +75,28 @@ class ProducerGroup extends \yii\db\ActiveRecord
             'create_time' => Yii::t('app', 'Create Time'),
             'update_time' => Yii::t('app', 'Update Time'),
         ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'imagePreview' => [
+                'class' => ActionImage::className(),
+                'path' => '@webroot/public/uploads/shop/producer/group',
+                'pathUrl' => '@web/public/uploads/shop/producer/group',
+                'attribute' => 'image_preview',
+            ],
+            'image' => [
+                'class' => ActionImage::className(),
+                'path' => '@webroot/public/uploads/shop/producer/group',
+                'pathUrl' => '@web/public/uploads/shop/producer/group',
+                'attribute' => 'image',
+            ],
+        ];
+    }
+
+    public function getShop()
+    {
+        return $this->hasOne(Shop::className(), ['id' => 'shop_id']);
     }
 }

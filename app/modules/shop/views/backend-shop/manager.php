@@ -26,7 +26,7 @@ echo GridView::widget([
             'attribute' => 'name',
             'format' => 'raw',
             'value' => function ($model) {
-                return Html::a($model->name, ['backend-group/manager', 'shop_id' => $model->id]);
+                return Html::a($model->name, ['backend-product-group/manager', 'shop_id' => $model->id]);
             }
         ],
         [

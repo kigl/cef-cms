@@ -15,7 +15,7 @@ use Yii;
  * @property Shop $shop
  * @property PriceProduct[] $shopPriceProducts
  */
-class Price extends \yii\db\ActiveRecord
+class Price extends \app\core\db\ActiveRecord
 {
     /**
      * @inheritdoc

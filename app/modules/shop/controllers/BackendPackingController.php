@@ -34,7 +34,7 @@ class BackendPackingController extends Controller
     public function actionCreate($product_id)
     {
         if ($this->_modelService->create()) {
-            return $this->redirect(['backend-product/update', 'id' => $product_id, '#' => 'packing']);
+            return $this->redirect(['backend-product/update', 'id' => $product_id]);
         }
 
         return $this->render('create', ['data' => $this->_modelService->getData()]);
@@ -46,7 +46,6 @@ class BackendPackingController extends Controller
             return $this->redirect([
                 'backend-product/update',
                 'id' => $this->_modelService->data['product_id'],
-                '#' => 'packing'
             ]);
         }
 
@@ -61,7 +60,6 @@ class BackendPackingController extends Controller
             return $this->redirect([
                 'backend-product/update',
                 'id' => $model->product->id,
-                '#' => 'packing'
             ]);
         }
     }

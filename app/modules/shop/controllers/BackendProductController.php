@@ -9,44 +9,39 @@ use app\modules\shop\service\backend\ProductModelService;
 
 class BackendProductController extends Controller
 {
-    public function actionCreate($shop_id, $group_id = null, $parent_id = null)
+    private $_modelService;
+
+    public function init()
     {
-        $modelService = Yii::createObject([
+        parent::init();
+
+        $this->_modelService = Yii::createObject([
             'class' => ProductModelService::class,
             'data' => [
                 'post' => Yii::$app->request->post(),
                 'get' => Yii::$app->request->getQueryParams(),
             ],
         ]);
+    }
 
-        if ($modelService->create()) {
+    public function actionCreate($shop_id, $group_id = null, $parent_id = null)
+    {
+        if ($this->_modelService->create()) {
 
-            return $this->redirect(['backend-product/update', 'id' => $modelService->getData('model')->id]);
+            return $this->redirect(['backend-product/update', 'id' => $this->_modelService->getData('model')->id]);
         }
 
-        if (Yii::$app->request->isAjax) {
-            return $this->renderAjax('_form', ['data' => $modelService->getData()]);
-        }
-
-        return $this->render('create', ['data' => $modelService->getData()]);
+        return $this->render('create', ['data' => $this->_modelService->getData()]);
     }
 
     public function actionUpdate($id)
     {
-        $modelService = Yii::createObject([
-            'class' => ProductModelService::class,
-            'data' => [
-                'post' => Yii::$app->request->post(),
-                'get' => Yii::$app->request->getQueryParams(),
-            ],
-        ]);
+        if ($this->_modelService->update()) {
 
-        if ($modelService->update()) {
-
-            return $this->redirect(['backend-product/update', 'id' => $modelService->getData('model')->id]);
+            return $this->redirect(['backend-product/update', 'id' => $this->_modelService->getData('model')->id]);
         }
 
-        return $this->render('update', ['data' => $modelService->getData()]);
+        return $this->render('update', ['data' => $this->_modelService->getData()]);
     }
 
     /*
@@ -55,11 +50,9 @@ class BackendProductController extends Controller
      */
     public function actionDelete($id)
     {
-        $modelService = new ProductModelService();
+        if ($this->_modelService->delete($id)) {
 
-        if ($modelService->delete($id)) {
-
-            return $this->redirect(['backend-group/manager', 'parent_id' => $modelService->getData('groupId')]);
+            return $this->redirect(['backend-product-group/manager', 'parent_id' => $this->_modelService->getData('groupId')]);
         }
 
         return false;
@@ -68,10 +61,8 @@ class BackendProductController extends Controller
     public function actionSelectionDelete()
     {
         if ($keys = Yii::$app->request->post('selection')) {
-            $modelService = new ProductModelService();
-
             foreach ($keys as $key) {
-                $modelService->delete($key);
+                $this->_modelService->delete($key);
             }
         }
     }
