@@ -46,8 +46,9 @@ use vova07\imperavi\Widget;
         </ul>
         <div class="tab-content well">
             <div class="tab-pane active" id="settings-main">
-                <?= $form->field($data['model'], 'weight_measure_id')->dropDownList($data['listMeasure']); ?>
-                <?= $form->field($data['model'], 'size_packing_measure_id')->dropDownList($data['listMeasure']); ?>
+                <?= $form->field($data['model'], 'currency_id')->dropDownList($data['currencyList']); ?>
+                <?= $form->field($data['model'], 'weight_measure_id')->dropDownList($data['measureList']); ?>
+                <?= $form->field($data['model'], 'size_packing_measure_id')->dropDownList($data['measureList']); ?>
                 <?= $form->field($data['model'], 'group_on_page'); ?>
                 <?= $form->field($data['model'], 'product_on_page'); ?>
             </div>

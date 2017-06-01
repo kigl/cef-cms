@@ -4,7 +4,12 @@ return [
     'Author' => 'Автор',
 	'Additional properties' => 'Дополнительные свойства',
     'Active' => 'Активный',
+    'Address' => 'Адрес',
+    'Account number' => 'Номер счета',
 
+    'Bank details' => 'Банклвские реквизиты',
+    'Bank name' => 'Название банка',
+    'Bank address' => 'Адрес банка',
 	'Button create' => 'Создать',
     'Button add' => 'Добавить',
 	'Button save' => 'Сохранить',
@@ -13,6 +18,7 @@ return [
     'Button delete item' => 'Удалить элемент',
     'Button delete group' => 'Удалить группу',
     'Breadcrumb root' => 'root',
+    'Bik' => 'БИК',
 
     'Created item' => 'Элемент создан!',
     'Create time' => 'Дата создания',
@@ -26,6 +32,7 @@ return [
     'Create: {data}' => 'Создание: {data}',
     'Create' => 'Создание',
     'Comment added and waiting for moderation' => 'Комментарий добавлен и ожидает модерации',
+    'Contact details' => 'Контактные данные',
 
     'Deleted item' => 'Элемент удален!',
     'Delete image' => 'Удалить изоброжение',
@@ -37,7 +44,9 @@ return [
     'Domain' => 'Домен',
 
     'Edit: {data}' => 'Редактирование: {data}',
+    'Email' => 'Электронная почта',
 
+    'Fax' => 'Факс',
     'Form legend seo' => 'SEO',
     'Fields' => 'Поля',
     'Field' => 'Поле',
@@ -48,16 +57,21 @@ return [
     'Group' => 'Группа',
 
     'Header comment ({count})' => 'Комментарии ({count})',
+    'Height' => 'Высота',
 
     'Icon css class' => 'CSS класс иконки',
     'Image' => 'Изображение',
+    'Image preview' => 'Предварительное изображение',
     'Image status' => 'Основное изображение',
     'ID' => 'ID',
     'Indexing' => 'Индексировать',
     'Item on page' => 'Число элементов на странице',
 
+    'Kpp' => 'КПП',
+
     'Lastname' => 'Отчество',
     'Layout' => 'Макет',
+    'Length' => 'Длина',
     'Link name page main' => 'Главная',
 	'List view summary text: is' => 'из',
     'List' => 'Список',
@@ -68,6 +82,7 @@ return [
     'Logout' => 'Выйти',
     'Link answer' => 'ответить',
 
+    'Main' => 'Основной',
     'Manager: {data}' => 'Менеджер: {data}',
     'Message thank you' => 'Спасибо!',
     'Meta title' => 'SEO заголовок страницы',
@@ -84,6 +99,9 @@ return [
     'Not required' => 'Необязательное',
     'No' => 'Нет',
 
+    'Okpo' => 'ОКПО',
+    'Okved' => 'ОКВЕД',
+
     'Password' => 'Пароль',
     'Password repeat' => 'Повторить пароль',
     'Parent id' => 'ID родителя',
@@ -98,6 +116,7 @@ return [
     'Postcode' => 'Индекс',
     'Phone' => 'Телефон',
     'Price' => 'Цена',
+    'Psrn' => 'ОГРН',
 
     'Question on delete file' => 'Удалить элемент?',
     'Qty' => 'Количество',
@@ -118,6 +137,9 @@ return [
     'Submit send' => 'Отправить',
     'Settings module: {data}' => 'Настройки модуля: {data}',
     'Settings' => 'Настройки',
+    'Sizes' => 'Размеры',
+    'Site' => 'Сайт',
+    'SEO' => 'SEO',
 
     'Tab main' => 'Основные',
     'Tab description' => 'Описание',
@@ -145,6 +167,7 @@ return [
     'Toolbar setting' => 'Настройки',
     'The user model class is not assigned' => 'Класс модели пользователя не присвоен',
     'Template' => 'Шаблон',
+    'Tin' => 'ИНН',
 
     'Updated item' => 'Элемент обновлен!',
     'Update time' => 'Дата обновления',
@@ -157,6 +180,7 @@ return [
     'Value' => 'Значение',
 
     'Weight' => 'Вес',
+    'Width' => 'Ширина',
 
     'Yes' => 'Да',
 ];

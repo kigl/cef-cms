@@ -2,6 +2,8 @@
 
 namespace app\modules\shop;
 
+use app\modules\shop\models\Shop;
+
 
 /**
  * shop module definition class

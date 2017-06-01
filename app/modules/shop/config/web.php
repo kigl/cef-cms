@@ -13,9 +13,6 @@ return [
                 'main' => [
                     ['label' => 'Интернет-магазины', 'url' => ['backend-shop/manager']],
                 ],
-                'shop' => [
-                    ['label' => 'Еденицы измерения', 'url' => ['backend-measure/manager']],
-                ],
             ],
         ],
     ],

@@ -16,13 +16,13 @@ use app\modules\backend\controllers\Controller;
 
 class BackendPackingController extends Controller
 {
-    public $modelService;
+    protected $_modelService;
 
     public function init()
     {
         parent::init();
 
-        $this->modelService = Yii::createObject([
+        $this->_modelService = Yii::createObject([
             'class' => PackingModelService::className(),
             'data' => [
                 'get' => Yii::$app->request->getQueryParams(),
@@ -33,24 +33,24 @@ class BackendPackingController extends Controller
 
     public function actionCreate($product_id)
     {
-        if ($this->modelService->create()) {
+        if ($this->_modelService->create()) {
             return $this->redirect(['backend-product/update', 'id' => $product_id, '#' => 'packing']);
         }
 
-        return $this->render('create', ['data' => $this->modelService->getData()]);
+        return $this->render('create', ['data' => $this->_modelService->getData()]);
     }
 
     public function actionUpdate($id)
     {
-        if ($this->modelService->update()) {
+        if ($this->_modelService->update()) {
             return $this->redirect([
                 'backend-product/update',
-                'id' => $this->modelService->data['product_id'],
+                'id' => $this->_modelService->data['product_id'],
                 '#' => 'packing'
             ]);
         }
 
-        return $this->render('update', ['data' => $this->modelService->getData()]);
+        return $this->render('update', ['data' => $this->_modelService->getData()]);
     }
 
     public function actionDelete($id)

@@ -8,7 +8,7 @@ use app\modules\backend\widgets\ActiveForm;
 <?= $form->errorSummary($data['model']);?>
 
 <?= $form->field($data['model'], 'measure_id')
-    ->dropDownList($data['listMeasure']);?>
+    ->dropDownList($data['measureList']);?>
 <?= $form->field($data['model'], 'main')->checkbox();?>
 <?= $form->field($data['model'], 'name');?>
 <?= $form->field($data['model'], 'value');?>

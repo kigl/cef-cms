@@ -6,7 +6,10 @@ use app\modules\backend\widgets\grid\GridView;
 $this->setTitle(Module::t('Shops'));
 $this->setPageHeader(Module::t('Shops'));
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
-$this->params['toolbar'] = $this->module->toolbar['shop'];
+$this->params['toolbar'] = [
+    ['label' => 'Еденицы измерения', 'url' => ['backend-measure/manager']],
+    ['label' => Module::t('Currencies'), 'url' => ['backend-currency/manager']],
+];
 
 echo GridView::widget([
     'buttons' => [

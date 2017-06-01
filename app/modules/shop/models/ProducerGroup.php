@@ -8,12 +8,20 @@ use Yii;
  * This is the model class for table "{{%shop_producer_group}}".
  *
  * @property integer $id
+ * @property integer $parent_id
  * @property integer $shop_id
  * @property string $name
+ * @property string $description
+ * @property string $content
  * @property string $image_preview
  * @property string $image
- * @property string $description
  * @property integer $sorting
+ * @property string $alias
+ * @property string $meta_title
+ * @property string $meta_description
+ * @property string $meta_keyword
+ * @property string $create_time
+ * @property string $update_time
  */
 class ProducerGroup extends \yii\db\ActiveRecord
 {
@@ -31,8 +39,14 @@ class ProducerGroup extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['shop_id', 'sorting'], 'integer'],
-            [['name', 'image_preview', 'image'], 'string', 'max' => 255],
+            [['parent_id', 'shop_id', 'sorting'], 'integer'],
+            [['content'], 'string'],
+            [['create_time', 'update_time'], 'safe'],
+            [
+                ['name', 'image_preview', 'image', 'alias', 'meta_title', 'meta_description', 'meta_keyword'],
+                'string',
+                'max' => 255
+            ],
             [['description'], 'string', 'max' => 500],
         ];
     }
@@ -44,12 +58,20 @@ class ProducerGroup extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'parent_id' => Yii::t('app', 'Parent ID'),
             'shop_id' => Yii::t('app', 'Shop ID'),
             'name' => Yii::t('app', 'Name'),
+            'description' => Yii::t('app', 'Description'),
+            'content' => Yii::t('app', 'Content'),
             'image_preview' => Yii::t('app', 'Image Preview'),
             'image' => Yii::t('app', 'Image'),
-            'description' => Yii::t('app', 'Description'),
             'sorting' => Yii::t('app', 'Sorting'),
+            'alias' => Yii::t('app', 'Alias'),
+            'meta_title' => Yii::t('app', 'Meta Title'),
+            'meta_description' => Yii::t('app', 'Meta Description'),
+            'meta_keyword' => Yii::t('app', 'Meta Keyword'),
+            'create_time' => Yii::t('app', 'Create Time'),
+            'update_time' => Yii::t('app', 'Update Time'),
         ];
     }
 }

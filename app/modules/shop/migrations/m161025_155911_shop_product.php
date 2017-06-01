@@ -20,14 +20,13 @@ class m161025_155911_shop_product extends Migration
             'name' => $this->string()->notNull()->notNull(),
             'description' => $this->string(500),
             'content' => $this->text(),
-            //'producer_id' => $this->integer(),
+            'producer_id' => $this->integer(),
             'measure_id' => $this->integer(),
             'weight' => $this->decimal(8, 2)->defaultValue(0),
             //'discount' => $this->decimal(8, 2),
             'length' => $this->decimal(12, 2)->defaultValue(0),
             'width' => $this->decimal(12, 2)->defaultValue(0),
             'height' => $this->decimal(12,2)->defaultValue(0),
-            'user_id' => $this->integer()->notNull(),
             'alias' => $this->string(),
             'meta_title' => $this->string(),
             'meta_description' => $this->string(),
@@ -36,6 +35,9 @@ class m161025_155911_shop_product extends Migration
 
         $this->execute("ALTER TABLE {$this->_tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_keyword`;");
         $this->execute("ALTER TABLE {$this->_tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
+
+        $this->createIndex('ix-product_producer_id', $this->_tableName, 'producer_id');
+        $this->addForeignKey('fk-product-producer_id', $this->_tableName, 'producer_id', '{{%shop_producer}}', 'id', 'SET NULL', 'CASCADE');
 
         $this->createIndex('ix-product_measure_id', $this->_tableName, 'measure_id');
         $this->addForeignKey('fk-product-measure_id', $this->_tableName, 'measure_id', '{{%shop_measure}}', 'id', 'SET NULL', 'CASCADE');

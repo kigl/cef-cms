@@ -16,6 +16,7 @@ class m161025_041848_shop extends Migration
             'description' => $this->string(500),
             'content' => $this->text(),
             'image' => $this->string(),
+            'currency_id' => $this->integer(),
             'weight_measure_id' => $this->integer(),
             'size_packing_measure_id' => $this->integer(),
             'group_on_page' => $this->integer()->notNull(),
@@ -35,7 +36,6 @@ class m161025_041848_shop extends Migration
             'product_sorting_type' => $this->integer()->notNull(),
             'product_sorting_field' => $this->string()->notNull(),
             'product_sorting_list_field' => $this->string()->notNull(),
-            'user_id' => $this->integer()->notNull(),
             'meta_title' => $this->string(),
             'meta_description' => $this->string(),
             'meta_keyword' => $this->string(),
@@ -43,6 +43,9 @@ class m161025_041848_shop extends Migration
 
         $this->execute("ALTER TABLE {$this->_tableName} ADD `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `meta_keyword`;");
         $this->execute("ALTER TABLE {$this->_tableName} ADD `update_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `create_time`;");
+
+        $this->createIndex('ix-shop-currency_id', $this->_tableName, 'currency_id');
+        $this->addForeignKey('fk-shop-currency_id', $this->_tableName, 'currency_id', '{{%shop_currency}}', 'id', 'SET NULL', 'SET NULL');
 
         $this->createIndex('ix-shop-weight_measure_id', $this->_tableName, 'weight_measure_id');
         $this->addForeignKey('fk-shop-weight_measure_id', $this->_tableName, 'weight_measure_id', '{{%shop_measure}}', 'id', 'SET NULL', 'SET NULL');

@@ -19,6 +19,7 @@ use app\modules\shop\models\backend\ProductGroup;
 use app\modules\shop\models\backend\Product;
 use app\modules\shop\models\backend\Shop;
 use app\modules\shop\models\backend\Measure;
+use app\modules\shop\models\backend\Currency;
 
 class ShopModelService extends \app\core\service\ModelService
 {
@@ -46,7 +47,8 @@ class ShopModelService extends \app\core\service\ModelService
 
         $this->setData([
             'model' => $model,
-            'listMeasure' => $this->getListMeasure(),
+            'measureList' => $this->getMeasureList(),
+            'currencyList' => $this->getCurrencyList(),
             'breadcrumbs' => $this->getBreadcrumbs(),
         ]);
 
@@ -64,7 +66,8 @@ class ShopModelService extends \app\core\service\ModelService
 
         $this->setData([
             'model' => $model,
-            'listMeasure' => $this->getListMeasure(),
+            'measureList' => $this->getMeasureList(),
+            'currencyList' => $this->getCurrencyList(),
             'breadcrumbs' => $this->getBreadcrumbs(),
         ]);
 
@@ -124,13 +127,22 @@ class ShopModelService extends \app\core\service\ModelService
         return $breadcrumbs;
     }
 
-    protected function getListMeasure()
+    protected function getMeasureList()
     {
-        $measure = Measure::find()
+        $models = Measure::find()
             ->where(['site_id' => Yii::$app->site->getId()])
             ->asArray()
             ->all();
 
-        return ArrayHelper::map($measure, 'id', 'name');
+        return ArrayHelper::map($models, 'id', 'name');
+    }
+
+    protected function getCurrencyList()
+    {
+        $models = Currency::find()
+            ->where(['site_id' => Yii::$app->site->getId()])
+            ->all();
+
+        return ArrayHelper::map($models, 'id', 'short_name');
     }
 }

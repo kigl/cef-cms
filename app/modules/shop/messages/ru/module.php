@@ -29,17 +29,15 @@ return [
     'Edit product: {data}' => 'Редактирование товара: {data}',
     'Edit product property: {data}' => 'Редактирование свойства товара: {data}',
 
-    'Height' => 'Высота упаковки',
-
-    'Length' => 'Длина упаковки',
-
     'Page header cart' => 'Корзина',
 	'Product relation' => 'Модификация для товара',
     'Product properties' => 'Свойства товаров',
     'Property type' => 'Тип свойства',
     'Price: {price, number, currency}' => 'Цена: {price, number, currency}',
+    'Prices' => 'Цены',
     'Products' => 'Товары',
     'Product on page' => 'Число товаров на странице',
+    'Producers' => 'Производители',
 
     'Status not available' => 'Нет в наличии',
     'Sum' => 'Сумма',
@@ -50,7 +48,6 @@ return [
     'Sorting type product' => 'Тип сортировки товара',
     'Sorting field product' => 'Поле сортировки товара',
     'Sorting list field product' => 'Список полей для сортировки товара',
-
     'User id' => 'Идентификатор пользователя',
 
     'Orders' => 'Заказы',
@@ -65,9 +62,10 @@ return [
     'Tab order view detail' => 'Информация',
     'Tab order view items' => 'Состав заказа',
     'Tab modifications' => 'Модификации',
+    'Tab packing' => 'Упаковки',
     'Text  price' => 'Цена: ',
 
     'Vendor code' => 'Артикул',
 
-    'Width' => 'Ширина упаковки',
+    'Warehouses' => 'Склады',
 ];

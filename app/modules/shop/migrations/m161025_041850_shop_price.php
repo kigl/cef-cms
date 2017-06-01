@@ -11,7 +11,7 @@ class m161025_041850_shop_price extends Migration
         $this->createTable($this->_tableName, [
             'id' => $this->primaryKey(),
             'shop_id' => $this->integer(),
-            'name' => $this->string(),
+            'name' => $this->string()->notNull(),
             'description' => $this->string(),
         ]);
 

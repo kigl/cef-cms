@@ -26,7 +26,6 @@ use app\modules\users\models\User;
  * @property number $length
  * @property number $width
  * @property number $height
- * @property integer $user_id
  * @property string $alias
  * @property string $meta_title
  * @property string $meta_description
@@ -51,7 +50,7 @@ class Product extends ActiveRecord
     public function rules()
     {
         return [
-            [['shop_id', 'group_id', 'active', 'sorting', 'measure_id', 'user_id'], 'integer'],
+            [['shop_id', 'group_id', 'active', 'sorting', 'measure_id'], 'integer'],
             [['content'], 'string'],
             [['weight', 'length', 'width', 'height'], 'number'],
             [
@@ -79,8 +78,8 @@ class Product extends ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'parent_id' => Yii::t('shop', 'Product parent id'),
-            'group_id' => Yii::t('shop', 'Group id'),
-            'shop_id' => Yii::t('shop', 'Shop ID'),
+            'group_id' => Yii::t('app', 'Group id'),
+            'shop_id' => Yii::t('app', 'Shop ID'),
             'active' => Yii::t('app', 'Active'),
             'sorting' => Yii::t('app', 'Sorting'),
             'code' => Yii::t('app', 'Code'),
@@ -90,10 +89,9 @@ class Product extends ActiveRecord
             'content' => Yii::t('app', 'Content'),
             'measure_id' => Yii::t('shop', 'Measure ID'),
             'weight' => Yii::t('app', 'Weight'),
-            'length' => Yii::t('shop', 'Length'),
-            'width' => Yii::t('shop', 'Width'),
-            'height' => Yii::t('shop', 'Height'),
-            'user_id' => Yii::t('shop', 'User id'),
+            'length' => Yii::t('app', 'Length'),
+            'width' => Yii::t('app', 'Width'),
+            'height' => Yii::t('app', 'Height'),
             'alias' => Yii::t('app', 'Alias'),
             'meta_title' => Yii::t('app', 'Meta title'),
             'meta_description' => Yii::t('app', 'Meta description'),
@@ -112,11 +110,6 @@ class Product extends ActiveRecord
     public function getGroup()
     {
         return $this->hasOne(ProductGroup::className(), ['id' => 'group_id']);
-    }
-
-    public function getUser()
-    {
-        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     /**
@@ -164,5 +157,10 @@ class Product extends ActiveRecord
     public function getPacking()
     {
         return $this->hasMany(Packing::className(), ['product_id' => 'id']);
+    }
+
+    public function getPriceProduct()
+    {
+        return $this->hasMany(PriceProduct::className(), ['product_id' => 'id']);
     }
 }

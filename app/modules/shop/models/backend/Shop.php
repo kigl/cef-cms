@@ -20,7 +20,7 @@ class Shop extends \app\modules\shop\models\Shop
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            [['code', 'name'], 'required'],
+            [['code', 'name', 'currency_id', 'weight_measure_id'], 'required'],
             ['code', 'match', 'pattern' => '/^[a-z]+$/'],
             [
                 'code',
@@ -44,8 +44,6 @@ class Shop extends \app\modules\shop\models\Shop
                     'group_image_preview_max_height',
                     'group_image_max_width',
                     'group_image_max_height',
-                    'product_image_preview_max_width',
-                    'product_image_preview_max_height',
                     'product_image_max_width',
                     'product_image_max_height',
                 ],

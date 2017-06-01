@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
 use kartik\file\FileInput;
+use kartik\money\MaskMoney;
 use app\modules\backend\widgets\ActiveForm;
 use app\modules\shop\models\backend\Property;
 use app\modules\backend\widgets\grid\GridView;
@@ -15,6 +16,7 @@ use app\modules\shop\Module;
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#main" data-toggle="tab"><?= Yii::t('app', 'Tab main'); ?></a></li>
+    <li><a href="#description" data-toggle="tab"><?= Yii::t('app', 'Tab description'); ?></a></li>
     <li><a href="#content" data-toggle="tab"><?= Yii::t('app', 'Tab content'); ?></a></li>
     <li><a href="#images" data-toggle="tab"><?= Yii::t('app', 'Tab images'); ?></a></li>
 
@@ -46,50 +48,57 @@ use app\modules\shop\Module;
             <div class="col-md-2">
                 <?= $form->field($data['model'], 'active')->checkbox(); ?>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-7">
                 <?= $form->field($data['model'], 'name'); ?>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <?= $form->field($data['model'], 'group_id')
                     ->widget(DropDownTreeItems::className(), [
                         'modelClass' => \app\modules\shop\models\ProductGroup::className(),
                     ])
                     ->label(Yii::t('app', 'Group')); ?>
             </div>
-            <div class="col-md-6">
-                <?= $form->field($data['model'], 'vendor_code'); ?>
-            </div>
         </div>
         <div class="row">
             <div class="col-md-3">
+                <?= $form->field($data['model'], 'vendor_code'); ?>
+            </div>
+            <div class="col-md-3">
                 <?= $form->field($data['model'], 'weight')
-                    ->label(Yii::t('app', 'Weight ({data})', ['data' => $data['shop']->weightMeasure->short_name])); ?>
+                    ->label(Yii::t('app', 'Weight')); ?>
             </div>
             <div class="col-md-3">
                 <?= $form->field($data['model'], 'measure_id')
-                    ->dropDownList($data['listMeasure']); ?>
+                    ->dropDownList($data['measureList']); ?>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
+                <legend><?= Module::t('Prices'); ?></legend>
+                <?php foreach ($data['priceProduct'] as $priceProduct) : ?>
+                    <?= $form->field($priceProduct, "[$priceProduct->price_id]value")
+                        ->widget(MaskMoney::className())
+                        ->label($data['prices'][$priceProduct->price_id]->name); ?>
+                <?php endforeach; ?>
+            </div>
+            <div class="col-md-4">
+                <legend><?= Module::t('Warehouses'); ?></legend>
+                <?php foreach ($data['warehouseProduct'] as $warehouseProduct) : ?>
+                    <?= $form->field($warehouseProduct, "[$warehouseProduct->warehouse_id]value")
+                        ->label($data['warehouses'][$warehouseProduct->warehouse_id]->name); ?>
+                <?php endforeach; ?>
+            </div>
+            <div class="col-md-4">
+                <legend><?= Yii::t('app', 'Sizes'); ?></legend>
                 <?= $form->field($data['model'], 'length'); ?>
-            </div>
-            <div class="col-md-4">
                 <?= $form->field($data['model'], 'width'); ?>
-            </div>
-            <div class="col-md-4">
                 <?= $form->field($data['model'], 'height'); ?>
             </div>
         </div>
-        <?= $form->field($data['model'], 'description')->textarea(); ?>
+    </div>
 
-        <legend><?= Module::t('Warehouses'); ?></legend>
-        <?php foreach ($data['warehouseProduct'] as $warehouseProduct) : ?>
-            <?= $form->field($warehouseProduct, "[$warehouseProduct->warehouse_id]value")
-                ->label($data['warehouses'][$warehouseProduct->warehouse_id]->name); ?>
-        <?php endforeach; ?>
+    <div class="tab-pane" id="description">
+        <?= $form->field($data['model'], 'description')->textarea(['rows' => 5]); ?>
     </div>
 
     <div class="tab-pane" id="content">
@@ -227,12 +236,6 @@ use app\modules\shop\Module;
             'model' => $data['model'],
             'attributes' => [
                 'id',
-                [
-                    'attribute' => 'user_id',
-                    'format' => 'raw',
-                    'value' => Html::a($data['model']->user_id,
-                        ['/backend/user/user/view', 'id' => $data['model']->user_id]),
-                ],
             ],
         ]); ?>
     </div>

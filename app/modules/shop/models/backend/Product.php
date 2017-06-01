@@ -3,8 +3,8 @@
 namespace app\modules\shop\models\backend;
 
 
-use app\modules\shop\Module;
 use yii\helpers\ArrayHelper;
+use app\modules\shop\Module;
 use app\core\behaviors\GenerateAlias;
 use app\core\behaviors\UserId;
 
@@ -36,10 +36,6 @@ class Product extends \app\modules\shop\models\Product
                 'class' => GenerateAlias::className(),
                 'text' => 'name',
                 'alias' => 'alias',
-            ],
-            [
-                'class' => UserId::className(),
-                'attribute' => 'user_id',
             ],
             [
                 'class' => 'app\core\behaviors\FillData',

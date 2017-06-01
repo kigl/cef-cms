@@ -9,7 +9,14 @@
 namespace app\modules\shop\models\backend;
 
 
+use yii\helpers\ArrayHelper;
+
 class PriceProduct extends \app\modules\shop\models\PriceProduct
 {
-
+    public function rules()
+    {
+        return ArrayHelper::merge(parent::rules(), [
+            [['price_id', 'product_id', 'value'], 'required'],
+        ]);
+    }
 }

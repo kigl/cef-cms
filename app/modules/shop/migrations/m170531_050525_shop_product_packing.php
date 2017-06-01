@@ -19,10 +19,7 @@ class m170531_050525_shop_product_packing extends Migration
             'width' => $this->decimal(8, 2)->defaultValue(0),
             'height' => $this->decimal(8, 2)->defaultValue(0),
         ]);
-
-        $this->createIndex('ix-packing-parent_id', $this->_tableName, 'parent_id');
-            $this->addForeignKey('fk-packing-parent_id', $this->_tableName, 'parent_id', $this->_tableName, 'id', 'CASCADE', 'CASCADE');
-
+        
             $this->createIndex('ix-packing-measure_id', $this->_tableName, 'measure_id');
             $this->addForeignKey('fk-packing-measure_id', $this->_tableName, 'measure_id', '{{%shop_measure}}', 'id', 'CASCADE', 'CASCADE');
 

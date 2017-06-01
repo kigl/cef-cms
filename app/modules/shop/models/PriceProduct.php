@@ -12,8 +12,8 @@ use Yii;
  * @property integer $product_id
  * @property string $value
  *
- * @property ShopPrice $price
- * @property ShopProduct $product
+ * @property Price $price
+ * @property Product $product
  */
 class PriceProduct extends \yii\db\ActiveRecord
 {
@@ -43,8 +43,8 @@ class PriceProduct extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'price_id' => Yii::t('shop', 'Price ID'),
-            'product_id' => Yii::t('shop', 'Product ID'),
+            'price_id' => Yii::t('app', 'Price ID'),
+            'product_id' => Yii::t('app', 'Product ID'),
             'value' => Yii::t('app', 'Value'),
         ];
     }

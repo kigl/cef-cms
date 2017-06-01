@@ -60,14 +60,8 @@ class Price extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPriceProducts()
+    public function getShopPriceProducts()
     {
         return $this->hasMany(PriceProduct::className(), ['price_id' => 'id']);
-    }
-
-    public function getProducts()
-    {
-        return $this->hasMany(Product::className(), ['id' => 'product_id'])
-            ->via('priceProducts');
     }
 }

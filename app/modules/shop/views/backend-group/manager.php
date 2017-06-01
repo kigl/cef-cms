@@ -9,7 +9,7 @@ $this->setPageHeader(Module::t('Products'));
 $this->params['breadcrumbs'] = $data['breadcrumbs'];
 $this->params['toolbar'] = [
     ['label' => 'Цены', 'url' => ['backend-price/manager', 'shop_id' => $data['shop_id']]],
-    ['label' => 'Производители', 'url' => ['backend-producer/manager', 'shop_id' => $data['shop_id']]],
+    ['label' => 'Производители', 'url' => ['backend-producer-group/manager', 'shop_id' => $data['shop_id']]],
     ['label' => 'Склады', 'url' => ['backend-warehouse/manager', 'shop_id' => $data['shop_id']]],
     ['label' => 'Свойства товаров', 'url' => ['backend-property/manager', 'shop_id' => $data['shop_id']]],
     ['label' => 'Заказы', 'url' => ['backend-order/manager', 'shop_id' => $data['shop_id']]]

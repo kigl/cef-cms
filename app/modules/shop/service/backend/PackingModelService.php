@@ -30,11 +30,11 @@ class PackingModelService extends GroupModelService
         $this->setData([
             'model' => $model,
             'product_id' => $product->id,
-            'listMeasure' => $this->getListMeasure(),
+            'measureList' => $this->getMeasureList(),
             'breadcrumbs' => $this->getBreadcrumbs($product->shop, $product->group_id),
         ]);
 
-        if ($model->load($this->data['post'])) {
+        if ($model->load($this->getData('post'))) {
             return $model->save();
         }
 
@@ -52,11 +52,11 @@ class PackingModelService extends GroupModelService
         $this->setData([
             'model' => $model,
             'product_id' => $model->product->id,
-            'listMeasure' => $this->getListMeasure(),
+            'measureList' => $this->getMeasureList(),
             'breadcrumbs' => $this->getBreadcrumbs($model->product->shop, $model->name),
         ]);
 
-        if ($model->load($this->data['post'])) {
+        if ($model->load($this->getData('post'))) {
             return $model->save();
         }
 

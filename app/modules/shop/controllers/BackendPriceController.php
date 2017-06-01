@@ -15,51 +15,43 @@ use app\modules\backend\controllers\Controller;
 
 class BackendPriceController extends Controller
 {
-    public function actionManager($shop_id)
+    protected $_modelService;
+
+    public function init()
     {
-        $modelService = Yii::createObject([
+        parent::init();
+
+        $this->_modelService = Yii::createObject([
             'class' => PriceModelService::className(),
             'data' => [
                 'get' => Yii::$app->request->getQueryParams(),
-            ],
+                'post' => Yii::$app->request->post(),
+            ]
         ]);
+    }
 
-        $modelService->manager();
+    public function actionManager($shop_id)
+    {
+        $this->_modelService->manager();
 
-        return $this->render('manager', ['data' => $modelService->getData()]);
+        return $this->render('manager', ['data' => $this->_modelService->getData()]);
     }
 
     public function actionCreate($shop_id)
     {
-        $modelService = Yii::createObject([
-            'class' => PriceModelService::className(),
-            'data' => [
-                'get' => Yii::$app->request->getQueryParams(),
-                'post' => Yii::$app->request->post(),
-            ],
-        ]);
-
-        if ($modelService->create()) {
+        if ($this->_modelService->create()) {
             return $this->redirect(['manager', 'shop_id' => $shop_id]);
         }
 
-        return $this->render('create', ['data' => $modelService->getData()]);
+        return $this->render('create', ['data' => $this->_modelService->getData()]);
     }
 
     public function actionUpdate($id)
     {
-        $modelService = Yii::createObject([
-            'class' => PriceModelService::className(),
-            'data' => [
-                'get' => Yii::$app->request->getQueryParams(),
-                'post' => Yii::$app->request->post(),
-            ],
-        ]);
-
-        if ($modelService->update()) {
-            return $this->redirect(['manager', 'shop_id' => $modelService->data['model']->shop_id]);
+        if ($this->_modelService->update()) {
+            return $this->redirect(['manager', 'shop_id' => $this->_modelService->data['model']->shop_id]);
         }
 
-        return $this->render('update', ['data' => $modelService->getData()]);
+        return $this->render('update', ['data' => $this->_modelService->getData()]);
     }
 }

@@ -56,7 +56,7 @@ class WarehouseModelService extends ShopModelService
             'shop_id' => $shop->id,
         ]);
 
-        if ($model->load($this->data['post'])) {
+        if ($model->load($this->getData('post'))) {
             return $model->save();
         }
 
@@ -79,7 +79,7 @@ class WarehouseModelService extends ShopModelService
             'shop_id' => $model->shop->id
         ]);
 
-        if ($model->load($this->data['post'])) {
+        if ($model->load($this->getData('post'))) {
             return $model->shop;
         }
 

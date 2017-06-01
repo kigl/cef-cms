@@ -3,9 +3,8 @@
 namespace app\modules\shop\models;
 
 
-use app\core\db\ActiveRecord;
 use Yii;
-use app\core\behaviors\UserId;
+use app\core\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%shop}}".
@@ -17,6 +16,7 @@ use app\core\behaviors\UserId;
  * @property string $description
  * @property string $content
  * @property string $image
+ * @property integer $currency_id
  * @property integer $weight_measure_id
  * @property integer $size_packing_measure_id
  * @property integer $group_on_page
@@ -36,7 +36,6 @@ use app\core\behaviors\UserId;
  * @property integer $product_sorting_type
  * @property string $product_sorting_field
  * @property string $product_sorting_list_field
- * @property integer $user_id
  * @property string $meta_title
  * @property string $meta_description
  * @property string $meta_keyword
@@ -67,6 +66,7 @@ class Shop extends ActiveRecord
             [
                 [
                     'site_id',
+                    'currency_id',
                     'weight_measure_id',
                     'size_packing_measure_id',
                     'group_on_page',
@@ -79,7 +79,6 @@ class Shop extends ActiveRecord
                     'product_image_max_height',
                     'group_sorting_type',
                     'product_sorting_type',
-                    'user_id'
                 ],
                 'integer'
             ],
@@ -119,6 +118,7 @@ class Shop extends ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'content' => Yii::t('app', 'Content'),
             'image' => Yii::t('app', 'Image'),
+            'currency_id' => Yii::t('shop', 'Currency ID'),
             'weight_measure_id' => Yii::t('shop', 'Product Weight Measure ID'),
             'product_size_measure_id' => Yii::t('shop', 'Product Size Measure ID'),
             'group_on_page' => Yii::t('shop', 'Group On Page'),
@@ -138,7 +138,6 @@ class Shop extends ActiveRecord
             'product_sorting_type' => Yii::t('shop', 'Product Sorting Type'),
             'product_sorting_field' => Yii::t('shop', 'Product Sorting Field'),
             'product_sorting_list_field' => Yii::t('shop', 'Product Sorting List Field'),
-            'user_id' => Yii::t('app', 'User ID'),
             'meta_title' => Yii::t('app', 'Meta Title'),
             'meta_description' => Yii::t('app', 'Meta Description'),
             'meta_keyword' => Yii::t('app', 'Meta Keyword'),
@@ -156,11 +155,12 @@ class Shop extends ActiveRecord
                 'path' => '@webroot/public/uploads/shop/shop/images',
                 'pathUrl' => '@web/public/uploads/shop/shop/images',
             ],
-            [
-                'class' => UserId::className(),
-                'attribute' => 'user_id',
-            ],
         ];
+    }
+
+    public function getCurrency()
+    {
+        return $this->hasOne(Currency::className(), ['id' => 'currency_id']);
     }
 
     /**
