@@ -152,8 +152,8 @@ class Shop extends ActiveRecord
             'image' => [
                 'class' => 'app\core\behaviors\file\ActionImage',
                 'attribute' => 'image',
-                'path' => '@webroot/public/uploads/shop/shop/images',
-                'pathUrl' => '@web/public/uploads/shop/shop/images',
+                'path' => Yii::$app->site->getUploadPath(true) . '/shop/shop/images',
+                'pathUrl' => Yii::$app->site->getUploadPathUrl(true) . '/shop/shop/images',
             ],
         ];
     }

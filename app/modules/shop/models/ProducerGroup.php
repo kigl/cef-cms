@@ -82,14 +82,14 @@ class ProducerGroup extends \app\core\db\ActiveRecord
         return [
             'imagePreview' => [
                 'class' => ActionImage::className(),
-                'path' => '@webroot/public/uploads/shop/producer/group',
-                'pathUrl' => '@web/public/uploads/shop/producer/group',
+                'path' => Yii::$app->site->getUploadPath(true) . '/shop/producer/group',
+                'pathUrl' => Yii::$app->site->getUploadPathUrl(true) . '/shop/producer/group',
                 'attribute' => 'image_preview',
             ],
             'image' => [
                 'class' => ActionImage::className(),
-                'path' => '@webroot/public/uploads/shop/producer/group',
-                'pathUrl' => '@web/public/uploads/shop/producer/group',
+                'path' => Yii::$app->site->getUploadPath(true) . '/shop/producer/group',
+                'pathUrl' => Yii::$app->site->getUploadPathUrl(true) . '/shop/producer/group',
                 'attribute' => 'image',
             ],
         ];
@@ -98,5 +98,15 @@ class ProducerGroup extends \app\core\db\ActiveRecord
     public function getShop()
     {
         return $this->hasOne(Shop::className(), ['id' => 'shop_id']);
+    }
+
+    public function getSubGroups()
+    {
+        return $this->hasMany(self::className(), ['parent_id' => 'id']);
+    }
+
+    public function getProducers()
+    {
+        return $this->hasMany(Producer::className(), ['group_id' => 'id']);
     }
 }

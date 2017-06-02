@@ -10,12 +10,13 @@ class m170519_041900_site extends Migration
     {
         $this->createTable($this->_tableName, [
             'id' => $this->primaryKey(),
-            'domain' => $this->string(),
-            'name' => $this->string(),
+            'domain' => $this->string()->notNull(),
+            'name' => $this->string()->notNull(),
             'description' => $this->text(),
             'robots_txt' => $this->text(),
-            'template_id' => $this->string(),
-            'layout' => $this->string(),
+            'upload_dir' => $this->string()->notNull(),
+            'template_id' => $this->string()->notNull(),
+            'layout' => $this->string()->notNull(),
         ]);
     }
 

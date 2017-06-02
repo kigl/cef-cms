@@ -128,14 +128,14 @@ class Producer extends \app\core\db\ActiveRecord
         return [
             'imagePreview' => [
                 'class' => ActionImage::className(),
-                'path' => '@webroot/public/uploads/shop/producer',
-                'pathUrl' => '@web/public/uploads/shop/producer',
+                'path' => Yii::$app->site->getUploadPath(true) . '/shop/producer',
+                'pathUrl' => Yii::$app->site->getUploadPathUrl(true) . '/shop/producer',
                 'attribute' => 'image_preview',
             ],
             'image' => [
                 'class' => ActionImage::className(),
-                'path' => '@webroot/public/uploads/shop/producer',
-                'pathUrl' => '@web/public/uploads/shop/producer',
+                'path' => Yii::$app->site->getUploadPath(true) . '/shop/producer',
+                'pathUrl' => Yii::$app->site->getUploadPathUrl(true) . '/shop/producer',
                 'attribute' => 'image',
             ],
         ];

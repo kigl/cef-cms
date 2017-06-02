@@ -19,22 +19,12 @@ class m161025_155949_shop_property extends Migration
             'list_id' => $this->integer(),
         ]);
 
-        $this->createIndex('ix-property-name', $this->_tableName, 'name');
+        $this->createIndex('ix-shop_property-shop_id', $this->_tableName, 'shop_id');
+        $this->addForeignKey('fk-shop_property_shop_id', $this->_tableName, 'shop_id', '{{%shop}}', 'id', 'CASCADE', 'CASCADE');
     }
 
     public function down()
     {
         $this->dropTable($this->_tableName);
     }
-
-    /*
-    // Use safeUp/safeDown to run migration code within a transaction
-    public function safeUp()
-    {
-    }
-
-    public function safeDown()
-    {
-    }
-    */
 }

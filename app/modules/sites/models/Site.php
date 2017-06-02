@@ -12,6 +12,7 @@ use Yii;
  * @property string $name
  * @property string $description
  * @property string $robots_txt
+ * @property string $upload_dir
  * @property string $template_id
  * @property string $layout
  * @property integer $active
@@ -35,7 +36,6 @@ class Site extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['domain', 'template_id', 'name'], 'required'],
             [['description', 'robots_txt'], 'string'],
             [['active'], 'integer'],
             [['domain', 'name', 'template_id', 'layout'], 'string', 'max' => 255],
@@ -53,6 +53,7 @@ class Site extends \yii\db\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'description' => Yii::t('app', 'Description'),
             'robots_txt' => Yii::t('app', 'Robots Txt'),
+            'upload_dir' => Yii::t('sites', 'Upload dir'),
             'template_id' => Yii::t('app', 'Template'),
             'layout' => Yii::t('app', 'Layout'),
             'active' => Yii::t('app', 'Active'),

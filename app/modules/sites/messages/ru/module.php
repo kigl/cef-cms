@@ -6,8 +6,10 @@ return [
     'Create site' => 'Создание сайта',
     'Create template' => 'Создание шаблона',
 
-    'Update site: {domain}' => 'Редактирование сайта: {domain}',
-    'Update template: {id}' => 'Редактирование шаблона: {id}',
+    'Edit site: {domain}' => 'Редактирование сайта: {domain}',
+    'Edit template: {id}' => 'Редактирование шаблона: {id}',
+
+    'Upload dir' => 'Директория загруженных файлов',
 
     'Sites' => 'Сайты',
 

@@ -20,7 +20,7 @@ use app\modules\shop\Module;
     <li><a href="#content" data-toggle="tab"><?= Yii::t('app', 'Tab content'); ?></a></li>
     <li><a href="#images" data-toggle="tab"><?= Yii::t('app', 'Tab images'); ?></a></li>
 
-    <?php if ($data['productProperties']) : ?>
+    <?php if ($data['productProperty']) : ?>
         <li><a href="#property" data-toggle="tab"><?= Yii::t('app', 'Tab properties') ?></a></li>
     <?php endif; ?>
 
@@ -40,7 +40,7 @@ use app\modules\shop\Module;
     ],
 ]); ?>
 
-<?= $form->errorSummary(array_merge($data['productProperties'], [$data['model']])); ?>
+<?= $form->errorSummary(array_merge($data['productProperty'], [$data['model']])); ?>
 
 <div class="tab-content">
     <div class="tab-pane active" id="main">
@@ -138,7 +138,7 @@ use app\modules\shop\Module;
          * @todo
          * Вынести в виджет
          */ ?>
-        <?php foreach ($data['productProperties'] as $property): ?>
+        <?php foreach ($data['productProperty'] as $property): ?>
             <?php if ($data['properties'][$property->property_id]->type === Property::TYPE_STRING) : ?>
                 <?= $form->field($property, "[{$property->property_id}]value")
                     ->label($data['properties'][$property->property_id]->name); ?>

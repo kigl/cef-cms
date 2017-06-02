@@ -13,6 +13,16 @@ use yii\helpers\ArrayHelper;
 
 class Site extends \app\modules\sites\models\Site
 {
+    public function rules()
+    {
+        return ArrayHelper::merge(parent::rules(), [
+            [['domain', 'name', 'upload_dir', 'template_id', 'layout'], 'required'],
+            ['upload_dir', 'filter', 'filter' => function ($value) {
+                return trim($value, '/');
+            }]
+        ]);
+    }
+
     public function getTemplateList()
     {
         $theme = \Yii::$app->view->theme;

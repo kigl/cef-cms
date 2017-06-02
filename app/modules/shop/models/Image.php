@@ -66,8 +66,8 @@ class Image extends ActiveRecord
         return [
             [
                 'class' => ActionImage::className(),
-                'path' => '@webroot/public/uploads/shop/product',
-                'pathUrl' => '@web/public/uploads/shop/product',
+                'path' => Yii::$app->site->getUploadPath(true) . '/shop/product',
+                'pathUrl' => Yii::$app->site->getUploadPathUrl(true) . '/shop/product',
                 'attribute' => 'name',
             ],
         ];

@@ -9,6 +9,8 @@
 namespace app\modules\shop\service\backend;
 
 
+use app\modules\shop\models\backend\Producer;
+use app\modules\shop\models\backend\ProducerGroup;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -77,11 +79,11 @@ class ShopModelService extends \app\core\service\ModelService
         if ($this->_model->delete()) {
             $products = Product::find()
                 ->where(['shop_id' => $this->_model->id])
-                ->andWhere(['parent_id' => null])
+                ->andWhere(['group_id' => null])
                 ->all();
 
             foreach ($products as $product) {
-                Yii::createObject(ProductModelServiceProduct::className())
+                Yii::createObject(ProductModelService::className())
                     ->delete($product->id);
             }
 
@@ -93,6 +95,25 @@ class ShopModelService extends \app\core\service\ModelService
             foreach ($groups as $group) {
                 Yii::createObject(ProductGroupModelService::className())
                     ->delete($group->id);
+            }
+
+            $producers = Producer::find()
+                ->where(['shop_id' => $this->_model->id])
+                ->andWhere(['group_id' => null])
+                ->all();
+
+            foreach ($producers as $producer) {
+                $producer->delete();
+            }
+
+            $producerGroups = ProducerGroup::find()
+                ->where(['shop_id' => $this->_model->id])
+                ->andWhere(['parent_id' => null])
+                ->all();
+
+            foreach ($producerGroups as $producerGroup) {
+                Yii::createObject(ProducerGroupModelService::className())
+                    ->delete($producerGroup->id);
             }
 
             return true;

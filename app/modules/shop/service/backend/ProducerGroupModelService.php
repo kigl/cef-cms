@@ -95,9 +95,28 @@ class ProducerGroupModelService extends ShopModelService
 
     public function delete($id)
     {
-        /**
-         * @todo
-         */
+        $model = ProducerGroup::find()
+            ->where(['id' => $id])
+            ->with(['subGroups', 'producers'])
+            ->one();
+
+        if ($model && $model->delete()) {
+            foreach ($model->producers as $producer) {
+                $producer->delete();
+            }
+
+            foreach ($model->subGroups as $group) {
+                $this->delete($group->id);
+            }
+
+            $this->setData([
+                'model' => $model,
+            ]);
+
+            return true;
+        }
+
+        return false;
     }
 
     private function load()

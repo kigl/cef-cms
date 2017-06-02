@@ -84,14 +84,14 @@ class ProductGroup extends ActiveRecord
         return [
             'imagePreview' => [
                 'class' => ActionImage::className(),
-                'path' => '@webroot/public/uploads/shop/group',
-                'pathUrl' => '@web/public/uploads/shop/group',
+                'path' => Yii::$app->site->getUploadPath(true) . '/shop/group',
+                'pathUrl' => Yii::$app->site->getUploadPathUrl(true) . '/shop/group',
                 'attribute' => 'image_preview',
             ],
             'image' => [
                 'class' => ActionImage::className(),
-                'path' => '@webroot/public/uploads/shop/group',
-                'pathUrl' => '@web/public/uploads/shop/group',
+                'path' => Yii::$app->site->getUploadPath(true) . '/shop/group',
+                'pathUrl' => Yii::$app->site->getUploadPathUrl(true) . '/shop/group',
                 'attribute' => 'image',
             ],
         ];

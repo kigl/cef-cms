@@ -65,6 +65,10 @@ class BackendProducerGroupController extends Controller
 
     public function actionDelete($id)
     {
+        if ($this->_modelService->delete($id)) {
+            return $this->redirect(['manager', 'shop_id' => $this->_modelService->data['model']->shop_id]);
+        }
 
+        return null;
     }
 }

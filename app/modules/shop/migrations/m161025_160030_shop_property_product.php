@@ -15,8 +15,8 @@ class m161025_160030_shop_property_product extends Migration
             'value' => $this->string(),
         ]);
 
-        $this->createIndex('ix-product_property-product_id', $this->tableName, 'product_id', true);
-        $this->createIndex('ix-product_property-property_id', $this->tableName, 'property_id', true);
+        $this->createIndex('ix-product_property-product_id', $this->tableName, 'product_id');
+        $this->createIndex('ix-product_property-property_id', $this->tableName, 'property_id');
 
         $this->addForeignKey('fk-product_property-product_id', $this->tableName, 'product_id', '{{%shop_product}}', 'id', 'CASCADE', 'CASCADE');
         $this->addForeignKey('fk-product_property-property_id', $this->tableName, 'property_id', '{{%shop_property}}', 'id', 'CASCADE', 'CASCADE');

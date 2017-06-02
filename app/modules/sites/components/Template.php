@@ -10,7 +10,6 @@ namespace app\modules\sites\components;
 
 
 use Yii;
-use yii\base\ErrorException;
 
 class Template extends \yii\base\Theme
 {
@@ -60,7 +59,7 @@ class Template extends \yii\base\Theme
 
     public function getTemplatePath($templateId, $alias = false, $url = false)
     {
-        $templates = $this->getTemplates();
+        $templates = $this->getTemplates($alias);
 
         return isset($templates[$templateId]) ? $templates[$templateId] : null;
     }

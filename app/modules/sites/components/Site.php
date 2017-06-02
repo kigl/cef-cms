@@ -22,6 +22,8 @@ class Site extends Component implements BootstrapInterface
 
     protected $_layout;
 
+    protected $_uploadDir;
+
     public function bootstrap($app)
     {
         $domain = Yii::$app->request->hostName;
@@ -31,13 +33,13 @@ class Site extends Component implements BootstrapInterface
             $this->_id = $model->id;
             $this->_templateId = $model->template_id;
             $this->_layout = $model->layout;
+            $this->_uploadDir = $model->upload_dir;
         }
     }
 
     protected function getSiteModel($domain)
     {
         return SiteModel::find()
-            ->select(['id', 'template_id', 'layout'])
             ->where(['domain' => $domain,])
             ->one();
     }
@@ -55,5 +57,17 @@ class Site extends Component implements BootstrapInterface
     public function getLayout()
     {
         return isset($this->_layout) ? $this->_layout : null;
+    }
+
+    public function getUploadPath($alias = false)
+    {
+        $path = '@webroot/' . $this->_uploadDir;
+        return $alias ? $path : Yii::getAlias($path);
+    }
+
+    public function getUploadPathUrl($alias = false)
+    {
+        $path = '@web/' . $this->_uploadDir;
+        return $alias ? $path : Yii::getAlias($path);
     }
 }

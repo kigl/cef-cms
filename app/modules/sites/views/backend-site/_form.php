@@ -33,6 +33,7 @@ use yii\helpers\ArrayHelper;
             <?= $form->field($model, 'robots_txt')->textarea(['rows' => 20]); ?>
         </div>
         <div class="tab-pane" id="settings">
+            <?= $form->field($model, 'upload_dir'); ?>
 
             <?= $form->field($model, 'template_id')
                 ->dropDownList($model->getTemplateList(), ['id' => 'template_id']); ?>

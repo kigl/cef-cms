@@ -37,7 +37,7 @@ class ProductModelService extends ProductGroupModelService
     /**
      * @var array
      */
-    protected $_productProperties;
+    protected $_productProperty;
 
     protected $_properties;
 
@@ -78,17 +78,12 @@ class ProductModelService extends ProductGroupModelService
             'warehouseProduct' => $this->_warehouseProduct,
             'measureList' => $this->getMeasureList(),
             'properties' => $this->_properties,
-            'productProperties' => $this->_productProperties,
+            'productProperty' => $this->_productProperty,
             'dataProviderPacking' => $dataProviderPacking,
             'breadcrumbs' => $this->getBreadcrumbs($shop, $this->_model->group_id),
         ]);
 
-        if ($this->load()) {
-
-            return $this->save();
-        }
-
-        return false;
+        return $this->save();
     }
 
     public function update()
@@ -120,7 +115,7 @@ class ProductModelService extends ProductGroupModelService
             'warehouseProduct' => $this->_warehouseProduct,
             'measureList' => $this->getMeasureList(),
             'properties' => $this->_properties,
-            'productProperties' => $this->_productProperties,
+            'productProperty' => $this->_productProperty,
             'dataProvider' => $dataProvider,
             'dataProviderPacking' => $dataProviderPacking,
             'breadcrumbs' => $this->getBreadcrumbs(
@@ -130,11 +125,7 @@ class ProductModelService extends ProductGroupModelService
                 $this->_model->name),
         ]);
 
-        if ($this->load()) {
-            return $this->save();
-        }
-
-        return false;
+        return $this->save();
     }
 
     public function delete($id)
@@ -168,28 +159,8 @@ class ProductModelService extends ProductGroupModelService
     {
         $this->initWarehouse();
         $this->initPrice();
-        $this->initProperties();
-        $this->initImages();
-    }
-
-    private function initProperties()
-    {
-        $this->_productProperties = $this->_model->getProperties()
-            ->all();
-
-        $this->_properties = Property::find()
-            ->indexBy('id')
-            ->all();
-
-
-        foreach (array_diff_key($this->_properties, $this->_productProperties) as $pr) {
-            $this->_productProperties[$pr->id] = new PropertyProduct();
-            $this->_productProperties[$pr->id]->property_id = $pr->id;
-        }
-
-        foreach ($this->_properties as $property) {
-            $this->_productProperties[$property->id]->requiredValue = $property->required;
-        }
+        $this->initProperty();
+        $this->initImage();
     }
 
     private function load()
@@ -202,7 +173,7 @@ class ProductModelService extends ProductGroupModelService
 
         Model::loadMultiple($this->_priceProduct, $post);
         Model::loadMultiple($this->_warehouseProduct, $post);
-        Model::loadMultiple($this->_productProperties, $post);
+        Model::loadMultiple($this->_productProperty, $post);
         Model::loadMultiple($this->_images, $post);
 
         return $result;
@@ -219,22 +190,44 @@ class ProductModelService extends ProductGroupModelService
 
     private function save($validate = true)
     {
-        /**
-         * @todo
-         * сделать транзакцию
-         */
-        if ($this->validate($validate)) {
-            $this->_model->save($validate);
-            $this->saveWarehouse();
-            $this->savePrice();
-            $this->saveProperties();
-            $this->uploadImages();
-            $this->processImages();
+        if ($this->load()) {
+            /**
+             * @todo
+             * сделать транзакцию
+             */
+            if ($this->validate($validate)) {
+                $this->_model->save($validate);
+                $this->saveWarehouse();
+                $this->savePrice();
+                $this->saveProperties();
+                $this->uploadImages();
+                $this->processImages();
 
-            return true;
+                return true;
+            }
         }
 
         return false;
+    }
+
+    private function initProperty()
+    {
+        $this->_productProperty = $this->_model->getProperties()
+            ->all();
+
+        $this->_properties = Property::find()
+            ->indexBy('id')
+            ->all();
+
+
+        foreach (array_diff_key($this->_properties, $this->_productProperty) as $pr) {
+            $this->_productProperty[$pr->id] = new PropertyProduct();
+            $this->_productProperty[$pr->id]->property_id = $pr->id;
+        }
+
+        foreach ($this->_properties as $property) {
+            $this->_productProperty[$property->id]->requiredValue = $property->required;
+        }
     }
 
     private function validateProperties($validate = true)
@@ -243,7 +236,7 @@ class ProductModelService extends ProductGroupModelService
 
         if ($validate) {
 
-            foreach ($this->_productProperties as $key => $property) {
+            foreach ($this->_productProperty as $key => $property) {
                 $property->validate();
                 if (!$property->validate()) {
 
@@ -264,7 +257,7 @@ class ProductModelService extends ProductGroupModelService
             $success = $this->validateProperties();
         }
 
-        foreach ($this->_productProperties as $property) {
+        foreach ($this->_productProperty as $property) {
             $property->product_id = $this->_model->id;
 
             if ($success === true) {
@@ -279,7 +272,7 @@ class ProductModelService extends ProductGroupModelService
         return $success;
     }
 
-    private function initImages()
+    private function initImage()
     {
         $this->_images = $this->_model->getImages()
             ->indexBy('id')
@@ -358,7 +351,6 @@ class ProductModelService extends ProductGroupModelService
         foreach (array_diff_key($this->_warehouses, $this->_warehouseProduct) as $warehouse) {
             $this->_warehouseProduct[$warehouse->id] = new WarehouseProduct([
                 'warehouse_id' => $warehouse->id,
-                'product_id' => $this->_model->id,
             ]);
         }
     }
@@ -367,6 +359,7 @@ class ProductModelService extends ProductGroupModelService
     {
         foreach ($this->_warehouseProduct as $warehouseProduct) {
             if ($warehouseProduct->value !== '') {
+                $warehouseProduct->product_id = $this->_model->id;
                 $warehouseProduct->save();
             } else {
                 $warehouseProduct->delete();
@@ -388,7 +381,6 @@ class ProductModelService extends ProductGroupModelService
         foreach (array_diff_key($this->_prices, $this->_priceProduct) as $price) {
             $this->_priceProduct[$price->id] = new PriceProduct([
                 'price_id' => $price->id,
-                'product_id' => $this->_model->id,
             ]);
         }
     }
@@ -397,6 +389,7 @@ class ProductModelService extends ProductGroupModelService
     {
         foreach ($this->_priceProduct as $priceProduct) {
             if ($priceProduct->value !== '') {
+                $priceProduct->product_id = $this->_model->id;
                 $priceProduct->save();
             } else {
                 $priceProduct->delete();
