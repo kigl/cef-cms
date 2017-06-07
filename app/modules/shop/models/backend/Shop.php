@@ -52,7 +52,47 @@ class Shop extends \app\modules\shop\models\Shop
             ],
             [['group_sorting_type', 'product_sorting_type'], 'default', 'value' => SORT_ASC],
             [['group_sorting_field', 'product_sorting_field'], 'default', 'value' => Module::DEFAULT_SORTING_FIELD],
+            [
+                'group_sorting_field',
+                'validateExistFieldInList',
+                'params' => ['listFields' => 'groupSortingFieldList']
+            ],
+            [
+                'product_sorting_field',
+                'validateExistFieldInList',
+                'params' => ['listFields' => 'productSortingFieldList']
+            ],
+            [['groupSortingFieldList', 'productSortingFieldList'], 'safe'],
         ]);
+    }
+
+    public function validateExistFieldInList($attribute, $params)
+    {
+        if (!array_key_exists($this->{$attribute}, array_flip($this->{$params['listFields']}))) {
+            $this->addError(
+                $attribute,
+                Yii::t('shop', 'Does not exist ({field}) in the list of fields',
+                    ['field' => $this->{$attribute}])
+            );
+        }
+    }
+
+    public function getSortingTypes()
+    {
+        return [
+            SORT_ASC => Yii::t('app', 'ASC'),
+            SORT_DESC => Yii::t('app', 'DESC'),
+        ];
+    }
+
+    public function setGroupSortingFieldList($value)
+    {
+        $this->group_sorting_list_field = serialize($value);
+    }
+
+    public function setProductSortingFieldList($value)
+    {
+        $this->product_sorting_list_field = serialize($value);
     }
 
     public function beforeSave($insert)

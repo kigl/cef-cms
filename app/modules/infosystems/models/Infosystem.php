@@ -176,11 +176,11 @@ class Infosystem extends \app\core\db\ActiveRecord
 
     public function getSortingListFieldGroup()
     {
-        return array_values((array)json_decode($this->sorting_list_field_group));
+        return array_values((array)unserialize($this->sorting_list_field_group));
     }
 
     public function getSortingListFieldItem()
     {
-        return array_values((array)json_decode($this->sorting_list_field_item));
+        return array_values((array)unserialize($this->sorting_list_field_item));
     }
 }

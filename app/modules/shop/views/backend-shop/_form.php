@@ -88,24 +88,30 @@ use vova07\imperavi\Widget;
             <div class="tab-pane" id="settings-sorting">
                 <div class="row">
                     <div class="col-md-4">
-                        <?= $form->field($data['model'], 'group_sorting_type'); ?>
+                        <?= $form->field($data['model'], 'group_sorting_type')
+                            ->dropDownList($data['model']->getSortingTypes()); ?>
                     </div>
                     <div class="col-md-4">
-                        <?= $form->field($data['model'], 'group_sorting_field'); ?>
+                        <?= $form->field($data['model'], 'group_sorting_field')
+                            ->dropDownList($data['groupSortingAttributeList']); ?>
                     </div>
                     <div class="col-md-4">
-                        <?= $form->field($data['model'], 'group_sorting_list_field'); ?>
+                        <?= $form->field($data['model'], 'groupSortingFieldList')
+                        ->dropDownList($data['groupSortingAttributeList'], ['multiple' => true, 'size' => 5]); ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <?= $form->field($data['model'], 'product_sorting_type'); ?>
+                        <?= $form->field($data['model'], 'product_sorting_type')
+                            ->dropDownList($data['model']->getSortingTypes()); ?>
                     </div>
                     <div class="col-md-4">
-                        <?= $form->field($data['model'], 'product_sorting_field'); ?>
+                        <?= $form->field($data['model'], 'product_sorting_field')
+                            ->dropDownList($data['productSortingAttributeList']); ?>
                     </div>
                     <div class="col-md-4">
-                        <?= $form->field($data['model'], 'product_sorting_list_field'); ?>
+                        <?= $form->field($data['model'], 'productSortingFieldList')
+                            ->dropDownList($data['productSortingAttributeList'], ['multiple' => true, 'size' => 5]); ?>
                     </div>
                 </div>
             </div>

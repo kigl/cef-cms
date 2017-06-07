@@ -9,8 +9,6 @@
 namespace app\modules\shop\service\backend;
 
 
-use app\modules\shop\models\backend\Producer;
-use app\modules\shop\models\backend\ProducerGroup;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -22,6 +20,8 @@ use app\modules\shop\models\backend\Product;
 use app\modules\shop\models\backend\Shop;
 use app\modules\shop\models\backend\Measure;
 use app\modules\shop\models\backend\Currency;
+use app\modules\shop\models\backend\Producer;
+use app\modules\shop\models\backend\ProducerGroup;
 
 class ShopModelService extends \app\core\service\ModelService
 {
@@ -52,6 +52,8 @@ class ShopModelService extends \app\core\service\ModelService
             'model' => $this->_model,
             'measureList' => $this->getMeasureList(),
             'currencyList' => $this->getCurrencyList(),
+            'groupSortingAttributeList' => $this->getGroupSortingAttributeList(),
+            'productSortingAttributeList' => $this->getProductSortingAttributeList(),
             'breadcrumbs' => $this->getBreadcrumbs(),
         ]);
 
@@ -66,6 +68,8 @@ class ShopModelService extends \app\core\service\ModelService
             'model' => $this->_model,
             'measureList' => $this->getMeasureList(),
             'currencyList' => $this->getCurrencyList(),
+            'groupSortingAttributeList' => $this->getGroupSortingAttributeList(),
+            'productSortingAttributeList' => $this->getProductSortingAttributeList(),
             'breadcrumbs' => $this->getBreadcrumbs(),
         ]);
 
@@ -170,5 +174,19 @@ class ShopModelService extends \app\core\service\ModelService
             ->all();
 
         return ArrayHelper::map($models, 'id', 'short_name');
+    }
+
+    private function getGroupSortingAttributeList()
+    {
+        $attributes = ['id', 'name', 'create_time', 'update_time'];
+
+        return array_combine($attributes, $attributes);
+    }
+
+    private function getProductSortingAttributeList()
+    {
+        $attributes = ['id', 'name', 'create_time', 'update_time'];
+
+        return array_combine($attributes, $attributes);
     }
 }

@@ -5,6 +5,7 @@ return [
     'Button order' => 'Оформить заказ',
 
     'Discount' => 'Скидка',
+    'Does not exist ({field}) in the list of fields' => '({field}) не выбран в списке полей',
 
     'Max width image preview group' => 'Максимальная ширина изображения предварительного просмотра группы',
     'Max height image preview group' => 'Максимальная высота изображения предварительного просмотра группы',
@@ -17,7 +18,7 @@ return [
     'Main image' => 'Главное изоброжение',
     'Module name' => 'Интеренет магазин',
     'Module description' => 'Интеренет магазин',
-    'Measures' => 'Еденицы измерения',
+    'Measures' => 'Единицы измерения',
 
     'Checkout' => 'Оформить заказ',
     'Create shop' => 'Создание интернет-магазина',
@@ -27,10 +28,11 @@ return [
     'Create producer' => 'Создание производителя',
     'Create price' => 'Создание цены',
     'Create warehouse' => 'Создание склада',
-    'Create measure' => 'Создание еденицы измерения',
+    'Create measure' => 'Создание единицы измерения',
     'Create currency' => 'Создание валюты',
     'Create packing' => 'Создание упаковки',
     'Currencies' => 'Валюты',
+    'Currency' => 'Валюта',
 
     'Edit shop: {data}' => 'Редактирование интернет-магазина: {data}',
     'Edit group: {data}' => 'Редактирование группы: {data}',
@@ -39,11 +41,19 @@ return [
     'Edit producer: {data}' => 'Редактирование производителя: {data}',
     'Edit price: {data}' => 'Редактирование цены: {data}',
     'Edit warehouse: {data}' => 'Редактирование склада: {data}',
-    'Edit measure: {data}' => 'Редактирование еденицы измерения: {data}',
+    'Edit measure: {data}' => 'Редактирование единицы измерения: {data}',
     'Edit currency: {data}' => 'Редактирование валюты: {data}',
     'Edit packing: {data}' => 'Редактирование упаковки: {data}',
     'Exchange rate' => 'Курс',
 
+    'Group on page' => 'Число групп на странице',
+    'Group image preview max width' => 'Максимальная ширина превью изображения группы',
+    'Group image preview max height' => 'Максимальная высота превью изображения группы',
+    'Group image max width' => 'Максимальная ширина изображения группы',
+    'Group image max height' => 'Максимальная высота изображения группы',
+    'Group sorting type' => 'Тип сортировки групп',
+    'Group sorting field' => 'Поле сортировки групп',
+    'Group sorting list field' => 'Список полей сортировки групп',
 
     'Page header cart' => 'Корзина',
     'Product relation' => 'Модификация для товара',
@@ -54,6 +64,12 @@ return [
     'Products' => 'Товары',
     'Product on page' => 'Число товаров на странице',
     'Producers' => 'Производители',
+    'Product weight measure' => 'Единица измерения веса товара',
+    'Product image max width' => 'Максимальная ширина изображения товара',
+    'Product image max height' => 'Максимальная высота изображения товара',
+    'Product sorting type' => 'Тип сортировки товара',
+    'Product sorting field' => 'Поле сортировки товаров',
+    'Product sorting list field' => 'Список полей сортировки товаров',
 
     'Status not available' => 'Нет в наличии',
     'Sum' => 'Сумма',
@@ -64,6 +80,8 @@ return [
     'Sorting type product' => 'Тип сортировки товара',
     'Sorting field product' => 'Поле сортировки товара',
     'Sorting list field product' => 'Список полей для сортировки товара',
+    'Size packing measure' => 'Еденица измерения размера упаковки',
+
     'User id' => 'Идентификатор пользователя',
 
     'Orders' => 'Заказы',

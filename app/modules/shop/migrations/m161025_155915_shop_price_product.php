@@ -9,17 +9,15 @@ class m161025_155915_shop_price_product extends Migration
     public function up()
     {
         $this->createTable($this->_tableName, [
-            'id' => $this->primaryKey(),
-            'price_id' => $this->integer(),
-            'product_id' => $this->integer(),
+            'price_id' => $this->integer()->notNull(),
+            'product_id' => $this->integer()->notNull(),
             'value' => $this->decimal(12,2)->defaultValue(0),
         ]);
 
-        $this->createIndex('ix-product-product_id', $this->_tableName, 'product_id');
+        $this->addPrimaryKey('', $this->_tableName, ['price_id', 'product_id']);
+
         $this->addForeignKey('fk-product-product_id', $this->_tableName, 'product_id', '{{%shop_product}}', 'id',
             'CASCADE', 'CASCADE');
-
-        $this->createIndex('ix-product_price_id', $this->_tableName, 'price_id');
         $this->addForeignKey('fk-product-price_id', $this->_tableName, 'price_id', '{{%shop_price}}', 'id', 'CASCADE',
             'CASCADE');
     }

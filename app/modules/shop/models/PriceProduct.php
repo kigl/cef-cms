@@ -7,7 +7,6 @@ use Yii;
 /**
  * This is the model class for table "{{%shop_price_product}}".
  *
- * @property integer $id
  * @property integer $price_id
  * @property integer $product_id
  * @property string $value
@@ -42,7 +41,6 @@ class PriceProduct extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
             'price_id' => Yii::t('app', 'Price ID'),
             'product_id' => Yii::t('app', 'Product ID'),
             'value' => Yii::t('app', 'Value'),

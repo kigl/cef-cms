@@ -87,12 +87,12 @@ class Infosystem extends \app\modules\infosystems\models\Infosystem
 
     public function setSortingListFieldGroup($value)
     {
-        $this->sorting_list_field_group = json_encode($value);
+        $this->sorting_list_field_group = serialize($value);
     }
 
     public function setSortingListFieldItem($value)
     {
-        $this->sorting_list_field_item = json_encode((array)$value);
+        $this->sorting_list_field_item = serialize($value);
     }
 
     public function beforeSave($insert)
